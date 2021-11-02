@@ -129,7 +129,7 @@ public class JAASLoginService extends LoginService {
 
         private char[] password;
 
-        public JAASCallbackHandler(String name, char[] passwd) {
+        JAASCallbackHandler(String name, char[] passwd) {
             this.name = name;
             this.password = passwd;
         }

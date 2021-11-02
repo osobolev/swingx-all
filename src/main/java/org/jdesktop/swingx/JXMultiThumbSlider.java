@@ -325,7 +325,7 @@ public class JXMultiThumbSlider<E> extends JComponent {
 
         private JXMultiThumbSlider<?> slider;
 
-        public ThumbComp(JXMultiThumbSlider<?> slider) {
+        ThumbComp(JXMultiThumbSlider<?> slider) {
             this.slider = slider;
             Dimension dim = new Dimension(10, 10);//slider.getHeight());
             /*if(slider.getThumbRenderer() != null) {

@@ -1245,7 +1245,7 @@ public class JXLoginPane extends JXPanel {
         private static final long serialVersionUID = 7256761187925982485L;
         private JXLoginPane panel;
 
-        public LoginAction(JXLoginPane p) {
+        LoginAction(JXLoginPane p) {
             super(UIManagerExt.getString(CLASS_NAME + ".loginString", p.getLocale()), LOGIN_ACTION_COMMAND);
             this.panel = p;
         }
@@ -1268,7 +1268,7 @@ public class JXLoginPane extends JXPanel {
         private static final long serialVersionUID = 4040029973355439229L;
         private JXLoginPane panel;
 
-        public CancelAction(JXLoginPane p) {
+        CancelAction(JXLoginPane p) {
             super(UIManagerExt.getString(CLASS_NAME + ".cancelLogin", p.getLocale()), CANCEL_LOGIN_ACTION_COMMAND);
             this.panel = p;
             this.setEnabled(false);
@@ -1379,7 +1379,7 @@ public class JXLoginPane extends JXPanel {
 
         private static final long serialVersionUID = 6513437813612641002L;
 
-        public SimpleNamePanel() {
+        SimpleNamePanel() {
             super("", 15);
 
             // auto-complete based on the users input
@@ -1421,7 +1421,7 @@ public class JXLoginPane extends JXPanel {
 
         private static final long serialVersionUID = 2511649075486103959L;
 
-        public ComboNamePanel() {
+        ComboNamePanel() {
             setModel(new NameComboBoxModel());
             setEditable(true);
 
@@ -1747,7 +1747,7 @@ public class JXLoginPane extends JXPanel {
         private JButton cancel;
         private JButton ok;
 
-        public JXBtnPanel(JButton okButton, JButton cancelButton) {
+        JXBtnPanel(JButton okButton, JButton cancelButton) {
             GridLayout layout = new GridLayout(1, 2);
             layout.setHgap(5);
             setLayout(layout);

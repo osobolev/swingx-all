@@ -781,7 +781,7 @@ public class JXSearchField extends JXTextField {
      */
     class ClearAction extends AbstractAction {
 
-        public ClearAction() {
+        ClearAction() {
             putValue(SHORT_DESCRIPTION, "Clear Search Text");
         }
 

@@ -420,7 +420,7 @@ public class AutoCompleteDocument implements Document {
         Object matchingItem;
         String matchingString;
 
-        public LookupResult(Object matchingItem, String matchingString) {
+        LookupResult(Object matchingItem, String matchingString) {
             this.matchingItem = matchingItem;
             this.matchingString = matchingString;
         }

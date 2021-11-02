@@ -377,7 +377,7 @@ public class AutoCompleteDecorator {
         Action selectionBackward;
         AbstractAutoCompleteAdaptor adaptor;
 
-        public NonStrictBackspaceAction(Action backspace, Action selectionBackward, AbstractAutoCompleteAdaptor adaptor) {
+        NonStrictBackspaceAction(Action backspace, Action selectionBackward, AbstractAutoCompleteAdaptor adaptor) {
             super("nonstrict-backspace");
             this.backspace = backspace;
             this.selectionBackward = selectionBackward;

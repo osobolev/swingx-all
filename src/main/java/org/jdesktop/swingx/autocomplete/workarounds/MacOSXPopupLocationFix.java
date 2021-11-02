@@ -142,7 +142,7 @@ public final class MacOSXPopupLocationFix {
         final GraphicsConfiguration graphicsConfiguration;
         final boolean aqua;
 
-        public ScreenGeometry(JComponent component) {
+        ScreenGeometry(JComponent component) {
             this.aqua = UIManager.getLookAndFeel().getName().indexOf("Aqua") != -1;
             this.graphicsConfiguration = graphicsConfigurationForComponent(component);
         }

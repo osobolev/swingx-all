@@ -1960,7 +1960,7 @@ public class BasicMonthViewUI extends MonthViewUI {
 
         private int action;
 
-        public KeyboardAction(int action) {
+        KeyboardAction(int action) {
             this.action = action;
         }
 

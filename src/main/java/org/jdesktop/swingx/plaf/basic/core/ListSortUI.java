@@ -493,7 +493,7 @@ public final class ListSortUI {
         // True if the event indicates all the contents have changed
         boolean allRowsChanged;
 
-        public ModelChange(ListDataEvent e) {
+        ModelChange(ListDataEvent e) {
             type = e.getType();
             modelRowCount = ((ListModel) e.getSource()).getSize();
             startModelIndex = e.getIndex0();

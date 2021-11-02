@@ -486,7 +486,7 @@ public class BasicDatePickerUI extends DatePickerUI {
      */
     private class DefaultEditor extends JFormattedTextField implements UIResource {
 
-        public DefaultEditor(AbstractFormatter formatter) {
+        DefaultEditor(AbstractFormatter formatter) {
             super(formatter);
         }
 
@@ -1146,7 +1146,7 @@ public class BasicDatePickerUI extends DatePickerUI {
      */
     private class TogglePopupAction extends AbstractAction {
 
-        public TogglePopupAction() {
+        TogglePopupAction() {
             super("TogglePopup");
         }
 

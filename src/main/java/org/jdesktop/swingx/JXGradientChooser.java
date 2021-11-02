@@ -584,7 +584,7 @@ public class JXGradientChooser extends JXPanel {
 
     private final class AddThumbAction extends AbstractActionExt {
 
-        public AddThumbAction() {
+        AddThumbAction() {
             super("Add");
         }
 
@@ -611,7 +611,7 @@ public class JXGradientChooser extends JXPanel {
 
     private final class DeleteThumbAction extends AbstractActionExt {
 
-        public DeleteThumbAction() {
+        DeleteThumbAction() {
             super("Delete");
         }
 
@@ -627,7 +627,7 @@ public class JXGradientChooser extends JXPanel {
 
     private class StopListener implements ThumbListener {
 
-        public StopListener() {
+        StopListener() {
         }
 
         @Override

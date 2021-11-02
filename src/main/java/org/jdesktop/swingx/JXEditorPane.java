@@ -420,7 +420,7 @@ public class JXEditorPane extends JEditorPane implements /*Searchable, */Targeta
 
         private Map<HTML.Tag, String> itemMap;
 
-        public ParagraphSelector() {
+        ParagraphSelector() {
 
             // The item map is for rendering
             itemMap = new HashMap<HTML.Tag, String>();
@@ -459,7 +459,7 @@ public class JXEditorPane extends JEditorPane implements /*Searchable, */Targeta
 
         private class ParagraphRenderer extends DefaultListCellRenderer {
 
-            public ParagraphRenderer() {
+            ParagraphRenderer() {
                 setOpaque(true);
             }
 

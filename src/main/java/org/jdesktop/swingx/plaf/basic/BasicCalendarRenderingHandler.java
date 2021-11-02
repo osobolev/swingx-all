@@ -50,7 +50,7 @@ class BasicCalendarRenderingHandler implements CalendarRenderingHandler {
     /**
      * Instantiates a RenderingHandler and installs default state.
      */
-    public BasicCalendarRenderingHandler() {
+    BasicCalendarRenderingHandler() {
         install();
     }
 

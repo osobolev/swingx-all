@@ -186,7 +186,7 @@ public class BasicCalendarHeaderHandler extends CalendarHeaderHandler {
         protected AbstractButton nextButton;
         protected JXHyperlink zoomOutLink;
 
-        public BasicCalendarHeader() {
+        BasicCalendarHeader() {
             setLayout(new BoxLayout(this, BoxLayout.LINE_AXIS));
             prevButton = createNavigationButton();
             nextButton = createNavigationButton();

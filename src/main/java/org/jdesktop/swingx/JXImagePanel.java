@@ -126,11 +126,11 @@ class JXImagePanel extends JXPanel {
 
     private static final ExecutorService service = Executors.newFixedThreadPool(5);
 
-    public JXImagePanel() {
+    JXImagePanel() {
     }
 
     //TODO remove this constructor; no where else can a URL be used in this class
-    public JXImagePanel(URL imageUrl) {
+    JXImagePanel(URL imageUrl) {
         try {
             setImage(ImageIO.read(imageUrl));
         } catch (Exception e) {

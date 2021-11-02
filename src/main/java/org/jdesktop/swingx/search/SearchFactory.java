@@ -67,7 +67,7 @@ public class SearchFactory implements UIDependent {
 
         private final WeakReference<SearchFactory> ref;
 
-        public LaFListener(SearchFactory sf) {
+        LaFListener(SearchFactory sf) {
             this.ref = new WeakReference<SearchFactory>(sf);
         }
 

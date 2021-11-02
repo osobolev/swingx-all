@@ -44,7 +44,7 @@ class StrictNumberFormatter extends NumberFormatter {
     /**
      * @param format
      */
-    public StrictNumberFormatter(NumberFormat format) {
+    StrictNumberFormatter(NumberFormat format) {
         super(format);
     }
 

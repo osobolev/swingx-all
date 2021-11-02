@@ -326,7 +326,7 @@ public class BasicTipOfTheDayUI extends TipOfTheDayUI {
 
     class PreviousTipAction extends AbstractAction {
 
-        public PreviousTipAction() {
+        PreviousTipAction() {
             super("previousTip");
         }
 
@@ -343,7 +343,7 @@ public class BasicTipOfTheDayUI extends TipOfTheDayUI {
 
     class NextTipAction extends AbstractAction {
 
-        public NextTipAction() {
+        NextTipAction() {
             super("nextTip");
         }
 

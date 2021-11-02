@@ -57,7 +57,7 @@ public class BasicMultiThumbSliderUI extends MultiThumbSliderUI {
 
     private class BasicThumbRenderer extends JComponent implements ThumbRenderer {
 
-        public BasicThumbRenderer() {
+        BasicThumbRenderer() {
             setPreferredSize(new Dimension(14, 14));
         }
 

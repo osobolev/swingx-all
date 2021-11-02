@@ -2135,7 +2135,7 @@ public class JXTreeTable extends JXTable {
          */
         protected boolean updatingListSelectionModel;
 
-        public ListToTreeSelectionModelWrapper() {
+        ListToTreeSelectionModelWrapper() {
             getListSelectionModel().addListSelectionListener
                 (createListSelectionListener());
         }
@@ -2607,7 +2607,7 @@ public class JXTreeTable extends JXTable {
 
         // Force user to specify TreeTableModel instead of more general
         // TreeModel
-        public TreeTableCellRenderer(TreeTableModel model) {
+        TreeTableCellRenderer(TreeTableModel model) {
             super(model);
             putClientProperty("JTree.lineStyle", "None");
             setRootVisible(false); // superclass default is "true"

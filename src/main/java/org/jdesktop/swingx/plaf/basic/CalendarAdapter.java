@@ -43,7 +43,7 @@ class CalendarAdapter extends ComponentAdapter {
     /**
      * @param component
      */
-    public CalendarAdapter(JXMonthView component) {
+    CalendarAdapter(JXMonthView component) {
         super(component);
     }
 

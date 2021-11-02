@@ -722,11 +722,11 @@ public class BasicErrorPaneUI extends ErrorPaneUI {
      */
     private static final class EqualSizeJButton extends JButton {
 
-        public EqualSizeJButton(String text) {
+        EqualSizeJButton(String text) {
             super(text);
         }
 
-        public EqualSizeJButton(Action a) {
+        EqualSizeJButton(Action a) {
             super(a);
         }
 
@@ -805,12 +805,12 @@ public class BasicErrorPaneUI extends ErrorPaneUI {
 
     private final class JXErrorDialog extends JDialog {
 
-        public JXErrorDialog(Frame parent, JXErrorPane p) {
+        JXErrorDialog(Frame parent, JXErrorPane p) {
             super(parent, true);
             init(p);
         }
 
-        public JXErrorDialog(Dialog parent, JXErrorPane p) {
+        JXErrorDialog(Dialog parent, JXErrorPane p) {
             super(parent, true);
             init(p);
         }
@@ -824,7 +824,7 @@ public class BasicErrorPaneUI extends ErrorPaneUI {
 
     private final class JXErrorFrame extends JFrame {
 
-        public JXErrorFrame(JXErrorPane p) {
+        JXErrorFrame(JXErrorPane p) {
             setTitle(p.getErrorInfo().getTitle());
             initWindow(this, p);
         }
@@ -832,7 +832,7 @@ public class BasicErrorPaneUI extends ErrorPaneUI {
 
     private final class JXInternalErrorFrame extends JInternalFrame {
 
-        public JXInternalErrorFrame(JXErrorPane p) {
+        JXInternalErrorFrame(JXErrorPane p) {
             setTitle(p.getErrorInfo().getTitle());
 
             setLayout(new BorderLayout());

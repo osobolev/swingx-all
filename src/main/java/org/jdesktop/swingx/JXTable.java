@@ -3964,7 +3964,7 @@ public class JXTable extends JTable implements TableColumnModelExtListener {
 
         KeyboardFocusManager focusManager;
 
-        public CellEditorRemover() {
+        CellEditorRemover() {
             install();
         }
 

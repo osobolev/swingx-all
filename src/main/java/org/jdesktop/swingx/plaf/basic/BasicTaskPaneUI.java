@@ -420,7 +420,7 @@ public class BasicTaskPaneUI extends TaskPaneUI {
          */
         private static final long serialVersionUID = 5676859881615358815L;
 
-        public ToggleCollapsedAction() {
+        ToggleCollapsedAction() {
             super("toggleCollapsed");
         }
 

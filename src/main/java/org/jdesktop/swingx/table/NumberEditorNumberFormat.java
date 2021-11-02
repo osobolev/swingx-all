@@ -34,7 +34,7 @@ class NumberEditorNumberFormat extends Format {
 
     private final NumberFormat childFormat;
 
-    public NumberEditorNumberFormat(NumberFormat childFormat) {
+    NumberEditorNumberFormat(NumberFormat childFormat) {
         if (childFormat == null) {
             childFormat = NumberFormat.getInstance();
         }

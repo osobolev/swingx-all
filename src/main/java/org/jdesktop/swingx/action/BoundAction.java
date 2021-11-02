@@ -149,7 +149,7 @@ public class BoundAction extends AbstractActionExt {
         private Statement falseStatement;
         private Statement trueStatement;
 
-        public BooleanInvocationHandler(Object target, String methodName) {
+        BooleanInvocationHandler(Object target, String methodName) {
             // Create the true and false statements.
             falseStatement = new Statement(target, methodName,
                 new Object[] {Boolean.FALSE});

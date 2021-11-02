@@ -45,7 +45,7 @@ final class AutoComplete {
 
         private AbstractAutoCompleteAdaptor adaptor;
 
-        public FocusAdapter(AbstractAutoCompleteAdaptor adaptor) {
+        FocusAdapter(AbstractAutoCompleteAdaptor adaptor) {
             this.adaptor = adaptor;
         }
 
@@ -59,7 +59,7 @@ final class AutoComplete {
 
         private JComboBox comboBox;
 
-        public KeyAdapter(JComboBox comboBox) {
+        KeyAdapter(JComboBox comboBox) {
             this.comboBox = comboBox;
         }
 
@@ -86,7 +86,7 @@ final class AutoComplete {
 
         private JComboBox comboBox;
 
-        public PropertyChangeListener(JComboBox comboBox) {
+        PropertyChangeListener(JComboBox comboBox) {
             this.comboBox = comboBox;
         }
 
@@ -153,7 +153,7 @@ final class AutoComplete {
 
         private Action delegate;
 
-        public SelectionAction(Action delegate) {
+        SelectionAction(Action delegate) {
             this.delegate = delegate;
         }
 

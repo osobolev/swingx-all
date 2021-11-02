@@ -251,7 +251,7 @@ public class Morphing2D implements Shape {
         int windingrule;
         double[] myTvals;
 
-        public Geometry(Shape s) {
+        Geometry(Shape s) {
             // Multiple of 6 plus 2 more for initial moveto
             bezierCoords = new double[20];
             PathIterator pi = s.getPathIterator(null);
@@ -611,7 +611,7 @@ public class Morphing2D implements Shape {
         double t;
         int cindex;
 
-        public Iterator(AffineTransform at,
+        Iterator(AffineTransform at,
                         Geometry g0, Geometry g1,
                         double t) {
             this.at = at;

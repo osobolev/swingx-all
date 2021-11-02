@@ -36,11 +36,11 @@ class NumberFormatExt extends NumberFormat {
 
     private NumberFormat childFormat;
 
-    public NumberFormatExt() {
+    NumberFormatExt() {
         this(null);
     }
 
-    public NumberFormatExt(NumberFormat childFormat) {
+    NumberFormatExt(NumberFormat childFormat) {
         if (childFormat == null) {
             childFormat = NumberFormat.getInstance();
         }

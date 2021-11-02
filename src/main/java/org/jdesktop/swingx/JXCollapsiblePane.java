@@ -247,7 +247,7 @@ public class JXCollapsiblePane extends JXPanel {
     private class ToggleAction extends AbstractAction implements
         PropertyChangeListener {
 
-        public ToggleAction() {
+        ToggleAction() {
             super(TOGGLE_ACTION);
             // the action must track the collapsed status of the pane to update its icon
             JXCollapsiblePane.this.addPropertyChangeListener("collapsed", this);
@@ -771,7 +771,7 @@ public class JXCollapsiblePane extends JXPanel {
          * @param alphaStart the starting alpha transparency level
          * @param alphaEnd   the ending alpha transparency level
          */
-        public AnimationParams(int waitTime, int delta, float alphaStart,
+        AnimationParams(int waitTime, int delta, float alphaStart,
                                float alphaEnd) {
             this.waitTime = waitTime;
             this.delta = delta;
@@ -973,7 +973,7 @@ public class JXCollapsiblePane extends JXPanel {
         private volatile float alpha;
         private boolean oldOpaque;
 
-        public WrapperContainer(Container c) {
+        WrapperContainer(Container c) {
             alpha = 1.0f;
             collapsedState = false;
             setView(c);

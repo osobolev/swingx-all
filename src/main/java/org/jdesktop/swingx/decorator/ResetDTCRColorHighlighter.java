@@ -101,7 +101,7 @@ public class ResetDTCRColorHighlighter extends ColorHighlighter {
 
     private static class ColorMemory {
 
-        public ColorMemory(Color color) {
+        ColorMemory(Color color) {
             this.color = color;
         }
 

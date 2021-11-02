@@ -33,7 +33,7 @@ public class FilterComposite implements Composite {
         private CompositeContext ctx;
         private BufferedImageOp filter;
 
-        public FilterContext(ColorModel dstModel, CompositeContext ctx, BufferedImageOp filter) {
+        FilterContext(ColorModel dstModel, CompositeContext ctx, BufferedImageOp filter) {
             Contract.asNotNull(dstModel, "dstModel cannot be null");
             Contract.asNotNull(ctx, "context cannot be null");
             this.dstModel = dstModel;

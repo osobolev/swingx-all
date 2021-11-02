@@ -16,7 +16,7 @@ final class DelegatingDocumentEvent implements DocumentEvent {
     private final Document resourcedDocument;
     private final DocumentEvent sourceEvent;
 
-    public DelegatingDocumentEvent(Document resourcedDocument, DocumentEvent sourceEvent) {
+    DelegatingDocumentEvent(Document resourcedDocument, DocumentEvent sourceEvent) {
         this.resourcedDocument = resourcedDocument;
         this.sourceEvent = sourceEvent;
     }

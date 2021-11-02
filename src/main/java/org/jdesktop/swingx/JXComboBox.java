@@ -332,7 +332,7 @@ public class JXComboBox extends JComboBox {
         private String prefix = "";
         private String typedString = "";
 
-        public StringValueKeySelectionManager() {
+        StringValueKeySelectionManager() {
             updateUI();
         }
 

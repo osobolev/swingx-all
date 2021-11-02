@@ -562,7 +562,7 @@ public class JXImageView extends JXPanel {
         private Point prev = null;
         private Point start = null;
 
-        public MoveHandler(JXImageView panel) {
+        MoveHandler(JXImageView panel) {
             this.panel = panel;
         }
 
@@ -612,7 +612,7 @@ public class JXImageView extends JXPanel {
 
         DataFlavor urlFlavor;
 
-        public DnDHandler() throws ClassNotFoundException {
+        DnDHandler() throws ClassNotFoundException {
             urlFlavor = new DataFlavor("application/x-java-url;class=java.net.URL");
         }
 
@@ -703,7 +703,7 @@ public class JXImageView extends JXPanel {
         private List<File> files;
         private String exportName, exportFormat;
 
-        public ImageTransferable(Image img, String exportName, String exportFormat) {
+        ImageTransferable(Image img, String exportName, String exportFormat) {
             this.img = img;
             this.exportName = exportName;
             this.exportFormat = exportFormat;
