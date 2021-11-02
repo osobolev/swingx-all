@@ -102,7 +102,6 @@ public final class StringValues {
      * Default converter for <code>Date</code> types. Uses the default format
      * as returned from <code>DateFormat</code>.
      */
-    @SuppressWarnings("serial")
     public static final FormatStringValue DATE_TO_STRING = new FormatStringValue() {
 
         /**
@@ -121,7 +120,6 @@ public final class StringValues {
      * Default converter for <code>Number</code> types. Uses the default format
      * as returned from <code>NumberFormat</code>.
      */
-    @SuppressWarnings("serial")
     public static final FormatStringValue NUMBER_TO_STRING = new FormatStringValue() {
 
         /**

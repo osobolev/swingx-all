@@ -68,7 +68,7 @@ import static java.util.Collections.unmodifiableList;
  * @author Thomas Bierhance
  * @author Karl Schaefer
  */
-@SuppressWarnings({"nls", "serial"})
+@SuppressWarnings("nls")
 public class AutoCompleteDecorator {
 
     //these keys were pulled from BasicComboBoxUI from Sun JDK 1.6.0_20

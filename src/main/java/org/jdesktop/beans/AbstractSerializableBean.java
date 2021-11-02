@@ -43,7 +43,6 @@ import java.io.Serializable;
  * @see ObjectInputStream
  * @see ObjectOutputStream
  */
-@SuppressWarnings("serial")
 public abstract class AbstractSerializableBean extends AbstractBean implements Serializable {
 
     /**

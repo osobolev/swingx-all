@@ -66,7 +66,7 @@ import java.util.Vector;
  * @author Karl Schaefer
  * @author Jeanette Winzenburg
  */
-@SuppressWarnings({"nls", "serial"})
+@SuppressWarnings("nls")
 public class JXComboBox extends JComboBox {
 
     /**
