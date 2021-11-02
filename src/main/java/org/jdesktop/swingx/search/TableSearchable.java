@@ -244,13 +244,11 @@ public class TableSearchable extends AbstractSearchable {
     protected void moveMatchByHighlighter() {
         AbstractHighlighter searchHL = getConfiguredMatchHighlighter();
         // no match
-        if (!hasMatch()) {
+        if (!hasMatch())
             return;
-        } else {
-            ensureInsertedSearchHighlighters(searchHL);
-            table.scrollCellToVisible(lastSearchResult.foundRow,
-                lastSearchResult.foundColumn);
-        }
+        ensureInsertedSearchHighlighters(searchHL);
+        table.scrollCellToVisible(lastSearchResult.foundRow,
+            lastSearchResult.foundColumn);
     }
 
     /**

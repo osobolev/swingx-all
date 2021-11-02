@@ -128,12 +128,10 @@ public class TreeSearchable extends AbstractSearchable {
     protected void moveMatchByHighlighter() {
         AbstractHighlighter searchHL = getConfiguredMatchHighlighter();
         // no match
-        if (!hasMatch()) {
+        if (!hasMatch())
             return;
-        } else {
-            ensureInsertedSearchHighlighters(searchHL);
-            tree.scrollRowToVisible(lastSearchResult.foundRow);
-        }
+        ensureInsertedSearchHighlighters(searchHL);
+        tree.scrollRowToVisible(lastSearchResult.foundRow);
     }
 
     /**

@@ -1350,7 +1350,6 @@ public class JXLoginPane extends JXPanel {
 
         @Override
         public void removeUserPassword(String username) {
-            return;
         }
 
         @Override

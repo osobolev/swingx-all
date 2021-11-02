@@ -123,12 +123,10 @@ public class ListSearchable extends AbstractSearchable {
     protected void moveMatchByHighlighter() {
         AbstractHighlighter searchHL = getConfiguredMatchHighlighter();
         // no match
-        if (!hasMatch()) {
+        if (!hasMatch())
             return;
-        } else {
-            ensureInsertedSearchHighlighters(searchHL);
-            list.ensureIndexIsVisible(lastSearchResult.foundRow);
-        }
+        ensureInsertedSearchHighlighters(searchHL);
+        list.ensureIndexIsVisible(lastSearchResult.foundRow);
     }
 
     /**
