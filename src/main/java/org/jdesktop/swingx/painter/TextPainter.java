@@ -173,7 +173,7 @@ public class TextPainter extends AbstractAreaPainter<Object> {
             g.setPaint(paint);
         }
 
-        g.drawString(t, 0, 0 + metrics.getAscent());
+        g.drawString(t, 0, metrics.getAscent());
         if (getAreaEffects() != null) {
             Shape shape = provideShape(g, component, width, height);
             for (AreaEffect ef : getAreaEffects()) {
