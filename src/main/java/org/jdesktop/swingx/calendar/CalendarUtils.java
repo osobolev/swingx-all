@@ -34,13 +34,9 @@ import java.util.Date;
 public class CalendarUtils {
 
     // Constants used internally; unit is milliseconds
-    @SuppressWarnings("unused")
     public static final int ONE_MINUTE = 60 * 1000;
-    @SuppressWarnings("unused")
     public static final int ONE_HOUR = 60 * ONE_MINUTE;
-    @SuppressWarnings("unused")
     public static final int THREE_HOURS = 3 * ONE_HOUR;
-    @SuppressWarnings("unused")
     public static final int ONE_DAY = 24 * ONE_HOUR;
 
     public static final int DECADE = 5467;
