@@ -171,7 +171,7 @@ public class NumberEditorExt extends DefaultCellEditor {
     public Component getTableCellEditorComponent(JTable table, Object value,
                                                  boolean isSelected,
                                                  int row, int column) {
-        ((JComponent) getComponent()).setBorder(new LineBorder(Color.black));
+        getComponent().setBorder(new LineBorder(Color.black));
         try {
             Class<?> type = table.getColumnClass(column);
             if (hasStrictFormatter()) {

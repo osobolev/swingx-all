@@ -93,7 +93,7 @@ public class ImagePainter extends AbstractAreaPainter<Object> {
      * is centered.
      */
     public ImagePainter() {
-        this((BufferedImage) null);
+        this(null);
     }
 
     /**

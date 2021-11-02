@@ -46,7 +46,7 @@ public class BorderHighlighter extends AbstractHighlighter {
      * Highlighter is applied unconditionally.
      */
     public BorderHighlighter() {
-        this((HighlightPredicate) null, null);
+        this(null, null);
     }
 
     /**

@@ -488,7 +488,7 @@ public class JXEditorPane extends JEditorPane implements /*Searchable, */Targeta
                 super.getListCellRendererComponent(list, value, index, isSelected,
                     cellHasFocus);
 
-                setText((String) itemMap.get(value));
+                setText(itemMap.get(value));
 
                 return this;
             }

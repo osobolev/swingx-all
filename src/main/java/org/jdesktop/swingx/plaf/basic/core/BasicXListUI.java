@@ -287,12 +287,12 @@ public class BasicXListUI extends BasicListUI {
 
                 @Override
                 public int getSize() {
-                    return ((JXList) list).getElementCount();
+                    return list.getElementCount();
                 }
 
                 @Override
                 public Object getElementAt(int index) {
-                    return ((JXList) list).getElementAt(index);
+                    return list.getElementAt(index);
                 }
 
                 @Override
@@ -313,11 +313,11 @@ public class BasicXListUI extends BasicListUI {
      * @return
      */
     protected int getElementCount() {
-        return ((JXList) list).getElementCount();
+        return list.getElementCount();
     }
 
     protected Object getElementAt(int viewIndex) {
-        return ((JXList) list).getElementAt(viewIndex);
+        return list.getElementAt(viewIndex);
     }
 
     /**

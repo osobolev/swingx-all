@@ -951,7 +951,7 @@ public class JXCollapsiblePane extends JXPanel {
 
             if (parent != null) {
                 if (parent instanceof JComponent) {
-                    ((JComponent) parent).revalidate();
+                    parent.revalidate();
                 } else {
                     parent.invalidate();
                 }

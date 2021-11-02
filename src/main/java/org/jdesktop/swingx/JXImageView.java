@@ -699,7 +699,7 @@ public class JXImageView extends JXPanel {
                     //log.fine("obj = " + obj + " " + obj.getClass().getPackage() + " "
                     //        + obj.getClass().getName());
                     if (obj instanceof URL) {
-                        setImageString(((URL) obj).toString());
+                        setImageString(obj.toString());
                     }
                     return true;
                 } catch (Exception ex) {

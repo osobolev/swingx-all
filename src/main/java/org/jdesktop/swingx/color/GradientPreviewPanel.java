@@ -102,7 +102,7 @@ public class GradientPreviewPanel extends JXPanel {
         Color[] colors = new Color[len];
         int i = 0;
         for (Thumb<Color> thumb : stops) {
-            colors[i] = (Color) thumb.getObject();
+            colors[i] = thumb.getObject();
             fractions[i] = thumb.getPosition();
             i++;
         }

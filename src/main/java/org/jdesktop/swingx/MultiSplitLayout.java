@@ -236,7 +236,7 @@ public class MultiSplitLayout implements LayoutManager, Serializable {
      */
     public Component getComponentForNode(Node n) {
         String name = ((Leaf) n).getName();
-        return (name != null) ? (Component) childMap.get(name) : null;
+        return (name != null) ? childMap.get(name) : null;
     }
 
     /**
@@ -616,7 +616,7 @@ public class MultiSplitLayout implements LayoutManager, Serializable {
         if (root instanceof Leaf) {
             return preferredComponentSize(root);
         } else if (root instanceof Divider) {
-            if (!((Divider) root).isVisible())
+            if (!root.isVisible())
                 return new Dimension(0, 0);
             int divSize = getDividerSize();
             return new Dimension(divSize, divSize);
@@ -663,7 +663,7 @@ public class MultiSplitLayout implements LayoutManager, Serializable {
             Component child = childForNode(root);
             return ((child != null) && child.isVisible()) ? child.getMinimumSize() : new Dimension(0, 0);
         } else if (root instanceof Divider) {
-            if (!((Divider) root).isVisible())
+            if (!root.isVisible())
                 return new Dimension(0, 0);
             int divSize = getDividerSize();
             return new Dimension(divSize, divSize);
@@ -707,7 +707,7 @@ public class MultiSplitLayout implements LayoutManager, Serializable {
             Component child = childForNode(root);
             return ((child != null) && child.isVisible()) ? child.getMaximumSize() : new Dimension(0, 0);
         } else if (root instanceof Divider) {
-            if (!((Divider) root).isVisible())
+            if (!root.isVisible())
                 return new Dimension(0, 0);
             int divSize = getDividerSize();
             return new Dimension(divSize, divSize);

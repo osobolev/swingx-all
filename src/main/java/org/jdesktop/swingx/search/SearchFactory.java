@@ -305,7 +305,7 @@ public class SearchFactory implements UIDependent {
         if (oldParent != null) {
             oldParent.remove(component);
             if (oldParent instanceof JComponent) {
-                ((JComponent) oldParent).revalidate();
+                oldParent.revalidate();
             } else {
                 // not sure... never have non-j comps
                 oldParent.invalidate();

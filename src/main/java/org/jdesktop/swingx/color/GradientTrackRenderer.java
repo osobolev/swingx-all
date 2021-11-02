@@ -70,7 +70,7 @@ public class GradientTrackRenderer extends JComponent implements TrackRenderer {
         Color[] colors = new Color[len];
         int i = 0;
         for (Thumb<Color> thumb : stops) {
-            colors[i] = (Color) thumb.getObject();
+            colors[i] = thumb.getObject();
             fractions[i] = thumb.getPosition();
             i++;
         }

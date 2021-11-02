@@ -168,7 +168,7 @@ public class DefaultTableColumnModelExt extends DefaultTableColumnModel
         if (column instanceof TableColumnExt) {
             oldVisible = ((TableColumnExt) column).isVisible();
             ((TableColumnExt) column).setVisible(true);
-            ((TableColumnExt) column).removePropertyChangeListener(visibilityListener);
+            column.removePropertyChangeListener(visibilityListener);
         }
         currentColumns.remove(column);
         initialColumns.remove(column);
