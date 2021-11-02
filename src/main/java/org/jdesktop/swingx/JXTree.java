@@ -1500,8 +1500,7 @@ public class JXTree extends JTree {
                     if (c == tree) {
                         // focus remains inside the table
                         return;
-                    } else if ((c instanceof Window) ||
-                            (SwingXUtilities.isApplet(c) && c.getParent() == null)) {
+                    } else if (c instanceof Window) {
                         if (c == SwingUtilities.getRoot(tree)) {
                             if (tree.getInvokesStopCellEditing()) {
                                 tree.stopEditing();

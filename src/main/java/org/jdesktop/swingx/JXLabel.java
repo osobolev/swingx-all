@@ -571,7 +571,7 @@ public class JXLabel extends JLabel implements BackgroundPaintable {
 
     private Container getViewport() {
         for(Container p = this; p != null; p = p.getParent()) {
-            if(p instanceof Window || SwingXUtilities.isApplet(p) || p instanceof JViewport) {
+            if(p instanceof Window || p instanceof JViewport) {
                 return p;
             }
         }
