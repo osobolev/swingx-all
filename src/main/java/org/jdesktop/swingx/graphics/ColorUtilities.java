@@ -141,9 +141,9 @@ public class ColorUtilities {
 
         del_Max = var_Max - var_Min;
 
-        float H, S, L;
-        L = (var_Max + var_Min) / 2f;
-
+        float H;
+        float S;
+        float L = (var_Max + var_Min) / 2f;
         if (del_Max - 0.01f <= 0.0f) {
             H = 0;
             S = 0;
@@ -226,20 +226,21 @@ public class ColorUtilities {
         else if (l > 1.0f)
             l = 1.0f;
 
-        int R, G, B;
-
+        int R;
+        int G;
+        int B;
         if (s - 0.01f <= 0.0f) {
             R = (int) (l * 255.0f);
             G = (int) (l * 255.0f);
             B = (int) (l * 255.0f);
         } else {
-            float var_1, var_2;
+            float var_2;
             if (l < 0.5f) {
                 var_2 = l * (1 + s);
             } else {
                 var_2 = l + s - s * l;
             }
-            var_1 = 2 * l - var_2;
+            float var_1 = 2 * l - var_2;
 
             R = (int) (255.0f * hue2RGB(var_1, var_2, h + 1.0f / 3.0f));
             G = (int) (255.0f * hue2RGB(var_1, var_2, h));

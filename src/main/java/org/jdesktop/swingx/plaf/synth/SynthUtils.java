@@ -178,8 +178,10 @@ public class SynthUtils {
     public static void update(SynthContext context, Graphics g, Rectangle bounds) {
         JComponent c = context.getComponent();
         SynthStyle style = context.getStyle();
-        int x, y, width, height;
-
+        int x;
+        int y;
+        int width;
+        int height;
         if (bounds == null) {
             x = 0;
             y = 0;

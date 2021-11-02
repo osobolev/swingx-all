@@ -904,8 +904,9 @@ public class JXList extends JList {
         if (anObject == null)
             setSelectedIndex(-1);
         else if (!anObject.equals(getSelectedValue())) {
-            int i, c;
-            for (i = 0, c = getElementCount(); i < c; i++) {
+            int i;
+            int c = getElementCount();
+            for (i = 0; i < c; i++) {
                 if (anObject.equals(getElementAt(i))) {
                     setSelectedIndex(i);
                     if (shouldScroll)

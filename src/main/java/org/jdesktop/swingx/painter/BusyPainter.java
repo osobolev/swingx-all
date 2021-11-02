@@ -253,7 +253,6 @@ public class BusyPainter extends AbstractPainter<Object> {
         Shape s = getPointShape();
         double hh = s.getBounds().getHeight() / 2;
         double wh = s.getBounds().getWidth() / 2;
-        double t, x, y;
         double a = c.y - p.y;
         double b = p.x - c.x;
         double sa = Math.signum(a);
@@ -262,10 +261,10 @@ public class BusyPainter extends AbstractPainter<Object> {
         sb = sb == 0 ? 1 : sb;
         a = Math.abs(a);
         b = Math.abs(b);
-        t = Math.atan(a / b);
+        double t = Math.atan(a / b);
         t = sa > 0 ? sb > 0 ? -t : -Math.PI + t : sb > 0 ? t : Math.PI - t;
-        x = Math.sqrt(a * a + b * b) - wh;
-        y = -hh;
+        double x = Math.sqrt(a * a + b * b) - wh;
+        double y = -hh;
         g.rotate(t);
         g.translate(x, y);
         g.fill(s);
@@ -343,7 +342,9 @@ public class BusyPainter extends AbstractPainter<Object> {
         float c1ry = Math.abs(cp.y - coords[1]) / y;
         float c2rx = Math.abs(cp.x - coords[2]) / x;
         float c2ry = Math.abs(cp.y - coords[3]) / y;
-        float prevLength = 0, prevX = 0, prevY = 0;
+        float prevLength = 0;
+        float prevX = 0;
+        float prevY = 0;
         for (float t = 0.01f; t <= 1.0f; t += .01f) {
             Float xy = getXY(t, c1rx, c1ry, c2rx, c2ry);
             prevLength += (float) Math.sqrt((xy.x - prevX) * (xy.x - prevX) + (xy.y - prevY) * (xy.y - prevY));
@@ -385,7 +386,9 @@ public class BusyPainter extends AbstractPainter<Object> {
         end.y = e1ay / maxY;
 
         // claculate length
-        float prevLength = 0, prevX = 0, prevY = 0;
+        float prevLength = 0;
+        float prevX = 0;
+        float prevY = 0;
         for (float t = 0.01f; t <= 1.0f; t += .01f) {
             Float xy = getXY(t, new Float(0, 0), ctrl, end);
             prevLength += (float) Math.sqrt((xy.x - prevX) * (xy.x - prevX) + (xy.y - prevY) * (xy.y - prevY));

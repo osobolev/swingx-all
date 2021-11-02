@@ -503,8 +503,8 @@ public class JXLabel extends JLabel implements BackgroundPaintable {
             int labelR_y = Math.min(iconR.y, textR.y);
             int labelR_height = Math.max(iconR.y + iconR.height, textR.y + textR.height) - labelR_y;
 
-            int dax, day;
-
+            int dax;
+            int day;
             if (getVerticalAlignment() == TOP) {
                 day = viewR.y - labelR_y;
             } else if (getVerticalAlignment() == CENTER) {

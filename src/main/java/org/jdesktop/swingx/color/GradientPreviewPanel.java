@@ -50,7 +50,8 @@ import java.util.logging.Logger;
 public class GradientPreviewPanel extends JXPanel {
 
     private Paint checker_texture = null;
-    private Point2D start, end;
+    private Point2D start;
+    private Point2D end;
     public JXGradientChooser picker;
     boolean moving_start = false;
     boolean moving_end = false;

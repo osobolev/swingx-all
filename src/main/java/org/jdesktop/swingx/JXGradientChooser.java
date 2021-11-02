@@ -237,44 +237,40 @@ public class JXGradientChooser extends JXPanel {
      * initialize the form.
      */
 
-    private JPanel topPanel, previewPanel;
+    private JPanel topPanel;
+    private JPanel previewPanel;
 
     private void initComponents() {
         // declarations for anonymous components
-        JPanel jPanel1, jPanel2, jPanel3, jPanel4;
-        JLabel jLabel1, jLabel5, jLabel2, jLabel6, jLabel4, jLabel7, jLabel8, jLabel9;
-        ButtonGroup typeGroup;
         // pre-init stuff
         slider = new JXMultiThumbSlider<>();
         gradientPreview = new GradientPreviewPanel();
         gradientPreview.setMultiThumbModel(slider.getModel());
 
-        GridBagConstraints gridBagConstraints;
-
-        typeGroup = new ButtonGroup();
-        jPanel1 = new JPanel();
+        ButtonGroup typeGroup = new ButtonGroup();
+        JPanel jPanel1 = new JPanel();
         topPanel = new JPanel();
-        jPanel2 = new JPanel();
-        jLabel1 = new JLabel();
-        jLabel5 = new JLabel();
+        JPanel jPanel2 = new JPanel();
+        JLabel jLabel1 = new JLabel();
+        JLabel jLabel5 = new JLabel();
         colorField = new JTextField();
-        jLabel2 = new JLabel();
-        jLabel6 = new JLabel();
+        JLabel jLabel2 = new JLabel();
+        JLabel jLabel6 = new JLabel();
         colorLocationSpinner = new JSpinner();
-        jLabel4 = new JLabel();
-        jLabel7 = new JLabel();
+        JLabel jLabel4 = new JLabel();
+        JLabel jLabel7 = new JLabel();
         alphaSpinner = new JSpinner();
         changeColorButton = new JXColorSelectionButton();
         alphaSlider = new JSlider();
         //slider = new javax.swing.JSlider();
-        jPanel4 = new JPanel();
+        JPanel jPanel4 = new JPanel();
         addThumbButton = new JButton();
         deleteThumbButton = new JButton();
         previewPanel = new JPanel();
-        jPanel3 = new JPanel();
-        jLabel8 = new JLabel();
+        JPanel jPanel3 = new JPanel();
+        JLabel jLabel8 = new JLabel();
         styleCombo = new JComboBox();
-        jLabel9 = new JLabel();
+        JLabel jLabel9 = new JLabel();
         noCycleRadio = new JRadioButton();
         reflectedRadio = new JRadioButton();
         repeatedRadio = new JRadioButton();
@@ -290,7 +286,7 @@ public class JXGradientChooser extends JXPanel {
         jPanel2.setLayout(new GridBagLayout());
 
         jLabel1.setText("Color:");
-        gridBagConstraints = new GridBagConstraints();
+        GridBagConstraints gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.ipadx = 2;

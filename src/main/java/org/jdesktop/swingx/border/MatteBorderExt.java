@@ -119,7 +119,8 @@ public class MatteBorderExt extends MatteBorder {
         }
 
         Insets insets = getBorderInsets(c);
-        int clipWidth, clipHeight;
+        int clipWidth;
+        int clipHeight;
 
         clipWidth = Math.min(width, insets.left); // clip to component width or insets
         clipHeight = Math.min(height, insets.top); // clip to component height or insets
@@ -160,7 +161,8 @@ public class MatteBorderExt extends MatteBorder {
             cg.setClip(x, y, width, height);
             int tileW = icon.getIconWidth();
             int tileH = icon.getIconHeight();
-            int xpos, ypos, startx, starty;
+            int xpos;
+            int ypos;
             for (ypos = 0; height - ypos > 0; ypos += tileH) {
                 for (xpos = 0; width - xpos > 0; xpos += tileW) {
                     icon.paintIcon(c, cg, x + xpos, y + ypos);

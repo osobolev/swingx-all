@@ -27,7 +27,8 @@ import java.util.EventObject;
  */
 public class ThumbDataEvent extends EventObject {
 
-    private int type, index;
+    private int type;
+    private int index;
     private Thumb<?> thumb;
 
     /**

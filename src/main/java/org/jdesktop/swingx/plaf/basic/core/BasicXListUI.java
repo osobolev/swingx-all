@@ -510,7 +510,8 @@ public class BasicXListUI extends BasicListUI {
         // Determine how many columns we need to paint
         Rectangle paintBounds = g.getClipBounds();
 
-        int startColumn, endColumn;
+        int startColumn;
+        int endColumn;
         if (c.getComponentOrientation().isLeftToRight()) {
             startColumn = convertLocationToColumn(paintBounds.x, paintBounds.y);
             endColumn = convertLocationToColumn(paintBounds.x + paintBounds.width, paintBounds.y);

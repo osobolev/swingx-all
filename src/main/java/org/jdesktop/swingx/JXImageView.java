@@ -697,7 +697,8 @@ public class JXImageView extends JXPanel {
 
         private Image img;
         private List<File> files;
-        private String exportName, exportFormat;
+        private String exportName;
+        private String exportFormat;
 
         ImageTransferable(Image img, String exportName, String exportFormat) {
             this.img = img;
