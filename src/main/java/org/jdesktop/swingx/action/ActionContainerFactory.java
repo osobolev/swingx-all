@@ -298,7 +298,7 @@ public class ActionContainerFactory {
      */
     private ButtonGroup getGroup(String groupid, JComponent container) {
         if (groupMap == null) {
-            groupMap = new HashMap<Integer, ButtonGroup>();
+            groupMap = new HashMap<>();
         }
         int intCode = groupid.hashCode();
         if (container != null) {

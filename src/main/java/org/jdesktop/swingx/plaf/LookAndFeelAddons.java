@@ -70,7 +70,7 @@ import java.util.logging.Logger;
 @SuppressWarnings("nls")
 public abstract class LookAndFeelAddons {
 
-    private static List<ComponentAddon> contributedComponents = new ArrayList<ComponentAddon>();
+    private static List<ComponentAddon> contributedComponents = new ArrayList<>();
 
     /**
      * Key used to ensure the current UIManager has been populated by the LookAndFeelAddons.
@@ -319,7 +319,7 @@ public abstract class LookAndFeelAddons {
                            + " with UIClassID " + component.getUIClassID());
             if (logger.isLoggable(Level.FINE)) {
                 logger.fine("Existing UI defaults keys: "
-                            + new ArrayList<Object>(UIManager.getDefaults().keySet()));
+                            + new ArrayList<>(UIManager.getDefaults().keySet()));
             }
             // really ugly hack. Should be removed as soon as we figure out what is causing the
             // issue

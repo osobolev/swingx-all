@@ -35,7 +35,7 @@ import java.util.*;
  */
 public abstract class AbstractDateSelectionModel implements DateSelectionModel {
 
-    public static final SortedSet<Date> EMPTY_DATES = Collections.unmodifiableSortedSet(new TreeSet<Date>());
+    public static final SortedSet<Date> EMPTY_DATES = Collections.unmodifiableSortedSet(new TreeSet<>());
 
     protected EventListenerMap listenerMap;
     protected boolean adjusting;

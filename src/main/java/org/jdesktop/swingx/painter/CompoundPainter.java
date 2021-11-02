@@ -71,7 +71,7 @@ public class CompoundPainter<T> extends AbstractPainter<T> {
         private final WeakReference<CompoundPainter<?>> ref;
 
         Handler(CompoundPainter<?> painter) {
-            ref = new WeakReference<CompoundPainter<?>>(painter);
+            ref = new WeakReference<>(painter);
         }
 
         /**

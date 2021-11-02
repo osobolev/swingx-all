@@ -423,7 +423,7 @@ public class JXEditorPane extends JEditorPane implements /*Searchable, */Targeta
         ParagraphSelector() {
 
             // The item map is for rendering
-            itemMap = new HashMap<HTML.Tag, String>();
+            itemMap = new HashMap<>();
             itemMap.put(HTML.Tag.P, "Paragraph");
             itemMap.put(HTML.Tag.H1, "Heading 1");
             itemMap.put(HTML.Tag.H2, "Heading 2");
@@ -434,7 +434,7 @@ public class JXEditorPane extends JEditorPane implements /*Searchable, */Targeta
             itemMap.put(HTML.Tag.PRE, "Preformatted");
 
             // The list of items
-            Vector<HTML.Tag> items = new Vector<HTML.Tag>();
+            Vector<HTML.Tag> items = new Vector<>();
             items.addElement(HTML.Tag.P);
             items.addElement(HTML.Tag.H1);
             items.addElement(HTML.Tag.H2);

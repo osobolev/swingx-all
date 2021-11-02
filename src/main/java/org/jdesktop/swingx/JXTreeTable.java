@@ -2195,7 +2195,7 @@ public class JXTreeTable extends JXTable {
                         int min = listSelectionModel.getMinSelectionIndex();
                         int max = listSelectionModel.getMaxSelectionIndex();
 
-                        List<TreePath> paths = new ArrayList<TreePath>();
+                        List<TreePath> paths = new ArrayList<>();
                         for (int counter = min; counter <= max; counter++) {
                             if (listSelectionModel.isSelectedIndex(counter)) {
                                 TreePath selPath = renderer.getPathForRow(

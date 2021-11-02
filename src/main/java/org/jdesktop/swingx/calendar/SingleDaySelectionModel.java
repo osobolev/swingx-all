@@ -68,8 +68,8 @@ public class SingleDaySelectionModel extends AbstractDateSelectionModel {
      */
     public SingleDaySelectionModel(Locale locale) {
         super(locale);
-        this.selectedDates = new TreeSet<Date>();
-        this.unselectableDates = new TreeSet<Date>();
+        this.selectedDates = new TreeSet<>();
+        this.unselectableDates = new TreeSet<>();
     }
 
     /**
@@ -268,7 +268,7 @@ public class SingleDaySelectionModel extends AbstractDateSelectionModel {
      */
     @Override
     public SortedSet<Date> getSelection() {
-        return new TreeSet<Date>(selectedDates);
+        return new TreeSet<>(selectedDates);
     }
 
     /**
@@ -304,7 +304,7 @@ public class SingleDaySelectionModel extends AbstractDateSelectionModel {
      */
     @Override
     public SortedSet<Date> getUnselectableDates() {
-        return new TreeSet<Date>(unselectableDates);
+        return new TreeSet<>(unselectableDates);
     }
 
     /**

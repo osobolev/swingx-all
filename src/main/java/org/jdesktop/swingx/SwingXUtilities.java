@@ -313,7 +313,7 @@ public final class SwingXUtilities {
      * @see Callable
      */
     public static <T> FutureTask<T> invokeLater(Callable<T> callable) {
-        FutureTask<T> task = new FutureTask<T>(callable);
+        FutureTask<T> task = new FutureTask<>(callable);
 
         SwingUtilities.invokeLater(task);
 

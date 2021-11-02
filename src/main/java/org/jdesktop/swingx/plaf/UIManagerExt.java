@@ -108,7 +108,7 @@ public class UIManagerExt {
         private Map<Locale, Map<String, String>> resourceCache;
 
         UIDefaultsExt() {
-            resourceCache = new HashMap<Locale, Map<String, String>>();
+            resourceCache = new HashMap<>();
         }
 
         //should this just return String?
@@ -137,7 +137,7 @@ public class UIManagerExt {
             Map<String, String> values = resourceCache.get(l);
 
             if (values == null) {
-                values = new HashMap<String, String>();
+                values = new HashMap<>();
                 for (int i = resourceBundles.size() - 1; i >= 0; i--) {
                     String bundleName = resourceBundles.get(i);
 
@@ -169,7 +169,7 @@ public class UIManagerExt {
                 return;
             }
             if (resourceBundles == null) {
-                resourceBundles = new Vector<String>(5);
+                resourceBundles = new Vector<>(5);
             }
             if (!resourceBundles.contains(bundleName)) {
                 resourceBundles.add(bundleName);

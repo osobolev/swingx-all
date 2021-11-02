@@ -125,7 +125,7 @@ public final class StringValueRegistry implements StringValueProvider {
      */
     public void setColumnClasses(Map<Integer, Class<?>> classPerColumn) {
         this.classPerColumn = classPerColumn != null ?
-            new HashMap<Integer, Class<?>>(classPerColumn) : null;
+            new HashMap<>(classPerColumn) : null;
     }
 
     /**
@@ -159,7 +159,7 @@ public final class StringValueRegistry implements StringValueProvider {
      */
     private Map<Integer, Class<?>> getColumnClassMap() {
         if (classPerColumn == null) {
-            classPerColumn = new HashMap<Integer, Class<?>>();
+            classPerColumn = new HashMap<>();
         }
         return classPerColumn;
     }
@@ -172,7 +172,7 @@ public final class StringValueRegistry implements StringValueProvider {
      */
     private Map<Class<?>, StringValue> getPerClassMap() {
         if (perClass == null) {
-            perClass = new HashMap<Class<?>, StringValue>();
+            perClass = new HashMap<>();
         }
         return perClass;
     }
@@ -185,7 +185,7 @@ public final class StringValueRegistry implements StringValueProvider {
      */
     private Map<Integer, StringValue> getPerColumnMap() {
         if (perColumn == null) {
-            perColumn = new HashMap<Integer, StringValue>();
+            perColumn = new HashMap<>();
         }
         return perColumn;
     }

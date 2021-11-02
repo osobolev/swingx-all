@@ -73,7 +73,7 @@ public class JXRadioGroup<T> extends JPanel {
 
     private ButtonGroup buttonGroup;
 
-    private final List<T> values = new ArrayList<T>();
+    private final List<T> values = new ArrayList<>();
 
     private ActionSelectionListener actionHandler;
 
@@ -104,7 +104,7 @@ public class JXRadioGroup<T> extends JPanel {
      * @param radioValues the list of values used to create the group.
      */
     public static <T> JXRadioGroup<T> create(T[] radioValues) {
-        return new JXRadioGroup<T>(radioValues);
+        return new JXRadioGroup<>(radioValues);
     }
 
     /**
@@ -197,7 +197,7 @@ public class JXRadioGroup<T> extends JPanel {
 
     private AbstractButton[] getButtonComponents() {
         Component[] children = getComponents();
-        List<AbstractButton> buttons = new ArrayList<AbstractButton>();
+        List<AbstractButton> buttons = new ArrayList<>();
         for (int i = 0; i < children.length; i++) {
             if (children[i] instanceof AbstractButton) {
                 buttons.add((AbstractButton) children[i]);

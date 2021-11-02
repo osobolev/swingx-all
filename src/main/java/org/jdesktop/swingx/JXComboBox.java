@@ -468,7 +468,7 @@ public class JXComboBox extends JComboBox {
     }
 
     private void init() {
-        pendingEvents = new ArrayList<KeyEvent>();
+        pendingEvents = new ArrayList<>();
 
         if (keySelectionManager == null || keySelectionManager instanceof UIResource) {
             setKeySelectionManager(createDefaultKeySelectionManager());

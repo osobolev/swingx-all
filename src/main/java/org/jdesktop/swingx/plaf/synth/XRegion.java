@@ -33,7 +33,7 @@ import java.util.Map;
  */
 public class XRegion extends Region {
 
-    static Map<String, XRegion> uiToXRegionMap = new HashMap<String, XRegion>();
+    static Map<String, XRegion> uiToXRegionMap = new HashMap<>();
     public static final Region XLIST = new XRegion("XList", null, false, "XListUI", LIST);
 
     /**

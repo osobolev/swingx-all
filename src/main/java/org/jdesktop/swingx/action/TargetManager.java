@@ -118,7 +118,7 @@ public class TargetManager {
      */
     public void addTarget(Targetable target, boolean prepend) {
         if (targetList == null) {
-            targetList = new ArrayList<Targetable>();
+            targetList = new ArrayList<>();
         }
         if (prepend) {
             targetList.add(0, target);

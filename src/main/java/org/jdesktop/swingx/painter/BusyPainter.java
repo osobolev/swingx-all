@@ -145,7 +145,7 @@ public class BusyPainter extends AbstractPainter<Object> {
         Float sp = new Float();
         int ret;
         float totalDist = 0;
-        List<float[]> segStack = new ArrayList<float[]>();
+        List<float[]> segStack = new ArrayList<>();
         do {
             try {
                 ret = pi.currentSegment(coords);
@@ -186,7 +186,7 @@ public class BusyPainter extends AbstractPainter<Object> {
             pi.next();
         } while (!pi.isDone());
         float nxtP = totalDist / getPoints();
-        List<Float> pList = new ArrayList<Float>();
+        List<Float> pList = new ArrayList<>();
         pList.add(new Float(sp.x, sp.y));
         int sgIdx = 0;
         float[] sgmt = segStack.get(sgIdx);

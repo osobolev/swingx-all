@@ -617,7 +617,7 @@ public class TableColumnExt extends TableColumn implements UIDependent {
 
     private Hashtable<Object, Object> getClientProperties() {
         if (clientProperties == null) {
-            clientProperties = new Hashtable<Object, Object>();
+            clientProperties = new Hashtable<>();
         }
         return clientProperties;
     }

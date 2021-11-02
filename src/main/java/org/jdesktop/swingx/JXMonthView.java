@@ -239,7 +239,7 @@ public class JXMonthView extends JComponent {
     private Color monthStringForeground;
     private Color daysOfTheWeekForeground;
     private Color selectedBackground;
-    private Hashtable<Integer, Color> dayToColorTable = new Hashtable<Integer, Color>();
+    private Hashtable<Integer, Color> dayToColorTable = new Hashtable<>();
     private Color flaggedDayForeground;
 
     private Color selectedForeground;
@@ -1002,7 +1002,7 @@ public class JXMonthView extends JComponent {
     public void setUnselectableDates(Date... unselectableDates) {
         Contract.asNotNull(unselectableDates,
             "unselectable dates must not be null");
-        SortedSet<Date> unselectableSet = new TreeSet<Date>();
+        SortedSet<Date> unselectableSet = new TreeSet<>();
         for (Date unselectableDate : unselectableDates) {
             unselectableSet.add(unselectableDate);
         }

@@ -637,7 +637,7 @@ public class JXTable extends JTable implements TableColumnModelExtListener {
      * @see org.jdesktop.swingx.rollover.RolloverController
      */
     protected TableRolloverController<JXTable> createLinkController() {
-        return new TableRolloverController<JXTable>();
+        return new TableRolloverController<>();
     }
 
     /**
@@ -1672,7 +1672,7 @@ public class JXTable extends JTable implements TableColumnModelExtListener {
      */
     protected RowSorter<? extends TableModel> createDefaultRowSorter() {
 //        return new TableRowSorter<TableModel>(getModel());
-        return new TableSortController<TableModel>(getModel());
+        return new TableSortController<>(getModel());
     }
 
     /**
@@ -2321,7 +2321,7 @@ public class JXTable extends JTable implements TableColumnModelExtListener {
          * JW: not properly tested (not in all in fact) ...
          */
         List<TableColumn> columns = getColumns(true);
-        Map<Object, TableColumn> map = new HashMap<Object, TableColumn>();
+        Map<Object, TableColumn> map = new HashMap<>();
         for (Iterator<TableColumn> iter = columns.iterator(); iter.hasNext(); ) {
             // PENDING: handle duplicate identifiers ...
             TableColumn column = iter.next();

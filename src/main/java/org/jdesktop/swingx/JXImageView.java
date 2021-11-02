@@ -731,7 +731,7 @@ public class JXImageView extends JXPanel {
             }
             if (flavor == DataFlavor.javaFileListFlavor) {
                 if (files == null) {
-                    files = new ArrayList<File>();
+                    files = new ArrayList<>();
                     File file = File.createTempFile(exportName, "." + exportFormat);
                     //log.fine("writing to: " + file);
                     ImageIO.write(GraphicsUtilities.convertToBufferedImage(img), exportFormat, file);

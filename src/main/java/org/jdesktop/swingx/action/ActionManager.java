@@ -139,7 +139,7 @@ public class ActionManager extends ActionMap {
             return null;
         }
 
-        return new HashSet<Object>(Arrays.asList(keys));
+        return new HashSet<>(Arrays.asList(keys));
     }
 
     public Action addAction(Action action) {

@@ -32,7 +32,7 @@ import java.util.*;
 public class EventListenerMap {
 
     private final Map<Class<? extends EventListener>, List<? extends EventListener>> listenerList =
-        new HashMap<Class<? extends EventListener>, List<? extends EventListener>>();
+        new HashMap<>();
 
     /**
      * Returns a list containing all of the listeners managed by this {@code EventListenerMap}.
@@ -40,7 +40,7 @@ public class EventListenerMap {
      * @return all managed listeners
      */
     public List<EventListener> getListeners() {
-        List<EventListener> listeners = new ArrayList<EventListener>();
+        List<EventListener> listeners = new ArrayList<>();
 
         for (List<? extends EventListener> list : listenerList.values()) {
             listeners.addAll(list);
@@ -58,7 +58,7 @@ public class EventListenerMap {
     public <T extends EventListener> List<T> getListeners(Class<T> clazz) {
         List<T> list = (List<T>) listenerList.get(clazz);
         if (list == null) {
-            list = new ArrayList<T>();
+            list = new ArrayList<>();
         }
         return list;
     }
@@ -104,7 +104,7 @@ public class EventListenerMap {
 
         List<T> list = (List<T>) listenerList.get(clazz);
         if (list == null) {
-            list = new ArrayList<T>();
+            list = new ArrayList<>();
             listenerList.put(clazz, list);
         }
         list.add(listener);

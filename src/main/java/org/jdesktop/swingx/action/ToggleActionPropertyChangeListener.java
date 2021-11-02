@@ -45,7 +45,7 @@ class ToggleActionPropertyChangeListener implements PropertyChangeListener {
 
     ToggleActionPropertyChangeListener(Action action, AbstractButton button) {
         if (shouldAddListener(action, button)) {
-            this.buttonRef = new WeakReference<AbstractButton>(button);
+            this.buttonRef = new WeakReference<>(button);
             action.addPropertyChangeListener(this);
         }
     }

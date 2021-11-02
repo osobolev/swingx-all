@@ -54,7 +54,7 @@ public abstract class AbstractMultiThumbModel<E> implements MultiThumbModel<E> {
         this.minimumValue = minimumValue;
     }
 
-    protected List<ThumbDataListener> thumbDataListeners = new ArrayList<ThumbDataListener>();
+    protected List<ThumbDataListener> thumbDataListeners = new ArrayList<>();
 
     public void addThumbDataListener(ThumbDataListener listener) {
         thumbDataListeners.add(listener);

@@ -68,7 +68,7 @@ public class SearchFactory implements UIDependent {
         private final WeakReference<SearchFactory> ref;
 
         LaFListener(SearchFactory sf) {
-            this.ref = new WeakReference<SearchFactory>(sf);
+            this.ref = new WeakReference<>(sf);
         }
 
         /**
@@ -495,7 +495,7 @@ public class SearchFactory implements UIDependent {
 
         private Set<Container> getTargets() {
             if (targets == null) {
-                targets = new HashSet<Container>();
+                targets = new HashSet<>();
             }
             return targets;
         }

@@ -85,7 +85,7 @@ public class TableRolloverController<T extends JTable> extends
                                                boolean paintRow, boolean paintColumn) {
         if (!paintRow && !paintColumn) return rectangles;
         if (rectangles == null) {
-            rectangles = new ArrayList<Rectangle>();
+            rectangles = new ArrayList<>();
         }
         Rectangle r = component.getCellRect(cellLocation.y, cellLocation.x,
             false);

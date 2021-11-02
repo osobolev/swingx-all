@@ -67,7 +67,7 @@ public class MultiSplitLayout implements LayoutManager, Serializable {
     public static final int NO_MIN_SIZE_LAYOUT = 1;
     public static final int USER_MIN_SIZE_LAYOUT = 2;
 
-    private final Map<String, Component> childMap = new HashMap<String, Component>();
+    private final Map<String, Component> childMap = new HashMap<>();
     private final PropertyChangeSupport pcs = new PropertyChangeSupport(this);
     private Node model;
     private int dividerSize;
@@ -1393,7 +1393,7 @@ public class MultiSplitLayout implements LayoutManager, Serializable {
 
     private List<Divider> dividersThatOverlap(Node root, Rectangle r) {
         if (nodeOverlapsRectangle(root, r) && (root instanceof Split)) {
-            List<Divider> dividers = new ArrayList<Divider>();
+            List<Divider> dividers = new ArrayList<>();
             for (Node child : ((Split) root).getChildren()) {
                 if (child instanceof Divider) {
                     if (nodeOverlapsRectangle(child, r)) {
@@ -1692,7 +1692,7 @@ public class MultiSplitLayout implements LayoutManager, Serializable {
          * @see #setChildren
          */
         public List<Node> getChildren() {
-            return new ArrayList<Node>(children);
+            return new ArrayList<>(children);
         }
 
         /**
@@ -1830,7 +1830,7 @@ public class MultiSplitLayout implements LayoutManager, Serializable {
                 child.setParent(null);
             }
 
-            this.children = new ArrayList<Node>(children);
+            this.children = new ArrayList<>(children);
             for (Node child : this.children) {
                 child.setParent(this);
             }
@@ -2039,7 +2039,7 @@ public class MultiSplitLayout implements LayoutManager, Serializable {
     }
 
     private static void addSplitChild(Split parent, Node child) {
-        List<Node> children = new ArrayList<Node>(parent.getChildren());
+        List<Node> children = new ArrayList<>(parent.getChildren());
         if (children.isEmpty()) {
             children.add(child);
         } else {

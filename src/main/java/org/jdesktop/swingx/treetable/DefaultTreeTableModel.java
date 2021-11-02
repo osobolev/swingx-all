@@ -127,7 +127,7 @@ public class DefaultTreeTableModel extends AbstractTreeTableModel {
 
     private static List<String> getAutoCalculatedIdentifiers(
         TreeTableNode exemplar) {
-        List<String> autoCalculatedIndentifiers = new ArrayList<String>();
+        List<String> autoCalculatedIndentifiers = new ArrayList<>();
 
         if (exemplar != null) {
             for (int i = 0, len = exemplar.getColumnCount(); i < len; i++) {
@@ -320,7 +320,7 @@ public class DefaultTreeTableModel extends AbstractTreeTableModel {
      * @throws NullPointerException if {@code aNode} is {@code null}
      */
     public TreeTableNode[] getPathToRoot(TreeTableNode aNode) {
-        List<TreeTableNode> path = new ArrayList<TreeTableNode>();
+        List<TreeTableNode> path = new ArrayList<>();
         TreeTableNode node = aNode;
 
         while (node != root) {

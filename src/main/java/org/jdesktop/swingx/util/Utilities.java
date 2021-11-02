@@ -369,8 +369,8 @@ public class Utilities {
             fields = new Field[0];
         }
 
-        HashMap<String, Integer> names = new HashMap<String, Integer>(((fields.length * 4) / 3) + 5, 0.75f);
-        HashMap<Integer, String> values = new HashMap<Integer, String>(((fields.length * 4) / 3) + 5, 0.75f);
+        HashMap<String, Integer> names = new HashMap<>(((fields.length * 4) / 3) + 5, 0.75f);
+        HashMap<Integer, String> values = new HashMap<>(((fields.length * 4) / 3) + 5, 0.75f);
 
         for (int i = 0; i < fields.length; i++) {
             if (Modifier.isStatic(fields[i].getModifiers())) {
@@ -406,7 +406,7 @@ public class Utilities {
 
         HashMap[] arr = {names, values};
 
-        namesAndValues = new SoftReference<Object>(arr);
+        namesAndValues = new SoftReference<>(arr);
 
         return arr;
     }
@@ -593,7 +593,7 @@ public class Utilities {
      */
     public static KeyStroke[] stringToKeys(String s) {
         StringTokenizer st = new StringTokenizer(s.toUpperCase(Locale.ENGLISH), " "); // NOI18N
-        ArrayList<KeyStroke> arr = new ArrayList<KeyStroke>();
+        ArrayList<KeyStroke> arr = new ArrayList<>();
 
         while (st.hasMoreElements()) {
             s = st.nextToken();
@@ -958,7 +958,7 @@ public class Utilities {
             return workingSet;
         }
 
-        ArrayList<String> lines = new ArrayList<String>();
+        ArrayList<String> lines = new ArrayList<>();
 
         int lineStart = 0; // the position of start of currently processed line in the original string
 

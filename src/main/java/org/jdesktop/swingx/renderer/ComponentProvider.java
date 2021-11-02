@@ -369,7 +369,7 @@ public abstract class ComponentProvider<T extends JComponent>
      * the rendering component.
      */
     protected DefaultVisuals<T> createDefaultVisuals() {
-        return new DefaultVisuals<T>();
+        return new DefaultVisuals<>();
     }
 
     /**
