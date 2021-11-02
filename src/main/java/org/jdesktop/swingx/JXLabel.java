@@ -117,7 +117,10 @@ public class JXLabel extends JLabel implements BackgroundPaintable {
      * Text alignment enums. Controls alignment of the text when line wrapping is enabled.
      */
     public enum TextAlignment implements IValue {
-        LEFT(StyleConstants.ALIGN_LEFT), CENTER(StyleConstants.ALIGN_CENTER), RIGHT(StyleConstants.ALIGN_RIGHT), JUSTIFY(StyleConstants.ALIGN_JUSTIFIED);
+        LEFT(StyleConstants.ALIGN_LEFT),
+        CENTER(StyleConstants.ALIGN_CENTER),
+        RIGHT(StyleConstants.ALIGN_RIGHT),
+        JUSTIFY(StyleConstants.ALIGN_JUSTIFIED);
 
         private int value;
 

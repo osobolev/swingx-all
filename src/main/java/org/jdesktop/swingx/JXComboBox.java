@@ -136,7 +136,9 @@ public class JXComboBox extends JComboBox {
                 SwingUtilities.updateComponentTreeUI((Component) delegateRenderer);
             } else if (delegateRenderer != null) {
                 try {
-                    Component comp = delegateRenderer.getListCellRendererComponent(getPopupListFor(JXComboBox.this), null, -1, false, false);
+                    Component comp = delegateRenderer.getListCellRendererComponent(
+                        getPopupListFor(JXComboBox.this), null, -1, false, false
+                    );
                     SwingUtilities.updateComponentTreeUI(comp);
                 } catch (Exception e) {
                     // nothing to do - renderer barked on off-range row

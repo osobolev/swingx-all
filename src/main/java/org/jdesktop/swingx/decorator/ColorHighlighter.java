@@ -110,7 +110,8 @@ public class ColorHighlighter extends AbstractHighlighter {
      * @param selectedBackground background color for selected cell state
      * @param selectedForeground foreground color for selected cell state
      */
-    public ColorHighlighter(HighlightPredicate predicate, Color cellBackground, Color cellForeground, Color selectedBackground, Color selectedForeground) {
+    public ColorHighlighter(HighlightPredicate predicate,
+                            Color cellBackground, Color cellForeground, Color selectedBackground, Color selectedForeground) {
         super(predicate);
         this.background = cellBackground;
         this.foreground = cellForeground;

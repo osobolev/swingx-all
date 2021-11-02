@@ -1242,7 +1242,8 @@ public class JXTree extends JTree {
          * The decorators are not applied if the row is invalid.
          */
         @Override
-        public Component getTreeCellRendererComponent(JTree tree, Object value, boolean selected, boolean expanded, boolean leaf, int row, boolean hasFocus) {
+        public Component getTreeCellRendererComponent(JTree tree, Object value,
+                                                      boolean selected, boolean expanded, boolean leaf, int row, boolean hasFocus) {
             Component result = delegate.getTreeCellRendererComponent(tree, value, selected, expanded, leaf, row, hasFocus);
 
             if (compoundHighlighter != null && row < getRowCount() && row >= 0) {

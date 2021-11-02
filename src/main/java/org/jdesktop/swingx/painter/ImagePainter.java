@@ -205,7 +205,9 @@ public class ImagePainter extends AbstractAreaPainter<Object> {
                     }
                     Area area = new Area(clip);
                     Insets insets = getInsets();
-                    area.intersect(new Area(new Rectangle(insets.left, insets.top, width - insets.left - insets.right, height - insets.top - insets.bottom)));
+                    area.intersect(new Area(new Rectangle(
+                        insets.left, insets.top, width - insets.left - insets.right, height - insets.top - insets.bottom
+                    )));
 
                     if (verticalRepeat && horizontalRepeat) {
                         area.intersect(new Area(new Rectangle(0, 0, width, height)));

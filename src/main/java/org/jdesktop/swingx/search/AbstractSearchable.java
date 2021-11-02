@@ -530,9 +530,12 @@ public abstract class AbstractSearchable implements Searchable {
      * @return a HighlightPredicate appropriate for the current search result.
      */
     protected HighlightPredicate createMatchPredicate() {
-        return hasMatch()
-            ? new SearchPredicate(lastSearchResult.pattern, lastSearchResult.foundRow, convertColumnIndexToModel(lastSearchResult.foundColumn))
-            : HighlightPredicate.NEVER;
+        if (hasMatch()) {
+            return new SearchPredicate(
+                lastSearchResult.pattern, lastSearchResult.foundRow, convertColumnIndexToModel(lastSearchResult.foundColumn)
+            );
+        }
+        return HighlightPredicate.NEVER;
     }
 
     /**

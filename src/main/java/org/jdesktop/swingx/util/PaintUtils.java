@@ -153,7 +153,8 @@ public class PaintUtils {
             return new GradientPaint(pts[0], gp.getColor1(), pts[1], gp.getColor2(), gp.isCyclic());
         }
 
-        if ("java.awt.LinearGradientPaint".equals(p.getClass().getName()) || "org.apache.batik.ext.awt.LinearGradientPaint".equals(p.getClass().getName())) {
+        if ("java.awt.LinearGradientPaint".equals(p.getClass().getName()) ||
+            "org.apache.batik.ext.awt.LinearGradientPaint".equals(p.getClass().getName())) {
             return resizeLinearGradient(p, width, height);
         }
         return p;

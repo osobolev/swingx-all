@@ -329,8 +329,14 @@ public class JXLoginPane extends JXPanel {
         // whitespace preserves formatting of the panel.
         capsOn.setText(isCapsLockOn() ? UIManagerExt.getString(CLASS_NAME + ".capsOnWarning", getLocale()) : " ");
 
-        getActionMap().get(LOGIN_ACTION_COMMAND).putValue(Action.NAME, UIManagerExt.getString(CLASS_NAME + ".loginString", getLocale()));
-        getActionMap().get(CANCEL_LOGIN_ACTION_COMMAND).putValue(Action.NAME, UIManagerExt.getString(CLASS_NAME + ".cancelString", getLocale()));
+        getActionMap().get(LOGIN_ACTION_COMMAND).putValue(
+            Action.NAME,
+            UIManagerExt.getString(CLASS_NAME + ".loginString", getLocale())
+        );
+        getActionMap().get(CANCEL_LOGIN_ACTION_COMMAND).putValue(
+            Action.NAME,
+            UIManagerExt.getString(CLASS_NAME + ".cancelString", getLocale())
+        );
     }
 
     //--------------------------------------------------------- Constructors

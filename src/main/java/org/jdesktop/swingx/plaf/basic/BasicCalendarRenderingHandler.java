@@ -206,7 +206,9 @@ class BasicCalendarRenderingHandler implements CalendarRenderingHandler {
      */
     @Override
     public JComponent prepareRenderingComponent(JXMonthView monthView, Calendar calendar, CalendarState dayState) {
-        cellContext.installContext(monthView, calendar, isSelected(monthView, calendar, dayState), isFocused(monthView, calendar, dayState), dayState);
+        cellContext.installContext(
+            monthView, calendar, isSelected(monthView, calendar, dayState), isFocused(monthView, calendar, dayState), dayState
+        );
         JComponent comp = providers.get(dayState).getRendererComponent(cellContext);
         return highlight(comp, monthView, calendar, dayState);
     }

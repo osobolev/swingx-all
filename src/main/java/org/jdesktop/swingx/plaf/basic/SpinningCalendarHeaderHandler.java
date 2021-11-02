@@ -101,7 +101,9 @@ public class SpinningCalendarHeaderHandler extends CalendarHeaderHandler {
     @Override
     public void install(JXMonthView monthView) {
         super.install(monthView);
-        getHeaderComponent().setActions(monthView.getActionMap().get("previousMonth"), monthView.getActionMap().get("nextMonth"), getYearSpinnerModel());
+        getHeaderComponent().setActions(
+            monthView.getActionMap().get("previousMonth"), monthView.getActionMap().get("nextMonth"), getYearSpinnerModel()
+        );
         componentOrientationChanged();
         monthStringBackgroundChanged();
         fontChanged();

@@ -365,8 +365,10 @@ public class BasicHyperlinkUI extends BasicButtonUI {
         Rectangle textR = new Rectangle();
         Rectangle viewR = new Rectangle(b.getSize());
 
-        SwingUtilities.layoutCompoundLabel(b, fm, text, icon,
-            b.getVerticalAlignment(), b.getHorizontalAlignment(), b.getVerticalTextPosition(), b.getHorizontalTextPosition(), viewR, iconR, textR,
+        SwingUtilities.layoutCompoundLabel(
+            b, fm, text, icon,
+            b.getVerticalAlignment(), b.getHorizontalAlignment(), b.getVerticalTextPosition(), b.getHorizontalTextPosition(),
+            viewR, iconR, textR,
             text == null ? 0 : b.getIconTextGap()
         );
 

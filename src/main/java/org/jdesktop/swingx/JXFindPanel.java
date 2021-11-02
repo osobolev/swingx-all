@@ -205,7 +205,9 @@ public class JXFindPanel extends AbstractPatternPanel {
      * @return Index of the next match in document.
      */
     protected int doSearch() {
-        int foundIndex = searchable.search(getPatternModel().getPattern(), getPatternModel().getFoundIndex(), getPatternModel().isBackwards());
+        int foundIndex = searchable.search(
+            getPatternModel().getPattern(), getPatternModel().getFoundIndex(), getPatternModel().isBackwards()
+        );
         getPatternModel().setFoundIndex(foundIndex);
         return getPatternModel().getFoundIndex();
 //         first try on #236-swingx - foundIndex wrong in backwards search.

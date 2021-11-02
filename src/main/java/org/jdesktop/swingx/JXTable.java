@@ -1675,8 +1675,14 @@ public class JXTable extends JTable implements TableColumnModelExtListener {
         List<TableColumn> columns = getColumns(true);
         for (TableColumn tableColumn : columns) {
             int modelIndex = tableColumn.getModelIndex();
-            getSortController().setSortable(modelIndex, tableColumn instanceof TableColumnExt ? ((TableColumnExt) tableColumn).isSortable() : true);
-            getSortController().setComparator(modelIndex, tableColumn instanceof TableColumnExt ? ((TableColumnExt) tableColumn).getComparator() : null);
+            getSortController().setSortable(
+                modelIndex,
+                tableColumn instanceof TableColumnExt ? ((TableColumnExt) tableColumn).isSortable() : true
+            );
+            getSortController().setComparator(
+                modelIndex,
+                tableColumn instanceof TableColumnExt ? ((TableColumnExt) tableColumn).getComparator() : null
+            );
         }
     }
 
@@ -2967,7 +2973,9 @@ public class JXTable extends JTable implements TableColumnModelExtListener {
          */
         protected TableColumn getColumnByModelIndex(int modelColumn) {
             if (modelColumn < 0 || modelColumn >= getColumnCount()) {
-                throw new IllegalArgumentException("invalid column index, must be positive and less than " + getColumnCount() + " was: " + modelColumn);
+                throw new IllegalArgumentException(
+                    "invalid column index, must be positive and less than " + getColumnCount() + " was: " + modelColumn
+                );
             }
             List<TableColumn> columns = table.getColumns(true);
             for (TableColumn column : columns) {
@@ -3286,7 +3294,9 @@ public class JXTable extends JTable implements TableColumnModelExtListener {
      * @param renderer    the renderer potentially useful as StringValue.
      */
     private void updateStringValueForColumn(TableColumn tableColumn, TableCellRenderer renderer) {
-        getStringValueRegistry().setStringValue(renderer instanceof StringValue ? (StringValue) renderer : null, tableColumn.getModelIndex());
+        getStringValueRegistry().setStringValue(
+            renderer instanceof StringValue ? (StringValue) renderer : null, tableColumn.getModelIndex()
+        );
     }
 
     /**

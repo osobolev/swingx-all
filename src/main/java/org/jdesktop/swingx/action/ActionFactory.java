@@ -117,7 +117,12 @@ public class ActionFactory {
      * @param action the action which will all the attributes will be applied
      * @see AbstractActionExt
      */
-    public static void decorateAction(AbstractAction action, String shortDesc, String longDesc, Icon smallIcon, Icon largeIcon, KeyStroke accel) {
+    public static void decorateAction(AbstractAction action,
+                                      String shortDesc,
+                                      String longDesc,
+                                      Icon smallIcon,
+                                      Icon largeIcon,
+                                      KeyStroke accel) {
         if (action instanceof AbstractActionExt) {
             AbstractActionExt a = (AbstractActionExt) action;
             a.setShortDescription(shortDesc);

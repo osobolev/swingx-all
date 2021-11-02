@@ -126,7 +126,8 @@ public class DefaultTreeRenderer extends AbstractRenderer implements TreeCellRen
      * @return a component to render the given list cell.
      */
     @Override
-    public Component getTreeCellRendererComponent(JTree tree, Object value, boolean selected, boolean expanded, boolean leaf, int row, boolean hasFocus) {
+    public Component getTreeCellRendererComponent(JTree tree, Object value,
+                                                  boolean selected, boolean expanded, boolean leaf, int row, boolean hasFocus) {
         cellContext.installContext(tree, value, row, 0, selected, hasFocus, expanded, leaf);
         Component comp = componentController.getRendererComponent(cellContext);
         // fix issue #1040-swingx: memory leak if value not released

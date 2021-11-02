@@ -178,7 +178,10 @@ public class FastBlurFilter extends AbstractFilter {
             }
 
             for (int x = 0; x < width; x++) {
-                dstPixels[dstIndex] = sumLookupTable[sumAlpha] << 24 | sumLookupTable[sumRed] << 16 | sumLookupTable[sumGreen] << 8 | sumLookupTable[sumBlue];
+                dstPixels[dstIndex] = sumLookupTable[sumAlpha] << 24 |
+                                      sumLookupTable[sumRed] << 16 |
+                                      sumLookupTable[sumGreen] << 8 |
+                                      sumLookupTable[sumBlue];
                 dstIndex += height;
 
                 int nextPixelIndex = x + radiusPlusOne;

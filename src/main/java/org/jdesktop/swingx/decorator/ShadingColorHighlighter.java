@@ -77,6 +77,10 @@ public class ShadingColorHighlighter extends ColorHighlighter {
     }
 
     protected Color computeBackgroundSeed(Color seed) {
-        return new Color(Math.max((int) (seed.getRed() * 0.95), 0), Math.max((int) (seed.getGreen() * 0.95), 0), Math.max((int) (seed.getBlue() * 0.95), 0));
+        return new Color(
+            Math.max((int) (seed.getRed() * 0.95), 0),
+            Math.max((int) (seed.getGreen() * 0.95), 0),
+            Math.max((int) (seed.getBlue() * 0.95), 0)
+        );
     }
 }

@@ -692,7 +692,9 @@ public class JXButton extends JButton implements BackgroundPaintable {
             }
 
             g2d.setPaint(fgPaint);
-            BasicGraphicsUtils.drawStringUnderlineCharAt(g2d, text, getDisplayedMnemonicIndex(), textRect.x, textRect.y + g2d.getFontMetrics().getAscent());
+            BasicGraphicsUtils.drawStringUnderlineCharAt(
+                g2d, text, getDisplayedMnemonicIndex(), textRect.x, textRect.y + g2d.getFontMetrics().getAscent()
+            );
         }
     }
 

@@ -953,7 +953,8 @@ public class BasicMonthViewUI extends MonthViewUI {
         int calendarRow = (y - calendarGrid.y) / fullCalendarHeight;
         int calendarColumn = (x - calendarGrid.x) / fullCalendarWidth;
         return new Rectangle(
-            calendarGrid.x + calendarColumn * fullCalendarWidth, calendarGrid.y + calendarRow * fullCalendarHeight, calendarWidth, calendarHeight
+            calendarGrid.x + calendarColumn * fullCalendarWidth, calendarGrid.y + calendarRow * fullCalendarHeight,
+            calendarWidth, calendarHeight
         );
     }
 
@@ -1156,7 +1157,9 @@ public class BasicMonthViewUI extends MonthViewUI {
      * initialized before calling this.
      */
     private void calculateMonthGridBounds() {
-        calendarGrid.setBounds(calculateCalendarGridX(), calculateCalendarGridY(), calculateCalendarGridWidth(), calculateCalendarGridHeight());
+        calendarGrid.setBounds(
+            calculateCalendarGridX(), calculateCalendarGridY(), calculateCalendarGridWidth(), calculateCalendarGridHeight()
+        );
     }
 
     private int calculateCalendarGridY() {

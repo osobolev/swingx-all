@@ -232,8 +232,12 @@ public abstract class CalendarHeaderHandler {
      * them with the appropriate next/previous icons.
      */
     protected void installNavigationActions() {
-        installWrapper("scrollToPreviousMonth", "previousMonth", monthView.getComponentOrientation().isLeftToRight() ? monthDownImage : monthUpImage);
-        installWrapper("scrollToNextMonth", "nextMonth", monthView.getComponentOrientation().isLeftToRight() ? monthUpImage : monthDownImage);
+        installWrapper(
+            "scrollToPreviousMonth", "previousMonth", monthView.getComponentOrientation().isLeftToRight() ? monthDownImage : monthUpImage
+        );
+        installWrapper(
+            "scrollToNextMonth", "nextMonth", monthView.getComponentOrientation().isLeftToRight() ? monthUpImage : monthDownImage
+        );
     }
 
     /**

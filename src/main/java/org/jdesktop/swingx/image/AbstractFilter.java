@@ -74,7 +74,9 @@ public abstract class AbstractFilter extends AbstractBean implements BufferedIma
             destCM = src.getColorModel();
         }
 
-        return new BufferedImage(destCM, destCM.createCompatibleWritableRaster(src.getWidth(), src.getHeight()), destCM.isAlphaPremultiplied(), null);
+        return new BufferedImage(
+            destCM, destCM.createCompatibleWritableRaster(src.getWidth(), src.getHeight()), destCM.isAlphaPremultiplied(), null
+        );
     }
 
     /**

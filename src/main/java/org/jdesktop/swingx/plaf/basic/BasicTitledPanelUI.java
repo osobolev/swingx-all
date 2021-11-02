@@ -316,7 +316,8 @@ public class BasicTitledPanelUI extends TitledPanelUI {
         right = decoration;
         if (right != null) {
             topPanel.add(decoration, new GridBagConstraints(
-                2, 0, 1, 1, 0.0, 0.0, GridBagConstraints.EAST, GridBagConstraints.NONE, UIManager.getInsets("JXTitledPanel.rightDecorationInsets"), 0, 0
+                2, 0, 1, 1, 0.0, 0.0, GridBagConstraints.EAST, GridBagConstraints.NONE,
+                UIManager.getInsets("JXTitledPanel.rightDecorationInsets"), 0, 0
             ));
         }
     }
@@ -338,7 +339,8 @@ public class BasicTitledPanelUI extends TitledPanelUI {
         left = decoration;
         if (left != null) {
             topPanel.add(left, new GridBagConstraints(
-                0, 0, 1, 1, 0.0, 0.0, GridBagConstraints.WEST, GridBagConstraints.NONE, UIManager.getInsets("JXTitledPanel.leftDecorationInsets"), 0, 0
+                0, 0, 1, 1, 0.0, 0.0, GridBagConstraints.WEST, GridBagConstraints.NONE,
+                UIManager.getInsets("JXTitledPanel.leftDecorationInsets"), 0, 0
             ));
         }
     }

@@ -2670,9 +2670,10 @@ public class JXTreeTable extends JXTable {
                 // show tooltip only if over renderer?
 //                if (mousePoint.x < 0) return null;
 //                p.translate(-pathBounds.x, -pathBounds.y);
-                MouseEvent newEvent = new MouseEvent(rComponent, event.getID(), event.getWhen(), event.getModifiers(), mousePoint.x, mousePoint.y,
-//                    p.x, p.y, 
-                    event.getClickCount(), event.isPopupTrigger());
+                MouseEvent newEvent = new MouseEvent(
+                    rComponent, event.getID(), event.getWhen(), event.getModifiers(), mousePoint.x, mousePoint.y,
+                    event.getClickCount(), event.isPopupTrigger()
+                );
 
                 toolTip = ((JComponent) rComponent).getToolTipText(newEvent);
             }
@@ -2981,7 +2982,8 @@ public class JXTreeTable extends JXTable {
         }
 
         @Override
-        public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+        public Component getTableCellRendererComponent(JTable table, Object value,
+                                                       boolean isSelected, boolean hasFocus, int row, int column) {
             assert table == treeTable;
             // JW: quick fix for the tooltip part of #794-swingx:
             // visual properties must be reset in each cycle.
@@ -3052,7 +3054,8 @@ public class JXTreeTable extends JXTable {
             }
 
             @Override
-            public Component getTreeCellRendererComponent(JTree tree, Object value, boolean sel, boolean expanded, boolean leaf, int row, boolean hasFocus) {
+            public Component getTreeCellRendererComponent(JTree tree, Object value,
+                                                          boolean sel, boolean expanded, boolean leaf, int row, boolean hasFocus) {
                 return super.getTreeCellRendererComponent(tree, getHierarchicalTableValue(value), sel, expanded, leaf, row, hasFocus);
             }
 

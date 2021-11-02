@@ -51,7 +51,9 @@ public class AutoCompleteStyledDocument extends AutoCompleteDocument implements 
      * @param strictMatching
      * @param stringConverter
      */
-    public AutoCompleteStyledDocument(AbstractAutoCompleteAdaptor adaptor, boolean strictMatching, ObjectToStringConverter stringConverter) {
+    public AutoCompleteStyledDocument(AbstractAutoCompleteAdaptor adaptor,
+                                      boolean strictMatching,
+                                      ObjectToStringConverter stringConverter) {
         super(adaptor, strictMatching, stringConverter);
     }
 

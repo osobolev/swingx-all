@@ -1661,7 +1661,10 @@ public class JXMonthView extends JComponent {
         // Modify the initial delay by the current time.
 //        cal.setTimeInMillis(System.currentTimeMillis());
         cal.setTime(getCurrentDate());
-        secondsTillTomorrow = secondsTillTomorrow - cal.get(Calendar.HOUR_OF_DAY) * 3600 - cal.get(Calendar.MINUTE) * 60 - cal.get(Calendar.SECOND);
+        secondsTillTomorrow = secondsTillTomorrow
+                              - cal.get(Calendar.HOUR_OF_DAY) * 3600
+                              - cal.get(Calendar.MINUTE) * 60
+                              - cal.get(Calendar.SECOND);
         todayTimer.setInitialDelay(secondsTillTomorrow * 1000);
         todayTimer.start();
     }

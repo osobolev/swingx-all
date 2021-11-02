@@ -602,7 +602,9 @@ public class JXCollapsiblePane extends JXPanel {
 
             if (oldValue) {
                 int dimension = direction.isVertical() ? wrapper.getHeight() : wrapper.getWidth();
-                int preferredDimension = direction.isVertical() ? getContentPane().getPreferredSize().height : getContentPane().getPreferredSize().width;
+                int preferredDimension = direction.isVertical()
+                    ? getContentPane().getPreferredSize().height
+                    : getContentPane().getPreferredSize().width;
                 int delta = Math.max(8, preferredDimension / 10);
 
                 setAnimationParams(new AnimationParams(30, delta, 0.01f, 1.0f));

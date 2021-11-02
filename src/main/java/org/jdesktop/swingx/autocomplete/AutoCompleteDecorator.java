@@ -73,7 +73,9 @@ public class AutoCompleteDecorator {
 
     //these keys were pulled from BasicComboBoxUI from Sun JDK 1.6.0_20
     private static final List<String> COMBO_BOX_ACTIONS = unmodifiableList(asList(
-        "selectNext", "selectNext2", "selectPrevious", "selectPrevious2", "pageDownPassThrough", "pageUpPassThrough", "homePassThrough", "endPassThrough"
+        "selectNext", "selectNext2",
+        "selectPrevious", "selectPrevious2",
+        "pageDownPassThrough", "pageUpPassThrough", "homePassThrough", "endPassThrough"
     ));
     /**
      * A TextAction that provides an error feedback for the text component that invoked
@@ -304,7 +306,10 @@ public class AutoCompleteDecorator {
      * @param strictMatching  <tt>true</tt>, if only given items should be allowed to be entered
      * @param stringConverter the converter used to transform items to strings
      */
-    public static void decorate(JTextComponent textComponent, List<?> items, boolean strictMatching, ObjectToStringConverter stringConverter) {
+    public static void decorate(JTextComponent textComponent,
+                                List<?> items,
+                                boolean strictMatching,
+                                ObjectToStringConverter stringConverter) {
         AbstractAutoCompleteAdaptor adaptor = new TextComponentAdaptor(textComponent, items);
         AutoCompleteDocument document = createAutoCompleteDocument(adaptor, strictMatching, stringConverter, textComponent.getDocument());
         decorate(textComponent, document, adaptor);

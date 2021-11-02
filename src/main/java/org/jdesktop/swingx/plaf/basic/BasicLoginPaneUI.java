@@ -34,6 +34,7 @@ import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.RenderingHints;
 import java.awt.geom.GeneralPath;
+import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
@@ -115,7 +116,8 @@ public class BasicLoginPaneUI extends LoginPaneUI {
                     originalGraphics = (Graphics2D) g2.create();
                     g2.scale(-1, 1);
                     g2.translate(-w, 0);
-                    loginStringX = w - ((float) font.getStringBounds(dlg.getBannerText(), originalGraphics.getFontRenderContext()).getWidth() + w * .05f);
+                    Rectangle2D sb = font.getStringBounds(dlg.getBannerText(), originalGraphics.getFontRenderContext());
+                    loginStringX = w - ((float) sb.getWidth() + w * .05f);
                 }
 
                 g2.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
@@ -139,7 +141,8 @@ public class BasicLoginPaneUI extends LoginPaneUI {
                 // draw into the buffer a gradient (bottom to top), and the text
                 // "Login"
                 GradientPaint gp = new GradientPaint(
-                    0, h, UIManager.getColor("JXLoginPane.bannerDarkBackground"), 0, 0, UIManager.getColor("JXLoginPane.bannerLightBackground")
+                    0, h, UIManager.getColor("JXLoginPane.bannerDarkBackground"),
+                    0, 0, UIManager.getColor("JXLoginPane.bannerLightBackground")
                 );
                 g2.setPaint(gp);
                 g2.fill(curveShape);

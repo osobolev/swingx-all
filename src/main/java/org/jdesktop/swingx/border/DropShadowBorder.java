@@ -187,7 +187,11 @@ public class DropShadowBorder implements Border, Serializable {
                     x, topLeftShadowPoint.y + shadowSize,
                     shadowSize, bottomLeftShadowPoint.y - topLeftShadowPoint.y - shadowSize
                 );
-                g2.drawImage(images.get(Position.LEFT), leftShadowRect.x, leftShadowRect.y, leftShadowRect.width, leftShadowRect.height, null);
+                g2.drawImage(
+                    images.get(Position.LEFT),
+                    leftShadowRect.x, leftShadowRect.y, leftShadowRect.width, leftShadowRect.height,
+                    null
+                );
             }
 
             if (showBottomShadow) {
@@ -195,7 +199,11 @@ public class DropShadowBorder implements Border, Serializable {
                     bottomLeftShadowPoint.x + shadowSize, y + height - shadowSize,
                     bottomRightShadowPoint.x - bottomLeftShadowPoint.x - shadowSize, shadowSize
                 );
-                g2.drawImage(images.get(Position.BOTTOM), bottomShadowRect.x, bottomShadowRect.y, bottomShadowRect.width, bottomShadowRect.height, null);
+                g2.drawImage(
+                    images.get(Position.BOTTOM),
+                    bottomShadowRect.x, bottomShadowRect.y, bottomShadowRect.width, bottomShadowRect.height,
+                    null
+                );
             }
 
             if (showRightShadow) {
@@ -203,7 +211,9 @@ public class DropShadowBorder implements Border, Serializable {
                     x + width - shadowSize, topRightShadowPoint.y + shadowSize,
                     shadowSize, bottomRightShadowPoint.y - topRightShadowPoint.y - shadowSize
                 );
-                g2.drawImage(images.get(Position.RIGHT), rightShadowRect.x, rightShadowRect.y, rightShadowRect.width, rightShadowRect.height, null);
+                g2.drawImage(
+                    images.get(Position.RIGHT), rightShadowRect.x, rightShadowRect.y, rightShadowRect.width, rightShadowRect.height, null
+                );
             }
 
             if (showTopShadow) {
@@ -211,7 +221,9 @@ public class DropShadowBorder implements Border, Serializable {
                     topLeftShadowPoint.x + shadowSize, y,
                     topRightShadowPoint.x - topLeftShadowPoint.x - shadowSize, shadowSize
                 );
-                g2.drawImage(images.get(Position.TOP), topShadowRect.x, topShadowRect.y, topShadowRect.width, topShadowRect.height, null);
+                g2.drawImage(
+                    images.get(Position.TOP), topShadowRect.x, topShadowRect.y, topShadowRect.width, topShadowRect.height, null
+                );
             }
 
             if (showLeftShadow || showTopShadow) {
@@ -260,7 +272,9 @@ public class DropShadowBorder implements Border, Serializable {
             Graphics2D buffer = (Graphics2D) image.getGraphics();
 
             try {
-                buffer.setPaint(new Color(shadowColor.getRed(), shadowColor.getGreen(), shadowColor.getBlue(), (int) (shadowOpacity * 255)));
+                buffer.setPaint(new Color(
+                    shadowColor.getRed(), shadowColor.getGreen(), shadowColor.getBlue(), (int) (shadowOpacity * 255)
+                ));
 //                buffer.setColor(new Color(0.0f, 0.0f, 0.0f, shadowOpacity));
                 buffer.translate(shadowSize, shadowSize);
                 buffer.fill(rect);

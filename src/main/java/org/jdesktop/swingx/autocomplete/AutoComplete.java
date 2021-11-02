@@ -142,7 +142,9 @@ final class AutoComplete {
 
             JTextComponent editorComponent = (JTextComponent) comboBox.getEditor().getEditorComponent();
             AbstractAutoCompleteAdaptor adaptor = new ComboBoxAdaptor(comboBox);
-            AutoCompleteDocument document = createAutoCompleteDocument(adaptor, strictMatching, acEditor.stringConverter, editorComponent.getDocument());
+            AutoCompleteDocument document = createAutoCompleteDocument(
+                adaptor, strictMatching, acEditor.stringConverter, editorComponent.getDocument()
+            );
             decorate(editorComponent, document, adaptor);
 
             editorComponent.addKeyListener(new KeyAdapter(comboBox));

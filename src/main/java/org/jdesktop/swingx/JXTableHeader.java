@@ -190,7 +190,9 @@ public class JXTableHeader extends JTableHeader implements TableColumnModelExtLi
      * base columnModelEvent.
      */
     protected boolean isColumnEvent(PropertyChangeEvent event) {
-        return "width".equals(event.getPropertyName()) || "preferredWidth".equals(event.getPropertyName()) || "visible".equals(event.getPropertyName());
+        return "width".equals(event.getPropertyName()) ||
+               "preferredWidth".equals(event.getPropertyName()) ||
+               "visible".equals(event.getPropertyName());
     }
 
     /**
@@ -311,7 +313,9 @@ public class JXTableHeader extends JTableHeader implements TableColumnModelExtLi
         int height = pref.height;
         for (int i = 0; i < getColumnModel().getColumnCount(); i++) {
             TableCellRenderer renderer = getCellRenderer(i);
-            Component comp = renderer.getTableCellRendererComponent(table, getColumnModel().getColumn(i).getHeaderValue(), false, false, -1, i);
+            Component comp = renderer.getTableCellRendererComponent(
+                table, getColumnModel().getColumn(i).getHeaderValue(), false, false, -1, i
+            );
             height = Math.max(height, comp.getPreferredSize().height);
         }
         pref.height = height;

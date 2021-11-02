@@ -364,7 +364,11 @@ public abstract class AbstractPatternPanel extends JXPanel {
     protected void bind() {
         bindSearchLabel(getLocale());
         searchField.getDocument().addDocumentListener(getSearchFieldListener());
-        getActionContainerFactory().configureButton(matchCheck, (AbstractActionExt) getActionMap().get(PatternModel.MATCH_CASE_ACTION_COMMAND), null);
+        getActionContainerFactory().configureButton(
+            matchCheck,
+            (AbstractActionExt) getActionMap().get(PatternModel.MATCH_CASE_ACTION_COMMAND),
+            null
+        );
     }
 
     /**

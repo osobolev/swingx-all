@@ -614,7 +614,9 @@ public class JXPanel extends JPanel implements AlphaPaintable, BackgroundPaintab
                 } else {
                     Insets insets = getInsets();
                     g.translate(insets.left, insets.top);
-                    getBackgroundPainter().paint(g2, this, getWidth() - insets.left - insets.right, getHeight() - insets.top - insets.bottom);
+                    getBackgroundPainter().paint(
+                        g2, this, getWidth() - insets.left - insets.right, getHeight() - insets.top - insets.bottom
+                    );
                     g.translate(-insets.left, -insets.top);
                 }
             }

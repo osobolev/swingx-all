@@ -579,7 +579,9 @@ public class JXGradientChooser extends JXPanel {
                 // get the selected thumb
                 Thumb<Color> thumb = slider.getModel().getThumbAt(slider.getSelectedIndex());
                 // get the new alpha value
-                int alpha = changeEvent.getSource() == alphaSpinner ? ((Number) alphaSpinner.getValue()).intValue() : alphaSlider.getValue();
+                int alpha = changeEvent.getSource() == alphaSpinner
+                    ? ((Number) alphaSpinner.getValue()).intValue()
+                    : alphaSlider.getValue();
 
                 // calc new color and set it on thumb
                 Color col = thumb.getObject();

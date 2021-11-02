@@ -133,9 +133,9 @@ public abstract class AbstractAreaPainter<T> extends AbstractLayoutPainter<T> {
     }
 
     /**
-     * Indicates if the paint will be snapped. This means that the paint will be scaled and aligned along the 4 axis of (horizontal, vertical,
-     * and both diagonals). Snapping allows the paint to be stretched across the component when it is drawn, even if the component is
-     * resized. This setting is only used for gradient paints. It will have no effect on Color or Texture paints.
+     * Indicates if the paint will be snapped. This means that the paint will be scaled and aligned along the 4 axis of (horizontal,
+     * vertical, and both diagonals). Snapping allows the paint to be stretched across the component when it is drawn, even if
+     * the component is resized. This setting is only used for gradient paints. It will have no effect on Color or Texture paints.
      *
      * @return the current value of the snapPaint property
      */

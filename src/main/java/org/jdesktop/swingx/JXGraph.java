@@ -438,7 +438,10 @@ public class JXGraph extends JXPanel {
      *                                  majorX <= 0.0 or majorY <= 0.0
      */
     public JXGraph(Point2D origin, Rectangle2D view, double majorX, int minorCountX, double majorY, int minorCountY) {
-        this(origin.getX(), origin.getY(), view.getMinX(), view.getMaxX(), view.getMinY(), view.getMaxY(), majorX, minorCountX, majorY, minorCountY);
+        this(
+            origin.getX(), origin.getY(),
+            view.getMinX(), view.getMaxX(), view.getMinY(), view.getMaxY(), majorX, minorCountX, majorY, minorCountY
+        );
     }
 
     /**

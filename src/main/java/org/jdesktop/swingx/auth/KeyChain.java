@@ -92,10 +92,10 @@ public class KeyChain {
      * otherwise
      */
     public String getPassword(String user, String server) {
-
         try {
-
-            KeyStore.SecretKeyEntry entry2 = (KeyStore.SecretKeyEntry) store.getEntry(user + "@" + server, new KeyStore.PasswordProtection(masterPassword));
+            KeyStore.SecretKeyEntry entry2 = (KeyStore.SecretKeyEntry) store.getEntry(
+                user + "@" + server, new KeyStore.PasswordProtection(masterPassword)
+            );
             return new String(entry2.getSecretKey().getEncoded());
         } catch (KeyStoreException | NoSuchAlgorithmException | UnrecoverableEntryException ex) {
             LOG.log(Level.WARNING, "", ex);

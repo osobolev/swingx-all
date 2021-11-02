@@ -738,7 +738,9 @@ public class BasicTaskPaneUI extends TaskPaneUI {
          * @param width  Width of the box.
          * @param height Height of the box.
          */
-        protected void paintRectAroundControls(JXTaskPane group, Graphics g, int x, int y, int width, int height, Color highColor, Color lowColor) {
+        protected void paintRectAroundControls(JXTaskPane group, Graphics g,
+                                               int x, int y, int width, int height,
+                                               Color highColor, Color lowColor) {
             if (mouseOver) {
                 int x2 = x + width;
                 int y2 = y + height;

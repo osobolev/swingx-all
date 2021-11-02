@@ -172,7 +172,8 @@ class CalendarCellContext extends CellContext {
             return BorderFactory.createCompoundBorder(todayBorder, empty);
         }
         return BorderFactory.createEmptyBorder(
-            getComponent().getBoxPaddingY(), getComponent().getBoxPaddingX(), getComponent().getBoxPaddingY(), getComponent().getBoxPaddingX()
+            getComponent().getBoxPaddingY(), getComponent().getBoxPaddingX(),
+            getComponent().getBoxPaddingY(), getComponent().getBoxPaddingX()
         );
     }
 
@@ -195,7 +196,8 @@ class CalendarCellContext extends CellContext {
         }
 
         return BorderFactory.createEmptyBorder(
-            getComponent().getBoxPaddingY(), getComponent().getBoxPaddingX(), getComponent().getBoxPaddingY(), getComponent().getBoxPaddingX()
+            getComponent().getBoxPaddingY(), getComponent().getBoxPaddingX(),
+            getComponent().getBoxPaddingY(), getComponent().getBoxPaddingX()
         );
     }
 

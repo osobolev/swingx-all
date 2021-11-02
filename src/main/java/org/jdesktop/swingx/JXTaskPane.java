@@ -223,7 +223,10 @@ public class JXTaskPane extends JPanel implements JXCollapsiblePane.CollapsibleP
         setAnimated(!Boolean.FALSE.equals(UIManager.get("TaskPane.animate")));
 
         // listen for animation events and forward them to registered listeners
-        collapsePane.addPropertyChangeListener("collapsed", evt -> this.firePropertyChange(evt.getPropertyName(), evt.getOldValue(), evt.getNewValue()));
+        collapsePane.addPropertyChangeListener(
+            "collapsed",
+            evt -> this.firePropertyChange(evt.getPropertyName(), evt.getOldValue(), evt.getNewValue())
+        );
     }
 
     /**

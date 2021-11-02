@@ -136,7 +136,9 @@ public class GraphicsUtilities {
      */
     public static BufferedImage createColorModelCompatibleImage(BufferedImage image) {
         ColorModel cm = image.getColorModel();
-        return new BufferedImage(cm, cm.createCompatibleWritableRaster(image.getWidth(), image.getHeight()), cm.isAlphaPremultiplied(), null);
+        return new BufferedImage(
+            cm, cm.createCompatibleWritableRaster(image.getWidth(), image.getHeight()), cm.isAlphaPremultiplied(), null
+        );
     }
 
     /**
@@ -207,7 +209,9 @@ public class GraphicsUtilities {
      * @see #toCompatibleImage(BufferedImage)
      */
     public static BufferedImage createCompatibleImage(int width, int height) {
-        return isHeadless() ? new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB) : getGraphicsConfiguration().createCompatibleImage(width, height);
+        return isHeadless()
+            ? new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB)
+            : getGraphicsConfiguration().createCompatibleImage(width, height);
     }
 
     /**
@@ -303,7 +307,9 @@ public class GraphicsUtilities {
             return image;
         }
 
-        BufferedImage compatibleImage = getGraphicsConfiguration().createCompatibleImage(image.getWidth(), image.getHeight(), image.getTransparency());
+        BufferedImage compatibleImage = getGraphicsConfiguration().createCompatibleImage(
+            image.getWidth(), image.getHeight(), image.getTransparency()
+        );
         Graphics g = compatibleImage.getGraphics();
 
         try {

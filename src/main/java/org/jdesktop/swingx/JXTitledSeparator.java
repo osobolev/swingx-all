@@ -205,7 +205,9 @@ public class JXTitledSeparator extends JXPanel {
         case SwingConstants.LEFT:
         case SwingConstants.LEADING:
         case SwingConstants.WEST:
-            add(label, new GridBagConstraints(0, 0, 1, 1, 0.0, 0.0, GridBagConstraints.LINE_START, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
+            add(label, new GridBagConstraints(
+                0, 0, 1, 1, 0.0, 0.0, GridBagConstraints.LINE_START, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0
+            ));
             add(Box.createHorizontalStrut(iconTextGap), new GridBagConstraints(
                 1, 0, 1, 1, 0.0, 0.0, GridBagConstraints.LINE_START, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0
             ));

@@ -115,7 +115,9 @@ public class JXColorSelectionButton extends JButton {
     @Override
     protected void paintComponent(Graphics g) {
         // want disabledForeground when disabled, current colour otherwise
-        Color FILL_COLOR = isEnabled() ? PaintUtils.removeAlpha(getBackground()) : UIManagerExt.getSafeColor("Button.disabledForeground", Color.LIGHT_GRAY);
+        Color FILL_COLOR = isEnabled()
+            ? PaintUtils.removeAlpha(getBackground())
+            : UIManagerExt.getSafeColor("Button.disabledForeground", Color.LIGHT_GRAY);
 
         // draw the colorwell image (should only be on OSX)
         if (OS.isMacOSX() && colorwell != null) {

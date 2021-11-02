@@ -205,7 +205,10 @@ public class AutoCompleteDocument implements Document {
      * @param stringConverter the converter used to transform items to strings
      * @param delegate        the {@code Document} delegate backing this document
      */
-    public AutoCompleteDocument(AbstractAutoCompleteAdaptor adaptor, boolean strictMatching, ObjectToStringConverter stringConverter, Document delegate) {
+    public AutoCompleteDocument(AbstractAutoCompleteAdaptor adaptor,
+                                boolean strictMatching,
+                                ObjectToStringConverter stringConverter,
+                                Document delegate) {
         this.adaptor = Contract.asNotNull(adaptor, "adaptor cannot be null");
         this.strictMatching = strictMatching;
         this.stringConverter = stringConverter == null ? DEFAULT_IMPLEMENTATION : stringConverter;

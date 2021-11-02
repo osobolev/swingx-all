@@ -85,10 +85,22 @@ public class WindowsStatusBarUI extends BasicStatusBarUI {
         g.drawImage(leftImage, 0, 0, leftImage.getWidth(), statusBar.getHeight(), null);
 
         if (statusBar.isResizeHandleEnabled()) {
-            g.drawImage(middleImage, leftImage.getWidth(), 0, statusBar.getWidth() - leftImage.getWidth() - rightImage.getWidth(), statusBar.getHeight(), null);
-            g.drawImage(rightImage, statusBar.getWidth() - rightImage.getWidth(), 0, rightImage.getWidth(), statusBar.getHeight(), null);
+            g.drawImage(
+                middleImage,
+                leftImage.getWidth(), 0, statusBar.getWidth() - leftImage.getWidth() - rightImage.getWidth(), statusBar.getHeight(),
+                null
+            );
+            g.drawImage(
+                rightImage,
+                statusBar.getWidth() - rightImage.getWidth(), 0, rightImage.getWidth(), statusBar.getHeight(),
+                null
+            );
         } else {
-            g.drawImage(middleImage, leftImage.getWidth(), 0, statusBar.getWidth() - leftImage.getWidth(), statusBar.getHeight(), null);
+            g.drawImage(
+                middleImage,
+                leftImage.getWidth(), 0, statusBar.getWidth() - leftImage.getWidth(), statusBar.getHeight(),
+                null
+            );
         }
     }
 

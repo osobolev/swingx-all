@@ -95,7 +95,8 @@ public class BusyPainter extends AbstractPainter<Object> {
     }
 
     /**
-     * Initializes painter to the specified trajectory and and point shape. Bounds are dynamically calculated to so the specified trajectory fits in.
+     * Initializes painter to the specified trajectory and and point shape. Bounds are dynamically calculated
+     * so the specified trajectory fits in.
      *
      * @param point      Point shape.
      * @param trajectory Trajectory shape.

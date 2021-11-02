@@ -58,7 +58,10 @@ public class TaskPaneContainerAddon extends AbstractComponentAddon {
         super.addBasicDefaults(addon, defaults);
 
         defaults.add(JXTaskPaneContainer.uiClassID, "org.jdesktop.swingx.plaf.basic.BasicTaskPaneContainerUI");
-        defaults.add("TaskPaneContainer.background", UIManagerExt.getSafeColor("Desktop.background", new ColorUIResource(Color.decode("#005C5C"))));
+        defaults.add(
+            "TaskPaneContainer.background",
+            UIManagerExt.getSafeColor("Desktop.background", new ColorUIResource(Color.decode("#005C5C")))
+        );
         defaults.add("TaskPaneContainer.border", new BorderUIResource(BorderFactory.createEmptyBorder(10, 10, 0, 10)));
     }
 
@@ -79,7 +82,10 @@ public class TaskPaneContainerAddon extends AbstractComponentAddon {
     protected void addWindowsDefaults(LookAndFeelAddons addon, DefaultsList defaults) {
         super.addWindowsDefaults(addon, defaults);
         if (addon instanceof WindowsClassicLookAndFeelAddons) {
-            defaults.add("TaskPaneContainer.background", UIManagerExt.getSafeColor("List.background", new ColorUIResource(Color.decode("#005C5C"))));
+            defaults.add(
+                "TaskPaneContainer.background",
+                UIManagerExt.getSafeColor("List.background", new ColorUIResource(Color.decode("#005C5C")))
+            );
         } else if (addon instanceof WindowsLookAndFeelAddons) {
             String xpStyle = OS.getWindowsVisualStyle();
             ColorUIResource background;

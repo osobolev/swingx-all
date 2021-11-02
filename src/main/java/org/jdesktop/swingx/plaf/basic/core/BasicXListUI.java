@@ -591,13 +591,13 @@ public class BasicXListUI extends BasicListUI {
                 Point p = loc.getDropPoint();
 
                 if (isLeftToRight) {
-                    decr = Point2D.distance(
-                        prev.x + prev.width, prev.y + (int) (prev.height / 2.0), p.x, p.y) < Point2D.distance(me.x, me.y + (int) (me.height / 2.0), p.x, p.y
-                    );
+                    decr = Point2D.distance(prev.x + prev.width, prev.y + (int) (prev.height / 2.0), p.x, p.y)
+                           <
+                           Point2D.distance(me.x, me.y + (int) (me.height / 2.0), p.x, p.y);
                 } else {
-                    decr = Point2D.distance(
-                        prev.x, prev.y + (int) (prev.height / 2.0), p.x, p.y) < Point2D.distance(me.x + me.width, me.y + (int) (prev.height / 2.0), p.x, p.y
-                    );
+                    decr = Point2D.distance(prev.x, prev.y + (int) (prev.height / 2.0), p.x, p.y)
+                           <
+                           Point2D.distance(me.x + me.width, me.y + (int) (prev.height / 2.0), p.x, p.y);
                 }
             }
 

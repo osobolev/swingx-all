@@ -64,7 +64,9 @@ public class TaskPaneAddon extends AbstractComponentAddon {
         defaults.add("TaskPane.titleForeground", new ColorUIResource(SystemColor.menuText));
         defaults.add("TaskPane.specialTitleForeground", new ColorUIResource(SystemColor.menuText.brighter()));
         defaults.add("TaskPane.animate", Boolean.TRUE);
-        defaults.add("TaskPane.focusInputMap", new UIDefaults.LazyInputMap(new Object[] {"ENTER", "toggleCollapsed", "SPACE", "toggleCollapsed"}));
+        defaults.add(
+            "TaskPane.focusInputMap", new UIDefaults.LazyInputMap(new Object[] {"ENTER", "toggleCollapsed", "SPACE", "toggleCollapsed"})
+        );
     }
 
     @Override
@@ -133,8 +135,14 @@ public class TaskPaneAddon extends AbstractComponentAddon {
                 defaults.add("TaskPane.background", new ColorUIResource((Color) toolkit.getDesktopProperty("win.3d.backgroundColor")));
                 defaults.add("TaskPane.specialTitleBackground", new ColorUIResource(33, 89, 201));
                 defaults.add("TaskPane.titleBackgroundGradientStart", new ColorUIResource(Color.WHITE));
-                defaults.add("TaskPane.titleBackgroundGradientEnd", new ColorUIResource((Color) toolkit.getDesktopProperty("win.frame.inactiveCaptionColor")));
-                defaults.add("TaskPane.titleForeground", new ColorUIResource((Color) toolkit.getDesktopProperty("win.frame.inactiveCaptionTextColor")));
+                defaults.add(
+                    "TaskPane.titleBackgroundGradientEnd",
+                    new ColorUIResource((Color) toolkit.getDesktopProperty("win.frame.inactiveCaptionColor"))
+                );
+                defaults.add(
+                    "TaskPane.titleForeground",
+                    new ColorUIResource((Color) toolkit.getDesktopProperty("win.frame.inactiveCaptionTextColor"))
+                );
                 defaults.add("TaskPane.specialTitleForeground", new ColorUIResource(Color.WHITE));
                 defaults.add("TaskPane.borderColor", new ColorUIResource(Color.WHITE));
             } else {
