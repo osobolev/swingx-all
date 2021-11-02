@@ -22,9 +22,6 @@ package org.jdesktop.swingx.auth;
 
 import javax.crypto.spec.SecretKeySpec;
 import java.io.EOFException;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -148,33 +145,6 @@ public class KeyChain {
             store.store(ostream, masterPassword);
         } catch (KeyStoreException | NoSuchAlgorithmException | CertificateException ex) {
             LOG.log(Level.WARNING, "", ex);
-        }
-    }
-
-    public static void main(String[] args) {
-        try {
-            File file = new File("c:\\test.txt");
-            FileInputStream fis;
-            if (!file.exists()) {
-                file.createNewFile();
-                fis = null;
-            } else {
-                fis = new FileInputStream(file);
-            }
-            KeyChain kc = new KeyChain("test".toCharArray(), fis);
-            kc.addPassword("bino", "sun-ds.sfbay", "test123".toCharArray());
-            LOG.fine("pass = " + kc.getPassword("bino", "sun-ds.sfbay"));
-
-            LOG.fine("More testing :");
-            for (int i = 0; i < 100; i++) {
-                kc.addPassword(String.valueOf(i), "sun-ds.sfbay", String.valueOf(i).toCharArray());
-            }
-            for (int i = 0; i < 100; i++) {
-                LOG.fine("key =" + i + " pass =" + kc.getPassword(String.valueOf(i), "sun-ds.sfbay"));
-            }
-            kc.store(new FileOutputStream(file));
-        } catch (Exception e) {
-            LOG.log(Level.WARNING, "", e);
         }
     }
 }

@@ -22,10 +22,7 @@
 package org.jdesktop.swingx.icon;
 
 import javax.swing.Icon;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.plaf.UIResource;
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Graphics;
@@ -78,14 +75,5 @@ public class ColumnControlIcon implements Icon, UIResource {
         g.drawLine(x + 4, y + 7, x + 8, y + 7);
         g.drawLine(x + 5, y + 8, x + 7, y + 8);
         g.drawLine(x + 6, y + 9, x + 6, y + 9);
-    }
-
-    public static void main(String[] args) {
-        JFrame frame = new JFrame();
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        JLabel label = new JLabel(new ColumnControlIcon());
-        frame.getContentPane().add(BorderLayout.CENTER, label);
-        frame.pack();
-        frame.setVisible(true);
     }
 }
