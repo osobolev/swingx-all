@@ -2206,7 +2206,7 @@ public class JXTreeTable extends JXTable {
                                 }
                             }
                         }
-                        setSelectionPaths(paths.toArray(new TreePath[paths.size()]));
+                        setSelectionPaths(paths.toArray(new TreePath[0]));
                         // need to force here: usually the leadRow is adjusted 
                         // in resetRowSelection which is disabled during this method
                         leadRow = leadIndex;

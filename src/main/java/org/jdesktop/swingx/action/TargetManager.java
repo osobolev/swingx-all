@@ -158,8 +158,7 @@ public class TargetManager {
         if (targetList == null) {
             targets = new Targetable[0];
         } else {
-            targets = new Targetable[targetList.size()];
-            targets = (Targetable[]) targetList.toArray(new Targetable[targetList.size()]);
+            targets = targetList.toArray(new Targetable[0]);
         }
         return targets;
     }

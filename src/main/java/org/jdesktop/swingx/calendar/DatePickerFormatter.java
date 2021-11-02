@@ -180,7 +180,7 @@ public class DatePickerFormatter extends
         if (f.isEmpty()) {
             addSystemDefaultFormat(f, locale);
         }
-        return f.toArray(new DateFormat[f.size()]);
+        return f.toArray(new DateFormat[0]);
     }
 
     /**

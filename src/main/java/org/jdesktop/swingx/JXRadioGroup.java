@@ -203,7 +203,7 @@ public class JXRadioGroup<T> extends JPanel {
                 buttons.add((AbstractButton) children[i]);
             }
         }
-        return buttons.toArray(new AbstractButton[buttons.size()]);
+        return buttons.toArray(new AbstractButton[0]);
     }
 
     private int getSelectedIndex() {

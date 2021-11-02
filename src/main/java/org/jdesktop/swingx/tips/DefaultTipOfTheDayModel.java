@@ -64,7 +64,7 @@ public class DefaultTipOfTheDayModel implements TipOfTheDayModel {
     }
 
     public Tip[] getTips() {
-        return tips.toArray(new Tip[tips.size()]);
+        return tips.toArray(new Tip[0]);
     }
 
     public void setTips(Tip[] tips) {

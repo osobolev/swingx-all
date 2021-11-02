@@ -162,7 +162,7 @@ public class CompoundHighlighter extends AbstractHighlighter
      */
     public Highlighter[] getHighlighters() {
         if (highlighters.isEmpty()) return EMPTY_HIGHLIGHTERS;
-        return highlighters.toArray(new Highlighter[highlighters.size()]);
+        return highlighters.toArray(new Highlighter[0]);
     }
 
 //--------------------- implement UIDependent

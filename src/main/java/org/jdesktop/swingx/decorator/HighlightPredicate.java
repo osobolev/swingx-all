@@ -433,7 +433,7 @@ public interface HighlightPredicate {
          */
         public HighlightPredicate[] getHighlightPredicates() {
             if (predicate.isEmpty()) return EMPTY_PREDICATE_ARRAY;
-            return predicate.toArray(new HighlightPredicate[predicate.size()]);
+            return predicate.toArray(new HighlightPredicate[0]);
         }
     }
 
@@ -482,7 +482,7 @@ public interface HighlightPredicate {
          */
         public HighlightPredicate[] getHighlightPredicates() {
             if (predicate.isEmpty()) return EMPTY_PREDICATE_ARRAY;
-            return predicate.toArray(new HighlightPredicate[predicate.size()]);
+            return predicate.toArray(new HighlightPredicate[0]);
         }
     }
 
@@ -563,7 +563,7 @@ public interface HighlightPredicate {
          */
         public Integer[] getColumns() {
             if (columnList.isEmpty()) return EMPTY_INTEGER_ARRAY;
-            return columnList.toArray(new Integer[columnList.size()]);
+            return columnList.toArray(new Integer[0]);
         }
     }
 
@@ -649,7 +649,7 @@ public interface HighlightPredicate {
          */
         public Integer[] getDepths() {
             if (depthList.isEmpty()) return EMPTY_INTEGER_ARRAY;
-            return depthList.toArray(new Integer[depthList.size()]);
+            return depthList.toArray(new Integer[0]);
         }
     }
 
