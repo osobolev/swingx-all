@@ -243,7 +243,7 @@ public class HyperlinkAction extends AbstractHyperlinkAction<URI> {
         protected abstract boolean isActionSupported();
     }
 
-    private class BrowseVisitor extends URIVisitor {
+    private static class BrowseVisitor extends URIVisitor {
 
         /**
          * {@inheritDoc} <p>
@@ -276,7 +276,7 @@ public class HyperlinkAction extends AbstractHyperlinkAction<URI> {
         }
     }
 
-    private class MailVisitor extends URIVisitor {
+    private static class MailVisitor extends URIVisitor {
 
         /**
          * {@inheritDoc} <p>
