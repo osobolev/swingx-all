@@ -48,7 +48,7 @@ public abstract class AbstractMutableTreeTableNode implements MutableTreeTableNo
     /**
      * optional user object
      */
-    protected transient Object userObject;
+    protected Object userObject;
 
     protected boolean allowsChildren;
 

@@ -59,7 +59,7 @@ import java.awt.Paint;
 @SuppressWarnings("nls")
 public class CheckerboardPainter extends AbstractPainter<Object> {
 
-    private transient Paint checkerPaint;
+    private Paint checkerPaint;
 
     private Paint darkPaint = new Color(204, 204, 204);
     private Paint lightPaint = Color.WHITE;

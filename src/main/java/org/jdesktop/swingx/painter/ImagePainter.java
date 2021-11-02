@@ -71,7 +71,7 @@ public class ImagePainter extends AbstractAreaPainter<Object> {
     /**
      * The image to draw
      */
-    private transient BufferedImage img;
+    private BufferedImage img;
 
     private boolean horizontalRepeat;
     private boolean verticalRepeat;

@@ -44,7 +44,7 @@ public class LazyActionMap extends ActionMapUIResource {
      * Object to invoke <code>loadActionMap</code> on. This may be
      * a Class object.
      */
-    private transient Object _loader;
+    private Object _loader;
 
     /**
      * Installs an ActionMap that will be populated by invoking the

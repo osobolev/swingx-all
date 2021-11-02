@@ -93,7 +93,7 @@ public abstract class AbstractPainter<T> extends AbstractBean implements Painter
     /**
      * The cached image, if shouldUseCache() returns true
      */
-    private transient SoftReference<BufferedImage> cachedImage;
+    private SoftReference<BufferedImage> cachedImage;
     private boolean cacheCleared = true;
     private boolean cacheable = false;
     private boolean dirty = false;

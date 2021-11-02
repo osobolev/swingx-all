@@ -93,7 +93,7 @@ public abstract class AbstractHighlighter implements Highlighter {
      * event's only (read-only) state is the source property.  The source
      * of events generated here is always "this".
      */
-    private transient ChangeEvent changeEvent;
+    private ChangeEvent changeEvent;
 
     /**
      * The listeners waiting for model changes.
