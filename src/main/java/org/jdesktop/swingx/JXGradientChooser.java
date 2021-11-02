@@ -93,7 +93,7 @@ public class JXGradientChooser extends JXPanel {
     private JSpinner alphaSpinner;
     private JSlider alphaSlider;
 
-    private JComboBox styleCombo;
+    private JComboBox<GradientStyle> styleCombo;
     private GradientPreviewPanel gradientPreview;
 
     private JRadioButton noCycleRadio;
@@ -269,7 +269,7 @@ public class JXGradientChooser extends JXPanel {
         previewPanel = new JPanel();
         JPanel jPanel3 = new JPanel();
         JLabel jLabel8 = new JLabel();
-        styleCombo = new JComboBox();
+        styleCombo = new JComboBox<>();
         JLabel jLabel9 = new JLabel();
         noCycleRadio = new JRadioButton();
         reflectedRadio = new JRadioButton();
@@ -414,7 +414,6 @@ public class JXGradientChooser extends JXPanel {
         gridBagConstraints.insets = new Insets(4, 4, 4, 4);
         jPanel3.add(jLabel8, gridBagConstraints);
 
-        styleCombo.setModel(new DefaultComboBoxModel(new String[] {"Linear", "Radial"}));
         gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridy = 0;
         gridBagConstraints.anchor = GridBagConstraints.WEST;
@@ -520,7 +519,7 @@ public class JXGradientChooser extends JXPanel {
         alphaSlider.addChangeListener(changeAlphaListener);
         RepaintOnEventListener repaintListener = new RepaintOnEventListener();
         styleCombo.addItemListener(repaintListener);
-        styleCombo.setModel(new DefaultComboBoxModel(GradientStyle.values()));
+        styleCombo.setModel(new DefaultComboBoxModel<>(GradientStyle.values()));
         noCycleRadio.addActionListener(repaintListener);
         reflectedRadio.addActionListener(repaintListener);
         repeatedRadio.addActionListener(repaintListener);

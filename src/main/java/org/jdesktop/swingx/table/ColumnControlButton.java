@@ -861,7 +861,7 @@ public class ColumnControlButton extends JButton {
         setFocusable(false);
         // this is a trick to get hold of the client prop which
         // prevents closing of the popup
-        JComboBox box = new JComboBox();
+        JComboBox<?> box = new JComboBox<>();
         Object preventHide = box.getClientProperty("doNotCancelPopup");
         putClientProperty("doNotCancelPopup", preventHide);
         additionalActionsVisible = true;

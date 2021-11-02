@@ -475,6 +475,7 @@ public class JXComboBox<E> extends JComboBox<E> {
         }
     }
 
+    @SuppressWarnings("rawtypes")
     protected static JList getPopupListFor(JComboBox<?> comboBox) {
         int count = comboBox.getUI().getAccessibleChildrenCount(comboBox);
 

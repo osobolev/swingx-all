@@ -71,6 +71,7 @@ import java.awt.event.MouseEvent;
 import java.awt.geom.Point2D;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.util.List;
 
 //import sun.swing.DefaultLookup;
 //import sun.swing.SwingUtilities2;
@@ -142,7 +143,7 @@ public class BasicXListUI extends BasicListUI {
 
     private static final StringBuilder BASELINE_COMPONENT_KEY = new StringBuilder("List.baselineComponent");
 
-    protected JXList list = null;
+    protected JXList<?> list = null;
     protected CellRendererPane rendererPane;
 
     // Listeners that this UI attaches to the JList
@@ -268,7 +269,7 @@ public class BasicXListUI extends BasicListUI {
 
 //-------------------- X-Wrapper
 
-    private ListModel modelX;
+    private ListModel<?> modelX;
 
     private ListSortUI sortUI;
 
@@ -277,9 +278,9 @@ public class BasicXListUI extends BasicListUI {
      *
      * @return
      */
-    protected ListModel getViewModel() {
+    protected ListModel<?> getViewModel() {
         if (modelX == null) {
-            modelX = new ListModel() {
+            modelX = new ListModel<Object>() {
 
                 @Override
                 public int getSize() {
@@ -498,8 +499,8 @@ public class BasicXListUI extends BasicListUI {
         }
         maybeUpdateLayoutState();
 
-        ListCellRenderer renderer = list.getCellRenderer();
-        ListModel dataModel = getViewModel();
+        ListCellRenderer<?> renderer = list.getCellRenderer();
+        ListModel<?> dataModel = getViewModel();
         ListSelectionModel selModel = list.getSelectionModel();
         int size;
 
@@ -911,7 +912,7 @@ public class BasicXListUI extends BasicListUI {
         list.addPropertyChangeListener(propertyChangeListener);
         list.addKeyListener(getHandler());
         // JW: here we really want the model
-        ListModel model = list.getModel();
+        ListModel<?> model = list.getModel();
         if (model != null) {
             model.addListDataListener(listDataListener);
         }
@@ -938,7 +939,7 @@ public class BasicXListUI extends BasicListUI {
         list.removePropertyChangeListener(propertyChangeListener);
         list.removeKeyListener(getHandler());
 
-        ListModel model = list.getModel();
+        ListModel<?> model = list.getModel();
         if (model != null) {
             model.removeListDataListener(listDataListener);
         }
@@ -1054,7 +1055,7 @@ public class BasicXListUI extends BasicListUI {
      * @see #installKeyboardActions
      */
     public void installUI(JComponent c) {
-        list = (JXList) c;
+        list = (JXList<?>) c;
 
         layoutOrientation = list.getLayoutOrientation();
 
@@ -1176,7 +1177,7 @@ public class BasicXListUI extends BasicListUI {
      * Gets the bounds of the specified model index, returning the resulting
      * bounds, or null if <code>index</code> is not valid.
      */
-    private Rectangle getCellBounds(JList list, int index) {
+    private Rectangle getCellBounds(JList<?> list, int index) {
         maybeUpdateLayoutState();
 
         int row = convertModelToRow(index);
@@ -1508,7 +1509,7 @@ public class BasicXListUI extends BasicListUI {
 
         if (fixedCellWidth == -1 || fixedCellHeight == -1) {
 
-            ListModel dataModel = getViewModel();
+            ListModel<?> dataModel = getViewModel();
             int dataModelSize = dataModel.getSize();
             ListCellRenderer renderer = list.getCellRenderer();
 
@@ -1966,7 +1967,7 @@ public class BasicXListUI extends BasicListUI {
 
         public void actionPerformed(ActionEvent e) {
             String name = getName();
-            JList list = (JList) e.getSource();
+            JList<?> list = (JList<?>) e.getSource();
             BasicXListUI ui = (BasicXListUI) LookAndFeelUtils.getUIOfType(list.getUI(), BasicXListUI.class);
 
             if (SELECT_PREVIOUS_COLUMN.equals(name)) {
@@ -2050,8 +2051,8 @@ public class BasicXListUI extends BasicListUI {
          * @param list
          * @return
          */
-        private static int getElementCount(JList list) {
-            return ((JXList) list).getElementCount();
+        private static int getElementCount(JList<?> list) {
+            return ((JXList<?>) list).getElementCount();
         }
 
         public boolean isEnabled(Object c) {
@@ -2067,17 +2068,17 @@ public class BasicXListUI extends BasicListUI {
 
                 // discontinuous selection actions are only enabled for
                 // DefaultListSelectionModel
-                return c != null && ((JList) c).getSelectionModel() instanceof DefaultListSelectionModel;
+                return c != null && ((JList<?>) c).getSelectionModel() instanceof DefaultListSelectionModel;
             }
 
             return true;
         }
 
-        private static void clearSelection(JList list) {
+        private static void clearSelection(JList<?> list) {
             list.clearSelection();
         }
 
-        private static void selectAll(JList list) {
+        private static void selectAll(JList<?> list) {
             int size = getElementCount(list);
             if (size > 0) {
                 ListSelectionModel lsm = list.getSelectionModel();
@@ -2106,7 +2107,7 @@ public class BasicXListUI extends BasicListUI {
             }
         }
 
-        private static int getNextPageIndex(JList list, int direction) {
+        private static int getNextPageIndex(JList<?> list, int direction) {
             if (getElementCount(list) == 0) {
                 return -1;
             }
@@ -2223,7 +2224,7 @@ public class BasicXListUI extends BasicListUI {
             return index;
         }
 
-        private static void changeSelection(JList list, int type, int index, int direction) {
+        private static void changeSelection(JList<?> list, int type, int index, int direction) {
             if (index >= 0 && index < getElementCount(list)) {
                 ListSelectionModel lsm = list.getSelectionModel();
 
@@ -2262,7 +2263,7 @@ public class BasicXListUI extends BasicListUI {
          * index. When scroll up makes selected index the first visible index.
          * Adjust visible rectangle respect to list's component orientation.
          */
-        private static void adjustScrollPositionIfNecessary(JList list, int index, int direction) {
+        private static void adjustScrollPositionIfNecessary(JList<?> list, int index, int direction) {
             if (direction == 0) {
                 return;
             }
@@ -2325,7 +2326,7 @@ public class BasicXListUI extends BasicListUI {
             }
         }
 
-        private static int getNextColumnIndex(JList list, BasicXListUI ui, int amount) {
+        private static int getNextColumnIndex(JList<?> list, BasicXListUI ui, int amount) {
             if (list.getLayoutOrientation() != JList.VERTICAL) {
                 int index = adjustIndex(list.getLeadSelectionIndex(), list);
                 int size = getElementCount(list);
@@ -2357,7 +2358,7 @@ public class BasicXListUI extends BasicListUI {
             return -1;
         }
 
-        private static int getNextIndex(JList list, BasicXListUI ui, int amount) {
+        private static int getNextIndex(JList<?> list, BasicXListUI ui, int amount) {
             int index = adjustIndex(list.getLeadSelectionIndex(), list);
             int size = getElementCount(list);
 
@@ -2408,7 +2409,7 @@ public class BasicXListUI extends BasicListUI {
          * of the same letters followed by first typed anothe letter.
          */
         public void keyTyped(KeyEvent e) {
-            JList src = (JList) e.getSource();
+            JList<?> src = (JList<?>) e.getSource();
 
             if (getElementCount() == 0 || e.isAltDown() || e.isControlDown() || e.isMetaDown() || isNavigationKey(e)) {
                 // Nothing to select
@@ -2496,8 +2497,8 @@ public class BasicXListUI extends BasicListUI {
              * listDataListener from the old model and add it to the new one.
              */
             if ("model".equals(propertyName)) {
-                ListModel oldModel = (ListModel) e.getOldValue();
-                ListModel newModel = (ListModel) e.getNewValue();
+                ListModel<?> oldModel = (ListModel<?>) e.getOldValue();
+                ListModel<?> newModel = (ListModel<?>) e.getNewValue();
                 if (oldModel != null) {
                     oldModel.removeListDataListener(listDataListener);
                 }
@@ -2840,8 +2841,8 @@ public class BasicXListUI extends BasicListUI {
         }
     }
 
-    private static int adjustIndex(int index, JList list) {
-        return index < ((JXList) list).getElementCount() ? index : -1;
+    private static int adjustIndex(int index, JList<?> list) {
+        return index < ((JXList<?>) list).getElementCount() ? index : -1;
     }
 
     private static final TransferHandler defaultTransferHandler = new ListTransferHandler();
@@ -2858,10 +2859,10 @@ public class BasicXListUI extends BasicListUI {
          */
         protected Transferable createTransferable(JComponent c) {
             if (c instanceof JList) {
-                JList list = (JList) c;
-                Object[] values = list.getSelectedValues();
+                JList<?> list = (JList<?>) c;
+                List<?> values = list.getSelectedValuesList();
 
-                if (values == null || values.length == 0) {
+                if (values.isEmpty()) {
                     return null;
                 }
 
