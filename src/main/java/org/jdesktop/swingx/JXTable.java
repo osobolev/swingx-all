@@ -3614,7 +3614,7 @@ public class JXTable extends JTable implements TableColumnModelExtListener {
                 value = s;
             } else { // try instantiating a new Object with the string 
                 try {
-                    value = constructor.newInstance(new Object[] {s});
+                    value = constructor.newInstance(s);
                 } catch (Exception e) {
                     ((JComponent) getComponent()).setBorder(new LineBorder(Color.red));
                     return false;
