@@ -990,6 +990,7 @@ public class JXLabel extends JLabel implements BackgroundPaintable {
             try {
                 kit.read(r, doc, 0);
             } catch (Throwable e) {
+                // ignore
             }
             ViewFactory f = kit.getViewFactory();
             View hview = f.create(doc.getDefaultRootElement());

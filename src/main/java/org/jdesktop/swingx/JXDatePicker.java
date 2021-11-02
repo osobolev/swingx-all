@@ -719,13 +719,8 @@ public class JXDatePicker extends JComponent {
      *                        can not be parsed.
      */
     public void commitEdit() throws ParseException {
-        try {
-            _dateField.commitEdit();
-            fireActionPerformed(COMMIT_KEY);
-        } catch (ParseException e) {
-            // re-throw
-            throw e;
-        }
+        _dateField.commitEdit();
+        fireActionPerformed(COMMIT_KEY);
     }
 
     /**

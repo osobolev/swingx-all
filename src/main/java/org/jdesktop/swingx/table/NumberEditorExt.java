@@ -141,7 +141,7 @@ public class NumberEditorExt extends DefaultCellEditor {
                 getNumber();
             return true;
         } catch (Exception ex) {
-
+            // ignore
         }
         return false;
     }

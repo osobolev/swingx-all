@@ -400,6 +400,7 @@ class JXImagePanel extends JXPanel {
                 try {
                     setImage(new ImageIcon(file.toURI().toURL()).getImage());
                 } catch (Exception ex) {
+                    // ignore
                 }
             }
         }

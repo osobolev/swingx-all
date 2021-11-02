@@ -255,6 +255,7 @@ public class DatePickerCellEditor extends AbstractCellEditor implements TableCel
             datePicker.commitEdit();
             return true;
         } catch (ParseException e) {
+            // ignore
         }
         return false;
     }

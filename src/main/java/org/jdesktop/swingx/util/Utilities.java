@@ -390,6 +390,7 @@ public class Utilities {
                         names.put(name, value);
                         values.put(value, name);
                     } catch (IllegalArgumentException | IllegalAccessException ex) {
+                        // ignore
                     }
                 }
             }
