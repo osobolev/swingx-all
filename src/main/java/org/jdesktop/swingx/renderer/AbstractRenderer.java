@@ -24,7 +24,6 @@ import org.jdesktop.swingx.plaf.UIDependent;
 import org.jdesktop.swingx.rollover.RolloverRenderer;
 
 import java.awt.Color;
-import java.io.Serializable;
 
 /**
  * Convenience common ancestor for SwingX renderers. Concrete subclasses
@@ -39,7 +38,7 @@ import java.io.Serializable;
  *
  * @author Jeanette Winzenburg
  */
-public abstract class AbstractRenderer implements RolloverRenderer, StringValue, Serializable, UIDependent {
+public abstract class AbstractRenderer implements RolloverRenderer, StringValue, UIDependent {
 
     protected ComponentProvider<?> componentController;
 

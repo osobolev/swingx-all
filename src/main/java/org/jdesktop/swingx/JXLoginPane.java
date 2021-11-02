@@ -741,7 +741,7 @@ public class JXLoginPane extends JXPanel {
         add(contentCardPane, BorderLayout.CENTER);
     }
 
-    private static final class LoginPaneLayout extends VerticalLayout implements LayoutManager {
+    private static final class LoginPaneLayout extends VerticalLayout {
 
         @Override
         public Dimension preferredLayoutSize(Container parent) {
