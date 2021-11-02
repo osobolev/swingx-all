@@ -1,16 +1,4 @@
-src-gen/
-.gradle/
-gradle.properties
-build/
-
-# Eclipse
-.classpath
-.project
-.settings/
-bin/
-
-# Intellij
-.idea/
-*.iml
-*.iws
 out/
+build/
+.gradle/
+.idea/
