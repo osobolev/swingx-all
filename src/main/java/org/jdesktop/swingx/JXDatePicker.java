@@ -947,8 +947,7 @@ public class JXDatePicker extends JComponent {
          * @return
          */
         private MouseListener createDoubleClickListener() {
-            MouseAdapter adapter = new MouseAdapter() {
-
+            return new MouseAdapter() {
                 @Override
                 public void mousePressed(MouseEvent e) {
                     if (e.getClickCount() != 2)
@@ -956,7 +955,6 @@ public class JXDatePicker extends JComponent {
                     todayAction.select = true;
                 }
             };
-            return adapter;
         }
 
         @Override

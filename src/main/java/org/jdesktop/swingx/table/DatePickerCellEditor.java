@@ -294,14 +294,14 @@ public class DatePickerCellEditor extends AbstractCellEditor implements TableCel
      * @return the ActionListener to listen for Picker's action events.
      */
     protected ActionListener createPickerActionListener() {
-        ActionListener l = new ActionListener() {
+        return new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // avoid duplicate trigger from
                 // commit in stopCellEditing
                 if (ignoreAction)
                     return;
-                // still need to invoke .. hmm 
+                // still need to invoke .. hmm
                 // no ... with the table cooperating the
                 // invoke is contra-productive!
                 terminateEdit(e);
@@ -318,6 +318,5 @@ public class DatePickerCellEditor extends AbstractCellEditor implements TableCel
                 }
             }
         };
-        return l;
     }
 }

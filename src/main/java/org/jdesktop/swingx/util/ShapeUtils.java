@@ -90,9 +90,7 @@ public final class ShapeUtils {
 
         try {
             GlyphVector vect = font.createGlyphVector(g2.getFontRenderContext(), string);
-            Shape shape = vect.getOutline(0f, (float) -vect.getVisualBounds().getY());
-
-            return shape;
+            return vect.getOutline(0f, (float) -vect.getVisualBounds().getY());
         } finally {
             g2.dispose();
         }

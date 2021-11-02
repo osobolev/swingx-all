@@ -433,12 +433,11 @@ public final class ListSortUI {
      * @return rowSorterListener to install on sorter.
      */
     private RowSorterListener createRowSorterListener() {
-        RowSorterListener l = e -> {
+        return e -> {
             if (e.getType() == RowSorterEvent.Type.SORTED) {
                 sortedChanged(e);
             }
         };
-        return l;
     }
 
     /**

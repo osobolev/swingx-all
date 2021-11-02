@@ -52,7 +52,7 @@ public class BasicBusyLabelUI extends BasicLabelUI implements BusyLabelUI {
 
     @Override
     public BusyPainter getBusyPainter(Dimension dim) {
-        BusyPainter p = new BusyPainter() {
+        return new BusyPainter() {
             @Override
             protected void init(Shape point, Shape trajectory, Color b, Color h) {
                 super.init(
@@ -63,7 +63,6 @@ public class BasicBusyLabelUI extends BasicLabelUI implements BusyLabelUI {
                 );
             }
         };
-        return p;
     }
 
     @Override

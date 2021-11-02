@@ -123,14 +123,13 @@ class BasicCalendarRenderingHandler implements CalendarRenderingHandler {
             locale = Locale.getDefault();
         }
         String[] monthNames = DateFormatSymbols.getInstance(locale).getMonths();
-        StringValue tsv = value -> {
+        return value -> {
             if (value instanceof Calendar) {
                 String month = monthNames[((Calendar) value).get(Calendar.MONTH)];
                 return month + " " + ((Calendar) value).get(Calendar.YEAR);
             }
             return StringValues.TO_STRING.getString(value);
         };
-        return tsv;
     }
 
     /**
@@ -143,14 +142,13 @@ class BasicCalendarRenderingHandler implements CalendarRenderingHandler {
      * @return a StringValue appropriate for rendering week of year.
      */
     protected StringValue createWeekOfYearStringValue(Locale locale) {
-        StringValue wsv = value -> {
+        return value -> {
             if (value instanceof Calendar) {
                 int week = ((Calendar) value).get(Calendar.WEEK_OF_YEAR);
                 return String.valueOf(week);
             }
             return StringValues.TO_STRING.getString(value);
         };
-        return wsv;
     }
 
     /**
@@ -165,7 +163,7 @@ class BasicCalendarRenderingHandler implements CalendarRenderingHandler {
         if (locale == null) {
             locale = Locale.getDefault();
         }
-        FormatStringValue sv = new FormatStringValue(new SimpleDateFormat("d", locale)) {
+        return new FormatStringValue(new SimpleDateFormat("d", locale)) {
 
             @Override
             public String getString(Object value) {
@@ -176,7 +174,6 @@ class BasicCalendarRenderingHandler implements CalendarRenderingHandler {
                 return super.getString(value);
             }
         };
-        return sv;
     }
 
     /**

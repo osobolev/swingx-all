@@ -322,8 +322,7 @@ public class BusyPainter extends AbstractPainter<Object> {
     private float calcLine(float[] coords, Float cp) {
         float a = cp.x - coords[0];
         float b = cp.y - coords[1];
-        float c = (float) Math.sqrt(a * a + b * b);
-        return c;
+        return (float) Math.sqrt(a * a + b * b);
     }
 
     /**
@@ -352,8 +351,7 @@ public class BusyPainter extends AbstractPainter<Object> {
             prevY = xy.y;
         }
         // prev len is a fraction num of the real path length
-        float z = (Math.abs(x) + Math.abs(y)) / 2 * prevLength;
-        return z;
+        return (Math.abs(x) + Math.abs(y)) / 2 * prevLength;
     }
 
     /**
@@ -419,8 +417,7 @@ public class BusyPainter extends AbstractPainter<Object> {
         float b1 = 3 * t * (invT * invT);
         float b2 = 3 * (t * t) * invT;
         float b3 = t * t * t;
-        Float xy = new Float(b1 * x1 + b2 * x2 + b3, b1 * y1 + b2 * y2 + b3);
-        return xy;
+        return new Float(b1 * x1 + b2 * x2 + b3, b1 * y1 + b2 * y2 + b3);
     }
 
     /**
@@ -448,9 +445,8 @@ public class BusyPainter extends AbstractPainter<Object> {
         float b0 = invT * invT;
         float b1 = 2 * t * invT;
         float b2 = t * t;
-        Float xy = new Float(b0 * begin.x + b1 * ctrl.x + b2 * end.x, b0 * begin.y + b1 * ctrl.y + b2 * end.y);
 
-        return xy;
+        return new Float(b0 * begin.x + b1 * ctrl.x + b2 * end.x, b0 * begin.y + b1 * ctrl.y + b2 * end.y);
     }
 
     /**

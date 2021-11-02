@@ -82,8 +82,7 @@ public class SynthXListUI extends BasicXListUI
      */
     @Override
     protected PropertyChangeListener createPropertyChangeListener() {
-        PropertyChangeListener l = new PropertyChangeHandler() {
-
+        return new PropertyChangeHandler() {
             @Override
             public void propertyChange(PropertyChangeEvent e) {
                 if (SynthUtils.shouldUpdateStyle(e)) {
@@ -92,7 +91,6 @@ public class SynthXListUI extends BasicXListUI
                 super.propertyChange(e);
             }
         };
-        return l;
     }
 
     /**

@@ -43,8 +43,7 @@ public class ListRolloverProducer extends RolloverProducer {
                 row = -1;
             }
         }
-        int col = row < 0 ? -1 : 0;
-        rollover.x = col;
+        rollover.x = row < 0 ? -1 : 0;
         rollover.y = row;
     }
 }

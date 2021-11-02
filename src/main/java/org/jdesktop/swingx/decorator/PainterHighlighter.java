@@ -201,12 +201,11 @@ public class PainterHighlighter extends AbstractHighlighter {
      * of the painter.
      */
     protected PropertyChangeListener createPainterListener() {
-        PropertyChangeListener l = evt -> {
+        return evt -> {
             if (isAdjusting)
                 return;
             fireStateChanged();
         };
-        return l;
     }
 
     /**

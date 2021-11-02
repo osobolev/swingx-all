@@ -391,8 +391,7 @@ public class Utilities {
                     name = name.substring(3);
 
                     try {
-                        int numb = field.getInt(null);
-                        Integer value = numb;
+                        Integer value = field.getInt(null);
                         names.put(name, value);
                         values.put(value, name);
                     } catch (IllegalArgumentException | IllegalAccessException ex) {

@@ -469,12 +469,11 @@ public class JXTableHeader extends JTableHeader implements TableColumnModelExtLi
      * @return the PropertyChangeListener to register on the owning table.
      */
     protected PropertyChangeListener createTablePropertyChangeListener() {
-        PropertyChangeListener l = evt -> {
+        return evt -> {
             if ("enabled".equals(evt.getPropertyName())) {
                 updateEnabledFromTable();
             }
         };
-        return l;
     }
 
     /**

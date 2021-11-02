@@ -1035,7 +1035,7 @@ public class JXTable extends JTable implements TableColumnModelExtListener {
      * @return an Action which cancels an edit.
      */
     private Action createCancelAction() {
-        Action action = new AbstractActionExt() {
+        return new AbstractActionExt() {
 
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -1049,7 +1049,6 @@ public class JXTable extends JTable implements TableColumnModelExtListener {
                 return isEditing();
             }
         };
-        return action;
     }
 
     /**
@@ -2993,8 +2992,7 @@ public class JXTable extends JTable implements TableColumnModelExtListener {
                 throw new ArrayIndexOutOfBoundsException("invalid column index: " + columnIndex);
             }
             TableColumn column = getColumnByModelIndex(columnIndex);
-            Object identifier = column != null ? column.getIdentifier() : null;
-            return identifier;
+            return column != null ? column.getIdentifier() : null;
         }
 
         /**
@@ -3679,8 +3677,7 @@ public class JXTable extends JTable implements TableColumnModelExtListener {
         @Override
         public Component getTableCellEditorComponent(JTable table, Object value, boolean isSelected, int row, int column) {
             // fix #1521-swingx: consistent selection behaviour
-            Component comp = super.getTableCellEditorComponent(table, value, isSelected || shouldSelectCell(null), row, column);
-            return comp;
+            return super.getTableCellEditorComponent(table, value, isSelected || shouldSelectCell(null), row, column);
         }
     }
 

@@ -293,7 +293,6 @@ public class JXTitledPanel extends JXPanel {
     private static Container createDefaultContainer() {
         //TODO: All this default container creation stuff should be in the UI
         //delegate. Not enough time at the moment for me to do this right.
-        JXPanel p = new JXPanel();
-        return p;
+        return new JXPanel();
     }
 }

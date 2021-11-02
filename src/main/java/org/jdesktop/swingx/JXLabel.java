@@ -1002,8 +1002,7 @@ public class JXLabel extends JLabel implements BackgroundPaintable {
             }
             ViewFactory f = kit.getViewFactory();
             View hview = f.create(doc.getDefaultRootElement());
-            View v = new Renderer(c, f, hview, true);
-            return v;
+            return new Renderer(c, f, hview, true);
         }
 
         public static void updateRenderer(JXLabel c) {

@@ -435,8 +435,7 @@ public class BasicHyperlinkUI extends BasicButtonUI {
             }
             ViewFactory f = kit.getViewFactory();
             View hview = f.create(doc.getDefaultRootElement());
-            View v = new Renderer(c, f, hview);
-            return v;
+            return new Renderer(c, f, hview);
         }
 
         static BasicEditorKit getFactory() {

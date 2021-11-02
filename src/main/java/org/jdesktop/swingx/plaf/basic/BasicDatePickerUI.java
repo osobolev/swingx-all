@@ -939,14 +939,12 @@ public class BasicDatePickerUI extends DatePickerUI {
      * @return
      */
     private Action createCommitAction() {
-        Action action = new AbstractAction() {
-
+        return new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 commit();
             }
         };
-        return action;
     }
 
     /**
@@ -956,25 +954,21 @@ public class BasicDatePickerUI extends DatePickerUI {
      * @return
      */
     private Action createCancelAction() {
-        Action action = new AbstractAction() {
-
+        return new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 cancel();
             }
         };
-        return action;
     }
 
     private Action createHomeAction(boolean commit) {
-        Action action = new AbstractAction() {
-
+        return new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 home(commit);
             }
         };
-        return action;
     }
 
     /**
@@ -1102,7 +1096,7 @@ public class BasicDatePickerUI extends DatePickerUI {
      * @return
      */
     protected PopupMenuListener createPopupMenuListener() {
-        PopupMenuListener l = new PopupMenuListener() {
+        return new PopupMenuListener() {
 
             @Override
             public void popupMenuCanceled(PopupMenuEvent e) {
@@ -1140,7 +1134,6 @@ public class BasicDatePickerUI extends DatePickerUI {
                 }
             }
         };
-        return l;
     }
 
     /**

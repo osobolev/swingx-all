@@ -317,8 +317,7 @@ public class ActionContainerFactory {
         }
         Integer hashCode = intCode;
 
-        ButtonGroup group = groupMap.computeIfAbsent(hashCode, k -> new ButtonGroup());
-        return group;
+        return groupMap.computeIfAbsent(hashCode, k -> new ButtonGroup());
     }
 
     /**

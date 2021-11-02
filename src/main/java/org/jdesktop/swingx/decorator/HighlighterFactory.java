@@ -71,8 +71,7 @@ public final class HighlighterFactory {
      * @return a Highlighter striping every second row background.
      */
     public static Highlighter createSimpleStriping() {
-        ColorHighlighter hl = new UIColorHighlighter(HighlightPredicate.ODD);
-        return hl;
+        return new UIColorHighlighter(HighlightPredicate.ODD);
     }
 
     /**
@@ -97,8 +96,7 @@ public final class HighlighterFactory {
      * @return a Highlighter striping every second row background.
      */
     public static Highlighter createSimpleStriping(Color stripeBackground) {
-        ColorHighlighter hl = new ColorHighlighter(HighlightPredicate.ODD, stripeBackground, null);
-        return hl;
+        return new ColorHighlighter(HighlightPredicate.ODD, stripeBackground, null);
     }
 
     /**
@@ -112,8 +110,7 @@ public final class HighlighterFactory {
      */
     public static Highlighter createSimpleStriping(Color stripeBackground, int rowsPerGroup) {
         HighlightPredicate predicate = new RowGroupHighlightPredicate(rowsPerGroup);
-        ColorHighlighter hl = new ColorHighlighter(predicate, stripeBackground, null);
-        return hl;
+        return new ColorHighlighter(predicate, stripeBackground, null);
     }
 
     /**

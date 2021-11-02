@@ -397,7 +397,7 @@ public class TreeUtilities {
         if (parent == null || model.isLeaf(parent)) {
             return EMPTY_ENUMERATION;
         }
-        Enumeration<?> e = new Enumeration() {
+        return new Enumeration() {
 
             int currentIndex = 0;
 
@@ -411,7 +411,6 @@ public class TreeUtilities {
                 return model.getChild(parent, currentIndex++);
             }
         };
-        return e;
     }
 
     private TreeUtilities() {

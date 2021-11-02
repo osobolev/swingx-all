@@ -131,7 +131,7 @@ public class TableRowHeightController {
      * @return
      */
     protected PropertyChangeListener createTablePropertyListener() {
-        PropertyChangeListener l = new PropertyChangeListener() {
+        return new PropertyChangeListener() {
 
             @Override
             public void propertyChange(PropertyChangeEvent evt) {
@@ -149,11 +149,11 @@ public class TableRowHeightController {
                 });
             }
         };
-        return l;
     }
 
     protected TableModelListener createTableModelListener() {
-        TableModelListener l = new TableModelListener() {
+        return new TableModelListener() {
+
             @Override
             public void tableChanged(TableModelEvent e) {
                 SwingUtilities.invokeLater(() -> invokedTableChanged(e));
@@ -168,7 +168,6 @@ public class TableRowHeightController {
                 // do nothing on delete
             }
         };
-        return l;
     }
 
     /**

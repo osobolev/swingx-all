@@ -2754,7 +2754,7 @@ public class JXTreeTable extends JXTable {
          * @return
          */
         protected PropertyChangeListener createRolloverListener() {
-            PropertyChangeListener l = new PropertyChangeListener() {
+            return new PropertyChangeListener() {
 
                 @Override
                 public void propertyChange(PropertyChangeEvent evt) {
@@ -2786,7 +2786,6 @@ public class JXTreeTable extends JXTable {
                 @SuppressWarnings("unused")
                 Point rollover = new Point(-1, -1);
             };
-            return l;
         }
 
         /**
@@ -2825,8 +2824,7 @@ public class JXTreeTable extends JXTable {
                             row = -1;
                         }
                     }
-                    int col = row < 0 ? -1 : 0;
-                    rollover.x = col;
+                    rollover.x = row < 0 ? -1 : 0;
                     rollover.y = row;
                 }
             };
