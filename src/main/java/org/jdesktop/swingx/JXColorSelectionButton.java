@@ -98,7 +98,7 @@ public class JXColorSelectionButton extends JButton {
      * A listener class to update the button's background when the selected
      * color changes.
      */
-    private class ColorChangeListener implements ChangeListener {
+    private static class ColorChangeListener implements ChangeListener {
 
         public JXColorSelectionButton button;
 

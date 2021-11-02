@@ -702,7 +702,7 @@ public class JXLoginPane extends JXPanel {
         add(contentCardPane, BorderLayout.CENTER);
     }
 
-    private final class LoginPaneLayout extends VerticalLayout implements LayoutManager {
+    private static final class LoginPaneLayout extends VerticalLayout implements LayoutManager {
 
         @Override
         public Dimension preferredLayoutSize(Container parent) {

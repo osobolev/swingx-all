@@ -144,7 +144,7 @@ public class BoundAction extends AbstractActionExt {
      * <p>
      * TODO: should reimplement this class as something that can be persistable.
      */
-    private class BooleanInvocationHandler implements ItemListener {
+    private static class BooleanInvocationHandler implements ItemListener {
 
         private Statement falseStatement;
         private Statement trueStatement;

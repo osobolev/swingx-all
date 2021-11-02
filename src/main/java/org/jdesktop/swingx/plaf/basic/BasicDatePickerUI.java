@@ -484,7 +484,7 @@ public class BasicDatePickerUI extends DatePickerUI {
      * PENDING: there's a resource property JXDatePicker.numColumns - why
      * don't we use it?
      */
-    private class DefaultEditor extends JFormattedTextField implements UIResource {
+    private static class DefaultEditor extends JFormattedTextField implements UIResource {
 
         DefaultEditor(AbstractFormatter formatter) {
             super(formatter);

@@ -72,7 +72,7 @@ public class BasicHeaderUI extends HeaderUI {
 
     // Implementation detail. Neeeded to expose getMultiLineSupport() method to allow restoring view
     // lost after LAF switch
-    protected class DescriptionPane extends JXLabel {
+    protected static class DescriptionPane extends JXLabel {
 
         @Override
         public void paint(Graphics g) {

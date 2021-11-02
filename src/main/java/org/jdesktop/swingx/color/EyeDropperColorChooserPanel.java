@@ -118,7 +118,7 @@ public class EyeDropperColorChooserPanel extends AbstractColorChooserPanel {
         });
     }
 
-    private class MagnifyingPanel extends JPanel {
+    private static class MagnifyingPanel extends JPanel {
 
         private Point2D point;
         private int activeColor;

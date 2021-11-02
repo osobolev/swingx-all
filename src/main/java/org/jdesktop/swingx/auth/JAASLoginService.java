@@ -123,7 +123,7 @@ public class JAASLoginService extends LoginService {
         return loginContext.getSubject();
     }
 
-    class JAASCallbackHandler implements CallbackHandler {
+    private static class JAASCallbackHandler implements CallbackHandler {
 
         private String name;
 

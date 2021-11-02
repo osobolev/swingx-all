@@ -35,7 +35,7 @@ import static javax.swing.BorderFactory.createEmptyBorder;
  */
 public abstract class PromptTextUI extends TextUI {
 
-    protected class PainterHighlighter implements Highlighter {
+    protected static class PainterHighlighter implements Highlighter {
 
         private final Painter painter;
 

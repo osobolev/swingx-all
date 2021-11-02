@@ -44,7 +44,7 @@ public class BasicTaskPaneContainerUI extends TaskPaneContainerUI {
      *
      * @author Karl George Schaefer
      */
-    protected class VerticalLayoutUIResource extends VerticalLayout implements UIResource {
+    protected static class VerticalLayoutUIResource extends VerticalLayout implements UIResource {
 
         /**
          * The default layout.

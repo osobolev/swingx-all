@@ -41,7 +41,7 @@ import java.beans.PropertyChangeListener;
  */
 public class BasicLoginPaneUI extends LoginPaneUI {
 
-    private class LocaleHandler implements PropertyChangeListener {
+    private static class LocaleHandler implements PropertyChangeListener {
 
         /**
          * {@inheritDoc}
