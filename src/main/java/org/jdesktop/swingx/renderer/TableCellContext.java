@@ -66,14 +66,11 @@ public class TableCellContext extends CellContext {
             return false;
         }
         JTable.DropLocation dropLocation = getComponent().getDropLocation();
-        if (dropLocation != null
-            && !dropLocation.isInsertRow()
-            && !dropLocation.isInsertColumn()
-            && dropLocation.getRow() == row
-            && dropLocation.getColumn() == column) {
-            return true;
-        }
-        return false;
+        return dropLocation != null
+               && !dropLocation.isInsertRow()
+               && !dropLocation.isInsertColumn()
+               && dropLocation.getRow() == row
+               && dropLocation.getColumn() == column;
     }
 
     @Override

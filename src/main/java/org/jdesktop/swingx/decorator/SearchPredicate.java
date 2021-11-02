@@ -207,9 +207,6 @@ public class SearchPredicate implements HighlightPredicate {
 
     private boolean isEnabled() {
         Pattern pattern = getPattern();
-        if (pattern == null || MATCH_ALL.equals(pattern.pattern())) {
-            return false;
-        }
-        return true;
+        return pattern != null && !MATCH_ALL.equals(pattern.pattern());
     }
 }

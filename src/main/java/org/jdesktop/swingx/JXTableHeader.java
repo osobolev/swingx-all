@@ -604,10 +604,7 @@ public class JXTableHeader extends JTableHeader implements TableColumnModelExtLi
         }
 
         private boolean canCacheSortColumn(MouseEvent e) {
-            if (hasSortController() && !isInResizeRegion(e) && getResortsOnDoubleClick()) {
-                return true;
-            }
-            return false;
+            return hasSortController() && !isInResizeRegion(e) && getResortsOnDoubleClick();
         }
 
         /**

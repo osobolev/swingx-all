@@ -693,11 +693,7 @@ public class JXGradientChooser extends JXPanel {
 
         @Override
         public void itemStateChanged(ItemEvent e) {
-            if (styleCombo.getSelectedItem() == GradientStyle.Radial) {
-                gradientPreview.setRadial(true);
-            } else {
-                gradientPreview.setRadial(false);
-            }
+            gradientPreview.setRadial(styleCombo.getSelectedItem() == GradientStyle.Radial);
             recalcGradientFromStops();
         }
     }

@@ -121,10 +121,7 @@ class CalendarCellContext extends CellContext {
             if (getComponent().isFlaggedDate(getCalendar().getTime())) {
                 return getComponent().getFlaggedDayForeground();
             } else {
-                Color perDay = getComponent().getPerDayOfWeekForeground(getCalendar().get(Calendar.DAY_OF_WEEK));
-                if (perDay != null) {
-                    return perDay;
-                }
+                return getComponent().getPerDayOfWeekForeground(getCalendar().get(Calendar.DAY_OF_WEEK));
             }
         }
         return null;

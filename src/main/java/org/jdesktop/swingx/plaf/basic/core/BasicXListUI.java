@@ -2483,11 +2483,7 @@ public class BasicXListUI extends BasicListUI {
         private boolean isNavigationKey(KeyEvent event) {
             InputMap inputMap = list.getInputMap(JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
             KeyStroke key = KeyStroke.getKeyStrokeForEvent(event);
-
-            if (inputMap != null && inputMap.get(key) != null) {
-                return true;
-            }
-            return false;
+            return inputMap != null && inputMap.get(key) != null;
         }
 
         // 
