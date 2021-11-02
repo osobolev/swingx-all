@@ -183,10 +183,11 @@ public class BasicHyperlinkUI extends BasicButtonUI {
 
         // layout the text and icon
         String text = SwingUtilities.layoutCompoundLabel(
-            c, fm, b.getText(), b
-            .getIcon(), b.getVerticalAlignment(), b
-            .getHorizontalAlignment(), b.getVerticalTextPosition(), b
-            .getHorizontalTextPosition(), viewRect, iconRect, textRect, b.getText() == null ? 0 : b.getIconTextGap()
+            c, fm, b.getText(), b.getIcon(),
+            b.getVerticalAlignment(), b.getHorizontalAlignment(),
+            b.getVerticalTextPosition(), b.getHorizontalTextPosition(),
+            viewRect, iconRect, textRect,
+            b.getText() == null ? 0 : b.getIconTextGap()
         );
 
         clearTextShiftOffset();

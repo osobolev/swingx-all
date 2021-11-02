@@ -2310,7 +2310,6 @@ public class JXTable extends JTable implements TableColumnModelExtListener {
      * @throws ArrayIndexOutOfBoundsException if columnIndex out of allowed
      *                                        range, that is if
      *                                        <code> (columnIndex < 0) || (columnIndex >= getColumnCount())</code>
-     *                                        .
      * @see #getColumnExt(Object)
      * @see #getColumn(int)
      * @see TableColumnModelExt#getColumnExt(int)
