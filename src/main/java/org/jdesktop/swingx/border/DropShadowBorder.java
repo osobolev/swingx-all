@@ -38,6 +38,7 @@ import java.awt.image.BufferedImage;
 import java.awt.image.ConvolveOp;
 import java.awt.image.Kernel;
 import java.io.Serializable;
+import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -254,7 +255,7 @@ public class DropShadowBorder implements Border, Serializable {
         //if so, use the cache. Else, draw and save
         Map<Position, BufferedImage> images = CACHE.get(shadowSize + (shadowColor.hashCode() * .3) + (shadowOpacity * .12));//TODO do a real hash
         if (images == null) {
-            images = new HashMap<>();
+            images = new EnumMap<>(Position.class);
 
             /*
              * To draw a drop shadow, I have to:

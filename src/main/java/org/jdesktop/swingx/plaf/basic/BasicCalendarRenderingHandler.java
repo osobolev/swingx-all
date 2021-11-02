@@ -24,7 +24,7 @@ import java.text.DateFormat;
 import java.text.DateFormatSymbols;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.HashMap;
+import java.util.EnumMap;
 import java.util.Locale;
 import java.util.Map;
 
@@ -75,7 +75,7 @@ class BasicCalendarRenderingHandler implements CalendarRenderingHandler {
      * Creates and stores ComponentProviders for all DayStates.
      */
     private void installProviders() {
-        providers = new HashMap<>();
+        providers = new EnumMap<>(CalendarState.class);
 
         StringValue sv = createDayStringValue(null);
         ComponentProvider<?> provider = new LabelProvider(sv, JLabel.RIGHT);
