@@ -29,6 +29,7 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 
+@SuppressWarnings("rawtypes")
 public class PainterIcon implements Icon {
 
     final Dimension size;
@@ -48,6 +49,7 @@ public class PainterIcon implements Icon {
         return size.width;
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     public void paintIcon(Component c, Graphics g, int x, int y) {
         if (getPainter() != null && g instanceof Graphics2D) {

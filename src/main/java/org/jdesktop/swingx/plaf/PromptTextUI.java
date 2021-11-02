@@ -98,6 +98,7 @@ public abstract class PromptTextUI extends TextUI {
         /**
          * {@inheritDoc}
          */
+        @SuppressWarnings("unchecked")
         @Override
         public void paint(Graphics g) {
             Graphics2D g2d = (Graphics2D) g.create();

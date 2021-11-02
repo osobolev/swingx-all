@@ -38,6 +38,7 @@ import java.awt.Rectangle;
  */
 public class JXRendererHyperlink extends JXHyperlink implements PainterAware {
 
+    @SuppressWarnings("rawtypes")
     protected Painter painter;
 
     /**
@@ -83,6 +84,7 @@ public class JXRendererHyperlink extends JXHyperlink implements PainterAware {
      *
      * @param g the graphics to paint on
      */
+    @SuppressWarnings("unchecked")
     private void paintPainter(Graphics g) {
         // fail fast: we assume that g must not be null
         // which throws an NPE here instead deeper down the bowels

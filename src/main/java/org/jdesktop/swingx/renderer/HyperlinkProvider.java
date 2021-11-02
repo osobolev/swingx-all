@@ -124,6 +124,7 @@ public class HyperlinkProvider extends ComponentProvider<JXHyperlink> implements
      *
      * @param linkAction
      */
+    @SuppressWarnings({"rawtypes", "unchecked"})
     public void setLinkAction(AbstractHyperlinkAction linkAction, Class<?> targetClass) {
         if (linkAction == null) {
             linkAction = createDefaultLinkAction();

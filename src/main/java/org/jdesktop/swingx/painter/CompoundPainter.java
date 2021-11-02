@@ -223,6 +223,7 @@ public class CompoundPainter<T> extends AbstractPainter<T> {
      * <p>
      * {@inheritDoc}
      */
+    @SuppressWarnings({"rawtypes", "unchecked"})
     @Override
     protected void validate(T object) {
         boolean dirty = false;
@@ -357,6 +358,7 @@ public class CompoundPainter<T> extends AbstractPainter<T> {
     /**
      * {@inheritDoc}
      */
+    @SuppressWarnings("unchecked")
     @Override
     protected void doPaint(Graphics2D g, T component, int width, int height) {
         for (Painter<T> p : getPainters()) {

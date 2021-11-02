@@ -131,6 +131,7 @@ public class JRendererLabel extends JLabel implements PainterAware, IconAware {
      *
      * @param g the graphics to paint on
      */
+    @SuppressWarnings("unchecked")
     private void paintPainter(Graphics g) {
         if (painter == null)
             return;

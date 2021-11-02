@@ -76,6 +76,7 @@ public class ListRolloverController<T extends JList<?>> extends RolloverControll
         }
     }
 
+    @SuppressWarnings({"rawtypes", "unchecked"})
     @Override
     protected RolloverRenderer getRolloverRenderer(Point location, boolean prepare) {
         ListCellRenderer renderer = component.getCellRenderer();

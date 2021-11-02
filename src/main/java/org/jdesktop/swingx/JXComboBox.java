@@ -126,6 +126,7 @@ public class JXComboBox<E> extends JComboBox<E> {
         /**
          * {@inheritDoc}
          */
+        @SuppressWarnings("unchecked")
         @Override
         public void updateUI() {
             wrapper.updateUI();

@@ -422,6 +422,7 @@ public class BasicXListUI extends BasicListUI {
      *
      * @see #paint
      */
+    @SuppressWarnings("unchecked")
     protected void paintCell(Graphics g,
                              int row,
                              Rectangle rowBounds,
@@ -668,6 +669,7 @@ public class BasicXListUI extends BasicListUI {
      * @see JComponent#getBaseline(int, int)
      * @since 1.6
      */
+    @SuppressWarnings({"rawtypes", "unchecked"})
     public int getBaseline(JComponent c, int width, int height) {
         checkBaselinePrecondition(c, width, height);
         int rowHeight = list.getFixedCellHeight();
@@ -956,6 +958,7 @@ public class BasicXListUI extends BasicListUI {
      * @see #installUI
      * @see CellRendererPane
      */
+    @SuppressWarnings({"rawtypes", "unchecked"})
     protected void installDefaults() {
         list.setLayout(null);
 
@@ -1469,6 +1472,7 @@ public class BasicXListUI extends BasicListUI {
      *
      * @see #maybeUpdateLayoutState
      */
+    @SuppressWarnings({"rawtypes", "unchecked"})
     protected void updateLayoutState() {
         /* If both JList fixedCellWidth and fixedCellHeight have been
          * set, then initialize cellWidth and cellHeight, and set

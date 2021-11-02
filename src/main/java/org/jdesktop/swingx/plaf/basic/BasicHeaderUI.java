@@ -454,6 +454,7 @@ public class BasicHeaderUI extends HeaderUI {
         }
     }
 
+    @SuppressWarnings({"rawtypes", "unchecked"})
     protected Painter createBackgroundPainter() {
         MattePainter p = new MattePainter(new GradientPaint(0, 0, gradientLightColor, 1, 0, gradientDarkColor));
         p.setPaintStretched(true);

@@ -616,6 +616,7 @@ public class JXPanel extends JPanel implements AlphaPaintable, BackgroundPaintab
 
     boolean fakeTransparent;
 
+    @SuppressWarnings("unchecked")
     protected void paintComponentPatch(Graphics g) {
         Graphics2D g2 = (Graphics2D) g.create();
 

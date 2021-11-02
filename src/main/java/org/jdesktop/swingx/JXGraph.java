@@ -1528,6 +1528,7 @@ public class JXGraph extends JXPanel {
      * @see #isBackgroundPainted()
      * @see #setBackgroundPainted(boolean)
      */
+    @SuppressWarnings({"rawtypes", "unchecked"})
     protected void paintBackground(Graphics2D g2) {
         if (isBackgroundPainted()) {
             Painter p = getBackgroundPainter();

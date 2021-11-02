@@ -690,6 +690,7 @@ public class JXLabel extends JLabel implements BackgroundPaintable {
     /**
      * @param g graphics to paint on
      */
+    @SuppressWarnings("unchecked")
     @Override
     protected void paintComponent(Graphics g) {
         // resizing the text view causes recursive callback to the paint down the road. In order to prevent such

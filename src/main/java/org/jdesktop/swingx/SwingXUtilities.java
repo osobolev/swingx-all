@@ -473,6 +473,7 @@ public final class SwingXUtilities {
     }
 
     // PENDING JW: this isn't aware of sorting/filtering - fix!
+    @SuppressWarnings({"rawtypes", "unchecked"})
     private static boolean pointIsInActualBounds(JList<?> list, int index, Point point) {
         ListCellRenderer renderer = list.getCellRenderer();
         ListModel<?> model = list.getModel();
