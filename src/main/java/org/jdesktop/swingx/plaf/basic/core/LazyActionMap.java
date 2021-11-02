@@ -146,9 +146,8 @@ public class LazyActionMap extends ActionMapUIResource {
             _loader = null;
             Class klass = (Class) loader;
             try {
-                Method method = klass.getDeclaredMethod("loadActionMap",
-                    new Class[] {LazyActionMap.class});
-                method.invoke(klass, new Object[] {this});
+                Method method = klass.getDeclaredMethod("loadActionMap", LazyActionMap.class);
+                method.invoke(klass, this);
             } catch (NoSuchMethodException nsme) {
                 assert false : "LazyActionMap unable to load actions " +
                                klass;
