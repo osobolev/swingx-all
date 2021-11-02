@@ -92,13 +92,7 @@ public class DefaultMultiThumbModel<E> extends AbstractMultiThumbModel<E> {
         list.sort((o1, o2) -> {
             float f1 = o1.getPosition();
             float f2 = o2.getPosition();
-            if (f1 < f2) {
-                return -1;
-            }
-            if (f1 > f2) {
-                return 1;
-            }
-            return 0;
+            return Float.compare(f1, f2);
         });
         return list;
     }
