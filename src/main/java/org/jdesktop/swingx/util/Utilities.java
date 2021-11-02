@@ -589,8 +589,9 @@ public class Utilities {
         //them, so CTRL should not be remapped for these
         if (isOnlyMeta) {
             return key != KeyEvent.VK_H && key != KeyEvent.VK_SPACE && key != KeyEvent.VK_TAB;
-        } else
+        } else {
             return !(key == KeyEvent.VK_D && isMeta && isAlt);
+        }
     }
 
     /**

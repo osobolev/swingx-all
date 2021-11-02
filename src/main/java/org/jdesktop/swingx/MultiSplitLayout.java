@@ -163,10 +163,11 @@ public class MultiSplitLayout implements LayoutManager, Serializable {
             }
 
             double weight = splitChild.getWeight();
-            if (weight > 0.0)
+            if (weight > 0.0) {
                 distributableWeight -= weight;
-            else
+            } else {
                 unweightedComponents++;
+            }
         }
 
         if (split.isRowLayout()) {
@@ -178,14 +179,15 @@ public class MultiSplitLayout implements LayoutManager, Serializable {
 
                 double weight = splitChild.getWeight();
                 Rectangle splitChildBounds = splitChild.getBounds();
-                if (weight >= 0)
+                if (weight >= 0) {
                     splitChildBounds = new Rectangle(
                         splitChildBounds.x, splitChildBounds.y, (int) (width * weight), height
                     );
-                else
+                } else {
                     splitChildBounds = new Rectangle(
                         splitChildBounds.x, splitChildBounds.y, (int) (distributableWidth / unweightedComponents), height
                     );
+                }
 
                 if (layoutMode == USER_MIN_SIZE_LAYOUT) {
                     splitChildBounds.setSize(Math.max(splitChildBounds.width, userMinSize), splitChildBounds.height);
@@ -210,14 +212,15 @@ public class MultiSplitLayout implements LayoutManager, Serializable {
 
                 double weight = splitChild.getWeight();
                 Rectangle splitChildBounds = splitChild.getBounds();
-                if (weight >= 0)
+                if (weight >= 0) {
                     splitChildBounds = new Rectangle(
                         splitChildBounds.x, splitChildBounds.y, width, (int) (height * weight)
                     );
-                else
+                } else {
                     splitChildBounds = new Rectangle(
                         splitChildBounds.x, splitChildBounds.y, width, (int) (distributableHeight / unweightedComponents)
                     );
+                }
 
                 if (layoutMode == USER_MIN_SIZE_LAYOUT) {
                     splitChildBounds.setSize(splitChildBounds.width, Math.max(splitChildBounds.height, userMinSize));
@@ -523,10 +526,11 @@ public class MultiSplitLayout implements LayoutManager, Serializable {
 
         if (name != null) {
             Node n;
-            if (!(model instanceof Split))
+            if (!(model instanceof Split)) {
                 n = model;
-            else
+            } else {
                 n = getNodeForName(name);
+            }
 
             childMap.remove(name);
 
@@ -537,18 +541,20 @@ public class MultiSplitLayout implements LayoutManager, Serializable {
                     while (s.getChildren().size() < 2) {
                         Split p = s.getParent();
                         if (p == null) {
-                            if (s.getChildren().size() > 0)
+                            if (s.getChildren().size() > 0) {
                                 model = s.getChildren().get(0);
-                            else
+                            } else {
                                 model = null;
+                            }
                             return;
                         }
                         if (s.getChildren().size() == 1) {
                             Node next = s.getChildren().get(0);
                             p.replace(s, next);
                             next.setParent(p);
-                        } else
+                        } else {
                             p.remove(s);
+                        }
                         s = p;
                     }
                 }
@@ -584,13 +590,15 @@ public class MultiSplitLayout implements LayoutManager, Serializable {
                 // divider that needs to be hidden.
                 while (!p.isVisible()) {
                     p = p.getParent();
-                    if (p != null)
+                    if (p != null) {
                         p.checkDividers(p);
-                    else
+                    } else {
                         break;
+                    }
                 }
-            } else
+            } else {
                 p.restoreDividers(p);
+            }
         }
         setFloatingDividers(false);
     }
