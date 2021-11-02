@@ -952,8 +952,8 @@ public class JXTable extends JTable implements TableColumnModelExtListener {
      * Take over ctrl-tab.
      */
     private void initFocusBindings() {
-        setFocusTraversalKeys(KeyboardFocusManager.FORWARD_TRAVERSAL_KEYS, new TreeSet<KeyStroke>()); // todo: WTF???
-        setFocusTraversalKeys(KeyboardFocusManager.BACKWARD_TRAVERSAL_KEYS, new TreeSet<KeyStroke>());
+        setFocusTraversalKeys(KeyboardFocusManager.FORWARD_TRAVERSAL_KEYS, Collections.emptySet());
+        setFocusTraversalKeys(KeyboardFocusManager.BACKWARD_TRAVERSAL_KEYS, Collections.emptySet());
         getInputMap(WHEN_ANCESTOR_OF_FOCUSED_COMPONENT).put(KeyStroke.getKeyStroke("ctrl TAB"), FOCUS_NEXT_COMPONENT);
         getInputMap(WHEN_ANCESTOR_OF_FOCUSED_COMPONENT).put(KeyStroke.getKeyStroke("shift ctrl TAB"), FOCUS_PREVIOUS_COMPONENT);
         getActionMap().put(FOCUS_NEXT_COMPONENT, createFocusTransferAction(true));
