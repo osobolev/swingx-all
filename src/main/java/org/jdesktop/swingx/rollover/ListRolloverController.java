@@ -32,7 +32,7 @@ import java.awt.Rectangle;
  *
  * @author Jeanette Winzenburg
  */
-public class ListRolloverController<T extends JList> extends RolloverController<T> {
+public class ListRolloverController<T extends JList<?>> extends RolloverController<T> {
 
     private Cursor oldCursor;
 
