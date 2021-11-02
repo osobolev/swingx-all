@@ -24,9 +24,9 @@ import java.awt.event.MouseEvent;
 
 public interface ThumbListener {
 
-    public void thumbMoved(int thumb, float pos);
+    void thumbMoved(int thumb, float pos);
 
-    public void thumbSelected(int thumb);
+    void thumbSelected(int thumb);
 
-    public void mousePressed(MouseEvent evt);
+    void mousePressed(MouseEvent evt);
 }

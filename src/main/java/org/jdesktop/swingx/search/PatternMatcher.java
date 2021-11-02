@@ -30,7 +30,7 @@ import java.util.regex.Pattern;
  */
 public interface PatternMatcher {
 
-    public Pattern getPattern();
+    Pattern getPattern();
 
-    public void setPattern(Pattern pattern);
+    void setPattern(Pattern pattern);
 }

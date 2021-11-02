@@ -45,7 +45,7 @@ public interface TreeTableModel extends TreeModel {
      * @return the common ancestor class of the object values in the model.
      * @see javax.swing.table.TableModel#getColumnClass(int)
      */
-    public Class<?> getColumnClass(int columnIndex);
+    Class<?> getColumnClass(int columnIndex);
 
     /**
      * Returns the number of columns in the model. A {@code JXTreeTable} uses
@@ -55,7 +55,7 @@ public interface TreeTableModel extends TreeModel {
      * @return the number of columns in the model
      * @see javax.swing.table.TableModel#getColumnCount()
      */
-    public int getColumnCount();
+    int getColumnCount();
 
     /**
      * Returns the name of the column at {@code columnIndex}. This is used to
@@ -66,7 +66,7 @@ public interface TreeTableModel extends TreeModel {
      * @return the name of the column
      * @see javax.swing.table.TableModel#getColumnName(int)
      */
-    public String getColumnName(int column);
+    String getColumnName(int column);
 
     /**
      * Returns the column that is the "tree" column. While it is not required,
@@ -76,7 +76,7 @@ public interface TreeTableModel extends TreeModel {
      * @return the index of the hierarchical column or -1 if no column is the
      * hierarchical column.
      */
-    public int getHierarchicalColumn();
+    int getHierarchicalColumn();
 
     /**
      * Returns the value for the {@code node} at {@code columnIndex}. The
@@ -90,7 +90,7 @@ public interface TreeTableModel extends TreeModel {
      * @see #setValueAt
      * @see javax.swing.table.TableModel#getValueAt(int, int)
      */
-    public Object getValueAt(Object node, int column);
+    Object getValueAt(Object node, int column);
 
     /**
      * Returns true if the cell for the {@code node} at {@code columnIndex} is
@@ -105,7 +105,7 @@ public interface TreeTableModel extends TreeModel {
      * @see #setValueAt
      * @see javax.swing.table.TableModel#isCellEditable(int, int)
      */
-    public boolean isCellEditable(Object node, int column);
+    boolean isCellEditable(Object node, int column);
 
     /**
      * Sets the value for the {@code node} at {@code columnIndex} to
@@ -120,5 +120,5 @@ public interface TreeTableModel extends TreeModel {
      * @see #isCellEditable
      * @see javax.swing.table.TableModel#setValueAt(Object, int, int)
      */
-    public void setValueAt(Object value, Object node, int column);
+    void setValueAt(Object value, Object node, int column);
 }

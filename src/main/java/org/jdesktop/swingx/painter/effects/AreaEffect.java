@@ -41,5 +41,5 @@ public interface AreaEffect {
      * @param width
      * @param height
      */
-    public abstract void apply(Graphics2D g, Shape clipShape, int width, int height);
+    void apply(Graphics2D g, Shape clipShape, int width, int height);
 }

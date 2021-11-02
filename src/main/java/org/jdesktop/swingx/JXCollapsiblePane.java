@@ -748,7 +748,7 @@ public class JXCollapsiblePane extends JXPanel {
      * is enough but there might be cases where the parent's parent must be
      * validated.
      */
-    public static interface CollapsiblePaneContainer {
+    public interface CollapsiblePaneContainer {
 
         Container getValidatingContainer();
     }

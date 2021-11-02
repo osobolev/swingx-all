@@ -68,9 +68,9 @@ public class DragRecognitionSupport {
      * This interface allows us to pass in a handler to mouseDragged,
      * so that we can be notified immediately before a drag begins.
      */
-    public static interface BeforeDrag {
+    public interface BeforeDrag {
 
-        public void dragStarting(MouseEvent me);
+        void dragStarting(MouseEvent me);
     }
 
     /**

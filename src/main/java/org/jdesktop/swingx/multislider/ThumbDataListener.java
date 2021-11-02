@@ -26,11 +26,11 @@ package org.jdesktop.swingx.multislider;
  */
 public interface ThumbDataListener {
 
-    public void valueChanged(ThumbDataEvent e);
+    void valueChanged(ThumbDataEvent e);
 
-    public void positionChanged(ThumbDataEvent e);
+    void positionChanged(ThumbDataEvent e);
 
-    public void thumbAdded(ThumbDataEvent e);
+    void thumbAdded(ThumbDataEvent e);
 
-    public void thumbRemoved(ThumbDataEvent e);
+    void thumbRemoved(ThumbDataEvent e);
 }

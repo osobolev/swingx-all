@@ -166,7 +166,7 @@ public interface TableColumnModelExt extends TableColumnModel {
      * @return the number of contained columns, including or excluding the
      * invisible as specified.
      */
-    public int getColumnCount(boolean includeHidden);
+    int getColumnCount(boolean includeHidden);
 
     /**
      * Returns a <code>List</code> of contained <code>TableColumn</code>s.
@@ -184,7 +184,7 @@ public interface TableColumnModelExt extends TableColumnModel {
      *                      should be included
      * @return a <code>List</code> of contained columns.
      */
-    public List<TableColumn> getColumns(boolean includeHidden);
+    List<TableColumn> getColumns(boolean includeHidden);
 
     /**
      * Returns the first <code>TableColumnExt</code> with the given
@@ -197,7 +197,7 @@ public interface TableColumnModelExt extends TableColumnModel {
      * @return first <code>TableColumnExt</code> with the given identifier or
      * null if none is found
      */
-    public TableColumnExt getColumnExt(Object identifier);
+    TableColumnExt getColumnExt(Object identifier);
 
     /**
      * Returns the <code>TableColumnExt</code> at view position
@@ -213,7 +213,7 @@ public interface TableColumnModelExt extends TableColumnModel {
      *                                        range, that is if
      *                                        <code> (columnIndex < 0) || (columnIndex >= getColumnCount())</code>.
      */
-    public TableColumnExt getColumnExt(int columnIndex);
+    TableColumnExt getColumnExt(int columnIndex);
 
     /**
      * Adds a listener for table column model events. This enhances super's
@@ -223,5 +223,5 @@ public interface TableColumnModelExt extends TableColumnModel {
      * @param x a <code>TableColumnModelListener</code> object
      */
     @Override
-    public void addColumnModelListener(TableColumnModelListener x);
+    void addColumnModelListener(TableColumnModelListener x);
 }

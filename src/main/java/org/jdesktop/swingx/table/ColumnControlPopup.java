@@ -89,7 +89,7 @@ public interface ColumnControlPopup extends UIDependent {
     /**
      * Splits and returns a List of actions into sub-lists.
      */
-    public interface ActionGrouper {
+    interface ActionGrouper {
 
         <A extends Action> List<List<A>> group(List<A> actions);
     }
@@ -99,8 +99,8 @@ public interface ColumnControlPopup extends UIDependent {
      * Implementations of ColumnControlPopup may implement this
      * if they support grouping of additional action.
      */
-    public interface ActionGroupable {
+    interface ActionGroupable {
 
-        public void setActionGrouper(ActionGrouper grouper);
+        void setActionGrouper(ActionGrouper grouper);
     }
 }

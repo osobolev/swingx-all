@@ -21,12 +21,12 @@ public interface IconAware {
      *
      * @param icon
      */
-    public void setIcon(Icon icon);
+    void setIcon(Icon icon);
 
     /**
      * Returns the icon property.
      *
      * @return
      */
-    public Icon getIcon();
+    Icon getIcon();
 }

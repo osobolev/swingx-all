@@ -36,7 +36,7 @@ public interface LoginListener extends EventListener {
      *
      * @param source panel that fired the event
      */
-    public void loginFailed(LoginEvent source);
+    void loginFailed(LoginEvent source);
 
     /**
      * Called by the <strong>JXLoginPane</strong> when the Authentication
@@ -44,7 +44,7 @@ public interface LoginListener extends EventListener {
      *
      * @param source panel that fired the event
      */
-    public void loginStarted(LoginEvent source);
+    void loginStarted(LoginEvent source);
 
     /**
      * Called by the <strong>JXLoginPane</strong> in the event of a login
@@ -52,7 +52,7 @@ public interface LoginListener extends EventListener {
      *
      * @param source panel that fired the event
      */
-    public void loginCanceled(LoginEvent source);
+    void loginCanceled(LoginEvent source);
 
     /**
      * Called by the <strong>JXLoginPane</strong> in the event of a
@@ -60,5 +60,5 @@ public interface LoginListener extends EventListener {
      *
      * @param source panel that fired the event
      */
-    public void loginSucceeded(LoginEvent source);
+    void loginSucceeded(LoginEvent source);
 }

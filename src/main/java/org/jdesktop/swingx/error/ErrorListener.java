@@ -42,5 +42,5 @@ public interface ErrorListener extends EventListener {
      *
      * @param event
      */
-    public void errorOccured(ErrorEvent event);
+    void errorOccured(ErrorEvent event);
 }

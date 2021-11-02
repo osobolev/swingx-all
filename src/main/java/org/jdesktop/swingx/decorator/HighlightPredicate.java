@@ -69,7 +69,7 @@ public interface HighlightPredicate {
     /**
      * Unconditional true.
      */
-    public static final HighlightPredicate ALWAYS = new HighlightPredicate() {
+    HighlightPredicate ALWAYS = new HighlightPredicate() {
 
         /**
          * {@inheritDoc} <p>
@@ -85,7 +85,7 @@ public interface HighlightPredicate {
     /**
      * Unconditional false.
      */
-    public static final HighlightPredicate NEVER = new HighlightPredicate() {
+    HighlightPredicate NEVER = new HighlightPredicate() {
 
         /**
          * {@inheritDoc} <p>
@@ -101,7 +101,7 @@ public interface HighlightPredicate {
     /**
      * Rollover  Row.
      */
-    public static final HighlightPredicate ROLLOVER_ROW = new HighlightPredicate() {
+    HighlightPredicate ROLLOVER_ROW = new HighlightPredicate() {
 
         /**
          * @inheritDoc
@@ -123,7 +123,7 @@ public interface HighlightPredicate {
     /**
      * Rollover  Column.
      */
-    public static final HighlightPredicate ROLLOVER_COLUMN = new HighlightPredicate() {
+    HighlightPredicate ROLLOVER_COLUMN = new HighlightPredicate() {
 
         /**
          * @inheritDoc
@@ -144,7 +144,7 @@ public interface HighlightPredicate {
     /**
      * Rollover  Cell.
      */
-    public static final HighlightPredicate ROLLOVER_CELL = new HighlightPredicate() {
+    HighlightPredicate ROLLOVER_CELL = new HighlightPredicate() {
 
         /**
          * @inheritDoc
@@ -166,7 +166,7 @@ public interface HighlightPredicate {
     /**
      * Is editable.
      */
-    public static final HighlightPredicate EDITABLE = new HighlightPredicate() {
+    HighlightPredicate EDITABLE = new HighlightPredicate() {
         /**
          * {@inheritDoc} <p>
          *
@@ -181,7 +181,7 @@ public interface HighlightPredicate {
     /**
      * Convenience for read-only (same as !editable).
      */
-    public static final HighlightPredicate READ_ONLY = new HighlightPredicate() {
+    HighlightPredicate READ_ONLY = new HighlightPredicate() {
         /**
          * {@inheritDoc} <p>
          *
@@ -196,7 +196,7 @@ public interface HighlightPredicate {
     /**
      * Leaf predicate.
      */
-    public static final HighlightPredicate IS_LEAF = new HighlightPredicate() {
+    HighlightPredicate IS_LEAF = new HighlightPredicate() {
         /**
          * {@inheritDoc} <p>
          *
@@ -211,7 +211,7 @@ public interface HighlightPredicate {
     /**
      * Folder predicate - convenience: same as !IS_LEAF.
      */
-    public static final HighlightPredicate IS_FOLDER = new HighlightPredicate() {
+    HighlightPredicate IS_FOLDER = new HighlightPredicate() {
         /**
          * {@inheritDoc} <p>
          *
@@ -226,7 +226,7 @@ public interface HighlightPredicate {
     /**
      * Selected predicate.
      */
-    public static final HighlightPredicate IS_SELECTED = new HighlightPredicate() {
+    HighlightPredicate IS_SELECTED = new HighlightPredicate() {
 
         @Override
         public boolean isHighlighted(Component renderer,
@@ -240,7 +240,7 @@ public interface HighlightPredicate {
      *
      * @author Karl Schaefer
      */
-    public static final HighlightPredicate IS_TEXT_TRUNCATED = new HighlightPredicate() {
+    HighlightPredicate IS_TEXT_TRUNCATED = new HighlightPredicate() {
         @Override
         public boolean isHighlighted(Component renderer, ComponentAdapter adapter) {
             JComponent c = renderer instanceof JComponent ? (JComponent) renderer : null;
@@ -280,7 +280,7 @@ public interface HighlightPredicate {
     /**
      * Focus predicate.
      */
-    public static final HighlightPredicate HAS_FOCUS = new HighlightPredicate() {
+    HighlightPredicate HAS_FOCUS = new HighlightPredicate() {
         /**
          * {@inheritDoc} <p>
          *
@@ -297,7 +297,7 @@ public interface HighlightPredicate {
      * PENDING: this is zero based (that is "really" even 0, 2, 4 ..), differing
      * from the old AlternateRowHighlighter.
      */
-    public static final HighlightPredicate EVEN = new HighlightPredicate() {
+    HighlightPredicate EVEN = new HighlightPredicate() {
 
         @Override
         public boolean isHighlighted(Component renderer, ComponentAdapter adapter) {
@@ -311,7 +311,7 @@ public interface HighlightPredicate {
      * PENDING: this is zero based (that is 1, 3, 4 ..), differs from
      * the old implementation which was one based?
      */
-    public static final HighlightPredicate ODD = new HighlightPredicate() {
+    HighlightPredicate ODD = new HighlightPredicate() {
 
         @Override
         public boolean isHighlighted(Component renderer, ComponentAdapter adapter) {
@@ -322,7 +322,7 @@ public interface HighlightPredicate {
     /**
      * Negative BigDecimals.
      */
-    public static final HighlightPredicate BIG_DECIMAL_NEGATIVE = new HighlightPredicate() {
+    HighlightPredicate BIG_DECIMAL_NEGATIVE = new HighlightPredicate() {
 
         @Override
         public boolean isHighlighted(Component renderer,
@@ -335,7 +335,7 @@ public interface HighlightPredicate {
     /**
      * Negative Number.
      */
-    public static final HighlightPredicate INTEGER_NEGATIVE = new HighlightPredicate() {
+    HighlightPredicate INTEGER_NEGATIVE = new HighlightPredicate() {
 
         @Override
         public boolean isHighlighted(Component renderer,
@@ -346,16 +346,16 @@ public interface HighlightPredicate {
     };
 
     // PENDING: these general type empty arrays don't really belong here?
-    public static final HighlightPredicate[] EMPTY_PREDICATE_ARRAY = new HighlightPredicate[0];
-    public static final Object[] EMPTY_OBJECT_ARRAY = new Object[0];
-    public static final Integer[] EMPTY_INTEGER_ARRAY = new Integer[0];
+    HighlightPredicate[] EMPTY_PREDICATE_ARRAY = new HighlightPredicate[0];
+    Object[] EMPTY_OBJECT_ARRAY = new Object[0];
+    Integer[] EMPTY_INTEGER_ARRAY = new Integer[0];
 
 //----------------- logical implementations amongst HighlightPredicates
 
     /**
      * Negation of a HighlightPredicate.
      */
-    public static class NotHighlightPredicate implements HighlightPredicate {
+    class NotHighlightPredicate implements HighlightPredicate {
 
         private HighlightPredicate predicate;
 
@@ -391,7 +391,7 @@ public interface HighlightPredicate {
     /**
      * Ands a list of predicates.
      */
-    public static class AndHighlightPredicate implements HighlightPredicate {
+    class AndHighlightPredicate implements HighlightPredicate {
 
         private List<HighlightPredicate> predicate;
 
@@ -440,7 +440,7 @@ public interface HighlightPredicate {
     /**
      * Or's a list of predicates.
      */
-    public static class OrHighlightPredicate implements HighlightPredicate {
+    class OrHighlightPredicate implements HighlightPredicate {
 
         private List<HighlightPredicate> predicate;
 
@@ -488,7 +488,7 @@ public interface HighlightPredicate {
 
 //------------------------ coordinates
 
-    public static class RowGroupHighlightPredicate implements HighlightPredicate {
+    class RowGroupHighlightPredicate implements HighlightPredicate {
 
         private int linesPerGroup;
 
@@ -527,7 +527,7 @@ public interface HighlightPredicate {
     /**
      * A HighlightPredicate based on column index.
      */
-    public static class ColumnHighlightPredicate implements HighlightPredicate {
+    class ColumnHighlightPredicate implements HighlightPredicate {
 
         List<Integer> columnList;
 
@@ -570,7 +570,7 @@ public interface HighlightPredicate {
     /**
      * A HighlightPredicate based on column identifier.
      */
-    public static class IdentifierHighlightPredicate implements HighlightPredicate {
+    class IdentifierHighlightPredicate implements HighlightPredicate {
 
         List<Object> columnList;
 
@@ -614,7 +614,7 @@ public interface HighlightPredicate {
      *
      * @author Karl Schaefer
      */
-    public static class DepthHighlightPredicate implements HighlightPredicate {
+    class DepthHighlightPredicate implements HighlightPredicate {
 
         private List<Integer> depthList;
 
@@ -659,7 +659,7 @@ public interface HighlightPredicate {
      * Predicate testing the componentAdapter value against a fixed
      * Object.
      */
-    public static class EqualsHighlightPredicate implements HighlightPredicate {
+    class EqualsHighlightPredicate implements HighlightPredicate {
 
         private Object compareValue;
 
@@ -705,7 +705,7 @@ public interface HighlightPredicate {
      * Predicate testing the componentAdapter value type against a given
      * Class.
      */
-    public static class TypeHighlightPredicate implements HighlightPredicate {
+    class TypeHighlightPredicate implements HighlightPredicate {
 
         private Class<?> clazz;
 
@@ -754,7 +754,7 @@ public interface HighlightPredicate {
      * Predicate testing the componentAdapter column type against a given
      * Class.
      */
-    public static class ColumnTypeHighlightPredicate implements HighlightPredicate {
+    class ColumnTypeHighlightPredicate implements HighlightPredicate {
 
         private Class<?> clazz;
 

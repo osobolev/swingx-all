@@ -439,7 +439,7 @@ public class JXTipOfTheDay extends JXPanel {
      * {@link JXTipOfTheDay#showDialog(Component, ShowOnStartupChoice)} to save the
      * "Show tips on startup" choice.
      */
-    public static interface ShowOnStartupChoice {
+    public interface ShowOnStartupChoice {
 
         /**
          * Persists the user choice

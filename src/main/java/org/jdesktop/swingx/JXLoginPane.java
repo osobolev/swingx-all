@@ -1339,21 +1339,21 @@ public class JXLoginPane extends JXPanel {
     }
 
     //--------------------------------- Default NamePanel Implementations
-    private static interface NameComponent {
+    private interface NameComponent {
 
-        public String getUserName();
+        String getUserName();
 
-        public boolean isEnabled();
+        boolean isEnabled();
 
-        public boolean isEditable();
+        boolean isEditable();
 
-        public void setEditable(boolean enabled);
+        void setEditable(boolean enabled);
 
-        public void setEnabled(boolean enabled);
+        void setEnabled(boolean enabled);
 
-        public void setUserName(String userName);
+        void setUserName(String userName);
 
-        public JComponent getComponent();
+        JComponent getComponent();
     }
 
     private void updatePassword(String username) {
