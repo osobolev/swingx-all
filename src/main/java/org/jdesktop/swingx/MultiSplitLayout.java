@@ -805,7 +805,6 @@ public class MultiSplitLayout implements LayoutManager, Serializable {
     private void layoutShrink(Split split, Rectangle bounds) {
         Rectangle splitBounds = split.getBounds();
         ListIterator<Node> splitChildren = split.getChildren().listIterator();
-        Node lastWeightedChild = split.lastWeightedChild();
 
         if (split.isRowLayout()) {
             int totalWidth = 0;          // sum of the children's widths
