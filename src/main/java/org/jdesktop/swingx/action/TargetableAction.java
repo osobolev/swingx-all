@@ -130,9 +130,4 @@ public class TargetableAction extends AbstractActionExt {
             getTargetManager().doCommand(getActionCommand(), evt);
         }
     }
-
-    @Override
-    public String toString() {
-        return super.toString();
-    }
 }

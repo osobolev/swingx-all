@@ -89,14 +89,6 @@ public abstract class DefaultSortController<M> extends DefaultRowSorter<M, Integ
      * {@inheritDoc} <p>
      */
     @Override
-    public void setSortable(int column, boolean sortable) {
-        super.setSortable(column, sortable);
-    }
-
-    /**
-     * {@inheritDoc} <p>
-     */
-    @Override
     public boolean isSortable(int column) {
         if (!isSortable())
             return false;

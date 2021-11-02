@@ -1477,19 +1477,6 @@ public class JXTree extends JTree {
         }
     }
 
-// ------------------ oldish String conversion api, no longer recommended
-
-    /**
-     * {@inheritDoc} <p>
-     * <p>
-     * Overridden to initialize the String conversion method of the model, if any.<p>
-     * PENDING JW: remove - that is an outdated approach?
-     */
-    @Override
-    public void setModel(TreeModel newModel) {
-        super.setModel(newModel);
-    }
-
 //------------------------------- ComponentAdapter
 
     /**

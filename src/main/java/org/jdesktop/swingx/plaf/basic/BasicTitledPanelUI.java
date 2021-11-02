@@ -283,27 +283,6 @@ public class BasicTitledPanelUI extends TitledPanelUI {
     }
 
     /**
-     * Paints the specified component appropriate for the look and feel.
-     * This method is invoked from the <code>ComponentUI.update</code> method when
-     * the specified component is being painted.  Subclasses should override
-     * this method and use the specified <code>Graphics</code> object to
-     * render the content of the component.<p>
-     * <p>
-     * PENDING JW: we don't need this, do we - remove!
-     *
-     * @param g the <code>Graphics</code> context in which to paint
-     * @param c the component being painted;
-     *          this argument is often ignored,
-     *          but might be used if the UI object is stateless
-     *          and shared by multiple components
-     * @see #update
-     */
-    @Override
-    public void paint(Graphics g, JComponent c) {
-        super.paint(g, c);
-    }
-
-    /**
      * Adds the given JComponent as a decoration on the right of the title
      *
      * @param decoration

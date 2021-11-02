@@ -319,16 +319,6 @@ public class JXSearchField extends JXTextField {
     }
 
     /**
-     * Set the margin space around the search field's text.
-     *
-     * @see javax.swing.text.JTextComponent#setMargin(Insets)
-     */
-    @Override
-    public void setMargin(Insets m) {
-        super.setMargin(m);
-    }
-
-    /**
      * Returns the cancel action, or an instance of {@link ClearAction}, if
      * none has been set.
      *

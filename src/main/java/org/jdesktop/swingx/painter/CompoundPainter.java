@@ -384,12 +384,4 @@ public class CompoundPainter<T> extends AbstractPainter<T> {
             g.setTransform(tx);
         }
     }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    protected boolean shouldUseCache() {
-        return super.shouldUseCache(); // || (painters != null && painters.length > 1);
-    }
 }
