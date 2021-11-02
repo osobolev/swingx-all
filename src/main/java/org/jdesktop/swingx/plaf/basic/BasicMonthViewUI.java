@@ -182,8 +182,8 @@ public class BasicMonthViewUI extends MonthViewUI {
      * The padding for month traversal icons.
      * PENDING JW: decouple rendering and hit-detection.
      */
-    private int arrowPaddingX = 3;
-    private int arrowPaddingY = 3;
+    private final int arrowPaddingX = 3;
+    private final int arrowPaddingY = 3;
 
     /**
      * height of month header including the monthView's box padding.
@@ -1797,7 +1797,7 @@ public class BasicMonthViewUI extends MonthViewUI {
 
 //------------------------ layout
 
-        private Dimension preferredSize = new Dimension();
+        private final Dimension preferredSize = new Dimension();
 
         @Override
         public void addLayoutComponent(String name, Component comp) {
@@ -1976,7 +1976,7 @@ public class BasicMonthViewUI extends MonthViewUI {
         public static final int ADJUST_SELECTION_PREVIOUS_WEEK = 8;
         public static final int ADJUST_SELECTION_NEXT_WEEK = 9;
 
-        private int action;
+        private final int action;
 
         KeyboardAction(int action) {
             this.action = action;

@@ -237,7 +237,7 @@ public class JXBusyLabel extends JLabel {
         }
 
         busy = new Timer(delay, new ActionListener() {
-            BusyPainter busyPainter = getBusyPainter();
+            final BusyPainter busyPainter = getBusyPainter();
             int frame = busyPainter.getPoints();
 
             @Override

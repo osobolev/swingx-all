@@ -144,8 +144,8 @@ public class BoundAction extends AbstractActionExt {
      */
     private static class BooleanInvocationHandler implements ItemListener {
 
-        private Statement falseStatement;
-        private Statement trueStatement;
+        private final Statement falseStatement;
+        private final Statement trueStatement;
 
         BooleanInvocationHandler(Object target, String methodName) {
             // Create the true and false statements.

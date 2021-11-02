@@ -43,9 +43,9 @@ import javax.swing.tree.TreePath;
  */
 public final class TreeModelSupport {
 
-    private EventListenerList listeners;
+    private final EventListenerList listeners;
 
-    private TreeModel treeModel;
+    private final TreeModel treeModel;
 
     /**
      * Creates the support class for the given {@code TreeModel}.

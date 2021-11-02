@@ -59,7 +59,7 @@ import java.awt.Component;
  */
 public class DefaultTableRenderer extends AbstractRenderer implements TableCellRenderer {
 
-    private TableCellContext cellContext;
+    private final TableCellContext cellContext;
 
     /**
      * Instantiates a default table renderer with the default component

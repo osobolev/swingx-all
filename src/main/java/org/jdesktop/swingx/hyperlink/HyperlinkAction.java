@@ -41,7 +41,7 @@ public class HyperlinkAction extends AbstractHyperlinkAction<URI> {
     @SuppressWarnings("unused")
     private static final Logger LOG = Logger.getLogger(HyperlinkAction.class.getName());
 
-    private Action desktopAction;
+    private final Action desktopAction;
     private URIVisitor visitor;
 
     /**

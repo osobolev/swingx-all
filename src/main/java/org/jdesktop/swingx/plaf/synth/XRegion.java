@@ -39,7 +39,7 @@ public class XRegion extends Region {
     /**
      * the Region which identifies the base styles
      */
-    private Region parent;
+    private final Region parent;
 
     /**
      * Creates a XRegion with the specified name.

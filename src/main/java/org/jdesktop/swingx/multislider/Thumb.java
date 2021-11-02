@@ -28,7 +28,7 @@ public class Thumb<E> {
 
     private float position;
     private E object;
-    private MultiThumbModel<E> model;
+    private final MultiThumbModel<E> model;
 
     /**
      * Creates a new instance of Thumb

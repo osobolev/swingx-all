@@ -36,7 +36,7 @@ import java.text.ParsePosition;
  */
 public class NumberFormatExt extends NumberFormat {
 
-    private NumberFormat childFormat;
+    private final NumberFormat childFormat;
 
     public NumberFormatExt() {
         this(null);

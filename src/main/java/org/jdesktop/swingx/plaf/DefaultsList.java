@@ -45,7 +45,7 @@ import java.util.List;
 @SuppressWarnings("nls")
 public final class DefaultsList {
 
-    private List<Object> delegate;
+    private final List<Object> delegate;
 
     /**
      * Creates a {@code DefaultsList}.

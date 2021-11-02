@@ -59,7 +59,6 @@ import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.Insets;
-import java.awt.LayoutManager;
 import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -153,7 +152,7 @@ public class JXLoginPane extends JXPanel {
     /**
      * Used as a prefix when pulling data out of UIManager for i18n
      */
-    private static String CLASS_NAME = JXLoginPane.class.getSimpleName();
+    private static final String CLASS_NAME = JXLoginPane.class.getSimpleName();
 
     /**
      * The current login status for this panel
@@ -1280,7 +1279,7 @@ public class JXLoginPane extends JXPanel {
     private static final class LoginAction extends AbstractActionExt {
 
         private static final long serialVersionUID = 7256761187925982485L;
-        private JXLoginPane panel;
+        private final JXLoginPane panel;
 
         LoginAction(JXLoginPane p) {
             super(UIManagerExt.getString(CLASS_NAME + ".loginString", p.getLocale()), LOGIN_ACTION_COMMAND);
@@ -1303,7 +1302,7 @@ public class JXLoginPane extends JXPanel {
     private static final class CancelAction extends AbstractActionExt {
 
         private static final long serialVersionUID = 4040029973355439229L;
-        private JXLoginPane panel;
+        private final JXLoginPane panel;
 
         CancelAction(JXLoginPane p) {
             super(UIManagerExt.getString(CLASS_NAME + ".cancelLogin", p.getLocale()), CANCEL_LOGIN_ACTION_COMMAND);
@@ -1640,7 +1639,7 @@ public class JXLoginPane extends JXPanel {
     public static final class JXLoginFrame extends JXFrame {
 
         private static final long serialVersionUID = -9016407314342050807L;
-        private JXLoginPane panel;
+        private final JXLoginPane panel;
 
         public JXLoginFrame(JXLoginPane p) {
             super(UIManagerExt.getString(CLASS_NAME + ".titleString", p.getLocale()));
@@ -1760,8 +1759,8 @@ public class JXLoginPane extends JXPanel {
     private static class JXBtnPanel extends JXPanel {
 
         private static final long serialVersionUID = 4136611099721189372L;
-        private JButton cancel;
-        private JButton ok;
+        private final JButton cancel;
+        private final JButton ok;
 
         JXBtnPanel(JButton okButton, JButton cancelButton) {
             GridLayout layout = new GridLayout(1, 2);

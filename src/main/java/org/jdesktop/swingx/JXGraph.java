@@ -304,7 +304,7 @@ public class JXGraph extends JXPanel {
     private static final float ZOOM_MULTIPLIER = 1.1f;
 
     //listens to changes to plots and repaints the graph
-    private PropertyChangeListener plotChangeListener;
+    private final PropertyChangeListener plotChangeListener;
 
     // default color of the graph (does not include plots colors)
     private Color majorGridColor = Color.GRAY.brighter();
@@ -312,7 +312,7 @@ public class JXGraph extends JXPanel {
     private Color axisColor = Color.BLACK;
 
     // the list of plots currently known and displayed by the graph
-    private List<DrawablePlot> plots;
+    private final List<DrawablePlot> plots;
 
     // view boundaries as defined by the user
     private double minX;
@@ -348,15 +348,15 @@ public class JXGraph extends JXPanel {
 
     // mainFormatter is used for numbers > 0.01 and < 100
     // secondFormatter uses scientific notation
-    private NumberFormat mainFormatter;
-    private NumberFormat secondFormatter;
+    private final NumberFormat mainFormatter;
+    private final NumberFormat secondFormatter;
 
     // input handlers
     private boolean inputEnabled = true;
-    private ZoomHandler zoomHandler;
-    private PanMotionHandler panMotionHandler;
-    private PanHandler panHandler;
-    private ResetHandler resetHandler;
+    private final ZoomHandler zoomHandler;
+    private final PanMotionHandler panMotionHandler;
+    private final PanHandler panHandler;
+    private final ResetHandler resetHandler;
 
     /**
      * <p>Creates a new graph display. The following properties are

@@ -41,8 +41,8 @@ public class PainterPaint<T> implements Paint {
 
     protected static class PainterPaintContext<T> implements PaintContext {
 
-        private Painter<T> painter;
-        private T object;
+        private final Painter<T> painter;
+        private final T object;
         private BufferedImage saved;
 
         public PainterPaintContext(Painter<T> painter, T object) {

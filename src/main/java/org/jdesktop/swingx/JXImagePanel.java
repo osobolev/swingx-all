@@ -122,7 +122,7 @@ class JXImagePanel extends JXPanel {
     /**
      * The mouse handler that is used if the component is editable
      */
-    private MouseHandler mhandler = new MouseHandler();
+    private final MouseHandler mhandler = new MouseHandler();
 
     /**
      * Specifies how to draw the image, i.e. what kind of Style to use when

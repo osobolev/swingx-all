@@ -32,7 +32,7 @@ import java.awt.Component;
  */
 public class DefaultTreeRenderer extends AbstractRenderer implements TreeCellRenderer {
 
-    private TreeCellContext cellContext;
+    private final TreeCellContext cellContext;
 
     /**
      * Instantiates a default tree renderer with the default component

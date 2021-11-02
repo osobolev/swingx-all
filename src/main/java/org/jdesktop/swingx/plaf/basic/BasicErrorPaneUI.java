@@ -653,7 +653,7 @@ public class BasicErrorPaneUI extends ErrorPaneUI {
      */
     private static final class CloseAction extends AbstractAction {
 
-        private Window w;
+        private final Window w;
 
         /**
          * @param w cannot be null
@@ -694,7 +694,7 @@ public class BasicErrorPaneUI extends ErrorPaneUI {
 
     private final class ResizeWindow implements ActionListener {
 
-        private Window w;
+        private final Window w;
 
         private ResizeWindow(Window w) {
             if (w == null) {
@@ -784,7 +784,7 @@ public class BasicErrorPaneUI extends ErrorPaneUI {
      */
     private static final class DetailsTransferHandler extends TransferHandler {
 
-        private JTextComponent details;
+        private final JTextComponent details;
 
         private DetailsTransferHandler(JTextComponent detailComponent) {
             if (detailComponent == null) {
@@ -947,7 +947,7 @@ public class BasicErrorPaneUI extends ErrorPaneUI {
      */
     private final class ErrorPaneLayout implements LayoutManager {
 
-        private JEditorPane dummy = new JEditorPane();
+        private final JEditorPane dummy = new JEditorPane();
 
         @Override
         public void addLayoutComponent(String name, Component comp) {

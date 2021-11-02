@@ -33,8 +33,8 @@ import java.util.Date;
  */
 public class DateSpan {
 
-    private long _start;
-    private long _end;
+    private final long _start;
+    private final long _end;
 
     /**
      * Creates a <code>DateSpan</code> between the two end points.

@@ -37,7 +37,7 @@ import java.awt.Graphics2D;
  */
 public class PainterUIResource<T extends JComponent> implements Painter<T>, UIResource {
 
-    private Painter<? super T> p;
+    private final Painter<? super T> p;
 
     /**
      * Creates a new instance of PainterUIResource with the specified delegate

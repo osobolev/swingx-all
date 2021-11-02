@@ -27,9 +27,9 @@ import java.util.EventObject;
  */
 public class ThumbDataEvent extends EventObject {
 
-    private int type;
-    private int index;
-    private Thumb<?> thumb;
+    private final int type;
+    private final int index;
+    private final Thumb<?> thumb;
 
     /**
      * Creates a new instance of ThumbDataEvent

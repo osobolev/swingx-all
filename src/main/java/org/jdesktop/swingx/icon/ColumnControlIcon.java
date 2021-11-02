@@ -39,8 +39,8 @@ import java.awt.Graphics;
  */
 public class ColumnControlIcon implements Icon, UIResource {
 
-    private int width = 10;
-    private int height = 10;
+    private final int width = 10;
+    private final int height = 10;
 
     /**
      * TODO: need to support small, medium, large

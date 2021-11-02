@@ -57,7 +57,7 @@ import java.beans.PropertyChangeListener;
  */
 public abstract class UIAction implements Action {
 
-    private String name;
+    private final String name;
 
     protected UIAction(String name) {
         this.name = name;

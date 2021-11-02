@@ -262,7 +262,7 @@ public final class SwingXUtilities {
         }
     }
 
-    private static String STYLESHEET =
+    private static final String STYLESHEET =
         "body { margin-top: 0; margin-bottom: 0; margin-left: 0; margin-right: 0;"
         + " font-family: %s; font-size: %dpt;  }"
         + "a, p, li { margin-top: 0; margin-bottom: 0; margin-left: 0;"

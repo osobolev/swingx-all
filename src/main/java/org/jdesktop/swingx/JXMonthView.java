@@ -215,7 +215,7 @@ public class JXMonthView extends JComponent {
     /**
      * Storage of actionListeners registered with the monthView.
      */
-    private EventListenerMap listenerMap;
+    private final EventListenerMap listenerMap;
 
     private boolean traversable;
     private boolean leadingDays;
@@ -245,7 +245,7 @@ public class JXMonthView extends JComponent {
     private Color monthStringForeground;
     private Color daysOfTheWeekForeground;
     private Color selectedBackground;
-    private Hashtable<Integer, Color> dayToColorTable = new Hashtable<>();
+    private final Hashtable<Integer, Color> dayToColorTable = new Hashtable<>();
     private Color flaggedDayForeground;
 
     private Color selectedForeground;

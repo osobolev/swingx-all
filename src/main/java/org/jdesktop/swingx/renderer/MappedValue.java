@@ -35,9 +35,9 @@ import javax.swing.Icon;
  */
 public class MappedValue implements StringValue, IconValue, BooleanValue {
 
-    private StringValue stringDelegate;
-    private IconValue iconDelegate;
-    private BooleanValue booleanDelegate;
+    private final StringValue stringDelegate;
+    private final IconValue iconDelegate;
+    private final BooleanValue booleanDelegate;
 
     public MappedValue(StringValue stringDelegate, IconValue iconDelegate) {
         this(stringDelegate, iconDelegate, null);

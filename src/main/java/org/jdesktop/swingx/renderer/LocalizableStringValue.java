@@ -11,11 +11,11 @@ import java.util.Map;
  */
 public class LocalizableStringValue implements StringValue {
 
-    private Map<Object, String> lookup;
+    private final Map<Object, String> lookup;
 
     private Locale locale;
 
-    private String prefix;
+    private final String prefix;
 
     /**
      * Instantiates a LocaleStringValue which looks up localized String

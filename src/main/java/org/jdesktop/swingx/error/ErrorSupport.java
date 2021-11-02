@@ -34,8 +34,8 @@ import java.util.List;
  */
 public class ErrorSupport {
 
-    private List<ErrorListener> listeners;
-    private Object source;
+    private final List<ErrorListener> listeners;
+    private final Object source;
 
     /**
      * Creates a new instance of <CODE>ErrorSupport</CODE>

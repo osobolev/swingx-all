@@ -199,8 +199,8 @@ public class JXStatusBar extends JComponent {
 
         public enum ResizeBehavior {FILL, FIXED}
 
-        private Insets insets;
-        private ResizeBehavior resizeBehavior;
+        private final Insets insets;
+        private final ResizeBehavior resizeBehavior;
         private int fixedWidth = 0;
 
         /**

@@ -42,8 +42,8 @@ import java.util.TreeSet;
 public class DaySelectionModel extends AbstractDateSelectionModel {
 
     private SelectionMode selectionMode;
-    private SortedSet<Date> selectedDates;
-    private SortedSet<Date> unselectableDates;
+    private final SortedSet<Date> selectedDates;
+    private final SortedSet<Date> unselectableDates;
 
     /**
      *

@@ -40,9 +40,10 @@ public class SearchPredicate implements HighlightPredicate {
 
     public static final int ALL = -1;
     public static final String MATCH_ALL = ".*";
-    private int highlightColumn;
-    private int highlightRow; // in view coordinates?
-    private Pattern pattern;
+
+    private final int highlightColumn;
+    private final int highlightRow; // in view coordinates?
+    private final Pattern pattern;
 
     /**
      * Instantiates a Predicate with the given Pattern.

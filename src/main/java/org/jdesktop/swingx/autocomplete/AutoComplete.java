@@ -45,7 +45,7 @@ final class AutoComplete {
 
     static class FocusAdapter extends java.awt.event.FocusAdapter {
 
-        private AbstractAutoCompleteAdaptor adaptor;
+        private final AbstractAutoCompleteAdaptor adaptor;
 
         FocusAdapter(AbstractAutoCompleteAdaptor adaptor) {
             this.adaptor = adaptor;
@@ -59,7 +59,7 @@ final class AutoComplete {
 
     static class KeyAdapter extends java.awt.event.KeyAdapter {
 
-        private JComboBox comboBox;
+        private final JComboBox comboBox;
 
         KeyAdapter(JComboBox comboBox) {
             this.comboBox = comboBox;
@@ -88,7 +88,7 @@ final class AutoComplete {
 
     static class PropertyChangeListener implements java.beans.PropertyChangeListener {
 
-        private JComboBox comboBox;
+        private final JComboBox comboBox;
 
         PropertyChangeListener(JComboBox comboBox) {
             this.comboBox = comboBox;
@@ -156,7 +156,7 @@ final class AutoComplete {
 
     static class SelectionAction implements Action {
 
-        private Action delegate;
+        private final Action delegate;
 
         SelectionAction(Action delegate) {
             this.delegate = delegate;

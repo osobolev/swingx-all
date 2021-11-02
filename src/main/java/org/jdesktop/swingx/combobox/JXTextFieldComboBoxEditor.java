@@ -10,7 +10,7 @@ import java.awt.event.ActionListener;
 
 public class JXTextFieldComboBoxEditor implements ComboBoxEditor {
 
-    private JXTextField textField;
+    private final JXTextField textField;
 
     public JXTextFieldComboBoxEditor() {
         this(null);

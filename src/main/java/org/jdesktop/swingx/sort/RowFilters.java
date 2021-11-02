@@ -137,7 +137,7 @@ public class RowFilters {
      */
     public abstract static class GeneralFilter extends RowFilter<Object, Object> {
 
-        private int[] columns;
+        private final int[] columns;
 
         protected GeneralFilter(int... columns) {
             checkIndices(columns);
@@ -186,7 +186,7 @@ public class RowFilters {
      */
     private static class RegexFilter extends GeneralFilter {
 
-        private Matcher matcher;
+        private final Matcher matcher;
 
         RegexFilter(Pattern regex, int[] columns) {
             super(columns);

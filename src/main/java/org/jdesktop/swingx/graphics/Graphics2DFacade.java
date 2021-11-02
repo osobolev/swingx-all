@@ -35,7 +35,7 @@ import java.util.Map;
  */
 public abstract class Graphics2DFacade extends Graphics2D {
 
-    private Graphics2D delegate;
+    private final Graphics2D delegate;
 
     protected Graphics2DFacade(Graphics2D delegate) {
         this.delegate = Contract.asNotNull(delegate, "delegate cannot be null");

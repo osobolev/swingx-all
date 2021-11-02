@@ -66,9 +66,9 @@ public class JXMultiThumbSlider<E> extends JComponent {
 
     public static final String uiClassID = "MultiThumbSliderUI";
 
-    private ThumbDataListener tdl;
+    private final ThumbDataListener tdl;
 
-    private List<ThumbComp> thumbs;
+    private final List<ThumbComp> thumbs;
 
     private ThumbRenderer thumbRenderer;
 
@@ -76,7 +76,7 @@ public class JXMultiThumbSlider<E> extends JComponent {
 
     private MultiThumbModel<E> model;
 
-    private List<ThumbListener> listeners = new ArrayList<>();
+    private final List<ThumbListener> listeners = new ArrayList<>();
 
     private ThumbComp selected;
 
@@ -330,7 +330,7 @@ public class JXMultiThumbSlider<E> extends JComponent {
 
     private static class ThumbComp extends JComponent {
 
-        private JXMultiThumbSlider<?> slider;
+        private final JXMultiThumbSlider<?> slider;
 
         ThumbComp(JXMultiThumbSlider<?> slider) {
             this.slider = slider;

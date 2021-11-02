@@ -29,7 +29,7 @@ import java.util.EventObject;
  */
 public class LoginEvent extends EventObject {
 
-    private Throwable cause;
+    private final Throwable cause;
 
     public LoginEvent(Object source) {
         this(source, null);

@@ -46,8 +46,8 @@ import java.util.TreeSet;
  */
 public class SingleDaySelectionModel extends AbstractDateSelectionModel {
 
-    private SortedSet<Date> selectedDates;
-    private SortedSet<Date> unselectableDates;
+    private final SortedSet<Date> selectedDates;
+    private final SortedSet<Date> unselectableDates;
 
     /**
      * Instantiates a SingleDaySelectionModel with default locale.

@@ -33,7 +33,7 @@ import java.util.EventObject;
  */
 public class ErrorEvent extends EventObject {
 
-    private Throwable throwable;
+    private final Throwable throwable;
 
     /**
      * Creates a new instance of <CODE>ErrorEvent</CODE>

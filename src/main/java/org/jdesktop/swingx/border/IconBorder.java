@@ -58,7 +58,7 @@ public class IconBorder implements Border, Serializable {
     private int padding;
     private Icon icon;
     private int iconPosition;
-    private Rectangle iconBounds = new Rectangle();
+    private final Rectangle iconBounds = new Rectangle();
 
     /**
      * Creates an {@code IconBorder} with an empty icon in a trailing position

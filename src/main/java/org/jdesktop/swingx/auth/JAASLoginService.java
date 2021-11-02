@@ -108,9 +108,8 @@ public class JAASLoginService extends LoginService {
 
     private static class JAASCallbackHandler implements CallbackHandler {
 
-        private String name;
-
-        private char[] password;
+        private final String name;
+        private final char[] password;
 
         JAASCallbackHandler(String name, char[] passwd) {
             this.name = name;

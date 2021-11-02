@@ -80,11 +80,11 @@ public class BasicHyperlinkUI extends BasicButtonUI {
         return new BasicHyperlinkUI();
     }
 
-    private static Rectangle viewRect = new Rectangle();
+    private static final Rectangle viewRect = new Rectangle();
 
-    private static Rectangle textRect = new Rectangle();
+    private static final Rectangle textRect = new Rectangle();
 
-    private static Rectangle iconRect = new Rectangle();
+    private static final Rectangle iconRect = new Rectangle();
 
 //    private static MouseListener handCursorListener = new HandCursor();
 
@@ -100,7 +100,7 @@ public class BasicHyperlinkUI extends BasicButtonUI {
 
     private View ulv;
 
-    private PropertyChangeListener pcListener = new PropertyChangeListener() {
+    private final PropertyChangeListener pcListener = new PropertyChangeListener() {
 
         @Override
         public void propertyChange(PropertyChangeEvent evt) {
@@ -882,9 +882,9 @@ public class BasicHyperlinkUI extends BasicButtonUI {
             }
 
             private int width;
-            private View view;
-            private ViewFactory factory;
-            private JComponent host;
+            private final View view;
+            private final ViewFactory factory;
+            private final JComponent host;
         }
     }
 }

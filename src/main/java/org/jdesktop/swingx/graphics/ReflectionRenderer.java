@@ -132,7 +132,7 @@ public class ReflectionRenderer {
     private boolean blurEnabled;
 
     // notifies listeners of properties changes
-    private PropertyChangeSupport changeSupport;
+    private final PropertyChangeSupport changeSupport;
     private StackBlurFilter stackBlurFilter;
 
     /**

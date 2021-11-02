@@ -54,7 +54,7 @@ public class SimpleFileSystemModel implements TreeTableModel {
     // the returned file length for directories
     private static final long ZERO = 0L;
 
-    private File root;
+    private final File root;
 
     /**
      * Creates a file system model, using the root directory as the model root.

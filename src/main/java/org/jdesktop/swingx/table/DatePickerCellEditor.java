@@ -62,7 +62,7 @@ public class DatePickerCellEditor extends AbstractCellEditor implements TableCel
 
     protected boolean ignoreAction;
 
-    private static Logger logger = Logger.getLogger(DatePickerCellEditor.class.getName());
+    private static final Logger logger = Logger.getLogger(DatePickerCellEditor.class.getName());
 
     private static final long serialVersionUID = -1L;
 

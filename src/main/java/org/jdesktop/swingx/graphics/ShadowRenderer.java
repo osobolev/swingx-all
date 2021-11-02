@@ -117,7 +117,7 @@ public class ShadowRenderer {
     private Color color = Color.BLACK;
 
     // notifies listeners of properties changes
-    private PropertyChangeSupport changeSupport;
+    private final PropertyChangeSupport changeSupport;
 
     /**
      * <p>Creates a default good looking shadow generator.

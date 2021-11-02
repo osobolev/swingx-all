@@ -47,9 +47,10 @@ import java.text.ParseException;
  */
 public class NumberEditorExt extends DefaultCellEditor {
 
-    private static Class<?>[] argTypes = new Class[] {String.class};
+    private static final Class<?>[] argTypes = new Class[] {String.class};
+
     Constructor<?> constructor;
-    private boolean useStrictFormatter;
+    private final boolean useStrictFormatter;
 
     /**
      * Instantiates an editor with default NumberFormat and default NumberFormatter.

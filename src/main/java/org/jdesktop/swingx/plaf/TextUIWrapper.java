@@ -27,7 +27,7 @@ public abstract class TextUIWrapper<UI extends TextUI> {
         return defaultWrapper;
     }
 
-    private Class<UI> wrapperClass;
+    private final Class<UI> wrapperClass;
 
     protected TextUIWrapper(Class<UI> wrapperClass) {
         this.wrapperClass = wrapperClass;

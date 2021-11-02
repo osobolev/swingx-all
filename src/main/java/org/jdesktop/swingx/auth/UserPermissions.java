@@ -42,7 +42,7 @@ import java.beans.PropertyChangeSupport;
 public class UserPermissions {
 
     private static final UserPermissions INSTANCE = new UserPermissions();
-    private PropertyChangeSupport propertyChange = new PropertyChangeSupport(this);
+    private final PropertyChangeSupport propertyChange = new PropertyChangeSupport(this);
     private String[] roles;
 
     /**

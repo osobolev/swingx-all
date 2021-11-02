@@ -173,7 +173,7 @@ public class JXEditorPane extends JEditorPane implements /*Searchable, */Targeta
     private static final String ACTION_COPY = "copy";
     private static final String ACTION_PASTE = "paste";
 
-    private TargetableSupport targetSupport = new TargetableSupport(this);
+    private final TargetableSupport targetSupport = new TargetableSupport(this);
     private Searchable searchable;
 
     /**
@@ -432,7 +432,7 @@ public class JXEditorPane extends JEditorPane implements /*Searchable, */Targeta
      */
     private class ParagraphSelector extends JComboBox implements ItemListener {
 
-        private Map<HTML.Tag, String> itemMap;
+        private final Map<HTML.Tag, String> itemMap;
 
         ParagraphSelector() {
 

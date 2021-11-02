@@ -174,7 +174,7 @@ public class JXTaskPane extends JPanel implements JXCollapsiblePane.CollapsibleP
     private int mnemonic;
     private int mnemonicIndex = -1;
 
-    private JXCollapsiblePane collapsePane;
+    private final JXCollapsiblePane collapsePane;
 
     /**
      * Creates a new empty <code>JXTaskPane</code>.

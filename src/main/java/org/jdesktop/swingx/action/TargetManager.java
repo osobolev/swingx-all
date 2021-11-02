@@ -83,7 +83,7 @@ public class TargetManager {
     private static TargetManager INSTANCE;
     private List<Targetable> targetList;
     private Targetable target;
-    private PropertyChangeSupport propertySupport;
+    private final PropertyChangeSupport propertySupport;
 
     /**
      * Create a target manager. Use this constructor if the application

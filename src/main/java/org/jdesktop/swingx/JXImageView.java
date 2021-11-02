@@ -87,7 +87,7 @@ import java.util.logging.Logger;
 @JavaBean
 public class JXImageView extends JXPanel {
 
-    private Logger log = Logger.getLogger(JXImageView.class.getName());
+    private final Logger log = Logger.getLogger(JXImageView.class.getName());
     /* ======= instance variables ========= */
     // the image this view will show
     private Image image;
@@ -95,7 +95,7 @@ public class JXImageView extends JXPanel {
     private URL imageURL;
 
     // support for error listeners
-    private ErrorSupport errorSupport = new ErrorSupport(this);
+    private final ErrorSupport errorSupport = new ErrorSupport(this);
 
     // location to draw image. if null then draw in the center
     private Point2D imageLocation;
@@ -104,7 +104,7 @@ public class JXImageView extends JXPanel {
     // controls whether the user can move images around
     private boolean editable = true;
     // the handler for moving the image around within the panel
-    private MoveHandler moveHandler = new MoveHandler(this);
+    private final MoveHandler moveHandler = new MoveHandler(this);
     // controls the drag part of drag and drop
     private boolean dragEnabled = false;
     // controls the filename of the dropped file
@@ -555,7 +555,7 @@ public class JXImageView extends JXPanel {
 
     private class MoveHandler extends MouseInputAdapter {
 
-        private JXImageView panel;
+        private final JXImageView panel;
         private Point prev = null;
         private Point start = null;
 
@@ -695,10 +695,10 @@ public class JXImageView extends JXPanel {
 
     private static class ImageTransferable implements Transferable {
 
-        private Image img;
+        private final Image img;
         private List<File> files;
-        private String exportName;
-        private String exportFormat;
+        private final String exportName;
+        private final String exportFormat;
 
         ImageTransferable(Image img, String exportName, String exportFormat) {
             this.img = img;

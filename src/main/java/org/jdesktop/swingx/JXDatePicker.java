@@ -928,8 +928,8 @@ public class JXDatePicker extends JComponent {
      */
     private final class TodayPanel extends JXPanel {
 
-        private TodayAction todayAction;
-        private JXHyperlink todayLink;
+        private final TodayAction todayAction;
+        private final JXHyperlink todayLink;
 
         TodayPanel() {
             super(new FlowLayout());

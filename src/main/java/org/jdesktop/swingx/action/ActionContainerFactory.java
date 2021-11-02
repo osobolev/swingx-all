@@ -73,7 +73,7 @@ public class ActionContainerFactory {
     /**
      * Standard margin for toolbar buttons to improve their look
      */
-    private static Insets TOOLBAR_BUTTON_MARGIN = new Insets(1, 1, 1, 1);
+    private static final Insets TOOLBAR_BUTTON_MARGIN = new Insets(1, 1, 1, 1);
 
     private ActionMap manager;
 

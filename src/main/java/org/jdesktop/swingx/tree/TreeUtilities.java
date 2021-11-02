@@ -148,7 +148,7 @@ public class TreeUtilities {
     public static class BreadthFirstModelEnumeration implements Enumeration {
 
         protected Queue<Enumeration> queue;
-        private TreeModel model;
+        private final TreeModel model;
 
         public BreadthFirstModelEnumeration(TreeModel model) {
             this(model, model.getRoot());

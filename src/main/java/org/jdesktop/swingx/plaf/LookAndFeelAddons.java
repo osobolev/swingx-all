@@ -69,7 +69,7 @@ import java.util.logging.Logger;
 @SuppressWarnings("nls")
 public abstract class LookAndFeelAddons {
 
-    private static List<ComponentAddon> contributedComponents = new ArrayList<>();
+    private static final List<ComponentAddon> contributedComponents = new ArrayList<>();
 
     /**
      * Key used to ensure the current UIManager has been populated by the LookAndFeelAddons.

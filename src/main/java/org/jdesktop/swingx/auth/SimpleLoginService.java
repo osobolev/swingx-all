@@ -39,7 +39,7 @@ import java.util.Map;
  */
 public final class SimpleLoginService extends LoginService {
 
-    private Map<String, char[]> passwordMap;
+    private final Map<String, char[]> passwordMap;
 
     /**
      * Creates a new SimpleLoginService based on the given password map.

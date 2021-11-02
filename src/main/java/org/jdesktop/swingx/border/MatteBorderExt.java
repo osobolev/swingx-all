@@ -270,8 +270,9 @@ public class MatteBorderExt extends MatteBorder {
     protected Icon getDefaultIcon() {
         if (defaultIcon == null) {
             defaultIcon = new Icon() {
-                private int width = 3;
-                private int height = 3;
+
+                private final int width = 3;
+                private final int height = 3;
 
                 public int getIconWidth() {
                     return width;

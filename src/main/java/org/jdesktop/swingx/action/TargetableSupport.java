@@ -31,7 +31,7 @@ import java.awt.event.ActionEvent;
  */
 public class TargetableSupport {
 
-    private JComponent component;
+    private final JComponent component;
 
     /**
      * Creates a new instance of TargetableSupport

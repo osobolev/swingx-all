@@ -67,7 +67,7 @@ public final class ListSortUI {
     private int[] lastModelSelection;
     private boolean sorterChanged;
     private boolean ignoreSortChange;
-    private RowSorterListener sorterListener;
+    private final RowSorterListener sorterListener;
 
     /**
      * Intanstiates a SortUI on the list which has the given RowSorter.

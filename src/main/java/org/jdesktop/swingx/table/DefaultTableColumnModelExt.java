@@ -58,19 +58,19 @@ public class DefaultTableColumnModelExt extends DefaultTableColumnModel implemen
      * contains a list of all columns, in the order in which were
      * added to the model.
      */
-    private List<TableColumn> initialColumns = new ArrayList<>();
+    private final List<TableColumn> initialColumns = new ArrayList<>();
 
     /**
      * contains a list of all column, in the order they would appear if
      * all were visible.
      */
-    private List<TableColumn> currentColumns = new ArrayList<>();
+    private final List<TableColumn> currentColumns = new ArrayList<>();
 
     /**
      * Listener attached to TableColumnExt instances to listen for changes
      * to their visibility status, and to hide/show the column as oppropriate
      */
-    private VisibilityListener visibilityListener = new VisibilityListener();
+    private final VisibilityListener visibilityListener = new VisibilityListener();
 
     /**
      * Creates a an empty DefaultTableColumnModelExt.

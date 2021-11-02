@@ -49,8 +49,8 @@ public class RectanglePainter extends AbstractAreaPainter<Object> {
     //private Insets insets = new Insets(0,0,0,0);
     private int roundWidth;
     private int roundHeight;
-    private int width;
-    private int height;
+    private final int width;
+    private final int height;
     //private double strokeWidth = 1;
 
     /**

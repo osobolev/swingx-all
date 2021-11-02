@@ -43,37 +43,37 @@ public class ErrorInfo {
     /**
      * Short string that will be used as a error title
      */
-    private String title;
+    private final String title;
     /**
      * Basic message that describes incident
      */
-    private String basicErrorMessage;
+    private final String basicErrorMessage;
     /**
      * Message that will fully describe the incident with all the
      * available details
      */
-    private String detailedErrorMessage;
+    private final String detailedErrorMessage;
     /**
      * A category name, indicating where in the application this incident
      * occurred. It is recommended that this be the same value as you
      * would use when logging.
      */
-    private String category;
+    private final String category;
     /**
      * Optional Throwable that will be used as a possible source for
      * additional information
      */
-    private Throwable errorException;
+    private final Throwable errorException;
     /**
      * Used to specify how bad this error was.
      */
-    private Level errorLevel;
+    private final Level errorLevel;
     /**
      * A Map which captures the state of the application
      * at the time of an exception. This state is then available for error
      * reports.
      */
-    private Map<String, String> state;
+    private final Map<String, String> state;
 
     /**
      * Creates a new ErrorInfo based on the provided data.

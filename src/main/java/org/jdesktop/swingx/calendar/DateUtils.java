@@ -37,7 +37,7 @@ import java.util.Date;
  */
 public class DateUtils {
 
-    private static Calendar CALENDAR = Calendar.getInstance();
+    private static final Calendar CALENDAR = Calendar.getInstance();
 
     /**
      * Returns the last millisecond of the specified date.

@@ -222,7 +222,7 @@ public class AbstractAreaEffect implements AreaEffect {
     /**
      * Utility field used by bound properties.
      */
-    private PropertyChangeSupport propertyChangeSupport = new PropertyChangeSupport(this);
+    private final PropertyChangeSupport propertyChangeSupport = new PropertyChangeSupport(this);
 
     /**
      * Adds a PropertyChangeListener to the listener list.

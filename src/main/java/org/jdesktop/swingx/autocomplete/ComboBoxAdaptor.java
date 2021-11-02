@@ -41,7 +41,7 @@ public class ComboBoxAdaptor extends AbstractAutoCompleteAdaptor implements Acti
     /**
      * the combobox being adapted
      */
-    private JComboBox comboBox;
+    private final JComboBox comboBox;
 
     /**
      * Creates a new ComobBoxAdaptor for the given combobox.

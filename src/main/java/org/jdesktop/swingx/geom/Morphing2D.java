@@ -42,8 +42,8 @@ import java.awt.geom.Rectangle2D;
 public class Morphing2D implements Shape {
 
     private double morph;
-    private Geometry startGeometry;
-    private Geometry endGeometry;
+    private final Geometry startGeometry;
+    private final Geometry endGeometry;
 
     /**
      * <p>Creates a new morphing shape. A morphing shape can be used to turn

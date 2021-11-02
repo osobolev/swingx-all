@@ -121,7 +121,7 @@ public class UIManagerExt {
          * Access to this should be done while holding a lock on the
          * UIDefaults, eg synchronized(this).
          */
-        private Map<Locale, Map<String, String>> resourceCache;
+        private final Map<Locale, Map<String, String>> resourceCache;
 
         UIDefaultsExt() {
             resourceCache = new HashMap<>();
@@ -198,7 +198,7 @@ public class UIManagerExt {
         }
     }
 
-    private static UIDefaultsExt uiDefaultsExt = new UIDefaultsExt();
+    private static final UIDefaultsExt uiDefaultsExt = new UIDefaultsExt();
 
     private UIManagerExt() {
         //does nothing

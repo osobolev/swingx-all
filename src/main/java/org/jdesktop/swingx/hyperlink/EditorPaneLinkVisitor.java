@@ -41,7 +41,7 @@ import java.net.URL;
  */
 public class EditorPaneLinkVisitor implements ActionListener {
 
-    private JXEditorPane editorPane;
+    private final JXEditorPane editorPane;
     private HyperlinkListener hyperlinkListener;
     private LinkModel internalLink;
 

@@ -96,7 +96,7 @@ public class BasicCalendarHeaderHandler extends CalendarHeaderHandler {
          * Localized month strings used in title.
          */
         private String[] monthNames;
-        private StringValue tsv;
+        private final StringValue tsv;
 
         public ZoomOutAction() {
             tsv = value -> {

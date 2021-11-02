@@ -83,17 +83,17 @@ public class JXTitledSeparator extends JXPanel {
     /**
      * Implementation detail: the label used to display the title
      */
-    private JLabel label;
+    private final JLabel label;
     /**
      * Implementation detail: a separator to use on the left of the
      * title if alignment is centered or right justified
      */
-    private JSeparator leftSeparator;
+    private final JSeparator leftSeparator;
     /**
      * Implementation detail: a separator to use on the right of the
      * title if alignment is centered or left justified
      */
-    private JSeparator rightSeparator;
+    private final JSeparator rightSeparator;
 
     private int iconTextGap = 5;
 

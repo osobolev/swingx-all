@@ -42,11 +42,10 @@ import java.awt.Component;
  */
 public final class HighlighterFactory {
 
-    private static Highlighter COMPUTED_FOREGROUND_HIGHLIGHTER = new AbstractHighlighter() {
+    private static final Highlighter COMPUTED_FOREGROUND_HIGHLIGHTER = new AbstractHighlighter() {
         @Override
         protected Component doHighlight(Component component, ComponentAdapter adapter) {
             component.setForeground(PaintUtils.computeForeground(component.getBackground()));
-
             return component;
         }
     };

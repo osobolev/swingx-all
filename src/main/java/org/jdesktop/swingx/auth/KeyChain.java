@@ -62,7 +62,7 @@ public class KeyChain {
 
     private KeyStore store;
 
-    private char[] masterPassword;
+    private final char[] masterPassword;
 
     /**
      * Creates an instance of KeyChain and initializes the store

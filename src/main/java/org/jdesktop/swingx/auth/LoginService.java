@@ -45,9 +45,9 @@ import java.util.logging.Logger;
 public abstract class LoginService extends AbstractBean {
 
     @SuppressWarnings("unused")
-    private Logger LOG = Logger.getLogger(LoginService.class.getName());
+    private final Logger LOG = Logger.getLogger(LoginService.class.getName());
 
-    private EventListenerList listenerList = new EventListenerList();
+    private final EventListenerList listenerList = new EventListenerList();
 
     private SwingWorker<Boolean, Void> loginWorker;
 

@@ -72,7 +72,7 @@ import static org.jdesktop.swingx.SwingXUtilities.isUIInstallable;
  */
 public class BasicTaskPaneUI extends TaskPaneUI {
 
-    private static FocusListener focusListener = new RepaintOnFocus();
+    private static final FocusListener focusListener = new RepaintOnFocus();
 
     public static ComponentUI createUI(JComponent c) {
         return new BasicTaskPaneUI();

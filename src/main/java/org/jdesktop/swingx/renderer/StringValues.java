@@ -146,7 +146,7 @@ public final class StringValues {
      */
     public static class StringValueUIResource implements StringValue, UIResource {
 
-        private StringValue delegate;
+        private final StringValue delegate;
 
         public StringValueUIResource(StringValue toString) {
             Contract.asNotNull(toString, "delegate StringValue must not be null");

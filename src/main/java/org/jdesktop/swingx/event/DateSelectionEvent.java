@@ -45,8 +45,8 @@ public class DateSelectionEvent extends EventObject {
         CALENDAR_CHANGED,
     }
 
-    private EventType eventType;
-    private boolean adjusting;
+    private final EventType eventType;
+    private final boolean adjusting;
 
     /**
      * Constructs a prototypical Event.

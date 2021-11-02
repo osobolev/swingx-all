@@ -48,8 +48,8 @@ import java.awt.Insets;
  */
 class SynthBorder extends AbstractBorder implements UIResource {
 
-    private SynthUI ui;
-    private Insets insets;
+    private final SynthUI ui;
+    private final Insets insets;
 
     SynthBorder(SynthUI ui, Insets insets) {
         this.ui = ui;

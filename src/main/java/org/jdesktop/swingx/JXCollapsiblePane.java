@@ -328,7 +328,7 @@ public class JXCollapsiblePane extends JXPanel {
      * Timer used for doing the transparency animation (fade-in)
      */
     private Timer animateTimer;
-    private AnimationListener animator;
+    private final AnimationListener animator;
     private int currentDimension = -1;
     private WrapperContainer wrapper;
     private boolean useAnimation = true;

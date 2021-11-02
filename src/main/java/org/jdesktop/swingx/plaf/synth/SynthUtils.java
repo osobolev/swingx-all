@@ -47,7 +47,7 @@ public class SynthUtils {
     /**
      * Used to avoid null painter checks everywhere.
      */
-    private static SynthPainter NULL_PAINTER = new SynthPainter() {
+    private static final SynthPainter NULL_PAINTER = new SynthPainter() {
     };
 
     /**

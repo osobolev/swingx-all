@@ -41,9 +41,9 @@ public class PatternPredicate implements HighlightPredicate {
 
     public static final int ALL = -1;
 
-    private int highlightColumn;
-    private int testColumn;
-    private Pattern pattern;
+    private final int highlightColumn;
+    private final int testColumn;
+    private final Pattern pattern;
 
     /**
      * Instantiates a Predicate with the given Pattern and testColumn index

@@ -49,8 +49,8 @@ class CalendarCellContext extends CellContext {
      * <p>
      * Added as preliminary fix for #1028-swingx: title border incorrect if box-padding 0
      */
-    private int arrowPaddingX = 3;
-    private int arrowPaddingY = 3;
+    private final int arrowPaddingX = 3;
+    private final int arrowPaddingY = 3;
 
     private CalendarState dayState;
 

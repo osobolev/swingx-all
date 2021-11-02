@@ -38,7 +38,7 @@ import javax.swing.UIManager;
 @SuppressWarnings("nls")
 public abstract class AbstractComponentAddon implements ComponentAddon {
 
-    private String name;
+    private final String name;
 
     protected AbstractComponentAddon(String name) {
         this.name = name;

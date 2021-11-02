@@ -42,7 +42,8 @@ import java.util.logging.Logger;
 public class DatePickerFormatter extends JFormattedTextField.AbstractFormatter {
 
     private static final Logger LOG = Logger.getLogger(DatePickerFormatter.class.getName());
-    private DateFormat[] _formats;
+
+    private final DateFormat[] _formats;
 
     /**
      * Instantiates a formatter with the localized format patterns defined

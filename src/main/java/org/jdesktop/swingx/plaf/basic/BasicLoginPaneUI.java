@@ -61,7 +61,7 @@ public class BasicLoginPaneUI extends LoginPaneUI {
         }
     }
 
-    private JXLoginPane dlg;
+    private final JXLoginPane dlg;
 
     /**
      * Creates a new instance of BasicLoginDialogUI

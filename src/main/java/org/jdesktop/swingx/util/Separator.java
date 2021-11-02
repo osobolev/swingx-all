@@ -16,7 +16,7 @@ package org.jdesktop.swingx.util;
 public class Separator<T> {
 
     private T next;
-    private T separator;
+    private final T separator;
 
     /**
      * Constructs a separator with the specified initial value and remaining separator.

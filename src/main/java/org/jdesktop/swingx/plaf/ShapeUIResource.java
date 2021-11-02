@@ -37,7 +37,7 @@ import java.awt.geom.Rectangle2D;
  */
 public class ShapeUIResource implements Shape, UIResource {
 
-    private Shape s;
+    private final Shape s;
 
     /**
      * Creates a new instance of PainterUIResource

@@ -122,7 +122,7 @@ public class JXLabel extends JLabel implements BackgroundPaintable {
         RIGHT(StyleConstants.ALIGN_RIGHT),
         JUSTIFY(StyleConstants.ALIGN_JUSTIFIED);
 
-        private int value;
+        private final int value;
 
         TextAlignment(int val) {
             value = val;
@@ -1315,9 +1315,9 @@ public class JXLabel extends JLabel implements BackgroundPaintable {
             return factory;
         }
 
-        private View view;
+        private final View view;
 
-        private ViewFactory factory;
+        private final ViewFactory factory;
 
         @Override
         public int getWidth() {

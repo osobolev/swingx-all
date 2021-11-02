@@ -32,7 +32,7 @@ import javax.swing.event.TreeExpansionListener;
  */
 public class TreeExpansionBroadcaster implements TreeExpansionListener {
 
-    private Object source;
+    private final Object source;
 
     private EventListenerList listeners;
 

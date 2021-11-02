@@ -482,9 +482,9 @@ public class JXButton extends JButton implements BackgroundPaintable {
 
     private boolean paintBorderInsets = true;
 
-    private Rectangle viewRect = new Rectangle();
-    private Rectangle textRect = new Rectangle();
-    private Rectangle iconRect = new Rectangle();
+    private final Rectangle viewRect = new Rectangle();
+    private final Rectangle textRect = new Rectangle();
+    private final Rectangle iconRect = new Rectangle();
 
     /**
      * Creates a button with no set text or icon.

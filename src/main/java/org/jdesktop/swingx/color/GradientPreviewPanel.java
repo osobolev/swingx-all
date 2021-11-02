@@ -49,7 +49,7 @@ import java.util.logging.Logger;
  */
 public class GradientPreviewPanel extends JXPanel {
 
-    private Paint checker_texture;
+    private final Paint checker_texture;
     private Point2D start;
     private Point2D end;
     public JXGradientChooser picker;
@@ -114,7 +114,7 @@ public class GradientPreviewPanel extends JXPanel {
     }
 
     private MultiThumbModel model;
-    private Logger log = Logger.getLogger(GradientPreviewPanel.class.getName());
+    private final Logger log = Logger.getLogger(GradientPreviewPanel.class.getName());
 
     private List<Thumb<Color>> getStops() {
         // calculate the color stops

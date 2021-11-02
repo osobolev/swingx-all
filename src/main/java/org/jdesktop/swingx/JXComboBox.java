@@ -79,7 +79,7 @@ public class JXComboBox extends JComboBox {
          * the delegate.
          */
         private ListCellRenderer delegateRenderer;
-        private JRendererPanel wrapper;
+        private final JRendererPanel wrapper;
 
         /**
          * Instantiates a DelegatingRenderer with combo box's default renderer as delegate.

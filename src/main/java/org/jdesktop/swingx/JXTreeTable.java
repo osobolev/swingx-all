@@ -155,7 +155,7 @@ public class JXTreeTable extends JXTable {
      * Editor used to edit cells within the
      * {@link #isHierarchical(int) hierarchical} column.
      */
-    private TreeTableCellEditor hierarchicalEditor;
+    private final TreeTableCellEditor hierarchicalEditor;
 
     private TreeTableHacker treeTableHacker;
     private boolean consumedOnPress;
@@ -2784,7 +2784,7 @@ public class JXTreeTable extends JXTable {
                 }
 
                 @SuppressWarnings("unused")
-                Point rollover = new Point(-1, -1);
+                final Point rollover = new Point(-1, -1);
             };
         }
 

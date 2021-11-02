@@ -85,11 +85,11 @@ public class JXFrame extends JFrame {
     private boolean waitCursorVisible = false;
     private boolean waiting = false;
     private StartPosition startPosition;
-    private boolean hasBeenVisible = false; //startPosition is only used the first time the window is shown
-    private AWTEventListener keyEventListener; //for listening to KeyPreview events
+    private final boolean hasBeenVisible = false; //startPosition is only used the first time the window is shown
+    private final AWTEventListener keyEventListener; //for listening to KeyPreview events
     private boolean keyPreview = false;
-    private AWTEventListener idleListener; //for listening to events. If no events happen for a specific amount of time, mark as idle
-    private Timer idleTimer;
+    private final AWTEventListener idleListener; //for listening to events. If no events happen for a specific amount of time, mark as idle
+    private final Timer idleTimer;
     private long idleThreshold = 0;
     private boolean idle;
 

@@ -7,7 +7,7 @@ import javax.swing.event.ListDataListener;
 
 public class ListModelComboBoxWrapper extends AbstractListModel implements ComboBoxModel {
 
-    private ListModel delegate;
+    private final ListModel delegate;
 
     private Object selectedItem;
 

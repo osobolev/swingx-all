@@ -96,7 +96,7 @@ public class CompoundPainter<T> extends AbstractPainter<T> {
         }
     }
 
-    private Handler handler;
+    private final Handler handler;
 
     private Painter[] painters = new Painter[0];
     private AffineTransform transform;

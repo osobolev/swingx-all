@@ -53,7 +53,7 @@ public class LinkModel implements Comparable {
 
     // hack - this class assumes that the url always != null
     // need to cleanup
-    private static String defaultURLString = "https://jdnc.dev.java.net";
+    private static final String defaultURLString = "https://jdnc.dev.java.net";
 
     private static URL defaultURL;
 

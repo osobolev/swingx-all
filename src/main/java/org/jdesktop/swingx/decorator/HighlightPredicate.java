@@ -327,7 +327,7 @@ public interface HighlightPredicate {
      */
     class NotHighlightPredicate implements HighlightPredicate {
 
-        private HighlightPredicate predicate;
+        private final HighlightPredicate predicate;
 
         /**
          * Instantiates a not against the given predicate.
@@ -363,7 +363,7 @@ public interface HighlightPredicate {
      */
     class AndHighlightPredicate implements HighlightPredicate {
 
-        private List<HighlightPredicate> predicate;
+        private final List<HighlightPredicate> predicate;
 
         /**
          * Instantiates a predicate which ands all given predicates.
@@ -414,7 +414,7 @@ public interface HighlightPredicate {
      */
     class OrHighlightPredicate implements HighlightPredicate {
 
-        private List<HighlightPredicate> predicate;
+        private final List<HighlightPredicate> predicate;
 
         /**
          * Instantiates a predicate which ORs all given predicates.
@@ -464,7 +464,7 @@ public interface HighlightPredicate {
 
     class RowGroupHighlightPredicate implements HighlightPredicate {
 
-        private int linesPerGroup;
+        private final int linesPerGroup;
 
         /**
          * Instantiates a predicate with the given grouping.
@@ -590,7 +590,7 @@ public interface HighlightPredicate {
      */
     class DepthHighlightPredicate implements HighlightPredicate {
 
-        private List<Integer> depthList;
+        private final List<Integer> depthList;
 
         /**
          * Instantiates a predicate which returns true for the
@@ -635,7 +635,7 @@ public interface HighlightPredicate {
      */
     class EqualsHighlightPredicate implements HighlightPredicate {
 
-        private Object compareValue;
+        private final Object compareValue;
 
         /**
          * Instantitates a predicate with null compare value.
@@ -682,7 +682,7 @@ public interface HighlightPredicate {
      */
     class TypeHighlightPredicate implements HighlightPredicate {
 
-        private Class<?> clazz;
+        private final Class<?> clazz;
 
         /**
          * Instantiates a predicate with Object.clazz. This is essentially the
@@ -730,7 +730,7 @@ public interface HighlightPredicate {
      */
     class ColumnTypeHighlightPredicate implements HighlightPredicate {
 
-        private Class<?> clazz;
+        private final Class<?> clazz;
 
         /**
          * Instantitates a predicate with Object.class. <p>

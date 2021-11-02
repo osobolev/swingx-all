@@ -119,7 +119,7 @@ public class JXGradientChooser extends JXPanel {
     }
 
     private boolean thumbsMoving = false;
-    private Logger log = Logger.getLogger(JXGradientChooser.class.getName());
+    private final Logger log = Logger.getLogger(JXGradientChooser.class.getName());
 
     /**
      * Sets the gradient within this panel to the new gradient. This will delete

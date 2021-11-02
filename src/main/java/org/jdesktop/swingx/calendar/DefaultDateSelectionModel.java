@@ -36,7 +36,7 @@ import java.util.TreeSet;
 public class DefaultDateSelectionModel extends AbstractDateSelectionModel {
 
     private SelectionMode selectionMode;
-    private SortedSet<Date> selectedDates;
+    private final SortedSet<Date> selectedDates;
     private SortedSet<Date> unselectableDates;
 
     /**

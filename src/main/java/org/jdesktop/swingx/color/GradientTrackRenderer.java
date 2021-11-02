@@ -43,7 +43,7 @@ import java.util.List;
  */
 public class GradientTrackRenderer extends JComponent implements TrackRenderer {
 
-    private Paint checker_paint;
+    private final Paint checker_paint;
 
     public GradientTrackRenderer() {
         checker_paint = PaintUtils.getCheckerPaint();

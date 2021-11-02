@@ -19,7 +19,7 @@ import java.awt.Rectangle;
  */
 public class SafeBorder extends AbstractBorder implements UIResource {
 
-    private AbstractBorder delegate;
+    private final AbstractBorder delegate;
 
     public SafeBorder(AbstractBorder delegate) {
         this.delegate = delegate;
