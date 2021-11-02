@@ -105,7 +105,7 @@ public class TableSearchable extends AbstractSearchable {
      * found in this row or null if no match is found
      */
     private SearchResult findMatchForwardInRow(Pattern pattern, int row) {
-        int startColumn = lastSearchResult.foundColumn < 0 ? 0 : lastSearchResult.foundColumn;
+        int startColumn = Math.max(lastSearchResult.foundColumn, 0);
         if (isValidIndex(row)) {
             for (int column = startColumn; column < table.getColumnCount(); column++) {
                 SearchResult result = findMatchAt(pattern, row, column);

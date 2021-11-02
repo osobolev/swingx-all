@@ -237,7 +237,7 @@ public class IconBorder implements Border, Serializable {
      *                {@code padding} will be set to {@code 0}.
      */
     public void setPadding(int padding) {
-        this.padding = padding < 0 ? 0 : padding;
+        this.padding = Math.max(padding, 0);
     }
 
     /**

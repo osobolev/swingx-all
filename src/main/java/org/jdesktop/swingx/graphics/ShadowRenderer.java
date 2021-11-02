@@ -265,11 +265,7 @@ public class ShadowRenderer {
     public void setSize(int shadowSize) {
         int oldSize = this.size;
 
-        if (shadowSize < 0) {
-            this.size = 0;
-        } else {
-            this.size = shadowSize;
-        }
+        this.size = Math.max(shadowSize, 0);
 
         changeSupport.firePropertyChange(SIZE_CHANGED_PROPERTY, oldSize, this.size);
     }

@@ -480,7 +480,7 @@ public class JXTaskPane extends JPanel implements JXCollapsiblePane.CollapsibleP
         } else if (lci == -1) {
             mnemonicIndex = uci;
         } else {
-            mnemonicIndex = lci < uci ? lci : uci;
+            mnemonicIndex = Math.min(lci, uci);
         }
     }
 
