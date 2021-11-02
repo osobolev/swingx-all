@@ -711,17 +711,17 @@ public class JXSearchField extends JXTextField {
      * @param override     override custom values
      */
     public void customSetUIProperty(String propertyName, Object value, boolean override) {
-        if (propertyName == "useSeperatePopupButton") {
+        if ("useSeperatePopupButton".equals(propertyName)) {
             if (!useSeperatePopupButtonSet || override) {
                 setUseSeperatePopupButton(((Boolean) value).booleanValue());
                 useSeperatePopupButtonSet = false;
             }
-        } else if (propertyName == "layoutStyle") {
+        } else if ("layoutStyle".equals(propertyName)) {
             if (!layoutStyleSet || override) {
                 setLayoutStyle(LayoutStyle.valueOf(value.toString()));
                 layoutStyleSet = false;
             }
-        } else if (propertyName == "promptFontStyle") {
+        } else if ("promptFontStyle".equals(propertyName)) {
             if (!promptFontStyleSet || override) {
                 setPromptFontStyle((Integer) value);
                 promptFontStyleSet = false;

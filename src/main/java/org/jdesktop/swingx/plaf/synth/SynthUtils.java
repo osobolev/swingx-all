@@ -109,13 +109,13 @@ public class SynthUtils {
      */
     public static boolean shouldUpdateStyle(PropertyChangeEvent event) {
         String eName = event.getPropertyName();
-        if ("name" == eName) {
+        if ("name".equals(eName)) {
             // Always update on a name change
             return true;
-        } else if ("componentOrientation" == eName) {
+        } else if ("componentOrientation".equals(eName)) {
             // Always update on a component orientation change
             return true;
-        } else if ("ancestor" == eName && event.getNewValue() != null) {
+        } else if ("ancestor".equals(eName) && event.getNewValue() != null) {
             // Only update on an ancestor change when getting a valid
             // parent and the LookAndFeel wants this.
             LookAndFeel laf = UIManager.getLookAndFeel();
@@ -126,15 +126,15 @@ public class SynthUtils {
         // we couldn't actually provide the public API necessary to allow
         // NimbusLookAndFeel (a subclass of SynthLookAndFeel) to provide its
         // own rules for shouldUpdateStyle.
-        else if ("Nimbus.Overrides" == eName) {
+        else if ("Nimbus.Overrides".equals(eName)) {
             // Always update when the Nimbus.Overrides client property has
             // been changed
             return true;
-        } else if ("Nimbus.Overrides.InheritDefaults" == eName) {
+        } else if ("Nimbus.Overrides.InheritDefaults".equals(eName)) {
             // Always update when the Nimbus.Overrides.InheritDefaults
             // client property has changed
             return true;
-        } else if ("JComponent.sizeVariant" == eName) {
+        } else if ("JComponent.sizeVariant".equals(eName)) {
             // Always update when the JComponent.sizeVariant
             // client property has changed
             return true;

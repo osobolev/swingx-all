@@ -63,6 +63,7 @@ import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.Objects;
 import java.util.Vector;
 import java.util.logging.Logger;
 import java.util.regex.Pattern;
@@ -1493,7 +1494,7 @@ public class JXList extends JList {
     @Override
     public void updateUI() {
         // PENDING JW: temporary during dev to quickly switch between default and custom ui
-        if (getUIClassID() == super.getUIClassID()) {
+        if (Objects.equals(getUIClassID(), super.getUIClassID())) {
             super.updateUI();
         } else {
             setUI((ListUI) LookAndFeelAddons.getUI(this, ListUI.class));

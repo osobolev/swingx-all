@@ -1972,59 +1972,59 @@ public class BasicXListUI extends BasicListUI {
             JList list = (JList) e.getSource();
             BasicXListUI ui = (BasicXListUI) LookAndFeelUtils.getUIOfType(list.getUI(), BasicXListUI.class);
 
-            if (name == SELECT_PREVIOUS_COLUMN) {
+            if (SELECT_PREVIOUS_COLUMN.equals(name)) {
                 changeSelection(list, CHANGE_SELECTION, getNextColumnIndex(list, ui, -1), -1);
-            } else if (name == SELECT_PREVIOUS_COLUMN_EXTEND) {
+            } else if (SELECT_PREVIOUS_COLUMN_EXTEND.equals(name)) {
                 changeSelection(list, EXTEND_SELECTION, getNextColumnIndex(list, ui, -1), -1);
-            } else if (name == SELECT_PREVIOUS_COLUMN_CHANGE_LEAD) {
+            } else if (SELECT_PREVIOUS_COLUMN_CHANGE_LEAD.equals(name)) {
                 changeSelection(list, CHANGE_LEAD, getNextColumnIndex(list, ui, -1), -1);
-            } else if (name == SELECT_NEXT_COLUMN) {
+            } else if (SELECT_NEXT_COLUMN.equals(name)) {
                 changeSelection(list, CHANGE_SELECTION, getNextColumnIndex(list, ui, 1), 1);
-            } else if (name == SELECT_NEXT_COLUMN_EXTEND) {
+            } else if (SELECT_NEXT_COLUMN_EXTEND.equals(name)) {
                 changeSelection(list, EXTEND_SELECTION, getNextColumnIndex(list, ui, 1), 1);
-            } else if (name == SELECT_NEXT_COLUMN_CHANGE_LEAD) {
+            } else if (SELECT_NEXT_COLUMN_CHANGE_LEAD.equals(name)) {
                 changeSelection(list, CHANGE_LEAD, getNextColumnIndex(list, ui, 1), 1);
-            } else if (name == SELECT_PREVIOUS_ROW) {
+            } else if (SELECT_PREVIOUS_ROW.equals(name)) {
                 changeSelection(list, CHANGE_SELECTION, getNextIndex(list, ui, -1), -1);
-            } else if (name == SELECT_PREVIOUS_ROW_EXTEND) {
+            } else if (SELECT_PREVIOUS_ROW_EXTEND.equals(name)) {
                 changeSelection(list, EXTEND_SELECTION, getNextIndex(list, ui, -1), -1);
-            } else if (name == SELECT_PREVIOUS_ROW_CHANGE_LEAD) {
+            } else if (SELECT_PREVIOUS_ROW_CHANGE_LEAD.equals(name)) {
                 changeSelection(list, CHANGE_LEAD, getNextIndex(list, ui, -1), -1);
-            } else if (name == SELECT_NEXT_ROW) {
+            } else if (SELECT_NEXT_ROW.equals(name)) {
                 changeSelection(list, CHANGE_SELECTION, getNextIndex(list, ui, 1), 1);
-            } else if (name == SELECT_NEXT_ROW_EXTEND) {
+            } else if (SELECT_NEXT_ROW_EXTEND.equals(name)) {
                 changeSelection(list, EXTEND_SELECTION, getNextIndex(list, ui, 1), 1);
-            } else if (name == SELECT_NEXT_ROW_CHANGE_LEAD) {
+            } else if (SELECT_NEXT_ROW_CHANGE_LEAD.equals(name)) {
                 changeSelection(list, CHANGE_LEAD, getNextIndex(list, ui, 1), 1);
-            } else if (name == SELECT_FIRST_ROW) {
+            } else if (SELECT_FIRST_ROW.equals(name)) {
                 changeSelection(list, CHANGE_SELECTION, 0, -1);
-            } else if (name == SELECT_FIRST_ROW_EXTEND) {
+            } else if (SELECT_FIRST_ROW_EXTEND.equals(name)) {
                 changeSelection(list, EXTEND_SELECTION, 0, -1);
-            } else if (name == SELECT_FIRST_ROW_CHANGE_LEAD) {
+            } else if (SELECT_FIRST_ROW_CHANGE_LEAD.equals(name)) {
                 changeSelection(list, CHANGE_LEAD, 0, -1);
-            } else if (name == SELECT_LAST_ROW) {
+            } else if (SELECT_LAST_ROW.equals(name)) {
                 changeSelection(list, CHANGE_SELECTION, getElementCount(list) - 1, 1);
-            } else if (name == SELECT_LAST_ROW_EXTEND) {
+            } else if (SELECT_LAST_ROW_EXTEND.equals(name)) {
                 changeSelection(list, EXTEND_SELECTION, getElementCount(list) - 1, 1);
-            } else if (name == SELECT_LAST_ROW_CHANGE_LEAD) {
+            } else if (SELECT_LAST_ROW_CHANGE_LEAD.equals(name)) {
                 changeSelection(list, CHANGE_LEAD, getElementCount(list) - 1, 1);
-            } else if (name == SCROLL_UP) {
+            } else if (SCROLL_UP.equals(name)) {
                 changeSelection(list, CHANGE_SELECTION, getNextPageIndex(list, -1), -1);
-            } else if (name == SCROLL_UP_EXTEND) {
+            } else if (SCROLL_UP_EXTEND.equals(name)) {
                 changeSelection(list, EXTEND_SELECTION, getNextPageIndex(list, -1), -1);
-            } else if (name == SCROLL_UP_CHANGE_LEAD) {
+            } else if (SCROLL_UP_CHANGE_LEAD.equals(name)) {
                 changeSelection(list, CHANGE_LEAD, getNextPageIndex(list, -1), -1);
-            } else if (name == SCROLL_DOWN) {
+            } else if (SCROLL_DOWN.equals(name)) {
                 changeSelection(list, CHANGE_SELECTION, getNextPageIndex(list, 1), 1);
-            } else if (name == SCROLL_DOWN_EXTEND) {
+            } else if (SCROLL_DOWN_EXTEND.equals(name)) {
                 changeSelection(list, EXTEND_SELECTION, getNextPageIndex(list, 1), 1);
-            } else if (name == SCROLL_DOWN_CHANGE_LEAD) {
+            } else if (SCROLL_DOWN_CHANGE_LEAD.equals(name)) {
                 changeSelection(list, CHANGE_LEAD, getNextPageIndex(list, 1), 1);
-            } else if (name == SELECT_ALL) {
+            } else if (SELECT_ALL.equals(name)) {
                 selectAll(list);
-            } else if (name == CLEAR_SELECTION) {
+            } else if (CLEAR_SELECTION.equals(name)) {
                 clearSelection(list);
-            } else if (name == ADD_TO_SELECTION) {
+            } else if (ADD_TO_SELECTION.equals(name)) {
                 int index = adjustIndex(list.getSelectionModel().getLeadSelectionIndex(), list);
 
                 if (!list.isSelectedIndex(index)) {
@@ -2034,7 +2034,7 @@ public class BasicXListUI extends BasicListUI {
                     list.getSelectionModel().setAnchorSelectionIndex(oldAnchor);
                     list.setValueIsAdjusting(false);
                 }
-            } else if (name == TOGGLE_AND_ANCHOR) {
+            } else if (TOGGLE_AND_ANCHOR.equals(name)) {
                 int index = adjustIndex(list.getSelectionModel().getLeadSelectionIndex(), list);
 
                 if (list.isSelectedIndex(index)) {
@@ -2042,9 +2042,9 @@ public class BasicXListUI extends BasicListUI {
                 } else {
                     list.addSelectionInterval(index, index);
                 }
-            } else if (name == EXTEND_TO) {
+            } else if (EXTEND_TO.equals(name)) {
                 changeSelection(list, EXTEND_SELECTION, adjustIndex(list.getSelectionModel().getLeadSelectionIndex(), list), 0);
-            } else if (name == MOVE_SELECTION_TO) {
+            } else if (MOVE_SELECTION_TO.equals(name)) {
                 changeSelection(list, CHANGE_SELECTION, adjustIndex(list.getSelectionModel().getLeadSelectionIndex(), list), 0);
             }
         }
@@ -2502,7 +2502,7 @@ public class BasicXListUI extends BasicListUI {
             /* If the JList.model property changes, remove our listener,
              * listDataListener from the old model and add it to the new one.
              */
-            if (propertyName == "model") {
+            if ("model".equals(propertyName)) {
                 ListModel oldModel = (ListModel) e.getOldValue();
                 ListModel newModel = (ListModel) e.getNewValue();
                 if (oldModel != null) {
@@ -2518,7 +2518,7 @@ public class BasicXListUI extends BasicListUI {
             /* If the JList.selectionModel property changes, remove our listener,
              * listSelectionListener from the old selectionModel and add it to the new one.
              */
-            else if (propertyName == "selectionModel") {
+            else if ("selectionModel".equals(propertyName)) {
                 ListSelectionModel oldModel = (ListSelectionModel) e.getOldValue();
                 ListSelectionModel newModel = (ListSelectionModel) e.getNewValue();
                 if (oldModel != null) {
@@ -2529,48 +2529,45 @@ public class BasicXListUI extends BasicListUI {
                 }
                 updateLayoutStateNeeded |= modelChanged;
                 redrawList();
-            } else if (propertyName == "cellRenderer") {
+            } else if ("cellRenderer".equals(propertyName)) {
                 updateLayoutStateNeeded |= cellRendererChanged;
                 redrawList();
-            } else if (propertyName == "font") {
+            } else if ("font".equals(propertyName)) {
                 updateLayoutStateNeeded |= fontChanged;
                 redrawList();
-            } else if (propertyName == "prototypeCellValue") {
+            } else if ("prototypeCellValue".equals(propertyName)) {
                 updateLayoutStateNeeded |= prototypeCellValueChanged;
                 redrawList();
-            } else if (propertyName == "fixedCellHeight") {
+            } else if ("fixedCellHeight".equals(propertyName)) {
                 updateLayoutStateNeeded |= fixedCellHeightChanged;
                 redrawList();
-            } else if (propertyName == "fixedCellWidth") {
+            } else if ("fixedCellWidth".equals(propertyName)) {
                 updateLayoutStateNeeded |= fixedCellWidthChanged;
                 redrawList();
-            } else if (propertyName == "cellRenderer") {
-                updateLayoutStateNeeded |= cellRendererChanged;
-                redrawList();
-            } else if (propertyName == "selectionForeground") {
+            } else if ("selectionForeground".equals(propertyName)) {
                 list.repaint();
-            } else if (propertyName == "selectionBackground") {
+            } else if ("selectionBackground".equals(propertyName)) {
                 list.repaint();
-            } else if ("layoutOrientation" == propertyName) {
+            } else if ("layoutOrientation".equals(propertyName)) {
                 updateLayoutStateNeeded |= layoutOrientationChanged;
                 layoutOrientation = list.getLayoutOrientation();
                 redrawList();
-            } else if ("visibleRowCount" == propertyName) {
+            } else if ("visibleRowCount".equals(propertyName)) {
                 if (layoutOrientation != JList.VERTICAL) {
                     updateLayoutStateNeeded |= layoutOrientationChanged;
                     redrawList();
                 }
-            } else if ("componentOrientation" == propertyName) {
+            } else if ("componentOrientation".equals(propertyName)) {
                 isLeftToRight = list.getComponentOrientation().isLeftToRight();
                 updateLayoutStateNeeded |= componentOrientationChanged;
                 redrawList();
 
                 InputMap inputMap = getInputMap(JComponent.WHEN_FOCUSED);
                 SwingUtilities.replaceUIInputMap(list, JComponent.WHEN_FOCUSED, inputMap);
-            } else if ("List.isFileList" == propertyName) {
+            } else if ("List.isFileList".equals(propertyName)) {
                 updateIsFileList();
                 redrawList();
-            } else if ("dropLocation" == propertyName) {
+            } else if ("dropLocation".equals(propertyName)) {
                 JList.DropLocation oldValue = (JList.DropLocation) e.getOldValue();
                 repaintDropLocation(oldValue);
                 repaintDropLocation(list.getDropLocation());
