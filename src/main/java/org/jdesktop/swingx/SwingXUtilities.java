@@ -49,7 +49,6 @@ import javax.swing.ListCellRenderer;
 import javax.swing.ListModel;
 import javax.swing.ListSelectionModel;
 import javax.swing.MenuElement;
-import javax.swing.RepaintManager;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.plaf.ComponentInputMapUIResource;
@@ -457,32 +456,6 @@ public final class SwingXUtilities {
         return false;
     }
 
-    /**
-     * Obtains a {@code TranslucentRepaintManager} from the specified manager.
-     * If the current manager is a {@code TranslucentRepaintManager} or a
-     * {@code ForwardingRepaintManager} that contains a {@code
-     * TranslucentRepaintManager}, then the passed in manager is returned.
-     * Otherwise a new repaint manager is created and returned.
-     * 
-     * @param delegate
-     *            the current repaint manager
-     * @return a non-{@code null} {@code TranslucentRepaintManager}
-     * @throws NullPointerException if {@code delegate} is {@code null}
-     */
-    static RepaintManager getTranslucentRepaintManager(RepaintManager delegate) {
-        RepaintManager manager = delegate;
-        
-        while (manager != null && !manager.getClass().isAnnotationPresent(TranslucentRepaintManager.class)) {
-            if (manager instanceof ForwardingRepaintManager) {
-                manager = ((ForwardingRepaintManager) manager).getDelegateManager();
-            } else {
-                manager = null;
-            }
-        }
-        
-        return manager == null ? new RepaintManagerX(delegate) : delegate;
-    }
-    
     /**
      * Checks and returns whether the given property should be replaced
      * by the UI's default value. 
