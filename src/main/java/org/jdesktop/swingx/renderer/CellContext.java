@@ -23,8 +23,6 @@ package org.jdesktop.swingx.renderer;
 import java.awt.Color;
 import java.awt.Font;
 import java.io.Serializable;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 
 import javax.swing.Icon;
 import javax.swing.JComponent;
@@ -87,20 +85,6 @@ public class CellContext implements Serializable {
     /** the default border for unfocused cells. */
     protected static Border noFocusBorder = new EmptyBorder(1, 1, 1, 1);
 
-    /** ?? the default border for unfocused cells. ?? */
-    private static final Border SAFE_NO_FOCUS_BORDER = new EmptyBorder(1, 1, 1, 1);
-    private static final Method getSecurityManager;
-
-    static {
-        Method method;
-        try {
-            method = System.class.getMethod("getSecurityManager");
-        } catch (NoSuchMethodException ex) {
-            method = null;
-        }
-        getSecurityManager = method;
-    }
-
     /**
      * Returns the shared border for unfocused cells.
      * <p>
@@ -109,15 +93,6 @@ public class CellContext implements Serializable {
      * @return the border for unfocused cells.
      */
     private static Border getNoFocusBorder() {
-        if (getSecurityManager != null) {
-            try {
-                if (getSecurityManager.invoke(null) != null) {
-                    return SAFE_NO_FOCUS_BORDER;
-                }
-            } catch (IllegalAccessException | InvocationTargetException ex) {
-                throw new RuntimeException(ex);
-            }
-        }
         return noFocusBorder;
     }
 

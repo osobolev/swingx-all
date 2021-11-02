@@ -22,9 +22,7 @@ package org.jdesktop.swingx.plaf;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.security.PrivilegedAction;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -72,18 +70,6 @@ import org.jdesktop.swingx.painter.Painter;
  */
 @SuppressWarnings("nls")
 public abstract class LookAndFeelAddons {
-
-    private static final Method doPrivileged;
-
-    static {
-        Method method;
-        try {
-            method = Class.forName("java.security.AccessController").getMethod("doPrivileged", PrivilegedAction.class);
-        } catch (ClassNotFoundException | NoSuchMethodException ex) {
-            method = null;
-        }
-        doPrivileged = method;
-    }
 
     private static List<ComponentAddon> contributedComponents = new ArrayList<ComponentAddon>();
 
@@ -220,43 +206,8 @@ public abstract class LookAndFeelAddons {
         return currentAddon;
     }
 
-    @SuppressWarnings("unchecked")
-    private static <T> T tryAction(PrivilegedAction<T> action, T fallback) {
-        try {
-            if (doPrivileged != null) {
-                try {
-                    return (T) doPrivileged.invoke(null, action);
-                } catch (IllegalAccessException ex) {
-                    return fallback;
-                } catch (InvocationTargetException ex) {
-                    Throwable target = ex.getTargetException();
-                    if (target instanceof RuntimeException) {
-                        throw (RuntimeException) target;
-                    } else {
-                        throw new RuntimeException(target);
-                    }
-                }
-            } else {
-                return action.run();
-            }
-        } catch (SecurityException e) {
-            return fallback;
-        }
-    }
-
     private static ClassLoader getClassLoader() {
-        ClassLoader cl = tryAction(LookAndFeelAddons.class::getClassLoader, null);
-
-        if (cl == null) {
-            Thread t = Thread.currentThread();
-            cl = tryAction(t::getContextClassLoader, null);
-        }
-        
-        if (cl == null) {
-            cl = tryAction(ClassLoader::getSystemClassLoader, null);
-        }
-        
-        return cl;
+        return LookAndFeelAddons.class.getClassLoader();
     }
     
     /**
@@ -293,8 +244,7 @@ public abstract class LookAndFeelAddons {
     }
 
     public static String getCrossPlatformAddonClassName() {
-        String fallback = "org.jdesktop.swingx.plaf.metal.MetalLookAndFeelAddons";
-        return tryAction(() -> System.getProperty("swing.crossplatformlafaddon", fallback), fallback);
+        return System.getProperty("swing.crossplatformlafaddon", "org.jdesktop.swingx.plaf.metal.MetalLookAndFeelAddons");
     }
 
     /**
