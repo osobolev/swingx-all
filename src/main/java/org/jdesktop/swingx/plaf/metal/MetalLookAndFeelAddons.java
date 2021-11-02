@@ -45,7 +45,7 @@ public class MetalLookAndFeelAddons extends BasicLookAndFeelAddons {
 
         if (getCrossPlatformLookAndFeelClassName().equals(laf.getClass().getName())) {
             //just in case someone sets Nimbus as the cross platform Look and Feel
-            return !laf.getID().equals("Nimbus");
+            return !"Nimbus".equals(laf.getID());
         }
 
         return getLookAndFeel() instanceof MetalLookAndFeel;

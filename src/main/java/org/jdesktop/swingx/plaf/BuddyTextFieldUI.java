@@ -42,7 +42,7 @@ public class BuddyTextFieldUI extends PromptTextFieldUI {
         if (border == layoutAndBorder) {
             border = layoutAndBorder.getBorderDelegate();
         }
-        return border != null && border.getClass().getName().equals("apple.laf.CUIAquaTextFieldBorder");
+        return border != null && "apple.laf.CUIAquaTextFieldBorder".equals(border.getClass().getName());
     }
 
     /**

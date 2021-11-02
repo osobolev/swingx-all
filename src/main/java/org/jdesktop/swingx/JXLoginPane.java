@@ -1175,7 +1175,7 @@ public class JXLoginPane extends JXPanel {
             //save the user names and passwords
             String userName = namePanel.getUserName();
             if ((getSaveMode() == SaveMode.USER_NAME || getSaveMode() == SaveMode.BOTH)
-                && userName != null && !userName.trim().equals("")) {
+                && userName != null && !userName.trim().isEmpty()) {
                 userNameStore.addUserName(userName);
                 userNameStore.saveUserNames();
             }

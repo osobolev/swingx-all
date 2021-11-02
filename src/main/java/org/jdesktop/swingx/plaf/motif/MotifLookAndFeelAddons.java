@@ -34,6 +34,6 @@ public class MotifLookAndFeelAddons extends BasicLookAndFeelAddons {
      */
     @Override
     protected boolean matches() {
-        return UIManager.getLookAndFeel().getID().equals("Motif");
+        return "Motif".equals(UIManager.getLookAndFeel().getID());
     }
 }

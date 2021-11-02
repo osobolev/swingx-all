@@ -2015,13 +2015,13 @@ public class MultiSplitLayout implements LayoutManager, Serializable {
         if ((st.nextToken() != '=')) {
             throwParseException(st, "expected '=' after " + name);
         }
-        if (name.equalsIgnoreCase("WEIGHT")) {
+        if ("WEIGHT".equalsIgnoreCase(name)) {
             if (st.nextToken() == StreamTokenizer.TT_NUMBER) {
                 node.setWeight(st.nval);
             } else {
                 throwParseException(st, "invalid weight");
             }
-        } else if (name.equalsIgnoreCase("NAME")) {
+        } else if ("NAME".equalsIgnoreCase(name)) {
             if (st.nextToken() == StreamTokenizer.TT_WORD) {
                 if (node instanceof Leaf) {
                     ((Leaf) node).setName(st.sval);
@@ -2040,7 +2040,7 @@ public class MultiSplitLayout implements LayoutManager, Serializable {
 
     private static void addSplitChild(Split parent, Node child) {
         List<Node> children = new ArrayList<Node>(parent.getChildren());
-        if (children.size() == 0) {
+        if (children.isEmpty()) {
             children.add(child);
         } else {
             children.add(new Divider());
@@ -2071,9 +2071,9 @@ public class MultiSplitLayout implements LayoutManager, Serializable {
             if (token == ')') {
                 break;
             } else if (token == StreamTokenizer.TT_WORD) {
-                if (st.sval.equalsIgnoreCase("WEIGHT")) {
+                if ("WEIGHT".equalsIgnoreCase(st.sval)) {
                     parseAttribute(st.sval, st, parent);
-                } else if (st.sval.equalsIgnoreCase("NAME")) {
+                } else if ("NAME".equalsIgnoreCase(st.sval)) {
                     parseAttribute(st.sval, st, parent);
                 } else {
                     addSplitChild(parent, new Leaf(st.sval));
@@ -2083,11 +2083,11 @@ public class MultiSplitLayout implements LayoutManager, Serializable {
                     throwParseException(st, "invalid node type");
                 }
                 String nodeType = st.sval.toUpperCase();
-                if (nodeType.equals("LEAF")) {
+                if ("LEAF".equals(nodeType)) {
                     parseLeaf(st, parent);
-                } else if (nodeType.equals("ROW") || nodeType.equals("COLUMN")) {
+                } else if ("ROW".equals(nodeType) || "COLUMN".equals(nodeType)) {
                     Split split = new Split();
-                    split.setRowLayout(nodeType.equals("ROW"));
+                    split.setRowLayout("ROW".equals(nodeType));
                     addSplitChild(parent, split);
                     parseSplit(st, split);
                 } else {

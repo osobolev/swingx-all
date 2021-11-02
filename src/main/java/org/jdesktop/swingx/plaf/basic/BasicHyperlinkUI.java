@@ -185,7 +185,7 @@ public class BasicHyperlinkUI extends BasicButtonUI {
 //                    AlphaComposite.SRC_OVER, 0.5f));
 //        }
 
-        if (text != null && !text.equals("")) {
+        if (text != null && !text.isEmpty()) {
             View v = (View) c.getClientProperty(BasicHTML.propertyKey);
             if (v != null) {
                 paintHTMLText(g, b, textRect, text, v);

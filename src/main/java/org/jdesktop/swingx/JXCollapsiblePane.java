@@ -810,7 +810,7 @@ public class JXCollapsiblePane extends JXPanel {
         /**
          * The current alpha setting used during "animation" (fade-in/fade-out)
          */
-        @SuppressWarnings({"FieldCanBeLocal"})
+        @SuppressWarnings("FieldCanBeLocal")
         private float animateAlpha = 1.0f;
 
         @Override

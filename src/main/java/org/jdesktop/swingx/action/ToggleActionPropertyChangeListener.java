@@ -92,7 +92,7 @@ class ToggleActionPropertyChangeListener implements PropertyChangeListener {
         if (button == null) return;
         String propertyName = evt.getPropertyName();
 
-        if (propertyName.equals("selected")) {
+        if ("selected".equals(propertyName)) {
             Boolean selected = (Boolean) evt.getNewValue();
             button.setSelected(selected.booleanValue());
         }

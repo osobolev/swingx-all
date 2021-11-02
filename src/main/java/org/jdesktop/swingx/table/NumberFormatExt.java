@@ -68,7 +68,7 @@ class NumberFormatExt extends NumberFormat {
             pos.setIndex(1); // otherwise Format thinks parse failed
             return null;
         }
-        if (source.trim().equals("")) {
+        if (source.trim().isEmpty()) {
             pos.setIndex(1); // otherwise Format thinks parse failed
             return null;
         }

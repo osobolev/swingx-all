@@ -231,7 +231,7 @@ public class BasicMonthViewUI extends MonthViewUI {
      */
     private CalendarHeaderHandler calendarHeaderHandler;
 
-    @SuppressWarnings({"UnusedDeclaration"})
+    @SuppressWarnings("UnusedDeclaration")
     public static ComponentUI createUI(JComponent c) {
         return new BasicMonthViewUI();
     }

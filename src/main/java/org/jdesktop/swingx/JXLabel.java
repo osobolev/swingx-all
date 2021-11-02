@@ -397,7 +397,7 @@ public class JXLabel extends JLabel implements BackgroundPaintable {
             // 1) icon
             Rectangle iconR = calculateIconRect();
             // 2) init textR
-            boolean textIsEmpty = (getText() == null) || getText().equals("");
+            boolean textIsEmpty = getText() == null || getText().isEmpty();
             int lsb = 0;
             /* Unless both text and icon are non-null, we effectively ignore
              * the value of textIconGap.

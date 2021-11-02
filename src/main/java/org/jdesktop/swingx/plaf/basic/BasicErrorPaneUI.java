@@ -297,8 +297,7 @@ public class BasicErrorPaneUI extends ErrorPaneUI {
         pane.add(detailsPanel);
 
         //make the buttons the same size
-        EqualSizeJButton[] buttons = new EqualSizeJButton[] {
-            (EqualSizeJButton) detailButton, (EqualSizeJButton) reportButton};
+        EqualSizeJButton[] buttons = {(EqualSizeJButton) detailButton, (EqualSizeJButton) reportButton};
         ((EqualSizeJButton) reportButton).setGroup(buttons);
         ((EqualSizeJButton) detailButton).setGroup(buttons);
 
@@ -479,7 +478,7 @@ public class BasicErrorPaneUI extends ErrorPaneUI {
      *                dialog.
      */
     private void setDetails(String details) {
-        if (details == null || details.equals("")) {
+        if (details == null || details.isEmpty()) {
             detailButton.setVisible(false);
         } else {
             this.details.setText(details);
@@ -789,7 +788,7 @@ public class BasicErrorPaneUI extends ErrorPaneUI {
         @Override
         protected Transferable createTransferable(JComponent c) {
             String text = details.getSelectedText();
-            if (text == null || text.equals("")) {
+            if (text == null || text.isEmpty()) {
                 details.selectAll();
                 text = details.getSelectedText();
                 details.select(-1, -1);

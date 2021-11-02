@@ -2350,16 +2350,16 @@ public class JXTable extends JTable implements TableColumnModelExtListener {
      */
     @Override
     public void columnPropertyChange(PropertyChangeEvent event) {
-        if (event.getPropertyName().equals("editable")) {
+        if ("editable".equals(event.getPropertyName())) {
             updateEditingAfterColumnChanged((TableColumn) event.getSource(),
                 (Boolean) event.getNewValue());
-        } else if (event.getPropertyName().equals("sortable")) {
+        } else if ("sortable".equals(event.getPropertyName())) {
             updateSortableAfterColumnChanged((TableColumn) event.getSource(),
                 (Boolean) event.getNewValue());
-        } else if (event.getPropertyName().equals("comparator")) {
+        } else if ("comparator".equals(event.getPropertyName())) {
             updateComparatorAfterColumnChanged((TableColumn) event.getSource(),
                 (Comparator<?>) event.getNewValue());
-        } else if (event.getPropertyName().equals("cellRenderer")) {
+        } else if ("cellRenderer".equals(event.getPropertyName())) {
             updateStringValueForColumn((TableColumn) event.getSource(),
                 (TableCellRenderer) event.getNewValue());
         } else if (event.getPropertyName().startsWith("highlighter")) {

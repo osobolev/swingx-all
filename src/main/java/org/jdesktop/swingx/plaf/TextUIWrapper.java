@@ -23,7 +23,7 @@ public abstract class TextUIWrapper<UI extends TextUI> {
 
     private static final DefaultWrapper defaultWrapper = new DefaultWrapper();
 
-    public static final TextUIWrapper<? extends PromptTextUI> getDefaultWrapper() {
+    public static TextUIWrapper<? extends PromptTextUI> getDefaultWrapper() {
         return defaultWrapper;
     }
 

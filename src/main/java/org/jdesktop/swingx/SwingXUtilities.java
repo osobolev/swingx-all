@@ -118,7 +118,7 @@ public final class SwingXUtilities {
         // this prevents issues with buffer reuse where visual artifacts sneak in
         if (comp.isOpaque()
             || (comp instanceof AlphaPaintable && ((AlphaPaintable) comp).getAlpha() < 1f)
-            || UIManager.getLookAndFeel().getID().equals("Nimbus")) {
+            || "Nimbus".equals(UIManager.getLookAndFeel().getID())) {
             g.setColor(comp.getBackground());
             g.fillRect(0, 0, comp.getWidth(), comp.getHeight());
         }

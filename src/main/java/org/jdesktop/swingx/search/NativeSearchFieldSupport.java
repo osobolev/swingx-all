@@ -36,7 +36,7 @@ public class NativeSearchFieldSupport {
             versionString = versionString.substring(0, 4);
 
             return OS.isMacOSX() && Float.parseFloat(versionString) >= 10.5
-                   && UIManager.getLookAndFeel().getName().equals("Mac OS X");
+                   && "Mac OS X".equals(UIManager.getLookAndFeel().getName());
         } catch (Exception e) {
             // in case the os.version cannot be parsed, we are surely not
             // running mac os x.

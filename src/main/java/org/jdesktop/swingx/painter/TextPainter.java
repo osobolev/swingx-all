@@ -182,7 +182,7 @@ public class TextPainter extends AbstractAreaPainter<Object> {
         // prep the text
         String t = getText();
         //make components take priority if(text == null || text.trim().equals("")) {
-        if (t != null && !t.trim().equals("")) {
+        if (t != null && !t.trim().isEmpty()) {
             return t;
         }
         if (component instanceof JTextComponent) {

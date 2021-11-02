@@ -219,7 +219,7 @@ public class JXEditorPane extends JEditorPane implements /*Searchable, */Targeta
         @Override
         public void propertyChange(PropertyChangeEvent evt) {
             String name = evt.getPropertyName();
-            if (name.equals("document")) {
+            if ("document".equals(name)) {
                 Document doc = (Document) evt.getOldValue();
                 if (doc != null) {
                     doc.removeUndoableEditListener(getUndoableEditListener());

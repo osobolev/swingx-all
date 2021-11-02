@@ -207,7 +207,7 @@ public class Utilities {
                 operatingSystem = OS_OS2;
             } else if ("OpenVMS".equals(osName)) { // NOI18N
                 operatingSystem = OS_VMS;
-            } else if (osName.equals("Mac OS X")) { // NOI18N
+            } else if ("Mac OS X".equals(osName)) { // NOI18N
                 operatingSystem = OS_MAC;
             } else if (osName.startsWith("Darwin")) { // NOI18N
                 operatingSystem = OS_MAC;
@@ -493,7 +493,7 @@ public class Utilities {
                 String el = st.nextToken();
 
                 // required key
-                if (el.equals("-")) { // NOI18N
+                if ("-".equals(el)) { // NOI18N
 
                     if (lastModif != -1) {
                         needed |= lastModif;

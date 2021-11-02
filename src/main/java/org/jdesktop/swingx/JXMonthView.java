@@ -217,9 +217,9 @@ public class JXMonthView extends JComponent {
 
     //-------------------
     // PENDING JW: ??
-    @SuppressWarnings({"FieldCanBeLocal"})
+    @SuppressWarnings("FieldCanBeLocal")
     protected Date modifiedStartDate;
-    @SuppressWarnings({"FieldCanBeLocal"})
+    @SuppressWarnings("FieldCanBeLocal")
     protected Date modifiedEndDate;
 
     //------------- visuals

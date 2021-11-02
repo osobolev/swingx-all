@@ -234,11 +234,11 @@ public class BasicTitledPanelUI extends TitledPanelUI {
         titleChangeListener = new PropertyChangeListener() {
             @Override
             public void propertyChange(PropertyChangeEvent evt) {
-                if (evt.getPropertyName().equals("title")) {
+                if ("title".equals(evt.getPropertyName())) {
                     caption.setText((String) evt.getNewValue());
-                } else if (evt.getPropertyName().equals("titleForeground")) {
+                } else if ("titleForeground".equals(evt.getPropertyName())) {
                     caption.setForeground((Color) evt.getNewValue());
-                } else if (evt.getPropertyName().equals("titleFont")) {
+                } else if ("titleFont".equals(evt.getPropertyName())) {
                     caption.setFont((Font) evt.getNewValue());
                 } else if ("titlePainter".equals(evt.getPropertyName())) {
                     topPanel.setBackgroundPainter(titledPanel.getTitlePainter());

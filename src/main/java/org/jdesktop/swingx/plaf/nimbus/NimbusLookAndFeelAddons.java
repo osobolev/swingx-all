@@ -34,6 +34,6 @@ public class NimbusLookAndFeelAddons extends BasicLookAndFeelAddons {
      */
     @Override
     protected boolean matches() {
-        return UIManager.getLookAndFeel().getID().equals("Nimbus");
+        return "Nimbus".equals(UIManager.getLookAndFeel().getID());
     }
 }

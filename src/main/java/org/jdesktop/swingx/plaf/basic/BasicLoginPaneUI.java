@@ -77,12 +77,12 @@ public class BasicLoginPaneUI extends LoginPaneUI {
 
     protected void installDefaults() {
         String s = dlg.getBannerText();
-        if (s == null || s.equals("")) {
+        if (s == null || s.isEmpty()) {
             dlg.setBannerText(UIManagerExt.getString("JXLoginPane.bannerString", dlg.getLocale()));
         }
 
         s = dlg.getErrorMessage();
-        if (s == null || s.equals("")) {
+        if (s == null || s.isEmpty()) {
             dlg.setErrorMessage(UIManagerExt.getString("JXLoginPane.errorMessage", dlg.getLocale()));
         }
     }

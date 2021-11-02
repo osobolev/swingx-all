@@ -537,7 +537,7 @@ public class ColumnControlButton extends JButton {
          */
         @Override
         public void addAdditionalActionItems(List<? extends Action> actions) {
-            if (actions.size() == 0)
+            if (actions.isEmpty())
                 return;
             // JW: this is a reference to the enclosing class 
             // prevents to make this implementation static

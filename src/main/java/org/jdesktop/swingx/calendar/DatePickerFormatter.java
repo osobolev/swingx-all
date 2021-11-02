@@ -177,7 +177,7 @@ public class DatePickerFormatter extends
         addFormat(f, "JXDatePicker.longFormat", locale);
         addFormat(f, "JXDatePicker.mediumFormat", locale);
         addFormat(f, "JXDatePicker.shortFormat", locale);
-        if (f.size() == 0) {
+        if (f.isEmpty()) {
             addSystemDefaultFormat(f, locale);
         }
         return f.toArray(new DateFormat[f.size()]);
