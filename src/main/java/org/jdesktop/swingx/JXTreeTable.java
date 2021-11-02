@@ -1026,7 +1026,7 @@ public class JXTreeTable extends JXTable {
          * renderer must be > 0.
          *
          * @param column the column index under the event, if any.
-         * @param e      the event which might trigger a expand/collapse.
+         * @param me     the event which might trigger a expand/collapse.
          * @return the Point adjusted for bidi
          */
         protected Point getTreeMousePoint(int column, MouseEvent me) {

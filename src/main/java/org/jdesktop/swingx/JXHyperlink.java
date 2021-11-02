@@ -84,7 +84,6 @@ public class JXHyperlink extends JButton {
 
     /**
      * @see #getUIClassID
-     * @see #readObject
      */
     public static final String uiClassID = "HyperlinkUI";
 

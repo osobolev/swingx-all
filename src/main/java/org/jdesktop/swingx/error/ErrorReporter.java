@@ -44,7 +44,7 @@ public interface ErrorReporter {
      * should be transparent to the user.</p>
      *
      * @param info encapsulates all information to report using this facility. Must not be null.
-     * @throws thrown if the info param is null
+     * @throws NullPointerException if the info param is null
      */
     void reportError(ErrorInfo info) throws NullPointerException;
 }

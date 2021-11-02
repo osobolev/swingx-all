@@ -250,7 +250,7 @@ public class PatternModel {
     }
 
     /**
-     * @param s
+     * @param text
      * @return
      */
 

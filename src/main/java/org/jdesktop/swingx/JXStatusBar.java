@@ -103,7 +103,6 @@ public class JXStatusBar extends JComponent {
 
     /**
      * @see #getUIClassID
-     * @see #readObject
      */
     public static final String uiClassID = "StatusBarUI";
 

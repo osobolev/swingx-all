@@ -94,7 +94,7 @@ public class EventListenerMap {
      *
      * @param <T>   the type of the listener to be added
      * @param clazz the class type to add
-     * @param l     the listener to be added
+     * @param listener the listener to be added
      */
     @SuppressWarnings("unchecked")
     public synchronized <T extends EventListener> void add(Class<T> clazz, T listener) {
@@ -115,7 +115,7 @@ public class EventListenerMap {
      *
      * @param <T>   the type of the listener to remove
      * @param clazz the class type to remove
-     * @param l     the listener to remove
+     * @param listener the listener to remove
      */
     @SuppressWarnings("unchecked")
     public synchronized <T extends EventListener> void remove(Class<T> clazz, T listener) {

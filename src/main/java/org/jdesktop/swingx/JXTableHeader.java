@@ -74,7 +74,6 @@ import java.util.logging.Logger;
  * @author Jeanette Winzenburg
  * @see JXTable#toggleSortOrder(int)
  * @see JXTable#resetSortOrder()
- * @see SortGestureRecognizer
  */
 public class JXTableHeader extends JTableHeader
     implements TableColumnModelExtListener {

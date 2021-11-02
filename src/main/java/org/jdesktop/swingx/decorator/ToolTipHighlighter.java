@@ -79,7 +79,7 @@ public class ToolTipHighlighter extends AbstractHighlighter {
      * Returns the StringValue used for decoration.
      *
      * @return the StringValue used for decoration
-     * @see #setToolTipValue(Font)
+     * @see #setToolTipValue
      */
     public StringValue getToolTipValue() {
         return toolTipValue;
@@ -88,7 +88,7 @@ public class ToolTipHighlighter extends AbstractHighlighter {
     /**
      * Sets the StringValue used for decoration. May be null to use default decoration.
      *
-     * @param font the Font used for decoration, may be null to use default decoration.
+     * @param toolTipValue the StringValue used for decoration, may be null to use default decoration.
      * @see #getToolTipValue()
      */
     public void setToolTipValue(StringValue toolTipValue) {

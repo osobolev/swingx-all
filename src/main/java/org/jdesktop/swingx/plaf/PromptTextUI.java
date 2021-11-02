@@ -420,7 +420,7 @@ public abstract class PromptTextUI extends TextUI {
     }
 
     /**
-     * Tries to call {@link ComponentUI#getBaseline(int, int)} on the delegate
+     * Tries to call {@link ComponentUI#getBaseline} on the delegate
      * via Reflection. Workaround to maintain compatibility with Java 5. Ideally
      * we should also override {@link #getBaselineResizeBehavior(JComponent)},
      * but that's impossible since the {@link BaselineResizeBehavior} class,

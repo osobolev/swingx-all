@@ -946,7 +946,7 @@ public class MultiSplitLayout implements LayoutManager, Serializable {
      * Check if the specified node has any following visible siblings
      *
      * @param splitChild the node to check
-     * @param true       if there are visible children following
+     * @return true if there are visible children following
      */
     private boolean hasMoreVisibleSiblings(Node splitChild) {
         Node next = splitChild.nextSibling();

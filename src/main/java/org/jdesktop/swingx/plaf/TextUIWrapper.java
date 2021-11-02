@@ -51,7 +51,7 @@ public abstract class TextUIWrapper<UI extends TextUI> {
     }
 
     /**
-     * Wraps and replaces the text components current UI by calling {@link #wrapUI(TextUI)}, if the
+     * Wraps and replaces the text components current UI by calling {@link #wrapUI}, if the
      * text components current UI is not an instance of the given wrapper class.
      *
      * @param textComponent
@@ -70,7 +70,7 @@ public abstract class TextUIWrapper<UI extends TextUI> {
     /**
      * Override to return the appropriate UI wrapper object for the given {@link TextUI}.
      *
-     * @param textUI
+     * @param textComponent
      * @return the wrapping UI
      */
     public abstract UI wrapUI(JTextComponent textComponent);

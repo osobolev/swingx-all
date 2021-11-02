@@ -44,7 +44,7 @@
  * AutoCompleteDecorator.<b>decorate</b>(comboBox);
  * </code></p>
  * <p>When the combo box is not editable when calling
- * {@link org.jdesktop.swingx.autocomplete.AutoCompleteDecorator#decorate(JComboBox) decorate},
+ * {@link org.jdesktop.swingx.autocomplete.AutoCompleteDecorator#decorate(javax.swing.JComboBox) decorate},
  * the automatic completion will be strict (only allowing items contained in
  * the combo box). When the combo box is editable it will also be possible to
  * enter items that are not contained in the combo box.

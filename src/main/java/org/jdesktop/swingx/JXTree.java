@@ -292,7 +292,7 @@ public class JXTree extends JTree {
      * @param root               root node of this tree
      * @param asksAllowsChildren if true, only nodes that do not allow children
      *                           are leaf nodes; otherwise, any node without children is a leaf node;
-     * @see javax.swing.tree.DefaultTreeModel#asksAllowsChildren
+     * @see javax.swing.tree.DefaultTreeModel#asksAllowsChildren()
      */
     public JXTree(TreeNode root, boolean asksAllowsChildren) {
         super(root, asksAllowsChildren);

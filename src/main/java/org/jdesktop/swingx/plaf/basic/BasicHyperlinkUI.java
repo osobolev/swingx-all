@@ -313,7 +313,8 @@ public class BasicHyperlinkUI extends BasicButtonUI {
 
     /**
      * @param iconTextRect
-     * @param point
+     * @param x
+     * @param y
      * @return
      */
     private boolean isInside(Rectangle iconTextRect, int x, int y) {

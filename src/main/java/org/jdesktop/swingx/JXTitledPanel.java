@@ -57,7 +57,6 @@ public class JXTitledPanel extends JXPanel {
 
     /**
      * @see #getUIClassID // *
-     * @see #readObject
      */
     public static final String uiClassID = "TitledPanelUI";
 

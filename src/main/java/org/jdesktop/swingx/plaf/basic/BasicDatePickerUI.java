@@ -1292,7 +1292,7 @@ public class BasicDatePickerUI extends DatePickerUI {
         /**
          * Handles property changes from datepicker's editor.
          *
-         * @param e the PropertyChangeEvent object describing the event source
+         * @param evt the PropertyChangeEvent object describing the event source
          *          and the property that has changed
          */
         private void editorPropertyChange(PropertyChangeEvent evt) {
@@ -1508,7 +1508,7 @@ public class BasicDatePickerUI extends DatePickerUI {
         }
 
         /**
-         * @param b
+         * @param nullManager
          */
         private void unload(boolean nullManager) {
             if (manager != null) {

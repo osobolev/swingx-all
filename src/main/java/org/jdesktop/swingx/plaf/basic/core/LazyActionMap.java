@@ -72,7 +72,6 @@ public class LazyActionMap extends ActionMapUIResource {
      * <p>
      * This should be used if the ActionMap can be shared.
      *
-     * @param c           JComponent to install the ActionMap on.
      * @param loaderClass Class object that gets loadActionMap invoked
      *                    on.
      * @param defaultsKey Key to use to defaults table to check for

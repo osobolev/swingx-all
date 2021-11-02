@@ -395,7 +395,7 @@ public class BasicMonthViewUI extends MonthViewUI {
     }
 
     /**
-     * @param inputMap
+     * @param type
      */
     private void installKeyBindings(int type) {
         InputMap inputMap = monthView.getInputMap(type);
@@ -418,7 +418,7 @@ public class BasicMonthViewUI extends MonthViewUI {
     }
 
     /**
-     * @param inputMap
+     * @param type
      */
     private void uninstallKeyBindings(int type) {
         InputMap inputMap = monthView.getInputMap(type);

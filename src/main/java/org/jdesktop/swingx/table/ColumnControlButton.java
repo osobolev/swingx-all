@@ -75,7 +75,7 @@ import java.util.List;
  * informal, driven by convention:
  * <ul>
  * <li> the JXTable's actionMap is scanned for candidate actions, the default marker
- *   is a key of type String which starts with {@link ColumnControlButton.COLUMN_CONTROL_MARKER}
+ *   is a key of type String which starts with {@link ColumnControlButton#COLUMN_CONTROL_MARKER}
  * <li> the actions are sorted by that key and then handed over to the ColumnControlPopup
  *   for binding and addition of appropriate menu items
  * <li> the addition as such is control by additionalActionsVisible property, its

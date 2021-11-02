@@ -122,7 +122,7 @@ public class ColumnFactory {
      * @param model      the TableModel to read configuration properties from
      * @param modelIndex column index in model coordinates
      * @return a TableColumnExt to use for the modelIndex
-     * @throws NPE                   if model == null
+     * @throws NullPointerException if model == null
      * @throws IllegalStateException if the modelIndex is invalid
      *                               (in coordinate space of the tablemodel)
      * @see #createTableColumn(int)

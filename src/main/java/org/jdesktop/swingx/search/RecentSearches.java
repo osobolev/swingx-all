@@ -20,7 +20,7 @@ import java.util.prefs.Preferences;
 /**
  * Maintains a list of recent searches and persists this list automatically
  * using {@link Preferences}. A recent searches popup menu can be installed on
- * a {@link JXSearchField} using {@link #install(JXSearchField)}.
+ * a {@link JXSearchField} using {@link #install}.
  *
  * @author Peter Weishapl <petw@gmx.net>
  */
@@ -50,12 +50,12 @@ public class RecentSearches implements ActionListener {
      * persist this list under the <code>prefs</code> node. Existing entries
      * will be loaded automatically.
      *
-     * @param prefsNode the preferences node under which this list will be persisted.
-     *                  If prefsNode is <code>null</code> the preferences node will
-     *                  be set to the user root node
-     * @param saveName  a unique name for saving this list of recent searches. If
-     *                  saveName is <code>null</code>, the list will not be
-     *                  persisted
+     * @param prefs    the preferences node under which this list will be persisted.
+     *                 If prefsNode is <code>null</code> the preferences node will
+     *                 be set to the user root node
+     * @param saveName a unique name for saving this list of recent searches. If
+     *                 saveName is <code>null</code>, the list will not be
+     *                 persisted
      */
     public RecentSearches(Preferences prefs, String saveName) {
         if (prefs == null) {
@@ -218,7 +218,7 @@ public class RecentSearches implements ActionListener {
 
     /**
      * Creates the recent searches popup menu which will be used by
-     * {@link #install(JXSearchField)} to set a search popup menu on
+     * {@link #install} to set a search popup menu on
      * <code>searchField</code>.
      * <p>
      * Override to return a custom popup menu.
@@ -232,7 +232,7 @@ public class RecentSearches implements ActionListener {
 
     /**
      * Install a recent the searches popup menu returned by
-     * {@link #createPopupMenu(JXSearchField)} on <code>searchField</code>.
+     * {@link #createPopupMenu} on <code>searchField</code>.
      * Also registers an {@link ActionListener} on <code>searchField</code>
      * and adds the search string to the list of recent searches whenever a
      * {@link ActionEvent} is received.
@@ -273,7 +273,7 @@ public class RecentSearches implements ActionListener {
 
     /**
      * The popup menu returned by
-     * {@link RecentSearches#createPopupMenu(JXSearchField)}.
+     * {@link RecentSearches#createPopupMenu}.
      */
     public static class RecentSearchesPopup extends JPopupMenu implements ActionListener, ChangeListener {
 

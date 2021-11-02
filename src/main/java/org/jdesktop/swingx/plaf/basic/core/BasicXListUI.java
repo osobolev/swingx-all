@@ -299,7 +299,7 @@ public class BasicXListUI extends BasicListUI {
      * @param width
      * @param height
      * @throws IllegalArgumentException if width or height < 0
-     * @throws NPE                      if c == null
+     * @throws NullPointerException if c == null
      */
     protected void checkBaselinePrecondition(JComponent c, int width, int height) {
         if (c == null) {
@@ -1770,7 +1770,6 @@ public class BasicXListUI extends BasicListUI {
      * Please see {@link java.beans.XMLEncoder}.
      *
      * @see #createListSelectionListener
-     * @see #getCellBounds
      * @see #installUI
      */
     public class ListSelectionHandler implements ListSelectionListener {

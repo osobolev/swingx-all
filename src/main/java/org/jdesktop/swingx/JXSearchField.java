@@ -444,8 +444,7 @@ public class JXSearchField extends JXTextField {
     }
 
     /**
-     * Creates and returns the find button. The buttons action is set to the
-     * action returned by {@link #getSearchAction()}.
+     * Creates and returns the find button.
      * <p>
      * Override to use a custom find button.
      *

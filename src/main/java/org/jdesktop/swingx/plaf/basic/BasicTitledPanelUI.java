@@ -108,7 +108,6 @@ public class BasicTitledPanelUI extends TitledPanelUI {
      *
      * @param c the component where this UI delegate is being installed
      * @see #uninstallUI
-     * @see JComponent#setUI
      * @see JComponent#updateUI
      */
     @Override

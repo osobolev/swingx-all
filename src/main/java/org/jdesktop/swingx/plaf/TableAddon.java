@@ -39,9 +39,6 @@ public class TableAddon extends AbstractComponentAddon {
     private static final Logger LOG = Logger.getLogger(TableAddon.class
         .getName());
 
-    /**
-     * @param name
-     */
     public TableAddon() {
         super("JXTable");
     }
