@@ -149,7 +149,8 @@ class BasicCalendarRenderingHandler implements CalendarRenderingHandler {
     protected StringValue createWeekOfYearStringValue(Locale locale) {
         StringValue wsv = value -> {
             if (value instanceof Calendar) {
-                value = ((Calendar) value).get(Calendar.WEEK_OF_YEAR);
+                int week = ((Calendar) value).get(Calendar.WEEK_OF_YEAR);
+                return String.valueOf(week);
             }
             return StringValues.TO_STRING.getString(value);
         };
