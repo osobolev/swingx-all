@@ -32,6 +32,8 @@ import java.awt.geom.Point2D;
 import java.awt.image.BufferedImage;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * A collection of utilities for working with Paints and Colors.
@@ -42,6 +44,8 @@ import java.lang.reflect.Method;
  */
 @SuppressWarnings("nls")
 public class PaintUtils {
+
+    private static final Logger LOG = Logger.getLogger(PaintUtils.class.getName());
 
     public static final GradientPaint BLUE_EXPERIENCE = new GradientPaint(
         new Point2D.Double(0, 0),
@@ -172,7 +176,7 @@ public class PaintUtils {
             Constructor<?> con = p.getClass().getDeclaredConstructor(Point2D.class, Point2D.class, float[].class, Color[].class);
             return (Paint) con.newInstance(pts[0], pts[1], fractions, colors);
         } catch (Exception ex) {
-            ex.printStackTrace();
+            LOG.log(Level.WARNING, ex.getMessage(), ex);
         }
         return p;
     }

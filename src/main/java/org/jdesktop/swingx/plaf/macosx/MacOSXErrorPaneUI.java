@@ -43,6 +43,8 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.LayoutManager;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Ok, the Title becomes the first line in the error dialog
@@ -69,6 +71,8 @@ import java.awt.LayoutManager;
  * @author rbair
  */
 public class MacOSXErrorPaneUI extends BasicErrorPaneUI {
+
+    private static final Logger LOG = Logger.getLogger(MacOSXErrorPaneUI.class.getName());
 
     private JLabel titleLabel;
     private JEditorPane disclaimerText; // this is actually part of the details!!!
@@ -167,7 +171,7 @@ public class MacOSXErrorPaneUI extends BasicErrorPaneUI {
                 2, 5, 1, 1, 0.0, 0.0, GridBagConstraints.LINE_START, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0
             ));
         } catch (Exception e) {
-            e.printStackTrace();
+            LOG.log(Level.WARNING, e.getMessage(), e);
         }
         return layout;
     }

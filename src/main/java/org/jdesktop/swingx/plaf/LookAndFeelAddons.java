@@ -355,8 +355,7 @@ public abstract class LookAndFeelAddons {
 
     // this is how core UIDefaults yells about bad components; we do the same
     private static void barkOnUIError(String message) {
-        System.err.println(message);
-        Thread.dumpStack();
+        LOG.warning(message);
     }
 
     /**

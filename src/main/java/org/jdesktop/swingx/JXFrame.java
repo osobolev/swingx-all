@@ -37,6 +37,7 @@ import java.awt.Toolkit;
 import java.awt.event.AWTEventListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.logging.Logger;
 
 /**
  * <p>
@@ -70,6 +71,8 @@ import java.awt.event.KeyListener;
 @JavaBean
 @SuppressWarnings("nls")
 public class JXFrame extends JFrame {
+
+    protected static final Logger LOG = Logger.getLogger(JXFrame.class.getName());
 
     /**
      * An enumeration of {@link JXFrame} starting locations.
@@ -198,7 +201,8 @@ public class JXFrame extends JFrame {
                         kl.keyTyped(evt);
                         break;
                     default:
-                        System.err.println("Unhandled Key ID: " + id);
+                        LOG.warning("Unhandled Key ID: " + id);
+                        break;
                     }
                 }
             }

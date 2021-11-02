@@ -50,6 +50,8 @@ import java.awt.Robot;
 import java.awt.event.MouseEvent;
 import java.awt.geom.Point2D;
 import java.awt.image.BufferedImage;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * <p>EyeDropperColorChooserPanel is a pluggable panel for the
@@ -75,6 +77,8 @@ import java.awt.image.BufferedImage;
  * @author joshua@marinacci.org
  */
 public class EyeDropperColorChooserPanel extends AbstractColorChooserPanel {
+
+    private static final Logger LOG = Logger.getLogger(EyeDropperColorChooserPanel.class.getName());
 
     /**
      * Example usage
@@ -120,7 +124,7 @@ public class EyeDropperColorChooserPanel extends AbstractColorChooserPanel {
             eyeDropper.setIcon(new ImageIcon(EyeDropperColorChooserPanel.class.getResource("mag.png")));
             eyeDropper.setText("");
         } catch (Exception ex) {
-            ex.printStackTrace();
+            LOG.log(Level.WARNING, "Cannot load icon", ex);
         }
 
         magPanel.addPropertyChangeListener(evt -> {
@@ -152,7 +156,7 @@ public class EyeDropperColorChooserPanel extends AbstractColorChooserPanel {
                     activeColor = img.getRGB(img.getWidth() / 2, img.getHeight() / 2);
                     firePropertyChange("activeColor", oldColor, activeColor);
                 } catch (AWTException ex) {
-                    ex.printStackTrace();
+                    LOG.log(Level.WARNING, ex.getMessage(), ex);
                 }
             }
             g.setColor(Color.black);

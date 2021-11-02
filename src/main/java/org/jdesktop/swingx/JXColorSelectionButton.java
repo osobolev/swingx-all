@@ -42,6 +42,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.geom.Ellipse2D;
 import java.awt.image.BufferedImage;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import static java.awt.RenderingHints.KEY_ANTIALIASING;
 import static java.awt.RenderingHints.VALUE_ANTIALIAS_ON;
@@ -59,6 +61,8 @@ import static java.awt.RenderingHints.VALUE_ANTIALIAS_ON;
  * @author joshua@marinacci.org
  */
 public class JXColorSelectionButton extends JButton {
+
+    private static final Logger LOG = Logger.getLogger(JXColorSelectionButton.class.getName());
 
     private BufferedImage colorwell;
     private JDialog dialog = null;
@@ -86,7 +90,7 @@ public class JXColorSelectionButton extends JButton {
         try {
             colorwell = ImageIO.read(JXColorSelectionButton.class.getResource("color/colorwell.png"));
         } catch (Exception ex) {
-            ex.printStackTrace();
+            LOG.log(Level.WARNING, "Cannot load icon", ex);
         }
 
         this.addPropertyChangeListener("background", propertyChangeEvent -> getChooser().setColor(getBackground()));

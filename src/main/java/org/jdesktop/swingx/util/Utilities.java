@@ -54,6 +54,8 @@ import java.util.logging.Logger;
  */
 public class Utilities {
 
+    private static final Logger LOG = Logger.getLogger(Utilities.class.getName());
+
     private Utilities() {
     }
 
@@ -316,7 +318,7 @@ public class Utilities {
                     bounds.height -= bounds.y + Integer.parseInt(st.nextToken());
                     bounds.width -= bounds.x + Integer.parseInt(st.nextToken());
                 } catch (NumberFormatException ex) {
-                    Logger.getAnonymousLogger().log(Level.WARNING, null, ex);
+                    LOG.log(Level.WARNING, "Cannot parse bounds", ex);
                 }
             }
 
@@ -339,7 +341,7 @@ public class Utilities {
             bounds.height -= insets.top + insets.bottom;
             bounds.width -= insets.left + insets.right;
         } catch (Exception ex) {
-            Logger.getAnonymousLogger().log(Level.WARNING, null, ex);
+            LOG.log(Level.WARNING, "Cannot get screen bounds", ex);
         }
 
         return bounds;

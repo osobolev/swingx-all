@@ -40,6 +40,8 @@ import java.io.StringReader;
  */
 public class BasicTransferable implements Transferable, UIResource {
 
+    private static final Logger LOG = Logger.getLogger(BasicTransferable.class.getName());
+
     protected String plainData;
     protected String htmlData;
 
@@ -63,7 +65,7 @@ public class BasicTransferable implements Transferable, UIResource {
             stringFlavors[0] = new DataFlavor(DataFlavor.javaJVMLocalObjectMimeType + ";class=java.lang.String");
             stringFlavors[1] = DataFlavor.stringFlavor;
         } catch (ClassNotFoundException cle) {
-            System.err.println("error initializing javax.swing.plaf.basic.BasicTranserable");
+            LOG.warning("error initializing javax.swing.plaf.basic.BasicTranserable");
         }
     }
 

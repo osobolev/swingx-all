@@ -209,7 +209,7 @@ public abstract class PromptTextUI extends TextUI {
                     0, promptComponent.getText().length(), new DefaultHighlightPainter(txt.getSelectionColor())
                 );
             } catch (BadLocationException e) {
-                e.printStackTrace();
+                // ignore
             }
         } else {
             promptComponent.setForeground(PromptSupport.getForeground(txt));

@@ -64,6 +64,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 import java.util.SortedSet;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
@@ -115,7 +116,6 @@ import java.util.logging.Logger;
  */
 public class BasicMonthViewUI extends MonthViewUI {
 
-    @SuppressWarnings("all")
     private static final Logger LOG = Logger.getLogger(BasicMonthViewUI.class.getName());
 
     private static final int CALENDAR_SPACING = 10;
@@ -2250,8 +2250,7 @@ public class BasicMonthViewUI extends MonthViewUI {
             Class<?> handler = Class.forName(handlerClassName);
             return instantiateClass(handler);
         } catch (ClassNotFoundException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+            LOG.log(Level.WARNING, "Cannot create handler", e);
         }
         return null;
     }

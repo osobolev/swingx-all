@@ -29,8 +29,12 @@ import javax.swing.JComponent;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class GradientThumbRenderer extends JComponent implements ThumbRenderer {
+
+    private static final Logger LOG = Logger.getLogger(GradientThumbRenderer.class.getName());
 
     private Image thumb_black;
     private Image thumb_gray;
@@ -40,7 +44,7 @@ public class GradientThumbRenderer extends JComponent implements ThumbRenderer {
             thumb_black = ImageIO.read(GradientThumbRenderer.class.getResource("/icons/thumb_black.png"));
             thumb_gray = ImageIO.read(GradientThumbRenderer.class.getResource("/icons/thumb_gray.png"));
         } catch (Exception ex) {
-            ex.printStackTrace();
+            LOG.log(Level.WARNING, "Cannot load icons", ex);
         }
     }
 

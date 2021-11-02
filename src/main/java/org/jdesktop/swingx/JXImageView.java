@@ -63,6 +63,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
@@ -246,7 +247,7 @@ public class JXImageView extends JXPanel {
             try {
                 this.setTransferHandler(new DnDHandler());
             } catch (ClassNotFoundException ex) {
-                ex.printStackTrace();
+                LOG.log(Level.WARNING, "Cannot create DnD handler", ex);
                 fireError(ex);
             }
         } else {
@@ -685,8 +686,7 @@ public class JXImageView extends JXPanel {
                     }
                     return true;
                 } catch (Exception ex) {
-                    LOG.severe(ex.getMessage());
-                    ex.printStackTrace();
+                    LOG.log(Level.SEVERE, ex.getMessage(), ex);
                     fireError(ex);
                 }
             }

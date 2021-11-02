@@ -43,6 +43,8 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * The MultiSplitLayout layout manager recursively arranges its
@@ -77,6 +79,8 @@ import java.util.Map;
  * 1 Support for visibility added.
  */
 public class MultiSplitLayout implements LayoutManager, Serializable {
+
+    private static final Logger LOG = Logger.getLogger(MultiSplitLayout.class.getName());
 
     public static final int DEFAULT_LAYOUT = 0;
     public static final int NO_MIN_SIZE_LAYOUT = 1;
@@ -2112,7 +2116,7 @@ public class MultiSplitLayout implements LayoutManager, Serializable {
             parseSplit(st, root);
             return root.getChildren().get(0);
         } catch (Exception e) {
-            e.printStackTrace();
+            LOG.log(Level.WARNING, "Cannot parse split", e);
         } finally {
             try {
                 r.close();
@@ -2172,6 +2176,7 @@ public class MultiSplitLayout implements LayoutManager, Serializable {
         return parseModel(new StringReader(s));
     }
 
+    @SuppressWarnings("UseOfSystemOutOrSystemErr")
     private static void printModel(String indent, Node root) {
         if (root instanceof Split) {
             Split split = (Split) root;

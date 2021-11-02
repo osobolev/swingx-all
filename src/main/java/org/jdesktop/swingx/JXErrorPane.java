@@ -35,6 +35,8 @@ import javax.swing.JInternalFrame;
 import javax.swing.SwingUtilities;
 import java.awt.Component;
 import java.lang.reflect.InvocationTargetException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * <p>JXErrorPane is a common error component suitable for displaying errors,
@@ -168,6 +170,9 @@ import java.lang.reflect.InvocationTargetException;
  */
 @JavaBean
 public class JXErrorPane extends JComponent {
+
+    private static final Logger LOG = Logger.getLogger(JXErrorPane.class.getName());
+
     //---------------------------------------------------- static properties
     /**
      * Name of the Action used for reporting errors
@@ -398,7 +403,7 @@ public class JXErrorPane extends JComponent {
             try {
                 SwingUtilities.invokeAndWait(r);
             } catch (InvocationTargetException | InterruptedException ex) {
-                ex.printStackTrace();
+                LOG.log(Level.WARNING, ex.getMessage(), ex);
             }
         } else {
             r.run();
@@ -499,7 +504,7 @@ public class JXErrorPane extends JComponent {
             try {
                 SwingUtilities.invokeAndWait(r);
             } catch (InvocationTargetException | InterruptedException ex) {
-                ex.printStackTrace();
+                LOG.log(Level.WARNING, ex.getMessage(), ex);
             }
         } else {
             r.run();
@@ -600,7 +605,7 @@ public class JXErrorPane extends JComponent {
             try {
                 SwingUtilities.invokeAndWait(r);
             } catch (InvocationTargetException | InterruptedException ex) {
-                ex.printStackTrace();
+                LOG.log(Level.WARNING, ex.getMessage(), ex);
             }
         } else {
             r.run();
