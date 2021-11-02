@@ -84,10 +84,6 @@ public class JAASLoginService extends LoginService {
                 new JAASCallbackHandler(name, password));
             loginContext.login();
             return true;
-        } catch (AccountExpiredException | FailedLoginException | CredentialExpiredException e) {
-            // TODO add explanation?
-            LOG.log(Level.WARNING, "", e);
-            return false;
         } catch (Throwable e) {
             // TODO add explanation?
             LOG.log(Level.WARNING, "", e);
