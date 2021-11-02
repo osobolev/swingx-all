@@ -317,11 +317,7 @@ public class ActionContainerFactory {
         }
         Integer hashCode = intCode;
 
-        ButtonGroup group = groupMap.get(hashCode);
-        if (group == null) {
-            group = new ButtonGroup();
-            groupMap.put(hashCode, group);
-        }
+        ButtonGroup group = groupMap.computeIfAbsent(hashCode, k -> new ButtonGroup());
         return group;
     }
 

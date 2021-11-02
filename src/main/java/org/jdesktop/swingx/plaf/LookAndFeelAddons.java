@@ -155,9 +155,7 @@ public abstract class LookAndFeelAddons {
     public void loadDefaults(Object[] keysAndValues) {
         // Go in reverse order so the most recent keys get added first...
         for (int i = keysAndValues.length - 2; i >= 0; i -= 2) {
-            if (UIManager.getLookAndFeelDefaults().get(keysAndValues[i]) == null) {
-                UIManager.getLookAndFeelDefaults().put(keysAndValues[i], keysAndValues[i + 1]);
-            }
+            UIManager.getLookAndFeelDefaults().putIfAbsent(keysAndValues[i], keysAndValues[i + 1]);
         }
     }
 
