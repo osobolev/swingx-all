@@ -209,7 +209,7 @@ public class AbstractAreaEffect implements AreaEffect {
         g2.setComposite(AlphaComposite.getInstance(AlphaComposite.DST_OVER, brushAlpha));
 
         // draw the effect
-        for (float i = 0; i < steps; i = i + 1f) {
+        for (float i = 0; i < steps; i += 1f) {
             float brushWidth = i * effectWidth / steps;
             g2.setStroke(new BasicStroke(brushWidth,
                 BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND));

@@ -377,7 +377,7 @@ public class JXMultiSplitPane extends JPanel implements BackgroundPaintable {
                 }
 
                 if (msl.getLayoutMode() == MultiSplitLayout.USER_MIN_SIZE_LAYOUT) {
-                    dragMin = dragMin + msl.getUserMinSize();
+                    dragMin += msl.getUserMinSize();
                 } else {
                     if (dragDivider.isVertical()) {
                         dragMin = Math.max(dragMin, dragMin + getMinNodeSize(msl, prevNode).width);

@@ -900,7 +900,7 @@ public class BasicMonthViewUI extends MonthViewUI {
         int startOfDaysY = month.y + getMonthHeaderHeight();
         if (y < startOfDaysY) return null;
         month.y = startOfDaysY;
-        month.height = month.height - getMonthHeaderHeight();
+        month.height -= getMonthHeaderHeight();
         return month;
     }
 

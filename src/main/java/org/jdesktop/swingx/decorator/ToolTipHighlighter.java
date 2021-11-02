@@ -24,7 +24,6 @@ import org.jdesktop.swingx.renderer.StringValue;
 
 import javax.swing.JComponent;
 import java.awt.Component;
-import java.awt.Font;
 
 /**
  * A highlighter for setting a tool tip on the component.

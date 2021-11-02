@@ -87,7 +87,7 @@ public class NeonBorderEffect extends AbstractAreaEffect {
         gfx.setComposite(AlphaComposite.SrcOver);
         int steps = getEffectWidth();
         if (borderPosition == BorderPosition.Centered) {
-            steps = steps / 2;
+            steps /= 2;
         }
         for (int i = 0; i < steps; i++) {
 

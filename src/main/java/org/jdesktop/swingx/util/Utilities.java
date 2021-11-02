@@ -514,10 +514,10 @@ public class Utilities {
 
                     //Strip out the explicit mask - KeyStroke won't know
                     //what to do with it
-                    needed = needed & ~CTRL_WILDCARD_MASK;
+                    needed &= ~CTRL_WILDCARD_MASK;
 
                     boolean macAlt = (needed & ALT_WILDCARD_MASK) != 0;
-                    needed = needed & ~ALT_WILDCARD_MASK;
+                    needed &= ~ALT_WILDCARD_MASK;
 
                     if (i != null) {
                         //#26854 - Default accelerator should be Command on mac

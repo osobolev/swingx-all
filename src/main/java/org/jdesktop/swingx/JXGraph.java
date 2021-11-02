@@ -1741,13 +1741,13 @@ public class JXGraph extends JXPanel {
 
             double distance = xPixelToPosition(dragEnd.getX()) -
                               xPixelToPosition(dragStart.getX());
-            minX = minX - distance;
-            maxX = maxX - distance;
+            minX -= distance;
+            maxX -= distance;
 
             distance = yPixelToPosition(dragEnd.getY()) -
                        yPixelToPosition(dragStart.getY());
-            minY = minY - distance;
-            maxY = maxY - distance;
+            minY -= distance;
+            maxY -= distance;
 
             repaint();
             dragStart = dragEnd;

@@ -222,25 +222,25 @@ public class ImagePainter extends AbstractAreaPainter<Object> {
                         if (scaleType == ScaleType.InsideFit) {
                             if (sw > width) {
                                 float scale = (float) width / (float) sw;
-                                sw = (int) (sw * scale);
-                                sh = (int) (sh * scale);
+                                sw *= scale;
+                                sh *= scale;
                             }
                             if (sh > height) {
                                 float scale = (float) height / (float) sh;
-                                sw = (int) (sw * scale);
-                                sh = (int) (sh * scale);
+                                sw *= scale;
+                                sh *= scale;
                             }
                         }
                         if (scaleType == ScaleType.OutsideFit) {
                             if (sw > width) {
                                 float scale = (float) width / (float) sw;
-                                sw = (int) (sw * scale);
-                                sh = (int) (sh * scale);
+                                sw *= scale;
+                                sh *= scale;
                             }
                             if (sh < height) {
                                 float scale = (float) height / (float) sh;
-                                sw = (int) (sw * scale);
-                                sh = (int) (sh * scale);
+                                sw *= scale;
+                                sh *= scale;
                             }
                         }
                         if (scaleType == ScaleType.Distort) {
@@ -278,8 +278,8 @@ public class ImagePainter extends AbstractAreaPainter<Object> {
                         int sw = rect.width;
                         int sh = rect.height;
                         if (imageScale != 1.0) {
-                            sw = (int) (sw * imageScale);
-                            sh = (int) (sh * imageScale);
+                            sw *= imageScale;
+                            sh *= imageScale;
                         }
                         g.drawImage(img, rect.x, rect.y, sw, sh, null);
                     }

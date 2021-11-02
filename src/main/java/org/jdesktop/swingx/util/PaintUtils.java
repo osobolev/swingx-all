@@ -245,7 +245,7 @@ public class PaintUtils {
         double y_off = p2.getY() - p1.getY();
         double angle = Math.atan(y_off / x_off);
         if (x_off < 0) {
-            angle = angle + Math.PI;
+            angle += Math.PI;
         }
 
         if (angle < 0) {

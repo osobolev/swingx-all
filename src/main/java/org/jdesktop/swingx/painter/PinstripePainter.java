@@ -172,7 +172,7 @@ public class PinstripePainter extends AbstractPainter<Object> {
      */
     public void setAngle(double angle) {
         if (angle > 360) {
-            angle = angle % 360;
+            angle %= 360;
         }
 
         if (angle < 0) {
