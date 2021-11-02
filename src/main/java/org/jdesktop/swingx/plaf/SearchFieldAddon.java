@@ -67,7 +67,7 @@ public class SearchFieldAddon extends AbstractComponentAddon {
         // Do it like 'Windows Media Player' in XP:
         // Replace the border line with the search button line on rollover.
         // But not in classic mode!
-        if (UIManager.getLookAndFeel().getClass().getName().indexOf("Classic") == -1) {
+        if (!UIManager.getLookAndFeel().getClass().getName().contains("Classic")) {
             defaults.add("SearchField.buttonMargin", new InsetsUIResource(0, -1, 0, -1));
         } else {
             defaults.add("SearchField.buttonMargin", new InsetsUIResource(0, 0, 0, 0));
@@ -110,8 +110,8 @@ public class SearchFieldAddon extends AbstractComponentAddon {
     @Override
     protected boolean isWindows(LookAndFeelAddons addon) {
         return super.isWindows(addon)
-               || UIManager.getLookAndFeel().getClass().getName().indexOf("Windows") != -1
-               || UIManager.getLookAndFeel().getClass().getName().indexOf("PlasticXP") != -1;
+               || UIManager.getLookAndFeel().getClass().getName().contains("Windows")
+               || UIManager.getLookAndFeel().getClass().getName().contains("PlasticXP");
     }
 
     private IconUIResource getIcon(String resourceName) {

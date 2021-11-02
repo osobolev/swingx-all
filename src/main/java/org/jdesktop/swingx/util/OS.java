@@ -42,11 +42,11 @@ public class OS {
             os = os.toLowerCase();
 
         osIsMacOsX = "mac os x".equals(os);
-        osIsWindows = os != null && os.indexOf("windows") != -1;
+        osIsWindows = os != null && os.contains("windows");
         osIsWindowsXP = "windows xp".equals(os);
         osIsWindows2003 = "windows 2003".equals(os);
         osIsWindowsVista = "windows vista".equals(os);
-        osIsLinux = os != null && os.indexOf("linux") != -1;
+        osIsLinux = os != null && os.contains("linux");
     }
 
     /**
