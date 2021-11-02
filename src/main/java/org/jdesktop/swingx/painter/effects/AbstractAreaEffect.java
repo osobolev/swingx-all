@@ -69,9 +69,7 @@ public class AbstractAreaEffect implements AreaEffect {
         // create a rect to hold the bounds
         width = (int) (clipShape.getBounds2D().getWidth() + clipShape.getBounds2D().getX());
         height = (int) (clipShape.getBounds2D().getHeight() + clipShape.getBounds2D().getY());
-        Rectangle effectBounds = new Rectangle(0, 0,
-            width + getEffectWidth() * 2 + 1,
-            height + getEffectWidth() * 2 + 1);
+        Rectangle effectBounds = new Rectangle(0, 0, width + getEffectWidth() * 2 + 1, height + getEffectWidth() * 2 + 1);
 
         // Apply the border glow effect
         if (isShapeMasked()) {
@@ -87,15 +85,12 @@ public class AbstractAreaEffect implements AreaEffect {
                 if (debug) {
                     g2.setPaint(Color.WHITE);
                     g2.setComposite(AlphaComposite.SrcOver);
-                    g2.drawRect(0, 0, effectBounds.width - 1,
-                        effectBounds.height - 1);
+                    g2.drawRect(0, 0, effectBounds.width - 1, effectBounds.height - 1);
                 }
 
                 // turn on smoothing
-                g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
-                    RenderingHints.VALUE_ANTIALIAS_ON);
-                g2.translate(getEffectWidth() - getOffset().getX(),
-                    getEffectWidth() - getOffset().getY());
+                g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+                g2.translate(getEffectWidth() - getOffset().getX(), getEffectWidth() - getOffset().getY());
                 paintBorderGlow(g2, clipShape, width, height);
 
                 // clip out the parts we don't want
@@ -131,9 +126,7 @@ public class AbstractAreaEffect implements AreaEffect {
 
     private BufferedImage getClipImage(Rectangle effectBounds) {
         // set up a temp buffer
-        if (_clipImage == null ||
-            _clipImage.getWidth() != effectBounds.width ||
-            _clipImage.getHeight() != effectBounds.height) {
+        if (_clipImage == null || _clipImage.getWidth() != effectBounds.width || _clipImage.getHeight() != effectBounds.height) {
             _clipImage = createCompatibleTranslucentImage(effectBounds.width, effectBounds.height);
         }
         _clipImage.getGraphics().clearRect(0, 0, _clipImage.getWidth(), _clipImage.getHeight());
@@ -179,8 +172,7 @@ public class AbstractAreaEffect implements AreaEffect {
      * @param width
      * @param height
      */
-    protected void paintBorderGlow(Graphics2D g2,
-                                   Shape clipShape, int width, int height) {
+    protected void paintBorderGlow(Graphics2D g2, Shape clipShape, int width, int height) {
 
         int steps = getBrushSteps();
         float brushAlpha = 1f / steps;
@@ -195,10 +187,7 @@ public class AbstractAreaEffect implements AreaEffect {
             // set the inside/outside mode
             if (inside) {
                 g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_ATOP, 1f));
-                Area a1 = new Area(new Rectangle(
-                    (int) -offset.getX() - 20,
-                    (int) -offset.getY() - 20,
-                    width + 40, height + 40));
+                Area a1 = new Area(new Rectangle((int) -offset.getX() - 20, (int) -offset.getY() - 20, width + 40, height + 40));
                 Area a2 = new Area(clipShape);
                 a1.subtract(a2);
                 g2.fill(a1);
@@ -220,8 +209,7 @@ public class AbstractAreaEffect implements AreaEffect {
         // draw the effect
         for (float i = 0; i < steps; i += 1f) {
             float brushWidth = i * effectWidth / steps;
-            g2.setStroke(new BasicStroke(brushWidth,
-                BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND));
+            g2.setStroke(new BasicStroke(brushWidth, BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND));
             g2.draw(clipShape);
         }
         g2.translate(-offset.getX(), -offset.getY());

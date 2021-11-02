@@ -73,8 +73,7 @@ import java.util.logging.Logger;
 public class BasicHeaderUI extends HeaderUI {
 
     @SuppressWarnings("unused")
-    private static final Logger LOG = Logger.getLogger(BasicHeaderUI.class
-        .getName());
+    private static final Logger LOG = Logger.getLogger(BasicHeaderUI.class.getName());
 
     // Implementation detail. Neeeded to expose getMultiLineSupport() method to allow restoring view
     // lost after LAF switch
@@ -230,30 +229,24 @@ public class BasicHeaderUI extends HeaderUI {
         if (isUIInstallable(header.getTitleFont())) {
             Font titleFont = UIManager.getFont("JXHeader.titleFont");
             // fallback to label font
-            header.setTitleFont(titleFont != null ? titleFont : UIManager
-                .getFont("Label.font"));
+            header.setTitleFont(titleFont != null ? titleFont : UIManager.getFont("Label.font"));
         }
         if (isUIInstallable(header.getTitleForeground())) {
-            Color titleForeground = UIManagerExt
-                .getColor("JXHeader.titleForeground");
+            Color titleForeground = UIManagerExt.getColor("JXHeader.titleForeground");
             // fallback to label foreground
-            header.setTitleForeground(titleForeground != null ? titleForeground
-                : UIManagerExt.getColor("Label.foreground"));
+            header.setTitleForeground(titleForeground != null ? titleForeground : UIManagerExt.getColor("Label.foreground"));
         }
 
         // description properties
         if (isUIInstallable(header.getDescriptionFont())) {
             Font descFont = UIManager.getFont("JXHeader.descriptionFont");
             // fallback to label font
-            header.setDescriptionFont(descFont != null ? descFont : UIManager
-                .getFont("Label.font"));
+            header.setDescriptionFont(descFont != null ? descFont : UIManager.getFont("Label.font"));
         }
         if (isUIInstallable(header.getDescriptionForeground())) {
-            Color descForeground = UIManagerExt
-                .getColor("JXHeader.descriptionForeground");
+            Color descForeground = UIManagerExt.getColor("JXHeader.descriptionForeground");
             // fallback to label foreground
-            header.setDescriptionForeground(descForeground != null ? descForeground
-                : UIManagerExt.getColor("Label.foreground"));
+            header.setDescriptionForeground(descForeground != null ? descForeground : UIManagerExt.getColor("Label.foreground"));
         }
 
         // icon label properties
@@ -328,7 +321,8 @@ public class BasicHeaderUI extends HeaderUI {
      * @return a font not of type UIResource, may be null.
      */
     private Font getAsNotUIResource(Font font) {
-        if (!(font instanceof UIResource)) return font;
+        if (!(font instanceof UIResource))
+            return font;
         // PENDING JW: correct way to create another font instance?
         return font.deriveFont(font.getAttributes());
     }
@@ -340,7 +334,8 @@ public class BasicHeaderUI extends HeaderUI {
      * @return a color not of type UIResource, may be null.
      */
     private Color getAsNotUIResource(Color color) {
-        if (!(color instanceof UIResource)) return color;
+        if (!(color instanceof UIResource))
+            return color;
         // PENDING JW: correct way to create another color instance?
         float[] rgb = color.getRGBComponents(null);
         return new Color(rgb[0], rgb[1], rgb[2], rgb[3]);
@@ -377,8 +372,7 @@ public class BasicHeaderUI extends HeaderUI {
                     View v = (View) descriptionPane.getClientProperty(BasicHTML.propertyKey);
                     // view might get lost on LAF change ...
                     if (v == null) {
-                        descriptionPane.putClientProperty(BasicHTML.propertyKey,
-                            MultiLineSupport.createView(descriptionPane));
+                        descriptionPane.putClientProperty(BasicHTML.propertyKey, MultiLineSupport.createView(descriptionPane));
                         v = (View) descriptionPane.getClientProperty(BasicHTML.propertyKey);
                     }
                     if (v != null) {
@@ -392,7 +386,11 @@ public class BasicHeaderUI extends HeaderUI {
                         int h = Math.max(descriptionPane.getHeight(), tla.getHeight());
                         int w = Math.min(tla.getWidth(), header.getParent().getWidth());
                         // 35 = description pane insets, TODO: obtain dynamically
-                        w -= 35 + header.getInsets().left + header.getInsets().right + descriptionPane.getInsets().left + descriptionPane.getInsets().right + imagePanel.getInsets().left + imagePanel.getInsets().right + imagePanel.getWidth() + descriptionPane.getBounds().x;
+                        w -= 35 +
+                             header.getInsets().left + header.getInsets().right +
+                             descriptionPane.getInsets().left + descriptionPane.getInsets().right +
+                             imagePanel.getInsets().left + imagePanel.getInsets().right +
+                             imagePanel.getWidth() + descriptionPane.getBounds().x;
                         v.setSize(w, h);
                         descriptionPane.setSize(w, (int) Math.ceil(v.getPreferredSpan(View.Y_AXIS)));
                     }
@@ -438,13 +436,25 @@ public class BasicHeaderUI extends HeaderUI {
         h.remove(descriptionPane);
         h.remove(imagePanel);
         if (h.getIconPosition() == null || h.getIconPosition() == IconPosition.RIGHT) {
-            h.add(titleLabel, new GridBagConstraints(0, 0, 1, 1, 1.0, 0.0, GridBagConstraints.LINE_START, GridBagConstraints.HORIZONTAL, new Insets(12, 12, 0, 11), 0, 0));
-            h.add(descriptionPane, new GridBagConstraints(0, 1, 1, 1, 1.0, 1.0, GridBagConstraints.FIRST_LINE_START, GridBagConstraints.BOTH, new Insets(0, 24, 12, 11), 0, 0));
-            h.add(imagePanel, new GridBagConstraints(1, 0, 1, 2, 0.0, 1.0, GridBagConstraints.FIRST_LINE_END, GridBagConstraints.NONE, new Insets(12, 0, 11, 11), 0, 0));
+            h.add(titleLabel, new GridBagConstraints(
+                0, 0, 1, 1, 1.0, 0.0, GridBagConstraints.LINE_START, GridBagConstraints.HORIZONTAL, new Insets(12, 12, 0, 11), 0, 0
+            ));
+            h.add(descriptionPane, new GridBagConstraints(
+                0, 1, 1, 1, 1.0, 1.0, GridBagConstraints.FIRST_LINE_START, GridBagConstraints.BOTH, new Insets(0, 24, 12, 11), 0, 0
+            ));
+            h.add(imagePanel, new GridBagConstraints(
+                1, 0, 1, 2, 0.0, 1.0, GridBagConstraints.FIRST_LINE_END, GridBagConstraints.NONE, new Insets(12, 0, 11, 11), 0, 0
+            ));
         } else {
-            h.add(titleLabel, new GridBagConstraints(1, 0, 1, 1, 1.0, 0.0, GridBagConstraints.LINE_START, GridBagConstraints.HORIZONTAL, new Insets(12, 12, 0, 11), 0, 0));
-            h.add(descriptionPane, new GridBagConstraints(1, 1, 1, 1, 1.0, 1.0, GridBagConstraints.FIRST_LINE_START, GridBagConstraints.BOTH, new Insets(0, 24, 12, 11), 0, 0));
-            h.add(imagePanel, new GridBagConstraints(0, 0, 1, 2, 0.0, 1.0, GridBagConstraints.FIRST_LINE_END, GridBagConstraints.NONE, new Insets(12, 11, 0, 11), 0, 0));
+            h.add(titleLabel, new GridBagConstraints(
+                1, 0, 1, 1, 1.0, 0.0, GridBagConstraints.LINE_START, GridBagConstraints.HORIZONTAL, new Insets(12, 12, 0, 11), 0, 0
+            ));
+            h.add(descriptionPane, new GridBagConstraints(
+                1, 1, 1, 1, 1.0, 1.0, GridBagConstraints.FIRST_LINE_START, GridBagConstraints.BOTH, new Insets(0, 24, 12, 11), 0, 0
+            ));
+            h.add(imagePanel, new GridBagConstraints(
+                0, 0, 1, 2, 0.0, 1.0, GridBagConstraints.FIRST_LINE_END, GridBagConstraints.NONE, new Insets(12, 11, 0, 11), 0, 0
+            ));
         }
     }
 

@@ -684,15 +684,15 @@ public class JXButton extends JButton implements BackgroundPaintable {
                 getVerticalAlignment(), getHorizontalAlignment(),
                 getVerticalTextPosition(), getHorizontalTextPosition(),
                 viewRect, iconRect, textRect,
-                getText() == null ? 0 : getIconTextGap());
+                getText() == null ? 0 : getIconTextGap()
+            );
 
             if (!isPaintBorderInsets()) {
                 g2d.translate(i.left, i.top);
             }
 
             g2d.setPaint(fgPaint);
-            BasicGraphicsUtils.drawStringUnderlineCharAt(g2d, text, getDisplayedMnemonicIndex(),
-                textRect.x, textRect.y + g2d.getFontMetrics().getAscent());
+            BasicGraphicsUtils.drawStringUnderlineCharAt(g2d, text, getDisplayedMnemonicIndex(), textRect.x, textRect.y + g2d.getFontMetrics().getAscent());
         }
     }
 

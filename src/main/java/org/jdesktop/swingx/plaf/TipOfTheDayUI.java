@@ -42,6 +42,5 @@ public abstract class TipOfTheDayUI extends PanelUI {
      * @param choice
      * @return a new JDialog to display a JXTipOfTheDay panel
      */
-    public abstract JDialog createDialog(Component parentComponent,
-                                         JXTipOfTheDay.ShowOnStartupChoice choice);
+    public abstract JDialog createDialog(Component parentComponent, JXTipOfTheDay.ShowOnStartupChoice choice);
 }

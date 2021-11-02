@@ -88,7 +88,8 @@ public class FontHighlighter extends AbstractHighlighter {
      * @see #getFont()
      */
     public void setFont(Font font) {
-        if (areEqual(font, getFont())) return;
+        if (areEqual(font, getFont()))
+            return;
         this.font = font;
         fireStateChanged();
     }

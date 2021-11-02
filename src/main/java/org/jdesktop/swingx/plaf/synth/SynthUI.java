@@ -38,6 +38,5 @@ public interface SynthUI {
 
     SynthContext getContext(JComponent arg0);
 
-    void paintBorder(SynthContext context, Graphics g, int x,
-                     int y, int w, int h);
+    void paintBorder(SynthContext context, Graphics g, int x, int y, int w, int h);
 }

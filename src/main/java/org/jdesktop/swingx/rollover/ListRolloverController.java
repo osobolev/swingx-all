@@ -68,8 +68,7 @@ public class ListRolloverController<T extends JList> extends RolloverController<
         if (hasRollover(location)) {
             if (oldCursor == null) {
                 oldCursor = component.getCursor();
-                component.setCursor(Cursor
-                    .getPredefinedCursor(Cursor.HAND_CURSOR));
+                component.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
             }
         } else {
             if (oldCursor != null) {
@@ -88,18 +87,15 @@ public class ListRolloverController<T extends JList> extends RolloverController<
     }
 
     @Override
-    protected RolloverRenderer getRolloverRenderer(Point location,
-                                                   boolean prepare) {
+    protected RolloverRenderer getRolloverRenderer(Point location, boolean prepare) {
         ListCellRenderer renderer = component.getCellRenderer();
-        RolloverRenderer rollover = renderer instanceof RolloverRenderer
-            ? (RolloverRenderer) renderer : null;
+        RolloverRenderer rollover = renderer instanceof RolloverRenderer ? (RolloverRenderer) renderer : null;
         if (rollover != null && !rollover.isEnabled()) {
             rollover = null;
         }
         if (rollover != null && prepare) {
             Object element = component.getModel().getElementAt(location.y);
-            renderer.getListCellRendererComponent(component, element,
-                location.y, false, true);
+            renderer.getListCellRendererComponent(component, element, location.y, false, true);
         }
         return rollover;
     }

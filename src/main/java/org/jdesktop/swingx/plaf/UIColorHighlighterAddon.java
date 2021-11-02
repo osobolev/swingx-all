@@ -42,8 +42,7 @@ import java.util.logging.Logger;
 public class UIColorHighlighterAddon extends AbstractComponentAddon {
 
     @SuppressWarnings("unused")
-    private static final Logger LOG = Logger
-        .getLogger(UIColorHighlighterAddon.class.getName());
+    private static final Logger LOG = Logger.getLogger(UIColorHighlighterAddon.class.getName());
 
     public UIColorHighlighterAddon() {
         super("UIColorHighlighter");
@@ -93,11 +92,9 @@ public class UIColorHighlighterAddon extends AbstractComponentAddon {
         if (OS.isUsingWindowsVisualStyles()) {
             String xpStyle = OS.getWindowsVisualStyle();
 
-            if (WindowsLookAndFeelAddons.HOMESTEAD_VISUAL_STYLE
-                .equalsIgnoreCase(xpStyle)) {
+            if (WindowsLookAndFeelAddons.HOMESTEAD_VISUAL_STYLE.equalsIgnoreCase(xpStyle)) {
                 defaults.add("UIColorHighlighter.stripingBackground", new ColorUIResource(228, 231, 219));
-            } else if (WindowsLookAndFeelAddons.SILVER_VISUAL_STYLE
-                .equalsIgnoreCase(xpStyle)) {
+            } else if (WindowsLookAndFeelAddons.SILVER_VISUAL_STYLE.equalsIgnoreCase(xpStyle)) {
                 defaults.add("UIColorHighlighter.stripingBackground", new ColorUIResource(235, 235, 236));
             } else {
                 // default blue
@@ -109,13 +106,13 @@ public class UIColorHighlighterAddon extends AbstractComponentAddon {
     }
 
     @Override
-    protected void addNimbusDefaults(LookAndFeelAddons addon,
-                                     DefaultsList defaults) {
+    protected void addNimbusDefaults(LookAndFeelAddons addon, DefaultsList defaults) {
         super.addNimbusDefaults(addon, defaults);
         // JW: Hacking around core issue #6882917
         // which is the underlying reason for issue #1180-swingx
         // (SwingX vs Nimbus table striping)
-        if (Boolean.TRUE.equals(UIManager.get("Nimbus.keepAlternateRowColor"))) return;
+        if (Boolean.TRUE.equals(UIManager.get("Nimbus.keepAlternateRowColor")))
+            return;
         // PENDING JW: not entirely sure if it is safe to really grab the color here
         // the Nimbus (Derived)Color is not yet fully installed at this moment
         // so without a table to instantiate may be rgb = 0,0,0

@@ -101,16 +101,21 @@ public class ColorUtilities {
         if (hsl == null) {
             hsl = new float[3];
         } else if (hsl.length < 3) {
-            throw new IllegalArgumentException("hsl array must have a length of" +
-                                               " at least 3");
+            throw new IllegalArgumentException("hsl array must have a length of" + " at least 3");
         }
 
-        if (r < 0) r = 0;
-        else if (r > 255) r = 255;
-        if (g < 0) g = 0;
-        else if (g > 255) g = 255;
-        if (b < 0) b = 0;
-        else if (b > 255) b = 255;
+        if (r < 0)
+            r = 0;
+        else if (r > 255)
+            r = 255;
+        if (g < 0)
+            g = 0;
+        else if (g > 255)
+            g = 255;
+        if (b < 0)
+            b = 0;
+        else if (b > 255)
+            b = 255;
 
         float var_R = r / 255f;
         float var_G = g / 255f;
@@ -205,16 +210,21 @@ public class ColorUtilities {
         if (rgb == null) {
             rgb = new int[3];
         } else if (rgb.length < 3) {
-            throw new IllegalArgumentException("rgb array must have a length of" +
-                                               " at least 3");
+            throw new IllegalArgumentException("rgb array must have a length of" + " at least 3");
         }
 
-        if (h < 0) h = 0.0f;
-        else if (h > 1.0f) h = 1.0f;
-        if (s < 0) s = 0.0f;
-        else if (s > 1.0f) s = 1.0f;
-        if (l < 0) l = 0.0f;
-        else if (l > 1.0f) l = 1.0f;
+        if (h < 0)
+            h = 0.0f;
+        else if (h > 1.0f)
+            h = 1.0f;
+        if (s < 0)
+            s = 0.0f;
+        else if (s > 1.0f)
+            s = 1.0f;
+        if (l < 0)
+            l = 0.0f;
+        else if (l > 1.0f)
+            l = 1.0f;
 
         int R, G, B;
 

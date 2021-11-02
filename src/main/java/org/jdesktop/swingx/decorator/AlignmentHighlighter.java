@@ -98,7 +98,8 @@ public class AlignmentHighlighter extends AbstractHighlighter {
      *                                  that is one of LEADING, LEFT, CENTER, RIGHT, TRAILING
      */
     public void setHorizontalAlignment(int alignment) {
-        if (getHorizontalAlignment() == alignment) return;
+        if (getHorizontalAlignment() == alignment)
+            return;
         this.alignment = checkHorizontalAlignment(alignment);
         fireStateChanged();
     }
@@ -150,9 +151,6 @@ public class AlignmentHighlighter extends AbstractHighlighter {
      */
     @Override
     protected boolean canHighlight(Component component, ComponentAdapter adapter) {
-        return component instanceof JLabel
-               || component instanceof AbstractButton
-               || component instanceof JTextField
-            ;
+        return component instanceof JLabel || component instanceof AbstractButton || component instanceof JTextField;
     }
 }

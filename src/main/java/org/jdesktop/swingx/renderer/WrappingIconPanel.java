@@ -262,7 +262,8 @@ public class WrappingIconPanel extends JXPanel implements PainterAware, IconAwar
      * @return the bounds of the delegate, or null if the delegate is null.
      */
     public Rectangle getDelegateBounds() {
-        if (delegate == null) return null;
+        if (delegate == null)
+            return null;
         return delegate.getBounds();
     }
 

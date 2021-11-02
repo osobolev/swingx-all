@@ -352,8 +352,7 @@ public abstract class Graphics2DFacade extends Graphics2D {
     }
 
     @Override
-    public boolean drawImage(Image img, int x, int y, int width, int height, Color bgcolor,
-                             ImageObserver observer) {
+    public boolean drawImage(Image img, int x, int y, int width, int height, Color bgcolor, ImageObserver observer) {
         return delegate.drawImage(img, x, y, width, height, bgcolor, observer);
     }
 
@@ -373,8 +372,7 @@ public abstract class Graphics2DFacade extends Graphics2D {
     }
 
     @Override
-    public boolean drawImage(Image img, int dx1, int dy1, int dx2, int dy2, int sx1, int sy1,
-                             int sx2, int sy2, ImageObserver observer) {
+    public boolean drawImage(Image img, int dx1, int dy1, int dx2, int dy2, int sx1, int sy1, int sx2, int sy2, ImageObserver observer) {
         return delegate.drawImage(img, dx1, dy1, dx2, dy2, sx1, sy1, sx2, sy2, observer);
     }
 
@@ -389,8 +387,7 @@ public abstract class Graphics2DFacade extends Graphics2D {
     }
 
     @Override
-    public boolean drawImage(Image img, int dx1, int dy1, int dx2, int dy2, int sx1, int sy1,
-                             int sx2, int sy2, Color bgcolor, ImageObserver observer) {
+    public boolean drawImage(Image img, int dx1, int dy1, int dx2, int dy2, int sx1, int sy1, int sx2, int sy2, Color bgcolor, ImageObserver observer) {
         return delegate.drawImage(img, dx1, dy1, dx2, dy2, sx1, sy1, sx2, sy2, bgcolor, observer);
     }
 

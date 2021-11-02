@@ -223,8 +223,7 @@ public class TargetManager {
         // The target list has the next chance to handle the command.
         if (targetList != null) {
             for (Targetable target : targetList) {
-                if (target.hasCommand(command) &&
-                    target.doCommand(command, value)) {
+                if (target.hasCommand(command) && target.doCommand(command, value)) {
                     return true;
                 }
             }

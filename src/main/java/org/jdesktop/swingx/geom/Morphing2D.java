@@ -61,8 +61,7 @@ public class Morphing2D implements Shape {
         startGeometry = new Geometry(startShape);
         endGeometry = new Geometry(endShape);
         if (startGeometry.getWindingRule() != endGeometry.getWindingRule()) {
-            throw new IllegalPathStateException("shapes must use same " +
-                                                "winding rule");
+            throw new IllegalPathStateException("shapes must use same " + "winding rule");
         }
         double[] tvals0 = startGeometry.getTvals();
         double[] tvals1 = endGeometry.getTvals();
@@ -158,15 +157,11 @@ public class Morphing2D implements Shape {
     public Rectangle2D getBounds2D() {
         int n = startGeometry.getNumCoords();
         double xmin, ymin, xmax, ymax;
-        xmin = xmax = interp(startGeometry.getCoord(0), endGeometry.getCoord(0),
-            morph);
-        ymin = ymax = interp(startGeometry.getCoord(1), endGeometry.getCoord(1),
-            morph);
+        xmin = xmax = interp(startGeometry.getCoord(0), endGeometry.getCoord(0), morph);
+        ymin = ymax = interp(startGeometry.getCoord(1), endGeometry.getCoord(1), morph);
         for (int i = 2; i < n; i += 2) {
-            double x = interp(startGeometry.getCoord(i),
-                endGeometry.getCoord(i), morph);
-            double y = interp(startGeometry.getCoord(i + 1),
-                endGeometry.getCoord(i + 1), morph);
+            double x = interp(startGeometry.getCoord(i), endGeometry.getCoord(i), morph);
+            double y = interp(startGeometry.getCoord(i + 1), endGeometry.getCoord(i + 1), morph);
             if (xmin > x) {
                 xmin = x;
             }
@@ -286,8 +281,7 @@ public class Morphing2D implements Shape {
                 }
                 switch (pi.currentSegment(coords)) {
                 case PathIterator.SEG_MOVETO:
-                    throw new InternalError(
-                        "Cannot handle multiple subpaths");
+                    throw new InternalError("Cannot handle multiple subpaths");
                 case PathIterator.SEG_CLOSE:
                     if (curx == bezierCoords[0] && cury == bezierCoords[1]) {
                         break;
@@ -335,9 +329,7 @@ public class Morphing2D implements Shape {
             // Add closing segment if either:
             // - we only have initial moveto - expand it to an empty cubic
             // - or we are not back to the starting point
-            if (numCoords < 8 ||
-                curx != bezierCoords[0] ||
-                cury != bezierCoords[1]) {
+            if (numCoords < 8 || curx != bezierCoords[0] || cury != bezierCoords[1]) {
                 newx = bezierCoords[0];
                 newy = bezierCoords[1];
                 // A third of the way from curxy to newxy:
@@ -369,9 +361,7 @@ public class Morphing2D implements Shape {
                 double[] newCoords = new double[numCoords];
                 // Copy all coordinates from minPt to the end of the
                 // array to the beginning of the new array
-                System.arraycopy(bezierCoords, minPt,
-                    newCoords, 0,
-                    numCoords - minPt);
+                System.arraycopy(bezierCoords, minPt, newCoords, 0, numCoords - minPt);
                 // Now we do not want to copy 0,1 as they are duplicates
                 // of the last 2 coordinates which we just copied.  So
                 // we start the source copy at index 2, but we still
@@ -379,9 +369,7 @@ public class Morphing2D implements Shape {
                 // coordinates that were at minPt to the last two elements
                 // of the array, thus ensuring that thew new array starts
                 // and ends with the same pair of coordinates...
-                System.arraycopy(bezierCoords, 2,
-                    newCoords, numCoords - minPt,
-                    minPt);
+                System.arraycopy(bezierCoords, 2, newCoords, numCoords - minPt, minPt);
                 bezierCoords = newCoords;
             }
             /* Clockwise enforcement:
@@ -616,9 +604,7 @@ public class Morphing2D implements Shape {
         double t;
         int cindex;
 
-        Iterator(AffineTransform at,
-                        Geometry g0, Geometry g1,
-                        double t) {
+        Iterator(AffineTransform at, Geometry g0, Geometry g1, double t) {
             this.at = at;
             this.g0 = g0;
             this.g1 = g1;
@@ -696,9 +682,7 @@ public class Morphing2D implements Shape {
             }
             if (n > 0) {
                 for (int i = 0; i < n; i++) {
-                    coords[i] = interp(g0.getCoord(cindex + i),
-                        g1.getCoord(cindex + i),
-                        t);
+                    coords[i] = interp(g0.getCoord(cindex + i), g1.getCoord(cindex + i), t);
                 }
                 if (at != null) {
                     at.transform(coords, 0, coords, 0, n / 2);

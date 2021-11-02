@@ -55,10 +55,12 @@ public class BasicBusyLabelUI extends BasicLabelUI implements BusyLabelUI {
         BusyPainter p = new BusyPainter() {
             @Override
             protected void init(Shape point, Shape trajectory, Color b, Color h) {
-                super.init(dim == null ? UIManagerExt.getShape("JXBusyLabel.pointShape") : getScaledDefaultPoint(dim.height),
+                super.init(
+                    dim == null ? UIManagerExt.getShape("JXBusyLabel.pointShape") : getScaledDefaultPoint(dim.height),
                     dim == null ? UIManagerExt.getShape("JXBusyLabel.trajectoryShape") : getScaledDefaultTrajectory(dim.height),
                     UIManagerExt.getSafeColor("JXBusyLabel.baseColor", Color.LIGHT_GRAY),
-                    UIManagerExt.getSafeColor("JXBusyLabel.highlightColor", Color.BLACK));
+                    UIManagerExt.getSafeColor("JXBusyLabel.highlightColor", Color.BLACK)
+                );
             }
         };
         return p;

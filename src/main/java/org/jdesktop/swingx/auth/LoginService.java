@@ -78,8 +78,7 @@ public abstract class LoginService extends AbstractBean {
      * @return <code>true</code> on authentication success
      * @throws Exception
      */
-    public abstract boolean authenticate(String name, char[] password,
-                                         String server) throws Exception;
+    public abstract boolean authenticate(String name, char[] password, String server) throws Exception;
 
     /**
      * Called immediately after a successful authentication. This method should
@@ -113,8 +112,7 @@ public abstract class LoginService extends AbstractBean {
      * @param server   server
      * @throws Exception
      */
-    public void startAuthentication(String user, char[] password,
-                                    String server) throws Exception {
+    public void startAuthentication(String user, char[] password, String server) throws Exception {
         if (getSynchronous()) {
             try {
                 if (authenticate(user, password, server)) {
@@ -130,8 +128,7 @@ public abstract class LoginService extends AbstractBean {
                 @Override
                 protected Boolean doInBackground() throws Exception {
                     try {
-                        boolean result = authenticate(user, password,
-                            server);
+                        boolean result = authenticate(user, password, server);
                         if (isCancelled()) {
                             EventQueue.invokeLater(new Runnable() {
                                 public void run() {
@@ -142,18 +139,15 @@ public abstract class LoginService extends AbstractBean {
                         }
                         EventQueue.invokeLater(() -> {
                             if (result) {
-                                fireLoginSucceeded(new LoginEvent(
-                                    LoginService.this));
+                                fireLoginSucceeded(new LoginEvent(LoginService.this));
                             } else {
-                                fireLoginFailed(new LoginEvent(
-                                    LoginService.this));
+                                fireLoginFailed(new LoginEvent(LoginService.this));
                             }
                         });
                         return result;
                     } catch (Throwable failed) {
                         if (!isCancelled()) {
-                            SwingUtilities.invokeLater(() -> fireLoginFailed(new LoginEvent(
-                                LoginService.this, failed)));
+                            SwingUtilities.invokeLater(() -> fireLoginFailed(new LoginEvent(LoginService.this, failed)));
                         } else {
                             EventQueue.invokeLater(new Runnable() {
                                 public void run() {

@@ -30,8 +30,7 @@ public class TableUtilities {
     public static boolean isDataChanged(TableModelEvent e) {
         if (e == null)
             return false;
-        return e.getType() == TableModelEvent.UPDATE && e.getFirstRow() == 0
-               && e.getLastRow() == Integer.MAX_VALUE;
+        return e.getType() == TableModelEvent.UPDATE && e.getFirstRow() == 0 && e.getLastRow() == Integer.MAX_VALUE;
     }
 
     /**
@@ -45,8 +44,7 @@ public class TableUtilities {
     public static boolean isUpdate(TableModelEvent e) {
         if (isStructureChanged(e))
             return false;
-        return e.getType() == TableModelEvent.UPDATE
-               && e.getLastRow() < Integer.MAX_VALUE;
+        return e.getType() == TableModelEvent.UPDATE && e.getLastRow() < Integer.MAX_VALUE;
     }
 
     /**
@@ -57,7 +55,8 @@ public class TableUtilities {
      * @return true if the event is of type insert, false otherwise.
      */
     public static boolean isInsert(TableModelEvent e) {
-        if (e == null) return false;
+        if (e == null)
+            return false;
         return TableModelEvent.INSERT == e.getType();
     }
 

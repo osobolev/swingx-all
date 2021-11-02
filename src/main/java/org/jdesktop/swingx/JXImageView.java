@@ -384,16 +384,12 @@ public class JXImageView extends JXPanel {
             @Override
             public void actionPerformed(ActionEvent evt) {
                 Image img = getImage();
-                BufferedImage dst = new BufferedImage(
-                    img.getWidth(null),
-                    img.getHeight(null),
-                    BufferedImage.TYPE_INT_ARGB);
+                BufferedImage dst = new BufferedImage(img.getWidth(null), img.getHeight(null), BufferedImage.TYPE_INT_ARGB);
                 Graphics2D g = (Graphics2D) dst.getGraphics();
 
                 try {
                     // smooth scaling
-                    g.setRenderingHint(RenderingHints.KEY_INTERPOLATION,
-                        RenderingHints.VALUE_INTERPOLATION_BICUBIC);
+                    g.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BICUBIC);
                     g.drawImage(img, 0, 0, null);
                 } finally {
                     g.dispose();
@@ -441,14 +437,8 @@ public class JXImageView extends JXPanel {
             @Override
             public void actionPerformed(ActionEvent evt) {
                 Image img = getImage();
-                BufferedImage src = new BufferedImage(
-                    img.getWidth(null),
-                    img.getHeight(null),
-                    BufferedImage.TYPE_INT_ARGB);
-                BufferedImage dst = new BufferedImage(
-                    img.getHeight(null),
-                    img.getWidth(null),
-                    BufferedImage.TYPE_INT_ARGB);
+                BufferedImage src = new BufferedImage(img.getWidth(null), img.getHeight(null), BufferedImage.TYPE_INT_ARGB);
+                BufferedImage dst = new BufferedImage(img.getHeight(null), img.getWidth(null), BufferedImage.TYPE_INT_ARGB);
                 Graphics2D g = (Graphics2D) src.getGraphics();
 
                 try {
@@ -481,14 +471,8 @@ public class JXImageView extends JXPanel {
             @Override
             public void actionPerformed(ActionEvent evt) {
                 Image img = getImage();
-                BufferedImage src = new BufferedImage(
-                    img.getWidth(null),
-                    img.getHeight(null),
-                    BufferedImage.TYPE_INT_ARGB);
-                BufferedImage dst = new BufferedImage(
-                    img.getHeight(null),
-                    img.getWidth(null),
-                    BufferedImage.TYPE_INT_ARGB);
+                BufferedImage src = new BufferedImage(img.getWidth(null), img.getHeight(null), BufferedImage.TYPE_INT_ARGB);
+                BufferedImage dst = new BufferedImage(img.getHeight(null), img.getWidth(null), BufferedImage.TYPE_INT_ARGB);
                 Graphics2D g = (Graphics2D) src.getGraphics();
 
                 try {
@@ -562,9 +546,7 @@ public class JXImageView extends JXPanel {
             double width = getImage().getWidth(null) * getScale();
             double height = getImage().getHeight(null) * getScale();
             loc.setLocation(center.getX() - width / 2, center.getY() - height / 2);
-            g.drawImage(getImage(), (int) loc.getX(), (int) loc.getY(),
-                (int) width, (int) height,
-                null);
+            g.drawImage(getImage(), (int) loc.getX(), (int) loc.getY(), (int) width, (int) height, null);
         }
     }
 
@@ -669,8 +651,7 @@ public class JXImageView extends JXPanel {
         @Override
         protected Transferable createTransferable(JComponent c) {
             JXImageView view = (JXImageView) c;
-            return new ImageTransferable(view.getImage(),
-                view.getExportName(), view.getExportFormat());
+            return new ImageTransferable(view.getImage(), view.getExportName(), view.getExportFormat());
         }
 
         @Override
@@ -726,8 +707,7 @@ public class JXImageView extends JXPanel {
 
         @Override
         public DataFlavor[] getTransferDataFlavors() {
-            return new DataFlavor[] {DataFlavor.imageFlavor,
-                DataFlavor.javaFileListFlavor};
+            return new DataFlavor[] {DataFlavor.imageFlavor, DataFlavor.javaFileListFlavor};
         }
 
         @Override

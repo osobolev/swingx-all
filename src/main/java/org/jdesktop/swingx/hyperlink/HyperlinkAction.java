@@ -39,8 +39,7 @@ import java.util.logging.Logger;
 public class HyperlinkAction extends AbstractHyperlinkAction<URI> {
 
     @SuppressWarnings("unused")
-    private static final Logger LOG = Logger.getLogger(HyperlinkAction.class
-        .getName());
+    private static final Logger LOG = Logger.getLogger(HyperlinkAction.class.getName());
 
     private Action desktopAction;
     private URIVisitor visitor;
@@ -128,12 +127,10 @@ public class HyperlinkAction extends AbstractHyperlinkAction<URI> {
      */
     public HyperlinkAction(URI uri, Action desktopAction) {
         if (!Desktop.isDesktopSupported()) {
-            throw new UnsupportedOperationException("Desktop API is not " +
-                                                    "supported on the current platform");
+            throw new UnsupportedOperationException("Desktop API is not " + "supported on the current platform");
         }
         if (desktopAction != Action.BROWSE && desktopAction != Action.MAIL) {
-            throw new IllegalArgumentException("Illegal action type: " + desktopAction +
-                                               ". Must be BROWSE or MAIL");
+            throw new IllegalArgumentException("Illegal action type: " + desktopAction + ". Must be BROWSE or MAIL");
         }
         this.desktopAction = desktopAction;
         getURIVisitor();
@@ -151,7 +148,8 @@ public class HyperlinkAction extends AbstractHyperlinkAction<URI> {
      */
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (!getURIVisitor().isEnabled(getTarget())) return;
+        if (!getURIVisitor().isEnabled(getTarget()))
+            return;
         try {
             getURIVisitor().visit(getTarget());
             setVisited(true);
@@ -172,7 +170,8 @@ public class HyperlinkAction extends AbstractHyperlinkAction<URI> {
     protected void installTarget() {
         // doohh ... this is called from super's constructor before we are 
         // fully initialized
-        if (visitor == null) return;
+        if (visitor == null)
+            return;
         super.installTarget();
         updateEnabled();
     }
@@ -198,8 +197,7 @@ public class HyperlinkAction extends AbstractHyperlinkAction<URI> {
      * @return
      */
     private URIVisitor createURIVisitor() {
-        return getDesktopAction() == Action.BROWSE ?
-            new BrowseVisitor() : new MailVisitor();
+        return getDesktopAction() == Action.BROWSE ? new BrowseVisitor() : new MailVisitor();
     }
 
     /**

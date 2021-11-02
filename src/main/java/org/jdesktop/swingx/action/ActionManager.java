@@ -315,8 +315,7 @@ public class ActionManager extends ActionMap {
             Object[] keys = ((AbstractAction) action).getKeys();
 
             for (Object key : keys) {
-                stream.println("\tkey: " + key + "\tvalue: " +
-                               action.getValue((String) key));
+                stream.println("\tkey: " + key + "\tvalue: " + action.getValue((String) key));
             }
         }
     }

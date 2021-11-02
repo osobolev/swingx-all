@@ -121,8 +121,7 @@ class StrictNumberFormatter extends NumberFormatter {
                 throw new ParseException("Value not within min/max range", 0);
             }
         } catch (ClassCastException cce) {
-            throw new ParseException("Class cast exception comparing values: "
-                                     + cce, 0);
+            throw new ParseException("Class cast exception comparing values: " + cce, 0);
         }
         return convertValueToValueClass(value, getValueClass());
     }
@@ -172,8 +171,10 @@ class StrictNumberFormatter extends NumberFormatter {
      *                 false is returned.
      */
     private boolean isValueInRange(Object orgValue, boolean wantsCCE) {
-        if (orgValue == null) return true;
-        if (getMinimum() == null && getMaximum() == null) return true;
+        if (orgValue == null)
+            return true;
+        if (getMinimum() == null && getMaximum() == null)
+            return true;
 
         BigDecimal value = new BigDecimal(orgValue.toString());
         Comparable<BigDecimal> min = getMinimumAsBig();

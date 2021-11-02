@@ -167,8 +167,7 @@ import java.util.logging.Logger;
 public class JXDatePicker extends JComponent {
 
     @SuppressWarnings("unused")
-    private static final Logger LOG = Logger.getLogger(JXDatePicker.class
-        .getName());
+    private static final Logger LOG = Logger.getLogger(JXDatePicker.class.getName());
 
     static {
         LookAndFeelAddons.contribute(new DatePickerAddon());
@@ -454,9 +453,7 @@ public class JXDatePicker extends JComponent {
     public void setFormats(String... formats) {
         DateFormat[] dateFormats = null;
         if (formats != null) {
-            Contract.asNotNull(formats,
-                "the array of format strings must not "
-                + "must not contain null elements");
+            Contract.asNotNull(formats, "the array of format strings must not " + "must not contain null elements");
             dateFormats = new DateFormat[formats.length];
             for (int counter = formats.length - 1; counter >= 0; counter--) {
                 dateFormats[counter] = new SimpleDateFormat(formats[counter], getLocale());
@@ -483,8 +480,7 @@ public class JXDatePicker extends JComponent {
         }
 
         DateFormat[] old = getFormats();
-        _dateField.setFormatterFactory(new DefaultFormatterFactory(
-            new DatePickerFormatter(formats, getLocale())));
+        _dateField.setFormatterFactory(new DefaultFormatterFactory(new DatePickerFormatter(formats, getLocale())));
         firePropertyChange("formats", old, getFormats());
     }
 
@@ -632,8 +628,7 @@ public class JXDatePicker extends JComponent {
      */
     private void updateLinkFormat() {
         // PENDING JW: move to ui
-        String linkFormat = UIManagerExt.getString(
-            "JXDatePicker.linkFormat", getLocale());
+        String linkFormat = UIManagerExt.getString("JXDatePicker.linkFormat", getLocale());
 
         if (linkFormat != null) {
             setLinkFormat(new MessageFormat(linkFormat));
@@ -890,9 +885,7 @@ public class JXDatePicker extends JComponent {
 
         for (ActionListener listener : listeners) {
             if (e == null) {
-                e = new ActionEvent(this,
-                    ActionEvent.ACTION_PERFORMED,
-                    actionCommand);
+                e = new ActionEvent(this, ActionEvent.ACTION_PERFORMED, actionCommand);
             }
             listener.actionPerformed(e);
         }
@@ -958,7 +951,8 @@ public class JXDatePicker extends JComponent {
 
                 @Override
                 public void mousePressed(MouseEvent e) {
-                    if (e.getClickCount() != 2) return;
+                    if (e.getClickCount() != 2)
+                        return;
                     todayAction.select = true;
                 }
             };

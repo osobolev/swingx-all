@@ -39,8 +39,7 @@ public class ListModelComboBoxWrapper extends AbstractListModel implements Combo
 
     @Override
     public void setSelectedItem(Object anItem) {
-        if (selectedItem != null && !selectedItem.equals(anItem)
-            || selectedItem == null && anItem != null) {
+        if (selectedItem != null && !selectedItem.equals(anItem) || selectedItem == null && anItem != null) {
             selectedItem = anItem;
 
             fireContentsChanged(this, -1, -1);

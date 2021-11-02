@@ -44,8 +44,7 @@ public class ErrorPaneAddon extends AbstractComponentAddon {
 
         defaults.add(JXErrorPane.uiClassID, "org.jdesktop.swingx.plaf.basic.BasicErrorPaneUI");
 
-        UIManagerExt.addResourceBundle(
-            "org.jdesktop.swingx.plaf.basic.resources.ErrorPane");
+        UIManagerExt.addResourceBundle("org.jdesktop.swingx.plaf.basic.resources.ErrorPane");
     }
 
     /**
@@ -57,7 +56,6 @@ public class ErrorPaneAddon extends AbstractComponentAddon {
 
         defaults.add(JXErrorPane.uiClassID, "org.jdesktop.swingx.plaf.macosx.MacOSXErrorPaneUI");
 
-        UIManagerExt.addResourceBundle(
-            "org.jdesktop.swingx.plaf.macosx.resources.ErrorPane");
+        UIManagerExt.addResourceBundle("org.jdesktop.swingx.plaf.macosx.resources.ErrorPane");
     }
 }

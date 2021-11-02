@@ -715,9 +715,15 @@ public class JXLoginPane extends JXPanel {
         JProgressBar pb = new JProgressBar();
         pb.setIndeterminate(true);
         JButton cancelButton = new JButton(getActionMap().get(CANCEL_LOGIN_ACTION_COMMAND));
-        progressPanel.add(progressMessageLabel, new GridBagConstraints(0, 0, 2, 1, 1.0, 0.0, GridBagConstraints.LINE_START, GridBagConstraints.HORIZONTAL, new Insets(12, 12, 11, 11), 0, 0));
-        progressPanel.add(pb, new GridBagConstraints(0, 1, 1, 1, 1.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, new Insets(0, 24, 11, 7), 0, 0));
-        progressPanel.add(cancelButton, new GridBagConstraints(1, 1, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(0, 0, 11, 11), 0, 0));
+        progressPanel.add(progressMessageLabel, new GridBagConstraints(
+            0, 0, 2, 1, 1.0, 0.0, GridBagConstraints.LINE_START, GridBagConstraints.HORIZONTAL, new Insets(12, 12, 11, 11), 0, 0
+        ));
+        progressPanel.add(pb, new GridBagConstraints(
+            0, 1, 1, 1, 1.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, new Insets(0, 24, 11, 7), 0, 0
+        ));
+        progressPanel.add(cancelButton, new GridBagConstraints(
+            1, 1, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(0, 0, 11, 11), 0, 0
+        ));
 
         //layout the panel
         setLayout(new BorderLayout());
@@ -1149,9 +1155,7 @@ public class JXLoginPane extends JXPanel {
      * nothing.
      */
     protected void savePassword() {
-        if (saveCB.isSelected()
-            && (saveMode == SaveMode.BOTH || saveMode == SaveMode.PASSWORD)
-            && passwordStore != null) {
+        if (saveCB.isSelected() && (saveMode == SaveMode.BOTH || saveMode == SaveMode.PASSWORD) && passwordStore != null) {
             passwordStore.set(getUserName(), getLoginService().getServer(), getPassword());
         }
     }
@@ -1201,8 +1205,7 @@ public class JXLoginPane extends JXPanel {
         public void loginSucceeded(LoginEvent source) {
             //save the user names and passwords
             String userName = namePanel.getUserName();
-            if ((getSaveMode() == SaveMode.USER_NAME || getSaveMode() == SaveMode.BOTH)
-                && userName != null && !userName.trim().isEmpty()) {
+            if ((getSaveMode() == SaveMode.USER_NAME || getSaveMode() == SaveMode.BOTH) && userName != null && !userName.trim().isEmpty()) {
                 userNameStore.addUserName(userName);
                 userNameStore.saveUserNames();
             }
@@ -1668,8 +1671,7 @@ public class JXLoginPane extends JXPanel {
         w.setLayout(new BorderLayout());
         w.add(panel, BorderLayout.CENTER);
         JButton okButton = new JButton(panel.getActionMap().get(LOGIN_ACTION_COMMAND));
-        JButton cancelButton = new JButton(
-            UIManagerExt.getString(CLASS_NAME + ".cancelString", panel.getLocale()));
+        JButton cancelButton = new JButton(UIManagerExt.getString(CLASS_NAME + ".cancelString", panel.getLocale()));
         cancelButton.addActionListener(e -> {
             //change panel status to canceled!
             panel.status = Status.CANCELLED;

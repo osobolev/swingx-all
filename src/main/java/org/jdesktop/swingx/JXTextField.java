@@ -34,10 +34,8 @@ public class JXTextField extends JTextField {
         this(promptText, promptForeground, null);
     }
 
-    public JXTextField(String promptText, Color promptForeground,
-                       Color promptBackground) {
-        PromptSupport.init(promptText, promptForeground, promptBackground,
-            this);
+    public JXTextField(String promptText, Color promptForeground, Color promptBackground) {
+        PromptSupport.init(promptText, promptForeground, promptBackground, this);
     }
 
     /**

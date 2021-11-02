@@ -129,8 +129,7 @@ import java.awt.LayoutManager;
  */
 @JavaBean
 @SuppressWarnings("nls")
-public class JXTaskPane extends JPanel implements
-    JXCollapsiblePane.CollapsiblePaneContainer, Mnemonicable {
+public class JXTaskPane extends JPanel implements JXCollapsiblePane.CollapsiblePaneContainer, Mnemonicable {
 
     /**
      * JXTaskPane pluggable UI key <i>swingx/TaskPaneUI</i>
@@ -224,8 +223,7 @@ public class JXTaskPane extends JPanel implements
         setAnimated(!Boolean.FALSE.equals(UIManager.get("TaskPane.animate")));
 
         // listen for animation events and forward them to registered listeners
-        collapsePane.addPropertyChangeListener("collapsed", evt -> this.firePropertyChange(evt.getPropertyName(), evt.getOldValue(),
-            evt.getNewValue()));
+        collapsePane.addPropertyChangeListener("collapsed", evt -> this.firePropertyChange(evt.getPropertyName(), evt.getOldValue(), evt.getNewValue()));
     }
 
     /**
@@ -365,8 +363,7 @@ public class JXTaskPane extends JPanel implements
     public void setScrollOnExpand(boolean scrollOnExpand) {
         boolean oldValue = isScrollOnExpand();
         this.scrollOnExpand = scrollOnExpand;
-        firePropertyChange(SCROLL_ON_EXPAND_CHANGED_KEY,
-            oldValue, isScrollOnExpand());
+        firePropertyChange(SCROLL_ON_EXPAND_CHANGED_KEY, oldValue, isScrollOnExpand());
     }
 
     /**
@@ -496,8 +493,7 @@ public class JXTaskPane extends JPanel implements
      * {@inheritDoc}
      */
     @Override
-    public void setDisplayedMnemonicIndex(int index)
-        throws IllegalArgumentException {
+    public void setDisplayedMnemonicIndex(int index) throws IllegalArgumentException {
         int oldValue = mnemonicIndex;
         if (index == -1) {
             mnemonicIndex = -1;
@@ -593,11 +589,11 @@ public class JXTaskPane extends JPanel implements
                + ",icon="
                + getIcon()
                + ",collapsed="
-               + String.valueOf(isCollapsed())
+               + isCollapsed()
                + ",special="
-               + String.valueOf(isSpecial())
+               + isSpecial()
                + ",scrollOnExpand="
-               + String.valueOf(isScrollOnExpand())
+               + isScrollOnExpand()
                + ",ui=" + getUI();
     }
 }

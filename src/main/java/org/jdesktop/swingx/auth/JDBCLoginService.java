@@ -38,8 +38,7 @@ import java.util.logging.Logger;
 @JavaBean
 public class JDBCLoginService extends LoginService {
 
-    private static final Logger LOG = Logger.getLogger(JDBCLoginService.class
-        .getName());
+    private static final Logger LOG = Logger.getLogger(JDBCLoginService.class.getName());
 
     /**
      * The connection to the database
@@ -199,8 +198,7 @@ public class JDBCLoginService extends LoginService {
             try {
                 conn = DriverManager.getConnection(getUrl(), userName, new String(password));
             } catch (Exception e) {
-                LOG.log(Level.WARNING, "Connection with properties failed. " +
-                                       "Tryint to connect without.", e);
+                LOG.log(Level.WARNING, "Connection with properties failed. " + "Tryint to connect without.", e);
                 //try to connect without using the userName and password
                 conn = DriverManager.getConnection(getUrl());
             }

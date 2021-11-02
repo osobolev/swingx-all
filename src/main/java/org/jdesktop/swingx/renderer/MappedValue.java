@@ -43,8 +43,7 @@ public class MappedValue implements StringValue, IconValue, BooleanValue {
         this(stringDelegate, iconDelegate, null);
     }
 
-    public MappedValue(StringValue stringDelegate, IconValue iconDelegate,
-                       BooleanValue booleanDelegate) {
+    public MappedValue(StringValue stringDelegate, IconValue iconDelegate, BooleanValue booleanDelegate) {
         this.stringDelegate = stringDelegate;
         this.iconDelegate = iconDelegate;
         this.booleanDelegate = booleanDelegate;

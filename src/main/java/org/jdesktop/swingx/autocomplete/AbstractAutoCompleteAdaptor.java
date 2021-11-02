@@ -96,7 +96,8 @@ public abstract class AbstractAutoCompleteAdaptor {
     public boolean listContainsSelectedItem() {
         Object selectedItem = getSelectedItem();
         for (int i = 0, n = getItemCount(); i < n; i++) {
-            if (getItem(i) == selectedItem) return true;
+            if (getItem(i) == selectedItem)
+                return true;
         }
         return false;
     }

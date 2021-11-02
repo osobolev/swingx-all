@@ -76,9 +76,11 @@ final class AutoComplete {
             if (comboBox.isDisplayable() && !comboBox.isPopupVisible() && comboBox.getModel().getSize() != 0) {
                 int keyCode = keyEvent.getKeyCode();
                 // don't popup when the user hits shift,ctrl or alt
-                if (keyCode == KeyEvent.VK_SHIFT || keyCode == KeyEvent.VK_CONTROL || keyCode == KeyEvent.VK_ALT) return;
+                if (keyCode == KeyEvent.VK_SHIFT || keyCode == KeyEvent.VK_CONTROL || keyCode == KeyEvent.VK_ALT)
+                    return;
                 // don't popup when the user hits escape (see issue #311)
-                if (keyCode == KeyEvent.VK_ENTER || keyCode == KeyEvent.VK_ESCAPE) return;
+                if (keyCode == KeyEvent.VK_ENTER || keyCode == KeyEvent.VK_ESCAPE)
+                    return;
                 comboBox.setPopupVisible(true);
             }
         }
@@ -140,8 +142,7 @@ final class AutoComplete {
 
             JTextComponent editorComponent = (JTextComponent) comboBox.getEditor().getEditorComponent();
             AbstractAutoCompleteAdaptor adaptor = new ComboBoxAdaptor(comboBox);
-            AutoCompleteDocument document = createAutoCompleteDocument(adaptor, strictMatching,
-                acEditor.stringConverter, editorComponent.getDocument());
+            AutoCompleteDocument document = createAutoCompleteDocument(adaptor, strictMatching, acEditor.stringConverter, editorComponent.getDocument());
             decorate(editorComponent, document, adaptor);
 
             editorComponent.addKeyListener(new KeyAdapter(comboBox));

@@ -303,8 +303,7 @@ public class PatternModel {
         propertySupport.removePropertyChangeListener(l);
     }
 
-    protected void firePropertyChange(String name, Object oldValue,
-                                      Object newValue) {
+    protected void firePropertyChange(String name, Object oldValue, Object newValue) {
         if (propertySupport == null)
             return;
         propertySupport.firePropertyChange(name, oldValue, newValue);
@@ -378,7 +377,8 @@ public class PatternModel {
         }
 
         private List<String> createAndInitRules() {
-            if (!supportsRules()) return Collections.emptyList();
+            if (!supportsRules())
+                return Collections.emptyList();
             List<String> list = new ArrayList<>();
             list.add(MATCH_RULE_CONTAINS);
             list.add(MATCH_RULE_EQUALS);
@@ -446,9 +446,10 @@ public class PatternModel {
             // of backslashes, then the last escapes the dollar and the
             // pattern is not anchored. if there's an even number, then
             // the dollar is unescaped and the pattern is anchored.
-            for (int n = len - 2; n >= 0; --n)
+            for (int n = len - 2; n >= 0; --n) {
                 if (str.charAt(n) != '\\')
                     return (len - n) % 2 == 0;
+            }
 
             // The string is of the form "\+$". If the length is an odd
             // number (ie, an even number of '\' and a '$') the pattern is
@@ -461,8 +462,7 @@ public class PatternModel {
          * or false if the pattern can match anywhere in a string.
          */
         public boolean isStartAnchored() {
-            return MATCH_RULE_EQUALS.equals(getMatchRule()) ||
-                   MATCH_RULE_STARTSWITH.equals(getMatchRule());
+            return MATCH_RULE_EQUALS.equals(getMatchRule()) || MATCH_RULE_STARTSWITH.equals(getMatchRule());
         }
         //
 //     /**
@@ -484,8 +484,7 @@ public class PatternModel {
          * or false if the pattern can match anywhere in a string.
          */
         public boolean isEndAnchored() {
-            return MATCH_RULE_EQUALS.equals(getMatchRule()) ||
-                   MATCH_RULE_ENDSWITH.equals(getMatchRule());
+            return MATCH_RULE_EQUALS.equals(getMatchRule()) || MATCH_RULE_ENDSWITH.equals(getMatchRule());
         }
         //
 //     /**
@@ -531,7 +530,8 @@ public class PatternModel {
      * @param mode the String key of the match strategy to use.
      */
     public void setRegexCreatorKey(String mode) {
-        if (getRegexCreatorKey().equals(mode)) return;
+        if (getRegexCreatorKey().equals(mode))
+            return;
         String old = getRegexCreatorKey();
         regexCreatorKey = mode;
         createRegexCreator(getRegexCreatorKey());

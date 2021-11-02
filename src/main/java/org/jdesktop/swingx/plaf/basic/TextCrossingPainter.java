@@ -52,9 +52,9 @@ class TextCrossingPainter<T extends JComponent> extends AbstractPainter<T> {
      * does nothing otherwise.
      */
     @Override
-    protected void doPaint(Graphics2D g, JComponent comp, int width,
-                           int height) {
-        if (!(comp instanceof JLabel)) return;
+    protected void doPaint(Graphics2D g, JComponent comp, int width, int height) {
+        if (!(comp instanceof JLabel))
+            return;
         JLabel label = (JLabel) comp;
         Insets insets = label.getInsets(insetss);
         paintViewR.x = insets.left;
@@ -63,11 +63,13 @@ class TextCrossingPainter<T extends JComponent> extends AbstractPainter<T> {
         paintViewR.height = height - (insets.top + insets.bottom);
         paintIconR.x = paintIconR.y = paintIconR.width = paintIconR.height = 0;
         paintTextR.x = paintTextR.y = paintTextR.width = paintTextR.height = 0;
-        SwingUtilities.layoutCompoundLabel(label,
+        SwingUtilities.layoutCompoundLabel(
+            label,
             label.getFontMetrics(label.getFont()), label.getText(), null,
             label.getVerticalAlignment(), label.getHorizontalAlignment(),
             label.getVerticalTextPosition(), label.getHorizontalTextPosition(),
-            paintViewR, paintIconR, paintTextR, label.getIconTextGap());
+            paintViewR, paintIconR, paintTextR, label.getIconTextGap()
+        );
         doPaint(g, paintTextR);
     }
 

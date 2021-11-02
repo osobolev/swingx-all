@@ -32,8 +32,7 @@ import java.util.List;
  *
  * @author Karl Schaefer
  */
-public abstract class AbstractMutableTreeTableNode implements
-    MutableTreeTableNode {
+public abstract class AbstractMutableTreeTableNode implements MutableTreeTableNode {
 
     /**
      * this node's parent, or null if this node has no parent
@@ -61,8 +60,7 @@ public abstract class AbstractMutableTreeTableNode implements
         this(userObject, true);
     }
 
-    protected AbstractMutableTreeTableNode(Object userObject,
-                                           boolean allowsChildren) {
+    protected AbstractMutableTreeTableNode(Object userObject, boolean allowsChildren) {
         this.userObject = userObject;
         this.allowsChildren = allowsChildren;
         children = createChildrenList();
@@ -139,8 +137,7 @@ public abstract class AbstractMutableTreeTableNode implements
                 parent.remove(this);
             }
         } else {
-            throw new IllegalArgumentException(
-                "newParent does not allow children");
+            throw new IllegalArgumentException("newParent does not allow children");
         }
 
         parent = newParent;

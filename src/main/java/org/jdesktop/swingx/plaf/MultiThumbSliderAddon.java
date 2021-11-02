@@ -38,7 +38,6 @@ public class MultiThumbSliderAddon extends AbstractComponentAddon {
     protected void addBasicDefaults(LookAndFeelAddons addon, DefaultsList defaults) {
         super.addBasicDefaults(addon, defaults);
 
-        defaults.add(JXMultiThumbSlider.uiClassID,
-            "org.jdesktop.swingx.plaf.basic.BasicMultiThumbSliderUI");
+        defaults.add(JXMultiThumbSlider.uiClassID, "org.jdesktop.swingx.plaf.basic.BasicMultiThumbSliderUI");
     }
 }

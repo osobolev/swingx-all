@@ -149,8 +149,7 @@ public class TableSortController<M extends TableModel> extends DefaultSortContro
 
         @Override
         public String getStringValueAt(int row, int column) {
-            return getStringValueProvider().getStringValue(row, column)
-                .getString(getValueAt(row, column));
+            return getStringValueProvider().getStringValue(row, column).getString(getValueAt(row, column));
         }
 
         @Override

@@ -53,8 +53,10 @@ public class FilterComposite implements Composite {
                 WritableRaster tempOut = dstModel.createCompatibleWritableRaster(dstOut.getWidth(), dstOut.getHeight());
                 ctx.compose(src, dstIn, tempOut);
 
-                filter.filter(new BufferedImage(dstModel, tempOut, dstModel.isAlphaPremultiplied(), null),
-                    new BufferedImage(dstModel, dstOut, dstModel.isAlphaPremultiplied(), null));
+                filter.filter(
+                    new BufferedImage(dstModel, tempOut, dstModel.isAlphaPremultiplied(), null),
+                    new BufferedImage(dstModel, dstOut, dstModel.isAlphaPremultiplied(), null)
+                );
             }
         }
 
@@ -114,8 +116,7 @@ public class FilterComposite implements Composite {
      * {@inheritDoc}
      */
     @Override
-    public CompositeContext createContext(ColorModel srcColorModel, ColorModel dstColorModel,
-                                          RenderingHints hints) {
+    public CompositeContext createContext(ColorModel srcColorModel, ColorModel dstColorModel, RenderingHints hints) {
         return new FilterContext(dstColorModel, composite.createContext(srcColorModel, dstColorModel, hints), filter);
     }
 }

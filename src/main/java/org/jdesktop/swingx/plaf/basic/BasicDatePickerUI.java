@@ -90,8 +90,7 @@ import java.util.logging.Logger;
 public class BasicDatePickerUI extends DatePickerUI {
 
     @SuppressWarnings("all")
-    private static final Logger LOG = Logger.getLogger(BasicDatePickerUI.class
-        .getName());
+    private static final Logger LOG = Logger.getLogger(BasicDatePickerUI.class.getName());
 
     protected JXDatePicker datePicker;
     private JButton popupButton;
@@ -265,17 +264,12 @@ public class BasicDatePickerUI extends DatePickerUI {
         if (datePicker.getLinkPanel() == null)
             return;
         ActionMap map = datePicker.getLinkPanel().getActionMap();
-        map.put(JXDatePicker.HOME_COMMIT_KEY, datePicker.getActionMap().get(
-            JXDatePicker.HOME_COMMIT_KEY));
-        map.put(JXDatePicker.HOME_NAVIGATE_KEY, datePicker.getActionMap().get(
-            JXDatePicker.HOME_NAVIGATE_KEY));
-        InputMap inputMap = datePicker.getLinkPanel().getInputMap(
-            JComponent.WHEN_IN_FOCUSED_WINDOW);
+        map.put(JXDatePicker.HOME_COMMIT_KEY, datePicker.getActionMap().get(JXDatePicker.HOME_COMMIT_KEY));
+        map.put(JXDatePicker.HOME_NAVIGATE_KEY, datePicker.getActionMap().get(JXDatePicker.HOME_NAVIGATE_KEY));
+        InputMap inputMap = datePicker.getLinkPanel().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW);
         // PENDING: get from LF
-        inputMap.put(KeyStroke.getKeyStroke("F5"),
-            JXDatePicker.HOME_COMMIT_KEY);
-        inputMap.put(KeyStroke.getKeyStroke("shift F5"),
-            JXDatePicker.HOME_NAVIGATE_KEY);
+        inputMap.put(KeyStroke.getKeyStroke("F5"), JXDatePicker.HOME_COMMIT_KEY);
+        inputMap.put(KeyStroke.getKeyStroke("shift F5"), JXDatePicker.HOME_NAVIGATE_KEY);
     }
 
     /**
@@ -285,7 +279,8 @@ public class BasicDatePickerUI extends DatePickerUI {
      * @param panel the component to uninstall
      */
     protected void uninstallLinkPanelKeyboardActions(JComponent panel) {
-        if (panel == null) return;
+        if (panel == null)
+            return;
         ActionMap map = panel.getActionMap();
         map.remove(JXDatePicker.HOME_COMMIT_KEY);
         map.remove(JXDatePicker.HOME_NAVIGATE_KEY);
@@ -453,8 +448,7 @@ public class BasicDatePickerUI extends DatePickerUI {
         if (oldModel != null) {
             oldModel.removeDateSelectionListener(monthViewSelectionListener);
         }
-        datePicker.getMonthView().getSelectionModel()
-            .addDateSelectionListener(monthViewSelectionListener);
+        datePicker.getMonthView().getSelectionModel().addDateSelectionListener(monthViewSelectionListener);
     }
 
     // ---------------- component creation
@@ -466,8 +460,7 @@ public class BasicDatePickerUI extends DatePickerUI {
      * @return an instance of a JFormattedTextField
      */
     protected JFormattedTextField createEditor() {
-        JFormattedTextField f = new DefaultEditor(
-            new DatePickerFormatterUIResource(datePicker.getLocale()));
+        JFormattedTextField f = new DefaultEditor(new DatePickerFormatterUIResource(datePicker.getLocale()));
         f.setName("dateField");
         // this produces a fixed pref widths, looking a bit funny
         // int columns = UIManagerExt.getInt("JXDatePicker.numColumns", null);
@@ -587,8 +580,7 @@ public class BasicDatePickerUI extends DatePickerUI {
         if (rootView.getViewCount() > 0) {
             Insets insets = editor.getInsets();
             Insets insetsOut = datePicker.getInsets();
-            int nh = height - insets.top - insets.bottom
-                     - insetsOut.top - insetsOut.bottom;
+            int nh = height - insets.top - insets.bottom - insetsOut.top - insetsOut.bottom;
             int y = insets.top + insetsOut.top;
             View fieldView = rootView.getView(0);
             int vspan = (int) fieldView.getPreferredSpan(View.Y_AXIS);
@@ -610,13 +602,13 @@ public class BasicDatePickerUI extends DatePickerUI {
      */
     @Override
     public Date getSelectableDate(Date date) throws PropertyVetoException {
-        Date cleaned = date == null ? null :
-            datePicker.getMonthView().getSelectionModel().getNormalizedDate(date);
+        Date cleaned = date == null ? null : datePicker.getMonthView().getSelectionModel().getNormalizedDate(date);
         if (CalendarUtils.areEqual(cleaned, datePicker.getDate())) {
             // one place to interrupt the update spiral
             throw new PropertyVetoException("date not selectable", null);
         }
-        if (cleaned == null) return cleaned;
+        if (cleaned == null)
+            return cleaned;
         if (datePicker.getMonthView().isUnselectableDate(cleaned)) {
             throw new PropertyVetoException("date not selectable", null);
         }
@@ -629,8 +621,7 @@ public class BasicDatePickerUI extends DatePickerUI {
      * Updates internals after picker's date property changed.
      */
     protected void updateFromDateChanged() {
-        Date visibleHook = datePicker.getDate() != null ?
-            datePicker.getDate() : datePicker.getLinkDay();
+        Date visibleHook = datePicker.getDate() != null ? datePicker.getDate() : datePicker.getLinkDay();
         datePicker.getMonthView().ensureDateVisible(visibleHook);
         datePicker.getEditor().setValue(datePicker.getDate());
     }
@@ -679,7 +670,8 @@ public class BasicDatePickerUI extends DatePickerUI {
      *                  is intermediate
      */
     protected void updateFromSelectionChanged(EventType eventType, boolean adjusting) {
-        if (adjusting) return;
+        if (adjusting)
+            return;
         updateEditorValue();
     }
 
@@ -720,8 +712,7 @@ public class BasicDatePickerUI extends DatePickerUI {
      * @param updateListeners a flag to indicate whether the listeners
      *                        are ready for usage.
      */
-    protected void updateFromEditorChanged(JFormattedTextField oldEditor,
-                                           boolean updateListeners) {
+    protected void updateFromEditorChanged(JFormattedTextField oldEditor, boolean updateListeners) {
         if (oldEditor != null) {
             datePicker.remove(oldEditor);
             oldEditor.putClientProperty("doNotCancelPopup", null);
@@ -853,9 +844,7 @@ public class BasicDatePickerUI extends DatePickerUI {
         if (locale != null) {
             // PENDING JW: timezone?
             if (getCustomFormats(datePicker.getEditor()) == null) {
-                datePicker.getEditor().setFormatterFactory(
-                    new DefaultFormatterFactory(
-                        new DatePickerFormatterUIResource(locale)));
+                datePicker.getEditor().setFormatterFactory(new DefaultFormatterFactory(new DatePickerFormatterUIResource(locale)));
             }
         }
     }
@@ -911,7 +900,8 @@ public class BasicDatePickerUI extends DatePickerUI {
      * control popup visibility?
      */
     public void hidePopup() {
-        if (popup != null) popup.setVisible(false);
+        if (popup != null)
+            popup.setVisible(false);
     }
 
     public boolean isPopupVisible() {
@@ -1245,8 +1235,7 @@ public class BasicDatePickerUI extends DatePickerUI {
             // Retarget mouse event to the month view.
             if (_forwardReleaseEvent) {
                 JXMonthView monthView = datePicker.getMonthView();
-                ev = SwingUtilities.convertMouseEvent(popupButton, ev,
-                    monthView);
+                ev = SwingUtilities.convertMouseEvent(popupButton, ev, monthView);
                 monthView.dispatchEvent(ev);
                 _forwardReleaseEvent = false;
             }
@@ -1306,8 +1295,7 @@ public class BasicDatePickerUI extends DatePickerUI {
             } else
                 // PENDING - move back, ...
                 if ("value".equals(e.getPropertyName())) {
-                    throw new IllegalStateException(
-                        "editor listening is moved to dedicated propertyChangeLisener");
+                    throw new IllegalStateException("editor listening is moved to dedicated propertyChangeLisener");
                 }
         }
 
@@ -1315,12 +1303,11 @@ public class BasicDatePickerUI extends DatePickerUI {
          * Handles property changes from datepicker's editor.
          *
          * @param evt the PropertyChangeEvent object describing the event source
-         *          and the property that has changed
+         *            and the property that has changed
          */
         private void editorPropertyChange(PropertyChangeEvent evt) {
             if ("value".equals(evt.getPropertyName())) {
-                updateFromValueChanged((Date) evt.getOldValue(), (Date) evt
-                    .getNewValue());
+                updateFromValueChanged((Date) evt.getOldValue(), (Date) evt.getNewValue());
             }
         }
 
@@ -1421,16 +1408,10 @@ public class BasicDatePickerUI extends DatePickerUI {
 
             boolean ltr = datePicker.getComponentOrientation().isLeftToRight();
 
-            datePicker.getEditor().setBounds(ltr ? insets.left : insets.left + popupButtonWidth,
-                insets.top,
-                width - popupButtonWidth,
-                height);
+            datePicker.getEditor().setBounds(ltr ? insets.left : insets.left + popupButtonWidth, insets.top, width - popupButtonWidth, height);
 
             if (popupButton != null) {
-                popupButton.setBounds(ltr ? width - popupButtonWidth + insets.left : insets.left,
-                    insets.top,
-                    popupButtonWidth,
-                    height);
+                popupButton.setBounds(ltr ? width - popupButtonWidth + insets.left : insets.left, insets.top, popupButtonWidth, height);
             }
         }
 
@@ -1438,7 +1419,8 @@ public class BasicDatePickerUI extends DatePickerUI {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            if (e == null) return;
+            if (e == null)
+                return;
             if (e.getSource() == datePicker.getMonthView()) {
                 monthViewActionPerformed(e);
             } else if (e.getSource() == datePicker.getEditor()) {
@@ -1478,7 +1460,8 @@ public class BasicDatePickerUI extends DatePickerUI {
          */
         @Override
         public void focusGained(FocusEvent e) {
-            if (e.isTemporary()) return;
+            if (e.isTemporary())
+                return;
             popupRemover.load();
             if (e.getSource() == datePicker) {
                 datePicker.getEditor().requestFocusInWindow();

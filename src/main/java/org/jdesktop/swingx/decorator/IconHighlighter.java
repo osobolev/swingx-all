@@ -95,7 +95,8 @@ public class IconHighlighter extends AbstractHighlighter {
      * @param icon the Icon to use for decoration, might be null.
      */
     public void setIcon(Icon icon) {
-        if (areEqual(icon, getIcon())) return;
+        if (areEqual(icon, getIcon()))
+            return;
         this.icon = icon;
         fireStateChanged();
     }
@@ -120,8 +121,7 @@ public class IconHighlighter extends AbstractHighlighter {
      * @see #setIcon(Icon)
      */
     @Override
-    protected Component doHighlight(Component component,
-                                    ComponentAdapter adapter) {
+    protected Component doHighlight(Component component, ComponentAdapter adapter) {
         if (getIcon() != null) {
             if (component instanceof IconAware) {
                 ((IconAware) component).setIcon(getIcon());

@@ -106,23 +106,19 @@ public final class SwingXUtilities {
     public static <T extends JComponent & Mnemonicable> void updateMnemonicBinding(T c, String pressed, String released) {
         int m = c.getMnemonic();
 
-        InputMap map = SwingUtilities.getUIInputMap(c,
-            JComponent.WHEN_IN_FOCUSED_WINDOW);
+        InputMap map = SwingUtilities.getUIInputMap(c, JComponent.WHEN_IN_FOCUSED_WINDOW);
 
         if (m != 0) {
             if (map == null) {
                 map = new ComponentInputMapUIResource(c);
-                SwingUtilities.replaceUIInputMap(c,
-                    JComponent.WHEN_IN_FOCUSED_WINDOW, map);
+                SwingUtilities.replaceUIInputMap(c, JComponent.WHEN_IN_FOCUSED_WINDOW, map);
             }
 
             map.clear();
 
             //TODO is ALT_MASK right for all platforms?
-            map.put(KeyStroke.getKeyStroke(m, InputEvent.ALT_MASK, false),
-                pressed);
-            map.put(KeyStroke.getKeyStroke(m, InputEvent.ALT_MASK, true),
-                released);
+            map.put(KeyStroke.getKeyStroke(m, InputEvent.ALT_MASK, false), pressed);
+            map.put(KeyStroke.getKeyStroke(m, InputEvent.ALT_MASK, true), released);
             map.put(KeyStroke.getKeyStroke(m, 0, true), released);
         } else {
             if (map != null) {
@@ -150,8 +146,7 @@ public final class SwingXUtilities {
             } else {
                 Insets insets = comp.getInsets();
                 g.translate(insets.left, insets.top);
-                painter.paint(g, comp, comp.getWidth() - insets.left - insets.right,
-                    comp.getHeight() - insets.top - insets.bottom);
+                painter.paint(g, comp, comp.getWidth() - insets.left - insets.right, comp.getHeight() - insets.top - insets.bottom);
                 g.translate(-insets.left, -insets.top);
             }
         }
@@ -285,8 +280,7 @@ public final class SwingXUtilities {
      * @throws NullPointerException if any parameter is {@code null}
      */
     public static void setHtmlFont(HTMLDocument doc, Font font) {
-        String stylesheet = String.format(STYLESHEET, font.getName(),
-            font.getSize(), font.getName(), font.getSize());
+        String stylesheet = String.format(STYLESHEET, font.getName(), font.getSize(), font.getName(), font.getSize());
 
         try {
             doc.getStyleSheet().loadRules(new StringReader(stylesheet), null);
@@ -350,8 +344,7 @@ public final class SwingXUtilities {
      * @throws InvocationTargetException if an exception is thrown while running {@code callable}
      * @see Callable
      */
-    public static <T> T invokeAndWait(Callable<T> callable) throws InterruptedException,
-        InvocationTargetException {
+    public static <T> T invokeAndWait(Callable<T> callable) throws InterruptedException, InvocationTargetException {
         try {
             //blocks until future returns
             return invokeLater(callable).get();
@@ -390,8 +383,7 @@ public final class SwingXUtilities {
         Component parent = c.getParent();
 
         while (parent != null && !clazz.isInstance(parent)) {
-            parent = parent instanceof JPopupMenu
-                ? ((JPopupMenu) parent).getInvoker() : parent.getParent();
+            parent = parent instanceof JPopupMenu ? ((JPopupMenu) parent).getInvoker() : parent.getParent();
         }
 
         return (T) parent;
@@ -447,8 +439,7 @@ public final class SwingXUtilities {
      * @param lead           the lead selection index
      * @param anchor         the anchor selection index
      */
-    public static void setLeadAnchorWithoutSelection(
-        ListSelectionModel selectionModel, int lead, int anchor) {
+    public static void setLeadAnchorWithoutSelection(ListSelectionModel selectionModel, int lead, int anchor) {
         if (anchor == -1) {
             anchor = lead;
         }
@@ -465,20 +456,15 @@ public final class SwingXUtilities {
         }
     }
 
-    public static boolean shouldIgnore(MouseEvent mouseEvent,
-                                       JComponent component) {
-        return component == null || !component.isEnabled()
-               || !SwingUtilities.isLeftMouseButton(mouseEvent)
-               || mouseEvent.isConsumed();
+    public static boolean shouldIgnore(MouseEvent mouseEvent, JComponent component) {
+        return component == null || !component.isEnabled() || !SwingUtilities.isLeftMouseButton(mouseEvent) || mouseEvent.isConsumed();
     }
 
     public static int loc2IndexFileList(JList list, Point point) {
         int i = list.locationToIndex(point);
         if (i != -1) {
-            Object localObject = list
-                .getClientProperty("List.isFileList");
-            if (localObject instanceof Boolean
-                && ((Boolean) localObject).booleanValue()
+            Object localObject = list.getClientProperty("List.isFileList");
+            if (localObject instanceof Boolean && ((Boolean) localObject).booleanValue()
                 // PENDING JW: this isn't aware of sorting/filtering - fix!
                 && !pointIsInActualBounds(list, i, point)) {
                 i = -1;
@@ -488,13 +474,11 @@ public final class SwingXUtilities {
     }
 
     // PENDING JW: this isn't aware of sorting/filtering - fix!
-    private static boolean pointIsInActualBounds(JList list, int index,
-                                                 Point point) {
+    private static boolean pointIsInActualBounds(JList list, int index, Point point) {
         ListCellRenderer renderer = list.getCellRenderer();
         ListModel model = list.getModel();
         Object element = model.getElementAt(index);
-        Component comp = renderer.getListCellRendererComponent(list, element,
-            index, false, false);
+        Component comp = renderer.getListCellRendererComponent(list, element, index, false, false);
 
         Dimension prefSize = comp.getPreferredSize();
         Rectangle cellBounds = list.getCellBounds(index, index);
@@ -511,8 +495,7 @@ public final class SwingXUtilities {
             component.requestFocus();
     }
 
-    public static int convertModifiersToDropAction(int modifiers,
-                                                   int sourcActions) {
+    public static int convertModifiersToDropAction(int modifiers, int sourcActions) {
         // PENDING JW: c'p from a decompiled SunDragSourceContextPeer
         // PENDING JW: haha ... completely readable, right ;-)
         int i = 0;

@@ -60,7 +60,7 @@ public class BuddyLayoutAndBorder implements LayoutManager, Border, PropertyChan
     /**
      * Does nothing.
      *
-     * @see BuddySupport#add(Component, Position, JTextField) 
+     * @see BuddySupport#add(Component, Position, JTextField)
      */
     @Override
     public void addLayoutComponent(String name, Component comp) {
@@ -127,8 +127,7 @@ public class BuddyLayoutAndBorder implements LayoutManager, Border, PropertyChan
             }
 
             size = comp.getPreferredSize();
-            comp.setBounds(visibleRect.x + visibleRect.width - size.width, centerY(visibleRect, size), size.width,
-                size.height);
+            comp.setBounds(visibleRect.x + visibleRect.width - size.width, centerY(visibleRect, size), size.width, size.height);
             visibleRect.width -= size.width;
         }
     }

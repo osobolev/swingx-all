@@ -195,8 +195,7 @@ public class WeakEventListenerList implements Serializable {
             return;
         }
         if (!t.isInstance(l)) {
-            throw new IllegalArgumentException("Listener " + l +
-                                               " is not of type " + t);
+            throw new IllegalArgumentException("Listener " + l + " is not of type " + t);
         }
         cleanReferences();
         getReferences().add(new WeakReference<>(l));
@@ -217,12 +216,10 @@ public class WeakEventListenerList implements Serializable {
             return;
         }
         if (!t.isInstance(l)) {
-            throw new IllegalArgumentException("Listener " + l +
-                                               " is not of type " + t);
+            throw new IllegalArgumentException("Listener " + l + " is not of type " + t);
         }
         for (int i = 0; i < getReferences().size(); i++) {
-            if (l.equals(getReferences().get(i).get()) &&
-                t == getClasses().get(i)) {
+            if (l.equals(getReferences().get(i).get()) && t == getClasses().get(i)) {
                 getReferences().remove(i);
                 getClasses().remove(i);
                 break;

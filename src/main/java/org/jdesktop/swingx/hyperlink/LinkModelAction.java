@@ -109,7 +109,8 @@ public class LinkModelAction<T extends LinkModel> extends AbstractHyperlinkActio
      */
     @Override
     protected void uninstallTarget() {
-        if (getTarget() == null) return;
+        if (getTarget() == null)
+            return;
         getTarget().removePropertyChangeListener(getTargetListener());
     }
 
@@ -120,7 +121,8 @@ public class LinkModelAction<T extends LinkModel> extends AbstractHyperlinkActio
             putValue(VISITED_KEY, getTarget().getVisited());
         } else {
             Object[] keys = getKeys();
-            if (keys == null) return;
+            if (keys == null)
+                return;
             for (Object key : keys) {
                 putValue(key.toString(), null);
             }

@@ -22,8 +22,7 @@ public class TreeUtilities {
     /**
      * An enumeration that is always empty.
      */
-    public static final Enumeration EMPTY_ENUMERATION
-        = new Enumeration() {
+    public static final Enumeration EMPTY_ENUMERATION = new Enumeration() {
         @Override
         public boolean hasMoreElements() {
             return false;
@@ -112,7 +111,8 @@ public class TreeUtilities {
          *
          */
         private void updateSubtree() {
-            if (path == null) return;
+            if (path == null)
+                return;
             TreePath parentPath = path.getParentPath();
             if (parentPath == null) {
                 // root
@@ -165,8 +165,7 @@ public class TreeUtilities {
 
         @Override
         public boolean hasMoreElements() {
-            return !queue.isEmpty() &&
-                   queue.peek().hasMoreElements();
+            return !queue.isEmpty() && queue.peek().hasMoreElements();
         }
 
         @Override
@@ -221,8 +220,7 @@ public class TreeUtilities {
             if (subtree.hasMoreElements()) {
                 retval = subtree.nextElement();
             } else if (children.hasMoreElements()) {
-                subtree = new PostorderModelEnumeration(model,
-                    children.nextElement());
+                subtree = new PostorderModelEnumeration(model, children.nextElement());
                 retval = subtree.nextElement();
             } else {
                 retval = root;
@@ -250,8 +248,7 @@ public class TreeUtilities {
 
         @Override
         public boolean hasMoreElements() {
-            return !stack.isEmpty() &&
-                   stack.peek().hasMoreElements();
+            return !stack.isEmpty() && stack.peek().hasMoreElements();
         }
 
         @Override
@@ -349,8 +346,7 @@ public class TreeUtilities {
 
         @Override
         public boolean hasMoreElements() {
-            return !queue.isEmpty() &&
-                   queue.peek().hasMoreElements();
+            return !queue.isEmpty() && queue.peek().hasMoreElements();
         }
 
         @Override
@@ -422,6 +418,5 @@ public class TreeUtilities {
     }
 
     @SuppressWarnings("unused")
-    private static final Logger LOG = Logger.getLogger(TreeUtilities.class
-        .getName());
+    private static final Logger LOG = Logger.getLogger(TreeUtilities.class.getName());
 }

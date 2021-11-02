@@ -108,14 +108,11 @@ public class GlossPainter extends AbstractPainter<Object> {
     @Override
     protected void doPaint(Graphics2D g, Object component, int width, int height) {
         if (getPaint() != null) {
-            Ellipse2D ellipse = new Ellipse2D.Double(-width / 2.0,
-                height / 2.7, width * 2.0,
-                height * 2.0);
+            Ellipse2D ellipse = new Ellipse2D.Double(-width / 2.0, height / 2.7, width * 2.0, height * 2.0);
 
             Area gloss = new Area(ellipse);
             if (getPosition() == GlossPosition.TOP) {
-                Area area = new Area(new Rectangle(0, 0,
-                    width, height));
+                Area area = new Area(new Rectangle(0, 0, width, height));
                 area.subtract(new Area(ellipse));
                 gloss = area;
             }

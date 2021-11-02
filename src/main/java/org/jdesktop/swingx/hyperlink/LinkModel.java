@@ -37,8 +37,7 @@ import java.util.logging.Logger;
  */
 public class LinkModel implements Comparable {
 
-    private static final Logger LOG = Logger.getLogger(LinkModel.class
-        .getName());
+    private static final Logger LOG = Logger.getLogger(LinkModel.class.getName());
 
     private String text; // display text
 
@@ -114,8 +113,7 @@ public class LinkModel implements Comparable {
             url = new URL(howToURLString);
         } catch (MalformedURLException e) {
             url = getDefaultURL();
-            LOG.warning("the given urlString is malformed: " + howToURLString +
-                        "\n falling back to default url: " + url);
+            LOG.warning("the given urlString is malformed: " + howToURLString + "\n falling back to default url: " + url);
         }
         setURL(url);
     }
@@ -125,8 +123,7 @@ public class LinkModel implements Comparable {
             try {
                 defaultURL = new URL(defaultURLString);
             } catch (MalformedURLException e) {
-                LOG.fine("should not happen - defaultURL is wellFormed: "
-                         + defaultURLString);
+                LOG.fine("should not happen - defaultURL is wellFormed: " + defaultURLString);
             }
         }
         return defaultURL;
@@ -230,15 +227,13 @@ public class LinkModel implements Comparable {
         propertyChangeSupport.removePropertyChangeListener(l);
     }
 
-    protected void firePropertyChange(String property, Object oldValue,
-                                      Object newValue) {
+    protected void firePropertyChange(String property, Object oldValue, Object newValue) {
         if (propertyChangeSupport == null)
             return;
         propertyChangeSupport.firePropertyChange(property, oldValue, newValue);
     }
 
-    protected void firePropertyChange(String property, boolean oldValue,
-                                      boolean newValue) {
+    protected void firePropertyChange(String property, boolean oldValue, boolean newValue) {
         if (propertyChangeSupport == null)
             return;
         propertyChangeSupport.firePropertyChange(property, oldValue, newValue);
@@ -287,8 +282,7 @@ public class LinkModel implements Comparable {
         int result = 7;
 
         result = 37 * result + (getText() == null ? 0 : getText().hashCode());
-        result = 37 * result
-                 + (getTarget() == null ? 1 : getTarget().hashCode());
+        result = 37 * result + (getTarget() == null ? 1 : getTarget().hashCode());
         result = 37 * result + (getURL() == null ? 2 : getURL().hashCode());
 
         return result;

@@ -61,20 +61,14 @@ public class MetalTaskPaneUI extends BasicTaskPaneUI {
     class MetalPaneBorder extends PaneBorder {
 
         @Override
-        protected void paintExpandedControls(JXTaskPane group, Graphics g, int x,
-                                             int y, int width, int height) {
-            ((Graphics2D) g).setRenderingHint(
-                RenderingHints.KEY_ANTIALIASING,
-                RenderingHints.VALUE_ANTIALIAS_ON);
+        protected void paintExpandedControls(JXTaskPane group, Graphics g, int x, int y, int width, int height) {
+            ((Graphics2D) g).setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
             g.setColor(getPaintColor(group));
-            paintRectAroundControls(group, g, x, y, width, height, g.getColor(), g
-                .getColor());
+            paintRectAroundControls(group, g, x, y, width, height, g.getColor(), g.getColor());
             paintChevronControls(group, g, x, y, width, height);
 
-            ((Graphics2D) g).setRenderingHint(
-                RenderingHints.KEY_ANTIALIASING,
-                RenderingHints.VALUE_ANTIALIAS_OFF);
+            ((Graphics2D) g).setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_OFF);
         }
 
         @Override

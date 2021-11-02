@@ -39,8 +39,7 @@ public class ColumnControlButtonAddon extends AbstractComponentAddon {
     }
 
     @Override
-    protected void addBasicDefaults(LookAndFeelAddons addon,
-                                    DefaultsList defaults) {
+    protected void addBasicDefaults(LookAndFeelAddons addon, DefaultsList defaults) {
         super.addBasicDefaults(addon, defaults);
         defaults.add("ColumnControlButton.actionIcon", new ColumnControlIcon());
         defaults.add("ColumnControlButton.margin", new InsetsUIResource(1, 2, 2, 1));

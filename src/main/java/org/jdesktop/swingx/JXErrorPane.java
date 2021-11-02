@@ -194,7 +194,11 @@ public class JXErrorPane extends JComponent {
      * ErrorInfo that contains all the information prepared for
      * reporting.
      */
-    private ErrorInfo errorInfo = new ErrorInfo("Error", "Normally this place contains problem description.\n You see this text because one of the following reasons:\n * Either it is a test\n * Developer have not provided error details\n * This error message was invoked unexpectedly and there are no more details available", null, null, null, null, null);
+    private ErrorInfo errorInfo = new ErrorInfo(
+        "Error",
+        "Normally this place contains problem description.\n You see this text because one of the following reasons:\n * Either it is a test\n * Developer have not provided error details\n * This error message was invoked unexpectedly and there are no more details available",
+        null, null, null, null, null
+    );
     /**
      * The Icon to use, regardless of the error message. The UI delegate is
      * responsible for setting this icon, if the developer has not specified
@@ -260,8 +264,7 @@ public class JXErrorPane extends JComponent {
      */
     @Override
     public void updateUI() {
-        setUI((ErrorPaneUI) LookAndFeelAddons
-            .getUI(this, ErrorPaneUI.class));
+        setUI((ErrorPaneUI) LookAndFeelAddons.getUI(this, ErrorPaneUI.class));
     }
 
     //-------------------------------------------- public methods/properties

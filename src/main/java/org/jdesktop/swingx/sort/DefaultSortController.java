@@ -45,15 +45,13 @@ import java.util.List;
  *
  * @author Jeanette Winzenburg
  */
-public abstract class DefaultSortController<M> extends DefaultRowSorter<M, Integer> implements
-    SortController<M> {
+public abstract class DefaultSortController<M> extends DefaultRowSorter<M, Integer> implements SortController<M> {
 
     /**
      * Comparator that uses compareTo on the contents.
      */
     @SuppressWarnings({"unchecked", "rawtypes"})
-    public static final Comparator COMPARABLE_COMPARATOR =
-        new ComparableComparator();
+    public static final Comparator COMPARABLE_COMPARATOR = new ComparableComparator();
 
     private static final SortOrder[] DEFAULT_CYCLE = {SortOrder.ASCENDING, SortOrder.DESCENDING};
 
@@ -100,7 +98,8 @@ public abstract class DefaultSortController<M> extends DefaultRowSorter<M, Integ
      */
     @Override
     public boolean isSortable(int column) {
-        if (!isSortable()) return false;
+        if (!isSortable())
+            return false;
         return super.isSortable(column);
     }
 
@@ -167,8 +166,7 @@ public abstract class DefaultSortController<M> extends DefaultRowSorter<M, Integ
 
     private void checkColumn(int column) {
         if (column < 0 || column >= getModelWrapper().getColumnCount()) {
-            throw new IndexOutOfBoundsException(
-                "column beyond range of TableModel");
+            throw new IndexOutOfBoundsException("column beyond range of TableModel");
         }
     }
 
@@ -180,7 +178,8 @@ public abstract class DefaultSortController<M> extends DefaultRowSorter<M, Integ
      */
     @Override
     public void setSortOrder(int column, SortOrder sortOrder) {
-        if (!isSortable(column)) return;
+        if (!isSortable(column))
+            return;
         SortKey replace = new SortKey(column, sortOrder);
         List<SortKey> keys = new ArrayList<>(getSortKeys());
         SortUtils.removeFirstSortKeyForColumn(keys, column);
@@ -203,7 +202,8 @@ public abstract class DefaultSortController<M> extends DefaultRowSorter<M, Integ
      */
     @Override
     public void resetSortOrders() {
-        if (!isSortable()) return;
+        if (!isSortable())
+            return;
         List<SortKey> keys = new ArrayList<>(getSortKeys());
         for (int i = keys.size() - 1; i >= 0; i--) {
             SortKey sortKey = keys.get(i);
@@ -288,9 +288,7 @@ public abstract class DefaultSortController<M> extends DefaultRowSorter<M, Integ
     @Override
     public int convertRowIndexToModel(int viewIndex) {
         if (viewIndex < 0 || viewIndex >= getViewRowCount())
-            throw new IndexOutOfBoundsException("valid viewIndex: 0 <= index < "
-                                                + getViewRowCount()
-                                                + " but was: " + viewIndex);
+            throw new IndexOutOfBoundsException("valid viewIndex: 0 <= index < " + getViewRowCount() + " but was: " + viewIndex);
         try {
             return super.convertRowIndexToModel(viewIndex);
         } catch (Exception e) {
@@ -311,9 +309,7 @@ public abstract class DefaultSortController<M> extends DefaultRowSorter<M, Integ
     @Override
     public int convertRowIndexToView(int modelIndex) {
         if (modelIndex < 0 || modelIndex >= getModelRowCount())
-            throw new IndexOutOfBoundsException("valid modelIndex: 0 <= index < "
-                                                + getModelRowCount()
-                                                + " but was: " + modelIndex);
+            throw new IndexOutOfBoundsException("valid modelIndex: 0 <= index < " + getModelRowCount() + " but was: " + modelIndex);
         try {
             return super.convertRowIndexToView(modelIndex);
         } catch (Exception e) {

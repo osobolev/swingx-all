@@ -70,7 +70,8 @@ public class SynthUtils {
      * @return
      */
     public static SynthContext getContext(SynthContext context, SynthStyle style) {
-        if (context.getStyle().equals(style)) return context;
+        if (context.getStyle().equals(style))
+            return context;
         return getContext(context.getComponent(), context.getRegion(), style, context.getComponentState());
     }
 
@@ -82,7 +83,8 @@ public class SynthUtils {
      * @return a context with the given component state and other fields as inpu context.
      */
     public static SynthContext getContext(SynthContext context, int state) {
-        if (context.getComponentState() == state) return context;
+        if (context.getComponentState() == state)
+            return context;
         return getContext(context.getComponent(), context.getRegion(), context.getStyle(), state);
     }
 
@@ -117,9 +119,7 @@ public class SynthUtils {
             // Only update on an ancestor change when getting a valid
             // parent and the LookAndFeel wants this.
             LookAndFeel laf = UIManager.getLookAndFeel();
-            return laf instanceof SynthLookAndFeel &&
-                   ((SynthLookAndFeel) laf).
-                        shouldUpdateStyleOnAncestorChanged();
+            return laf instanceof SynthLookAndFeel && ((SynthLookAndFeel) laf).shouldUpdateStyleOnAncestorChanged();
         }
         // Note: The following two nimbus based overrides should be refactored
         // to be in the Nimbus LAF. Due to constraints in an update release,
@@ -194,8 +194,7 @@ public class SynthUtils {
 
         // Fill in the background, if necessary.
         boolean subregion = context.getRegion().isSubregion();
-        if (subregion && style.isOpaque(context)
-            || !subregion && c.isOpaque()) {
+        if (subregion && style.isOpaque(context) || !subregion && c.isOpaque()) {
             g.setColor(style.getColor(context, ColorType.BACKGROUND));
             g.fillRect(x, y, width, height);
         }

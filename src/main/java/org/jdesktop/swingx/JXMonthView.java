@@ -131,8 +131,7 @@ import java.util.logging.Logger;
 public class JXMonthView extends JComponent {
 
     @SuppressWarnings("unused")
-    private static final Logger LOG = Logger.getLogger(JXMonthView.class
-        .getName());
+    private static final Logger LOG = Logger.getLogger(JXMonthView.class.getName());
     /*
      * moved from package calendar to swingx at version 1.51
      */
@@ -376,8 +375,8 @@ public class JXMonthView extends JComponent {
     public Calendar getCalendar() {
         // JW: this is to guard against a regression of not-fully understood 
         // problems in constructor (UI used to call back into this before we were ready)
-        if (cal == null) throw
-            new IllegalStateException("must not be called before instantiation is complete");
+        if (cal == null)
+            throw new IllegalStateException("must not be called before instantiation is complete");
         Calendar calendar = (Calendar) cal.clone();
         calendar.setTime(firstDisplayedDay);
         return calendar;
@@ -644,8 +643,7 @@ public class JXMonthView extends JComponent {
                 int lastMonth = cal.get(Calendar.MONTH);
                 int lastYear = cal.get(Calendar.YEAR);
 
-                int diffMonths = month - lastMonth
-                                 + (year - lastYear) * MONTHS_IN_YEAR;
+                int diffMonths = month - lastMonth + (year - lastYear) * MONTHS_IN_YEAR;
 
                 cal.setTime(firstDisplayedDay);
                 cal.add(Calendar.MONTH, diffMonths);
@@ -1005,8 +1003,7 @@ public class JXMonthView extends JComponent {
      *                              are null
      */
     public void setUnselectableDates(Date... unselectableDates) {
-        Contract.asNotNull(unselectableDates,
-            "unselectable dates must not be null");
+        Contract.asNotNull(unselectableDates, "unselectable dates must not be null");
         SortedSet<Date> unselectableSet = new TreeSet<>();
         Collections.addAll(unselectableSet, unselectableDates);
         getSelectionModel().setUnselectableDates(unselectableSet);
@@ -1173,7 +1170,8 @@ public class JXMonthView extends JComponent {
      * @see #setZoomable(boolean)
      */
     public boolean isTraversable() {
-        if (isZoomable()) return true;
+        if (isZoomable())
+            return true;
         return traversable;
     }
 
@@ -1262,9 +1260,7 @@ public class JXMonthView extends JComponent {
      */
     public void setDaysOfTheWeek(String[] days) {
         if (days != null && days.length != DAYS_IN_WEEK) {
-            throw new IllegalArgumentException(
-                "Array of days is not of length " + DAYS_IN_WEEK
-                + " as expected.");
+            throw new IllegalArgumentException("Array of days is not of length " + DAYS_IN_WEEK + " as expected.");
         }
 
         String[] oldValue = getDaysOfTheWeek();
@@ -1486,8 +1482,7 @@ public class JXMonthView extends JComponent {
      */
     public void setDayForeground(int dayOfWeek, Color c) {
         if (dayOfWeek < Calendar.SUNDAY || dayOfWeek > Calendar.SATURDAY) {
-            throw new IllegalArgumentException("dayOfWeek must be in [Calendar.SUNDAY ... " +
-                                               "Calendar.SATURDAY] but was " + dayOfWeek);
+            throw new IllegalArgumentException("dayOfWeek must be in [Calendar.SUNDAY ... " + "Calendar.SATURDAY] but was " + dayOfWeek);
         }
         dayToColorTable.put(dayOfWeek, c);
         repaint();
@@ -1660,17 +1655,13 @@ public class JXMonthView extends JComponent {
         int secondsTillTomorrow = 86400;
 
         if (todayTimer == null) {
-            todayTimer = new Timer(secondsTillTomorrow * 1000,
-                e -> incrementToday());
+            todayTimer = new Timer(secondsTillTomorrow * 1000, e -> incrementToday());
         }
 
         // Modify the initial delay by the current time.
 //        cal.setTimeInMillis(System.currentTimeMillis());
         cal.setTime(getCurrentDate());
-        secondsTillTomorrow = secondsTillTomorrow -
-                              cal.get(Calendar.HOUR_OF_DAY) * 3600 -
-                              cal.get(Calendar.MINUTE) * 60 -
-                              cal.get(Calendar.SECOND);
+        secondsTillTomorrow = secondsTillTomorrow - cal.get(Calendar.HOUR_OF_DAY) * 3600 - cal.get(Calendar.MINUTE) * 60 - cal.get(Calendar.SECOND);
         todayTimer.setInitialDelay(secondsTillTomorrow * 1000);
         todayTimer.start();
     }
@@ -1796,9 +1787,7 @@ public class JXMonthView extends JComponent {
 
         for (ActionListener listener : listeners) {
             if (e == null) {
-                e = new ActionEvent(this,
-                    ActionEvent.ACTION_PERFORMED,
-                    actionCommand);
+                e = new ActionEvent(this, ActionEvent.ACTION_PERFORMED, actionCommand);
             }
             listener.actionPerformed(e);
         }

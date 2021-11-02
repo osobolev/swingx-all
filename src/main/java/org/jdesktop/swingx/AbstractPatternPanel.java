@@ -107,8 +107,7 @@ public abstract class AbstractPatternPanel extends JXPanel {
      */
     protected void initExecutables() {
         Action execute = createBoundAction(MATCH_ACTION_COMMAND, "match");
-        getActionMap().put(JXDialog.EXECUTE_ACTION_COMMAND,
-            execute);
+        getActionMap().put(JXDialog.EXECUTE_ACTION_COMMAND, execute);
         getActionMap().put(MATCH_ACTION_COMMAND, execute);
         refreshEmptyFromModel();
     }
@@ -118,18 +117,22 @@ public abstract class AbstractPatternPanel extends JXPanel {
      */
     protected void initPatternActions() {
         ActionMap map = getActionMap();
-        map.put(PatternModel.MATCH_CASE_ACTION_COMMAND,
-            createModelStateAction(PatternModel.MATCH_CASE_ACTION_COMMAND,
-                "setCaseSensitive", getPatternModel().isCaseSensitive()));
-        map.put(PatternModel.MATCH_WRAP_ACTION_COMMAND,
-            createModelStateAction(PatternModel.MATCH_WRAP_ACTION_COMMAND,
-                "setWrapping", getPatternModel().isWrapping()));
-        map.put(PatternModel.MATCH_BACKWARDS_ACTION_COMMAND,
-            createModelStateAction(PatternModel.MATCH_BACKWARDS_ACTION_COMMAND,
-                "setBackwards", getPatternModel().isBackwards()));
-        map.put(PatternModel.MATCH_INCREMENTAL_ACTION_COMMAND,
-            createModelStateAction(PatternModel.MATCH_INCREMENTAL_ACTION_COMMAND,
-                "setIncremental", getPatternModel().isIncremental()));
+        map.put(
+            PatternModel.MATCH_CASE_ACTION_COMMAND,
+            createModelStateAction(PatternModel.MATCH_CASE_ACTION_COMMAND, "setCaseSensitive", getPatternModel().isCaseSensitive())
+        );
+        map.put(
+            PatternModel.MATCH_WRAP_ACTION_COMMAND,
+            createModelStateAction(PatternModel.MATCH_WRAP_ACTION_COMMAND, "setWrapping", getPatternModel().isWrapping())
+        );
+        map.put(
+            PatternModel.MATCH_BACKWARDS_ACTION_COMMAND,
+            createModelStateAction(PatternModel.MATCH_BACKWARDS_ACTION_COMMAND, "setBackwards", getPatternModel().isBackwards())
+        );
+        map.put(
+            PatternModel.MATCH_INCREMENTAL_ACTION_COMMAND,
+            createModelStateAction(PatternModel.MATCH_INCREMENTAL_ACTION_COMMAND, "setIncremental", getPatternModel().isIncremental())
+        );
     }
 
     /**
@@ -172,8 +175,7 @@ public abstract class AbstractPatternPanel extends JXPanel {
      */
     protected AbstractActionExt createModelStateAction(String command, String methodName, boolean initial) {
         String actionName = getUIString(command);
-        BoundAction action = new BoundAction(actionName,
-            command);
+        BoundAction action = new BoundAction(actionName, command);
         action.setStateAction();
         action.registerCallback(getPatternModel(), methodName);
         action.setSelected(initial);
@@ -190,8 +192,7 @@ public abstract class AbstractPatternPanel extends JXPanel {
      */
     protected AbstractActionExt createBoundAction(String actionCommand, String methodName) {
         String actionName = getUIString(actionCommand);
-        BoundAction action = new BoundAction(actionName,
-            actionCommand);
+        BoundAction action = new BoundAction(actionName, actionCommand);
         action.registerCallback(this, methodName);
         return action;
     }
@@ -289,17 +290,13 @@ public abstract class AbstractPatternPanel extends JXPanel {
             } else if ("rawText".equals(property)) {
                 refreshDocumentFromModel();
             } else if ("caseSensitive".equals(property)) {
-                getAction(PatternModel.MATCH_CASE_ACTION_COMMAND).
-                    setSelected(((Boolean) evt.getNewValue()).booleanValue());
+                getAction(PatternModel.MATCH_CASE_ACTION_COMMAND).setSelected(((Boolean) evt.getNewValue()).booleanValue());
             } else if ("wrapping".equals(property)) {
-                getAction(PatternModel.MATCH_WRAP_ACTION_COMMAND).
-                    setSelected(((Boolean) evt.getNewValue()).booleanValue());
+                getAction(PatternModel.MATCH_WRAP_ACTION_COMMAND).setSelected(((Boolean) evt.getNewValue()).booleanValue());
             } else if ("backwards".equals(property)) {
-                getAction(PatternModel.MATCH_BACKWARDS_ACTION_COMMAND).
-                    setSelected(((Boolean) evt.getNewValue()).booleanValue());
+                getAction(PatternModel.MATCH_BACKWARDS_ACTION_COMMAND).setSelected(((Boolean) evt.getNewValue()).booleanValue());
             } else if ("incremental".equals(property)) {
-                getAction(PatternModel.MATCH_INCREMENTAL_ACTION_COMMAND).
-                    setSelected(((Boolean) evt.getNewValue()).booleanValue());
+                getAction(PatternModel.MATCH_INCREMENTAL_ACTION_COMMAND).setSelected(((Boolean) evt.getNewValue()).booleanValue());
             } else if ("empty".equals(property)) {
                 refreshEmptyFromModel();
             }
@@ -328,7 +325,8 @@ public abstract class AbstractPatternPanel extends JXPanel {
      * callback method that updates document from the search field
      */
     protected void refreshDocumentFromModel() {
-        if (searchField.getText().equals(getPatternModel().getRawText())) return;
+        if (searchField.getText().equals(getPatternModel().getRawText()))
+            return;
         SwingUtilities.invokeLater(() -> searchField.setText(getPatternModel().getRawText()));
     }
 
@@ -366,9 +364,7 @@ public abstract class AbstractPatternPanel extends JXPanel {
     protected void bind() {
         bindSearchLabel(getLocale());
         searchField.getDocument().addDocumentListener(getSearchFieldListener());
-        getActionContainerFactory().configureButton(matchCheck,
-            (AbstractActionExt) getActionMap().get(PatternModel.MATCH_CASE_ACTION_COMMAND),
-            null);
+        getActionContainerFactory().configureButton(matchCheck, (AbstractActionExt) getActionMap().get(PatternModel.MATCH_CASE_ACTION_COMMAND), null);
     }
 
     /**

@@ -118,7 +118,8 @@ public class CompoundFocusListener extends AbstractBean {
      * @param focusOwner the component with is the current focusOwner.
      */
     protected void permanentFocusOwnerChanged(Component focusOwner) {
-        if (focusOwner == null) return;
+        if (focusOwner == null)
+            return;
         setFocused(SwingXUtilities.isDescendingFrom(focusOwner, root));
     }
 

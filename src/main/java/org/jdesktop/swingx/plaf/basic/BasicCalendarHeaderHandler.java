@@ -52,9 +52,11 @@ public class BasicCalendarHeaderHandler extends CalendarHeaderHandler {
     @Override
     public void install(JXMonthView monthView) {
         super.install(monthView);
-        getHeaderComponent().setActions(monthView.getActionMap().get("previousMonth"),
+        getHeaderComponent().setActions(
+            monthView.getActionMap().get("previousMonth"),
             monthView.getActionMap().get("nextMonth"),
-            monthView.getActionMap().get("zoomOut"));
+            monthView.getActionMap().get("zoomOut")
+        );
     }
 
     @Override
@@ -99,10 +101,8 @@ public class BasicCalendarHeaderHandler extends CalendarHeaderHandler {
         public ZoomOutAction() {
             tsv = value -> {
                 if (value instanceof Calendar) {
-                    String month = monthNames[((Calendar) value)
-                        .get(Calendar.MONTH)];
-                    return month + " "
-                           + ((Calendar) value).get(Calendar.YEAR);
+                    String month = monthNames[((Calendar) value).get(Calendar.MONTH)];
+                    return month + " " + ((Calendar) value).get(Calendar.YEAR);
                 }
                 return StringValues.TO_STRING.getString(value);
             };
@@ -144,13 +144,15 @@ public class BasicCalendarHeaderHandler extends CalendarHeaderHandler {
          */
         @Override
         protected void uninstallTarget() {
-            if (getTarget() == null) return;
+            if (getTarget() == null)
+                return;
             getTarget().removePropertyChangeListener(getTargetListener());
         }
 
         protected void updateFromTarget() {
             // this happens on construction with null target
-            if (tsv == null) return;
+            if (tsv == null)
+                return;
             Calendar calendar = getTarget() != null ? getTarget().getCalendar() : null;
             setName(tsv.getString(calendar));
         }

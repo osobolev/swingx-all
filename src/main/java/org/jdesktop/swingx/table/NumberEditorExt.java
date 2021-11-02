@@ -121,7 +121,8 @@ public class NumberEditorExt extends DefaultCellEditor {
 
     @Override
     public boolean stopCellEditing() {
-        if (!isValid()) return false;
+        if (!isValid())
+            return false;
         return super.stopCellEditing();
     }
 
@@ -132,7 +133,8 @@ public class NumberEditorExt extends DefaultCellEditor {
      * @return true if text is valid, false otherwise.
      */
     protected boolean isValid() {
-        if (!getComponent().isEditValid()) return false;
+        if (!getComponent().isEditValid())
+            return false;
         try {
             if (!hasStrictFormatter())
                 getNumber();
@@ -153,9 +155,9 @@ public class NumberEditorExt extends DefaultCellEditor {
      */
     protected Number getNumber() throws Exception {
         Number number = (Number) super.getCellEditorValue();
-        if (number == null) return null;
-        return hasStrictFormatter() ? number :
-            (Number) constructor.newInstance(new Object[] {number.toString()});
+        if (number == null)
+            return null;
+        return hasStrictFormatter() ? number : (Number) constructor.newInstance(new Object[] {number.toString()});
     }
 
     /**
@@ -169,9 +171,7 @@ public class NumberEditorExt extends DefaultCellEditor {
      * Override and set the border back to normal in case there was an error previously
      */
     @Override
-    public Component getTableCellEditorComponent(JTable table, Object value,
-                                                 boolean isSelected,
-                                                 int row, int column) {
+    public Component getTableCellEditorComponent(JTable table, Object value, boolean isSelected, int row, int column) {
         getComponent().setBorder(new LineBorder(Color.black));
         try {
             Class<?> type = table.getColumnClass(column);
@@ -211,8 +211,7 @@ public class NumberEditorExt extends DefaultCellEditor {
         try {
             return getNumber();
         } catch (Exception ex) {
-            throw new IllegalStateException("Number conversion not possible from " +
-                                            "current string " + getComponent().getText());
+            throw new IllegalStateException("Number conversion not possible from " + "current string " + getComponent().getText());
         }
     }
 
@@ -234,12 +233,9 @@ public class NumberEditorExt extends DefaultCellEditor {
      * Use a static method so that we can do some stuff before calling the
      * superclass.
      */
-    private static JFormattedTextField createFormattedTextFieldX(
-        NumberFormat format) {
-        StrictNumberFormatter formatter = new StrictNumberFormatter(
-            new NumberFormatExt(format));
-        JFormattedTextField textField = new JFormattedTextField(
-            formatter);
+    private static JFormattedTextField createFormattedTextFieldX(NumberFormat format) {
+        StrictNumberFormatter formatter = new StrictNumberFormatter(new NumberFormatExt(format));
+        JFormattedTextField textField = new JFormattedTextField(formatter);
         /*
          * FIXME: I am sure there is a better way to do this, but I don't know
          * what it is. JTable sets up a binding for the ESCAPE key, but
@@ -267,16 +263,13 @@ public class NumberEditorExt extends DefaultCellEditor {
          * The formatted text field will not call stopCellEditing() until the
          * value is valid. So do the red border thing here.
          */
-        textField.addPropertyChangeListener("editValid",
-            evt -> {
-                if (evt.getNewValue() == Boolean.TRUE) {
-                    ((JFormattedTextField) evt.getSource())
-                        .setBorder(new LineBorder(Color.black));
-                } else {
-                    ((JFormattedTextField) evt.getSource())
-                        .setBorder(new LineBorder(Color.red));
-                }
-            });
+        textField.addPropertyChangeListener("editValid", evt -> {
+            if (evt.getNewValue() == Boolean.TRUE) {
+                ((JFormattedTextField) evt.getSource()).setBorder(new LineBorder(Color.black));
+            } else {
+                ((JFormattedTextField) evt.getSource()).setBorder(new LineBorder(Color.red));
+            }
+        });
         return textField;
     }
 
@@ -287,10 +280,8 @@ public class NumberEditorExt extends DefaultCellEditor {
      * Use a static method so that we can do some stuff before calling the
      * superclass.
      */
-    private static JFormattedTextField createFormattedTextField(
-        NumberFormat formatter) {
-        JFormattedTextField textField = new JFormattedTextField(
-            new NumberFormatExt(formatter));
+    private static JFormattedTextField createFormattedTextField(NumberFormat formatter) {
+        JFormattedTextField textField = new JFormattedTextField(new NumberFormatExt(formatter));
         /*
          * FIXME: I am sure there is a better way to do this, but I don't know
          * what it is. JTable sets up a binding for the ESCAPE key, but
@@ -318,16 +309,13 @@ public class NumberEditorExt extends DefaultCellEditor {
          * The formatted text field will not call stopCellEditing() until the
          * value is valid. So do the red border thing here.
          */
-        textField.addPropertyChangeListener("editValid",
-            evt -> {
-                if (evt.getNewValue() == Boolean.TRUE) {
-                    ((JFormattedTextField) evt.getSource())
-                        .setBorder(new LineBorder(Color.black));
-                } else {
-                    ((JFormattedTextField) evt.getSource())
-                        .setBorder(new LineBorder(Color.red));
-                }
-            });
+        textField.addPropertyChangeListener("editValid", evt -> {
+            if (evt.getNewValue() == Boolean.TRUE) {
+                ((JFormattedTextField) evt.getSource()).setBorder(new LineBorder(Color.black));
+            } else {
+                ((JFormattedTextField) evt.getSource()).setBorder(new LineBorder(Color.red));
+            }
+        });
         return textField;
     }
 }

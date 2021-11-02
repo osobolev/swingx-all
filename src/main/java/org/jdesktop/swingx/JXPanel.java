@@ -360,7 +360,8 @@ public class JXPanel extends JPanel implements AlphaPaintable, BackgroundPaintab
     public final void setScrollableWidthHint(ScrollableSizeHint hint) {
         Contract.asNotNull(hint, "hint cannot be null");
         ScrollableSizeHint oldValue = getScrollableWidthHint();
-        if (oldValue == hint) return;
+        if (oldValue == hint)
+            return;
         this.scrollableWidthHint = hint;
         revalidate();
         firePropertyChange("scrollableWidthHint", oldValue, getScrollableWidthHint());
@@ -379,7 +380,8 @@ public class JXPanel extends JPanel implements AlphaPaintable, BackgroundPaintab
     public final void setScrollableHeightHint(ScrollableSizeHint hint) {
         Contract.asNotNull(hint, "hint cannot be null");
         ScrollableSizeHint oldValue = getScrollableHeightHint();
-        if (oldValue == hint) return;
+        if (oldValue == hint)
+            return;
         this.scrollableHeightHint = hint;
         revalidate();
         firePropertyChange("scrollableHeightHint", oldValue, getScrollableHeightHint());
@@ -450,8 +452,7 @@ public class JXPanel extends JPanel implements AlphaPaintable, BackgroundPaintab
      * @see #setScrollableHeightHint(ScrollableSizeHint)
      */
     public void setScrollableTracksViewportHeight(boolean scrollableTracksViewportHeight) {
-        setScrollableHeightHint(scrollableTracksViewportHeight ?
-            ScrollableSizeHint.FIT : ScrollableSizeHint.NONE);
+        setScrollableHeightHint(scrollableTracksViewportHeight ? ScrollableSizeHint.FIT : ScrollableSizeHint.NONE);
     }
 
     /**
@@ -465,8 +466,7 @@ public class JXPanel extends JPanel implements AlphaPaintable, BackgroundPaintab
      * @see #setScrollableWidthHint(ScrollableSizeHint)
      */
     public void setScrollableTracksViewportWidth(boolean scrollableTracksViewportWidth) {
-        setScrollableWidthHint(scrollableTracksViewportWidth ?
-            ScrollableSizeHint.FIT : ScrollableSizeHint.NONE);
+        setScrollableWidthHint(scrollableTracksViewportWidth ? ScrollableSizeHint.FIT : ScrollableSizeHint.NONE);
     }
 
     /**
@@ -614,8 +614,7 @@ public class JXPanel extends JPanel implements AlphaPaintable, BackgroundPaintab
                 } else {
                     Insets insets = getInsets();
                     g.translate(insets.left, insets.top);
-                    getBackgroundPainter().paint(g2, this, getWidth() - insets.left - insets.right,
-                        getHeight() - insets.top - insets.bottom);
+                    getBackgroundPainter().paint(g2, this, getWidth() - insets.left - insets.right, getHeight() - insets.top - insets.bottom);
                     g.translate(-insets.left, -insets.top);
                 }
             }
@@ -656,7 +655,8 @@ public class JXPanel extends JPanel implements AlphaPaintable, BackgroundPaintab
     }
 
     protected boolean isOpaquePatch() {
-        if (fakeTransparent) return false;
+        if (fakeTransparent)
+            return false;
         if (isPaintingBackground()) {
             return !isTransparentBackground() && !isAlpha();
         }

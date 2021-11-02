@@ -217,8 +217,7 @@ public abstract class AbstractLayoutPainter<T> extends AbstractPainter<T> {
      * @param height        the height of the area that the content will be positioned in
      * @return the rectangle for the content to be painted in
      */
-    protected final Rectangle calculateLayout(int contentWidth, int contentHeight,
-                                              int width, int height) {
+    protected final Rectangle calculateLayout(int contentWidth, int contentHeight, int width, int height) {
 
         Rectangle rect = new Rectangle();
         rect.width = contentWidth;

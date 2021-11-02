@@ -39,8 +39,7 @@ import java.io.Serializable;
  *
  * @author Jeanette Winzenburg
  */
-public abstract class AbstractRenderer
-    implements RolloverRenderer, StringValue, Serializable, UIDependent {
+public abstract class AbstractRenderer implements RolloverRenderer, StringValue, Serializable, UIDependent {
 
     protected ComponentProvider<?> componentController;
 
@@ -94,8 +93,7 @@ public abstract class AbstractRenderer
      */
     @Override
     public boolean isEnabled() {
-        return componentController instanceof RolloverRenderer
-               && ((RolloverRenderer) componentController).isEnabled();
+        return componentController instanceof RolloverRenderer && ((RolloverRenderer) componentController).isEnabled();
     }
 
     /**

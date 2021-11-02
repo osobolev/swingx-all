@@ -37,8 +37,7 @@ public abstract class BasicLookAndFeelAddons extends LookAndFeelAddons {
     public void initialize() {
         super.initialize();
         //must add resource bundle after adding component values
-        UIManagerExt.addResourceBundle(
-            "org.jdesktop.swingx.plaf.basic.resources.swingx");
+        UIManagerExt.addResourceBundle("org.jdesktop.swingx.plaf.basic.resources.swingx");
     }
 
     /**
@@ -47,8 +46,7 @@ public abstract class BasicLookAndFeelAddons extends LookAndFeelAddons {
     @Override
     public void uninitialize() {
         //must remove resource bundle before adding component values
-        UIManagerExt.removeResourceBundle(
-            "org.jdesktop.swingx.plaf.basic.resources.swingx");
+        UIManagerExt.removeResourceBundle("org.jdesktop.swingx.plaf.basic.resources.swingx");
         super.uninitialize();
     }
 }

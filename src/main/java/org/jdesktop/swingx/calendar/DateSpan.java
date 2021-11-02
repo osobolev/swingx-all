@@ -48,8 +48,7 @@ public class DateSpan {
         _start = start;
         _end = end;
         if (_start > _end) {
-            throw new IllegalArgumentException(
-                "Start date must be before end date");
+            throw new IllegalArgumentException("Start date must be before end date");
         }
     }
 
@@ -181,8 +180,7 @@ public class DateSpan {
      * @return union of this DateSpan and <code>start</code>, <code>end</code>
      */
     public DateSpan add(long start, long end) {
-        return new DateSpan(Math.min(start, getStart()),
-            Math.max(end, getEnd()));
+        return new DateSpan(Math.min(start, getStart()), Math.max(end, getEnd()));
     }
 
     /**

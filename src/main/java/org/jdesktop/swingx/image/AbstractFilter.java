@@ -69,16 +69,12 @@ public abstract class AbstractFilter extends AbstractBean implements BufferedIma
      * {@inheritDoc}
      */
     @Override
-    public BufferedImage createCompatibleDestImage(BufferedImage src,
-                                                   ColorModel destCM) {
+    public BufferedImage createCompatibleDestImage(BufferedImage src, ColorModel destCM) {
         if (destCM == null) {
             destCM = src.getColorModel();
         }
 
-        return new BufferedImage(destCM,
-            destCM.createCompatibleWritableRaster(
-                src.getWidth(), src.getHeight()),
-            destCM.isAlphaPremultiplied(), null);
+        return new BufferedImage(destCM, destCM.createCompatibleWritableRaster(src.getWidth(), src.getHeight()), destCM.isAlphaPremultiplied(), null);
     }
 
     /**

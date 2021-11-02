@@ -64,8 +64,7 @@ import java.awt.Component;
  * @see IconValue
  * @see MappedValue
  */
-public class DefaultListRenderer extends AbstractRenderer
-    implements ListCellRenderer {
+public class DefaultListRenderer extends AbstractRenderer implements ListCellRenderer {
 
     protected ListCellContext cellContext;
 
@@ -144,8 +143,7 @@ public class DefaultListRenderer extends AbstractRenderer
      * @param iconValue   the converter to use for the icon representation
      * @param alignment   the rendering component's horizontal alignment
      */
-    public DefaultListRenderer(StringValue stringValue, IconValue iconValue,
-                               int alignment) {
+    public DefaultListRenderer(StringValue stringValue, IconValue iconValue, int alignment) {
         this(new MappedValue(stringValue, iconValue), alignment);
     }
 
@@ -166,10 +164,8 @@ public class DefaultListRenderer extends AbstractRenderer
      * @return a component to render the given list cell.
      */
     @Override
-    public Component getListCellRendererComponent(JList list, Object value,
-                                                  int index, boolean isSelected, boolean cellHasFocus) {
-        cellContext.installContext(list, value, index, 0, isSelected,
-            cellHasFocus, true, true);
+    public Component getListCellRendererComponent(JList list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
+        cellContext.installContext(list, value, index, 0, isSelected, cellHasFocus, true, true);
         Component comp = componentController.getRendererComponent(cellContext);
         // fix issue #1040-swingx: memory leak if value not released
         cellContext.replaceValue(null);

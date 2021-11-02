@@ -251,13 +251,11 @@ public class BasicErrorPaneUI extends ErrorPaneUI {
         errorMessage.setOpaque(false);
         errorMessage.putClientProperty(JXEditorPane.HONOR_DISPLAY_PROPERTIES, Boolean.TRUE);
 
-        closeButton = new JButton(UIManagerExt.getString(
-            CLASS_NAME + ".ok_button_text", errorMessage.getLocale()));
+        closeButton = new JButton(UIManagerExt.getString(CLASS_NAME + ".ok_button_text", errorMessage.getLocale()));
 
         reportButton = new EqualSizeJButton(pane.getActionMap().get(JXErrorPane.REPORT_ACTION_KEY));
 
-        detailButton = new EqualSizeJButton(UIManagerExt.getString(
-            CLASS_NAME + ".details_expand_text", errorMessage.getLocale()));
+        detailButton = new EqualSizeJButton(UIManagerExt.getString(CLASS_NAME + ".details_expand_text", errorMessage.getLocale()));
 
         details = new JXEditorPane();
         details.setContentType("text/html");
@@ -268,8 +266,7 @@ public class BasicErrorPaneUI extends ErrorPaneUI {
         details.setEditable(false);
         detailsPanel = new JPanel();
         detailsPanel.setVisible(false);
-        copyToClipboardButton = new JButton(UIManagerExt.getString(
-            CLASS_NAME + ".copy_to_clipboard_button_text", errorMessage.getLocale()));
+        copyToClipboardButton = new JButton(UIManagerExt.getString(CLASS_NAME + ".copy_to_clipboard_button_text", errorMessage.getLocale()));
         copyToClipboardListener = ae -> details.copy();
         copyToClipboardButton.addActionListener(copyToClipboardListener);
 
@@ -414,7 +411,9 @@ public class BasicErrorPaneUI extends ErrorPaneUI {
 
     protected LayoutManager createDetailPanelLayout() {
         GridBagLayout layout = new GridBagLayout();
-        layout.addLayoutComponent(detailsScrollPane, new GridBagConstraints(0, 0, 1, 1, 1.0, 1.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(6, 0, 0, 0), 0, 0));
+        layout.addLayoutComponent(detailsScrollPane, new GridBagConstraints(
+            0, 0, 1, 1, 1.0, 1.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(6, 0, 0, 0), 0, 0
+        ));
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.anchor = GridBagConstraints.LINE_END;
         gbc.fill = GridBagConstraints.NONE;
@@ -500,11 +499,9 @@ public class BasicErrorPaneUI extends ErrorPaneUI {
 
     protected void configureDetailsButton(boolean expanded) {
         if (expanded) {
-            detailButton.setText(UIManagerExt.getString(
-                CLASS_NAME + ".details_contract_text", detailButton.getLocale()));
+            detailButton.setText(UIManagerExt.getString(CLASS_NAME + ".details_contract_text", detailButton.getLocale()));
         } else {
-            detailButton.setText(UIManagerExt.getString(
-                CLASS_NAME + ".details_expand_text", detailButton.getLocale()));
+            detailButton.setText(UIManagerExt.getString(CLASS_NAME + ".details_expand_text", detailButton.getLocale()));
         }
     }
 
@@ -575,8 +572,7 @@ public class BasicErrorPaneUI extends ErrorPaneUI {
         if (errorInfo == null) {
             iconLabel.setIcon(pane.getIcon());
             setErrorMessage("");
-            closeButton.setText(UIManagerExt.getString(
-                CLASS_NAME + ".ok_button_text", closeButton.getLocale()));
+            closeButton.setText(UIManagerExt.getString(CLASS_NAME + ".ok_button_text", closeButton.getLocale()));
             setDetails("");
             //TODO Does this ever happen? It seems like if errorInfo is null and
             //this is called, it would be an IllegalStateException.
@@ -584,11 +580,9 @@ public class BasicErrorPaneUI extends ErrorPaneUI {
             //change the "closeButton"'s text to either the default "ok"/"close" text
             //or to the "fatal" text depending on the error level of the incident info
             if (errorInfo.getErrorLevel() == ErrorLevel.FATAL) {
-                closeButton.setText(UIManagerExt.getString(
-                    CLASS_NAME + ".fatal_button_text", closeButton.getLocale()));
+                closeButton.setText(UIManagerExt.getString(CLASS_NAME + ".fatal_button_text", closeButton.getLocale()));
             } else {
-                closeButton.setText(UIManagerExt.getString(
-                    CLASS_NAME + ".ok_button_text", closeButton.getLocale()));
+                closeButton.setText(UIManagerExt.getString(CLASS_NAME + ".ok_button_text", closeButton.getLocale()));
             }
 
             //if the icon for the pane has not been specified by the developer,
@@ -1008,9 +1002,7 @@ public class BasicErrorPaneUI extends ErrorPaneUI {
                 prefHeight += 10; // top of icon is positioned 10px above the text
             }
 
-            return new Dimension(
-                prefWidth + insets.left + insets.right,
-                prefHeight + insets.top + insets.bottom);
+            return new Dimension(prefWidth + insets.left + insets.right, prefHeight + insets.top + insets.bottom);
         }
 
         @Override

@@ -160,12 +160,10 @@ public class JXMultiThumbSlider<E> extends JComponent {
 
     private void clipThumbPosition(ThumbComp thumb) {
         if (getThumbValue(thumb) < getModel().getMinimumValue()) {
-            getModel().getThumbAt(getThumbIndex(thumb)).setPosition(
-                getModel().getMinimumValue());
+            getModel().getThumbAt(getThumbIndex(thumb)).setPosition(getModel().getMinimumValue());
         }
         if (getThumbValue(thumb) > getModel().getMaximumValue()) {
-            getModel().getThumbAt(getThumbIndex(thumb)).setPosition(
-                getModel().getMaximumValue());
+            getModel().getThumbAt(getThumbIndex(thumb)).setPosition(getModel().getMaximumValue());
         }
     }
 
@@ -321,8 +319,7 @@ public class JXMultiThumbSlider<E> extends JComponent {
         private ThumbComp findHandle(MouseEvent evt) {
             for (ThumbComp hand : thumbs) {
                 Point p2 = new Point();
-                p2.setLocation(evt.getPoint().getX() - hand.getX(),
-                    evt.getPoint().getY() - hand.getY());
+                p2.setLocation(evt.getPoint().getX() - hand.getX(), evt.getPoint().getY() - hand.getY());
                 if (hand.contains(p2)) {
                     return hand;
                 }
@@ -366,8 +363,7 @@ public class JXMultiThumbSlider<E> extends JComponent {
         }
 
         private JComponent getRenderer() {
-            return slider.getThumbRenderer().
-                getThumbRendererComponent(slider, slider.getThumbIndex(this), isSelected());
+            return slider.getThumbRenderer().getThumbRendererComponent(slider, slider.getThumbIndex(this), isSelected());
         }
 
         private boolean selected;

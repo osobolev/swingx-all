@@ -343,22 +343,19 @@ public class JXTable extends JTable implements TableColumnModelExtListener {
      * Identifier of show horizontal scroll action, used in JXTable's
      * <code>ActionMap</code>.
      */
-    public static final String HORIZONTALSCROLL_ACTION_COMMAND = ColumnControlButton.COLUMN_CONTROL_MARKER
-                                                                 + "horizontalScroll";
+    public static final String HORIZONTALSCROLL_ACTION_COMMAND = ColumnControlButton.COLUMN_CONTROL_MARKER + "horizontalScroll";
 
     /**
      * Identifier of pack table action, used in JXTable's <code>ActionMap</code>
      * .
      */
-    public static final String PACKALL_ACTION_COMMAND = ColumnControlButton.COLUMN_CONTROL_MARKER
-                                                        + "packAll";
+    public static final String PACKALL_ACTION_COMMAND = ColumnControlButton.COLUMN_CONTROL_MARKER + "packAll";
 
     /**
      * Identifier of pack selected column action, used in JXTable's
      * <code>ActionMap</code>.
      */
-    public static final String PACKSELECTED_ACTION_COMMAND = ColumnControlButton.COLUMN_CONTROL_MARKER
-                                                             + "packSelected";
+    public static final String PACKSELECTED_ACTION_COMMAND = ColumnControlButton.COLUMN_CONTROL_MARKER + "packSelected";
 
     /**
      * The prefix marker to find table related properties in the
@@ -829,9 +826,9 @@ public class JXTable extends JTable implements TableColumnModelExtListener {
      */
     protected void removeColumnControlFromCorners() {
         JScrollPane scrollPane = getEnclosingScrollPane();
-        if (scrollPane == null || !isColumnControlVisible()) return;
-        removeColumnControlFromCorners(scrollPane,
-            JScrollPane.UPPER_LEFT_CORNER, JScrollPane.UPPER_RIGHT_CORNER);
+        if (scrollPane == null || !isColumnControlVisible())
+            return;
+        removeColumnControlFromCorners(scrollPane, JScrollPane.UPPER_LEFT_CORNER, JScrollPane.UPPER_RIGHT_CORNER);
     }
 
     private void removeColumnControlFromCorners(JScrollPane scrollPane, String... corners) {
@@ -883,7 +880,8 @@ public class JXTable extends JTable implements TableColumnModelExtListener {
      */
     protected void unconfigureColumnControl() {
         JScrollPane scrollPane = getEnclosingScrollPane();
-        if (scrollPane == null) return;
+        if (scrollPane == null)
+            return;
         if (verticalScrollPolicy != 0) {
             // Fix #155-swingx: reset only if we had forced always before
             // PENDING: JW - doesn't cope with dynamically changing the
@@ -913,14 +911,13 @@ public class JXTable extends JTable implements TableColumnModelExtListener {
         if (!isColumnControlVisible())
             return;
         JScrollPane scrollPane = getEnclosingScrollPane();
-        if (scrollPane == null) return;
+        if (scrollPane == null)
+            return;
         if (verticalScrollPolicy == 0) {
             verticalScrollPolicy = scrollPane.getVerticalScrollBarPolicy();
         }
-        scrollPane.setCorner(JScrollPane.UPPER_TRAILING_CORNER,
-            getColumnControl());
-        scrollPane
-            .setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+        scrollPane.setCorner(JScrollPane.UPPER_TRAILING_CORNER, getColumnControl());
+        scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
     }
 
     /**
@@ -955,19 +952,12 @@ public class JXTable extends JTable implements TableColumnModelExtListener {
      * Take over ctrl-tab.
      */
     private void initFocusBindings() {
-        setFocusTraversalKeys(KeyboardFocusManager.FORWARD_TRAVERSAL_KEYS,
-            new TreeSet<KeyStroke>());
-        setFocusTraversalKeys(KeyboardFocusManager.BACKWARD_TRAVERSAL_KEYS,
-            new TreeSet<KeyStroke>());
-        getInputMap(WHEN_ANCESTOR_OF_FOCUSED_COMPONENT).put(
-            KeyStroke.getKeyStroke("ctrl TAB"), FOCUS_NEXT_COMPONENT);
-        getInputMap(WHEN_ANCESTOR_OF_FOCUSED_COMPONENT).put(
-            KeyStroke.getKeyStroke("shift ctrl TAB"),
-            FOCUS_PREVIOUS_COMPONENT);
-        getActionMap().put(FOCUS_NEXT_COMPONENT,
-            createFocusTransferAction(true));
-        getActionMap().put(FOCUS_PREVIOUS_COMPONENT,
-            createFocusTransferAction(false));
+        setFocusTraversalKeys(KeyboardFocusManager.FORWARD_TRAVERSAL_KEYS, new TreeSet<KeyStroke>());
+        setFocusTraversalKeys(KeyboardFocusManager.BACKWARD_TRAVERSAL_KEYS, new TreeSet<KeyStroke>());
+        getInputMap(WHEN_ANCESTOR_OF_FOCUSED_COMPONENT).put(KeyStroke.getKeyStroke("ctrl TAB"), FOCUS_NEXT_COMPONENT);
+        getInputMap(WHEN_ANCESTOR_OF_FOCUSED_COMPONENT).put(KeyStroke.getKeyStroke("shift ctrl TAB"), FOCUS_PREVIOUS_COMPONENT);
+        getActionMap().put(FOCUS_NEXT_COMPONENT, createFocusTransferAction(true));
+        getActionMap().put(FOCUS_PREVIOUS_COMPONENT, createFocusTransferAction(false));
     }
 
     /**
@@ -979,10 +969,8 @@ public class JXTable extends JTable implements TableColumnModelExtListener {
      * @return the action bound to focusTraversal.
      */
     private Action createFocusTransferAction(boolean forward) {
-        BoundAction action = new BoundAction(null,
-            forward ? FOCUS_NEXT_COMPONENT : FOCUS_PREVIOUS_COMPONENT);
-        action.registerCallback(this, forward ? "transferFocus"
-            : "transferFocusBackward");
+        BoundAction action = new BoundAction(null, forward ? FOCUS_NEXT_COMPONENT : FOCUS_PREVIOUS_COMPONENT);
+        action.registerCallback(this, forward ? "transferFocus" : "transferFocusBackward");
         return action;
     }
 
@@ -1031,14 +1019,10 @@ public class JXTable extends JTable implements TableColumnModelExtListener {
         map.put("cancel", createCancelAction());
         map.put(PACKALL_ACTION_COMMAND, createPackAllAction());
         map.put(PACKSELECTED_ACTION_COMMAND, createPackSelectedAction());
-        map
-            .put(HORIZONTALSCROLL_ACTION_COMMAND,
-                createHorizontalScrollAction());
+        map.put(HORIZONTALSCROLL_ACTION_COMMAND, createHorizontalScrollAction());
 
-        KeyStroke findStroke = SearchFactory.getInstance()
-            .getSearchAccelerator();
-        getInputMap(JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT).put(
-            findStroke, "find");
+        KeyStroke findStroke = SearchFactory.getInstance().getSearchAccelerator();
+        getInputMap(JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT).put(findStroke, "find");
     }
 
     /**
@@ -1073,8 +1057,7 @@ public class JXTable extends JTable implements TableColumnModelExtListener {
      * horizontal scrollBar.
      */
     private Action createHorizontalScrollAction() {
-        BoundAction action = new BoundAction(null,
-            HORIZONTALSCROLL_ACTION_COMMAND);
+        BoundAction action = new BoundAction(null, HORIZONTALSCROLL_ACTION_COMMAND);
         action.setStateAction();
         action.registerCallback(this, "setHorizontalScrollEnabled");
         action.setSelected(isHorizontalScrollEnabled());
@@ -1199,8 +1182,7 @@ public class JXTable extends JTable implements TableColumnModelExtListener {
      * <code>Action</code> and registered in the table's <code>ActionMap</code>.
      */
     public void packSelected() {
-        int selected = getColumnModel().getSelectionModel()
-            .getLeadSelectionIndex();
+        int selected = getColumnModel().getSelectionModel().getLeadSelectionIndex();
         if (selected >= 0) {
             packColumn(selected, -1);
         }
@@ -1220,8 +1202,7 @@ public class JXTable extends JTable implements TableColumnModelExtListener {
             return;
         Action packSelected = getActionMap().get(PACKSELECTED_ACTION_COMMAND);
         if (packSelected != null) {
-            packSelected.setEnabled(!((ListSelectionModel) e.getSource())
-                .isSelectionEmpty());
+            packSelected.setEnabled(!((ListSelectionModel) e.getSource()).isSelectionEmpty());
         }
     }
 
@@ -1276,8 +1257,7 @@ public class JXTable extends JTable implements TableColumnModelExtListener {
         } else {
             setAutoResizeMode(oldAutoResizeMode);
         }
-        firePropertyChange("horizontalScrollEnabled", old,
-            isHorizontalScrollEnabled());
+        firePropertyChange("horizontalScrollEnabled", old, isHorizontalScrollEnabled());
     }
 
     /**
@@ -1318,11 +1298,9 @@ public class JXTable extends JTable implements TableColumnModelExtListener {
      * enablement of enhanced auto-resize behaviour.
      */
     protected void updateHorizontalAction() {
-        Action showHorizontal = getActionMap().get(
-            HORIZONTALSCROLL_ACTION_COMMAND);
+        Action showHorizontal = getActionMap().get(HORIZONTALSCROLL_ACTION_COMMAND);
         if (showHorizontal instanceof BoundAction) {
-            ((BoundAction) showHorizontal)
-                .setSelected(isHorizontalScrollEnabled());
+            ((BoundAction) showHorizontal).setSelected(isHorizontalScrollEnabled());
         }
     }
 
@@ -1358,8 +1336,7 @@ public class JXTable extends JTable implements TableColumnModelExtListener {
     public void doLayout() {
         int resizeMode = getAutoResizeMode();
         // fool super...
-        if (isHorizontalScrollEnabled() && hasRealizedParent()
-            && hasExcessWidth()) {
+        if (isHorizontalScrollEnabled() && hasRealizedParent() && hasExcessWidth()) {
             autoResizeMode = oldAutoResizeMode;
         }
         inLayout = true;
@@ -1372,8 +1349,7 @@ public class JXTable extends JTable implements TableColumnModelExtListener {
      * @return boolean to indicate whether the table has a realized parent.
      */
     private boolean hasRealizedParent() {
-        return getWidth() > 0 && getParent() != null
-               && getParent().getWidth() > 0;
+        return getWidth() > 0 && getParent() != null && getParent().getWidth() > 0;
     }
 
     /**
@@ -1403,8 +1379,7 @@ public class JXTable extends JTable implements TableColumnModelExtListener {
         TableColumn resizingColumn = getResizingColumn();
         // Need to do this here, before the parent's
         // layout manager calls getPreferredSize().
-        if (resizingColumn != null && autoResizeMode == AUTO_RESIZE_OFF
-            && !inLayout) {
+        if (resizingColumn != null && autoResizeMode == AUTO_RESIZE_OFF && !inLayout) {
             resizingColumn.setPreferredWidth(resizingColumn.getWidth());
         }
         resizeAndRepaint();
@@ -1650,14 +1625,14 @@ public class JXTable extends JTable implements TableColumnModelExtListener {
      */
     @Override
     public void setAutoCreateRowSorter(boolean autoCreateRowSorter) {
-        if (getAutoCreateRowSorter() == autoCreateRowSorter) return;
+        if (getAutoCreateRowSorter() == autoCreateRowSorter)
+            return;
         boolean oldValue = getAutoCreateRowSorter();
         this.autoCreateRowSorter = autoCreateRowSorter;
         if (autoCreateRowSorter) {
             setRowSorter(createDefaultRowSorter());
         }
-        firePropertyChange("autoCreateRowSorter", oldValue,
-            getAutoCreateRowSorter());
+        firePropertyChange("autoCreateRowSorter", oldValue, getAutoCreateRowSorter());
     }
 
     /**
@@ -1689,7 +1664,8 @@ public class JXTable extends JTable implements TableColumnModelExtListener {
     protected void configureSorterProperties() {
         // need to hack: if a structureChange is the result of a setModel
         // the rowsorter is not yet updated
-        if (ignoreAddColumn || !getControlsSorterProperties()) return;
+        if (ignoreAddColumn || !getControlsSorterProperties())
+            return;
         getSortController().setStringValueProvider(getStringValueRegistry());
         // configure from table properties
         getSortController().setSortable(sortable);
@@ -1699,12 +1675,8 @@ public class JXTable extends JTable implements TableColumnModelExtListener {
         List<TableColumn> columns = getColumns(true);
         for (TableColumn tableColumn : columns) {
             int modelIndex = tableColumn.getModelIndex();
-            getSortController().setSortable(modelIndex,
-                tableColumn instanceof TableColumnExt ?
-                    ((TableColumnExt) tableColumn).isSortable() : true);
-            getSortController().setComparator(modelIndex,
-                tableColumn instanceof TableColumnExt ?
-                    ((TableColumnExt) tableColumn).getComparator() : null);
+            getSortController().setSortable(modelIndex, tableColumn instanceof TableColumnExt ? ((TableColumnExt) tableColumn).isSortable() : true);
+            getSortController().setComparator(modelIndex, tableColumn instanceof TableColumnExt ? ((TableColumnExt) tableColumn).getComparator() : null);
         }
     }
 
@@ -1732,8 +1704,7 @@ public class JXTable extends JTable implements TableColumnModelExtListener {
     protected boolean isDataChanged(TableModelEvent e) {
         if (e == null)
             return false;
-        return e.getType() == TableModelEvent.UPDATE && e.getFirstRow() == 0
-               && e.getLastRow() == Integer.MAX_VALUE;
+        return e.getType() == TableModelEvent.UPDATE && e.getFirstRow() == 0 && e.getLastRow() == Integer.MAX_VALUE;
     }
 
     /**
@@ -1746,8 +1717,7 @@ public class JXTable extends JTable implements TableColumnModelExtListener {
     protected boolean isUpdate(TableModelEvent e) {
         if (isStructureChanged(e))
             return false;
-        return e.getType() == TableModelEvent.UPDATE
-               && e.getLastRow() < Integer.MAX_VALUE;
+        return e.getType() == TableModelEvent.UPDATE && e.getLastRow() < Integer.MAX_VALUE;
     }
 
     /**
@@ -1902,7 +1872,8 @@ public class JXTable extends JTable implements TableColumnModelExtListener {
      * PENDING JW: method name - consistent in SortController and here.
      */
     public void resetSortOrder() {
-        if (!hasSortController()) return;
+        if (!hasSortController())
+            return;
         getSortController().resetSortOrders();
         // JW PENDING: think about notification instead of manual repaint.
         if (getTableHeader() != null) {
@@ -1942,8 +1913,7 @@ public class JXTable extends JTable implements TableColumnModelExtListener {
      */
     public void setSortOrder(int columnIndex, SortOrder sortOrder) {
         if (hasSortController()) {
-            getSortController().setSortOrder(
-                convertColumnIndexToModel(columnIndex), sortOrder);
+            getSortController().setSortOrder(convertColumnIndexToModel(columnIndex), sortOrder);
         }
     }
 
@@ -2122,8 +2092,7 @@ public class JXTable extends JTable implements TableColumnModelExtListener {
         RowSorter<?> controller = getRowSorter();
         if (controller != null) {
             // PENDING JW: must use RowSorter?
-            SortKey sortKey = SortUtils.getFirstSortingKey(controller
-                .getSortKeys());
+            SortKey sortKey = SortUtils.getFirstSortingKey(controller.getSortKeys());
             if (sortKey != null) {
                 int sorterColumn = sortKey.getColumn();
                 List<TableColumn> columns = getColumns(true);
@@ -2169,7 +2138,8 @@ public class JXTable extends JTable implements TableColumnModelExtListener {
         // PENDING JW: check for visibility event?
         TableColumn column = getColumn(e.getToIndex());
         updateStringValueForColumn(column, column.getCellRenderer());
-        if (ignoreAddColumn) return;
+        if (ignoreAddColumn)
+            return;
         updateSortableAfterColumnChanged(column, column instanceof TableColumnExt ? ((TableColumnExt) column).isSortable() : true);
         updateComparatorAfterColumnChanged(column, column instanceof TableColumnExt ? ((TableColumnExt) column).getComparator() : null);
     }
@@ -2259,8 +2229,7 @@ public class JXTable extends JTable implements TableColumnModelExtListener {
      */
     public int getColumnCount(boolean includeHidden) {
         if (getColumnModel() instanceof TableColumnModelExt) {
-            return ((TableColumnModelExt) getColumnModel())
-                .getColumnCount(includeHidden);
+            return ((TableColumnModelExt) getColumnModel()).getColumnCount(includeHidden);
         }
         return getColumnCount();
     }
@@ -2287,8 +2256,7 @@ public class JXTable extends JTable implements TableColumnModelExtListener {
      */
     public List<TableColumn> getColumns(boolean includeHidden) {
         if (getColumnModel() instanceof TableColumnModelExt) {
-            return ((TableColumnModelExt) getColumnModel())
-                .getColumns(includeHidden);
+            return ((TableColumnModelExt) getColumnModel()).getColumns(includeHidden);
         }
         return getColumns();
     }
@@ -2309,8 +2277,7 @@ public class JXTable extends JTable implements TableColumnModelExtListener {
      */
     public TableColumnExt getColumnExt(Object identifier) {
         if (getColumnModel() instanceof TableColumnModelExt) {
-            return ((TableColumnModelExt) getColumnModel())
-                .getColumnExt(identifier);
+            return ((TableColumnModelExt) getColumnModel()).getColumnExt(identifier);
         } else {
             // PENDING: not tested!
             try {
@@ -2395,24 +2362,18 @@ public class JXTable extends JTable implements TableColumnModelExtListener {
     @Override
     public void columnPropertyChange(PropertyChangeEvent event) {
         if ("editable".equals(event.getPropertyName())) {
-            updateEditingAfterColumnChanged((TableColumn) event.getSource(),
-                ((Boolean) event.getNewValue()).booleanValue());
+            updateEditingAfterColumnChanged((TableColumn) event.getSource(), ((Boolean) event.getNewValue()).booleanValue());
         } else if ("sortable".equals(event.getPropertyName())) {
-            updateSortableAfterColumnChanged((TableColumn) event.getSource(),
-                ((Boolean) event.getNewValue()).booleanValue());
+            updateSortableAfterColumnChanged((TableColumn) event.getSource(), ((Boolean) event.getNewValue()).booleanValue());
         } else if ("comparator".equals(event.getPropertyName())) {
-            updateComparatorAfterColumnChanged((TableColumn) event.getSource(),
-                (Comparator<?>) event.getNewValue());
+            updateComparatorAfterColumnChanged((TableColumn) event.getSource(), (Comparator<?>) event.getNewValue());
         } else if ("cellRenderer".equals(event.getPropertyName())) {
-            updateStringValueForColumn((TableColumn) event.getSource(),
-                (TableCellRenderer) event.getNewValue());
+            updateStringValueForColumn((TableColumn) event.getSource(), (TableCellRenderer) event.getNewValue());
         } else if (event.getPropertyName().startsWith("highlighter")) {
-            if (event.getSource() instanceof TableColumnExt
-                && getRowCount() > 0) {
+            if (event.getSource() instanceof TableColumnExt && getRowCount() > 0) {
                 TableColumnExt column = (TableColumnExt) event.getSource();
 
-                Rectangle r = getCellRect(0, convertColumnIndexToView(column
-                    .getModelIndex()), true);
+                Rectangle r = getCellRect(0, convertColumnIndexToView(column.getModelIndex()), true);
                 r.height = getHeight();
                 repaint(r);
             } else {
@@ -2430,8 +2391,7 @@ public class JXTable extends JTable implements TableColumnModelExtListener {
      *                 notifcation
      * @param editable the new value of the column's editable property
      */
-    private void updateEditingAfterColumnChanged(TableColumn column,
-                                                 boolean editable) {
+    private void updateEditingAfterColumnChanged(TableColumn column, boolean editable) {
         if (!isEditing())
             return;
         int viewIndex = convertColumnIndexToView(column.getModelIndex());
@@ -2449,8 +2409,7 @@ public class JXTable extends JTable implements TableColumnModelExtListener {
      *                 notifcation
      * @param sortable the new value of the column's sortable property
      */
-    private void updateSortableAfterColumnChanged(TableColumn column,
-                                                  boolean sortable) {
+    private void updateSortableAfterColumnChanged(TableColumn column, boolean sortable) {
         if (getControlsSorterProperties()) {
             getSortController().setSortable(column.getModelIndex(), sortable);
         }
@@ -2465,8 +2424,7 @@ public class JXTable extends JTable implements TableColumnModelExtListener {
      *                   notifcation
      * @param comparator the new value of the column's sortable property
      */
-    private void updateComparatorAfterColumnChanged(TableColumn column,
-                                                    Comparator<?> comparator) {
+    private void updateComparatorAfterColumnChanged(TableColumn column, Comparator<?> comparator) {
         if (getControlsSorterProperties()) {
             getSortController().setComparator(column.getModelIndex(), comparator);
         }
@@ -2519,8 +2477,7 @@ public class JXTable extends JTable implements TableColumnModelExtListener {
             // add directly to columnModel - don't go through this.addColumn
             // to guarantee full control of ColumnFactory
             // addColumn has the side-effect to set the header!
-            TableColumnExt tableColumn = getColumnFactory()
-                .createAndConfigureTableColumn(getModel(), i);
+            TableColumnExt tableColumn = getColumnFactory().createAndConfigureTableColumn(getModel(), i);
             if (tableColumn != null) {
                 getColumnModel().addColumn(tableColumn);
             }
@@ -2604,8 +2561,9 @@ public class JXTable extends JTable implements TableColumnModelExtListener {
      * @see #packColumn(int, int, int)
      */
     public void packTable(int margin) {
-        for (int c = 0; c < getColumnCount(); c++)
+        for (int c = 0; c < getColumnCount(); c++) {
             packColumn(c, margin, -1);
+        }
     }
 
     /**
@@ -2664,8 +2622,7 @@ public class JXTable extends JTable implements TableColumnModelExtListener {
      */
     public void setVisibleRowCount(int visibleRowCount) {
         if (visibleRowCount < 0)
-            throw new IllegalArgumentException(
-                "visible row count must not be negative " + visibleRowCount);
+            throw new IllegalArgumentException("visible row count must not be negative " + visibleRowCount);
         if (getVisibleRowCount() == visibleRowCount)
             return;
         int old = getVisibleRowCount();
@@ -2776,13 +2733,11 @@ public class JXTable extends JTable implements TableColumnModelExtListener {
         }
         // the width is reset to -1 in setVisibleColumnCount
         if (calculatedPrefScrollableViewportSize.width <= 0) {
-            calculatedPrefScrollableViewportSize.width = getColumnFactory()
-                .getPreferredScrollableViewportWidth(this);
+            calculatedPrefScrollableViewportSize.width = getColumnFactory().getPreferredScrollableViewportWidth(this);
         }
         // the heigth is reset in setVisualRowCount
         if (calculatedPrefScrollableViewportSize.height <= 0) {
-            calculatedPrefScrollableViewportSize.height = getVisibleRowCount()
-                                                          * getRowHeight();
+            calculatedPrefScrollableViewportSize.height = getVisibleRowCount() * getRowHeight();
         }
         return new Dimension(calculatedPrefScrollableViewportSize);
     }
@@ -2823,8 +2778,7 @@ public class JXTable extends JTable implements TableColumnModelExtListener {
      */
     protected void initializeColumnPreferredWidth(TableColumn column) {
         if (column instanceof TableColumnExt) {
-            getColumnFactory().configureColumnWidths(this,
-                (TableColumnExt) column);
+            getColumnFactory().configureColumnWidths(this, (TableColumnExt) column);
         }
     }
 
@@ -3013,8 +2967,7 @@ public class JXTable extends JTable implements TableColumnModelExtListener {
          */
         protected TableColumn getColumnByModelIndex(int modelColumn) {
             if (modelColumn < 0 || modelColumn >= getColumnCount()) {
-                throw new IllegalArgumentException("invalid column index, must be positive and less than "
-                                                   + getColumnCount() + " was: " + modelColumn);
+                throw new IllegalArgumentException("invalid column index, must be positive and less than " + getColumnCount() + " was: " + modelColumn);
             }
             List<TableColumn> columns = table.getColumns(true);
             for (TableColumn column : columns) {
@@ -3031,8 +2984,7 @@ public class JXTable extends JTable implements TableColumnModelExtListener {
         @Override
         public Object getColumnIdentifierAt(int columnIndex) {
             if (columnIndex < 0 || columnIndex >= getColumnCount()) {
-                throw new ArrayIndexOutOfBoundsException(
-                    "invalid column index: " + columnIndex);
+                throw new ArrayIndexOutOfBoundsException("invalid column index: " + columnIndex);
             }
             TableColumn column = getColumnByModelIndex(columnIndex);
             Object identifier = column != null ? column.getIdentifier() : null;
@@ -3141,10 +3093,8 @@ public class JXTable extends JTable implements TableColumnModelExtListener {
          */
         @Override
         public boolean hasFocus() {
-            boolean rowIsLead = table.getSelectionModel()
-                                     .getLeadSelectionIndex() == row;
-            boolean colIsLead = table.getColumnModel().getSelectionModel()
-                                     .getLeadSelectionIndex() == column;
+            boolean rowIsLead = table.getSelectionModel().getLeadSelectionIndex() == row;
+            boolean colIsLead = table.getColumnModel().getSelectionModel().getLeadSelectionIndex() == column;
             return table.isFocusOwner() && rowIsLead && colIsLead;
         }
 
@@ -3260,8 +3210,7 @@ public class JXTable extends JTable implements TableColumnModelExtListener {
     protected CompoundHighlighter getCompoundHighlighter() {
         if (compoundHighlighter == null) {
             compoundHighlighter = new CompoundHighlighter();
-            compoundHighlighter
-                .addChangeListener(getHighlighterChangeListener());
+            compoundHighlighter.addChangeListener(getHighlighterChangeListener());
         }
         return compoundHighlighter;
     }
@@ -3336,11 +3285,8 @@ public class JXTable extends JTable implements TableColumnModelExtListener {
      * @param tableColumn the column to update from
      * @param renderer    the renderer potentially useful as StringValue.
      */
-    private void updateStringValueForColumn(TableColumn tableColumn,
-                                            TableCellRenderer renderer) {
-        getStringValueRegistry().setStringValue(
-            renderer instanceof StringValue ? (StringValue) renderer : null,
-            tableColumn.getModelIndex());
+    private void updateStringValueForColumn(TableColumn tableColumn, TableCellRenderer renderer) {
+        getStringValueRegistry().setStringValue(renderer instanceof StringValue ? (StringValue) renderer : null, tableColumn.getModelIndex());
     }
 
     /**
@@ -3373,12 +3319,9 @@ public class JXTable extends JTable implements TableColumnModelExtListener {
      * the mapping is reset to default.
      */
     @Override
-    public void setDefaultRenderer(Class<?> columnClass,
-                                   TableCellRenderer renderer) {
+    public void setDefaultRenderer(Class<?> columnClass, TableCellRenderer renderer) {
         super.setDefaultRenderer(columnClass, renderer);
-        getStringValueRegistry().setStringValue(
-            renderer instanceof StringValue ? (StringValue) renderer : null,
-            columnClass);
+        getStringValueRegistry().setStringValue(renderer instanceof StringValue ? (StringValue) renderer : null, columnClass);
     }
 
     /**
@@ -3392,8 +3335,7 @@ public class JXTable extends JTable implements TableColumnModelExtListener {
      */
     public String getStringAt(int row, int column) {
         // changed implementation to use StringValueRegistry
-        StringValue stringValue = getStringValueRegistry().getStringValue(
-            convertRowIndexToModel(row), convertColumnIndexToModel(column));
+        StringValue stringValue = getStringValueRegistry().getStringValue(convertRowIndexToModel(row), convertColumnIndexToModel(column));
         return stringValue.getString(getValueAt(row, column));
     }
 
@@ -3456,8 +3398,7 @@ public class JXTable extends JTable implements TableColumnModelExtListener {
      * @see Highlighter
      */
     @Override
-    public Component prepareRenderer(TableCellRenderer renderer, int row,
-                                     int column) {
+    public Component prepareRenderer(TableCellRenderer renderer, int row, int column) {
         Component stamp = super.prepareRenderer(renderer, row, column);
         // #145-swingx: default renderers don't respect componentOrientation.
         adjustComponentOrientation(stamp);
@@ -3527,8 +3468,7 @@ public class JXTable extends JTable implements TableColumnModelExtListener {
      * @see #USE_DTCR_COLORMEMORY_HACK
      * @see ResetDTCRColorHighlighter
      */
-    protected void resetDefaultTableCellRendererColors(Component renderer,
-                                                       int row, int column) {
+    protected void resetDefaultTableCellRendererColors(Component renderer, int row, int column) {
         if (!Boolean.TRUE.equals(getClientProperty(USE_DTCR_COLORMEMORY_HACK)))
             return;
         ComponentAdapter adapter = getComponentAdapter(row, column);
@@ -3594,23 +3534,17 @@ public class JXTable extends JTable implements TableColumnModelExtListener {
         defaultRenderersByColumnClass = new UIDefaults(8, 0.75f);
         // configured default table renderer (internally LabelProvider)
         setDefaultRenderer(Object.class, new DefaultTableRenderer());
-        setDefaultRenderer(Number.class, new DefaultTableRenderer(
-            StringValues.NUMBER_TO_STRING, JLabel.RIGHT));
-        setDefaultRenderer(Date.class, new DefaultTableRenderer(
-            StringValues.DATE_TO_STRING));
+        setDefaultRenderer(Number.class, new DefaultTableRenderer(StringValues.NUMBER_TO_STRING, JLabel.RIGHT));
+        setDefaultRenderer(Date.class, new DefaultTableRenderer(StringValues.DATE_TO_STRING));
         // use the same center aligned default for Image/Icon
-        TableCellRenderer renderer = new DefaultTableRenderer(new MappedValue(
-            StringValues.EMPTY, IconValues.ICON), JLabel.CENTER);
+        TableCellRenderer renderer = new DefaultTableRenderer(new MappedValue(StringValues.EMPTY, IconValues.ICON), JLabel.CENTER);
         setDefaultRenderer(Icon.class, renderer);
         setDefaultRenderer(ImageIcon.class, renderer);
         // use a ButtonProvider for booleans
-        setDefaultRenderer(Boolean.class, new DefaultTableRenderer(
-            new CheckBoxProvider()));
+        setDefaultRenderer(Boolean.class, new DefaultTableRenderer(new CheckBoxProvider()));
 
         try {
-            setDefaultRenderer(URI.class, new DefaultTableRenderer(
-                new HyperlinkProvider(new HyperlinkAction())
-            ));
+            setDefaultRenderer(URI.class, new DefaultTableRenderer(new HyperlinkProvider(new HyperlinkAction())));
         } catch (Exception e) {
             // nothing to do - either headless or Desktop not supported
         }
@@ -3676,8 +3610,7 @@ public class JXTable extends JTable implements TableColumnModelExtListener {
                 try {
                     value = constructor.newInstance(new Object[] {s});
                 } catch (Exception e) {
-                    ((JComponent) getComponent()).setBorder(new LineBorder(
-                        Color.red));
+                    ((JComponent) getComponent()).setBorder(new LineBorder(Color.red));
                     return false;
                 }
             }
@@ -3685,11 +3618,9 @@ public class JXTable extends JTable implements TableColumnModelExtListener {
         }
 
         @Override
-        public Component getTableCellEditorComponent(JTable table,
-                                                     Object value, boolean isSelected, int row, int column) {
+        public Component getTableCellEditorComponent(JTable table, Object value, boolean isSelected, int row, int column) {
             this.value = null;
-            ((JComponent) getComponent())
-                .setBorder(new LineBorder(Color.black));
+            ((JComponent) getComponent()).setBorder(new LineBorder(Color.black));
             try {
                 Class<?> type = table.getColumnClass(column);
                 // Since our obligation is to produce a value which is
@@ -3703,8 +3634,7 @@ public class JXTable extends JTable implements TableColumnModelExtListener {
             } catch (Exception e) {
                 return null;
             }
-            return super.getTableCellEditorComponent(table, value, isSelected,
-                row, column);
+            return super.getTableCellEditorComponent(table, value, isSelected, row, column);
         }
 
         @Override
@@ -3723,8 +3653,7 @@ public class JXTable extends JTable implements TableColumnModelExtListener {
     public static class NumberEditor extends GenericEditor {
 
         public NumberEditor() {
-            ((JTextField) getComponent())
-                .setHorizontalAlignment(JTextField.RIGHT);
+            ((JTextField) getComponent()).setHorizontalAlignment(JTextField.RIGHT);
         }
     }
 
@@ -3740,11 +3669,9 @@ public class JXTable extends JTable implements TableColumnModelExtListener {
         }
 
         @Override
-        public Component getTableCellEditorComponent(JTable table,
-                                                     Object value, boolean isSelected, int row, int column) {
+        public Component getTableCellEditorComponent(JTable table, Object value, boolean isSelected, int row, int column) {
             // fix #1521-swingx: consistent selection behaviour
-            Component comp = super.getTableCellEditorComponent(table,
-                value, isSelected || shouldSelectCell(null), row, column);
+            Component comp = super.getTableCellEditorComponent(table, value, isSelected || shouldSelectCell(null), row, column);
             return comp;
         }
     }
@@ -3791,8 +3718,7 @@ public class JXTable extends JTable implements TableColumnModelExtListener {
      * @see #setTerminateEditOnFocusLost(boolean)
      */
     public boolean isTerminateEditOnFocusLost() {
-        return Boolean.TRUE
-            .equals(getClientProperty("terminateEditOnFocusLost"));
+        return Boolean.TRUE.equals(getClientProperty("terminateEditOnFocusLost"));
     }
 
     /**
@@ -3824,8 +3750,7 @@ public class JXTable extends JTable implements TableColumnModelExtListener {
      * @see #setAutoStartEditOnKeyStroke(boolean)
      */
     public boolean isAutoStartEditOnKeyStroke() {
-        return !Boolean.FALSE
-            .equals(getClientProperty("JTable.autoStartsEdit"));
+        return !Boolean.FALSE.equals(getClientProperty("JTable.autoStartsEdit"));
     }
 
     /**
@@ -3847,8 +3772,7 @@ public class JXTable extends JTable implements TableColumnModelExtListener {
         // As a consequence, there are two events fired: one for
         // the client prop and one for this method.
         putClientProperty("JTable.autoStartsEdit", autoStart);
-        firePropertyChange("autoStartEditOnKeyStroke", old,
-            isAutoStartEditOnKeyStroke());
+        firePropertyChange("autoStartEditOnKeyStroke", old, isAutoStartEditOnKeyStroke());
     }
 
     /**
@@ -3889,16 +3813,14 @@ public class JXTable extends JTable implements TableColumnModelExtListener {
     private boolean isFocusOwnerDescending() {
         if (!isEditing())
             return false;
-        Component focusOwner = KeyboardFocusManager
-            .getCurrentKeyboardFocusManager().getFocusOwner();
+        Component focusOwner = KeyboardFocusManager.getCurrentKeyboardFocusManager().getFocusOwner();
         // PENDING JW: special casing to not fall through ... really wanted?
         if (focusOwner == null)
             return false;
         if (SwingXUtilities.isDescendingFrom(focusOwner, this))
             return true;
         // same with permanent focus owner
-        Component permanent = KeyboardFocusManager
-            .getCurrentKeyboardFocusManager().getPermanentFocusOwner();
+        Component permanent = KeyboardFocusManager.getCurrentKeyboardFocusManager().getPermanentFocusOwner();
         return SwingXUtilities.isDescendingFrom(permanent, this);
     }
 
@@ -3908,15 +3830,11 @@ public class JXTable extends JTable implements TableColumnModelExtListener {
      * removes the standard editor remover and adds the custom remover.
      */
     private void hackEditorRemover() {
-        KeyboardFocusManager manager = KeyboardFocusManager
-            .getCurrentKeyboardFocusManager();
-        PropertyChangeListener[] listeners = manager
-            .getPropertyChangeListeners("permanentFocusOwner");
+        KeyboardFocusManager manager = KeyboardFocusManager.getCurrentKeyboardFocusManager();
+        PropertyChangeListener[] listeners = manager.getPropertyChangeListeners("permanentFocusOwner");
         for (int i = listeners.length - 1; i >= 0; i--) {
-            if (listeners[i].getClass().getName().startsWith(
-                "javax.swing.JTable")) {
-                manager.removePropertyChangeListener("permanentFocusOwner",
-                    listeners[i]);
+            if (listeners[i].getClass().getName().startsWith("javax.swing.JTable")) {
+                manager.removePropertyChangeListener("permanentFocusOwner", listeners[i]);
                 break;
             }
         }
@@ -4006,8 +3924,7 @@ public class JXTable extends JTable implements TableColumnModelExtListener {
         }
 
         private void install() {
-            focusManager = KeyboardFocusManager
-                .getCurrentKeyboardFocusManager();
+            focusManager = KeyboardFocusManager.getCurrentKeyboardFocusManager();
             focusManager.addPropertyChangeListener("permanentFocusOwner", this);
             focusManager.addPropertyChangeListener("managingFocus", this);
         }
@@ -4016,8 +3933,7 @@ public class JXTable extends JTable implements TableColumnModelExtListener {
          * remove all listener registrations.
          */
         public void uninstall() {
-            focusManager.removePropertyChangeListener("permanentFocusOwner",
-                this);
+            focusManager.removePropertyChangeListener("permanentFocusOwner", this);
             focusManager.removePropertyChangeListener("managingFocus", this);
             focusManager = null;
         }
@@ -4099,8 +4015,7 @@ public class JXTable extends JTable implements TableColumnModelExtListener {
      * Updates the ui of the columnControl if appropriate.
      */
     protected void updateColumnControlUI() {
-        if (columnControlButton != null
-            && columnControlButton.getParent() == null) {
+        if (columnControlButton != null && columnControlButton.getParent() == null) {
             SwingUtilities.updateComponentTreeUI(columnControlButton);
         }
     }
@@ -4116,13 +4031,11 @@ public class JXTable extends JTable implements TableColumnModelExtListener {
         if (!(maybeEditor instanceof TableCellEditor))
             return;
         // super handled this
-        if (maybeEditor instanceof JComponent
-            || maybeEditor instanceof DefaultCellEditor)
+        if (maybeEditor instanceof JComponent || maybeEditor instanceof DefaultCellEditor)
             return;
         // custom editors might balk about fake rows/columns
         try {
-            Component comp = ((TableCellEditor) maybeEditor)
-                .getTableCellEditorComponent(this, null, false, -1, -1);
+            Component comp = ((TableCellEditor) maybeEditor).getTableCellEditorComponent(this, null, false, -1, -1);
             if (comp != null) {
                 SwingUtilities.updateComponentTreeUI(comp);
             }
@@ -4146,14 +4059,11 @@ public class JXTable extends JTable implements TableColumnModelExtListener {
             return;
         Component comp = null;
         if (maybeRenderer instanceof AbstractRenderer) {
-            comp = ((AbstractRenderer) maybeRenderer).getComponentProvider()
-                .getRendererComponent(null);
+            comp = ((AbstractRenderer) maybeRenderer).getComponentProvider().getRendererComponent(null);
         } else {
             try {
                 // custom editors might balk about fake rows/columns
-                comp = ((TableCellRenderer) maybeRenderer)
-                    .getTableCellRendererComponent(this, null, false,
-                        false, -1, -1);
+                comp = ((TableCellRenderer) maybeRenderer).getTableCellRendererComponent(this, null, false, false, -1, -1);
             } catch (Exception e) {
                 // can't do anything - renderer can't cope with off-range cells
             }
@@ -4235,8 +4145,7 @@ public class JXTable extends JTable implements TableColumnModelExtListener {
      * @see JTable#setShowGrid(boolean)
      * @see JTable#setIntercellSpacing(Dimension)
      */
-    public void setShowGrid(boolean showHorizontalLines,
-                            boolean showVerticalLines) {
+    public void setShowGrid(boolean showHorizontalLines, boolean showVerticalLines) {
         int defaultRowMargin = showHorizontalLines ? 1 : 0;
         setRowMargin(defaultRowMargin);
         setShowHorizontalLines(showHorizontalLines);

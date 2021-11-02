@@ -52,8 +52,7 @@ public class DefaultXTreeCellEditor extends DefaultTreeCellEditor implements UID
         super(tree, renderer);
     }
 
-    public DefaultXTreeCellEditor(JTree tree, DefaultTreeCellRenderer renderer,
-                                  TreeCellEditor editor) {
+    public DefaultXTreeCellEditor(JTree tree, DefaultTreeCellRenderer renderer, TreeCellEditor editor) {
         super(tree, renderer, editor);
     }
 
@@ -75,14 +74,12 @@ public class DefaultXTreeCellEditor extends DefaultTreeCellEditor implements UID
 
                     pSize.width += offset + 5;
 
-                    Dimension rSize = renderer != null ?
-                        renderer.getPreferredSize() : null;
+                    Dimension rSize = renderer != null ? renderer.getPreferredSize() : null;
 
                     if (rSize != null)
                         pSize.height = Math.max(pSize.height, rSize.height);
                     if (editingIcon != null)
-                        pSize.height = Math.max(pSize.height,
-                            editingIcon.getIconHeight());
+                        pSize.height = Math.max(pSize.height, editingIcon.getIconHeight());
 
                     // trying to enforce a minimum size leads to field being painted over the icon
                     // Make sure width is at least 100.
@@ -101,9 +98,7 @@ public class DefaultXTreeCellEditor extends DefaultTreeCellEditor implements UID
 
                 editingComponent.getPreferredSize();
                 editingComponent.setLocation(0, 0);
-                editingComponent.setBounds(0, 0,
-                    cSize.width - offset,
-                    cSize.height);
+                editingComponent.setBounds(0, 0, cSize.width - offset, cSize.height);
             } else {
 
                 super.doLayout();
@@ -117,8 +112,7 @@ public class DefaultXTreeCellEditor extends DefaultTreeCellEditor implements UID
 
                 // Then the icon.
                 if (editingIcon != null) {
-                    int yLoc = Math.max(0, (size.height - editingIcon
-                        .getIconHeight()) / 2);
+                    int yLoc = Math.max(0, (size.height - editingIcon.getIconHeight()) / 2);
                     int xLoc = Math.max(0, size.width - offset);
                     editingIcon.paintIcon(this, g, xLoc, yLoc);
                 }

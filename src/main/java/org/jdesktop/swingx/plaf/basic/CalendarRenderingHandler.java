@@ -43,8 +43,7 @@ public interface CalendarRenderingHandler {
      * @param state     the DayState of the cell
      * @return a component configured for rendering the given cell
      */
-    JComponent prepareRenderingComponent(JXMonthView monthView,
-                                         Calendar calendar, CalendarState state);
+    JComponent prepareRenderingComponent(JXMonthView monthView, Calendar calendar, CalendarState state);
 
     /**
      * Updates internal state to the given Locale.

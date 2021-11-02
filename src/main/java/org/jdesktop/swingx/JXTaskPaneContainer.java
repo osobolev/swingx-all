@@ -132,8 +132,7 @@ public class JXTaskPaneContainer extends JXPanel {
      */
     @Override
     public void updateUI() {
-        setUI((TaskPaneContainerUI) LookAndFeelAddons.getUI(this,
-            TaskPaneContainerUI.class));
+        setUI((TaskPaneContainerUI) LookAndFeelAddons.getUI(this, TaskPaneContainerUI.class));
     }
 
     /**

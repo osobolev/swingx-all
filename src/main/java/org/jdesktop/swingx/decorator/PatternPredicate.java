@@ -156,11 +156,13 @@ public class PatternPredicate implements HighlightPredicate {
      */
     private boolean test(ComponentAdapter adapter) {
         // single test column
-        if (testColumn >= 0) return testColumn(adapter, testColumn);
+        if (testColumn >= 0)
+            return testColumn(adapter, testColumn);
         // test all
         for (int column = 0; column < adapter.getColumnCount(); column++) {
             boolean result = testColumn(adapter, column);
-            if (result) return true;
+            if (result)
+                return true;
         }
         return false;
     }
@@ -188,9 +190,7 @@ public class PatternPredicate implements HighlightPredicate {
      * @return
      */
     private boolean isHighlightCandidate(ComponentAdapter adapter) {
-        return pattern != null &&
-               (highlightColumn < 0 ||
-                highlightColumn == adapter.convertColumnIndexToModel(adapter.column));
+        return pattern != null && (highlightColumn < 0 || highlightColumn == adapter.convertColumnIndexToModel(adapter.column));
     }
 
     /**

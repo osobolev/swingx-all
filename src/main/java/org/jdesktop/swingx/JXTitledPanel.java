@@ -174,8 +174,7 @@ public class JXTitledPanel extends JXPanel {
      */
     @Override
     public void updateUI() {
-        setUI((TitledPanelUI) LookAndFeelAddons
-            .getUI(this, TitledPanelUI.class));
+        setUI((TitledPanelUI) LookAndFeelAddons.getUI(this, TitledPanelUI.class));
     }
 
     /**
@@ -207,8 +206,7 @@ public class JXTitledPanel extends JXPanel {
     public Container getContentContainer() {
         if (contentPanel == null) {
             contentPanel = new JXPanel();
-            ((JXPanel) contentPanel).setBorder(BorderFactory
-                .createEmptyBorder());
+            ((JXPanel) contentPanel).setBorder(BorderFactory.createEmptyBorder());
             this.add(contentPanel, BorderLayout.CENTER);
         }
         return contentPanel;

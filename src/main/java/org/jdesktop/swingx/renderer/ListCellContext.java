@@ -42,8 +42,7 @@ public class ListCellContext extends CellContext {
      * @param expanded  the cell's expanded state
      * @param leaf      the cell's leaf state
      */
-    public void installContext(JList component, Object value, int row, int column,
-                               boolean selected, boolean focused, boolean expanded, boolean leaf) {
+    public void installContext(JList component, Object value, int row, int column, boolean selected, boolean focused, boolean expanded, boolean leaf) {
         this.component = component;
         installState(value, row, column, selected, focused, expanded, leaf);
         this.dropOn = checkDropOnState();
@@ -57,9 +56,7 @@ public class ListCellContext extends CellContext {
             return false;
         }
         JList.DropLocation dropLocation = getComponent().getDropLocation();
-        if (dropLocation != null
-            && !dropLocation.isInsert()
-            && dropLocation.getIndex() == row) {
+        if (dropLocation != null && !dropLocation.isInsert() && dropLocation.getIndex() == row) {
             return true;
         }
         return false;
@@ -78,7 +75,8 @@ public class ListCellContext extends CellContext {
         Color selection = null;
         if (isDropOn()) {
             selection = getDropCellBackground();
-            if (selection != null) return selection;
+            if (selection != null)
+                return selection;
         }
         return getComponent() != null ? getComponent().getSelectionBackground() : null;
     }
@@ -91,7 +89,8 @@ public class ListCellContext extends CellContext {
         Color selection = null;
         if (isDropOn()) {
             selection = getDropCellForeground();
-            if (selection != null) return selection;
+            if (selection != null)
+                return selection;
         }
         return getComponent() != null ? getComponent().getSelectionForeground() : null;
     }

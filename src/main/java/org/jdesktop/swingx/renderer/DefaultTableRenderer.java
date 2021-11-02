@@ -57,8 +57,7 @@ import java.awt.Component;
  * @see MappedValue
  * @see CellContext
  */
-public class DefaultTableRenderer extends AbstractRenderer
-    implements TableCellRenderer {
+public class DefaultTableRenderer extends AbstractRenderer implements TableCellRenderer {
 
     private TableCellContext cellContext;
 
@@ -129,8 +128,7 @@ public class DefaultTableRenderer extends AbstractRenderer
      * @param iconValue   the converter to use for the icon representation
      * @param alignment   the rendering component's horizontal alignment
      */
-    public DefaultTableRenderer(StringValue stringValue, IconValue iconValue,
-                                int alignment) {
+    public DefaultTableRenderer(StringValue stringValue, IconValue iconValue, int alignment) {
         this(new MappedValue(stringValue, iconValue), alignment);
     }
 
@@ -153,10 +151,8 @@ public class DefaultTableRenderer extends AbstractRenderer
      * @return the default table cell renderer
      */
     @Override
-    public Component getTableCellRendererComponent(JTable table, Object value,
-                                                   boolean isSelected, boolean hasFocus, int row, int column) {
-        cellContext.installContext(table, value, row, column, isSelected, hasFocus,
-            true, true);
+    public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+        cellContext.installContext(table, value, row, column, isSelected, hasFocus, true, true);
         Component comp = componentController.getRendererComponent(cellContext);
         // fix issue #1040-swingx: memory leak if value not released
         cellContext.replaceValue(null);

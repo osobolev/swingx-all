@@ -71,8 +71,7 @@ public class RowFilters {
      *                                  not a valid regular expression.
      * @see Pattern
      */
-    public static <M, I> RowFilter<M, I> regexFilter(String regex,
-                                                     int... indices) {
+    public static <M, I> RowFilter<M, I> regexFilter(String regex, int... indices) {
         return regexFilter(0, regex, indices);
     }
 
@@ -113,8 +112,7 @@ public class RowFilters {
      *                                  not a valid regular expression.
      * @see Pattern
      */
-    public static <M, I> RowFilter<M, I> regexFilter(int matchFlags, String regex,
-                                                     int... indices) {
+    public static <M, I> RowFilter<M, I> regexFilter(int matchFlags, String regex, int... indices) {
         return regexFilter(Pattern.compile(regex, matchFlags), indices);
     }
 
@@ -130,8 +128,7 @@ public class RowFilters {
      *                              <code>null</code>
      * @see Pattern
      */
-    public static <M, I> RowFilter<M, I> regexFilter(Pattern pattern,
-                                                     int... indices) {
+    public static <M, I> RowFilter<M, I> regexFilter(Pattern pattern, int... indices) {
         return (RowFilter<M, I>) new RegexFilter(pattern, indices);
     }
 
@@ -169,8 +166,7 @@ public class RowFilters {
             return false;
         }
 
-        protected abstract boolean include(
-            Entry<?, ?> value, int index);
+        protected abstract boolean include(Entry<?, ?> value, int index);
 
         /**
          * Throws an IllegalArgumentException if any of the values in
@@ -203,8 +199,7 @@ public class RowFilters {
         }
 
         @Override
-        protected boolean include(
-            Entry<?, ?> value, int index) {
+        protected boolean include(Entry<?, ?> value, int index) {
             matcher.reset(value.getStringValue(index));
             return matcher.find();
         }

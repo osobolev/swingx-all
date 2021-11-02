@@ -67,8 +67,7 @@ public class TreeRolloverController<T extends JTree> extends RolloverController<
         if (hasRollover(location)) {
             if (oldCursor == null) {
                 oldCursor = component.getCursor();
-                component.setCursor(Cursor
-                    .getPredefinedCursor(Cursor.HAND_CURSOR));
+                component.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
             }
         } else {
             if (oldCursor != null) {
@@ -81,17 +80,14 @@ public class TreeRolloverController<T extends JTree> extends RolloverController<
     @Override
     protected RolloverRenderer getRolloverRenderer(Point location, boolean prepare) {
         TreeCellRenderer renderer = component.getCellRenderer();
-        RolloverRenderer rollover = renderer instanceof RolloverRenderer
-            ? (RolloverRenderer) renderer : null;
+        RolloverRenderer rollover = renderer instanceof RolloverRenderer ? (RolloverRenderer) renderer : null;
         if (rollover != null && !rollover.isEnabled()) {
             rollover = null;
         }
         if (rollover != null && prepare) {
             TreePath path = component.getPathForRow(location.y);
             Object element = path != null ? path.getLastPathComponent() : null;
-            renderer.getTreeCellRendererComponent(component, element, false,
-                false, false,
-                location.y, false);
+            renderer.getTreeCellRendererComponent(component, element, false, false, false, location.y, false);
         }
         return rollover;
     }

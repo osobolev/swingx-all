@@ -156,7 +156,8 @@ public class JXTitledSeparator extends JXPanel {
      */
     //TODO remove this method in favor of UI delegate -- kgs
     protected void updateTitle() {
-        if (label == null) return;
+        if (label == null)
+            return;
 
         Color c = label.getForeground();
         if (c == null || c instanceof ColorUIResource)
@@ -205,23 +206,43 @@ public class JXTitledSeparator extends JXPanel {
         case SwingConstants.LEADING:
         case SwingConstants.WEST:
             add(label, new GridBagConstraints(0, 0, 1, 1, 0.0, 0.0, GridBagConstraints.LINE_START, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
-            add(Box.createHorizontalStrut(iconTextGap), new GridBagConstraints(1, 0, 1, 1, 0.0, 0.0, GridBagConstraints.LINE_START, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
-            add(rightSeparator, new GridBagConstraints(2, 0, 1, 1, 1.0, 0.0, GridBagConstraints.LINE_START, GridBagConstraints.HORIZONTAL, new Insets(0, 0, 0, 0), 0, 0));
+            add(Box.createHorizontalStrut(iconTextGap), new GridBagConstraints(
+                1, 0, 1, 1, 0.0, 0.0, GridBagConstraints.LINE_START, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0
+            ));
+            add(rightSeparator, new GridBagConstraints(
+                2, 0, 1, 1, 1.0, 0.0, GridBagConstraints.LINE_START, GridBagConstraints.HORIZONTAL, new Insets(0, 0, 0, 0), 0, 0
+            ));
             break;
         case SwingConstants.RIGHT:
         case SwingConstants.TRAILING:
         case SwingConstants.EAST:
-            add(rightSeparator, new GridBagConstraints(0, 0, 1, 1, 1.0, 0.0, GridBagConstraints.LINE_START, GridBagConstraints.HORIZONTAL, new Insets(0, 0, 0, 0), 0, 0));
-            add(Box.createHorizontalStrut(iconTextGap), new GridBagConstraints(1, 0, 1, 1, 0.0, 0.0, GridBagConstraints.LINE_START, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
-            add(label, new GridBagConstraints(2, 0, 1, 1, 0.0, 0.0, GridBagConstraints.LINE_START, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
+            add(rightSeparator, new GridBagConstraints(
+                0, 0, 1, 1, 1.0, 0.0, GridBagConstraints.LINE_START, GridBagConstraints.HORIZONTAL, new Insets(0, 0, 0, 0), 0, 0
+            ));
+            add(Box.createHorizontalStrut(iconTextGap), new GridBagConstraints(
+                1, 0, 1, 1, 0.0, 0.0, GridBagConstraints.LINE_START, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0
+            ));
+            add(label, new GridBagConstraints(
+                2, 0, 1, 1, 0.0, 0.0, GridBagConstraints.LINE_START, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0
+            ));
             break;
         case SwingConstants.CENTER:
         default:
-            add(leftSeparator, new GridBagConstraints(0, 0, 1, 1, 0.5, 0.0, GridBagConstraints.LINE_START, GridBagConstraints.HORIZONTAL, new Insets(0, 0, 0, 0), 0, 0));
-            add(Box.createHorizontalStrut(iconTextGap), new GridBagConstraints(1, 0, 1, 1, 0.0, 0.0, GridBagConstraints.LINE_START, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
-            add(label, new GridBagConstraints(2, 0, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
-            add(Box.createHorizontalStrut(iconTextGap), new GridBagConstraints(3, 0, 1, 1, 0.0, 0.0, GridBagConstraints.LINE_START, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
-            add(rightSeparator, new GridBagConstraints(4, 0, 1, 1, 0.5, 0.0, GridBagConstraints.LINE_START, GridBagConstraints.HORIZONTAL, new Insets(0, 0, 0, 0), 0, 0));
+            add(leftSeparator, new GridBagConstraints(
+                0, 0, 1, 1, 0.5, 0.0, GridBagConstraints.LINE_START, GridBagConstraints.HORIZONTAL, new Insets(0, 0, 0, 0), 0, 0
+            ));
+            add(Box.createHorizontalStrut(iconTextGap), new GridBagConstraints(
+                1, 0, 1, 1, 0.0, 0.0, GridBagConstraints.LINE_START, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0
+            ));
+            add(label, new GridBagConstraints(
+                2, 0, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0
+            ));
+            add(Box.createHorizontalStrut(iconTextGap), new GridBagConstraints(
+                3, 0, 1, 1, 0.0, 0.0, GridBagConstraints.LINE_START, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0
+            ));
+            add(rightSeparator, new GridBagConstraints(
+                4, 0, 1, 1, 0.5, 0.0, GridBagConstraints.LINE_START, GridBagConstraints.HORIZONTAL, new Insets(0, 0, 0, 0), 0, 0
+            ));
         }
     }
 

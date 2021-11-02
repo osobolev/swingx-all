@@ -50,8 +50,7 @@ import java.util.logging.Logger;
  * @author Richard Osbald
  * @author Jeanette Winzenburg
  */
-public class DatePickerCellEditor extends AbstractCellEditor implements
-    TableCellEditor, TreeCellEditor {
+public class DatePickerCellEditor extends AbstractCellEditor implements TableCellEditor, TreeCellEditor {
 
     protected JXDatePicker datePicker;
 
@@ -63,8 +62,7 @@ public class DatePickerCellEditor extends AbstractCellEditor implements
 
     protected boolean ignoreAction;
 
-    private static Logger logger = Logger.getLogger(DatePickerCellEditor.class
-        .getName());
+    private static Logger logger = Logger.getLogger(DatePickerCellEditor.class.getName());
 
     private static final long serialVersionUID = -1L;
 
@@ -86,12 +84,10 @@ public class DatePickerCellEditor extends AbstractCellEditor implements
     public DatePickerCellEditor(DateFormat dateFormat) {
         // JW: the copy is used to synchronize .. can 
         // we use something else?
-        this.dateFormat = dateFormat != null ? dateFormat :
-            DateFormat.getDateInstance();
+        this.dateFormat = dateFormat != null ? dateFormat : DateFormat.getDateInstance();
         datePicker = new JXDatePicker();
         // default border crushes the editor/combo
-        datePicker.getEditor().setBorder(
-            BorderFactory.createEmptyBorder(0, 1, 0, 1));
+        datePicker.getEditor().setBorder(BorderFactory.createEmptyBorder(0, 1, 0, 1));
         // should be fixed by j2se 6.0
         datePicker.setFont(UIManager.getDefaults().getFont("TextField.font"));
         if (dateFormat != null) {
@@ -162,8 +158,7 @@ public class DatePickerCellEditor extends AbstractCellEditor implements
 //------------------------ TableCellEditor
 
     @Override
-    public Component getTableCellEditorComponent(JTable table, Object value,
-                                                 boolean isSelected, int row, int column) {
+    public Component getTableCellEditorComponent(JTable table, Object value, boolean isSelected, int row, int column) {
         // PENDING JW: can remove the ignore flags here?
         // the picker learnde to behave ...
         ignoreAction = true;
@@ -208,7 +203,8 @@ public class DatePickerCellEditor extends AbstractCellEditor implements
      * @return the value as Date or null, if not successful.
      */
     protected Date getValueAsDate(Object value) {
-        if (isEmpty(value)) return null;
+        if (isEmpty(value))
+            return null;
         if (value instanceof Date) {
             return (Date) value;
         }
@@ -243,8 +239,7 @@ public class DatePickerCellEditor extends AbstractCellEditor implements
     }
 
     protected boolean isEmpty(Object value) {
-        return value == null || value instanceof String
-                                && ((String) value).length() == 0;
+        return value == null || value instanceof String && ((String) value).length() == 0;
     }
 
 //--------------- picker specifics    
@@ -316,8 +311,7 @@ public class DatePickerCellEditor extends AbstractCellEditor implements
              * @param e
              */
             private void terminateEdit(ActionEvent e) {
-                if (e != null
-                    && JXDatePicker.COMMIT_KEY.equals(e.getActionCommand())) {
+                if (e != null && JXDatePicker.COMMIT_KEY.equals(e.getActionCommand())) {
                     stopCellEditing();
                 } else {
                     cancelCellEditing();

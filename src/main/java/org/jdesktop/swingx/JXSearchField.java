@@ -184,8 +184,7 @@ public class JXSearchField extends JXTextField {
             @Override
             public void keyPressed(KeyEvent e) {
                 if (CANCEL_KEY.equals(KeyStroke.getKeyStroke(e.getKeyCode(), e.getModifiers()))) {
-                    getCancelAction().actionPerformed(
-                        new ActionEvent(JXSearchField.this, e.getID(), KeyEvent.getKeyText(e.getKeyCode())));
+                    getCancelAction().actionPerformed(new ActionEvent(JXSearchField.this, e.getID(), KeyEvent.getKeyText(e.getKeyCode())));
                 }
             }
         });
@@ -488,8 +487,7 @@ public class JXSearchField extends JXTextField {
      */
     public void setUseSeperatePopupButton(boolean useSeperatePopupButton) {
         useSeperatePopupButtonSet = true;
-        firePropertyChange("useSeperatePopupButton", this.useSeperatePopupButton,
-            this.useSeperatePopupButton = useSeperatePopupButton);
+        firePropertyChange("useSeperatePopupButton", this.useSeperatePopupButton, this.useSeperatePopupButton = useSeperatePopupButton);
     }
 
     public boolean isUseNativeSearchFieldIfPossible() {

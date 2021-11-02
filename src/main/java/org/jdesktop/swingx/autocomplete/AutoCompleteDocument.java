@@ -186,7 +186,8 @@ public class AutoCompleteDocument implements Document {
     private static final Comparator<String> EQUALS_IGNORE_CASE = (o1, o2) -> o1.equalsIgnoreCase(o2) ? 0 : -1;
 
     private static final Comparator<String> STARTS_WITH_IGNORE_CASE = (o1, o2) -> {
-        if (o1.length() < o2.length()) return -1;
+        if (o1.length() < o2.length())
+            return -1;
         return o1.regionMatches(true, 0, o2, 0, o2.length()) ? 0 : -1;
     };
 
@@ -204,8 +205,7 @@ public class AutoCompleteDocument implements Document {
      * @param stringConverter the converter used to transform items to strings
      * @param delegate        the {@code Document} delegate backing this document
      */
-    public AutoCompleteDocument(AbstractAutoCompleteAdaptor adaptor, boolean strictMatching,
-                                ObjectToStringConverter stringConverter, Document delegate) {
+    public AutoCompleteDocument(AbstractAutoCompleteAdaptor adaptor, boolean strictMatching, ObjectToStringConverter stringConverter, Document delegate) {
         this.adaptor = Contract.asNotNull(adaptor, "adaptor cannot be null");
         this.strictMatching = strictMatching;
         this.stringConverter = stringConverter == null ? DEFAULT_IMPLEMENTATION : stringConverter;
@@ -262,7 +262,8 @@ public class AutoCompleteDocument implements Document {
     @Override
     public void remove(int offs, int len) throws BadLocationException {
         // return immediately when selecting an item
-        if (selecting) return;
+        if (selecting)
+            return;
         delegate.remove(offs, len);
         if (!strictMatching) {
             setSelectedItem(getText(0, getLength()), getText(0, getLength()));
@@ -273,7 +274,8 @@ public class AutoCompleteDocument implements Document {
     @Override
     public void insertString(int offs, String str, AttributeSet a) throws BadLocationException {
         // return immediately when selecting an item
-        if (selecting) return;
+        if (selecting)
+            return;
         // insert the string into the document
         delegate.insertString(offs, str, a);
         // lookup and select a matching item
@@ -362,24 +364,30 @@ public class AutoCompleteDocument implements Document {
         // first try: case sensitive
 
         lookupResult = lookupItem(pattern, EQUALS);
-        if (lookupResult != null) return lookupResult;
+        if (lookupResult != null)
+            return lookupResult;
 
         lookupResult = lookupOneItem(selectedItem, pattern, STARTS_WITH);
-        if (lookupResult != null) return lookupResult;
+        if (lookupResult != null)
+            return lookupResult;
 
         lookupResult = lookupItem(pattern, STARTS_WITH);
-        if (lookupResult != null) return lookupResult;
+        if (lookupResult != null)
+            return lookupResult;
 
         // second try: ignore case
 
         lookupResult = lookupItem(pattern, EQUALS_IGNORE_CASE);
-        if (lookupResult != null) return lookupResult;
+        if (lookupResult != null)
+            return lookupResult;
 
         lookupResult = lookupOneItem(selectedItem, pattern, STARTS_WITH_IGNORE_CASE);
-        if (lookupResult != null) return lookupResult;
+        if (lookupResult != null)
+            return lookupResult;
 
         lookupResult = lookupItem(pattern, STARTS_WITH_IGNORE_CASE);
-        if (lookupResult != null) return lookupResult;
+        if (lookupResult != null)
+            return lookupResult;
 
         // no item starts with the pattern => return null
         return new LookupResult(null, "");
@@ -402,7 +410,8 @@ public class AutoCompleteDocument implements Document {
         for (int i = 0, n = adaptor.getItemCount(); i < n; i++) {
             Object currentItem = adaptor.getItem(i);
             LookupResult result = lookupOneItem(currentItem, pattern, comparator);
-            if (result != null) return result;
+            if (result != null)
+                return result;
         }
         return null;
     }

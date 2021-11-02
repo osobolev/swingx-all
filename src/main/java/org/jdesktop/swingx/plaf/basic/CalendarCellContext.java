@@ -54,8 +54,7 @@ class CalendarCellContext extends CellContext {
 
     private CalendarState dayState;
 
-    public void installContext(JXMonthView component, Calendar value,
-                               boolean selected, boolean focused, CalendarState dayState) {
+    public void installContext(JXMonthView component, Calendar value, boolean selected, boolean focused, CalendarState dayState) {
         this.component = component;
         this.dayState = dayState;
         installState(value, -1, -1, selected, focused, true, true);
@@ -92,8 +91,7 @@ class CalendarCellContext extends CellContext {
             }
         }
         if (CalendarState.DAY_OF_WEEK == dayState) {
-            Color daysOfTheWeekForeground = getComponent() != null
-                ? getComponent().getDaysOfTheWeekForeground() : null;
+            Color daysOfTheWeekForeground = getComponent() != null ? getComponent().getDaysOfTheWeekForeground() : null;
             if (daysOfTheWeekForeground != null) {
                 return daysOfTheWeekForeground;
             }
@@ -142,13 +140,15 @@ class CalendarCellContext extends CellContext {
 
     @Override
     protected Color getSelectionBackground() {
-        if (CalendarState.LEADING == dayState || CalendarState.TRAILING == dayState) return getBackground();
+        if (CalendarState.LEADING == dayState || CalendarState.TRAILING == dayState)
+            return getBackground();
         return getComponent() != null ? getComponent().getSelectionBackground() : null;
     }
 
     @Override
     protected Color getSelectionForeground() {
-        if (CalendarState.LEADING == dayState || CalendarState.TRAILING == dayState) return getForeground();
+        if (CalendarState.LEADING == dayState || CalendarState.TRAILING == dayState)
+            return getForeground();
         Color flaggedOrPerDayForeground = getFlaggedOrPerDayForeground();
         if (flaggedOrPerDayForeground != null) {
             return flaggedOrPerDayForeground;
@@ -171,7 +171,9 @@ class CalendarCellContext extends CellContext {
             Border empty = BorderFactory.createEmptyBorder(y - 1, x - 1, y - 1, x - 1);
             return BorderFactory.createCompoundBorder(todayBorder, empty);
         }
-        return BorderFactory.createEmptyBorder(getComponent().getBoxPaddingY(), getComponent().getBoxPaddingX(), getComponent().getBoxPaddingY(), getComponent().getBoxPaddingX());
+        return BorderFactory.createEmptyBorder(
+            getComponent().getBoxPaddingY(), getComponent().getBoxPaddingX(), getComponent().getBoxPaddingY(), getComponent().getBoxPaddingX()
+        );
     }
 
     /**
@@ -192,7 +194,9 @@ class CalendarCellContext extends CellContext {
             return BorderFactory.createCompoundBorder(compound, empty);
         }
 
-        return BorderFactory.createEmptyBorder(getComponent().getBoxPaddingY(), getComponent().getBoxPaddingX(), getComponent().getBoxPaddingY(), getComponent().getBoxPaddingX());
+        return BorderFactory.createEmptyBorder(
+            getComponent().getBoxPaddingY(), getComponent().getBoxPaddingX(), getComponent().getBoxPaddingY(), getComponent().getBoxPaddingX()
+        );
     }
 
     /**

@@ -189,8 +189,7 @@ public class TableColumnExt extends TableColumn implements UIDependent {
      *                     view column
      * @param cellEditor   the cell editor which will edit cells in this view column
      */
-    public TableColumnExt(int modelIndex, int width,
-                          TableCellRenderer cellRenderer, TableCellEditor cellEditor) {
+    public TableColumnExt(int modelIndex, int width, TableCellRenderer cellRenderer, TableCellEditor cellEditor) {
         super(modelIndex, width, cellRenderer, cellEditor);
     }
 
@@ -202,8 +201,7 @@ public class TableColumnExt extends TableColumn implements UIDependent {
      * @see #copyFrom(TableColumnExt)
      */
     public TableColumnExt(TableColumnExt columnExt) {
-        this(columnExt.getModelIndex(), columnExt.getWidth(), columnExt
-            .getCellRenderer(), columnExt.getCellEditor());
+        this(columnExt.getModelIndex(), columnExt.getWidth(), columnExt.getCellRenderer(), columnExt.getCellEditor());
         copyFrom(columnExt);
     }
 
@@ -314,7 +312,8 @@ public class TableColumnExt extends TableColumn implements UIDependent {
      */
     protected ChangeListener createHighlighterChangeListener() {
         return e -> {
-            if (ignoreHighlighterStateChange) return;
+            if (ignoreHighlighterStateChange)
+                return;
             firePropertyChange("highlighterStateChanged", false, true);
         };
     }
@@ -350,9 +349,7 @@ public class TableColumnExt extends TableColumn implements UIDependent {
     public void setEditable(boolean editable) {
         boolean oldEditable = this.editable;
         this.editable = editable;
-        firePropertyChange("editable",
-            oldEditable,
-            editable);
+        firePropertyChange("editable", oldEditable, editable);
     }
 
     /**
@@ -383,9 +380,7 @@ public class TableColumnExt extends TableColumn implements UIDependent {
     public void setPrototypeValue(Object value) {
         Object oldPrototypeValue = this.prototypeValue;
         this.prototypeValue = value;
-        firePropertyChange("prototypeValue",
-            oldPrototypeValue,
-            value);
+        firePropertyChange("prototypeValue", oldPrototypeValue, value);
     }
 
     /**
@@ -527,7 +522,8 @@ public class TableColumnExt extends TableColumn implements UIDependent {
      * @see #setVisible
      */
     public boolean isVisible() {
-        if (!isHideable()) return true;
+        if (!isHideable())
+            return true;
         return visible;
     }
 
@@ -607,8 +603,7 @@ public class TableColumnExt extends TableColumn implements UIDependent {
      * @see #putClientProperty
      */
     public Object getClientProperty(Object key) {
-        return key == null || clientProperties == null ?
-            null : clientProperties.get(key);
+        return key == null || clientProperties == null ? null : clientProperties.get(key);
     }
 
     private Hashtable<Object, Object> getClientProperties() {
@@ -654,7 +649,8 @@ public class TableColumnExt extends TableColumn implements UIDependent {
      * @param original the target column.
      */
     protected void copyClientPropertiesFrom(TableColumnExt original) {
-        if (original.clientProperties == null) return;
+        if (original.clientProperties == null)
+            return;
         for (Object key : original.clientProperties.keySet()) {
             putClientProperty(key, original.getClientProperty(key));
         }
@@ -674,13 +670,10 @@ public class TableColumnExt extends TableColumn implements UIDependent {
      * @param newValue     new value of changed property
      */
     protected void firePropertyChange(String propertyName, Object oldValue, Object newValue) {
-        if (oldValue != null && !oldValue.equals(newValue) ||
-            oldValue == null && newValue != null) {
+        if (oldValue != null && !oldValue.equals(newValue) || oldValue == null && newValue != null) {
             PropertyChangeListener[] pcl = getPropertyChangeListeners();
             if (pcl != null && pcl.length != 0) {
-                PropertyChangeEvent pce = new PropertyChangeEvent(this,
-                    propertyName,
-                    oldValue, newValue);
+                PropertyChangeEvent pce = new PropertyChangeEvent(this, propertyName, oldValue, newValue);
 
                 for (PropertyChangeListener listener : pcl) {
                     listener.propertyChange(pce);
@@ -707,14 +700,13 @@ public class TableColumnExt extends TableColumn implements UIDependent {
      * @param editor
      */
     private void updateEditorUI(TableCellEditor editor) {
-        if (editor == null) return;
+        if (editor == null)
+            return;
         // internal knowledge of core table - already updated
-        if (editor instanceof JComponent
-            || editor instanceof DefaultCellEditor)
+        if (editor instanceof JComponent || editor instanceof DefaultCellEditor)
             return;
         try {
-            Component comp = editor
-                .getTableCellEditorComponent(null, null, false, -1, -1);
+            Component comp = editor.getTableCellEditorComponent(null, null, false, -1, -1);
             if (comp != null) {
                 SwingUtilities.updateComponentTreeUI(comp);
             }
@@ -727,7 +719,8 @@ public class TableColumnExt extends TableColumn implements UIDependent {
      * @param renderer
      */
     private void updateRendererUI(TableCellRenderer renderer) {
-        if (renderer == null) return;
+        if (renderer == null)
+            return;
         // internal knowledge of core table - already updated
         if (renderer instanceof JComponent) {
             return;
@@ -737,9 +730,7 @@ public class TableColumnExt extends TableColumn implements UIDependent {
             comp = ((AbstractRenderer) renderer).getComponentProvider().getRendererComponent(null);
         } else {
             try {
-                comp = renderer
-                    .getTableCellRendererComponent(null, null, false, false,
-                        -1, -1);
+                comp = renderer.getTableCellRendererComponent(null, null, false, false, -1, -1);
             } catch (Exception e) {
                 // can't do anything - renderer can't cope with off-range cells
             }
@@ -753,7 +744,8 @@ public class TableColumnExt extends TableColumn implements UIDependent {
      *
      */
     private void updateHighlighterUI() {
-        if (compoundHighlighter == null) return;
+        if (compoundHighlighter == null)
+            return;
         compoundHighlighter.updateUI();
     }
 }

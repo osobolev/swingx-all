@@ -260,8 +260,7 @@ public class JXCollapsiblePane extends JXPanel {
      * Toggles the JXCollapsiblePane state and updates its icon based on the
      * JXCollapsiblePane "collapsed" status.
      */
-    private class ToggleAction extends AbstractAction implements
-        PropertyChangeListener {
+    private class ToggleAction extends AbstractAction implements PropertyChangeListener {
 
         ToggleAction() {
             super(TOGGLE_ACTION);
@@ -603,8 +602,7 @@ public class JXCollapsiblePane extends JXPanel {
 
             if (oldValue) {
                 int dimension = direction.isVertical() ? wrapper.getHeight() : wrapper.getWidth();
-                int preferredDimension = direction.isVertical() ? getContentPane()
-                    .getPreferredSize().height : getContentPane().getPreferredSize().width;
+                int preferredDimension = direction.isVertical() ? getContentPane().getPreferredSize().height : getContentPane().getPreferredSize().width;
                 int delta = Math.max(8, preferredDimension / 10);
 
                 setAnimationParams(new AnimationParams(30, delta, 0.01f, 1.0f));
@@ -741,8 +739,7 @@ public class JXCollapsiblePane extends JXPanel {
      */
     private void setAnimationParams(AnimationParams params) {
         if (params == null) {
-            throw new IllegalArgumentException(
-                "params can't be null");
+            throw new IllegalArgumentException("params can't be null");
         }
         if (animateTimer != null) {
             animateTimer.stop();
@@ -782,8 +779,7 @@ public class JXCollapsiblePane extends JXPanel {
          * @param alphaStart the starting alpha transparency level
          * @param alphaEnd   the ending alpha transparency level
          */
-        AnimationParams(int waitTime, int delta, float alphaStart,
-                               float alphaEnd) {
+        AnimationParams(int waitTime, int delta, float alphaStart, float alphaEnd) {
             this.waitTime = waitTime;
             this.delta = delta;
             this.alphaStart = alphaStart;
@@ -853,8 +849,7 @@ public class JXCollapsiblePane extends JXPanel {
                 }
 
                 boolean contracting = startDimension > finalDimension;
-                int delta = contracting ? -1 * animationParams.delta
-                    : animationParams.delta;
+                int delta = contracting ? -1 * animationParams.delta : animationParams.delta;
                 int newDimension;
                 if (direction.isVertical()) {
                     newDimension = wrapper.getHeight() + delta;
@@ -941,8 +936,7 @@ public class JXCollapsiblePane extends JXPanel {
         }
 
         void validate() {
-            Container parent = SwingUtilities.getAncestorOfClass(
-                CollapsiblePaneContainer.class, JXCollapsiblePane.this);
+            Container parent = SwingUtilities.getAncestorOfClass(CollapsiblePaneContainer.class, JXCollapsiblePane.this);
             if (parent != null) {
                 parent = ((CollapsiblePaneContainer) parent).getValidatingContainer();
             } else {

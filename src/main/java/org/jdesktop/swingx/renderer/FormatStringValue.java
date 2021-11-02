@@ -79,7 +79,8 @@ public class FormatStringValue implements StringValue {
      */
     @Override
     public String getString(Object value) {
-        if (value == null) return "";
+        if (value == null)
+            return "";
         if (format != null) {
             try {
                 return format.format(value);

@@ -78,8 +78,7 @@ public class ListComboBoxModel<E> extends AbstractListModel implements ComboBoxM
     @Override
     @SuppressWarnings("unchecked")
     public void setSelectedItem(Object item) {
-        if (selected != null && !selected.equals(item)
-            || selected == null && item != null) {
+        if (selected != null && !selected.equals(item) || selected == null && item != null) {
             selected = (E) item;
             fireContentsChanged(this, -1, -1);
         }

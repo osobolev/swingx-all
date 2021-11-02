@@ -119,9 +119,9 @@ public interface HighlightPredicate {
          */
         @Override
         public boolean isHighlighted(Component renderer, ComponentAdapter adapter) {
-            if (!adapter.getComponent().isEnabled()) return false;
-            Point p = (Point) adapter.getComponent().getClientProperty(
-                RolloverProducer.ROLLOVER_KEY);
+            if (!adapter.getComponent().isEnabled())
+                return false;
+            Point p = (Point) adapter.getComponent().getClientProperty(RolloverProducer.ROLLOVER_KEY);
             return p != null && p.y == adapter.row;
         }
     };
@@ -141,9 +141,9 @@ public interface HighlightPredicate {
          */
         @Override
         public boolean isHighlighted(Component renderer, ComponentAdapter adapter) {
-            if (!adapter.getComponent().isEnabled()) return false;
-            Point p = (Point) adapter.getComponent().getClientProperty(
-                RolloverProducer.ROLLOVER_KEY);
+            if (!adapter.getComponent().isEnabled())
+                return false;
+            Point p = (Point) adapter.getComponent().getClientProperty(RolloverProducer.ROLLOVER_KEY);
             return p != null && p.x == adapter.column;
         }
     };
@@ -162,9 +162,9 @@ public interface HighlightPredicate {
          */
         @Override
         public boolean isHighlighted(Component renderer, ComponentAdapter adapter) {
-            if (!adapter.getComponent().isEnabled()) return false;
-            Point p = (Point) adapter.getComponent().getClientProperty(
-                RolloverProducer.ROLLOVER_KEY);
+            if (!adapter.getComponent().isEnabled())
+                return false;
+            Point p = (Point) adapter.getComponent().getClientProperty(RolloverProducer.ROLLOVER_KEY);
             return p != null && p.y == adapter.row && p.x == adapter.column;
         }
     };
@@ -265,10 +265,11 @@ public interface HighlightPredicate {
             cellBounds.height -= insets.top + insets.bottom;
         }
 
-        String result = SwingUtilities.layoutCompoundLabel(c, renderer
-                .getFontMetrics(renderer.getFont()), text, icon, verticalAlignment,
+        String result = SwingUtilities.layoutCompoundLabel(
+            c, renderer.getFontMetrics(renderer.getFont()), text, icon, verticalAlignment,
             horizontalAlignment, verticalTextPosition, horizontalTextPosition, cellBounds,
-            new Rectangle(), new Rectangle(), gap);
+            new Rectangle(), new Rectangle(), gap
+        );
 
         return !text.equals(result);
     };
@@ -393,7 +394,8 @@ public interface HighlightPredicate {
         @Override
         public boolean isHighlighted(Component renderer, ComponentAdapter adapter) {
             for (HighlightPredicate hp : predicate) {
-                if (!hp.isHighlighted(renderer, adapter)) return false;
+                if (!hp.isHighlighted(renderer, adapter))
+                    return false;
             }
             return !predicate.isEmpty();
         }
@@ -402,7 +404,8 @@ public interface HighlightPredicate {
          * @return the contained HighlightPredicates.
          */
         public HighlightPredicate[] getHighlightPredicates() {
-            if (predicate.isEmpty()) return EMPTY_PREDICATE_ARRAY;
+            if (predicate.isEmpty())
+                return EMPTY_PREDICATE_ARRAY;
             return predicate.toArray(new HighlightPredicate[0]);
         }
     }
@@ -442,7 +445,8 @@ public interface HighlightPredicate {
         @Override
         public boolean isHighlighted(Component renderer, ComponentAdapter adapter) {
             for (HighlightPredicate hp : predicate) {
-                if (hp.isHighlighted(renderer, adapter)) return true;
+                if (hp.isHighlighted(renderer, adapter))
+                    return true;
             }
             return false;
         }
@@ -451,7 +455,8 @@ public interface HighlightPredicate {
          * @return all registered predicates
          */
         public HighlightPredicate[] getHighlightPredicates() {
-            if (predicate.isEmpty()) return EMPTY_PREDICATE_ARRAY;
+            if (predicate.isEmpty())
+                return EMPTY_PREDICATE_ARRAY;
             return predicate.toArray(new HighlightPredicate[0]);
         }
     }
@@ -532,7 +537,8 @@ public interface HighlightPredicate {
          * @return the columns indices in model coordinates to highlight
          */
         public Integer[] getColumns() {
-            if (columnList.isEmpty()) return EMPTY_INTEGER_ARRAY;
+            if (columnList.isEmpty())
+                return EMPTY_INTEGER_ARRAY;
             return columnList.toArray(new Integer[0]);
         }
     }
@@ -572,7 +578,8 @@ public interface HighlightPredicate {
          * @return the identifiers
          */
         public Object[] getIdentifiers() {
-            if (columnList.isEmpty()) return EMPTY_OBJECT_ARRAY;
+            if (columnList.isEmpty())
+                return EMPTY_OBJECT_ARRAY;
             return columnList.toArray(new Object[0]);
         }
     }
@@ -606,8 +613,7 @@ public interface HighlightPredicate {
          * in this predicates list.
          */
         @Override
-        public boolean isHighlighted(Component renderer,
-                                     ComponentAdapter adapter) {
+        public boolean isHighlighted(Component renderer, ComponentAdapter adapter) {
             int depth = adapter.getDepth();
             return depthList.contains(depth);
         }
@@ -616,7 +622,8 @@ public interface HighlightPredicate {
          * @return array of numbers representing different depths
          */
         public Integer[] getDepths() {
-            if (depthList.isEmpty()) return EMPTY_INTEGER_ARRAY;
+            if (depthList.isEmpty())
+                return EMPTY_INTEGER_ARRAY;
             return depthList.toArray(new Integer[0]);
         }
     }
@@ -657,7 +664,8 @@ public interface HighlightPredicate {
          */
         @Override
         public boolean isHighlighted(Component renderer, ComponentAdapter adapter) {
-            if (compareValue == null) return adapter.getValue() == null;
+            if (compareValue == null)
+                return adapter.getValue() == null;
             return compareValue.equals(adapter.getValue());
         }
 
@@ -706,8 +714,7 @@ public interface HighlightPredicate {
          */
         @Override
         public boolean isHighlighted(Component renderer, ComponentAdapter adapter) {
-            return adapter.getValue() != null ?
-                clazz.isAssignableFrom(adapter.getValue().getClass()) : false;
+            return adapter.getValue() != null ? clazz.isAssignableFrom(adapter.getValue().getClass()) : false;
         }
 
         /**

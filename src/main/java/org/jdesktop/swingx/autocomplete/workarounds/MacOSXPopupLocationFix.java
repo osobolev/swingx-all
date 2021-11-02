@@ -75,7 +75,8 @@ public final class MacOSXPopupLocationFix {
      * Install the fix for the specified combo box.
      */
     public static MacOSXPopupLocationFix install(JComboBox comboBox) {
-        if (comboBox == null) throw new IllegalArgumentException();
+        if (comboBox == null)
+            throw new IllegalArgumentException();
         return new MacOSXPopupLocationFix(comboBox);
     }
 
@@ -164,9 +165,11 @@ public final class MacOSXPopupLocationFix {
             GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
             GraphicsDevice[] gds = ge.getScreenDevices();
             for (GraphicsDevice gd : gds) {
-                if (gd.getType() != GraphicsDevice.TYPE_RASTER_SCREEN) continue;
+                if (gd.getType() != GraphicsDevice.TYPE_RASTER_SCREEN)
+                    continue;
                 GraphicsConfiguration defaultGraphicsConfiguration = gd.getDefaultConfiguration();
-                if (!defaultGraphicsConfiguration.getBounds().contains(point)) continue;
+                if (!defaultGraphicsConfiguration.getBounds().contains(point))
+                    continue;
                 return defaultGraphicsConfiguration;
             }
 
@@ -182,10 +185,8 @@ public final class MacOSXPopupLocationFix {
             Insets screenInsets = getScreenInsets();
 
             return new Rectangle(
-                screenSize.x + screenInsets.left,
-                screenSize.y + screenInsets.top,
-                screenSize.width - screenInsets.left - screenInsets.right,
-                screenSize.height - screenInsets.top - screenInsets.bottom
+                screenSize.x + screenInsets.left, screenSize.y + screenInsets.top,
+                screenSize.width - screenInsets.left - screenInsets.right, screenSize.height - screenInsets.top - screenInsets.bottom
             );
         }
 

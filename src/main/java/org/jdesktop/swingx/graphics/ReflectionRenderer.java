@@ -275,9 +275,7 @@ public class ReflectionRenderer {
 
         if (oldOpacity != opacity) {
             this.opacity = opacity;
-            changeSupport.firePropertyChange(OPACITY_CHANGED_PROPERTY,
-                oldOpacity,
-                this.opacity);
+            changeSupport.firePropertyChange(OPACITY_CHANGED_PROPERTY, oldOpacity, this.opacity);
         }
     }
 
@@ -322,9 +320,7 @@ public class ReflectionRenderer {
 
         if (oldLength != length) {
             this.length = length;
-            changeSupport.firePropertyChange(LENGTH_CHANGED_PROPERTY,
-                oldLength,
-                this.length);
+            changeSupport.firePropertyChange(LENGTH_CHANGED_PROPERTY, oldLength, this.length);
         }
     }
 
@@ -361,9 +357,7 @@ public class ReflectionRenderer {
             boolean oldBlur = this.blurEnabled;
             this.blurEnabled = blurEnabled;
 
-            changeSupport.firePropertyChange(BLUR_ENABLED_CHANGED_PROPERTY,
-                oldBlur,
-                this.blurEnabled);
+            changeSupport.firePropertyChange(BLUR_ENABLED_CHANGED_PROPERTY, oldBlur, this.blurEnabled);
         }
     }
 
@@ -434,16 +428,13 @@ public class ReflectionRenderer {
      */
     public BufferedImage appendReflection(BufferedImage image) {
         BufferedImage reflection = createReflection(image);
-        BufferedImage buffer = GraphicsUtilities.createCompatibleTranslucentImage(
-            reflection.getWidth(), image.getHeight() + reflection.getHeight());
+        BufferedImage buffer = GraphicsUtilities.createCompatibleTranslucentImage(reflection.getWidth(), image.getHeight() + reflection.getHeight());
         Graphics2D g2 = buffer.createGraphics();
 
         try {
-            int effectiveRadius = isBlurEnabled() ? stackBlurFilter
-                .getEffectiveRadius() : 0;
+            int effectiveRadius = isBlurEnabled() ? stackBlurFilter.getEffectiveRadius() : 0;
             g2.drawImage(image, effectiveRadius, 0, null);
-            g2.drawImage(reflection, 0, image.getHeight() - effectiveRadius,
-                null);
+            g2.drawImage(reflection, 0, image.getHeight() - effectiveRadius, null);
         } finally {
             g2.dispose();
         }
@@ -482,14 +473,10 @@ public class ReflectionRenderer {
             return GraphicsUtilities.createCompatibleTranslucentImage(1, 1);
         }
 
-        int blurOffset = isBlurEnabled() ?
-            stackBlurFilter.getEffectiveRadius() : 0;
+        int blurOffset = isBlurEnabled() ? stackBlurFilter.getEffectiveRadius() : 0;
         int height = (int) (image.getHeight() * length);
 
-        BufferedImage buffer =
-            GraphicsUtilities.createCompatibleTranslucentImage(
-                image.getWidth() + blurOffset * 2,
-                height + blurOffset * 2);
+        BufferedImage buffer = GraphicsUtilities.createCompatibleTranslucentImage(image.getWidth() + blurOffset * 2, height + blurOffset * 2);
         Graphics2D g2 = buffer.createGraphics();
 
         try {
@@ -502,15 +489,16 @@ public class ReflectionRenderer {
             g2.translate(0, -image.getHeight());
 
             g2.setComposite(AlphaComposite.DstIn);
-            g2.setPaint(new GradientPaint(0.0f, 0.0f, new Color(0.0f, 0.0f,
-                0.0f, getOpacity()), 0.0f, buffer.getHeight(), new Color(
-                0.0f, 0.0f, 0.0f, 0.0f), true));
+            g2.setPaint(new GradientPaint(
+                0.0f, 0.0f, new Color(0.0f, 0.0f, 0.0f, getOpacity()),
+                0.0f, buffer.getHeight(), new Color(0.0f, 0.0f, 0.0f, 0.0f),
+                true
+            ));
             g2.fillRect(0, 0, buffer.getWidth(), buffer.getHeight());
         } finally {
             g2.dispose();
         }
 
-        return isBlurEnabled() ? stackBlurFilter.filter(buffer, null) :
-            buffer;
+        return isBlurEnabled() ? stackBlurFilter.filter(buffer, null) : buffer;
     }
 }

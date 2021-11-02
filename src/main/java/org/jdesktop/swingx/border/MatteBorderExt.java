@@ -59,19 +59,15 @@ public class MatteBorderExt extends MatteBorder {
      * @param tileIcons array of icons starting with top-left in index 0,
      *                  continuing clockwise through the rest of the indices
      */
-    public MatteBorderExt(int top, int left, int bottom, int right,
-                          Icon[] tileIcons) {
-        super(top, left, bottom, right,
-            tileIcons == null || tileIcons.length == 0 ? null :
-                tileIcons[0]);
+    public MatteBorderExt(int top, int left, int bottom, int right, Icon[] tileIcons) {
+        super(top, left, bottom, right, tileIcons == null || tileIcons.length == 0 ? null : tileIcons[0]);
         this.tileIcons = tileIcons;
     }
 
     /**
      * @see MatteBorder#MatteBorder(int, int, int, int, Color)
      */
-    public MatteBorderExt(int top, int left, int bottom, int right,
-                          Color matteColor) {
+    public MatteBorderExt(int top, int left, int bottom, int right, Color matteColor) {
         super(top, left, bottom, right, matteColor);
     }
 
@@ -85,8 +81,7 @@ public class MatteBorderExt extends MatteBorder {
     /**
      * @see MatteBorder#MatteBorder(int, int, int, int, Icon)
      */
-    public MatteBorderExt(int top, int left, int bottom, int right,
-                          Icon tileIcon) {
+    public MatteBorderExt(int top, int left, int bottom, int right, Icon tileIcon) {
         super(top, left, bottom, right, tileIcon);
     }
 
@@ -117,8 +112,7 @@ public class MatteBorderExt extends MatteBorder {
      * {@inheritDoc}
      */
     @Override
-    public void paintBorder(Component c, Graphics g, int x, int y,
-                            int width, int height) {
+    public void paintBorder(Component c, Graphics g, int x, int y, int width, int height) {
         if (tileIcons == null || tileIcons.length < 2) {
             super.paintBorder(c, g, x, y, width, height);
             return;
@@ -159,8 +153,7 @@ public class MatteBorderExt extends MatteBorder {
         g.setColor(oldColor); // restore
     }
 
-    protected void paint(Icon icon, Component c, Graphics g, int x, int y,
-                         int width, int height) {
+    protected void paint(Icon icon, Component c, Graphics g, int x, int y, int width, int height) {
         Graphics cg = g.create();
 
         try {

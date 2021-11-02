@@ -50,12 +50,9 @@ public class MonthViewAddon extends AbstractComponentAddon {
         defaults.add("JXMonthView.flaggedDayForeground", new ColorUIResource(Color.RED));
         defaults.add("JXMonthView.leadingDayForeground", new ColorUIResource(Color.LIGHT_GRAY));
         defaults.add("JXMonthView.trailingDayForeground", new ColorUIResource(Color.LIGHT_GRAY));
-        defaults.add("JXMonthView.font", UIManagerExt.getSafeFont("Button.font",
-            new FontUIResource("Dialog", Font.PLAIN, 12)));
-        defaults.add("JXMonthView.monthDownFileName",
-            LookAndFeel.makeIcon(MonthViewAddon.class, "basic/resources/month-down.png"));
-        defaults.add("JXMonthView.monthUpFileName",
-            LookAndFeel.makeIcon(MonthViewAddon.class, "basic/resources/month-up.png"));
+        defaults.add("JXMonthView.font", UIManagerExt.getSafeFont("Button.font", new FontUIResource("Dialog", Font.PLAIN, 12)));
+        defaults.add("JXMonthView.monthDownFileName", LookAndFeel.makeIcon(MonthViewAddon.class, "basic/resources/month-down.png"));
+        defaults.add("JXMonthView.monthUpFileName", LookAndFeel.makeIcon(MonthViewAddon.class, "basic/resources/month-up.png"));
         defaults.add("JXMonthView.boxPaddingX", 3);
         defaults.add("JXMonthView.boxPaddingY", 3);
     }

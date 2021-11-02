@@ -31,7 +31,6 @@ import java.awt.TexturePaint;
 import java.awt.geom.Point2D;
 import java.awt.image.BufferedImage;
 import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 /**
@@ -48,42 +47,50 @@ public class PaintUtils {
         new Point2D.Double(0, 0),
         new Color(168, 204, 241),
         new Point2D.Double(0, 1),
-        new Color(44, 61, 146));
+        new Color(44, 61, 146)
+    );
     public static final GradientPaint MAC_OSX_SELECTED = new GradientPaint(
         new Point2D.Double(0, 0),
         new Color(81, 141, 236),
         new Point2D.Double(0, 1),
-        new Color(36, 96, 192));
+        new Color(36, 96, 192)
+    );
     public static final GradientPaint MAC_OSX = new GradientPaint(
         new Point2D.Double(0, 0),
         new Color(167, 210, 250),
         new Point2D.Double(0, 1),
-        new Color(99, 147, 206));
+        new Color(99, 147, 206)
+    );
     public static final GradientPaint AERITH = new GradientPaint(
         new Point2D.Double(0, 0),
         Color.WHITE,
         new Point2D.Double(0, 1),
-        new Color(64, 110, 161));
+        new Color(64, 110, 161)
+    );
     public static final GradientPaint GRAY = new GradientPaint(
         new Point2D.Double(0, 0),
         new Color(226, 226, 226),
         new Point2D.Double(0, 1),
-        new Color(250, 248, 248));
+        new Color(250, 248, 248)
+    );
     public static final GradientPaint RED_XP = new GradientPaint(
         new Point2D.Double(0, 0),
         new Color(236, 81, 81),
         new Point2D.Double(0, 1),
-        new Color(192, 36, 36));
+        new Color(192, 36, 36)
+    );
     public static final GradientPaint NIGHT_GRAY = new GradientPaint(
         new Point2D.Double(0, 0),
         new Color(102, 111, 127),
         new Point2D.Double(0, 1),
-        new Color(38, 45, 61));
+        new Color(38, 45, 61)
+    );
     public static final GradientPaint NIGHT_GRAY_LIGHT = new GradientPaint(
         new Point2D.Double(0, 0),
         new Color(129, 138, 155),
         new Point2D.Double(0, 1),
-        new Color(58, 66, 82));
+        new Color(58, 66, 82)
+    );
 
     //originally included in LinearGradientPainter
     public static final Paint ORANGE_DELIGHT = new LinearGradientPaint(
@@ -94,7 +101,9 @@ public class PaintUtils {
             new Color(248, 192, 75),
             new Color(253, 152, 6),
             new Color(243, 133, 0),
-            new Color(254, 124, 0)});
+            new Color(254, 124, 0)
+        }
+    );
 
     //originally included in LinearGradientPainter
     public static final Paint BLACK_STAR = new LinearGradientPaint(
@@ -105,7 +114,9 @@ public class PaintUtils {
             new Color(54, 62, 78),
             new Color(32, 39, 55),
             new Color(74, 82, 96),
-            new Color(123, 132, 145)});
+            new Color(123, 132, 145)
+        }
+    );
 
     private PaintUtils() {
     }
@@ -130,7 +141,8 @@ public class PaintUtils {
      * exception.
      */
     public static Paint resizeGradient(Paint p, int width, int height) {
-        if (p == null) return p;
+        if (p == null)
+            return p;
 
         if (p instanceof GradientPaint) {
             GradientPaint gp = (GradientPaint) p;
@@ -141,8 +153,7 @@ public class PaintUtils {
             return new GradientPaint(pts[0], gp.getColor1(), pts[1], gp.getColor2(), gp.isCyclic());
         }
 
-        if ("java.awt.LinearGradientPaint".equals(p.getClass().getName()) ||
-            "org.apache.batik.ext.awt.LinearGradientPaint".equals(p.getClass().getName())) {
+        if ("java.awt.LinearGradientPaint".equals(p.getClass().getName()) || "org.apache.batik.ext.awt.LinearGradientPaint".equals(p.getClass().getName())) {
             return resizeLinearGradient(p, width, height);
         }
         return p;
@@ -157,10 +168,7 @@ public class PaintUtils {
             float[] fractions = (float[]) invokeMethod(p, "getFractions");
             Color[] colors = (Color[]) invokeMethod(p, "getColors");
 
-            Constructor<?> con = p.getClass().getDeclaredConstructor(
-                Point2D.class, Point2D.class,
-                float[].class,
-                Color[].class);
+            Constructor<?> con = p.getClass().getDeclaredConstructor(Point2D.class, Point2D.class, float[].class, Color[].class);
             return (Paint) con.newInstance(pts[0], pts[1], fractions, colors);
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -168,8 +176,7 @@ public class PaintUtils {
         return p;
     }
 
-    private static Object invokeMethod(Object p, String methodName)
-        throws NoSuchMethodException, InvocationTargetException, IllegalArgumentException, SecurityException, IllegalAccessException {
+    private static Object invokeMethod(Object p, String methodName) throws Exception {
         Method meth = p.getClass().getMethod(methodName);
         return meth.invoke(p);
     }
@@ -183,8 +190,7 @@ public class PaintUtils {
         double e = 1;
 
         // if it is near 0 degrees
-        if (Math.abs(angle) < Math.toRadians(e) ||
-            Math.abs(angle) > Math.toRadians(360 - e)) {
+        if (Math.abs(angle) < Math.toRadians(e) || Math.abs(angle) > Math.toRadians(360 - e)) {
             start = new Point2D.Float(0, 0);
             end = new Point2D.Float(normalize(end.getX(), width), 0);
         }
@@ -381,8 +387,7 @@ public class PaintUtils {
             throw new IllegalArgumentException("invalid alpha value");
         }
 
-        return new Color(
-            color.getRed(), color.getGreen(), color.getBlue(), alpha);
+        return new Color(color.getRed(), color.getGreen(), color.getBlue(), alpha);
     }
 
     /**
@@ -408,8 +413,7 @@ public class PaintUtils {
 
         int alpha = color.getAlpha();
 
-        float[] hsb = Color.RGBtoHSB(
-            color.getRed(), color.getGreen(), color.getBlue(), null);
+        float[] hsb = Color.RGBtoHSB(color.getRed(), color.getGreen(), color.getBlue(), null);
         Color c = Color.getHSBColor(hsb[0], saturation, hsb[2]);
 
         return setAlpha(c, alpha);
@@ -438,8 +442,7 @@ public class PaintUtils {
 
         int alpha = color.getAlpha();
 
-        float[] hsb = Color.RGBtoHSB(
-            color.getRed(), color.getGreen(), color.getBlue(), null);
+        float[] hsb = Color.RGBtoHSB(color.getRed(), color.getGreen(), color.getBlue(), null);
         Color c = Color.getHSBColor(hsb[0], hsb[1], brightness);
 
         return setAlpha(c, alpha);
@@ -466,10 +469,8 @@ public class PaintUtils {
 
         int a = over.getAlpha();
 
-        int rb = (over.getRGB() & 0x00ff00ff) * (a + 1)
-                 + (origin.getRGB() & 0x00ff00ff) * (0xff - a) & 0xff00ff00;
-        int g = (over.getRGB() & 0x0000ff00) * (a + 1)
-                + (origin.getRGB() & 0x0000ff00) * (0xff - a) & 0x00ff0000;
+        int rb = (over.getRGB() & 0x00ff00ff) * (a + 1) + (origin.getRGB() & 0x00ff00ff) * (0xff - a) & 0xff00ff00;
+        int g = (over.getRGB() & 0x0000ff00) * (a + 1) + (origin.getRGB() & 0x0000ff00) * (0xff - a) & 0x00ff0000;
 
         return new Color(over.getRGB() & 0xff000000 | (rb | g) >> 8);
     }

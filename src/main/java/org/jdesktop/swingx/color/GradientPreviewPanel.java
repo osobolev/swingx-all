@@ -189,14 +189,14 @@ public class GradientPreviewPanel extends JXPanel {
                 (float) start.getY(),
                 (float) end.getX(),
                 (float) end.getY(),
-                fractions, colors, cycle);
+                fractions, colors, cycle
+            );
         }
         return paint;
     }
 
     private void drawHandles(Graphics2D g2) {
-        g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
-            RenderingHints.VALUE_ANTIALIAS_ON);
+        g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         // draw the points and gradient line
         g2.setColor(Color.black);
         g2.drawOval((int) start.getX() - 5, (int) start.getY() - 5, 10, 10);
@@ -209,11 +209,9 @@ public class GradientPreviewPanel extends JXPanel {
         g2.drawOval((int) end.getX() - 4, (int) end.getY() - 4, 8, 8);
 
         g2.setColor(Color.darkGray);
-        g2.drawLine((int) start.getX(), (int) start.getY(),
-            (int) end.getX(), (int) end.getY());
+        g2.drawLine((int) start.getX(), (int) start.getY(), (int) end.getX(), (int) end.getY());
         g2.setColor(Color.gray);
-        g2.drawLine((int) start.getX() - 1, (int) start.getY() - 1,
-            (int) end.getX() - 1, (int) end.getY() - 1);
+        g2.drawLine((int) start.getX() - 1, (int) start.getY() - 1, (int) end.getX() - 1, (int) end.getY() - 1);
     }
 
     private class GradientMouseHandler extends MouseInputAdapter {

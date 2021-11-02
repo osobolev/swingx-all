@@ -44,8 +44,7 @@ public class WindowsClassicLookAndFeelAddons extends WindowsLookAndFeelAddons {
 
         if (isSystemAddon()) {
             //special-case the jgoodies to ensure that we can match it
-            return getSystemLookAndFeelClassName().equals(laf)
-                   || "com.jgoodies.looks.windows.WindowsLookAndFeel".equals(laf);
+            return getSystemLookAndFeelClassName().equals(laf) || "com.jgoodies.looks.windows.WindowsLookAndFeel".equals(laf);
         }
 
         return "com.sun.java.swing.plaf.windows.WindowsClassicLookAndFeel".equals(laf);

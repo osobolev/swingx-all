@@ -49,8 +49,7 @@ public class WindowsLookAndFeelAddons extends BasicLookAndFeelAddons {
             String laf = getLookAndFeel().getClass().getName();
 
             //special-case the jgoodies to ensure that we can match it
-            return getSystemLookAndFeelClassName().equals(laf)
-                   || "com.jgoodies.looks.windows.WindowsLookAndFeel".equals(laf);
+            return getSystemLookAndFeelClassName().equals(laf) || "com.jgoodies.looks.windows.WindowsLookAndFeel".equals(laf);
         }
 
         return false;

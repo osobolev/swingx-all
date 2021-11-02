@@ -47,12 +47,10 @@ import java.util.logging.Logger;
  *
  * @author Jeanette Winzenburg, Berlin
  */
-public abstract class RolloverController<T extends JComponent> implements
-    PropertyChangeListener {
+public abstract class RolloverController<T extends JComponent> implements PropertyChangeListener {
 
     @SuppressWarnings("unused")
-    private static final Logger LOG = Logger.getLogger(RolloverController.class
-        .getName());
+    private static final Logger LOG = Logger.getLogger(RolloverController.class.getName());
     /**
      * the key of the rollover click action which is installed in the
      * component's actionMap.
@@ -136,8 +134,7 @@ public abstract class RolloverController<T extends JComponent> implements
      * @param prepare
      * @return <code>RolloverRenderer</code> at the given location
      */
-    protected abstract RolloverRenderer getRolloverRenderer(Point location,
-                                                            boolean prepare);
+    protected abstract RolloverRenderer getRolloverRenderer(Point location, boolean prepare);
 
     /**
      * Returns a boolean indicating whether or not the cell at the given
@@ -192,8 +189,7 @@ public abstract class RolloverController<T extends JComponent> implements
     protected void unregisterExecuteButtonAction() {
         component.getActionMap().put(EXECUTE_BUTTON_ACTIONCOMMAND, null);
         KeyStroke space = KeyStroke.getKeyStroke("released SPACE");
-        component.getInputMap(JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT).put(
-            space, null);
+        component.getInputMap(JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT).put(space, null);
     }
 
     /**
@@ -201,11 +197,9 @@ public abstract class RolloverController<T extends JComponent> implements
      * actionMap/inputMap.
      */
     protected void registerExecuteButtonAction() {
-        component.getActionMap().put(EXECUTE_BUTTON_ACTIONCOMMAND,
-            createExecuteButtonAction());
+        component.getActionMap().put(EXECUTE_BUTTON_ACTIONCOMMAND, createExecuteButtonAction());
         KeyStroke space = KeyStroke.getKeyStroke("released SPACE");
-        component.getInputMap(JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT).put(
-            space, EXECUTE_BUTTON_ACTIONCOMMAND);
+        component.getInputMap(JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT).put(space, EXECUTE_BUTTON_ACTIONCOMMAND);
     }
 
     /**

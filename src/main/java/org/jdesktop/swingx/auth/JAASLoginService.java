@@ -42,8 +42,7 @@ import java.util.logging.Logger;
 @JavaBean
 public class JAASLoginService extends LoginService {
 
-    private static final Logger LOG = Logger.getLogger(JAASLoginService.class
-        .getName());
+    private static final Logger LOG = Logger.getLogger(JAASLoginService.class.getName());
 
     protected LoginContext loginContext;
 
@@ -78,8 +77,7 @@ public class JAASLoginService extends LoginService {
         // Create a login context for the appropriate server and attempt to
         // authenticate the user.
         try {
-            loginContext = new LoginContext(getServer(),
-                new JAASCallbackHandler(name, password));
+            loginContext = new LoginContext(getServer(), new JAASCallbackHandler(name, password));
             loginContext.login();
             return true;
         } catch (Throwable e) {

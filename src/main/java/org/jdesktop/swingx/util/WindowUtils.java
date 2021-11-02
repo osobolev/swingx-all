@@ -98,8 +98,7 @@ public final class WindowUtils {
         int width = window.getWidth();
         int height = window.getHeight();
 
-        return new Point((screenWidth - width) / 2 + usableBounds.x,
-            (screenHeight - height) / 2 + usableBounds.y);
+        return new Point((screenWidth - width) / 2 + usableBounds.x, (screenHeight - height) / 2 + usableBounds.y);
     }
 
     /**
@@ -120,8 +119,7 @@ public final class WindowUtils {
      */
     public static Point getPointForCentering(JInternalFrame window) {
         Window w = SwingUtilities.getWindowAncestor(window);
-        GraphicsConfiguration gc = w == null ? getDefaultGraphicsConfiguration()
-            : w.getGraphicsConfiguration();
+        GraphicsConfiguration gc = w == null ? getDefaultGraphicsConfiguration() : w.getGraphicsConfiguration();
 
         Rectangle usableBounds = getUsableDeviceBounds(gc);
         int screenWidth = usableBounds.width;
@@ -129,8 +127,7 @@ public final class WindowUtils {
         int width = window.getWidth();
         int height = window.getHeight();
 
-        return new Point((screenWidth - width) / 2 + usableBounds.x,
-            (screenHeight - height) / 2 + usableBounds.y);
+        return new Point((screenWidth - width) / 2 + usableBounds.x, (screenHeight - height) / 2 + usableBounds.y);
     }
 
     /**

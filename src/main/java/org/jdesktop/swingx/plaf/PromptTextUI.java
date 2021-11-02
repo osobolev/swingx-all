@@ -60,8 +60,7 @@ public abstract class PromptTextUI extends TextUI {
          * {@inheritDoc}
          */
         @Override
-        public Object addHighlight(int p0, int p1, HighlightPainter p)
-            throws BadLocationException {
+        public Object addHighlight(int p0, int p1, HighlightPainter p) throws BadLocationException {
             return new Object();
         }
 
@@ -69,8 +68,7 @@ public abstract class PromptTextUI extends TextUI {
          * {@inheritDoc}
          */
         @Override
-        public void changeHighlight(Object tag, int p0, int p1)
-            throws BadLocationException {
+        public void changeHighlight(Object tag, int p0, int p1) throws BadLocationException {
 
         }
 
@@ -198,21 +196,17 @@ public abstract class PromptTextUI extends TextUI {
         if (promptComponent == null) {
             promptComponent = createPromptComponent();
         }
-        if (txt.isFocusOwner()
-            && PromptSupport.getFocusBehavior(txt) == FocusBehavior.HIDE_PROMPT) {
+        if (txt.isFocusOwner() && PromptSupport.getFocusBehavior(txt) == FocusBehavior.HIDE_PROMPT) {
             promptComponent.setText(null);
         } else {
             promptComponent.setText(PromptSupport.getPrompt(txt));
         }
 
         promptComponent.getHighlighter().removeAllHighlights();
-        if (txt.isFocusOwner()
-            && PromptSupport.getFocusBehavior(txt) == FocusBehavior.HIGHLIGHT_PROMPT) {
+        if (txt.isFocusOwner() && PromptSupport.getFocusBehavior(txt) == FocusBehavior.HIGHLIGHT_PROMPT) {
             promptComponent.setForeground(txt.getSelectedTextColor());
             try {
-                promptComponent.getHighlighter().addHighlight(0,
-                    promptComponent.getText().length(),
-                    new DefaultHighlightPainter(txt.getSelectionColor()));
+                promptComponent.getHighlighter().addHighlight(0, promptComponent.getText().length(), new DefaultHighlightPainter(txt.getSelectionColor()));
             } catch (BadLocationException e) {
                 e.printStackTrace();
             }
@@ -223,13 +217,11 @@ public abstract class PromptTextUI extends TextUI {
         if (PromptSupport.getFontStyle(txt) == null) {
             promptComponent.setFont(txt.getFont());
         } else {
-            promptComponent.setFont(txt.getFont().deriveFont(
-                PromptSupport.getFontStyle(txt).intValue()));
+            promptComponent.setFont(txt.getFont().deriveFont(PromptSupport.getFontStyle(txt).intValue()));
         }
 
         promptComponent.setBackground(PromptSupport.getBackground(txt));
-        promptComponent.setHighlighter(new PainterHighlighter(PromptSupport
-            .getBackgroundPainter(txt)));
+        promptComponent.setHighlighter(new PainterHighlighter(PromptSupport.getBackgroundPainter(txt)));
         promptComponent.setEnabled(txt.isEnabled());
         promptComponent.setOpaque(txt.isOpaque());
         promptComponent.setBounds(txt.getBounds());
@@ -239,8 +231,7 @@ public abstract class PromptTextUI extends TextUI {
             promptComponent.setBorder(txt.getBorder());
         } else {
             Insets insets = b.getBorderInsets(txt);
-            promptComponent.setBorder(
-                createEmptyBorder(insets.top, insets.left, insets.bottom, insets.right));
+            promptComponent.setBorder(createEmptyBorder(insets.top, insets.left, insets.bottom, insets.right));
         }
 
         promptComponent.setSelectedTextColor(txt.getSelectedTextColor());
@@ -324,8 +315,7 @@ public abstract class PromptTextUI extends TextUI {
      * painted inside the label text)
      */
     @Override
-    public Rectangle modelToView(JTextComponent t, int pos, Bias bias)
-        throws BadLocationException {
+    public Rectangle modelToView(JTextComponent t, int pos, Bias bias) throws BadLocationException {
         if (shouldPaintPrompt(t)) {
             return getPromptComponent(t).getUI().modelToView(t, pos, bias);
         } else {
@@ -338,8 +328,7 @@ public abstract class PromptTextUI extends TextUI {
      * {@link Bias#Forward}.
      */
     @Override
-    public Rectangle modelToView(JTextComponent t, int pos)
-        throws BadLocationException {
+    public Rectangle modelToView(JTextComponent t, int pos) throws BadLocationException {
         return modelToView(t, pos, Bias.Forward);
     }
 
@@ -352,8 +341,7 @@ public abstract class PromptTextUI extends TextUI {
     }
 
     @Override
-    public void damageRange(JTextComponent t, int p0, int p1, Bias firstBias,
-                            Bias secondBias) {
+    public void damageRange(JTextComponent t, int p0, int p1, Bias firstBias, Bias secondBias) {
         delegate.damageRange(t, p0, p1, firstBias, secondBias);
     }
 
@@ -393,10 +381,8 @@ public abstract class PromptTextUI extends TextUI {
     }
 
     @Override
-    public int getNextVisualPositionFrom(JTextComponent t, int pos, Bias b,
-                                         int direction, Bias[] biasRet) throws BadLocationException {
-        return delegate
-            .getNextVisualPositionFrom(t, pos, b, direction, biasRet);
+    public int getNextVisualPositionFrom(JTextComponent t, int pos, Bias b, int direction, Bias[] biasRet) throws BadLocationException {
+        return delegate.getNextVisualPositionFrom(t, pos, b, direction, biasRet);
     }
 
     @Override
@@ -416,8 +402,7 @@ public abstract class PromptTextUI extends TextUI {
 
     @Override
     public String toString() {
-        return String.format("%s (%s)", getClass().getName(), delegate
-            .toString());
+        return String.format("%s (%s)", getClass().getName(), delegate.toString());
     }
 
     @Override

@@ -74,8 +74,7 @@ import java.util.logging.Logger;
 public class BasicHyperlinkUI extends BasicButtonUI {
 
     @SuppressWarnings("unused")
-    private static final Logger LOG = Logger.getLogger(BasicHyperlinkUI.class
-        .getName());
+    private static final Logger LOG = Logger.getLogger(BasicHyperlinkUI.class.getName());
 
     public static ComponentUI createUI(JComponent c) {
         return new BasicHyperlinkUI();
@@ -183,11 +182,12 @@ public class BasicHyperlinkUI extends BasicButtonUI {
         g.setFont(f);
 
         // layout the text and icon
-        String text = SwingUtilities.layoutCompoundLabel(c, fm, b.getText(), b
+        String text = SwingUtilities.layoutCompoundLabel(
+            c, fm, b.getText(), b
             .getIcon(), b.getVerticalAlignment(), b
             .getHorizontalAlignment(), b.getVerticalTextPosition(), b
-            .getHorizontalTextPosition(), viewRect, iconRect, textRect, b
-                                                                            .getText() == null ? 0 : b.getIconTextGap());
+            .getHorizontalTextPosition(), viewRect, iconRect, textRect, b.getText() == null ? 0 : b.getIconTextGap()
+        );
 
         clearTextShiftOffset();
 
@@ -235,8 +235,7 @@ public class BasicHyperlinkUI extends BasicButtonUI {
      * @param text     String to render
      * @param v        the View to use.
      */
-    protected void paintHTMLText(Graphics g, AbstractButton b,
-                                 Rectangle textRect, String text, View v) {
+    protected void paintHTMLText(Graphics g, AbstractButton b, Rectangle textRect, String text, View v) {
         textRect.x += getTextShiftOffset();
         textRect.y += getTextShiftOffset();
         // fix #441-swingx - underline not painted for html
@@ -258,8 +257,7 @@ public class BasicHyperlinkUI extends BasicButtonUI {
      * Overridden to paint the underline on rollover.
      */
     @Override
-    protected void paintText(Graphics g, AbstractButton b, Rectangle textRect,
-                             String text) {
+    protected void paintText(Graphics g, AbstractButton b, Rectangle textRect, String text) {
         //kgs -- SwingX #415: pixel-shift when disabled
         //BasicButtonUI shifts disabled text to the left by 1 pixel
         //we compensate for that here, so that all Hyperlinks paint
@@ -274,23 +272,23 @@ public class BasicHyperlinkUI extends BasicButtonUI {
         }
     }
 
-    private void paintUnderline(Graphics g, AbstractButton b, Rectangle rect,
-                                String text) {
+    private void paintUnderline(Graphics g, AbstractButton b, Rectangle rect, String text) {
         // JW: copied from JXTable.LinkRenderer
         FontMetrics fm = g.getFontMetrics();
         int descent = fm.getDescent();
 
         // REMIND(aim): should we be basing the underline on
         // the font's baseline instead of the text bounds?
-        g.drawLine(rect.x + getTextShiftOffset(),
+        g.drawLine(
+            rect.x + getTextShiftOffset(),
             rect.y + rect.height - descent + 1 + getTextShiftOffset(),
             rect.x + rect.width + getTextShiftOffset(),
-            rect.y + rect.height - descent + 1 + getTextShiftOffset());
+            rect.y + rect.height - descent + 1 + getTextShiftOffset()
+        );
     }
 
     @Override
-    protected void paintFocus(Graphics g, AbstractButton b, Rectangle viewRect,
-                              Rectangle textRect, Rectangle iconRect) {
+    protected void paintFocus(Graphics g, AbstractButton b, Rectangle viewRect, Rectangle textRect, Rectangle iconRect) {
         if (b.getParent() instanceof JToolBar) {
             // Windows doesn't draw the focus rect for buttons in a toolbar.
             return;
@@ -303,8 +301,7 @@ public class BasicHyperlinkUI extends BasicButtonUI {
         Rectangle iconTextRect = getIconTextRect(b);
         // PENDING JW: better factor handling of insets - the bare union doesn't respect insets
 //        Rectangle iconTextRect = textRect.union(iconRect);
-        BasicGraphicsUtils.drawDashedRect(g, iconTextRect.x, iconTextRect.y,
-            iconTextRect.width, iconTextRect.height);
+        BasicGraphicsUtils.drawDashedRect(g, iconTextRect.x, iconTextRect.y, iconTextRect.width, iconTextRect.height);
         // pre-#167-swingx: active area too large
 //        int width = b.getWidth();
 //        int height = b.getHeight();
@@ -341,7 +338,8 @@ public class BasicHyperlinkUI extends BasicButtonUI {
      * @return
      */
     private boolean isInside(Rectangle iconTextRect, int x, int y) {
-        if (iconTextRect == null) return false;
+        if (iconTextRect == null)
+            return false;
         return iconTextRect.contains(x, y);
     }
 
@@ -368,10 +366,9 @@ public class BasicHyperlinkUI extends BasicButtonUI {
         Rectangle viewR = new Rectangle(b.getSize());
 
         SwingUtilities.layoutCompoundLabel(b, fm, text, icon,
-            b.getVerticalAlignment(), b.getHorizontalAlignment(), b
-                .getVerticalTextPosition(), b
-                .getHorizontalTextPosition(), viewR, iconR, textR,
-            text == null ? 0 : b.getIconTextGap());
+            b.getVerticalAlignment(), b.getHorizontalAlignment(), b.getVerticalTextPosition(), b.getHorizontalTextPosition(), viewR, iconR, textR,
+            text == null ? 0 : b.getIconTextGap()
+        );
 
         /*
          * The preferred size of the button is the size of the text and icon
@@ -423,8 +420,7 @@ public class BasicHyperlinkUI extends BasicButtonUI {
          */
         public static View createHTMLView(JComponent c, String html) {
             BasicEditorKit kit = getFactory();
-            Document doc = kit.createDefaultDocument(c.getFont(),
-                c.getForeground());
+            Document doc = kit.createDefaultDocument(c.getFont(), c.getForeground());
             Object base = c.getClientProperty(documentBaseKey);
             if (base instanceof URL) {
                 ((HTMLDocument) doc).setBase((URL) base);
@@ -498,8 +494,7 @@ public class BasicHyperlinkUI extends BasicButtonUI {
              * Sets the async policy to flush everything in one chunk, and
              * to not display unknown tags.
              */
-            public Document createDefaultDocument(Font defaultFont,
-                                                  Color foreground) {
+            public Document createDefaultDocument(Font defaultFont, Color foreground) {
                 StyleSheet styles = getStyleSheet();
                 StyleSheet ss = new StyleSheet();
                 ss.addStyleSheet(styles);
@@ -785,8 +780,7 @@ public class BasicHyperlinkUI extends BasicButtonUI {
              * @see View#viewToModel
              */
             @Override
-            public Shape modelToView(int p0, Position.Bias b0, int p1,
-                                     Position.Bias b1, Shape a) throws BadLocationException {
+            public Shape modelToView(int p0, Position.Bias b0, int p1, Position.Bias b1, Shape a) throws BadLocationException {
                 return view.modelToView(p0, b0, p1, b1, a);
             }
 

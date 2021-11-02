@@ -222,7 +222,8 @@ public class JXDialog extends JDialog {
      * Here: uses the content's name as title.
      */
     protected void setTitleFromContent() {
-        if (content == null) return;
+        if (content == null)
+            return;
         setTitle(content.getName());
     }
 
@@ -251,8 +252,8 @@ public class JXDialog extends JDialog {
      */
     @Override
     public void setVisible(boolean visible) {
-        if (content == null) throw
-            new IllegalStateException("content must be built before showing the dialog");
+        if (content == null)
+            throw new IllegalStateException("content must be built before showing the dialog");
         super.setVisible(visible);
     }
 
@@ -318,8 +319,7 @@ public class JXDialog extends JDialog {
 
     private Action createCloseAction() {
         String actionName = getUIString(CLOSE_ACTION_COMMAND);
-        BoundAction action = new BoundAction(actionName,
-            CLOSE_ACTION_COMMAND);
+        BoundAction action = new BoundAction(actionName, CLOSE_ACTION_COMMAND);
         action.registerCallback(this, "doClose");
         return action;
     }

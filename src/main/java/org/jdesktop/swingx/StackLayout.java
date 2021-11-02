@@ -74,8 +74,7 @@ public class StackLayout implements LayoutManager2 {
      * {@inheritDoc}
      */
     @Override
-    public void addLayoutComponent(Component comp,
-                                   Object constraints) {
+    public void addLayoutComponent(Component comp, Object constraints) {
         synchronized (comp.getTreeLock()) {
             if (BOTTOM.equals(constraints)) {
                 components.add(0, comp);
@@ -179,8 +178,7 @@ public class StackLayout implements LayoutManager2 {
      */
     @Override
     public Dimension maximumLayoutSize(Container target) {
-        return new Dimension(Integer.MAX_VALUE,
-            Integer.MAX_VALUE);
+        return new Dimension(Integer.MAX_VALUE, Integer.MAX_VALUE);
     }
 
     /**

@@ -137,7 +137,8 @@ public abstract class AbstractHighlighter implements Highlighter {
         if (predicate == null) {
             predicate = HighlightPredicate.ALWAYS;
         }
-        if (areEqual(predicate, getHighlightPredicate())) return;
+        if (areEqual(predicate, getHighlightPredicate()))
+            return;
         this.predicate = predicate;
         fireStateChanged();
     }
@@ -168,8 +169,7 @@ public abstract class AbstractHighlighter implements Highlighter {
      */
     @Override
     public Component highlight(Component component, ComponentAdapter adapter) {
-        if (canHighlight(component, adapter) &&
-            getHighlightPredicate().isHighlighted(component, adapter)) {
+        if (canHighlight(component, adapter) && getHighlightPredicate().isHighlighted(component, adapter)) {
             component = doHighlight(component, adapter);
         }
         return component;
@@ -198,8 +198,7 @@ public abstract class AbstractHighlighter implements Highlighter {
      * @param adapter   the ComponentAdapter for this decorate operation
      * @see #highlight(Component, ComponentAdapter)
      */
-    protected abstract Component doHighlight(Component component,
-                                             ComponentAdapter adapter);
+    protected abstract Component doHighlight(Component component, ComponentAdapter adapter);
 
     /**
      * Returns true if the to objects are either both null or equal
@@ -210,7 +209,8 @@ public abstract class AbstractHighlighter implements Highlighter {
      * @return true if both are null or equal other, false otherwise.
      */
     protected boolean areEqual(Object oneItem, Object anotherItem) {
-        if (oneItem == null && anotherItem == null) return true;
+        if (oneItem == null && anotherItem == null)
+            return true;
         if (anotherItem != null) {
             return anotherItem.equals(oneItem);
         }

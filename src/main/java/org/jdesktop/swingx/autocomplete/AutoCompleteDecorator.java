@@ -72,9 +72,9 @@ import static java.util.Collections.unmodifiableList;
 public class AutoCompleteDecorator {
 
     //these keys were pulled from BasicComboBoxUI from Sun JDK 1.6.0_20
-    private static final List<String> COMBO_BOX_ACTIONS = unmodifiableList(asList("selectNext",
-        "selectNext2", "selectPrevious", "selectPrevious2", "pageDownPassThrough",
-        "pageUpPassThrough", "homePassThrough", "endPassThrough"));
+    private static final List<String> COMBO_BOX_ACTIONS = unmodifiableList(asList(
+        "selectNext", "selectNext2", "selectPrevious", "selectPrevious2", "pageDownPassThrough", "pageUpPassThrough", "homePassThrough", "endPassThrough"
+    ));
     /**
      * A TextAction that provides an error feedback for the text component that invoked
      * the action. The error feedback is most likely a "beep".
@@ -109,16 +109,15 @@ public class AutoCompleteDecorator {
         componentMap.setParent(map);
     }
 
-    static AutoCompleteDocument createAutoCompleteDocument(
-        AbstractAutoCompleteAdaptor adaptor, boolean strictMatching,
-        ObjectToStringConverter stringConverter, Document delegate) {
+    static AutoCompleteDocument createAutoCompleteDocument(AbstractAutoCompleteAdaptor adaptor,
+                                                           boolean strictMatching,
+                                                           ObjectToStringConverter stringConverter,
+                                                           Document delegate) {
         if (delegate instanceof StyledDocument) {
-            return new AutoCompleteStyledDocument(adaptor, strictMatching,
-                stringConverter, (StyledDocument) delegate);
+            return new AutoCompleteStyledDocument(adaptor, strictMatching, stringConverter, (StyledDocument) delegate);
         }
 
-        return new AutoCompleteDocument(adaptor, strictMatching,
-            stringConverter, delegate);
+        return new AutoCompleteDocument(adaptor, strictMatching, stringConverter, delegate);
     }
 
     /**
@@ -165,8 +164,7 @@ public class AutoCompleteDecorator {
         // configure the text component=editor component
         JTextComponent editorComponent = (JTextComponent) comboBox.getEditor().getEditorComponent();
         AbstractAutoCompleteAdaptor adaptor = new ComboBoxAdaptor(comboBox);
-        AutoCompleteDocument document = createAutoCompleteDocument(adaptor, strictMatching,
-            stringConverter, editorComponent.getDocument());
+        AutoCompleteDocument document = createAutoCompleteDocument(adaptor, strictMatching, stringConverter, editorComponent.getDocument());
         decorate(editorComponent, document, adaptor);
 
         editorComponent.addKeyListener(new AutoComplete.KeyAdapter(comboBox));
@@ -345,10 +343,14 @@ public class AutoCompleteDecorator {
         }
 
         ActionMap editorActionMap = textComponent.getActionMap();
-        editorActionMap.put("nonstrict-backspace", new NonStrictBackspaceAction(
-            editorActionMap.get(DefaultEditorKit.deletePrevCharAction),
-            editorActionMap.get(DefaultEditorKit.selectionBackwardAction),
-            adaptor));
+        editorActionMap.put(
+            "nonstrict-backspace",
+            new NonStrictBackspaceAction(
+                editorActionMap.get(DefaultEditorKit.deletePrevCharAction),
+                editorActionMap.get(DefaultEditorKit.selectionBackwardAction),
+                adaptor
+            )
+        );
     }
 
     static void undecorate(JTextComponent textComponent) {

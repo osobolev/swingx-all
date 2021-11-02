@@ -46,8 +46,7 @@ import java.util.List;
  * @author Richard Bair
  * @author Jeanette Winzenburg
  */
-public class DefaultTableColumnModelExt extends DefaultTableColumnModel
-    implements TableColumnModelExt {
+public class DefaultTableColumnModelExt extends DefaultTableColumnModel implements TableColumnModelExt {
 
     /**
      * flag to distinguish a shown/hidden column from really added/removed
@@ -335,8 +334,7 @@ public class DefaultTableColumnModelExt extends DefaultTableColumnModel
         // those that are interested in this event
         for (int i = listeners.length - 2; i >= 0; i -= 2) {
             if (listeners[i] == TableColumnModelExtListener.class) {
-                ((TableColumnModelExtListener) listeners[i + 1]).
-                    columnPropertyChange(evt);
+                ((TableColumnModelExtListener) listeners[i + 1]).columnPropertyChange(evt);
             }
         }
     }

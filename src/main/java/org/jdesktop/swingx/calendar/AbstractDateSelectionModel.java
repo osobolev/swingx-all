@@ -99,7 +99,8 @@ public abstract class AbstractDateSelectionModel implements DateSelectionModel {
      */
     @Override
     public void setFirstDayOfWeek(int firstDayOfWeek) {
-        if (firstDayOfWeek == getFirstDayOfWeek()) return;
+        if (firstDayOfWeek == getFirstDayOfWeek())
+            return;
         calendar.setFirstDayOfWeek(firstDayOfWeek);
         fireValueChanged(EventType.CALENDAR_CHANGED);
     }
@@ -117,7 +118,8 @@ public abstract class AbstractDateSelectionModel implements DateSelectionModel {
      */
     @Override
     public void setMinimalDaysInFirstWeek(int minimalDays) {
-        if (minimalDays == getMinimalDaysInFirstWeek()) return;
+        if (minimalDays == getMinimalDaysInFirstWeek())
+            return;
         calendar.setMinimalDaysInFirstWeek(minimalDays);
         fireValueChanged(EventType.CALENDAR_CHANGED);
     }
@@ -135,7 +137,8 @@ public abstract class AbstractDateSelectionModel implements DateSelectionModel {
      */
     @Override
     public void setTimeZone(TimeZone timeZone) {
-        if (getTimeZone().equals(timeZone)) return;
+        if (getTimeZone().equals(timeZone))
+            return;
         TimeZone oldTimeZone = getTimeZone();
         calendar.setTimeZone(timeZone);
         adjustDatesToTimeZone(oldTimeZone);
@@ -174,7 +177,8 @@ public abstract class AbstractDateSelectionModel implements DateSelectionModel {
         if (locale == null) {
             locale = Locale.getDefault();
         }
-        if (locale.equals(getLocale())) return;
+        if (locale.equals(getLocale()))
+            return;
         this.locale = locale;
         if (calendar != null) {
             calendar = Calendar.getInstance(calendar.getTimeZone(), locale);
@@ -243,8 +247,7 @@ public abstract class AbstractDateSelectionModel implements DateSelectionModel {
         this.upperBound = upperBound;
         if (this.upperBound != null && !isSelectionEmpty()) {
             long justAboveUpperBoundMs = this.upperBound.getTime() + 1;
-            removeSelectionInterval(new Date(justAboveUpperBoundMs),
-                getLastSelectionDate());
+            removeSelectionInterval(new Date(justAboveUpperBoundMs), getLastSelectionDate());
         }
         fireValueChanged(EventType.UPPER_BOUND_CHANGED);
     }
@@ -271,8 +274,7 @@ public abstract class AbstractDateSelectionModel implements DateSelectionModel {
         if (this.lowerBound != null && !isSelectionEmpty()) {
             // Remove anything below the lower bound
             long justBelowLowerBoundMs = this.lowerBound.getTime() - 1;
-            removeSelectionInterval(getFirstSelectionDate(), new Date(
-                justBelowLowerBoundMs));
+            removeSelectionInterval(getFirstSelectionDate(), new Date(justBelowLowerBoundMs));
         }
         fireValueChanged(EventType.LOWER_BOUND_CHANGED);
     }
@@ -290,7 +292,8 @@ public abstract class AbstractDateSelectionModel implements DateSelectionModel {
      */
     @Override
     public void setAdjusting(boolean adjusting) {
-        if (adjusting == isAdjusting()) return;
+        if (adjusting == isAdjusting())
+            return;
         this.adjusting = adjusting;
         fireValueChanged(adjusting ? EventType.ADJUSTING_STARTED : EventType.ADJUSTING_STOPPED);
     }

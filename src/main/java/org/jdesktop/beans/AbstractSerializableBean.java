@@ -44,8 +44,7 @@ import java.io.Serializable;
  * @see ObjectOutputStream
  */
 @SuppressWarnings("serial")
-public abstract class AbstractSerializableBean extends AbstractBean implements
-    Serializable {
+public abstract class AbstractSerializableBean extends AbstractBean implements Serializable {
 
     /**
      * Creates a new instance of {@code AbstractSerializableBean}.
@@ -61,8 +60,7 @@ public abstract class AbstractSerializableBean extends AbstractBean implements
      * @param vcs the vetoable change support class to use
      * @throws NullPointerException if any parameter is {@code null}
      */
-    protected AbstractSerializableBean(PropertyChangeSupport pcs,
-                                       VetoableChangeSupport vcs) {
+    protected AbstractSerializableBean(PropertyChangeSupport pcs, VetoableChangeSupport vcs) {
         super(pcs, vcs);
     }
 
@@ -84,8 +82,7 @@ public abstract class AbstractSerializableBean extends AbstractBean implements
         s.writeObject(null);
     }
 
-    private void readObject(ObjectInputStream s) throws ClassNotFoundException,
-        IOException {
+    private void readObject(ObjectInputStream s) throws ClassNotFoundException, IOException {
         s.defaultReadObject();
 
         Object listenerOrNull;

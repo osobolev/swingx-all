@@ -111,7 +111,8 @@ public class TableRowHeightController {
      * Sets the row heights of all rows.
      */
     protected void updatePreferredRowHeights() {
-        if (table.getRowCount() == 0) return;
+        if (table.getRowCount() == 0)
+            return;
         updatePreferredRowHeights(0, table.getModel().getRowCount() - 1);
     }
 
@@ -206,6 +207,5 @@ public class TableRowHeightController {
     }
 
     @SuppressWarnings("unused")
-    private static final Logger LOG = Logger
-        .getLogger(TableRowHeightController.class.getName());
+    private static final Logger LOG = Logger.getLogger(TableRowHeightController.class.getName());
 }

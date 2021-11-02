@@ -39,11 +39,9 @@ import java.util.logging.Logger;
  *
  * @author Joshua Outwater
  */
-public class DatePickerFormatter extends
-    JFormattedTextField.AbstractFormatter {
+public class DatePickerFormatter extends JFormattedTextField.AbstractFormatter {
 
-    private static final Logger LOG = Logger
-        .getLogger(DatePickerFormatter.class.getName());
+    private static final Logger LOG = Logger.getLogger(DatePickerFormatter.class.getName());
     private DateFormat[] _formats = null;
 
     /**
@@ -206,7 +204,8 @@ public class DatePickerFormatter extends
      */
     private void addFormat(List<DateFormat> f, String key, Locale locale) {
         String pattern = UIManagerExt.getString(key, locale);
-        if (pattern == null) return;
+        if (pattern == null)
+            return;
         try {
             SimpleDateFormat format = new SimpleDateFormat(pattern, locale);
             f.add(format);
@@ -221,8 +220,7 @@ public class DatePickerFormatter extends
      *
      * @author Jeanette Winzenburg
      */
-    public static class DatePickerFormatterUIResource extends DatePickerFormatter
-        implements UIResource {
+    public static class DatePickerFormatterUIResource extends DatePickerFormatter implements UIResource {
 
         /**
          * @param locale

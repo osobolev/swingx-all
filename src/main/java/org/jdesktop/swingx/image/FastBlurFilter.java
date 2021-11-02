@@ -127,8 +127,7 @@ public class FastBlurFilter extends AbstractFilter {
      * @param height    the height of the source picture
      * @param radius    the radius of the blur effect
      */
-    static void blur(int[] srcPixels, int[] dstPixels,
-                     int width, int height, int radius) {
+    static void blur(int[] srcPixels, int[] dstPixels, int width, int height, int radius) {
         int windowSize = radius * 2 + 1;
         int radiusPlusOne = radius + 1;
 
@@ -179,10 +178,7 @@ public class FastBlurFilter extends AbstractFilter {
             }
 
             for (int x = 0; x < width; x++) {
-                dstPixels[dstIndex] = sumLookupTable[sumAlpha] << 24 |
-                                      sumLookupTable[sumRed] << 16 |
-                                      sumLookupTable[sumGreen] << 8 |
-                                      sumLookupTable[sumBlue];
+                dstPixels[dstIndex] = sumLookupTable[sumAlpha] << 24 | sumLookupTable[sumRed] << 16 | sumLookupTable[sumGreen] << 8 | sumLookupTable[sumBlue];
                 dstIndex += height;
 
                 int nextPixelIndex = x + radiusPlusOne;

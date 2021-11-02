@@ -81,8 +81,7 @@ public class TreeTableCellEditor extends GenericEditor {
 //    borders different in hierarchical column vs. table column
 //    
     @SuppressWarnings("unused")
-    private static final Logger LOG = Logger
-        .getLogger(TreeTableCellEditor.class.getName());
+    private static final Logger LOG = Logger.getLogger(TreeTableCellEditor.class.getName());
 
     public TreeTableCellEditor(JTree tree) {
         super(new TreeTableTextField());
@@ -102,10 +101,8 @@ public class TreeTableCellEditor extends GenericEditor {
      * constructor, and returned.
      */
     @Override
-    public Component getTableCellEditorComponent(JTable table, Object value,
-                                                 boolean isSelected, int row, int column) {
-        Component component = super.getTableCellEditorComponent(table, value,
-            isSelected, row, column);
+    public Component getTableCellEditorComponent(JTable table, Object value, boolean isSelected, int row, int column) {
+        Component component = super.getTableCellEditorComponent(table, value, isSelected, row, column);
         // JW: this implementation is not bidi-compliant, need to do better
         initEditorOffset(table, row, column, isSelected);
         return component;
@@ -115,8 +112,7 @@ public class TreeTableCellEditor extends GenericEditor {
      * @param row
      * @param isSelected
      */
-    protected void initEditorOffset(JTable table, int row, int column,
-                                    boolean isSelected) {
+    protected void initEditorOffset(JTable table, int row, int column, boolean isSelected) {
         if (tree == null)
             return;
 //        Rectangle bounds = tree.getRowBounds(row);
@@ -125,11 +121,9 @@ public class TreeTableCellEditor extends GenericEditor {
         boolean leaf = tree.getModel().isLeaf(node);
         boolean expanded = tree.isExpanded(row);
         TreeCellRenderer tcr = tree.getCellRenderer();
-        Component editorComponent = tcr.getTreeCellRendererComponent(tree, node,
-            isSelected, expanded, leaf, row, false);
+        Component editorComponent = tcr.getTreeCellRendererComponent(tree, node, isSelected, expanded, leaf, row, false);
 
-        ((TreeTableTextField) getComponent()).init(row,
-            column, table, tree, editorComponent);
+        ((TreeTableTextField) getComponent()).init(row, column, table, tree, editorComponent);
     }
 
     /**
@@ -169,7 +163,8 @@ public class TreeTableCellEditor extends GenericEditor {
          */
         private void updateIconWidth(Component treeComponent) {
             iconWidth = 0;
-            if (!(treeComponent instanceof JLabel)) return;
+            if (!(treeComponent instanceof JLabel))
+                return;
             Icon icon = ((JLabel) treeComponent).getIcon();
             if (icon != null) {
                 iconWidth = icon.getIconWidth() + ((JLabel) treeComponent).getIconTextGap();

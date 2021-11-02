@@ -58,8 +58,7 @@ public class WindowsTipOfTheDayUI extends BasicTipOfTheDayUI {
     }
 
     @Override
-    public JDialog createDialog(Component parentComponent,
-                                ShowOnStartupChoice choice) {
+    public JDialog createDialog(Component parentComponent, ShowOnStartupChoice choice) {
         return createDialog(parentComponent, choice, false);
     }
 
@@ -78,14 +77,14 @@ public class WindowsTipOfTheDayUI extends BasicTipOfTheDayUI {
 
         // tip area
         JPanel rightPane = new JPanel(new BorderLayout());
-        JLabel didYouKnow = new JLabel(UIManagerExt
-            .getString("TipOfTheDay.didYouKnowText", tipPane.getLocale()));
+        JLabel didYouKnow = new JLabel(UIManagerExt.getString("TipOfTheDay.didYouKnowText", tipPane.getLocale()));
         didYouKnow.setPreferredSize(new Dimension(50, 32));
         didYouKnow.setOpaque(true);
         didYouKnow.setBackground(UIManager.getColor("TextArea.background"));
-        didYouKnow.setBorder(new CompoundBorder(BorderFactory.createMatteBorder(0,
-            0, 2, 0, tipPane.getBackground()), BorderFactory.createEmptyBorder(4, 4,
-            4, 4)));
+        didYouKnow.setBorder(new CompoundBorder(
+            BorderFactory.createMatteBorder(0, 0, 2, 0, tipPane.getBackground()),
+            BorderFactory.createEmptyBorder(4, 4, 4, 4)
+        ));
         didYouKnow.setFont(tipPane.getFont().deriveFont(Font.BOLD, 15));
         rightPane.add("North", didYouKnow);
 
@@ -111,8 +110,7 @@ public class WindowsTipOfTheDayUI extends BasicTipOfTheDayUI {
         }
 
         @Override
-        public void paintBorder(Component c, Graphics g, int x, int y, int width,
-                                int height) {
+        public void paintBorder(Component c, Graphics g, int x, int y, int width, int height) {
             g.setColor(UIManager.getColor("TipOfTheDay.background"));
             g.drawLine(x, y, x + width - 1, y);
             g.drawLine(x, y, x, y + height - 1);

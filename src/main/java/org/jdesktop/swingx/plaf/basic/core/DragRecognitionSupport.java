@@ -86,8 +86,7 @@ public class DragRecognitionSupport {
 //            AppContext.getAppContext().put(DragRecognitionSupport.class, support);
 //        }
 
-        DragRecognitionSupport support = (DragRecognitionSupport)
-            UIManager.get("sharedInstance.dragRecognitionSupport");
+        DragRecognitionSupport support = (DragRecognitionSupport) UIManager.get("sharedInstance.dragRecognitionSupport");
         if (support == null) {
             support = new DragRecognitionSupport();
             UIManager.put("sharedInstance.dragRecognitionSupport", support);
@@ -99,8 +98,7 @@ public class DragRecognitionSupport {
      * Returns whether or not the event is potentially part of a drag sequence.
      */
     public static boolean mousePressed(MouseEvent me) {
-        return getDragRecognitionSupport().
-            mousePressedImpl(me);
+        return getDragRecognitionSupport().mousePressedImpl(me);
     }
 
     /**
@@ -108,16 +106,14 @@ public class DragRecognitionSupport {
      * that started the recognition. Otherwise, return null.
      */
     public static MouseEvent mouseReleased(MouseEvent me) {
-        return getDragRecognitionSupport().
-            mouseReleasedImpl(me);
+        return getDragRecognitionSupport().mouseReleasedImpl(me);
     }
 
     /**
      * Returns whether or not a drag gesture recognition is ongoing.
      */
     public static boolean mouseDragged(MouseEvent me, BeforeDrag bd) {
-        return getDragRecognitionSupport().
-            mouseDraggedImpl(me, bd);
+        return getDragRecognitionSupport().mouseDraggedImpl(me, bd);
     }
 
     private void clearState() {
@@ -125,16 +121,13 @@ public class DragRecognitionSupport {
         component = null;
     }
 
-    private int mapDragOperationFromModifiers(MouseEvent me,
-                                              TransferHandler th) {
+    private int mapDragOperationFromModifiers(MouseEvent me, TransferHandler th) {
 
         if (th == null || !SwingUtilities.isLeftMouseButton(me)) {
             return TransferHandler.NONE;
         }
         // PENDING JW: c'p from SunDragSourceContextPeer
-        return SwingXUtilities.
-            convertModifiersToDropAction(me.getModifiersEx(),
-                th.getSourceActions(component));
+        return SwingXUtilities.convertModifiersToDropAction(me.getModifiersEx(), th.getSourceActions(component));
     }
 
     /**
@@ -143,8 +136,7 @@ public class DragRecognitionSupport {
     private boolean mousePressedImpl(MouseEvent me) {
         component = (JComponent) me.getSource();
 
-        if (mapDragOperationFromModifiers(me, component.getTransferHandler())
-            != TransferHandler.NONE) {
+        if (mapDragOperationFromModifiers(me, component.getTransferHandler()) != TransferHandler.NONE) {
 
             motionThreshold = DragSource.getDragThreshold();
             dndArmedEvent = me;

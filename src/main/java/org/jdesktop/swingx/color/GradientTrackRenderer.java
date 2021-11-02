@@ -89,11 +89,8 @@ public class GradientTrackRenderer extends JComponent implements TrackRenderer {
         Point2D start = new Point2D.Float(0, 0);
         Point2D end = new Point2D.Float(track_width, 0);
         MultipleGradientPaint paint = new LinearGradientPaint(
-            (float) start.getX(),
-            (float) start.getY(),
-            (float) end.getX(),
-            (float) end.getY(),
-            fractions, colors);
+            (float) start.getX(), (float) start.getY(), (float) end.getX(), (float) end.getY(), fractions, colors
+        );
         g.setPaint(paint);
         g.fill(rect);
 

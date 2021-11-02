@@ -51,8 +51,7 @@ public class TableCellContext extends CellContext {
      * @param expanded  the cell's expanded state
      * @param leaf      the cell's leaf state
      */
-    public void installContext(JTable component, Object value, int row, int column,
-                               boolean selected, boolean focused, boolean expanded, boolean leaf) {
+    public void installContext(JTable component, Object value, int row, int column, boolean selected, boolean focused, boolean expanded, boolean leaf) {
         this.component = component;
         installState(value, row, column, selected, focused, expanded, leaf);
         this.dropOn = checkDropOnState();
@@ -104,7 +103,8 @@ public class TableCellContext extends CellContext {
         if (isDropOn()) {
             return getSelectionBackground();
         }
-        if (getComponent() == null) return null;
+        if (getComponent() == null)
+            return null;
         Color color = getAlternateRowColor();
         // JW: this is fixing a core bug - alternate color (aka: different 
         // from default table background) should be the odd row
@@ -123,7 +123,8 @@ public class TableCellContext extends CellContext {
      * does not handle or no alternate row color is set.
      */
     protected Color getAlternateRowColor() {
-        if (!Boolean.TRUE.equals(UIManager.get(HANDLE_ALTERNATE_ROW_BACKGROUND))) return null;
+        if (!Boolean.TRUE.equals(UIManager.get(HANDLE_ALTERNATE_ROW_BACKGROUND)))
+            return null;
         return UIManagerExt.getColor(getUIPrefix() + "alternateRowColor");
     }
 
@@ -135,10 +136,10 @@ public class TableCellContext extends CellContext {
         Color selection = null;
         if (isDropOn()) {
             selection = getDropCellBackground();
-            if (selection != null) return selection;
+            if (selection != null)
+                return selection;
         }
-        return getComponent() != null ? getComponent()
-            .getSelectionBackground() : null;
+        return getComponent() != null ? getComponent().getSelectionBackground() : null;
     }
 
     /**
@@ -149,10 +150,10 @@ public class TableCellContext extends CellContext {
         Color selection = null;
         if (isDropOn()) {
             selection = getDropCellForeground();
-            if (selection != null) return selection;
+            if (selection != null)
+                return selection;
         }
-        return getComponent() != null ? getComponent()
-            .getSelectionForeground() : null;
+        return getComponent() != null ? getComponent().getSelectionForeground() : null;
     }
 
     /**

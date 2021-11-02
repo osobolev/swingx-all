@@ -56,9 +56,7 @@ import java.awt.event.ActionEvent;
  *
  * @author Jeanette Winzenburg
  */
-public class HyperlinkProvider
-    extends ComponentProvider<JXHyperlink> implements
-    RolloverRenderer {
+public class HyperlinkProvider extends ComponentProvider<JXHyperlink> implements RolloverRenderer {
 
     private AbstractHyperlinkAction<Object> linkAction;
     protected Class<?> targetClass;
@@ -149,8 +147,10 @@ public class HyperlinkProvider
      */
     public boolean isTargetable(Object target) {
         // we accept everything
-        if (targetClass == null) return true;
-        if (target == null) return true;
+        if (targetClass == null)
+            return true;
+        if (target == null)
+            return true;
         return targetClass.isAssignableFrom(target.getClass());
     }
 
@@ -213,10 +213,8 @@ public class HyperlinkProvider
     protected void configureState(CellContext context) {
 //        rendererComponent.setHorizontalAlignment(getHorizontalAlignment());
         if (context.getComponent() != null) {
-            Point p = (Point) context.getComponent()
-                .getClientProperty(RolloverProducer.ROLLOVER_KEY);
-            if (/*hasFocus || */p != null && p.x >= 0 &&
-                                p.x == context.getColumn() && p.y == context.getRow()) {
+            Point p = (Point) context.getComponent().getClientProperty(RolloverProducer.ROLLOVER_KEY);
+            if (/*hasFocus || */p != null && p.x >= 0 && p.x == context.getColumn() && p.y == context.getRow()) {
                 if (!rendererComponent.getModel().isRollover())
                     rendererComponent.getModel().setRollover(true);
             } else {
@@ -254,8 +252,7 @@ public class HyperlinkProvider
         // Issue #840-swingx: hyperlink unreadable if selected (for dark selection colors)
         // so we only force clicked/unclicked if unselected 
         if (!context.isSelected()) {
-            rendererComponent.setForeground(linkAction.isVisited() ?
-                rendererComponent.getClickedColor() : rendererComponent.getUnclickedColor());
+            rendererComponent.setForeground(linkAction.isVisited() ? rendererComponent.getClickedColor() : rendererComponent.getUnclickedColor());
         } else {
             // JW: workaround #845-swingx which was introduced by fixing #840
             // if we interfere with the colors, need to do always. Not quite understood

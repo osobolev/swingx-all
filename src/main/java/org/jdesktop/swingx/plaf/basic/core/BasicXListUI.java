@@ -140,8 +140,7 @@ import java.beans.PropertyChangeListener;
  */
 public class BasicXListUI extends BasicListUI {
 
-    private static final StringBuilder BASELINE_COMPONENT_KEY =
-        new StringBuilder("List.baselineComponent");
+    private static final StringBuilder BASELINE_COMPONENT_KEY = new StringBuilder("List.baselineComponent");
 
     protected JXList list = null;
     protected CellRendererPane rendererPane;
@@ -262,12 +261,9 @@ public class BasicXListUI extends BasicListUI {
         map.put(new Actions(Actions.EXTEND_TO));
         map.put(new Actions(Actions.MOVE_SELECTION_TO));
 
-        map.put(TransferHandler.getCutAction().getValue(Action.NAME),
-            TransferHandler.getCutAction());
-        map.put(TransferHandler.getCopyAction().getValue(Action.NAME),
-            TransferHandler.getCopyAction());
-        map.put(TransferHandler.getPasteAction().getValue(Action.NAME),
-            TransferHandler.getPasteAction());
+        map.put(TransferHandler.getCutAction().getValue(Action.NAME), TransferHandler.getCutAction());
+        map.put(TransferHandler.getCopyAction().getValue(Action.NAME), TransferHandler.getCopyAction());
+        map.put(TransferHandler.getPasteAction().getValue(Action.NAME), TransferHandler.getPasteAction());
     }
 
 //-------------------- X-Wrapper
@@ -331,15 +327,14 @@ public class BasicXListUI extends BasicListUI {
      * @param width
      * @param height
      * @throws IllegalArgumentException if width or height < 0
-     * @throws NullPointerException if c == null
+     * @throws NullPointerException     if c == null
      */
     protected void checkBaselinePrecondition(JComponent c, int width, int height) {
         if (c == null) {
             throw new NullPointerException("Component must be non-null");
         }
         if (width < 0 || height < 0) {
-            throw new IllegalArgumentException(
-                "Width and height must be >= 0");
+            throw new IllegalArgumentException("Width and height must be >= 0");
         }
     }
 
@@ -353,7 +348,8 @@ public class BasicXListUI extends BasicListUI {
      * Installs SortUI if the list has a rowSorter. Does nothing if not.
      */
     protected void installSortUI() {
-        if (list.getRowSorter() == null) return;
+        if (list.getRowSorter() == null)
+            return;
         sortUI = new ListSortUI(list, list.getRowSorter());
     }
 
@@ -361,7 +357,8 @@ public class BasicXListUI extends BasicListUI {
      * Dispose and null's the sortUI if installed. Does nothing if not.
      */
     protected void uninstallSortUI() {
-        if (sortUI == null) return;
+        if (sortUI == null)
+            return;
         sortUI.dispose();
         sortUI = null;
     }
@@ -409,7 +406,8 @@ public class BasicXListUI extends BasicListUI {
      * @return
      */
     protected boolean processedBySortUI(ListSelectionEvent e) {
-        if (sortUI == null) return false;
+        if (sortUI == null)
+            return false;
         sortUI.viewSelectionChanged(e);
         list.repaint();
         return true;
@@ -434,20 +432,18 @@ public class BasicXListUI extends BasicListUI {
      *
      * @see #paint
      */
-    protected void paintCell(
-        Graphics g,
-        int row,
-        Rectangle rowBounds,
-        ListCellRenderer cellRenderer,
-        ListModel dataModel,
-        ListSelectionModel selModel,
-        int leadIndex) {
+    protected void paintCell(Graphics g,
+                             int row,
+                             Rectangle rowBounds,
+                             ListCellRenderer cellRenderer,
+                             ListModel dataModel,
+                             ListSelectionModel selModel,
+                             int leadIndex) {
         Object value = dataModel.getElementAt(row);
         boolean cellHasFocus = list.hasFocus() && row == leadIndex;
         boolean isSelected = selModel.isSelectedIndex(row);
 
-        Component rendererComponent =
-            cellRenderer.getListCellRendererComponent(list, value, row, isSelected, cellHasFocus);
+        Component rendererComponent = cellRenderer.getListCellRendererComponent(list, value, row, isSelected, cellHasFocus);
 
         int cx = rowBounds.x;
         int cy = rowBounds.y;
@@ -516,25 +512,17 @@ public class BasicXListUI extends BasicListUI {
 
         int startColumn, endColumn;
         if (c.getComponentOrientation().isLeftToRight()) {
-            startColumn = convertLocationToColumn(paintBounds.x,
-                paintBounds.y);
-            endColumn = convertLocationToColumn(paintBounds.x +
-                                                paintBounds.width,
-                paintBounds.y);
+            startColumn = convertLocationToColumn(paintBounds.x, paintBounds.y);
+            endColumn = convertLocationToColumn(paintBounds.x + paintBounds.width, paintBounds.y);
         } else {
-            startColumn = convertLocationToColumn(paintBounds.x +
-                                                  paintBounds.width,
-                paintBounds.y);
-            endColumn = convertLocationToColumn(paintBounds.x,
-                paintBounds.y);
+            startColumn = convertLocationToColumn(paintBounds.x + paintBounds.width, paintBounds.y);
+            endColumn = convertLocationToColumn(paintBounds.x, paintBounds.y);
         }
         int maxY = paintBounds.y + paintBounds.height;
         int leadIndex = adjustIndex(list.getLeadSelectionIndex(), list);
-        int rowIncrement = layoutOrientation == JList.HORIZONTAL_WRAP ?
-            columnCount : 1;
+        int rowIncrement = layoutOrientation == JList.HORIZONTAL_WRAP ? columnCount : 1;
 
-        for (int colCounter = startColumn; colCounter <= endColumn;
-             colCounter++) {
+        for (int colCounter = startColumn; colCounter <= endColumn; colCounter++) {
             // And then how many rows in this columnn
             int row = convertLocationToRowInColumn(paintBounds.y, colCounter);
             int rowCount = getRowCount(colCounter);
@@ -545,15 +533,11 @@ public class BasicXListUI extends BasicListUI {
                 // Not valid, bail!
                 return;
             }
-            while (row < rowCount && rowBounds.y < maxY &&
-                   index < size) {
+            while (row < rowCount && rowBounds.y < maxY && index < size) {
                 rowBounds.height = getHeight(colCounter, row);
-                g.setClip(rowBounds.x, rowBounds.y, rowBounds.width,
-                    rowBounds.height);
-                g.clipRect(paintBounds.x, paintBounds.y, paintBounds.width,
-                    paintBounds.height);
-                paintCell(g, index, rowBounds, renderer, dataModel, selModel,
-                    leadIndex);
+                g.setClip(rowBounds.x, rowBounds.y, rowBounds.width, rowBounds.height);
+                g.clipRect(paintBounds.x, paintBounds.y, paintBounds.width, paintBounds.height);
+                paintCell(g, index, rowBounds, renderer, dataModel, selModel, leadIndex);
                 rowBounds.y += rowBounds.height;
                 index += rowIncrement;
                 row++;
@@ -587,13 +571,10 @@ public class BasicXListUI extends BasicListUI {
                 if (isLeftToRight) {
                     return new Rectangle(insets.left, insets.top, DROP_LINE_THICKNESS, 20);
                 } else {
-                    return new Rectangle(list.getWidth() - DROP_LINE_THICKNESS - insets.right,
-                        insets.top, DROP_LINE_THICKNESS, 20);
+                    return new Rectangle(list.getWidth() - DROP_LINE_THICKNESS - insets.right, insets.top, DROP_LINE_THICKNESS, 20);
                 }
             } else {
-                return new Rectangle(insets.left, insets.top,
-                    list.getWidth() - insets.left - insets.right,
-                    DROP_LINE_THICKNESS);
+                return new Rectangle(insets.left, insets.top, list.getWidth() - insets.left - insets.right, DROP_LINE_THICKNESS);
             }
         }
 
@@ -604,27 +585,19 @@ public class BasicXListUI extends BasicListUI {
         if (layoutOrientation == JList.HORIZONTAL_WRAP) {
             if (index == size) {
                 decr = true;
-            } else if (index != 0 && convertModelToRow(index)
-                                     != convertModelToRow(index - 1)) {
-
+            } else if (index != 0 && convertModelToRow(index) != convertModelToRow(index - 1)) {
                 Rectangle prev = getCellBounds(list, index - 1);
                 Rectangle me = getCellBounds(list, index);
                 Point p = loc.getDropPoint();
 
                 if (isLeftToRight) {
-                    decr = Point2D.distance(prev.x + prev.width,
-                        prev.y + (int) (prev.height / 2.0),
-                        p.x, p.y)
-                           < Point2D.distance(me.x,
-                        me.y + (int) (me.height / 2.0),
-                        p.x, p.y);
+                    decr = Point2D.distance(
+                        prev.x + prev.width, prev.y + (int) (prev.height / 2.0), p.x, p.y) < Point2D.distance(me.x, me.y + (int) (me.height / 2.0), p.x, p.y
+                    );
                 } else {
-                    decr = Point2D.distance(prev.x,
-                        prev.y + (int) (prev.height / 2.0),
-                        p.x, p.y)
-                           < Point2D.distance(me.x + me.width,
-                        me.y + (int) (prev.height / 2.0),
-                        p.x, p.y);
+                    decr = Point2D.distance(
+                        prev.x, prev.y + (int) (prev.height / 2.0), p.x, p.y) < Point2D.distance(me.x + me.width, me.y + (int) (prev.height / 2.0), p.x, p.y
+                    );
                 }
             }
 
@@ -655,18 +628,13 @@ public class BasicXListUI extends BasicListUI {
                 index--;
                 rect = getCellBounds(list, index);
                 rect.y += rect.height;
-            } else if (index != 0 && convertModelToColumn(index)
-                                     != convertModelToColumn(index - 1)) {
-
+            } else if (index != 0 && convertModelToColumn(index) != convertModelToColumn(index - 1)) {
                 Rectangle prev = getCellBounds(list, index - 1);
                 Rectangle me = getCellBounds(list, index);
                 Point p = loc.getDropPoint();
-                if (Point2D.distance(prev.x + (int) (prev.width / 2.0),
-                    prev.y + prev.height,
-                    p.x, p.y)
-                    < Point2D.distance(me.x + (int) (me.width / 2.0),
-                    me.y,
-                    p.x, p.y)) {
+                if (Point2D.distance(prev.x + (int) (prev.width / 2.0), prev.y + prev.height, p.x, p.y)
+                    <
+                    Point2D.distance(me.x + (int) (me.width / 2.0), me.y, p.x, p.y)) {
 
                     index--;
                     rect = getCellBounds(list, index);
@@ -715,11 +683,9 @@ public class BasicXListUI extends BasicListUI {
         checkBaselinePrecondition(c, width, height);
         int rowHeight = list.getFixedCellHeight();
         UIDefaults lafDefaults = UIManager.getLookAndFeelDefaults();
-        Component renderer = (Component) lafDefaults.get(
-            BASELINE_COMPONENT_KEY);
+        Component renderer = (Component) lafDefaults.get(BASELINE_COMPONENT_KEY);
         if (renderer == null) {
-            ListCellRenderer lcr = (ListCellRenderer) UIManager.get(
-                "List.cellRenderer");
+            ListCellRenderer lcr = (ListCellRenderer) UIManager.get("List.cellRenderer");
 
             // fix for 6711072 some LAFs like Nimbus do not provide this
             // UIManager key and we should not through a NPE here because of it
@@ -727,8 +693,7 @@ public class BasicXListUI extends BasicListUI {
                 lcr = new DefaultListCellRenderer();
             }
 
-            renderer = lcr.getListCellRendererComponent(
-                list, "a", -1, false, false);
+            renderer = lcr.getListCellRendererComponent(list, "a", -1, false, false);
             lafDefaults.put(BASELINE_COMPONENT_KEY, renderer);
         }
         renderer.setFont(list.getFont());
@@ -742,8 +707,7 @@ public class BasicXListUI extends BasicListUI {
         if (rowHeight == -1) {
             rowHeight = renderer.getPreferredSize().height;
         }
-        return renderer.getBaseline(Integer.MAX_VALUE, rowHeight) +
-               list.getInsets().top;
+        return renderer.getBaseline(Integer.MAX_VALUE, rowHeight) + list.getInsets().top;
     }
 
     /**
@@ -754,8 +718,7 @@ public class BasicXListUI extends BasicListUI {
      * @see JComponent#getBaseline(int, int)
      * @since 1.6
      */
-    public Component.BaselineResizeBehavior getBaselineResizeBehavior(
-        JComponent c) {
+    public Component.BaselineResizeBehavior getBaselineResizeBehavior(JComponent c) {
         super.getBaselineResizeBehavior(c);
         return Component.BaselineResizeBehavior.CONSTANT_ASCENT;
     }
@@ -879,11 +842,9 @@ public class BasicXListUI extends BasicListUI {
     protected void installKeyboardActions() {
         InputMap inputMap = getInputMap(JComponent.WHEN_FOCUSED);
 
-        SwingUtilities.replaceUIInputMap(list, JComponent.WHEN_FOCUSED,
-            inputMap);
+        SwingUtilities.replaceUIInputMap(list, JComponent.WHEN_FOCUSED, inputMap);
 
-        LazyActionMap.installLazyActionMap(list, BasicXListUI.class,
-            "XList.actionMap");
+        LazyActionMap.installLazyActionMap(list, BasicXListUI.class, "XList.actionMap");
     }
 
     InputMap getInputMap(int condition) {
@@ -894,9 +855,7 @@ public class BasicXListUI extends BasicListUI {
 //                             list, this, "List.focusInputMap");
             InputMap rtlKeyMap;
 
-            if (isLeftToRight ||
-                (rtlKeyMap = (InputMap) UIManager.get("List.focusInputMap.RightToLeft"))
-                 == null) {
+            if (isLeftToRight || (rtlKeyMap = (InputMap) UIManager.get("List.focusInputMap.RightToLeft")) == null) {
 //                ((rtlKeyMap = (InputMap)DefaultLookup.get(list, this,
 //                              "List.focusInputMap.RightToLeft")) == null)) {
                 return keyMap;
@@ -1315,8 +1274,7 @@ public class BasicXListUI extends BasicListUI {
         if (row >= getElementCount()) {
             return -1;
         }
-        return cellHeights == null ? cellHeight :
-            row < cellHeights.length ? cellHeights[row] : -1;
+        return cellHeights == null ? cellHeight : row < cellHeights.length ? cellHeights[row] : -1;
     }
 
     /**
@@ -1333,8 +1291,7 @@ public class BasicXListUI extends BasicListUI {
         }
         Insets insets = list.getInsets();
         if (cellHeights == null) {
-            int row = cellHeight == 0 ? 0 :
-                (y0 - insets.top) / cellHeight;
+            int row = cellHeight == 0 ? 0 : (y0 - insets.top) / cellHeight;
             if (closest) {
                 if (row < 0) {
                     row = 0;
@@ -1402,8 +1359,7 @@ public class BasicXListUI extends BasicListUI {
         if (column < 0 || column >= columnCount) {
             return -1;
         }
-        if (layoutOrientation == JList.VERTICAL ||
-            column == 0 && columnCount == 1) {
+        if (layoutOrientation == JList.VERTICAL || column == 0 && columnCount == 1) {
             return getElementCount();
         }
         if (column >= columnCount) {
@@ -1413,12 +1369,10 @@ public class BasicXListUI extends BasicListUI {
             if (column < columnCount - 1) {
                 return rowsPerColumn;
             }
-            return getElementCount() - (columnCount - 1) *
-                                       rowsPerColumn;
+            return getElementCount() - (columnCount - 1) * rowsPerColumn;
         }
         // JList.HORIZONTAL_WRAP
-        int diff = columnCount - (columnCount * rowsPerColumn -
-                                  getElementCount());
+        int diff = columnCount - (columnCount * rowsPerColumn - getElementCount());
 
         if (column >= diff) {
             return Math.max(0, rowsPerColumn - 1);
@@ -1434,11 +1388,9 @@ public class BasicXListUI extends BasicListUI {
     private int getModelIndex(int column, int row) {
         switch (layoutOrientation) {
         case JList.VERTICAL_WRAP:
-            return Math.min(getElementCount() - 1, rowsPerColumn *
-                                                   column + Math.min(row, rowsPerColumn - 1));
+            return Math.min(getElementCount() - 1, rowsPerColumn * column + Math.min(row, rowsPerColumn - 1));
         case JList.HORIZONTAL_WRAP:
-            return Math.min(getElementCount() - 1, row * columnCount +
-                                                   column);
+            return Math.min(getElementCount() - 1, row * columnCount + column);
         default:
             return row;
         }
@@ -1480,8 +1432,7 @@ public class BasicXListUI extends BasicListUI {
             return -1;
         }
 
-        if (layoutOrientation != JList.VERTICAL && columnCount > 1 &&
-            rowsPerColumn > 0) {
+        if (layoutOrientation != JList.VERTICAL && columnCount > 1 && rowsPerColumn > 0) {
             if (layoutOrientation == JList.VERTICAL_WRAP) {
                 return index % rowsPerColumn;
             }
@@ -1501,8 +1452,7 @@ public class BasicXListUI extends BasicListUI {
             return -1;
         }
 
-        if (layoutOrientation != JList.VERTICAL && rowsPerColumn > 0 &&
-            columnCount > 1) {
+        if (layoutOrientation != JList.VERTICAL && rowsPerColumn > 0 && columnCount > 1) {
             if (layoutOrientation == JList.VERTICAL_WRAP) {
                 return index / rowsPerColumn;
             }
@@ -1605,8 +1555,7 @@ public class BasicXListUI extends BasicListUI {
      * <code>preferredHeight</code> and potentially <code>cellHeight</code>
      * instance variables.
      */
-    private void updateHorizontalLayoutState(int fixedCellWidth,
-                                             int fixedCellHeight) {
+    private void updateHorizontalLayoutState(int fixedCellWidth, int fixedCellHeight) {
         int visRows = list.getVisibleRowCount();
         int dataModelSize = getElementCount();
         Insets insets = list.getInsets();
@@ -1629,8 +1578,7 @@ public class BasicXListUI extends BasicListUI {
             int maxHeight = 0;
             if (cellHeights.length > 0) {
                 maxHeight = cellHeights[cellHeights.length - 1];
-                for (int counter = cellHeights.length - 2;
-                     counter >= 0; counter--) {
+                for (int counter = cellHeights.length - 2; counter >= 0; counter--) {
                     maxHeight = Math.max(maxHeight, cellHeights[counter]);
                 }
             }
@@ -1643,8 +1591,7 @@ public class BasicXListUI extends BasicListUI {
         if (visRows > 0) {
             rowsPerColumn = visRows;
             columnCount = Math.max(1, dataModelSize / rowsPerColumn);
-            if (dataModelSize > 0 && dataModelSize > rowsPerColumn &&
-                dataModelSize % rowsPerColumn != 0) {
+            if (dataModelSize > 0 && dataModelSize > rowsPerColumn && dataModelSize % rowsPerColumn != 0) {
                 columnCount++;
             }
             if (layoutOrientation == JList.HORIZONTAL_WRAP) {
@@ -1656,24 +1603,19 @@ public class BasicXListUI extends BasicListUI {
                 }
             }
         } else if (layoutOrientation == JList.VERTICAL_WRAP && height != 0) {
-            rowsPerColumn = Math.max(1, (listHeight - insets.top -
-                                         insets.bottom) / height);
+            rowsPerColumn = Math.max(1, (listHeight - insets.top - insets.bottom) / height);
             columnCount = Math.max(1, dataModelSize / rowsPerColumn);
-            if (dataModelSize > 0 && dataModelSize > rowsPerColumn &&
-                dataModelSize % rowsPerColumn != 0) {
+            if (dataModelSize > 0 && dataModelSize > rowsPerColumn && dataModelSize % rowsPerColumn != 0) {
                 columnCount++;
             }
-        } else if (layoutOrientation == JList.HORIZONTAL_WRAP && cellWidth > 0 &&
-                   listWidth > 0) {
-            columnCount = Math.max(1, (listWidth - insets.left -
-                                       insets.right) / cellWidth);
+        } else if (layoutOrientation == JList.HORIZONTAL_WRAP && cellWidth > 0 && listWidth > 0) {
+            columnCount = Math.max(1, (listWidth - insets.left - insets.right) / cellWidth);
             rowsPerColumn = dataModelSize / columnCount;
             if (dataModelSize % columnCount > 0) {
                 rowsPerColumn++;
             }
         }
-        preferredHeight = rowsPerColumn * cellHeight + insets.top +
-                          insets.bottom;
+        preferredHeight = rowsPerColumn * cellHeight + insets.top + insets.bottom;
     }
 
     private Handler getHandler() {
@@ -1807,7 +1749,8 @@ public class BasicXListUI extends BasicListUI {
     public class ListSelectionHandler implements ListSelectionListener {
 
         public void valueChanged(ListSelectionEvent e) {
-            if (processedBySortUI(e)) return;
+            if (processedBySortUI(e))
+                return;
             getHandler().valueChanged(e);
         }
     }
@@ -1981,47 +1924,30 @@ public class BasicXListUI extends BasicListUI {
     // PENDING JW: this is not a complete replacement of sun.UIAction ...
     private static class Actions extends UIAction {
 
-        private static final String SELECT_PREVIOUS_COLUMN =
-            "selectPreviousColumn";
-        private static final String SELECT_PREVIOUS_COLUMN_EXTEND =
-            "selectPreviousColumnExtendSelection";
-        private static final String SELECT_PREVIOUS_COLUMN_CHANGE_LEAD =
-            "selectPreviousColumnChangeLead";
+        private static final String SELECT_PREVIOUS_COLUMN = "selectPreviousColumn";
+        private static final String SELECT_PREVIOUS_COLUMN_EXTEND = "selectPreviousColumnExtendSelection";
+        private static final String SELECT_PREVIOUS_COLUMN_CHANGE_LEAD = "selectPreviousColumnChangeLead";
         private static final String SELECT_NEXT_COLUMN = "selectNextColumn";
-        private static final String SELECT_NEXT_COLUMN_EXTEND =
-            "selectNextColumnExtendSelection";
-        private static final String SELECT_NEXT_COLUMN_CHANGE_LEAD =
-            "selectNextColumnChangeLead";
+        private static final String SELECT_NEXT_COLUMN_EXTEND = "selectNextColumnExtendSelection";
+        private static final String SELECT_NEXT_COLUMN_CHANGE_LEAD = "selectNextColumnChangeLead";
         private static final String SELECT_PREVIOUS_ROW = "selectPreviousRow";
-        private static final String SELECT_PREVIOUS_ROW_EXTEND =
-            "selectPreviousRowExtendSelection";
-        private static final String SELECT_PREVIOUS_ROW_CHANGE_LEAD =
-            "selectPreviousRowChangeLead";
+        private static final String SELECT_PREVIOUS_ROW_EXTEND = "selectPreviousRowExtendSelection";
+        private static final String SELECT_PREVIOUS_ROW_CHANGE_LEAD = "selectPreviousRowChangeLead";
         private static final String SELECT_NEXT_ROW = "selectNextRow";
-        private static final String SELECT_NEXT_ROW_EXTEND =
-            "selectNextRowExtendSelection";
-        private static final String SELECT_NEXT_ROW_CHANGE_LEAD =
-            "selectNextRowChangeLead";
+        private static final String SELECT_NEXT_ROW_EXTEND = "selectNextRowExtendSelection";
+        private static final String SELECT_NEXT_ROW_CHANGE_LEAD = "selectNextRowChangeLead";
         private static final String SELECT_FIRST_ROW = "selectFirstRow";
-        private static final String SELECT_FIRST_ROW_EXTEND =
-            "selectFirstRowExtendSelection";
-        private static final String SELECT_FIRST_ROW_CHANGE_LEAD =
-            "selectFirstRowChangeLead";
+        private static final String SELECT_FIRST_ROW_EXTEND = "selectFirstRowExtendSelection";
+        private static final String SELECT_FIRST_ROW_CHANGE_LEAD = "selectFirstRowChangeLead";
         private static final String SELECT_LAST_ROW = "selectLastRow";
-        private static final String SELECT_LAST_ROW_EXTEND =
-            "selectLastRowExtendSelection";
-        private static final String SELECT_LAST_ROW_CHANGE_LEAD =
-            "selectLastRowChangeLead";
+        private static final String SELECT_LAST_ROW_EXTEND = "selectLastRowExtendSelection";
+        private static final String SELECT_LAST_ROW_CHANGE_LEAD = "selectLastRowChangeLead";
         private static final String SCROLL_UP = "scrollUp";
-        private static final String SCROLL_UP_EXTEND =
-            "scrollUpExtendSelection";
-        private static final String SCROLL_UP_CHANGE_LEAD =
-            "scrollUpChangeLead";
+        private static final String SCROLL_UP_EXTEND = "scrollUpExtendSelection";
+        private static final String SCROLL_UP_CHANGE_LEAD = "scrollUpChangeLead";
         private static final String SCROLL_DOWN = "scrollDown";
-        private static final String SCROLL_DOWN_EXTEND =
-            "scrollDownExtendSelection";
-        private static final String SCROLL_DOWN_CHANGE_LEAD =
-            "scrollDownChangeLead";
+        private static final String SCROLL_DOWN_EXTEND = "scrollDownExtendSelection";
+        private static final String SCROLL_DOWN_CHANGE_LEAD = "scrollDownChangeLead";
         private static final String SELECT_ALL = "selectAll";
         private static final String CLEAR_SELECTION = "clearSelection";
 
@@ -2044,45 +1970,32 @@ public class BasicXListUI extends BasicListUI {
         public void actionPerformed(ActionEvent e) {
             String name = getName();
             JList list = (JList) e.getSource();
-            BasicXListUI ui = (BasicXListUI) LookAndFeelUtils.getUIOfType(
-                list.getUI(), BasicXListUI.class);
+            BasicXListUI ui = (BasicXListUI) LookAndFeelUtils.getUIOfType(list.getUI(), BasicXListUI.class);
 
             if (name == SELECT_PREVIOUS_COLUMN) {
-                changeSelection(list, CHANGE_SELECTION,
-                    getNextColumnIndex(list, ui, -1), -1);
+                changeSelection(list, CHANGE_SELECTION, getNextColumnIndex(list, ui, -1), -1);
             } else if (name == SELECT_PREVIOUS_COLUMN_EXTEND) {
-                changeSelection(list, EXTEND_SELECTION,
-                    getNextColumnIndex(list, ui, -1), -1);
+                changeSelection(list, EXTEND_SELECTION, getNextColumnIndex(list, ui, -1), -1);
             } else if (name == SELECT_PREVIOUS_COLUMN_CHANGE_LEAD) {
-                changeSelection(list, CHANGE_LEAD,
-                    getNextColumnIndex(list, ui, -1), -1);
+                changeSelection(list, CHANGE_LEAD, getNextColumnIndex(list, ui, -1), -1);
             } else if (name == SELECT_NEXT_COLUMN) {
-                changeSelection(list, CHANGE_SELECTION,
-                    getNextColumnIndex(list, ui, 1), 1);
+                changeSelection(list, CHANGE_SELECTION, getNextColumnIndex(list, ui, 1), 1);
             } else if (name == SELECT_NEXT_COLUMN_EXTEND) {
-                changeSelection(list, EXTEND_SELECTION,
-                    getNextColumnIndex(list, ui, 1), 1);
+                changeSelection(list, EXTEND_SELECTION, getNextColumnIndex(list, ui, 1), 1);
             } else if (name == SELECT_NEXT_COLUMN_CHANGE_LEAD) {
-                changeSelection(list, CHANGE_LEAD,
-                    getNextColumnIndex(list, ui, 1), 1);
+                changeSelection(list, CHANGE_LEAD, getNextColumnIndex(list, ui, 1), 1);
             } else if (name == SELECT_PREVIOUS_ROW) {
-                changeSelection(list, CHANGE_SELECTION,
-                    getNextIndex(list, ui, -1), -1);
+                changeSelection(list, CHANGE_SELECTION, getNextIndex(list, ui, -1), -1);
             } else if (name == SELECT_PREVIOUS_ROW_EXTEND) {
-                changeSelection(list, EXTEND_SELECTION,
-                    getNextIndex(list, ui, -1), -1);
+                changeSelection(list, EXTEND_SELECTION, getNextIndex(list, ui, -1), -1);
             } else if (name == SELECT_PREVIOUS_ROW_CHANGE_LEAD) {
-                changeSelection(list, CHANGE_LEAD,
-                    getNextIndex(list, ui, -1), -1);
+                changeSelection(list, CHANGE_LEAD, getNextIndex(list, ui, -1), -1);
             } else if (name == SELECT_NEXT_ROW) {
-                changeSelection(list, CHANGE_SELECTION,
-                    getNextIndex(list, ui, 1), 1);
+                changeSelection(list, CHANGE_SELECTION, getNextIndex(list, ui, 1), 1);
             } else if (name == SELECT_NEXT_ROW_EXTEND) {
-                changeSelection(list, EXTEND_SELECTION,
-                    getNextIndex(list, ui, 1), 1);
+                changeSelection(list, EXTEND_SELECTION, getNextIndex(list, ui, 1), 1);
             } else if (name == SELECT_NEXT_ROW_CHANGE_LEAD) {
-                changeSelection(list, CHANGE_LEAD,
-                    getNextIndex(list, ui, 1), 1);
+                changeSelection(list, CHANGE_LEAD, getNextIndex(list, ui, 1), 1);
             } else if (name == SELECT_FIRST_ROW) {
                 changeSelection(list, CHANGE_SELECTION, 0, -1);
             } else if (name == SELECT_FIRST_ROW_EXTEND) {
@@ -2090,39 +2003,29 @@ public class BasicXListUI extends BasicListUI {
             } else if (name == SELECT_FIRST_ROW_CHANGE_LEAD) {
                 changeSelection(list, CHANGE_LEAD, 0, -1);
             } else if (name == SELECT_LAST_ROW) {
-                changeSelection(list, CHANGE_SELECTION,
-                    getElementCount(list) - 1, 1);
+                changeSelection(list, CHANGE_SELECTION, getElementCount(list) - 1, 1);
             } else if (name == SELECT_LAST_ROW_EXTEND) {
-                changeSelection(list, EXTEND_SELECTION,
-                    getElementCount(list) - 1, 1);
+                changeSelection(list, EXTEND_SELECTION, getElementCount(list) - 1, 1);
             } else if (name == SELECT_LAST_ROW_CHANGE_LEAD) {
-                changeSelection(list, CHANGE_LEAD,
-                    getElementCount(list) - 1, 1);
+                changeSelection(list, CHANGE_LEAD, getElementCount(list) - 1, 1);
             } else if (name == SCROLL_UP) {
-                changeSelection(list, CHANGE_SELECTION,
-                    getNextPageIndex(list, -1), -1);
+                changeSelection(list, CHANGE_SELECTION, getNextPageIndex(list, -1), -1);
             } else if (name == SCROLL_UP_EXTEND) {
-                changeSelection(list, EXTEND_SELECTION,
-                    getNextPageIndex(list, -1), -1);
+                changeSelection(list, EXTEND_SELECTION, getNextPageIndex(list, -1), -1);
             } else if (name == SCROLL_UP_CHANGE_LEAD) {
-                changeSelection(list, CHANGE_LEAD,
-                    getNextPageIndex(list, -1), -1);
+                changeSelection(list, CHANGE_LEAD, getNextPageIndex(list, -1), -1);
             } else if (name == SCROLL_DOWN) {
-                changeSelection(list, CHANGE_SELECTION,
-                    getNextPageIndex(list, 1), 1);
+                changeSelection(list, CHANGE_SELECTION, getNextPageIndex(list, 1), 1);
             } else if (name == SCROLL_DOWN_EXTEND) {
-                changeSelection(list, EXTEND_SELECTION,
-                    getNextPageIndex(list, 1), 1);
+                changeSelection(list, EXTEND_SELECTION, getNextPageIndex(list, 1), 1);
             } else if (name == SCROLL_DOWN_CHANGE_LEAD) {
-                changeSelection(list, CHANGE_LEAD,
-                    getNextPageIndex(list, 1), 1);
+                changeSelection(list, CHANGE_LEAD, getNextPageIndex(list, 1), 1);
             } else if (name == SELECT_ALL) {
                 selectAll(list);
             } else if (name == CLEAR_SELECTION) {
                 clearSelection(list);
             } else if (name == ADD_TO_SELECTION) {
-                int index = adjustIndex(
-                    list.getSelectionModel().getLeadSelectionIndex(), list);
+                int index = adjustIndex(list.getSelectionModel().getLeadSelectionIndex(), list);
 
                 if (!list.isSelectedIndex(index)) {
                     int oldAnchor = list.getSelectionModel().getAnchorSelectionIndex();
@@ -2132,8 +2035,7 @@ public class BasicXListUI extends BasicListUI {
                     list.setValueIsAdjusting(false);
                 }
             } else if (name == TOGGLE_AND_ANCHOR) {
-                int index = adjustIndex(
-                    list.getSelectionModel().getLeadSelectionIndex(), list);
+                int index = adjustIndex(list.getSelectionModel().getLeadSelectionIndex(), list);
 
                 if (list.isSelectedIndex(index)) {
                     list.removeSelectionInterval(index, index);
@@ -2141,15 +2043,9 @@ public class BasicXListUI extends BasicListUI {
                     list.addSelectionInterval(index, index);
                 }
             } else if (name == EXTEND_TO) {
-                changeSelection(
-                    list, EXTEND_SELECTION,
-                    adjustIndex(list.getSelectionModel().getLeadSelectionIndex(), list),
-                    0);
+                changeSelection(list, EXTEND_SELECTION, adjustIndex(list.getSelectionModel().getLeadSelectionIndex(), list), 0);
             } else if (name == MOVE_SELECTION_TO) {
-                changeSelection(
-                    list, CHANGE_SELECTION,
-                    adjustIndex(list.getSelectionModel().getLeadSelectionIndex(), list),
-                    0);
+                changeSelection(list, CHANGE_SELECTION, adjustIndex(list.getSelectionModel().getLeadSelectionIndex(), list), 0);
             }
         }
 
@@ -2174,8 +2070,7 @@ public class BasicXListUI extends BasicListUI {
 
                 // discontinuous selection actions are only enabled for
                 // DefaultListSelectionModel
-                return c != null && ((JList) c).getSelectionModel()
-                    instanceof DefaultListSelectionModel;
+                return c != null && ((JList) c).getSelectionModel() instanceof DefaultListSelectionModel;
             }
 
             return true;
@@ -2223,11 +2118,9 @@ public class BasicXListUI extends BasicListUI {
             Rectangle visRect = list.getVisibleRect();
             ListSelectionModel lsm = list.getSelectionModel();
             int lead = adjustIndex(lsm.getLeadSelectionIndex(), list);
-            Rectangle leadRect =
-                lead == -1 ? new Rectangle() : list.getCellBounds(lead, lead);
+            Rectangle leadRect = lead == -1 ? new Rectangle() : list.getCellBounds(lead, lead);
 
-            if (list.getLayoutOrientation() == JList.VERTICAL_WRAP &&
-                list.getVisibleRowCount() <= 0) {
+            if (list.getLayoutOrientation() == JList.VERTICAL_WRAP && list.getVisibleRowCount() <= 0) {
                 if (!list.getComponentOrientation().isLeftToRight()) {
                     direction = -direction;
                 }
@@ -2295,14 +2188,12 @@ public class BasicXListUI extends BasicListUI {
                 } else {
                     // down
                     // go to the last completely visible cell
-                    Point p = new Point(leadRect.x,
-                        visRect.y + visRect.height - 1);
+                    Point p = new Point(leadRect.x, visRect.y + visRect.height - 1);
                     index = list.locationToIndex(p);
                     Rectangle cellBounds = list.getCellBounds(index, index);
                     // go up one cell if last visible cell doesn't fit
                     // into visible rectangle
-                    if (cellBounds.y + cellBounds.height >
-                        visRect.y + visRect.height) {
+                    if (cellBounds.y + cellBounds.height > visRect.y + visRect.height) {
                         p.y = cellBounds.y - 1;
                         index = list.locationToIndex(p);
                         cellBounds = list.getCellBounds(index, index);
@@ -2318,8 +2209,7 @@ public class BasicXListUI extends BasicListUI {
                         cellBounds = list.getCellBounds(index, index);
                         // go one cell up if last visible cell doesn't fit
                         // into adjasted visible rectangle
-                        if (cellBounds.y + cellBounds.height >
-                            visRect.y + visRect.height) {
+                        if (cellBounds.y + cellBounds.height > visRect.y + visRect.height) {
                             p.y = cellBounds.y - 1;
                             index = list.locationToIndex(p);
                             cellBounds = list.getCellBounds(index, index);
@@ -2336,15 +2226,12 @@ public class BasicXListUI extends BasicListUI {
             return index;
         }
 
-        private void changeSelection(JList list, int type,
-                                     int index, int direction) {
+        private void changeSelection(JList list, int type, int index, int direction) {
             if (index >= 0 && index < getElementCount(list)) {
                 ListSelectionModel lsm = list.getSelectionModel();
 
                 // CHANGE_LEAD is only valid with multiple interval selection
-                if (type == CHANGE_LEAD &&
-                    list.getSelectionMode()
-                    != ListSelectionModel.MULTIPLE_INTERVAL_SELECTION) {
+                if (type == CHANGE_LEAD && list.getSelectionMode() != ListSelectionModel.MULTIPLE_INTERVAL_SELECTION) {
 
                     type = CHANGE_SELECTION;
                 }
@@ -2378,32 +2265,25 @@ public class BasicXListUI extends BasicListUI {
          * index. When scroll up makes selected index the first visible index.
          * Adjust visible rectangle respect to list's component orientation.
          */
-        private void adjustScrollPositionIfNecessary(JList list, int index,
-                                                     int direction) {
+        private void adjustScrollPositionIfNecessary(JList list, int index, int direction) {
             if (direction == 0) {
                 return;
             }
             Rectangle cellBounds = list.getCellBounds(index, index);
             Rectangle visRect = list.getVisibleRect();
             if (cellBounds != null && !visRect.contains(cellBounds)) {
-                if (list.getLayoutOrientation() == JList.VERTICAL_WRAP &&
-                    list.getVisibleRowCount() <= 0) {
+                if (list.getLayoutOrientation() == JList.VERTICAL_WRAP && list.getVisibleRowCount() <= 0) {
                     // horizontal
                     if (list.getComponentOrientation().isLeftToRight()) {
                         if (direction > 0) {
                             // right for left-to-right
-                            int x = Math.max(0,
-                                cellBounds.x + cellBounds.width - visRect.width);
-                            int startIndex =
-                                list.locationToIndex(new Point(x, cellBounds.y));
-                            Rectangle startRect = list.getCellBounds(startIndex,
-                                startIndex);
+                            int x = Math.max(0, cellBounds.x + cellBounds.width - visRect.width);
+                            int startIndex = list.locationToIndex(new Point(x, cellBounds.y));
+                            Rectangle startRect = list.getCellBounds(startIndex, startIndex);
                             if (startRect.x < x && startRect.x < cellBounds.x) {
                                 startRect.x += startRect.width;
-                                startIndex =
-                                    list.locationToIndex(startRect.getLocation());
-                                startRect = list.getCellBounds(startIndex,
-                                    startIndex);
+                                startIndex = list.locationToIndex(startRect.getLocation());
+                                startRect = list.getCellBounds(startIndex, startIndex);
                             }
                             cellBounds = startRect;
                         }
@@ -2412,44 +2292,30 @@ public class BasicXListUI extends BasicListUI {
                         if (direction > 0) {
                             // left for right-to-left
                             int x = cellBounds.x + visRect.width;
-                            int rightIndex =
-                                list.locationToIndex(new Point(x, cellBounds.y));
-                            Rectangle rightRect = list.getCellBounds(rightIndex,
-                                rightIndex);
-                            if (rightRect.x + rightRect.width > x &&
-                                rightRect.x > cellBounds.x) {
+                            int rightIndex = list.locationToIndex(new Point(x, cellBounds.y));
+                            Rectangle rightRect = list.getCellBounds(rightIndex, rightIndex);
+                            if (rightRect.x + rightRect.width > x && rightRect.x > cellBounds.x) {
                                 rightRect.width = 0;
                             }
-                            cellBounds.x = Math.max(0,
-                                rightRect.x + rightRect.width - visRect.width);
+                            cellBounds.x = Math.max(0, rightRect.x + rightRect.width - visRect.width);
                             cellBounds.width = visRect.width;
                         } else {
-                            cellBounds.x += Math.max(0,
-                                cellBounds.width - visRect.width);
+                            cellBounds.x += Math.max(0, cellBounds.width - visRect.width);
                             // adjust width to fit into visible rectangle
-                            cellBounds.width = Math.min(cellBounds.width,
-                                visRect.width);
+                            cellBounds.width = Math.min(cellBounds.width, visRect.width);
                         }
                     }
                 } else {
                     // vertical
-                    if (direction > 0 &&
-                        (cellBounds.y < visRect.y ||
-                         cellBounds.y + cellBounds.height
-                         > visRect.y + visRect.height)) {
+                    if (direction > 0 && (cellBounds.y < visRect.y || cellBounds.y + cellBounds.height > visRect.y + visRect.height)) {
                         //down
-                        int y = Math.max(0,
-                            cellBounds.y + cellBounds.height - visRect.height);
-                        int startIndex =
-                            list.locationToIndex(new Point(cellBounds.x, y));
-                        Rectangle startRect = list.getCellBounds(startIndex,
-                            startIndex);
+                        int y = Math.max(0, cellBounds.y + cellBounds.height - visRect.height);
+                        int startIndex = list.locationToIndex(new Point(cellBounds.x, y));
+                        Rectangle startRect = list.getCellBounds(startIndex, startIndex);
                         if (startRect.y < y && startRect.y < cellBounds.y) {
                             startRect.y += startRect.height;
-                            startIndex =
-                                list.locationToIndex(startRect.getLocation());
-                            startRect =
-                                list.getCellBounds(startIndex, startIndex);
+                            startIndex = list.locationToIndex(startRect.getLocation());
+                            startRect = list.getCellBounds(startIndex, startIndex);
                         }
                         cellBounds = startRect;
                         cellBounds.height = visRect.height;
@@ -2462,8 +2328,7 @@ public class BasicXListUI extends BasicListUI {
             }
         }
 
-        private int getNextColumnIndex(JList list, BasicXListUI ui,
-                                       int amount) {
+        private int getNextColumnIndex(JList list, BasicXListUI ui, int amount) {
             if (list.getLayoutOrientation() != JList.VERTICAL) {
                 int index = adjustIndex(list.getLeadSelectionIndex(), list);
                 int size = getElementCount(list);
@@ -2548,8 +2413,7 @@ public class BasicXListUI extends BasicListUI {
         public void keyTyped(KeyEvent e) {
             JList src = (JList) e.getSource();
 
-            if (getElementCount() == 0 || e.isAltDown() || e.isControlDown() || e.isMetaDown() ||
-                isNavigationKey(e)) {
+            if (getElementCount() == 0 || e.isAltDown() || e.isControlDown() || e.isMetaDown() || isNavigationKey(e)) {
                 // Nothing to select
                 return;
             }
@@ -2579,14 +2443,12 @@ public class BasicXListUI extends BasicListUI {
                 startingFromSelection = false;
                 startIndex = 0;
             }
-            int index = src.getNextMatch(prefix, startIndex,
-                Position.Bias.Forward);
+            int index = src.getNextMatch(prefix, startIndex, Position.Bias.Forward);
             if (index >= 0) {
                 src.setSelectedIndex(index);
                 src.ensureIndexIsVisible(index);
             } else if (startingFromSelection) { // wrap
-                index = src.getNextMatch(prefix, 0,
-                    Position.Bias.Forward);
+                index = src.getNextMatch(prefix, 0, Position.Bias.Forward);
                 if (index >= 0) {
                     src.setSelectedIndex(index);
                     src.ensureIndexIsVisible(index);
@@ -2704,8 +2566,7 @@ public class BasicXListUI extends BasicListUI {
                 redrawList();
 
                 InputMap inputMap = getInputMap(JComponent.WHEN_FOCUSED);
-                SwingUtilities.replaceUIInputMap(list, JComponent.WHEN_FOCUSED,
-                    inputMap);
+                SwingUtilities.replaceUIInputMap(list, JComponent.WHEN_FOCUSED, inputMap);
             } else if ("List.isFileList" == propertyName) {
                 updateIsFileList();
                 redrawList();
@@ -2869,8 +2730,7 @@ public class BasicXListUI extends BasicListUI {
                 // For single select or non-shift-click, clear the selection
                 if (isFileList &&
                     e.getID() == MouseEvent.MOUSE_PRESSED &&
-                    (!e.isShiftDown() ||
-                     list.getSelectionMode() == ListSelectionModel.SINGLE_SELECTION)) {
+                    (!e.isShiftDown() || list.getSelectionMode() == ListSelectionModel.SINGLE_SELECTION)) {
                     list.clearSelection();
                 }
             } else {

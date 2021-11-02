@@ -72,8 +72,7 @@ public class SpinningCalendarHeaderHandler extends CalendarHeaderHandler {
     public static final String FOCUSABLE_SPINNER_TEXT = "SpinningCalendarHeader.focusableSpinnerText";
 
     @SuppressWarnings("unused")
-    private static final Logger LOG = Logger
-        .getLogger(SpinningCalendarHeaderHandler.class.getName());
+    private static final Logger LOG = Logger.getLogger(SpinningCalendarHeaderHandler.class.getName());
 
     /**
      * the spinner model for year-wise navigation.
@@ -102,10 +101,7 @@ public class SpinningCalendarHeaderHandler extends CalendarHeaderHandler {
     @Override
     public void install(JXMonthView monthView) {
         super.install(monthView);
-        getHeaderComponent().setActions(
-            monthView.getActionMap().get("previousMonth"),
-            monthView.getActionMap().get("nextMonth"),
-            getYearSpinnerModel());
+        getHeaderComponent().setActions(monthView.getActionMap().get("previousMonth"), monthView.getActionMap().get("nextMonth"), getYearSpinnerModel());
         componentOrientationChanged();
         monthStringBackgroundChanged();
         fontChanged();
@@ -180,8 +176,7 @@ public class SpinningCalendarHeaderHandler extends CalendarHeaderHandler {
      * Updates the formatter of the month text to the JXMonthView's Locale.
      */
     protected void updateFormatters() {
-        SimpleDateFormat monthNameFormat = (SimpleDateFormat) DateFormat
-            .getDateInstance(DateFormat.SHORT, monthView.getLocale());
+        SimpleDateFormat monthNameFormat = (SimpleDateFormat) DateFormat.getDateInstance(DateFormat.SHORT, monthView.getLocale());
         monthNameFormat.applyPattern("MMMM");
         monthStringValue = new FormatStringValue(monthNameFormat);
     }
@@ -191,8 +186,7 @@ public class SpinningCalendarHeaderHandler extends CalendarHeaderHandler {
      */
     protected void firstDisplayedDayChanged() {
         ((YearSpinnerModel) getYearSpinnerModel()).fireStateChanged();
-        getHeaderComponent().setMonthText(
-            monthStringValue.getString(monthView.getFirstDisplayedDay()));
+        getHeaderComponent().setMonthText(monthStringValue.getString(monthView.getFirstDisplayedDay()));
     }
 
     /**
@@ -363,8 +357,7 @@ public class SpinningCalendarHeaderHandler extends CalendarHeaderHandler {
          * @param focusable the focusable property of the spinner's editor.
          */
         public void setSpinnerFocusable(boolean focusable) {
-            ((DefaultEditor) yearSpinner.getEditor()).getTextField()
-                .setFocusable(focusable);
+            ((DefaultEditor) yearSpinner.getEditor()).getTextField().setFocusable(focusable);
         }
 
         /**
@@ -402,8 +395,7 @@ public class SpinningCalendarHeaderHandler extends CalendarHeaderHandler {
                 monthText.setFont(font);
                 yearSpinner.setFont(font);
                 yearSpinner.getEditor().setFont(font);
-                ((DefaultEditor) yearSpinner.getEditor()).getTextField()
-                    .setFont(font);
+                ((DefaultEditor) yearSpinner.getEditor()).getTextField().setFont(font);
             }
         }
 
@@ -423,8 +415,7 @@ public class SpinningCalendarHeaderHandler extends CalendarHeaderHandler {
                 yearSpinner.setBackground(bg);
                 yearSpinner.setBorder(BorderFactory.createLineBorder(bg, 2));
                 yearSpinner.getEditor().setBackground(bg);
-                ((DefaultEditor) yearSpinner.getEditor()).getTextField()
-                    .setBackground(bg);
+                ((DefaultEditor) yearSpinner.getEditor()).getTextField().setBackground(bg);
             }
         }
 

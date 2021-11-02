@@ -124,8 +124,7 @@ import java.io.Serializable;
  * @see DefaultTreeRenderer
  * @see DefaultVisuals
  */
-public abstract class ComponentProvider<T extends JComponent>
-    implements Serializable, UIDependent {
+public abstract class ComponentProvider<T extends JComponent> implements Serializable, UIDependent {
 
     /**
      * component to render with.

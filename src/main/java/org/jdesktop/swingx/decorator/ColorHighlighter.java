@@ -82,8 +82,7 @@ public class ColorHighlighter extends AbstractHighlighter {
      * @param cellBackground background color for unselected cell state
      * @param cellForeground foreground color for unselected cell state
      */
-    public ColorHighlighter(HighlightPredicate predicate, Color cellBackground,
-                            Color cellForeground) {
+    public ColorHighlighter(HighlightPredicate predicate, Color cellBackground, Color cellForeground) {
         this(predicate, cellBackground, cellForeground, null, null);
     }
 
@@ -97,8 +96,7 @@ public class ColorHighlighter extends AbstractHighlighter {
      * @param selectedBackground background color for selected cell state
      * @param selectedForeground foreground color for selected cell state
      */
-    public ColorHighlighter(Color cellBackground, Color cellForeground,
-                            Color selectedBackground, Color selectedForeground) {
+    public ColorHighlighter(Color cellBackground, Color cellForeground, Color selectedBackground, Color selectedForeground) {
         this(null, cellBackground, cellForeground, selectedBackground, selectedForeground);
     }
 
@@ -112,9 +110,7 @@ public class ColorHighlighter extends AbstractHighlighter {
      * @param selectedBackground background color for selected cell state
      * @param selectedForeground foreground color for selected cell state
      */
-    public ColorHighlighter(HighlightPredicate predicate, Color cellBackground,
-                            Color cellForeground, Color selectedBackground,
-                            Color selectedForeground) {
+    public ColorHighlighter(HighlightPredicate predicate, Color cellBackground, Color cellForeground, Color selectedBackground, Color selectedForeground) {
         super(predicate);
         this.background = cellBackground;
         this.foreground = cellForeground;
@@ -186,7 +182,8 @@ public class ColorHighlighter extends AbstractHighlighter {
      *              or null, to clear any existing background color
      */
     public void setBackground(Color color) {
-        if (areEqual(color, getBackground())) return;
+        if (areEqual(color, getBackground()))
+            return;
         background = color;
         fireStateChanged();
     }
@@ -209,7 +206,8 @@ public class ColorHighlighter extends AbstractHighlighter {
      *              or null, to clear any existing foreground color
      */
     public void setForeground(Color color) {
-        if (areEqual(color, getForeground())) return;
+        if (areEqual(color, getForeground()))
+            return;
         foreground = color;
         fireStateChanged();
     }
@@ -232,7 +230,8 @@ public class ColorHighlighter extends AbstractHighlighter {
      *              or null, to clear any existing selected background color
      */
     public void setSelectedBackground(Color color) {
-        if (areEqual(color, getSelectedBackground())) return;
+        if (areEqual(color, getSelectedBackground()))
+            return;
         selectedBackground = color;
         fireStateChanged();
     }
@@ -255,7 +254,8 @@ public class ColorHighlighter extends AbstractHighlighter {
      *              or null, to clear any existing selected foreground color
      */
     public void setSelectedForeground(Color color) {
-        if (areEqual(color, getSelectedForeground())) return;
+        if (areEqual(color, getSelectedForeground()))
+            return;
         selectedForeground = color;
         fireStateChanged();
     }

@@ -149,7 +149,8 @@ public class CalendarUtils {
      * @return the end of day of the last day in DST, or null if not using DST.
      */
     public static Date getEndOfDST(Calendar calendar) {
-        if (!calendar.getTimeZone().useDaylightTime()) return null;
+        if (!calendar.getTimeZone().useDaylightTime())
+            return null;
         long old = calendar.getTimeInMillis();
         calendar.set(Calendar.MONTH, Calendar.DECEMBER);
         endOfMonth(calendar);
@@ -176,7 +177,8 @@ public class CalendarUtils {
      * @return the start of day of the first day in DST, or null if not using DST.
      */
     public static Date getStartOfDST(Calendar calendar) {
-        if (!calendar.getTimeZone().useDaylightTime()) return null;
+        if (!calendar.getTimeZone().useDaylightTime())
+            return null;
         long old = calendar.getTimeInMillis();
         calendar.set(Calendar.MONTH, Calendar.JANUARY);
         startOfMonth(calendar);

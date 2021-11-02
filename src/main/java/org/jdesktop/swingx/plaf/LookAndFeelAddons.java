@@ -167,13 +167,11 @@ public abstract class LookAndFeelAddons {
          */
     }
 
-    public static void setAddon(String addonClassName) throws InstantiationException,
-        IllegalAccessException, ClassNotFoundException {
+    public static void setAddon(String addonClassName) throws InstantiationException, IllegalAccessException, ClassNotFoundException {
         setAddon(Class.forName(addonClassName, true, getClassLoader()));
     }
 
-    public static void setAddon(Class<?> addonClass) throws InstantiationException,
-        IllegalAccessException {
+    public static void setAddon(Class<?> addonClass) throws InstantiationException, IllegalAccessException {
         LookAndFeelAddons addon = (LookAndFeelAddons) addonClass.newInstance();
         setAddon(addon);
     }
@@ -219,8 +217,7 @@ public abstract class LookAndFeelAddons {
         } else if (UIManager.getSystemLookAndFeelClassName().equals(laf.getClass().getName())) {
             className = getSystemAddonClassName();
         } else {
-            ServiceLoader<LookAndFeelAddons> addonLoader = ServiceLoader.load(LookAndFeelAddons.class,
-                getClassLoader());
+            ServiceLoader<LookAndFeelAddons> addonLoader = ServiceLoader.load(LookAndFeelAddons.class, getClassLoader());
 
             for (LookAndFeelAddons addon : addonLoader) {
                 if (addon.matches()) {
@@ -247,8 +244,7 @@ public abstract class LookAndFeelAddons {
      * @return the addon matching the native operating system platform.
      */
     public static String getSystemAddonClassName() {
-        ServiceLoader<LookAndFeelAddons> addonLoader = ServiceLoader.load(LookAndFeelAddons.class,
-            getClassLoader());
+        ServiceLoader<LookAndFeelAddons> addonLoader = ServiceLoader.load(LookAndFeelAddons.class, getClassLoader());
         String className = null;
 
         for (LookAndFeelAddons addon : addonLoader) {
@@ -310,11 +306,9 @@ public abstract class LookAndFeelAddons {
         // possible workaround and more debug info on #784
         if (uiClassname == null) {
             Logger logger = Logger.getLogger("LookAndFeelAddons");
-            logger.warning("Failed to retrieve UI for " + component.getClass().getName()
-                           + " with UIClassID " + component.getUIClassID());
+            logger.warning("Failed to retrieve UI for " + component.getClass().getName() + " with UIClassID " + component.getUIClassID());
             if (logger.isLoggable(Level.FINE)) {
-                logger.fine("Existing UI defaults keys: "
-                            + new ArrayList<>(UIManager.getDefaults().keySet()));
+                logger.fine("Existing UI defaults keys: " + new ArrayList<>(UIManager.getDefaults().keySet()));
             }
             // really ugly hack. Should be removed as soon as we figure out what is causing the
             // issue

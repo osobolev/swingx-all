@@ -51,17 +51,13 @@ public class TipOfTheDayAddon extends AbstractComponentAddon {
         font = font.deriveFont(Font.BOLD, 13f);
 
         defaults.add(JXTipOfTheDay.uiClassID, BasicTipOfTheDayUI.class.getName());
-        defaults.add("TipOfTheDay.font", UIManagerExt.getSafeFont("TextPane.font",
-            new FontUIResource("Serif", Font.PLAIN, 12)));
+        defaults.add("TipOfTheDay.font", UIManagerExt.getSafeFont("TextPane.font", new FontUIResource("Serif", Font.PLAIN, 12)));
         defaults.add("TipOfTheDay.tipFont", new FontUIResource(font));
         defaults.add("TipOfTheDay.background", new ColorUIResource(Color.WHITE));
-        defaults.add("TipOfTheDay.icon",
-            LookAndFeel.makeIcon(BasicTipOfTheDayUI.class, "resources/TipOfTheDay24.gif"));
-        defaults.add("TipOfTheDay.border", new BorderUIResource(
-            BorderFactory.createLineBorder(new Color(117, 117, 117))));
+        defaults.add("TipOfTheDay.icon", LookAndFeel.makeIcon(BasicTipOfTheDayUI.class, "resources/TipOfTheDay24.gif"));
+        defaults.add("TipOfTheDay.border", new BorderUIResource(BorderFactory.createLineBorder(new Color(117, 117, 117))));
 
-        UIManagerExt.addResourceBundle(
-            "org.jdesktop.swingx.plaf.basic.resources.TipOfTheDay");
+        UIManagerExt.addResourceBundle("org.jdesktop.swingx.plaf.basic.resources.TipOfTheDay");
     }
 
     /**
@@ -71,18 +67,15 @@ public class TipOfTheDayAddon extends AbstractComponentAddon {
     protected void addWindowsDefaults(LookAndFeelAddons addon, DefaultsList defaults) {
         super.addWindowsDefaults(addon, defaults);
 
-        Font font = UIManagerExt.getSafeFont("Label.font",
-            new Font("Dialog", Font.PLAIN, 12));
+        Font font = UIManagerExt.getSafeFont("Label.font", new Font("Dialog", Font.PLAIN, 12));
         font = font.deriveFont(13f);
 
         defaults.add(JXTipOfTheDay.uiClassID, WindowsTipOfTheDayUI.class.getName());
         defaults.add("TipOfTheDay.background", new ColorUIResource(Color.GRAY));
         defaults.add("TipOfTheDay.font", new FontUIResource(font));
-        defaults.add("TipOfTheDay.icon",
-            LookAndFeel.makeIcon(WindowsTipOfTheDayUI.class, "resources/tipoftheday.png"));
+        defaults.add("TipOfTheDay.icon", LookAndFeel.makeIcon(WindowsTipOfTheDayUI.class, "resources/tipoftheday.png"));
         defaults.add("TipOfTheDay.border", new BorderUIResource(new WindowsTipOfTheDayUI.TipAreaBorder()));
 
-        UIManagerExt.addResourceBundle(
-            "org.jdesktop.swingx.plaf.windows.resources.TipOfTheDay");
+        UIManagerExt.addResourceBundle("org.jdesktop.swingx.plaf.windows.resources.TipOfTheDay");
     }
 }

@@ -205,9 +205,7 @@ public class ShadowRenderer {
         if (shadowColor != null) {
             Color oldColor = this.color;
             this.color = shadowColor;
-            changeSupport.firePropertyChange(COLOR_CHANGED_PROPERTY,
-                oldColor,
-                this.color);
+            changeSupport.firePropertyChange(COLOR_CHANGED_PROPERTY, oldColor, this.color);
         }
     }
 
@@ -243,9 +241,7 @@ public class ShadowRenderer {
             this.opacity = shadowOpacity;
         }
 
-        changeSupport.firePropertyChange(OPACITY_CHANGED_PROPERTY,
-            oldOpacity,
-            this.opacity);
+        changeSupport.firePropertyChange(OPACITY_CHANGED_PROPERTY, oldOpacity, this.opacity);
     }
 
     /**
@@ -275,9 +271,7 @@ public class ShadowRenderer {
             this.size = shadowSize;
         }
 
-        changeSupport.firePropertyChange(SIZE_CHANGED_PROPERTY,
-            oldSize,
-            this.size);
+        changeSupport.firePropertyChange(SIZE_CHANGED_PROPERTY, oldSize, this.size);
     }
 
     /**

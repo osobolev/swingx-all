@@ -184,8 +184,7 @@ public class JXSearchPanel extends AbstractPatternPanel {
      * No need to ever call directly.
      */
     public void updateMatchRule() {
-        getPatternModel().setMatchRule(
-            (String) searchCriteria.getSelectedItem());
+        getPatternModel().setMatchRule((String) searchCriteria.getSelectedItem());
     }
 
     private List<PatternMatcher> getPatternMatchers() {
@@ -200,8 +199,7 @@ public class JXSearchPanel extends AbstractPatternPanel {
     @Override
     protected void initExecutables() {
         super.initExecutables();
-        getActionMap().put(MATCH_RULE_ACTION_COMMAND,
-            createBoundAction(MATCH_RULE_ACTION_COMMAND, "updateMatchRule"));
+        getActionMap().put(MATCH_RULE_ACTION_COMMAND, createBoundAction(MATCH_RULE_ACTION_COMMAND, "updateMatchRule"));
     }
 
     //--------------------- binding support
@@ -224,14 +222,10 @@ public class JXSearchPanel extends AbstractPatternPanel {
     private StringValue createStringValue(Locale locale) {
         // TODO Auto-generated method stub
         Map<Object, String> keys = new HashMap<>();
-        keys.put(PatternModel.MATCH_RULE_CONTAINS,
-            PatternModel.MATCH_RULE_CONTAINS);
-        keys.put(PatternModel.MATCH_RULE_ENDSWITH,
-            PatternModel.MATCH_RULE_ENDSWITH);
-        keys.put(PatternModel.MATCH_RULE_EQUALS,
-            PatternModel.MATCH_RULE_EQUALS);
-        keys.put(PatternModel.MATCH_RULE_STARTSWITH,
-            PatternModel.MATCH_RULE_STARTSWITH);
+        keys.put(PatternModel.MATCH_RULE_CONTAINS, PatternModel.MATCH_RULE_CONTAINS);
+        keys.put(PatternModel.MATCH_RULE_ENDSWITH, PatternModel.MATCH_RULE_ENDSWITH);
+        keys.put(PatternModel.MATCH_RULE_EQUALS, PatternModel.MATCH_RULE_EQUALS);
+        keys.put(PatternModel.MATCH_RULE_STARTSWITH, PatternModel.MATCH_RULE_STARTSWITH);
         return new LocalizableStringValue(keys, PatternModel.SEARCH_PREFIX, locale);
     }
 

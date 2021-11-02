@@ -98,8 +98,7 @@ public class ComboBoxAdaptor extends AbstractAutoCompleteAdaptor implements Acti
             Rectangle rect = list.getCellBounds(lastIndex, lastIndex);
 
             if (rect == null) {
-                throw new IllegalStateException(
-                    "attempting to access index " + lastIndex + " for " + comboBox);
+                throw new IllegalStateException("attempting to access index " + lastIndex + " for " + comboBox);
             }
 
             list.scrollRectToVisible(rect);

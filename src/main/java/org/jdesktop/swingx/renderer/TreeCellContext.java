@@ -82,8 +82,7 @@ public class TreeCellContext extends CellContext {
      * @param expanded  the cell's expanded state
      * @param leaf      the cell's leaf state
      */
-    public void installContext(JTree component, Object value, int row, int column,
-                               boolean selected, boolean focused, boolean expanded, boolean leaf) {
+    public void installContext(JTree component, Object value, int row, int column, boolean selected, boolean focused, boolean expanded, boolean leaf) {
         this.component = component;
         installState(value, row, column, selected, focused, expanded, leaf);
         this.dropOn = checkDropOnState();
@@ -94,9 +93,7 @@ public class TreeCellContext extends CellContext {
             return false;
         }
         JTree.DropLocation dropLocation = getComponent().getDropLocation();
-        if (dropLocation != null
-            && dropLocation.getChildIndex() == -1
-            && getComponent().getRowForPath(dropLocation.getPath()) == row) {
+        if (dropLocation != null && dropLocation.getChildIndex() == -1 && getComponent().getRowForPath(dropLocation.getPath()) == row) {
             return true;
         }
         return false;
@@ -113,8 +110,10 @@ public class TreeCellContext extends CellContext {
      * Returns the treePath for the row or null if invalid.
      */
     public TreePath getTreePath() {
-        if (getComponent() == null) return null;
-        if (row < 0 || row >= getComponent().getRowCount()) return null;
+        if (getComponent() == null)
+            return null;
+        if (row < 0 || row >= getComponent().getRowCount())
+            return null;
         return getComponent().getPathForRow(row);
     }
 
@@ -138,7 +137,8 @@ public class TreeCellContext extends CellContext {
         Color selection = null;
         if (isDropOn()) {
             selection = getDropCellBackground();
-            if (selection != null) return selection;
+            if (selection != null)
+                return selection;
         }
         if (getComponent() instanceof JXTree) {
             return ((JXTree) getComponent()).getSelectionBackground();
@@ -154,7 +154,8 @@ public class TreeCellContext extends CellContext {
         Color selection = null;
         if (isDropOn()) {
             selection = getDropCellForeground();
-            if (selection != null) return selection;
+            if (selection != null)
+                return selection;
         }
         if (getComponent() instanceof JXTree) {
             return ((JXTree) getComponent()).getSelectionForeground();
@@ -176,8 +177,7 @@ public class TreeCellContext extends CellContext {
      * @return the icon to use for leaf cell.
      */
     protected Icon getLeafIcon() {
-        return leafIcon != null ? leafIcon : UIManager
-            .getIcon(getUIKey("leafIcon"));
+        return leafIcon != null ? leafIcon : UIManager.getIcon(getUIKey("leafIcon"));
     }
 
     /**
@@ -186,8 +186,7 @@ public class TreeCellContext extends CellContext {
      * @return the icon to use for open cell.
      */
     protected Icon getOpenIcon() {
-        return openIcon != null ? openIcon : UIManager
-            .getIcon(getUIKey("openIcon"));
+        return openIcon != null ? openIcon : UIManager.getIcon(getUIKey("openIcon"));
     }
 
     /**
@@ -196,8 +195,7 @@ public class TreeCellContext extends CellContext {
      * @return the icon to use for closed cell.
      */
     protected Icon getClosedIcon() {
-        return closedIcon != null ? closedIcon : UIManager
-            .getIcon(getUIKey("closedIcon"));
+        return closedIcon != null ? closedIcon : UIManager.getIcon(getUIKey("closedIcon"));
     }
 
     /**
@@ -245,8 +243,7 @@ public class TreeCellContext extends CellContext {
         }
 
         @Override
-        public void paintBorder(Component c, Graphics g, int x, int y,
-                                int width, int height) {
+        public void paintBorder(Component c, Graphics g, int x, int y, int width, int height) {
             Color color = UIManager.getColor("Tree.selectionBorderColor");
             if (color != null) {
                 lineColor = color;
@@ -271,8 +268,7 @@ public class TreeCellContext extends CellContext {
          * should be painted dashed style.
          */
         private boolean isDashed() {
-            return Boolean.TRUE.equals(UIManager
-                .get("Tree.drawDashedFocusIndicator"));
+            return Boolean.TRUE.equals(UIManager.get("Tree.drawDashedFocusIndicator"));
         }
 
         /**

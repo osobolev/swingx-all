@@ -187,8 +187,7 @@ public class JXStatusBar extends JComponent {
      */
     @Override
     public void updateUI() {
-        setUI((StatusBarUI) LookAndFeelAddons
-            .getUI(this, StatusBarUI.class));
+        setUI((StatusBarUI) LookAndFeelAddons.getUI(this, StatusBarUI.class));
     }
 
     /**

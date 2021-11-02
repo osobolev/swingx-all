@@ -239,14 +239,11 @@ public class RectanglePainter extends AbstractAreaPainter<Object> {
         if (shape instanceof Rectangle2D) {
             Rectangle2D rect = (Rectangle2D) shape;
 
-            g.draw(new Rectangle2D.Double(rect.getX(), rect.getY(),
-                rect.getWidth() - 1, rect.getHeight() - 1));
+            g.draw(new Rectangle2D.Double(rect.getX(), rect.getY(), rect.getWidth() - 1, rect.getHeight() - 1));
         } else if (shape instanceof RoundRectangle2D) {
             RoundRectangle2D rect = (RoundRectangle2D) shape;
 
-            g.draw(new RoundRectangle2D.Double(rect.getX(), rect.getY(),
-                rect.getWidth() - 1, rect.getHeight() - 1,
-                rect.getArcWidth(), rect.getArcHeight()));
+            g.draw(new RoundRectangle2D.Double(rect.getX(), rect.getY(), rect.getWidth() - 1, rect.getHeight() - 1, rect.getArcWidth(), rect.getArcHeight()));
         } else {
             g.draw(shape);
         }

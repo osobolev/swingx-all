@@ -143,8 +143,7 @@ import java.util.regex.Pattern;
 @JavaBean
 public class JXEditorPane extends JEditorPane implements /*Searchable, */Targetable {
 
-    private static final Logger LOG = Logger.getLogger(JXEditorPane.class
-        .getName());
+    private static final Logger LOG = Logger.getLogger(JXEditorPane.class.getName());
 
     private UndoableEditListener undoHandler;
     private UndoManager undoManager;
@@ -389,19 +388,18 @@ public class JXEditorPane extends JEditorPane implements /*Searchable, */Targeta
                 return isEditable() && undoManager.canRedo();
             }
             if (ACTION_PASTE.equals(name)) {
-                if (!isEditable()) return false;
+                if (!isEditable())
+                    return false;
                 // is this always possible?
                 boolean dataOnClipboard = false;
                 try {
-                    dataOnClipboard = getToolkit()
-                                          .getSystemClipboard().getContents(null) != null;
+                    dataOnClipboard = getToolkit().getSystemClipboard().getContents(null) != null;
                 } catch (Exception e) {
                     // can't do anything - clipboard unaccessible
                 }
                 return dataOnClipboard;
             }
-            boolean selectedText = getSelectionEnd()
-                                   - getSelectionStart() > 0;
+            boolean selectedText = getSelectionEnd() - getSelectionStart() > 0;
             if (ACTION_CUT.equals(name)) {
                 return isEditable() && selectedText;
             }
@@ -480,13 +478,8 @@ public class JXEditorPane extends JEditorPane implements /*Searchable, */Targeta
             }
 
             @Override
-            public Component getListCellRendererComponent(JList list,
-                                                          Object value,
-                                                          int index,
-                                                          boolean isSelected,
-                                                          boolean cellHasFocus) {
-                super.getListCellRendererComponent(list, value, index, isSelected,
-                    cellHasFocus);
+            public Component getListCellRendererComponent(JList list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
+                super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
 
                 setText(itemMap.get(value));
 
@@ -626,11 +619,8 @@ public class JXEditorPane extends JEditorPane implements /*Searchable, */Targeta
          * @return start position of matching string or -1
          */
         @Override
-        public int search(Pattern pattern, int startIndex,
-                          boolean backwards) {
-            if (pattern == null
-                || getDocument().getLength() == 0
-                || startIndex > -1 && getDocument().getLength() < startIndex) {
+        public int search(Pattern pattern, int startIndex, boolean backwards) {
+            if (pattern == null || getDocument().getLength() == 0 || startIndex > -1 && getDocument().getLength() < startIndex) {
                 updateStateAfterNotFound();
                 return -1;
             }
@@ -662,8 +652,7 @@ public class JXEditorPane extends JEditorPane implements /*Searchable, */Targeta
             try {
                 getDocument().getText(start, length, segment);
             } catch (BadLocationException ex) {
-                LOG.log(Level.FINE,
-                    "this should not happen (calculated the valid start/length) ", ex);
+                LOG.log(Level.FINE, "this should not happen (calculated the valid start/length) ", ex);
             }
 
             Matcher matcher = pattern.matcher(segment.toString());
@@ -699,8 +688,7 @@ public class JXEditorPane extends JEditorPane implements /*Searchable, */Targeta
             try {
                 getDocument().getText(start, length, segment);
             } catch (BadLocationException ex) {
-                LOG.log(Level.FINE,
-                    "this should not happen (calculated the valid start/length) ", ex);
+                LOG.log(Level.FINE, "this should not happen (calculated the valid start/length) ", ex);
             }
             Matcher matcher = pattern.matcher(segment.toString());
             MatchResult currentResult = getMatchResult(matcher, true);
@@ -708,8 +696,7 @@ public class JXEditorPane extends JEditorPane implements /*Searchable, */Targeta
                 // JW: how to compare match results reliably?
                 // the group().equals probably isn't the best idea...
                 // better check pattern?
-                if (currentResult.start() == 0 &&
-                    !lastMatchResult.group().equals(currentResult.group())) {
+                if (currentResult.start() == 0 && !lastMatchResult.group().equals(currentResult.group())) {
                     updateStateAfterFound(currentResult, start);
                     return true;
                 }
@@ -752,7 +739,8 @@ public class JXEditorPane extends JEditorPane implements /*Searchable, */Targeta
             MatchResult currentResult = null;
             while (matcher.find()) {
                 currentResult = matcher.toMatchResult();
-                if (useFirst) break;
+                if (useFirst)
+                    break;
             }
             return currentResult;
         }

@@ -329,8 +329,7 @@ public abstract class AbstractSearchable implements Searchable {
      * @return newly created <code>SearchResult</code>
      */
     protected SearchResult createSearchResult(Matcher matcher, int row, int column) {
-        return new SearchResult(matcher.pattern(),
-            matcher.toMatchResult(), row, column);
+        return new SearchResult(matcher.pattern(), matcher.toMatchResult(), row, column);
     }
 
     /**
@@ -415,8 +414,7 @@ public abstract class AbstractSearchable implements Searchable {
      */
     private boolean isInPipeline(Highlighter searchHighlighter) {
         Highlighter[] inPipeline = getHighlighters();
-        if (inPipeline.length > 0 &&
-            searchHighlighter.equals(inPipeline[inPipeline.length - 1])) {
+        if (inPipeline.length > 0 && searchHighlighter.equals(inPipeline[inPipeline.length - 1])) {
             return true;
         }
         removeHighlighter(searchHighlighter);
@@ -476,8 +474,7 @@ public abstract class AbstractSearchable implements Searchable {
      * @see SearchFactory
      */
     protected boolean markByHighlighter() {
-        return Boolean.TRUE.equals(getTarget().getClientProperty(
-            MATCH_HIGHLIGHTER));
+        return Boolean.TRUE.equals(getTarget().getClientProperty(MATCH_HIGHLIGHTER));
     }
 
     /**
@@ -512,9 +509,7 @@ public abstract class AbstractSearchable implements Searchable {
      * @return a highlighter used for matching
      */
     protected AbstractHighlighter createMatchHighlighter() {
-        return new ColorHighlighter(HighlightPredicate.NEVER, Color.YELLOW.brighter(),
-            null, Color.YELLOW.brighter(),
-            null);
+        return new ColorHighlighter(HighlightPredicate.NEVER, Color.YELLOW.brighter(), null, Color.YELLOW.brighter(), null);
     }
 
     /**
@@ -535,9 +530,8 @@ public abstract class AbstractSearchable implements Searchable {
      * @return a HighlightPredicate appropriate for the current search result.
      */
     protected HighlightPredicate createMatchPredicate() {
-        return hasMatch() ?
-            new SearchPredicate(lastSearchResult.pattern, lastSearchResult.foundRow,
-                convertColumnIndexToModel(lastSearchResult.foundColumn))
+        return hasMatch()
+            ? new SearchPredicate(lastSearchResult.pattern, lastSearchResult.foundRow, convertColumnIndexToModel(lastSearchResult.foundColumn))
             : HighlightPredicate.NEVER;
     }
 

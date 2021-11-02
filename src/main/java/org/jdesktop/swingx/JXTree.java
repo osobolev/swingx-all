@@ -495,7 +495,8 @@ public class JXTree extends JTree {
      * table, or null if the path is not visible.
      */
     public String getStringAt(TreePath path) {
-        if (path == null) return null;
+        if (path == null)
+            return null;
         TreeCellRenderer renderer = getDelegatingRenderer().getDelegateRenderer();
         if (renderer instanceof StringValue) {
             return ((StringValue) renderer).getString(path.getLastPathComponent());
@@ -725,7 +726,8 @@ public class JXTree extends JTree {
      * @see UIDependent
      */
     protected void updateHighlighterUI() {
-        if (compoundHighlighter == null) return;
+        if (compoundHighlighter == null)
+            return;
         compoundHighlighter.updateUI();
     }
 
@@ -750,7 +752,8 @@ public class JXTree extends JTree {
      */
     public void setRolloverEnabled(boolean rolloverEnabled) {
         boolean old = isRolloverEnabled();
-        if (rolloverEnabled == old) return;
+        if (rolloverEnabled == old)
+            return;
         if (rolloverEnabled) {
             rolloverProducer = createRolloverProducer();
             rolloverProducer.install(this);
@@ -1014,7 +1017,8 @@ public class JXTree extends JTree {
      * @see #setClosedIcon(Icon)
      */
     public void setOverwriteRendererIcons(boolean overwrite) {
-        if (overwriteIcons == overwrite) return;
+        if (overwriteIcons == overwrite)
+            return;
         boolean old = overwriteIcons;
         this.overwriteIcons = overwrite;
         firePropertyChange("overwriteRendererIcons", old, overwrite);
@@ -1109,8 +1113,7 @@ public class JXTree extends JTree {
         getDelegatingRenderer().setDelegateRenderer(renderer);
         super.setCellRenderer(delegatingRenderer);
         // quick hack for #1061: renderer/editor inconsistent
-        if (renderer instanceof DefaultTreeCellRenderer &&
-            getCellEditor() instanceof DefaultXTreeCellEditor) {
+        if (renderer instanceof DefaultTreeCellRenderer && getCellEditor() instanceof DefaultXTreeCellEditor) {
             ((DefaultXTreeCellEditor) getCellEditor()).setRenderer((DefaultTreeCellRenderer) renderer);
         }
         firePropertyChange("cellRenderer", null, delegatingRenderer);
@@ -1148,8 +1151,7 @@ public class JXTree extends JTree {
          *                 created and used.
          */
         public DelegatingRenderer(TreeCellRenderer delegate) {
-            initIcons((DefaultTreeCellRenderer) (delegate instanceof DefaultTreeCellRenderer ?
-                delegate : new DefaultTreeCellRenderer()));
+            initIcons((DefaultTreeCellRenderer) (delegate instanceof DefaultTreeCellRenderer ? delegate : new DefaultTreeCellRenderer()));
             setDelegateRenderer(delegate);
         }
 
@@ -1193,7 +1195,8 @@ public class JXTree extends JTree {
          * update all if only one is != null.... ??
          */
         private void updateIcons() {
-            if (!isOverwriteRendererIcons()) return;
+            if (!isOverwriteRendererIcons())
+                return;
             setClosedIcon(closedIcon);
             setOpenIcon(openIcon);
             setLeafIcon(leafIcon);
@@ -1239,16 +1242,11 @@ public class JXTree extends JTree {
          * The decorators are not applied if the row is invalid.
          */
         @Override
-        public Component getTreeCellRendererComponent(JTree tree, Object value,
-                                                      boolean selected, boolean expanded, boolean leaf, int row,
-                                                      boolean hasFocus) {
-            Component result = delegate.getTreeCellRendererComponent(tree,
-                value, selected, expanded, leaf, row, hasFocus);
+        public Component getTreeCellRendererComponent(JTree tree, Object value, boolean selected, boolean expanded, boolean leaf, int row, boolean hasFocus) {
+            Component result = delegate.getTreeCellRendererComponent(tree, value, selected, expanded, leaf, row, hasFocus);
 
-            if (compoundHighlighter != null && row < getRowCount()
-                && row >= 0) {
-                result = compoundHighlighter.highlight(result,
-                    getComponentAdapter(row));
+            if (compoundHighlighter != null && row < getRowCount() && row >= 0) {
+                result = compoundHighlighter.highlight(result, getComponentAdapter(row));
             }
 
             return result;
@@ -1258,8 +1256,7 @@ public class JXTree extends JTree {
 
         @Override
         public boolean isEnabled() {
-            return delegate instanceof RolloverRenderer
-                   && ((RolloverRenderer) delegate).isEnabled();
+            return delegate instanceof RolloverRenderer && ((RolloverRenderer) delegate).isEnabled();
         }
 
         @Override
@@ -1361,15 +1358,16 @@ public class JXTree extends JTree {
      * owner is contained.
      */
     private boolean isFocusOwnerDescending() {
-        if (!isEditing()) return false;
-        Component focusOwner =
-            KeyboardFocusManager.getCurrentKeyboardFocusManager().getFocusOwner();
+        if (!isEditing())
+            return false;
+        Component focusOwner = KeyboardFocusManager.getCurrentKeyboardFocusManager().getFocusOwner();
         // PENDING JW: special casing to not fall through ... really wanted?
-        if (focusOwner == null) return false;
-        if (SwingXUtilities.isDescendingFrom(focusOwner, this)) return true;
+        if (focusOwner == null)
+            return false;
+        if (SwingXUtilities.isDescendingFrom(focusOwner, this))
+            return true;
         // same with permanent focus owner
-        Component permanent =
-            KeyboardFocusManager.getCurrentKeyboardFocusManager().getPermanentFocusOwner();
+        Component permanent = KeyboardFocusManager.getCurrentKeyboardFocusManager().getPermanentFocusOwner();
         return SwingXUtilities.isDescendingFrom(permanent, this);
     }
 
@@ -1446,8 +1444,7 @@ public class JXTree extends JTree {
             }
             focusManager = current;
             if (focusManager != null) {
-                focusManager.addPropertyChangeListener("permanentFocusOwner",
-                    this);
+                focusManager.addPropertyChangeListener("permanentFocusOwner", this);
             }
         }
 

@@ -531,14 +531,14 @@ public class JXList extends JList {
      * description: Whether or not to turn on sorting by default.
      */
     public void setAutoCreateRowSorter(boolean autoCreateRowSorter) {
-        if (getAutoCreateRowSorter() == autoCreateRowSorter) return;
+        if (getAutoCreateRowSorter() == autoCreateRowSorter)
+            return;
         boolean oldValue = getAutoCreateRowSorter();
         this.autoCreateRowSorter = autoCreateRowSorter;
         if (autoCreateRowSorter) {
             setRowSorter(createDefaultRowSorter());
         }
-        firePropertyChange("autoCreateRowSorter", oldValue,
-            getAutoCreateRowSorter());
+        firePropertyChange("autoCreateRowSorter", oldValue, getAutoCreateRowSorter());
     }
 
     /**
@@ -588,7 +588,8 @@ public class JXList extends JList {
      * is of type SortController, does nothing otherwise.
      */
     protected void configureSorterProperties() {
-        if (!getControlsSorterProperties()) return;
+        if (!getControlsSorterProperties())
+            return;
         // configure from table properties
         getSortController().setSortable(sortable);
         getSortController().setSortsOnUpdates(sortsOnUpdates);
@@ -904,7 +905,7 @@ public class JXList extends JList {
             setSelectedIndex(-1);
         else if (!anObject.equals(getSelectedValue())) {
             int i, c;
-            for (i = 0, c = getElementCount(); i < c; i++)
+            for (i = 0, c = getElementCount(); i < c; i++) {
                 if (anObject.equals(getElementAt(i))) {
                     setSelectedIndex(i);
                     if (shouldScroll)
@@ -912,6 +913,7 @@ public class JXList extends JList {
                     repaint();  /** FIX-ME setSelectedIndex does not redraw all the time with the basic l&f**/
                     return;
                 }
+            }
             setSelectedIndex(-1);
         }
         repaint(); /** FIX-ME setSelectedIndex does not redraw all the time with the basic l&f**/
@@ -944,8 +946,7 @@ public class JXList extends JList {
      * @return number of elements in this list in view coordinates
      */
     public int getElementCount() {
-        return getRowSorter() != null ?
-            getRowSorter().getViewRowCount() : getModel().getSize();
+        return getRowSorter() != null ? getRowSorter().getViewRowCount() : getModel().getSize();
     }
 
     /**
@@ -957,8 +958,7 @@ public class JXList extends JList {
      * @throws IndexOutOfBoundsException if viewIndex < 0 or viewIndex >= getElementCount()
      */
     public int convertIndexToModel(int viewIndex) {
-        return getRowSorter() != null ?
-            getRowSorter().convertRowIndexToModel(viewIndex) : viewIndex;
+        return getRowSorter() != null ? getRowSorter().convertRowIndexToModel(viewIndex) : viewIndex;
     }
 
     /**
@@ -970,8 +970,7 @@ public class JXList extends JList {
      * or -1 if not contained in the view.
      */
     public int convertIndexToView(int modelIndex) {
-        return getRowSorter() != null
-            ? getRowSorter().convertRowIndexToView(modelIndex) : modelIndex;
+        return getRowSorter() != null ? getRowSorter().convertRowIndexToView(modelIndex) : modelIndex;
     }
 
     /**
@@ -1269,8 +1268,7 @@ public class JXList extends JList {
      */
     public String getStringAt(int row) {
         // changed implementation to use StringValueRegistry
-        StringValue stringValue = getStringValueRegistry().getStringValue(
-            convertIndexToModel(row), 0);
+        StringValue stringValue = getStringValueRegistry().getStringValue(convertIndexToModel(row), 0);
         return stringValue.getString(getElementAt(row));
     }
 
@@ -1344,9 +1342,7 @@ public class JXList extends JList {
         // how about fixedCellWidths?
         // need to test!!
         getDelegatingRenderer().setDelegateRenderer(renderer);
-        getStringValueRegistry().setStringValue(
-            renderer instanceof StringValue ? (StringValue) renderer : null,
-            0);
+        getStringValueRegistry().setStringValue(renderer instanceof StringValue ? (StringValue) renderer : null, 0);
         super.setCellRenderer(delegatingRenderer);
         if (forceFire)
             firePropertyChange("cellRenderer", null, delegatingRenderer);
@@ -1418,7 +1414,8 @@ public class JXList extends JList {
          * @param renderer the renderer to update the ui of.
          */
         private void updateRendererUI(ListCellRenderer renderer) {
-            if (renderer == null) return;
+            if (renderer == null)
+                return;
             Component comp = null;
             if (renderer instanceof AbstractRenderer) {
                 comp = ((AbstractRenderer) renderer).getComponentProvider().getRendererComponent(null);
@@ -1426,8 +1423,7 @@ public class JXList extends JList {
                 comp = (Component) renderer;
             } else {
                 try {
-                    comp = renderer.getListCellRendererComponent(
-                        JXList.this, null, -1, false, false);
+                    comp = renderer.getListCellRendererComponent(JXList.this, null, -1, false, false);
                 } catch (Exception e) {
                     // nothing to do - renderer barked on off-range row
                 }
@@ -1446,10 +1442,8 @@ public class JXList extends JList {
          * The decorators are not applied if the row is invalid.
          */
         @Override
-        public Component getListCellRendererComponent(JList list, Object value,
-                                                      int index, boolean isSelected, boolean cellHasFocus) {
-            Component comp = delegateRenderer.getListCellRendererComponent(list, value, index,
-                isSelected, cellHasFocus);
+        public Component getListCellRendererComponent(JList list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
+            Component comp = delegateRenderer.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
             if (compoundHighlighter != null && index >= 0 && index < getElementCount()) {
                 comp = compoundHighlighter.highlight(comp, getComponentAdapter(index));
             }
@@ -1463,8 +1457,7 @@ public class JXList extends JList {
          */
         @Override
         public boolean isEnabled() {
-            return delegateRenderer instanceof RolloverRenderer &&
-                   ((RolloverRenderer) delegateRenderer).isEnabled();
+            return delegateRenderer instanceof RolloverRenderer && ((RolloverRenderer) delegateRenderer).isEnabled();
         }
 
         /**
@@ -1534,7 +1527,8 @@ public class JXList extends JList {
      * @see org.jdesktop.swingx.plaf.UIDependent
      */
     protected void updateHighlighterUI() {
-        if (compoundHighlighter == null) return;
+        if (compoundHighlighter == null)
+            return;
         compoundHighlighter.updateUI();
     }
 }

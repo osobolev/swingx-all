@@ -94,7 +94,8 @@ public class EnabledHighlighter extends AbstractHighlighter {
      * @param enabled the enabled to set
      */
     public void setEnabled(boolean enabled) {
-        if (isEnabled() == enabled) return;
+        if (isEnabled() == enabled)
+            return;
         this.enabled = enabled;
         fireStateChanged();
     }

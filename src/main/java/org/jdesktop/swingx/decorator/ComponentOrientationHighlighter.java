@@ -50,8 +50,7 @@ public class ComponentOrientationHighlighter extends AbstractHighlighter {
      * @param predicate the HighlightPredicate to use, may be null to default to ALWAYS.
      * @param co        the ComponentOrientation to apply, may be null
      */
-    public ComponentOrientationHighlighter(HighlightPredicate predicate,
-                                           ComponentOrientation co) {
+    public ComponentOrientationHighlighter(HighlightPredicate predicate, ComponentOrientation co) {
         super(predicate);
         setComponentOrientation(co);
     }
@@ -74,7 +73,8 @@ public class ComponentOrientationHighlighter extends AbstractHighlighter {
         if (co == null) {
             co = ComponentOrientation.LEFT_TO_RIGHT;
         }
-        if (areEqual(this.co, co)) return;
+        if (areEqual(this.co, co))
+            return;
         this.co = co;
         fireStateChanged();
     }
@@ -84,8 +84,7 @@ public class ComponentOrientationHighlighter extends AbstractHighlighter {
      * Implementated to decorate the given component with the ComponentOrientation.
      */
     @Override
-    protected Component doHighlight(Component component,
-                                    ComponentAdapter adapter) {
+    protected Component doHighlight(Component component, ComponentAdapter adapter) {
         component.applyComponentOrientation(getComponentOrientation());
         return component;
     }

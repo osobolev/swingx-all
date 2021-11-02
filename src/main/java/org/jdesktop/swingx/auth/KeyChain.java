@@ -58,8 +58,7 @@ import java.util.logging.Logger;
  */
 public class KeyChain {
 
-    private static final Logger LOG = Logger
-        .getLogger(KeyChain.class.getName());
+    private static final Logger LOG = Logger.getLogger(KeyChain.class.getName());
 
     private KeyStore store;
 
@@ -73,8 +72,7 @@ public class KeyChain {
      * @param inputStream
      * @throws IOException
      */
-    public KeyChain(char[] masterPassword, InputStream inputStream)
-        throws IOException {
+    public KeyChain(char[] masterPassword, InputStream inputStream) throws IOException {
         this.masterPassword = masterPassword;
 
         try {
@@ -97,9 +95,7 @@ public class KeyChain {
 
         try {
 
-            KeyStore.SecretKeyEntry entry2 = (KeyStore.SecretKeyEntry) store
-                .getEntry(user + "@" + server,
-                    new KeyStore.PasswordProtection(masterPassword));
+            KeyStore.SecretKeyEntry entry2 = (KeyStore.SecretKeyEntry) store.getEntry(user + "@" + server, new KeyStore.PasswordProtection(masterPassword));
             return new String(entry2.getSecretKey().getEncoded());
         } catch (KeyStoreException | NoSuchAlgorithmException | UnrecoverableEntryException ex) {
             LOG.log(Level.WARNING, "", ex);
@@ -120,8 +116,7 @@ public class KeyChain {
         SecretKeySpec passwordKey = new SecretKeySpec(pass.getBytes(), "JCEKS");
         KeyStore.SecretKeyEntry entry = new KeyStore.SecretKeyEntry(passwordKey);
         try {
-            store.setEntry(user + "@" + server, entry,
-                new KeyStore.PasswordProtection(masterPassword));
+            store.setEntry(user + "@" + server, entry, new KeyStore.PasswordProtection(masterPassword));
         } catch (KeyStoreException e) {
             LOG.log(Level.WARNING, "", e);
         }
@@ -168,16 +163,14 @@ public class KeyChain {
             }
             KeyChain kc = new KeyChain("test".toCharArray(), fis);
             kc.addPassword("bino", "sun-ds.sfbay", "test123".toCharArray());
-            LOG.fine("pass = "
-                     + kc.getPassword("bino", "sun-ds.sfbay"));
+            LOG.fine("pass = " + kc.getPassword("bino", "sun-ds.sfbay"));
 
             LOG.fine("More testing :");
             for (int i = 0; i < 100; i++) {
                 kc.addPassword("" + i, "sun-ds.sfbay", ("" + i).toCharArray());
             }
             for (int i = 0; i < 100; i++) {
-                LOG.fine("key =" + i + " pass ="
-                         + kc.getPassword("" + i, "sun-ds.sfbay"));
+                LOG.fine("key =" + i + " pass =" + kc.getPassword("" + i, "sun-ds.sfbay"));
             }
             kc.store(new FileOutputStream(file));
         } catch (Exception e) {

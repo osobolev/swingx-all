@@ -156,8 +156,7 @@ public class Utilities {
     /**
      * A mask for Unix platforms.
      */
-    public static final int OS_UNIX_MASK = OS_SOLARIS | OS_LINUX | OS_HP | OS_AIX | OS_IRIX | OS_SUNOS | OS_TRU64 |
-                                           OS_MAC | OS_FREEBSD;
+    public static final int OS_UNIX_MASK = OS_SOLARIS | OS_LINUX | OS_HP | OS_AIX | OS_IRIX | OS_SUNOS | OS_TRU64 | OS_MAC | OS_FREEBSD;
 
     /**
      * A height of the windows's taskbar
@@ -568,8 +567,7 @@ public class Utilities {
      */
     private static int getMenuShortCutKeyMask() {
         if (GraphicsEnvironment.isHeadless()) {
-            return (getOperatingSystem() & OS_MAC) != 0 ?
-                KeyEvent.META_MASK : KeyEvent.CTRL_MASK;
+            return (getOperatingSystem() & OS_MAC) != 0 ? KeyEvent.META_MASK : KeyEvent.CTRL_MASK;
         }
 
         return Toolkit.getDefaultToolkit().getMenuShortcutKeyMask();
@@ -591,7 +589,8 @@ public class Utilities {
         //them, so CTRL should not be remapped for these
         if (isOnlyMeta) {
             return key != KeyEvent.VK_H && key != KeyEvent.VK_SPACE && key != KeyEvent.VK_TAB;
-        } else return !(key == KeyEvent.VK_D && isMeta && isAlt);
+        } else
+            return !(key == KeyEvent.VK_D && isMeta && isAlt);
     }
 
     /**
@@ -721,8 +720,9 @@ public class Utilities {
             int i;
             int k = array.length;
 
-            for (i = 0; i < k; i++)
+            for (i = 0; i < k; i++) {
                 r[i] = array[i] == null ? 0 : ((Integer) array[i]).intValue();
+            }
 
             return r;
         }
@@ -732,8 +732,9 @@ public class Utilities {
             int i;
             int k = array.length;
 
-            for (i = 0; i < k; i++)
+            for (i = 0; i < k; i++) {
                 r[i] = array[i] != null && ((Boolean) array[i]).booleanValue();
+            }
 
             return r;
         }
@@ -743,8 +744,9 @@ public class Utilities {
             int i;
             int k = array.length;
 
-            for (i = 0; i < k; i++)
+            for (i = 0; i < k; i++) {
                 r[i] = array[i] == null ? 0 : ((Byte) array[i]).byteValue();
+            }
 
             return r;
         }
@@ -754,8 +756,9 @@ public class Utilities {
             int i;
             int k = array.length;
 
-            for (i = 0; i < k; i++)
+            for (i = 0; i < k; i++) {
                 r[i] = array[i] == null ? 0 : ((Character) array[i]).charValue();
+            }
 
             return r;
         }
@@ -765,8 +768,9 @@ public class Utilities {
             int i;
             int k = array.length;
 
-            for (i = 0; i < k; i++)
+            for (i = 0; i < k; i++) {
                 r[i] = array[i] == null ? 0 : ((Double) array[i]).doubleValue();
+            }
 
             return r;
         }
@@ -776,8 +780,9 @@ public class Utilities {
             int i;
             int k = array.length;
 
-            for (i = 0; i < k; i++)
+            for (i = 0; i < k; i++) {
                 r[i] = array[i] == null ? 0 : ((Float) array[i]).floatValue();
+            }
 
             return r;
         }
@@ -787,8 +792,9 @@ public class Utilities {
             int i;
             int k = array.length;
 
-            for (i = 0; i < k; i++)
+            for (i = 0; i < k; i++) {
                 r[i] = array[i] == null ? 0 : ((Long) array[i]).longValue();
+            }
 
             return r;
         }
@@ -798,8 +804,9 @@ public class Utilities {
             int i;
             int k = array.length;
 
-            for (i = 0; i < k; i++)
+            for (i = 0; i < k; i++) {
                 r[i] = array[i] == null ? 0 : ((Short) array[i]).shortValue();
+            }
 
             return r;
         }
@@ -825,8 +832,9 @@ public class Utilities {
             int k = ((int[]) array).length;
             Integer[] r = new Integer[k];
 
-            for (i = 0; i < k; i++)
+            for (i = 0; i < k; i++) {
                 r[i] = ((int[]) array)[i];
+            }
 
             return r;
         }
@@ -836,8 +844,9 @@ public class Utilities {
             int k = ((boolean[]) array).length;
             Boolean[] r = new Boolean[k];
 
-            for (i = 0; i < k; i++)
+            for (i = 0; i < k; i++) {
                 r[i] = ((boolean[]) array)[i] ? Boolean.TRUE : Boolean.FALSE;
+            }
 
             return r;
         }
@@ -847,8 +856,9 @@ public class Utilities {
             int k = ((byte[]) array).length;
             Byte[] r = new Byte[k];
 
-            for (i = 0; i < k; i++)
+            for (i = 0; i < k; i++) {
                 r[i] = ((byte[]) array)[i];
+            }
 
             return r;
         }
@@ -858,8 +868,9 @@ public class Utilities {
             int k = ((char[]) array).length;
             Character[] r = new Character[k];
 
-            for (i = 0; i < k; i++)
+            for (i = 0; i < k; i++) {
                 r[i] = ((char[]) array)[i];
+            }
 
             return r;
         }
@@ -869,8 +880,9 @@ public class Utilities {
             int k = ((double[]) array).length;
             Double[] r = new Double[k];
 
-            for (i = 0; i < k; i++)
+            for (i = 0; i < k; i++) {
                 r[i] = ((double[]) array)[i];
+            }
 
             return r;
         }
@@ -880,8 +892,9 @@ public class Utilities {
             int k = ((float[]) array).length;
             Float[] r = new Float[k];
 
-            for (i = 0; i < k; i++)
+            for (i = 0; i < k; i++) {
                 r[i] = ((float[]) array)[i];
+            }
 
             return r;
         }
@@ -891,8 +904,9 @@ public class Utilities {
             int k = ((long[]) array).length;
             Long[] r = new Long[k];
 
-            for (i = 0; i < k; i++)
+            for (i = 0; i < k; i++) {
                 r[i] = ((long[]) array)[i];
+            }
 
             return r;
         }
@@ -902,8 +916,9 @@ public class Utilities {
             int k = ((short[]) array).length;
             Short[] r = new Short[k];
 
-            for (i = 0; i < k; i++)
+            for (i = 0; i < k; i++) {
                 r[i] = ((short[]) array)[i];
+            }
 
             return r;
         }
@@ -920,9 +935,7 @@ public class Utilities {
      * @param removeNewLines if <code>true</code>, any newlines in the original string are ignored
      * @return the lines after wrapping
      */
-    public static String[] wrapStringToArray(
-        String original, int width, BreakIterator breakIterator, boolean removeNewLines
-    ) {
+    public static String[] wrapStringToArray(String original, int width, BreakIterator breakIterator, boolean removeNewLines) {
         if (original.length() == 0) {
             return new String[] {original};
         }

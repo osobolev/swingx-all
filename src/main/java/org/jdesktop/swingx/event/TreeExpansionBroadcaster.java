@@ -79,8 +79,7 @@ public class TreeExpansionBroadcaster implements TreeExpansionListener {
      * @param event
      */
     private void fireTreeExpanded(TreeExpansionEvent event) {
-        TreeExpansionListener[] ls = listeners
-            .getListeners(TreeExpansionListener.class);
+        TreeExpansionListener[] ls = listeners.getListeners(TreeExpansionListener.class);
         for (int i = ls.length - 1; i >= 0; i--) {
             ls[i].treeExpanded(event);
         }
@@ -90,8 +89,7 @@ public class TreeExpansionBroadcaster implements TreeExpansionListener {
      * @param event
      */
     private void fireTreeCollapsed(TreeExpansionEvent event) {
-        TreeExpansionListener[] ls = listeners
-            .getListeners(TreeExpansionListener.class);
+        TreeExpansionListener[] ls = listeners.getListeners(TreeExpansionListener.class);
         for (int i = ls.length - 1; i >= 0; i--) {
             ls[i].treeCollapsed(event);
         }

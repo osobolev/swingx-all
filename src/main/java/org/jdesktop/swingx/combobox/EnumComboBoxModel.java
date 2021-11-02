@@ -118,8 +118,7 @@ public class EnumComboBoxModel<E extends Enum<E>> extends ListComboBoxModel<E> {
             String s = element.toString();
 
             if (valueMap.containsKey(s)) {
-                throw new IllegalArgumentException(
-                    "multiple constants map to one string value");
+                throw new IllegalArgumentException("multiple constants map to one string value");
             }
 
             valueMap.put(s, element);

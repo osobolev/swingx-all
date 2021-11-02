@@ -145,8 +145,7 @@ public abstract class TextUIWrapper<UI extends TextUI> {
             } else if (textComponent instanceof JTextArea) {
                 return new PromptTextAreaUI(textUI);
             }
-            throw new IllegalArgumentException("ui implementation not supported: "
-                                               + textUI.getClass());
+            throw new IllegalArgumentException("ui implementation not supported: " + textUI.getClass());
         }
 
         /**

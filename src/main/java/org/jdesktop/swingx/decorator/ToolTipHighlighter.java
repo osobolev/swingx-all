@@ -91,7 +91,8 @@ public class ToolTipHighlighter extends AbstractHighlighter {
      * @see #getToolTipValue()
      */
     public void setToolTipValue(StringValue toolTipValue) {
-        if (areEqual(toolTipValue, getToolTipValue())) return;
+        if (areEqual(toolTipValue, getToolTipValue()))
+            return;
         this.toolTipValue = toolTipValue;
         fireStateChanged();
     }

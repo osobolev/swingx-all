@@ -159,7 +159,8 @@ public class JXLabel extends JLabel implements BackgroundPaintable {
 
     private int pHeight;
 
-    // using reverse logic ... some methods causing re-flow of text are called from super constructor, but private variables are initialized only after call to super so have to rely on default for boolean being false
+    // using reverse logic ... some methods causing re-flow of text are called from super constructor,
+    // but private variables are initialized only after call to super so have to rely on default for boolean being false
     private boolean dontIgnoreRepaint = false;
 
     private int occupiedWidth;
@@ -395,8 +396,7 @@ public class JXLabel extends JLabel implements BackgroundPaintable {
         } else if (this.textRotation != NORMAL) {
             // #swingx-680 change the preferred size when rotation is set ... ideally this would be solved in the LabelUI rather then here
             double theta = getTextRotation();
-            size.setSize(rotateWidth(size, theta), rotateHeight(size,
-                theta));
+            size.setSize(rotateWidth(size, theta), rotateHeight(size, theta));
         } else {
             // #swingx-780 preferred size is not set properly when parent container doesn't enforce the width
             View view = getWrappingView();
@@ -404,8 +404,7 @@ public class JXLabel extends JLabel implements BackgroundPaintable {
                 if (isLineWrap() && !MultiLineSupport.isHTML(getText())) {
                     getMultiLineSupport();
                     // view might get lost on LAF change ...
-                    putClientProperty(BasicHTML.propertyKey,
-                        MultiLineSupport.createView(this));
+                    putClientProperty(BasicHTML.propertyKey, MultiLineSupport.createView(this));
                     view = (View) getClientProperty(BasicHTML.propertyKey);
                 } else {
                     return size;
@@ -497,11 +496,9 @@ public class JXLabel extends JLabel implements BackgroundPaintable {
 
             // 4) shift label around based on its alignment
             int labelR_x = Math.min(iconR.x, textR.x);
-            int labelR_width = Math.max(iconR.x + iconR.width,
-                textR.x + textR.width) - labelR_x;
+            int labelR_width = Math.max(iconR.x + iconR.width, textR.x + textR.width) - labelR_x;
             int labelR_y = Math.min(iconR.y, textR.y);
-            int labelR_height = Math.max(iconR.y + iconR.height,
-                textR.y + textR.height) - labelR_y;
+            int labelR_height = Math.max(iconR.y + iconR.height, textR.y + textR.height) - labelR_y;
 
             int dax, day;
 
@@ -518,8 +515,7 @@ public class JXLabel extends JLabel implements BackgroundPaintable {
             } else if (getHorizontalAlignment() == RIGHT) {
                 dax = viewR.x + viewR.width - (labelR_x + labelR_width);
             } else { // (horizontalAlignment == CENTER)
-                dax = viewR.x + viewR.width / 2 -
-                      (labelR_x + labelR_width / 2);
+                dax = viewR.x + viewR.width / 2 - (labelR_x + labelR_width / 2);
             }
 
             textR.x += dax;
@@ -594,13 +590,11 @@ public class JXLabel extends JLabel implements BackgroundPaintable {
     }
 
     private static int rotateWidth(Dimension size, double theta) {
-        return (int) Math.round(size.width * Math.abs(Math.cos(theta)) +
-                                size.height * Math.abs(Math.sin(theta)));
+        return (int) Math.round(size.width * Math.abs(Math.cos(theta)) + size.height * Math.abs(Math.sin(theta)));
     }
 
     private static int rotateHeight(Dimension size, double theta) {
-        return (int) Math.round(size.width * Math.abs(Math.sin(theta)) +
-                                size.height * Math.abs(Math.cos(theta)));
+        return (int) Math.round(size.width * Math.abs(Math.sin(theta)) + size.height * Math.abs(Math.cos(theta)));
     }
 
     /**
@@ -788,8 +782,7 @@ public class JXLabel extends JLabel implements BackgroundPaintable {
             pWidth = tmp;
             tx = pWidth;
             ty = pHeight;
-        } else if (textRotation > -0.015 && textRotation < 0.015
-                   || textRotation > 3.140 && textRotation < 3.1430) {
+        } else if (textRotation > -0.015 && textRotation < 0.015 || textRotation > 3.140 && textRotation < 3.1430) {
             // normal & inverted
             pHeight = getHeight();
             pWidth = getWidth();
@@ -807,10 +800,8 @@ public class JXLabel extends JLabel implements BackgroundPaintable {
                 // no html and no wrapline enabled means no view
                 // ... find another way to figure out the heigh
                 ty = getFontMetrics(getFont()).getHeight();
-                double cw = (getWidth() - Math.abs(ty * Math.sin(textRotation)))
-                            / Math.abs(Math.cos(textRotation));
-                double ch = (getHeight() - Math.abs(ty * Math.cos(textRotation)))
-                            / Math.abs(Math.sin(textRotation));
+                double cw = (getWidth() - Math.abs(ty * Math.sin(textRotation))) / Math.abs(Math.cos(textRotation));
+                double ch = (getHeight() - Math.abs(ty * Math.cos(textRotation))) / Math.abs(Math.sin(textRotation));
                 // min of whichever is above 0 (!!! no min of abs values)
                 tx = cw < 0 ? ch : ch > 0 ? Math.min(cw, ch) : cw;
             } else {
@@ -953,21 +944,23 @@ public class JXLabel extends JLabel implements BackgroundPaintable {
                 src.dontIgnoreRepaint = true;
             }
             if (src.isLineWrap()) {
-                if ("font".equals(name) || "foreground".equals(name) || "maxLineSpan".equals(name) || "textAlignment".equals(name) || "icon".equals(name) || "iconTextGap".equals(name)) {
+                if ("font".equals(name) ||
+                    "foreground".equals(name) ||
+                    "maxLineSpan".equals(name) ||
+                    "textAlignment".equals(name) ||
+                    "icon".equals(name) ||
+                    "iconTextGap".equals(name)) {
                     if (evt.getOldValue() != null && !isHTML(src.getText())) {
                         updateRenderer(src);
                     }
                 } else if ("text".equals(name)) {
-                    if (isHTML((String) evt.getOldValue()) && evt.getNewValue() != null
-                        && !isHTML((String) evt.getNewValue())) {
+                    if (isHTML((String) evt.getOldValue()) && evt.getNewValue() != null && !isHTML((String) evt.getNewValue())) {
                         // was html , but is not
-                        if (src.getClientProperty(oldRendererKey) == null
-                            && src.getClientProperty(BasicHTML.propertyKey) != null) {
+                        if (src.getClientProperty(oldRendererKey) == null && src.getClientProperty(BasicHTML.propertyKey) != null) {
                             src.putClientProperty(oldRendererKey, src.getClientProperty(BasicHTML.propertyKey));
                         }
                         src.putClientProperty(BasicHTML.propertyKey, createView(src));
-                    } else if (!isHTML((String) evt.getOldValue()) && evt.getNewValue() != null
-                               && !isHTML((String) evt.getNewValue())) {
+                    } else if (!isHTML((String) evt.getOldValue()) && evt.getNewValue() != null && !isHTML((String) evt.getNewValue())) {
                         // wasn't html and isn't
                         updateRenderer(src);
                     } else {

@@ -45,12 +45,15 @@ public class TitledPanelAddon extends AbstractComponentAddon {
         super.addBasicDefaults(addon, defaults);
 
         defaults.add(JXTitledPanel.uiClassID, "org.jdesktop.swingx.plaf.basic.BasicTitledPanelUI");
-        defaults.add("JXTitledPanel.titleFont", UIManagerExt.getSafeFont("Button.font",
-            new FontUIResource("Dialog", Font.PLAIN, 12)));
+        defaults.add(
+            "JXTitledPanel.titleFont",
+            UIManagerExt.getSafeFont("Button.font", new FontUIResource("Dialog", Font.PLAIN, 12))
+        );
         defaults.add("JXTitledPanel.titleForeground", new ColorUIResource(Color.WHITE));
-        defaults.add("JXTitledPanel.titlePainter", new PainterUIResource<JXTitledPanel>(
-            new MattePainter(
-                new GradientPaint(0, 0, Color.LIGHT_GRAY, 0, 1, Color.GRAY), true)));
+        defaults.add(
+            "JXTitledPanel.titlePainter",
+            new PainterUIResource<JXTitledPanel>(new MattePainter(new GradientPaint(0, 0, Color.LIGHT_GRAY, 0, 1, Color.GRAY), true))
+        );
         defaults.add("JXTitledPanel.captionInsets", new InsetsUIResource(4, 12, 4, 12));
         defaults.add("JXTitledPanel.rightDecorationInsets", new InsetsUIResource(1, 1, 1, 1));
         defaults.add("JXTitledPanel.leftDecorationInsets", new InsetsUIResource(1, 1, 1, 1));
@@ -73,15 +76,22 @@ public class TitledPanelAddon extends AbstractComponentAddon {
 
         if (isPlastic()) {
             defaults.add("JXTitledPanel.titleForeground", new ColorUIResource(Color.WHITE));
-            defaults.add("JXTitledPanel.titlePainter", new PainterUIResource<JXTitledPanel>(
-                new MattePainter(new GradientPaint(0, 0, new Color(49, 121, 242),
-                    0, 1, new Color(198, 211, 247)), true)));
+            defaults.add(
+                "JXTitledPanel.titlePainter",
+                new PainterUIResource<JXTitledPanel>(new MattePainter(new GradientPaint(
+                    0, 0, new Color(49, 121, 242), 0, 1, new Color(198, 211, 247)), true
+                ))
+            );
         } else {
             defaults.add("JXTitledPanel.titleForeground", new ColorUIResource(Color.WHITE));
-            defaults.add("JXTitledPanel.titlePainter", new PainterUIResource<JXTitledPanel>(
-                new MattePainter(new GradientPaint(0, 0,
+            defaults.add(
+                "JXTitledPanel.titlePainter",
+                new PainterUIResource<JXTitledPanel>(new MattePainter(new GradientPaint(
+                    0, 0,
                     MetalLookAndFeel.getCurrentTheme().getPrimaryControl(), 0, 1,
-                    MetalLookAndFeel.getCurrentTheme().getPrimaryControlDarkShadow()), true)));
+                    MetalLookAndFeel.getCurrentTheme().getPrimaryControlDarkShadow()), true
+                ))
+            );
         }
     }
 
@@ -95,12 +105,19 @@ public class TitledPanelAddon extends AbstractComponentAddon {
         // don't understand why this has blown when trying to toggle to Metal...
         // definitely needs deeper digging
         // kgs: moved to using getSafeXXX from UIManagerExt
-        defaults.add("JXTitledPanel.titleForeground", UIManagerExt.getSafeColor(
-            "InternalFrame.activeTitleForeground", new ColorUIResource(Color.WHITE)));
-        defaults.add("JXTitledPanel.titlePainter", new PainterUIResource<JXTitledPanel>(
-            new MattePainter(new GradientPaint(0, 0, UIManagerExt.getSafeColor(
-                "InternalFrame.inactiveTitleGradient", new ColorUIResource(49, 121, 242)),
-                0, 1, UIManagerExt.getSafeColor("InternalFrame.activeTitleBackground",
-                new ColorUIResource(198, 211, 247))), true)));
+        defaults.add(
+            "JXTitledPanel.titleForeground",
+            UIManagerExt.getSafeColor("InternalFrame.activeTitleForeground", new ColorUIResource(Color.WHITE))
+        );
+        defaults.add(
+            "JXTitledPanel.titlePainter",
+            new PainterUIResource<JXTitledPanel>(new MattePainter(
+                new GradientPaint(
+                    0, 0,
+                    UIManagerExt.getSafeColor("InternalFrame.inactiveTitleGradient", new ColorUIResource(49, 121, 242)), 0, 1,
+                    UIManagerExt.getSafeColor("InternalFrame.activeTitleBackground", new ColorUIResource(198, 211, 247))
+                ), true
+            ))
+        );
     }
 }

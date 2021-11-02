@@ -130,9 +130,7 @@ public class UIManagerExt {
         //should this just return String?
         private Object getFromResourceBundle(Object key, Locale l) {
 
-            if (resourceBundles == null ||
-                resourceBundles.isEmpty() ||
-                !(key instanceof String)) {
+            if (resourceBundles == null || resourceBundles.isEmpty() || !(key instanceof String)) {
                 return null;
             }
 
@@ -158,8 +156,7 @@ public class UIManagerExt {
                     String bundleName = resourceBundles.get(i);
 
                     try {
-                        ResourceBundle b = ResourceBundle.
-                            getBundle(bundleName, l, UIManagerExt.class.getClassLoader());
+                        ResourceBundle b = ResourceBundle.getBundle(bundleName, l, UIManagerExt.class.getClassLoader());
                         Enumeration<String> keys = b.getKeys();
 
                         while (keys.hasMoreElements()) {
@@ -683,8 +680,7 @@ public class UIManagerExt {
         }
 
         if (!(safeInsets instanceof UIResource)) {
-            safeInsets = new InsetsUIResource(safeInsets.top, safeInsets.left,
-                safeInsets.bottom, safeInsets.right);
+            safeInsets = new InsetsUIResource(safeInsets.top, safeInsets.left, safeInsets.bottom, safeInsets.right);
         }
 
         return safeInsets;

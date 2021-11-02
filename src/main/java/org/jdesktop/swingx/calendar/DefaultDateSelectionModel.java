@@ -88,17 +88,20 @@ public class DefaultDateSelectionModel extends AbstractDateSelectionModel {
         boolean added = false;
         switch (selectionMode) {
         case SINGLE_SELECTION:
-            if (isSelected(startDate)) return;
+            if (isSelected(startDate))
+                return;
             clearSelectionImpl();
             added = addSelectionImpl(startDate, startDate);
             break;
         case SINGLE_INTERVAL_SELECTION:
-            if (isIntervalSelected(startDate, endDate)) return;
+            if (isIntervalSelected(startDate, endDate))
+                return;
             clearSelectionImpl();
             added = addSelectionImpl(startDate, endDate);
             break;
         case MULTIPLE_INTERVAL_SELECTION:
-            if (isIntervalSelected(startDate, endDate)) return;
+            if (isIntervalSelected(startDate, endDate))
+                return;
             added = addSelectionImpl(startDate, endDate);
             break;
         default:
@@ -115,10 +118,12 @@ public class DefaultDateSelectionModel extends AbstractDateSelectionModel {
     @Override
     public void setSelectionInterval(Date startDate, Date endDate) {
         if (SelectionMode.SINGLE_SELECTION.equals(selectionMode)) {
-            if (isSelected(startDate)) return;
+            if (isSelected(startDate))
+                return;
             endDate = startDate;
         } else {
-            if (isIntervalSelected(startDate, endDate)) return;
+            if (isIntervalSelected(startDate, endDate))
+                return;
         }
         clearSelectionImpl();
         if (addSelectionImpl(startDate, endDate)) {
@@ -135,9 +140,9 @@ public class DefaultDateSelectionModel extends AbstractDateSelectionModel {
      * @return true the interval is selected, false otherwise.
      */
     private boolean isIntervalSelected(Date startDate, Date endDate) {
-        if (isSelectionEmpty()) return false;
-        return selectedDates.first().equals(startDate)
-               && selectedDates.last().equals(endDate);
+        if (isSelectionEmpty())
+            return false;
+        return selectedDates.first().equals(startDate) && selectedDates.last().equals(endDate);
     }
 
     /**
@@ -170,7 +175,8 @@ public class DefaultDateSelectionModel extends AbstractDateSelectionModel {
      */
     @Override
     public void clearSelection() {
-        if (isSelectionEmpty()) return;
+        if (isSelectionEmpty())
+            return;
         clearSelectionImpl();
         fireValueChanged(EventType.SELECTION_CLEARED);
     }
@@ -253,9 +259,9 @@ public class DefaultDateSelectionModel extends AbstractDateSelectionModel {
      */
     @Override
     public boolean isUnselectableDate(Date date) {
-        return upperBound != null && upperBound.getTime() < date.getTime() ||
-               lowerBound != null && lowerBound.getTime() > date.getTime() ||
-               unselectableDates != null && unselectableDates.contains(date);
+        return (upperBound != null && upperBound.getTime() < date.getTime()) ||
+               (lowerBound != null && lowerBound.getTime() > date.getTime()) ||
+               (unselectableDates != null && unselectableDates.contains(date));
     }
 
     private boolean addSelectionImpl(Date startDate, Date endDate) {

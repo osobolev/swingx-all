@@ -516,7 +516,10 @@ public class JXFrame extends JFrame {
 
         Toolkit.getDefaultToolkit().removeAWTEventListener(idleListener);
         if (threshold > 0) {
-            Toolkit.getDefaultToolkit().addAWTEventListener(idleListener, AWTEvent.KEY_EVENT_MASK | AWTEvent.MOUSE_EVENT_MASK | AWTEvent.MOUSE_MOTION_EVENT_MASK | AWTEvent.MOUSE_WHEEL_EVENT_MASK);
+            Toolkit.getDefaultToolkit().addAWTEventListener(
+                idleListener,
+                AWTEvent.KEY_EVENT_MASK | AWTEvent.MOUSE_EVENT_MASK | AWTEvent.MOUSE_MOTION_EVENT_MASK | AWTEvent.MOUSE_WHEEL_EVENT_MASK
+            );
         }
         idleTimer.stop();
         idleTimer.setInitialDelay((int) threshold);

@@ -47,8 +47,7 @@ import javax.swing.tree.DefaultMutableTreeNode;
  * PENDING: ui specific focus rect variation (draw rect around icon) missing
  * <p>
  */
-public class WrappingProvider extends
-    ComponentProvider<WrappingIconPanel> implements RolloverRenderer {
+public class WrappingProvider extends ComponentProvider<WrappingIconPanel> implements RolloverRenderer {
 
     protected ComponentProvider<?> wrappee;
     private boolean unwrapUserObject;
@@ -254,7 +253,8 @@ public class WrappingProvider extends
      * @see #getRendererComponent(CellContext)
      */
     protected Object getUnwrappedValue(Object value) {
-        if (!getUnwrapUserObject()) return value;
+        if (!getUnwrapUserObject())
+            return value;
         if (value instanceof DefaultMutableTreeNode) {
             value = ((DefaultMutableTreeNode) value).getUserObject();
         } else if (value instanceof TreeTableNode) {
@@ -380,7 +380,6 @@ public class WrappingProvider extends
      */
     @Override
     public boolean isEnabled() {
-        return wrappee instanceof RolloverRenderer &&
-               ((RolloverRenderer) wrappee).isEnabled();
+        return wrappee instanceof RolloverRenderer && ((RolloverRenderer) wrappee).isEnabled();
     }
 }

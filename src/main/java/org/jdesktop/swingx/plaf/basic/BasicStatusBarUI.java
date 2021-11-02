@@ -109,11 +109,9 @@ public class BasicStatusBarUI extends StatusBarUI {
         public void mouseEntered(MouseEvent e) {
             if (isHandleAreaPoint(e.getPoint())) {
                 if (statusBar.getComponentOrientation().isLeftToRight()) {
-                    window.setCursor(Cursor.getPredefinedCursor(
-                        Cursor.SE_RESIZE_CURSOR));
+                    window.setCursor(Cursor.getPredefinedCursor(Cursor.SE_RESIZE_CURSOR));
                 } else {
-                    window.setCursor(Cursor.getPredefinedCursor(
-                        Cursor.SW_RESIZE_CURSOR));
+                    window.setCursor(Cursor.getPredefinedCursor(Cursor.SW_RESIZE_CURSOR));
                 }
             } else {
                 window.setCursor(null);
@@ -181,11 +179,9 @@ public class BasicStatusBarUI extends StatusBarUI {
         public void mouseMoved(MouseEvent e) {
             if (isHandleAreaPoint(e.getPoint())) {
                 if (statusBar.getComponentOrientation().isLeftToRight()) {
-                    window.setCursor(Cursor.getPredefinedCursor(
-                        Cursor.SE_RESIZE_CURSOR));
+                    window.setCursor(Cursor.getPredefinedCursor(Cursor.SE_RESIZE_CURSOR));
                 } else {
-                    window.setCursor(Cursor.getPredefinedCursor(
-                        Cursor.SW_RESIZE_CURSOR));
+                    window.setCursor(Cursor.getPredefinedCursor(Cursor.SW_RESIZE_CURSOR));
                 }
             } else {
                 window.setCursor(null);

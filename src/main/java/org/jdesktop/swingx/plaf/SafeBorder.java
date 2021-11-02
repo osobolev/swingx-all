@@ -71,8 +71,7 @@ public class SafeBorder extends AbstractBorder implements UIResource {
      * {@inheritDoc}
      */
     @Override
-    public Rectangle getInteriorRectangle(Component c, int x, int y, int width,
-                                          int height) {
+    public Rectangle getInteriorRectangle(Component c, int x, int y, int width, int height) {
         return delegate.getInteriorRectangle(c, x, y, width, height);
     }
 
@@ -88,8 +87,7 @@ public class SafeBorder extends AbstractBorder implements UIResource {
      * {@inheritDoc}
      */
     @Override
-    public void paintBorder(Component c, Graphics g, int x, int y, int width,
-                            int height) {
+    public void paintBorder(Component c, Graphics g, int x, int y, int width, int height) {
         delegate.paintBorder(c, g, x, y, width, height);
     }
 }

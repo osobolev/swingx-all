@@ -111,8 +111,7 @@ public class NeonBorderEffect extends AbstractAreaEffect {
             }
 
             // to make the effect softer use a different stroke
-            gfx.setStroke(new BasicStroke(brushWidth,
-                BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND));
+            gfx.setStroke(new BasicStroke(brushWidth, BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND));
             //gfx.setStroke(new BasicStroke(brushWidth));
             gfx.draw(clipShape);
         }

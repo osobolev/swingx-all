@@ -122,7 +122,7 @@ public class ColumnFactory {
      * @param model      the TableModel to read configuration properties from
      * @param modelIndex column index in model coordinates
      * @return a TableColumnExt to use for the modelIndex
-     * @throws NullPointerException if model == null
+     * @throws NullPointerException  if model == null
      * @throws IllegalStateException if the modelIndex is invalid
      *                               (in coordinate space of the tablemodel)
      * @see #createTableColumn(int)
@@ -169,8 +169,7 @@ public class ColumnFactory {
      * @see #createAndConfigureTableColumn(TableModel, int)
      */
     public void configureTableColumn(TableModel model, TableColumnExt columnExt) {
-        if (columnExt.getModelIndex() < 0
-            || columnExt.getModelIndex() >= model.getColumnCount())
+        if (columnExt.getModelIndex() < 0 || columnExt.getModelIndex() >= model.getColumnCount())
             throw new IllegalStateException("column must have valid modelIndex");
         columnExt.setHeaderValue(model.getColumnName(columnExt.getModelIndex()));
     }
@@ -260,8 +259,7 @@ public class ColumnFactory {
         // now calculate how much room the column header wants
         TableCellRenderer renderer = getHeaderRenderer(table, columnExt);
         if (renderer != null) {
-            Component comp = renderer.getTableCellRendererComponent(table,
-                columnExt.getHeaderValue(), false, false, -1, -1);
+            Component comp = renderer.getTableCellRendererComponent(table, columnExt.getHeaderValue(), false, false, -1, -1);
 
             prototypeWidth = comp.getPreferredSize().width;
         }
@@ -283,8 +281,7 @@ public class ColumnFactory {
         if (prototypeValue != null) {
             // calculate how much room the prototypeValue requires
             TableCellRenderer cellRenderer = getCellRenderer(table, columnExt);
-            Component comp = cellRenderer.getTableCellRendererComponent(table,
-                prototypeValue, false, false, 0, -1);
+            Component comp = cellRenderer.getTableCellRendererComponent(table, prototypeValue, false, false, 0, -1);
             prototypeWidth = comp.getPreferredSize().width;
         }
         return prototypeWidth;
@@ -300,8 +297,7 @@ public class ColumnFactory {
      * @return returns a cell renderer for measuring.
      */
     protected TableCellRenderer getCellRenderer(JXTable table, TableColumnExt columnExt) {
-        int viewIndex = table.convertColumnIndexToView(columnExt
-            .getModelIndex());
+        int viewIndex = table.convertColumnIndexToView(columnExt.getModelIndex());
         if (viewIndex >= 0) {
             // JW: ok to not guard against rowCount < 0?
             // technically, the index should be a valid coordinate
@@ -368,8 +364,7 @@ public class ColumnFactory {
      * @see JXTable#packTable(int)
      * @see JXTable#packColumn(int, int)
      */
-    public void packColumn(JXTable table, TableColumnExt columnExt, int margin,
-                           int max) {
+    public void packColumn(JXTable table, TableColumnExt columnExt, int margin, int max) {
         if (!columnExt.isVisible())
             throw new IllegalStateException("column must be visible to pack");
 
@@ -377,8 +372,7 @@ public class ColumnFactory {
         int width = 0;
         TableCellRenderer headerRenderer = getHeaderRenderer(table, columnExt);
         if (headerRenderer != null) {
-            Component comp = headerRenderer.getTableCellRendererComponent(table,
-                columnExt.getHeaderValue(), false, false, 0, column);
+            Component comp = headerRenderer.getTableCellRendererComponent(table, columnExt.getHeaderValue(), false, false, 0, column);
             width = comp.getPreferredSize().width;
         }
         // PENDING JW: slightly inconsistent - the getCellRenderer here

@@ -50,8 +50,7 @@ public class AlphaPainter<T> extends CompoundPainter<T> {
                 g2.setTransform(getTransform());
             }
             if (alpha < 1) {
-                g2.setComposite(AlphaComposite.getInstance(
-                    AlphaComposite.SRC_OVER, alpha));
+                g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, alpha));
             }
 
             super.doPaint(g2, component, width, height);

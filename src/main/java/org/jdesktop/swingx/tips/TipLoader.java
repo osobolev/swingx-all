@@ -68,8 +68,7 @@ public class TipLoader {
             String descriptionValue = props.getProperty(descriptionKey);
 
             if (nameValue != null && descriptionValue == null) {
-                throw new IllegalArgumentException(
-                    "No description for name " + nameValue);
+                throw new IllegalArgumentException("No description for name " + nameValue);
             }
 
             if (descriptionValue == null) {

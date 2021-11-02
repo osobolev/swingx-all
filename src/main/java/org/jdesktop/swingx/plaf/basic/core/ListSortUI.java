@@ -81,8 +81,8 @@ public final class ListSortUI {
     public ListSortUI(JXList list, RowSorter<? extends ListModel> sorter) {
         this.sorter = Contract.asNotNull(sorter, "RowSorter must not be null");
         this.list = Contract.asNotNull(list, "list must not be null");
-        if (sorter != list.getRowSorter()) throw
-            new IllegalStateException("sorter must be same as the one on list");
+        if (sorter != list.getRowSorter())
+            throw new IllegalStateException("sorter must be same as the one on list");
         sorterListener = createRowSorterListener();
         sorter.addRowSorterListener(sorterListener);
     }
@@ -168,8 +168,7 @@ public final class ListSortUI {
         // is enabled we need to cache the selection in terms of the
         // underlying model, this will allow us to correctly restore
         // the selection even if rows are filtered out.
-        if (modelSelection == null &&
-            sorter.getViewRowCount() != sorter.getModelRowCount()) {
+        if (modelSelection == null && sorter.getViewRowCount() != sorter.getModelRowCount()) {
             modelSelection = new DefaultListSelectionModel();
             ListSelectionModel viewSelection = getViewSelectionModel();
             int min = viewSelection.getMinSelectionIndex();
@@ -177,18 +176,14 @@ public final class ListSortUI {
             int modelIndex;
             for (int viewIndex = min; viewIndex <= max; viewIndex++) {
                 if (viewSelection.isSelectedIndex(viewIndex)) {
-                    modelIndex = convertRowIndexToModel(
-                        sortEvent, viewIndex);
+                    modelIndex = convertRowIndexToModel(sortEvent, viewIndex);
                     if (modelIndex != -1) {
-                        modelSelection.addSelectionInterval(
-                            modelIndex, modelIndex);
+                        modelSelection.addSelectionInterval(modelIndex, modelIndex);
                     }
                 }
             }
-            modelIndex = convertRowIndexToModel(sortEvent,
-                viewSelection.getLeadSelectionIndex());
-            SwingXUtilities.setLeadAnchorWithoutSelection(
-                modelSelection, modelIndex, modelIndex);
+            modelIndex = convertRowIndexToModel(sortEvent, viewSelection.getLeadSelectionIndex());
+            SwingXUtilities.setLeadAnchorWithoutSelection(modelSelection, modelIndex, modelIndex);
         } else if (modelSelection == null) {
             // Sorting changed, haven't cached selection in terms
             // of model and no filtering. Temporarily cache selection.
@@ -238,8 +233,7 @@ public final class ListSortUI {
 
     private void cacheModelSelection(RowSorterEvent sortEvent) {
         lastModelSelection = convertSelectionToModel(sortEvent);
-        modelLeadIndex = convertRowIndexToModel(sortEvent,
-            getViewSelectionModel().getLeadSelectionIndex());
+        modelLeadIndex = convertRowIndexToModel(sortEvent, getViewSelectionModel().getLeadSelectionIndex());
     }
 
 //----------------------- process change, that is restore selection if needed    
@@ -264,8 +258,7 @@ public final class ListSortUI {
     private void restoreSelection(ModelChange change) {
         syncingSelection = true;
         if (lastModelSelection != null) {
-            restoreSortingSelection(lastModelSelection,
-                modelLeadIndex, change);
+            restoreSortingSelection(lastModelSelection, modelLeadIndex, change);
             lastModelSelection = null;
         } else if (modelSelection != null) {
             ListSelectionModel viewSelection = getViewSelectionModel();
@@ -278,8 +271,7 @@ public final class ListSortUI {
                 if (modelSelection.isSelectedIndex(modelIndex)) {
                     viewIndex = sorter.convertRowIndexToView(modelIndex);
                     if (viewIndex != -1) {
-                        viewSelection.addSelectionInterval(viewIndex,
-                            viewIndex);
+                        viewSelection.addSelectionInterval(viewIndex, viewIndex);
                     }
                 }
             }
@@ -288,8 +280,7 @@ public final class ListSortUI {
             if (viewLeadIndex != -1) {
                 viewLeadIndex = sorter.convertRowIndexToView(viewLeadIndex);
             }
-            SwingXUtilities.setLeadAnchorWithoutSelection(
-                viewSelection, viewLeadIndex, viewLeadIndex);
+            SwingXUtilities.setLeadAnchorWithoutSelection(viewSelection, viewLeadIndex, viewLeadIndex);
             viewSelection.setValueIsAdjusting(false);
         }
         syncingSelection = false;
@@ -299,8 +290,7 @@ public final class ListSortUI {
      * Restores the selection after a model event/sort order changes.
      * All coordinates are in terms of the model.
      */
-    private void restoreSortingSelection(int[] selection, int lead,
-                                         ModelChange change) {
+    private void restoreSortingSelection(int[] selection, int lead, ModelChange change) {
         // Convert the selection from model to view
         for (int i = selection.length - 1; i >= 0; i--) {
             selection[i] = convertRowIndexToView(change, selection[i]);
@@ -308,8 +298,7 @@ public final class ListSortUI {
         lead = convertRowIndexToView(change, lead);
 
         // Check for the common case of no change in selection for 1 row
-        if (selection.length == 0 ||
-            selection.length == 1 && selection[0] == list.getSelectedIndex()) {
+        if (selection.length == 0 || selection.length == 1 && selection[0] == list.getSelectedIndex()) {
             return;
         }
         ListSelectionModel selectionModel = getViewSelectionModel();
@@ -318,12 +307,10 @@ public final class ListSortUI {
         selectionModel.clearSelection();
         for (int i = selection.length - 1; i >= 0; i--) {
             if (selection[i] != -1) {
-                selectionModel.addSelectionInterval(selection[i],
-                    selection[i]);
+                selectionModel.addSelectionInterval(selection[i], selection[i]);
             }
         }
-        SwingXUtilities.setLeadAnchorWithoutSelection(
-            selectionModel, lead, lead);
+        SwingXUtilities.setLeadAnchorWithoutSelection(selectionModel, lead, lead);
         selectionModel.setValueIsAdjusting(false);
     }
 
@@ -346,8 +333,7 @@ public final class ListSortUI {
                 if (modelIndex + change.length >= change.modelRowCount) {
                     return -1;
                 }
-                return sorter.convertRowIndexToView(
-                    modelIndex + change.length);
+                return sorter.convertRowIndexToView(modelIndex + change.length);
             } else if (change.type == ListDataEvent.INTERVAL_REMOVED) {
                 if (modelIndex <= change.endModelIndex) {
                     // deleted
@@ -356,8 +342,7 @@ public final class ListSortUI {
                     if (modelIndex - change.length >= change.modelRowCount) {
                         return -1;
                     }
-                    return sorter.convertRowIndexToView(
-                        modelIndex - change.length);
+                    return sorter.convertRowIndexToView(modelIndex - change.length);
                 }
             }
             // else, updated
@@ -413,16 +398,13 @@ public final class ListSortUI {
             } else {
                 switch (change.type) {
                 case ListDataEvent.CONTENTS_CHANGED:
-                    sorter.rowsUpdated(change.startModelIndex,
-                        change.endModelIndex);
+                    sorter.rowsUpdated(change.startModelIndex, change.endModelIndex);
                     break;
                 case ListDataEvent.INTERVAL_ADDED:
-                    sorter.rowsInserted(change.startModelIndex,
-                        change.endModelIndex);
+                    sorter.rowsInserted(change.startModelIndex, change.endModelIndex);
                     break;
                 case ListDataEvent.INTERVAL_REMOVED:
-                    sorter.rowsDeleted(change.startModelIndex,
-                        change.endModelIndex);
+                    sorter.rowsDeleted(change.startModelIndex, change.endModelIndex);
                     break;
                 }
             }

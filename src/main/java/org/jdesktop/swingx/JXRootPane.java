@@ -158,12 +158,10 @@ public class JXRootPane extends JRootPane {
             int w = b.width - i.right - i.left;
 //            int h = b.height - i.top - i.bottom;
             Dimension statusPref = statusBar.getPreferredSize();
-            statusBar.setBounds(i.right, b.height - i.bottom
-                                         - statusPref.height, w, statusPref.height);
+            statusBar.setBounds(i.right, b.height - i.bottom - statusPref.height, w, statusPref.height);
             if (contentPane != null) {
                 Rectangle bounds = contentPane.getBounds();
-                contentPane.setBounds(bounds.x, bounds.y, bounds.width,
-                    bounds.height - statusPref.height);
+                contentPane.setBounds(bounds.x, bounds.y, bounds.width, bounds.height - statusPref.height);
             }
         }
     }
@@ -311,7 +309,8 @@ public class JXRootPane extends JRootPane {
                 Component component = KeyboardFocusManager.getCurrentKeyboardFocusManager().getFocusOwner();
                 if (component instanceof JComponent) {
                     Action cancelPopup = ((JComponent) component).getActionMap().get("cancel");
-                    if (cancelPopup != null) return false;
+                    if (cancelPopup != null)
+                        return false;
                 }
                 return cancelButton != null && cancelButton.isEnabled();
             }

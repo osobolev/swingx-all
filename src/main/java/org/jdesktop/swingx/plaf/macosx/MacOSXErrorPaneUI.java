@@ -142,14 +142,30 @@ public class MacOSXErrorPaneUI extends BasicErrorPaneUI {
         createExtraComponents();
         GridBagLayout layout = new GridBagLayout();
         try {
-            layout.addLayoutComponent(iconLabel, new GridBagConstraints(0, 0, 1, 2, 0.0, 0.0, GridBagConstraints.NORTH, GridBagConstraints.NONE, new Insets(0, 0, 0, 17), 0, 0));
-            layout.addLayoutComponent(titleLabel, new GridBagConstraints(1, 0, 2, 1, 1.0, 0.0, GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL, new Insets(0, 0, 12, 0), 0, 0));
-            layout.addLayoutComponent(errorScrollPane, new GridBagConstraints(1, 1, 2, 1, 1.0, 1.0, GridBagConstraints.NORTH, GridBagConstraints.BOTH, new Insets(0, 0, 10, 0), 0, 0));
-            layout.addLayoutComponent(detailButton, new GridBagConstraints(0, 2, 3, 1, 1.0, 0.0, GridBagConstraints.LINE_START, GridBagConstraints.NONE, new Insets(0, 0, 6, 0), 0, 0));
-            layout.addLayoutComponent(detailsPanel, new GridBagConstraints(0, 3, 3, 1, 1.0, 1.0, GridBagConstraints.LINE_START, GridBagConstraints.BOTH, new Insets(0, 0, 6, 0), 0, 0));
-            layout.addLayoutComponent(disclaimerText, new GridBagConstraints(0, 4, 3, 1, 1.0, 0.0, GridBagConstraints.LINE_START, GridBagConstraints.HORIZONTAL, new Insets(0, 0, 6, 0), 0, 0));
-            layout.addLayoutComponent(closeButton, new GridBagConstraints(1, 5, 1, 1, 1.0, 0.0, GridBagConstraints.LINE_START, GridBagConstraints.NONE, new Insets(0, 0, 0, 5), 0, 0));
-            layout.addLayoutComponent(reportButton, new GridBagConstraints(2, 5, 1, 1, 0.0, 0.0, GridBagConstraints.LINE_START, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
+            layout.addLayoutComponent(iconLabel, new GridBagConstraints(
+                0, 0, 1, 2, 0.0, 0.0, GridBagConstraints.NORTH, GridBagConstraints.NONE, new Insets(0, 0, 0, 17), 0, 0
+            ));
+            layout.addLayoutComponent(titleLabel, new GridBagConstraints(
+                1, 0, 2, 1, 1.0, 0.0, GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL, new Insets(0, 0, 12, 0), 0, 0
+            ));
+            layout.addLayoutComponent(errorScrollPane, new GridBagConstraints(
+                1, 1, 2, 1, 1.0, 1.0, GridBagConstraints.NORTH, GridBagConstraints.BOTH, new Insets(0, 0, 10, 0), 0, 0
+            ));
+            layout.addLayoutComponent(detailButton, new GridBagConstraints(
+                0, 2, 3, 1, 1.0, 0.0, GridBagConstraints.LINE_START, GridBagConstraints.NONE, new Insets(0, 0, 6, 0), 0, 0
+            ));
+            layout.addLayoutComponent(detailsPanel, new GridBagConstraints(
+                0, 3, 3, 1, 1.0, 1.0, GridBagConstraints.LINE_START, GridBagConstraints.BOTH, new Insets(0, 0, 6, 0), 0, 0
+            ));
+            layout.addLayoutComponent(disclaimerText, new GridBagConstraints(
+                0, 4, 3, 1, 1.0, 0.0, GridBagConstraints.LINE_START, GridBagConstraints.HORIZONTAL, new Insets(0, 0, 6, 0), 0, 0
+            ));
+            layout.addLayoutComponent(closeButton, new GridBagConstraints(
+                1, 5, 1, 1, 1.0, 0.0, GridBagConstraints.LINE_START, GridBagConstraints.NONE, new Insets(0, 0, 0, 5), 0, 0
+            ));
+            layout.addLayoutComponent(reportButton, new GridBagConstraints(
+                2, 5, 1, 1, 0.0, 0.0, GridBagConstraints.LINE_START, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0
+            ));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -162,7 +178,9 @@ public class MacOSXErrorPaneUI extends BasicErrorPaneUI {
     @Override
     protected LayoutManager createDetailPanelLayout() {
         GridBagLayout layout = new GridBagLayout();
-        layout.addLayoutComponent(detailsScrollPane, new GridBagConstraints(0, 0, 1, 1, 1.0, 1.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
+        layout.addLayoutComponent(detailsScrollPane, new GridBagConstraints(
+            0, 0, 1, 1, 1.0, 1.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0
+        ));
         copyToClipboardButton.setVisible(false);
         return layout;
     }

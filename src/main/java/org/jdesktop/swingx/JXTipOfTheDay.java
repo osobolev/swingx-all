@@ -229,9 +229,7 @@ public class JXTipOfTheDay extends JXPanel {
      */
     public void setCurrentTip(int currentTip) {
         if (currentTip < 0 || currentTip >= getModel().getTipCount()) {
-            throw new IllegalArgumentException(
-                "Current tip must be within the bounds [0, " + getModel().getTipCount()
-                + "]");
+            throw new IllegalArgumentException("Current tip must be within the bounds [0, " + getModel().getTipCount() + "]");
         }
 
         int oldTip = this.currentTip;
@@ -294,8 +292,7 @@ public class JXTipOfTheDay extends JXPanel {
      * @throws IllegalArgumentException if showOnStartupPref is null
      * @see java.awt.GraphicsEnvironment#isHeadless
      */
-    public boolean showDialog(Component parentComponent,
-                              Preferences showOnStartupPref) throws HeadlessException {
+    public boolean showDialog(Component parentComponent, Preferences showOnStartupPref) throws HeadlessException {
         return showDialog(parentComponent, showOnStartupPref, false);
     }
 
@@ -314,11 +311,9 @@ public class JXTipOfTheDay extends JXPanel {
      * @throws IllegalArgumentException if showOnStartupPref is null
      * @see java.awt.GraphicsEnvironment#isHeadless
      */
-    public boolean showDialog(Component parentComponent,
-                              Preferences showOnStartupPref, boolean force) throws HeadlessException {
+    public boolean showDialog(Component parentComponent, Preferences showOnStartupPref, boolean force) throws HeadlessException {
         if (showOnStartupPref == null) {
-            throw new IllegalArgumentException(
-                "Preferences can not be null");
+            throw new IllegalArgumentException("Preferences can not be null");
         }
 
         ShowOnStartupChoice store = new ShowOnStartupChoice() {
@@ -358,8 +353,7 @@ public class JXTipOfTheDay extends JXPanel {
      * @throws HeadlessException if GraphicsEnvironment.isHeadless() returns true.
      * @see java.awt.GraphicsEnvironment#isHeadless
      */
-    public boolean showDialog(Component parentComponent,
-                              ShowOnStartupChoice choice) {
+    public boolean showDialog(Component parentComponent, ShowOnStartupChoice choice) {
         return showDialog(parentComponent, choice, false);
     }
 
@@ -382,8 +376,7 @@ public class JXTipOfTheDay extends JXPanel {
      * @throws HeadlessException if GraphicsEnvironment.isHeadless() returns true.
      * @see java.awt.GraphicsEnvironment#isHeadless
      */
-    public boolean showDialog(Component parentComponent,
-                              ShowOnStartupChoice choice, boolean force) {
+    public boolean showDialog(Component parentComponent, ShowOnStartupChoice choice, boolean force) {
         if (choice == null) {
             JDialog dialog = createDialog(parentComponent, choice);
             dialog.setVisible(true);
@@ -429,8 +422,7 @@ public class JXTipOfTheDay extends JXPanel {
      * @param choice
      * @return a JDialog to show this TipOfTheDay pane
      */
-    protected JDialog createDialog(Component parentComponent,
-                                   ShowOnStartupChoice choice) {
+    protected JDialog createDialog(Component parentComponent, ShowOnStartupChoice choice) {
         return getUI().createDialog(parentComponent, choice);
     }
 

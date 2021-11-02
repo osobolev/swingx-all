@@ -339,12 +339,9 @@ public final class BlendComposite implements Composite {
         OVERLAY {
             @Override
             void blend(int[] src, int[] dst, int[] result) {
-                result[0] = dst[0] < 128 ? dst[0] * src[0] >> 7
-                    : 255 - ((255 - dst[0]) * (255 - src[0]) >> 7);
-                result[1] = dst[1] < 128 ? dst[1] * src[1] >> 7
-                    : 255 - ((255 - dst[1]) * (255 - src[1]) >> 7);
-                result[2] = dst[2] < 128 ? dst[2] * src[2] >> 7
-                    : 255 - ((255 - dst[2]) * (255 - src[2]) >> 7);
+                result[0] = dst[0] < 128 ? dst[0] * src[0] >> 7 : 255 - ((255 - dst[0]) * (255 - src[0]) >> 7);
+                result[1] = dst[1] < 128 ? dst[1] * src[1] >> 7 : 255 - ((255 - dst[1]) * (255 - src[1]) >> 7);
+                result[2] = dst[2] < 128 ? dst[2] * src[2] >> 7 : 255 - ((255 - dst[2]) * (255 - src[2]) >> 7);
                 result[3] = Math.min(255, src[3] + dst[3] - src[3] * dst[3] / 255);
             }
         },
@@ -381,12 +378,9 @@ public final class BlendComposite implements Composite {
         HARD_LIGHT {
             @Override
             void blend(int[] src, int[] dst, int[] result) {
-                result[0] = src[0] < 128 ? dst[0] * src[0] >> 7
-                    : 255 - ((255 - src[0]) * (255 - dst[0]) >> 7);
-                result[1] = src[1] < 128 ? dst[1] * src[1] >> 7
-                    : 255 - ((255 - src[1]) * (255 - dst[1]) >> 7);
-                result[2] = src[2] < 128 ? dst[2] * src[2] >> 7
-                    : 255 - ((255 - src[2]) * (255 - dst[2]) >> 7);
+                result[0] = src[0] < 128 ? dst[0] * src[0] >> 7 : 255 - ((255 - src[0]) * (255 - dst[0]) >> 7);
+                result[1] = src[1] < 128 ? dst[1] * src[1] >> 7 : 255 - ((255 - src[1]) * (255 - dst[1]) >> 7);
+                result[2] = src[2] < 128 ? dst[2] * src[2] >> 7 : 255 - ((255 - src[2]) * (255 - dst[2]) >> 7);
                 result[3] = Math.min(255, src[3] + dst[3] - src[3] * dst[3] / 255);
             }
         },
@@ -416,12 +410,9 @@ public final class BlendComposite implements Composite {
         LINEAR_LIGHT {
             @Override
             void blend(int[] src, int[] dst, int[] result) {
-                result[0] = src[0] < 128 ? Math.max(0, dst[0] + (src[0] << 1) - 255)
-                    : Math.min(255, dst[0] + (src[0] - 128 << 1));
-                result[1] = src[1] < 128 ? Math.max(0, dst[1] + (src[1] << 1) - 255)
-                    : Math.min(255, dst[1] + (src[1] - 128 << 1));
-                result[2] = src[2] < 128 ? Math.max(0, dst[2] + (src[2] << 1) - 255)
-                    : Math.min(255, dst[2] + (src[2] - 128 << 1));
+                result[0] = src[0] < 128 ? Math.max(0, dst[0] + (src[0] << 1) - 255) : Math.min(255, dst[0] + (src[0] - 128 << 1));
+                result[1] = src[1] < 128 ? Math.max(0, dst[1] + (src[1] << 1) - 255) : Math.min(255, dst[1] + (src[1] - 128 << 1));
+                result[2] = src[2] < 128 ? Math.max(0, dst[2] + (src[2] << 1) - 255) : Math.min(255, dst[2] + (src[2] - 128 << 1));
                 result[3] = Math.min(255, src[3] + dst[3] - src[3] * dst[3] / 255);
             }
         },
@@ -429,12 +420,9 @@ public final class BlendComposite implements Composite {
         PIN_LIGHT {
             @Override
             void blend(int[] src, int[] dst, int[] result) {
-                result[0] = src[0] < 128 ? Math.min(dst[0], src[0] << 1)
-                    : Math.max(dst[0], src[0] - 128 << 1);
-                result[1] = src[1] < 128 ? Math.min(dst[1], src[1] << 1)
-                    : Math.max(dst[1], src[1] - 128 << 1);
-                result[2] = src[2] < 128 ? Math.min(dst[2], src[2] << 1)
-                    : Math.max(dst[2], src[2] - 128 << 1);
+                result[0] = src[0] < 128 ? Math.min(dst[0], src[0] << 1) : Math.max(dst[0], src[0] - 128 << 1);
+                result[1] = src[1] < 128 ? Math.min(dst[1], src[1] << 1) : Math.max(dst[1], src[1] - 128 << 1);
+                result[2] = src[2] < 128 ? Math.min(dst[2], src[2] << 1) : Math.max(dst[2], src[2] - 128 << 1);
                 result[3] = Math.min(255, src[3] + dst[3] - src[3] * dst[3] / 255);
             }
         },
@@ -472,12 +460,9 @@ public final class BlendComposite implements Composite {
         FREEZE {
             @Override
             void blend(int[] src, int[] dst, int[] result) {
-                result[0] = src[0] == 0 ? 0 : Math.max(0, 255 - (255 - dst[0]) * (255 - dst[0])
-                                                                / src[0]);
-                result[1] = src[1] == 0 ? 0 : Math.max(0, 255 - (255 - dst[1]) * (255 - dst[1])
-                                                                / src[1]);
-                result[2] = src[2] == 0 ? 0 : Math.max(0, 255 - (255 - dst[2]) * (255 - dst[2])
-                                                                / src[2]);
+                result[0] = src[0] == 0 ? 0 : Math.max(0, 255 - (255 - dst[0]) * (255 - dst[0]) / src[0]);
+                result[1] = src[1] == 0 ? 0 : Math.max(0, 255 - (255 - dst[1]) * (255 - dst[1]) / src[1]);
+                result[2] = src[2] == 0 ? 0 : Math.max(0, 255 - (255 - dst[2]) * (255 - dst[2]) / src[2]);
                 result[3] = Math.min(255, src[3] + dst[3] - src[3] * dst[3] / 255);
             }
         },
@@ -485,12 +470,9 @@ public final class BlendComposite implements Composite {
         HEAT {
             @Override
             void blend(int[] src, int[] dst, int[] result) {
-                result[0] = dst[0] == 0 ? 0 : Math.max(0, 255 - (255 - src[0]) * (255 - src[0])
-                                                                / dst[0]);
-                result[1] = dst[1] == 0 ? 0 : Math.max(0, 255 - (255 - src[1]) * (255 - src[1])
-                                                                / dst[1]);
-                result[2] = dst[2] == 0 ? 0 : Math.max(0, 255 - (255 - src[2]) * (255 - src[2])
-                                                                / dst[2]);
+                result[0] = dst[0] == 0 ? 0 : Math.max(0, 255 - (255 - src[0]) * (255 - src[0]) / dst[0]);
+                result[1] = dst[1] == 0 ? 0 : Math.max(0, 255 - (255 - src[1]) * (255 - src[1]) / dst[1]);
+                result[2] = dst[2] == 0 ? 0 : Math.max(0, 255 - (255 - src[2]) * (255 - src[2]) / dst[2]);
                 result[3] = Math.min(255, src[3] + dst[3] - src[3] * dst[3] / 255);
             }
         },
@@ -719,8 +701,7 @@ public final class BlendComposite implements Composite {
         this.mode = mode;
 
         if (alpha < 0.0f || alpha > 1.0f) {
-            throw new IllegalArgumentException(
-                "alpha must be comprised between 0.0f and 1.0f");
+            throw new IllegalArgumentException("alpha must be comprised between 0.0f and 1.0f");
         }
         this.alpha = alpha;
     }
@@ -823,30 +804,26 @@ public final class BlendComposite implements Composite {
     }
 
     private static boolean isRgbColorModel(ColorModel cm) {
-        if (cm instanceof DirectColorModel &&
-            cm.getTransferType() == DataBuffer.TYPE_INT) {
+        if (cm instanceof DirectColorModel && cm.getTransferType() == DataBuffer.TYPE_INT) {
             DirectColorModel directCM = (DirectColorModel) cm;
 
             return directCM.getRedMask() == 0x00FF0000 &&
                    directCM.getGreenMask() == 0x0000FF00 &&
                    directCM.getBlueMask() == 0x000000FF &&
-                   (directCM.getNumComponents() == 3 ||
-                    directCM.getAlphaMask() == 0xFF000000);
+                   (directCM.getNumComponents() == 3 || directCM.getAlphaMask() == 0xFF000000);
         }
 
         return false;
     }
 
     private static boolean isBgrColorModel(ColorModel cm) {
-        if (cm instanceof DirectColorModel &&
-            cm.getTransferType() == DataBuffer.TYPE_INT) {
+        if (cm instanceof DirectColorModel && cm.getTransferType() == DataBuffer.TYPE_INT) {
             DirectColorModel directCM = (DirectColorModel) cm;
 
             return directCM.getRedMask() == 0x000000FF &&
                    directCM.getGreenMask() == 0x0000FF00 &&
                    directCM.getBlueMask() == 0x00FF0000 &&
-                   (directCM.getNumComponents() == 3 ||
-                    directCM.getAlphaMask() == 0xFF000000);
+                   (directCM.getNumComponents() == 3 || directCM.getAlphaMask() == 0xFF000000);
         }
 
         return false;
@@ -856,9 +833,7 @@ public final class BlendComposite implements Composite {
      * {@inheritDoc}
      */
     @Override
-    public CompositeContext createContext(ColorModel srcColorModel,
-                                          ColorModel dstColorModel,
-                                          RenderingHints hints) {
+    public CompositeContext createContext(ColorModel srcColorModel, ColorModel dstColorModel, RenderingHints hints) {
         if (isRgbColorModel(srcColorModel) && isRgbColorModel(dstColorModel)) {
             return new BlendingRgbContext(this);
         } else if (isBgrColorModel(srcColorModel) && isBgrColorModel(dstColorModel)) {

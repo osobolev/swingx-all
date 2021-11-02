@@ -67,8 +67,7 @@ public class WindowsClassicStatusBarUI extends BasicStatusBarUI {
 
         //paint an inset border around each component. This suggests that
         //there is an extra border around the status bar...!
-        Border b = BorderFactory.createBevelBorder(BevelBorder.LOWERED,
-            Color.WHITE, bar.getBackground(), bar.getBackground(), Color.GRAY);
+        Border b = BorderFactory.createBevelBorder(BevelBorder.LOWERED, Color.WHITE, bar.getBackground(), bar.getBackground(), Color.GRAY);
         Insets insets = new Insets(0, 0, 0, 0);
         for (Component c : bar.getComponents()) {
             getSeparatorInsets(insets);

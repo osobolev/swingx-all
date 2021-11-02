@@ -41,14 +41,12 @@ public class TableHeaderAddon extends AbstractComponentAddon {
     }
 
     @Override
-    protected void addMetalDefaults(LookAndFeelAddons addon,
-                                    DefaultsList defaults) {
+    protected void addMetalDefaults(LookAndFeelAddons addon, DefaultsList defaults) {
         super.addMetalDefaults(addon, defaults);
         String key = "TableHeader.cellBorder";
         Border border = UIManager.getBorder(key);
         if (border instanceof MetalBorders.TableHeaderBorder) {
-            border = new BorderUIResource.CompoundBorderUIResource(border,
-                BorderFactory.createEmptyBorder());
+            border = new BorderUIResource.CompoundBorderUIResource(border, BorderFactory.createEmptyBorder());
             // PENDING JW: this is fishy ... adding to lookAndFeelDefaults is taken
             UIManager.getLookAndFeelDefaults().put(key, border);
             // adding to defaults is not

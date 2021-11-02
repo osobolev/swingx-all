@@ -76,15 +76,11 @@ public class Star2D implements Shape {
      * @throws IllegalArgumentException if <code>branchesCount<code> is < 3 or
      *                                  if <code>innerRadius</code> is &gt;= <code>outerRadius</code>
      */
-    public Star2D(double x, double y,
-                  double innerRadius, double outerRadius,
-                  int branchesCount) {
+    public Star2D(double x, double y, double innerRadius, double outerRadius, int branchesCount) {
         if (branchesCount < 3) {
-            throw new IllegalArgumentException("The number of branches must" +
-                                               " be >= 3.");
+            throw new IllegalArgumentException("The number of branches must" + " be >= 3.");
         } else if (innerRadius >= outerRadius) {
-            throw new IllegalArgumentException("The inner radius must be < " +
-                                               "outer radius.");
+            throw new IllegalArgumentException("The inner radius must be < " + "outer radius.");
         }
 
         this.x = x;
@@ -96,9 +92,7 @@ public class Star2D implements Shape {
         starShape = generateStar(x, y, innerRadius, outerRadius, branchesCount);
     }
 
-    private static Shape generateStar(double x, double y,
-                                      double innerRadius, double outerRadius,
-                                      int branchesCount) {
+    private static Shape generateStar(double x, double y, double innerRadius, double outerRadius, int branchesCount) {
         GeneralPath path = new GeneralPath();
 
         double outerAngleIncrement = 2 * Math.PI / branchesCount;
@@ -148,13 +142,11 @@ public class Star2D implements Shape {
      */
     public void setInnerRadius(double innerRadius) {
         if (innerRadius >= outerRadius) {
-            throw new IllegalArgumentException("The inner radius must be <" +
-                                               " outer radius.");
+            throw new IllegalArgumentException("The inner radius must be <" + " outer radius.");
         }
 
         this.innerRadius = innerRadius;
-        starShape = generateStar(getX(), getY(), innerRadius, getOuterRadius(),
-            getBranchesCount());
+        starShape = generateStar(getX(), getY(), innerRadius, getOuterRadius(), getBranchesCount());
     }
 
     /**
@@ -164,8 +156,7 @@ public class Star2D implements Shape {
      */
     public void setX(double x) {
         this.x = x;
-        starShape = generateStar(x, getY(), getInnerRadius(), getOuterRadius(),
-            getBranchesCount());
+        starShape = generateStar(x, getY(), getInnerRadius(), getOuterRadius(), getBranchesCount());
     }
 
     /**
@@ -175,8 +166,7 @@ public class Star2D implements Shape {
      */
     public void setY(double y) {
         this.y = y;
-        starShape = generateStar(getX(), y, getInnerRadius(), getOuterRadius(),
-            getBranchesCount());
+        starShape = generateStar(getX(), y, getInnerRadius(), getOuterRadius(), getBranchesCount());
     }
 
     /**
@@ -190,13 +180,11 @@ public class Star2D implements Shape {
      */
     public void setOuterRadius(double outerRadius) {
         if (innerRadius >= outerRadius) {
-            throw new IllegalArgumentException("The outer radius must be > " +
-                                               "inner radius.");
+            throw new IllegalArgumentException("The outer radius must be > " + "inner radius.");
         }
 
         this.outerRadius = outerRadius;
-        starShape = generateStar(getX(), getY(), getInnerRadius(), outerRadius,
-            getBranchesCount());
+        starShape = generateStar(getX(), getY(), getInnerRadius(), outerRadius, getBranchesCount());
     }
 
     /**
@@ -208,13 +196,11 @@ public class Star2D implements Shape {
      */
     public void setBranchesCount(int branchesCount) {
         if (branchesCount <= 2) {
-            throw new IllegalArgumentException("The number of branches must" +
-                                               " be >= 3.");
+            throw new IllegalArgumentException("The number of branches must" + " be >= 3.");
         }
 
         this.branchesCount = branchesCount;
-        starShape = generateStar(getX(), getY(), getInnerRadius(),
-            getOuterRadius(), branchesCount);
+        starShape = generateStar(getX(), getY(), getInnerRadius(), getOuterRadius(), branchesCount);
     }
 
     /**

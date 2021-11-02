@@ -61,14 +61,12 @@ class SynthBorder extends AbstractBorder implements UIResource {
     }
 
     @Override
-    public void paintBorder(Component c, Graphics g, int x, int y,
-                            int width, int height) {
+    public void paintBorder(Component c, Graphics g, int x, int y, int width, int height) {
         JComponent jc = (JComponent) c;
         SynthContext context = ui.getContext(jc);
         SynthStyle style = context.getStyle();
         if (style == null) {
-            assert false : "SynthBorder is being used outside after the UI " +
-                           "has been uninstalled";
+            assert false : "SynthBorder is being used outside after the UI " + "has been uninstalled";
             return;
         }
         ui.paintBorder(context, g, x, y, width, height);
@@ -99,8 +97,7 @@ class SynthBorder extends AbstractBorder implements UIResource {
     public Insets getBorderInsets(Component c, Insets insets) {
         if (this.insets != null) {
             if (insets == null) {
-                insets = new Insets(this.insets.top, this.insets.left,
-                    this.insets.bottom, this.insets.right);
+                insets = new Insets(this.insets.top, this.insets.left, this.insets.bottom, this.insets.right);
             } else {
                 insets.top = this.insets.top;
                 insets.bottom = this.insets.bottom;

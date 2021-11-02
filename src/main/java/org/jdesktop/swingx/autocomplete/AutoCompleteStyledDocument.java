@@ -32,8 +32,7 @@ import java.awt.Font;
 /**
  * @author Karl George Schaefer
  */
-public class AutoCompleteStyledDocument extends AutoCompleteDocument implements
-    StyledDocument {
+public class AutoCompleteStyledDocument extends AutoCompleteDocument implements StyledDocument {
 
     /**
      * @param adaptor
@@ -52,8 +51,7 @@ public class AutoCompleteStyledDocument extends AutoCompleteDocument implements
      * @param strictMatching
      * @param stringConverter
      */
-    public AutoCompleteStyledDocument(AbstractAutoCompleteAdaptor adaptor,
-                                      boolean strictMatching, ObjectToStringConverter stringConverter) {
+    public AutoCompleteStyledDocument(AbstractAutoCompleteAdaptor adaptor, boolean strictMatching, ObjectToStringConverter stringConverter) {
         super(adaptor, strictMatching, stringConverter);
     }
 
@@ -61,8 +59,7 @@ public class AutoCompleteStyledDocument extends AutoCompleteDocument implements
      * @param adaptor
      * @param strictMatching
      */
-    public AutoCompleteStyledDocument(AbstractAutoCompleteAdaptor adaptor,
-                                      boolean strictMatching) {
+    public AutoCompleteStyledDocument(AbstractAutoCompleteAdaptor adaptor, boolean strictMatching) {
         super(adaptor, strictMatching);
     }
 
@@ -150,8 +147,7 @@ public class AutoCompleteStyledDocument extends AutoCompleteDocument implements
      * {@inheritDoc}
      */
     @Override
-    public void setCharacterAttributes(int offset, int length,
-                                       AttributeSet s, boolean replace) {
+    public void setCharacterAttributes(int offset, int length, AttributeSet s, boolean replace) {
         ((StyledDocument) delegate).setCharacterAttributes(offset, length, s, replace);
     }
 
@@ -167,8 +163,7 @@ public class AutoCompleteStyledDocument extends AutoCompleteDocument implements
      * {@inheritDoc}
      */
     @Override
-    public void setParagraphAttributes(int offset, int length,
-                                       AttributeSet s, boolean replace) {
+    public void setParagraphAttributes(int offset, int length, AttributeSet s, boolean replace) {
         ((StyledDocument) delegate).setParagraphAttributes(offset, length, s, replace);
     }
 }

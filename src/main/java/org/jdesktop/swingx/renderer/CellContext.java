@@ -134,8 +134,7 @@ public class CellContext implements Serializable {
      * @param expanded the cell's expanded state
      * @param leaf     the cell's leaf state
      */
-    protected void installState(Object value, int row, int column,
-                                boolean selected, boolean focused, boolean expanded, boolean leaf) {
+    protected void installState(Object value, int row, int column, boolean selected, boolean focused, boolean expanded, boolean leaf) {
         this.value = value;
         this.row = row;
         this.column = column;
@@ -345,8 +344,7 @@ public class CellContext implements Serializable {
     protected Border getFocusBorder() {
         Border border = null;
         if (isSelected()) {
-            border = UIManager
-                .getBorder(getUIKey("focusSelectedCellHighlightBorder"));
+            border = UIManager.getBorder(getUIKey("focusSelectedCellHighlightBorder"));
         }
         if (border == null) {
             border = UIManager.getBorder(getUIKey("focusCellHighlightBorder"));

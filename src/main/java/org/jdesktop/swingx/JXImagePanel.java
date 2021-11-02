@@ -327,7 +327,10 @@ class JXImagePanel extends JXPanel {
                 int txClipW = clipRect.width;
                 int txClipH = clipRect.height;
 
-                g2.drawImage(img, clipRect.x, clipRect.y, clipRect.x + clipRect.width, clipRect.y + clipRect.height, txClipX, txClipY, txClipX + txClipW, txClipY + txClipH, null);
+                g2.drawImage(
+                    img, clipRect.x, clipRect.y, clipRect.x + clipRect.width, clipRect.y + clipRect.height,
+                    txClipX, txClipY, txClipX + txClipW, txClipY + txClipH, null
+                );
                 break;
             case TILED:
                 g2.translate(insets.left, insets.top);

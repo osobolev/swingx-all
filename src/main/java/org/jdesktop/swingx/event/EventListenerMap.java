@@ -35,8 +35,7 @@ import java.util.Map;
  */
 public class EventListenerMap {
 
-    private final Map<Class<? extends EventListener>, List<? extends EventListener>> listenerList =
-        new HashMap<>();
+    private final Map<Class<? extends EventListener>, List<? extends EventListener>> listenerList = new HashMap<>();
 
     /**
      * Returns a list containing all of the listeners managed by this {@code EventListenerMap}.
@@ -96,8 +95,8 @@ public class EventListenerMap {
     /**
      * Adds the listener as a listener of the specified type.
      *
-     * @param <T>   the type of the listener to be added
-     * @param clazz the class type to add
+     * @param <T>      the type of the listener to be added
+     * @param clazz    the class type to add
      * @param listener the listener to be added
      */
     @SuppressWarnings("unchecked")
@@ -117,8 +116,8 @@ public class EventListenerMap {
     /**
      * Removes the listener as a listener of the specified type.
      *
-     * @param <T>   the type of the listener to remove
-     * @param clazz the class type to remove
+     * @param <T>      the type of the listener to remove
+     * @param clazz    the class type to remove
      * @param listener the listener to remove
      */
     @SuppressWarnings("unchecked")

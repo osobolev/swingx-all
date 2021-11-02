@@ -384,8 +384,7 @@ public class JXGraph extends JXPanel {
      * @param view the rectangle defining the view boundaries
      */
     public JXGraph(Rectangle2D view) {
-        this(new Point2D.Double(view.getCenterX(), view.getCenterY()),
-            view, 0.2, 4, 0.2, 4);
+        this(new Point2D.Double(view.getCenterX(), view.getCenterY()), view, 0.2, 4, 0.2, 4);
     }
 
     /**
@@ -403,11 +402,8 @@ public class JXGraph extends JXPanel {
      *                                  minorCountX < 0 or minorCountY < 0 or
      *                                  majorX <= 0.0 or majorY <= 0.0
      */
-    public JXGraph(Rectangle2D view,
-                   double majorX, int minorCountX,
-                   double majorY, int minorCountY) {
-        this(new Point2D.Double(view.getCenterX(), view.getCenterY()),
-            view, majorX, minorCountX, majorY, minorCountY);
+    public JXGraph(Rectangle2D view, double majorX, int minorCountX, double majorY, int minorCountY) {
+        this(new Point2D.Double(view.getCenterX(), view.getCenterY()), view, majorX, minorCountX, majorY, minorCountY);
     }
 
     /**
@@ -441,12 +437,8 @@ public class JXGraph extends JXPanel {
      *                                  minorCountX < 0 or minorCountY < 0 or
      *                                  majorX <= 0.0 or majorY <= 0.0
      */
-    public JXGraph(Point2D origin, Rectangle2D view,
-                   double majorX, int minorCountX,
-                   double majorY, int minorCountY) {
-        this(origin.getX(), origin.getY(),
-            view.getMinX(), view.getMaxX(), view.getMinY(), view.getMaxY(),
-            majorX, minorCountX, majorY, minorCountY);
+    public JXGraph(Point2D origin, Rectangle2D view, double majorX, int minorCountX, double majorY, int minorCountY) {
+        this(origin.getX(), origin.getY(), view.getMinX(), view.getMaxX(), view.getMinY(), view.getMaxY(), majorX, minorCountX, majorY, minorCountY);
     }
 
     /**
@@ -506,8 +498,7 @@ public class JXGraph extends JXPanel {
         this.minY = minY;
         this.maxY = maxY;
 
-        this.defaultView = new Rectangle2D.Double(minX, minY,
-            maxX - minX, maxY - minY);
+        this.defaultView = new Rectangle2D.Double(minX, minY, maxX - minX, maxY - minY);
 
         this.setMajorX(this.defaultMajorX = majorX);
         this.setMinorCountX(minorCountX);
@@ -1013,8 +1004,7 @@ public class JXGraph extends JXPanel {
             return;
         }
         Rectangle2D old = getView();
-        defaultView = new Rectangle2D.Double(bounds.getX(), bounds.getY(),
-            bounds.getWidth(), bounds.getHeight());
+        defaultView = new Rectangle2D.Double(bounds.getX(), bounds.getY(), bounds.getWidth(), bounds.getHeight());
 
         minX = defaultView.getMinX();
         maxX = defaultView.getMaxX();
@@ -1122,8 +1112,7 @@ public class JXGraph extends JXPanel {
         }
 
         for (Plot plot : plotList) {
-            DrawablePlot drawablePlot =
-                new DrawablePlot(plot, color);
+            DrawablePlot drawablePlot = new DrawablePlot(plot, color);
             if (plot != null && !plots.contains(drawablePlot)) {
                 plot.addPropertyChangeListener(plotChangeListener);
                 plots.add(drawablePlot);
@@ -1351,18 +1340,14 @@ public class JXGraph extends JXPanel {
                 Stroke stroke = g2.getStroke();
                 g2.setStroke(new BasicStroke(STROKE_AXIS));
                 g2.setColor(getAxisColor());
-                g2.drawLine((int) axisV - 3, (int) axisH,
-                    (int) axisV + 3, (int) axisH);
-                g2.drawLine((int) axisV, (int) axisH - 3,
-                    (int) axisV, (int) axisH + 3);
+                g2.drawLine((int) axisV - 3, (int) axisH, (int) axisV + 3, (int) axisH);
+                g2.drawLine((int) axisV, (int) axisH - 3, (int) axisV, (int) axisH + 3);
                 g2.setStroke(stroke);
             }
 
             g2.setColor(getForeground());
             FontMetrics metrics = g2.getFontMetrics();
-            g2.drawString(format(originX) + "; " +
-                          format(originY), (int) axisV + 5,
-                (int) axisH + metrics.getHeight());
+            g2.drawString(format(originX) + "; " + format(originY), (int) axisV + 5, (int) axisH + metrics.getHeight());
 
             drawHorizontalAxisLabels(g2);
             drawVerticalAxisLabels(g2);
@@ -1377,8 +1362,7 @@ public class JXGraph extends JXPanel {
 //        double startY = Math.floor((minY - originY) / majorY) * majorY;
         double startY = Math.floor(minY / majorY) * majorY;
         for (double y = startY; y < maxY + majorY; y += majorY) {
-            if (y - majorY / 2.0 < originY &&
-                y + majorY / 2.0 > originY) {
+            if (y - majorY / 2.0 < originY && y + majorY / 2.0 > originY) {
                 continue;
             }
 
@@ -1443,14 +1427,12 @@ public class JXGraph extends JXPanel {
 //        double startX = Math.floor((minX - originX) / majorX) * majorX;
         double startX = Math.floor(minX / majorX) * majorX;
         for (double x = startX; x < maxX + majorX; x += majorX) {
-            if (x - majorX / 2.0 < originX &&
-                x + majorX / 2.0 > originX) {
+            if (x - majorX / 2.0 < originX && x + majorX / 2.0 > originX) {
                 continue;
             }
 
             int position = (int) xPositionToPixel(x);
-            g2.drawString(format(x), position,
-                (int) axisH + metrics.getHeight());
+            g2.drawString(format(x), position, (int) axisH + metrics.getHeight());
         }
     }
 
@@ -1537,8 +1519,7 @@ public class JXGraph extends JXPanel {
      * @see #paintBackground(Graphics2D)
      */
     protected void setupGraphics(Graphics2D g2) {
-        g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
-            RenderingHints.VALUE_ANTIALIAS_ON);
+        g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
     }
 
     /**
@@ -1571,8 +1552,7 @@ public class JXGraph extends JXPanel {
     // and < 100 are formatted with a regular, 2-digits, numbers formatter.
     // Other numbers use a scientific notation given by a DecimalFormat instance
     private String format(double number) {
-        boolean farAway = number != 0.0d && Math.abs(number) < 0.01d ||
-                          Math.abs(number) > 99.0d;
+        boolean farAway = number != 0.0d && Math.abs(number) < 0.01d || Math.abs(number) > 99.0d;
         return (farAway ? secondFormatter : mainFormatter).format(number);
     }
 
@@ -1747,13 +1727,11 @@ public class JXGraph extends JXPanel {
         public void mouseDragged(MouseEvent e) {
             Point dragEnd = e.getPoint();
 
-            double distance = xPixelToPosition(dragEnd.getX()) -
-                              xPixelToPosition(dragStart.getX());
+            double distance = xPixelToPosition(dragEnd.getX()) - xPixelToPosition(dragStart.getX());
             minX -= distance;
             maxX -= distance;
 
-            distance = yPixelToPosition(dragEnd.getY()) -
-                       yPixelToPosition(dragStart.getY());
+            distance = yPixelToPosition(dragEnd.getY()) - yPixelToPosition(dragStart.getY());
             minY -= distance;
             maxY -= distance;
 

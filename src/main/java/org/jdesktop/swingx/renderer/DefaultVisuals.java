@@ -152,8 +152,7 @@ public class DefaultVisuals<T extends JComponent> implements Serializable {
             // leave the decistion to the context?
         } else {
             renderingComponent.setEnabled(context.getComponent().isEnabled());
-            renderingComponent.applyComponentOrientation(context.getComponent()
-                .getComponentOrientation());
+            renderingComponent.applyComponentOrientation(context.getComponent().getComponentOrientation());
         }
     }
 

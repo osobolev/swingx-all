@@ -75,8 +75,7 @@ public class MetalStatusBarUI extends BasicStatusBarUI {
             int mid = (int) (ratio1 * h);
             int mid2 = (int) (ratio2 * h);
             if (mid > 0) {
-                g.setPaint(new GradientPaint((float) 0, (float) 0, c1, (float) 0,
-                    (float) mid, c2));
+                g.setPaint(new GradientPaint((float) 0, (float) 0, c1, (float) 0, (float) mid, c2));
                 g.fillRect(0, 0, w, mid);
             }
             if (mid2 > 0) {
@@ -84,13 +83,11 @@ public class MetalStatusBarUI extends BasicStatusBarUI {
                 g.fillRect(0, mid, w, mid2);
             }
             if (mid > 0) {
-                g.setPaint(new GradientPaint((float) 0, (float) mid + mid2, c2,
-                    (float) 0, (float) mid * 2 + mid2, c1));
+                g.setPaint(new GradientPaint((float) 0, (float) mid + mid2, c2, (float) 0, (float) mid * 2 + mid2, c1));
                 g.fillRect(0, mid + mid2, w, mid);
             }
             if (h - mid * 2 - mid2 > 0) {
-                g.setPaint(new GradientPaint((float) 0, (float) mid * 2 + mid2, c1,
-                    (float) 0, (float) h, c3));
+                g.setPaint(new GradientPaint((float) 0, (float) mid * 2 + mid2, c1, (float) 0, (float) h, c3));
                 g.fillRect(0, mid * 2 + mid2, w, h - mid * 2 - mid2);
             }
         }

@@ -90,12 +90,10 @@ public class ComboBoxCellEditor extends DefaultCellEditor {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                JTextComponent editorComponent = (JTextComponent) comboBox.getEditor()
-                    .getEditorComponent();
+                JTextComponent editorComponent = (JTextComponent) comboBox.getEditor().getEditorComponent();
 
                 if (editorComponent.getDocument() instanceof AutoCompleteDocument) {
-                    AutoCompleteDocument document = (AutoCompleteDocument) editorComponent
-                        .getDocument();
+                    AutoCompleteDocument document = (AutoCompleteDocument) editorComponent.getDocument();
                     // if auto completion is happening right now, cell editing should not be stopped
                     if (!document.selecting) {
                         ComboBoxCellEditor.this.stopCellEditing();

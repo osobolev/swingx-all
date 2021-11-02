@@ -137,15 +137,13 @@ public class SearchFieldUI extends BuddyTextFieldUI {
                         }
                     } else {
                         JButton refButton = popupButton();
-                        if (searchField.getFindPopupMenu() == null
-                            ^ searchField.isUseSeperatePopupButton()) {
+                        if (searchField.getFindPopupMenu() == null ^ searchField.isUseSeperatePopupButton()) {
                             refButton = searchButton();
                         }
 
                         int clearWidth = clearButton().getPreferredSize().width;
                         int refWidth = refButton.getPreferredSize().width;
-                        int overSize = clearButton().isVisible() ? refWidth
-                                                                   - clearWidth : clearWidth - refWidth;
+                        int overSize = clearButton().isVisible() ? refWidth - clearWidth : clearWidth - refWidth;
                         if (overSize > 0) {
                             insets.right += overSize;
                         }
@@ -172,8 +170,7 @@ public class SearchFieldUI extends BuddyTextFieldUI {
         BuddySupport.addRight(clearButton(), searchField);
 
         if (usingSeperatePopupButton()) {
-            BuddySupport.addRight(BuddySupport.createGap(getPopupOffset()),
-                searchField);
+            BuddySupport.addRight(BuddySupport.createGap(getPopupOffset()), searchField);
         }
 
         if (usingSeperatePopupButton() || !isMacLayoutStyle()) {
@@ -203,21 +200,16 @@ public class SearchFieldUI extends BuddyTextFieldUI {
         }
 
         if (UIManager.getBoolean("SearchField.useSeperatePopupButton")) {
-            searchField.customSetUIProperty("useSeperatePopupButton",
-                Boolean.TRUE);
+            searchField.customSetUIProperty("useSeperatePopupButton", Boolean.TRUE);
         } else {
-            searchField.customSetUIProperty("useSeperatePopupButton",
-                Boolean.FALSE);
+            searchField.customSetUIProperty("useSeperatePopupButton", Boolean.FALSE);
         }
 
-        searchField.customSetUIProperty("layoutStyle", UIManager
-            .get("SearchField.layoutStyle"));
-        searchField.customSetUIProperty("promptFontStyle", UIManager
-            .get("SearchField.promptFontStyle"));
+        searchField.customSetUIProperty("layoutStyle", UIManager.get("SearchField.layoutStyle"));
+        searchField.customSetUIProperty("promptFontStyle", UIManager.get("SearchField.promptFontStyle"));
 
         if (shouldReplaceResource(searchField.getOuterMargin())) {
-            searchField.setOuterMargin(UIManager
-                .getInsets("SearchField.buttonMargin"));
+            searchField.setOuterMargin(UIManager.getInsets("SearchField.buttonMargin"));
         }
 
         updateButtons();
@@ -226,25 +218,17 @@ public class SearchFieldUI extends BuddyTextFieldUI {
             clearButton().setIcon(UIManager.getIcon("SearchField.clearIcon"));
         }
         if (shouldReplaceResource(clearButton().getPressedIcon())) {
-            clearButton().setPressedIcon(
-                UIManager.getIcon("SearchField.clearPressedIcon"));
+            clearButton().setPressedIcon(UIManager.getIcon("SearchField.clearPressedIcon"));
         }
         if (shouldReplaceResource(clearButton().getRolloverIcon())) {
-            clearButton().setRolloverIcon(
-                UIManager.getIcon("SearchField.clearRolloverIcon"));
+            clearButton().setRolloverIcon(UIManager.getIcon("SearchField.clearRolloverIcon"));
         }
 
-        searchButton().setIcon(
-            getNewIcon(searchButton().getIcon(), "SearchField.icon"));
+        searchButton().setIcon(getNewIcon(searchButton().getIcon(), "SearchField.icon"));
 
-        popupButton().setIcon(
-            getNewIcon(popupButton().getIcon(), "SearchField.popupIcon"));
-        popupButton().setRolloverIcon(
-            getNewIcon(popupButton().getRolloverIcon(),
-                "SearchField.popupRolloverIcon"));
-        popupButton().setPressedIcon(
-            getNewIcon(popupButton().getPressedIcon(),
-                "SearchField.popupPressedIcon"));
+        popupButton().setIcon(getNewIcon(popupButton().getIcon(), "SearchField.popupIcon"));
+        popupButton().setRolloverIcon(getNewIcon(popupButton().getRolloverIcon(), "SearchField.popupRolloverIcon"));
+        popupButton().setPressedIcon(getNewIcon(popupButton().getPressedIcon(), "SearchField.popupPressedIcon"));
     }
 
     /**
@@ -333,8 +317,7 @@ public class SearchFieldUI extends BuddyTextFieldUI {
      * @return the popup button is used in addition to the search button
      */
     public boolean usingSeperatePopupButton() {
-        return searchField.isUseSeperatePopupButton()
-               && searchField.getFindPopupMenu() != null;
+        return searchField.isUseSeperatePopupButton() && searchField.getFindPopupMenu() != null;
     }
 
     /**
@@ -361,29 +344,16 @@ public class SearchFieldUI extends BuddyTextFieldUI {
      * the icons when the search field is in instant search mode.
      */
     protected void updateButtons() {
-        clearButton().setVisible(
-            (!searchField.isRegularSearchMode() || searchField
-                .isMacLayoutStyle())
-            && hasText());
+        clearButton().setVisible((!searchField.isRegularSearchMode() || searchField.isMacLayoutStyle()) && hasText());
 
-        boolean clearNotHere = searchField.isMacLayoutStyle() || !clearButton()
-            .isVisible();
+        boolean clearNotHere = searchField.isMacLayoutStyle() || !clearButton().isVisible();
 
-        searchButton()
-            .setVisible(
-                (searchField.getFindPopupMenu() == null || usingSeperatePopupButton())
-                && clearNotHere);
-        popupButton().setVisible(
-            searchField.getFindPopupMenu() != null
-            && (clearNotHere || usingSeperatePopupButton()));
+        searchButton().setVisible((searchField.getFindPopupMenu() == null || usingSeperatePopupButton()) && clearNotHere);
+        popupButton().setVisible(searchField.getFindPopupMenu() != null && (clearNotHere || usingSeperatePopupButton()));
 
         if (searchField.isRegularSearchMode()) {
-            searchButton().setRolloverIcon(
-                getNewIcon(searchButton().getRolloverIcon(),
-                    "SearchField.rolloverIcon"));
-            searchButton().setPressedIcon(
-                getNewIcon(searchButton().getPressedIcon(),
-                    "SearchField.pressedIcon"));
+            searchButton().setRolloverIcon(getNewIcon(searchButton().getRolloverIcon(), "SearchField.rolloverIcon"));
+            searchButton().setPressedIcon(getNewIcon(searchButton().getPressedIcon(), "SearchField.pressedIcon"));
         } else {
             // no action, therefore no rollover icon.
             if (shouldReplaceResource(searchButton().getRolloverIcon())) {
@@ -396,12 +366,10 @@ public class SearchFieldUI extends BuddyTextFieldUI {
     }
 
     private boolean hasText() {
-        return searchField.getText() != null
-               && searchField.getText().length() > 0;
+        return searchField.getText() != null && searchField.getText().length() > 0;
     }
 
-    class Handler implements PropertyChangeListener, ActionListener,
-        DocumentListener {
+    class Handler implements PropertyChangeListener, ActionListener, DocumentListener {
 
         @Override
         public void propertyChange(PropertyChangeEvent evt) {
@@ -409,10 +377,7 @@ public class SearchFieldUI extends BuddyTextFieldUI {
             Object src = evt.getSource();
 
             if (src.equals(searchField)) {
-                if ("findPopupMenu".equals(prop)
-                    || "searchMode".equals(prop)
-                    || "useSeperatePopupButton".equals(prop)
-                    || "layoutStyle".equals(prop)) {
+                if ("findPopupMenu".equals(prop) || "searchMode".equals(prop) || "useSeperatePopupButton".equals(prop) || "layoutStyle".equals(prop)) {
                     layoutButtons();
                     updateButtons();
                 } else if ("document".equals(prop)) {
@@ -434,16 +399,13 @@ public class SearchFieldUI extends BuddyTextFieldUI {
         @Override
         public void actionPerformed(ActionEvent e) {
             if (searchField.getFindPopupMenu() != null) {
-                Component src = SearchFieldAddon.SEARCH_FIELD_SOURCE
-                    .equals(UIManager.getString("SearchField.popupSource")) ? searchField
+                Component src = SearchFieldAddon.SEARCH_FIELD_SOURCE.equals(UIManager.getString("SearchField.popupSource"))
+                    ? searchField
                     : (Component) e.getSource();
 
                 Rectangle r = SwingUtilities.getLocalBounds(src);
-                int popupWidth = searchField.getFindPopupMenu()
-                    .getPreferredSize().width;
-                int x = searchField.isVistaLayoutStyle()
-                        || usingSeperatePopupButton() ? r.x + r.width
-                                                        - popupWidth : r.x;
+                int popupWidth = searchField.getFindPopupMenu().getPreferredSize().width;
+                int x = searchField.isVistaLayoutStyle() || usingSeperatePopupButton() ? r.x + r.width - popupWidth : r.x;
                 searchField.getFindPopupMenu().show(src, x, r.y + r.height);
             }
         }
@@ -474,8 +436,7 @@ public class SearchFieldUI extends BuddyTextFieldUI {
                 searchField.getInstantSearchTimer().stop();
                 // only use timer when delay greater 0.
                 if (searchField.getInstantSearchDelay() > 0) {
-                    searchField.getInstantSearchTimer().setInitialDelay(
-                        searchField.getInstantSearchDelay());
+                    searchField.getInstantSearchTimer().setInitialDelay(searchField.getInstantSearchDelay());
                     searchField.getInstantSearchTimer().start();
                 } else {
                     searchField.postActionEvent();

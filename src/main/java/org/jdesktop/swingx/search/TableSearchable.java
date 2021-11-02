@@ -56,8 +56,7 @@ public class TableSearchable extends AbstractSearchable {
      * This implementation loops through the cells in a row to find a match.
      */
     @Override
-    protected void findMatchAndUpdateState(Pattern pattern, int startRow,
-                                           boolean backwards) {
+    protected void findMatchAndUpdateState(Pattern pattern, int startRow, boolean backwards) {
         SearchResult matchRow = null;
         if (backwards) {
             // CHECK: off-one end still needed?
@@ -106,8 +105,7 @@ public class TableSearchable extends AbstractSearchable {
      * found in this row or null if no match is found
      */
     private SearchResult findMatchForwardInRow(Pattern pattern, int row) {
-        int startColumn = lastSearchResult.foundColumn < 0 ? 0
-            : lastSearchResult.foundColumn;
+        int startColumn = lastSearchResult.foundColumn < 0 ? 0 : lastSearchResult.foundColumn;
         if (isValidIndex(row)) {
             for (int column = startColumn; column < table.getColumnCount(); column++) {
                 SearchResult result = findMatchAt(pattern, row, column);
@@ -130,8 +128,7 @@ public class TableSearchable extends AbstractSearchable {
      * found in this row or null if no match is found
      */
     private SearchResult findMatchBackwardsInRow(Pattern pattern, int row) {
-        int startColumn = lastSearchResult.foundColumn < 0 ? table
-                                                                   .getColumnCount() - 1 : lastSearchResult.foundColumn;
+        int startColumn = lastSearchResult.foundColumn < 0 ? table.getColumnCount() - 1 : lastSearchResult.foundColumn;
         if (isValidIndex(row)) {
             for (int column = startColumn; column >= 0; column--) {
                 SearchResult result = findMatchAt(pattern, row, column);
@@ -205,8 +202,7 @@ public class TableSearchable extends AbstractSearchable {
      */
     @Override
     protected boolean isEqualStartIndex(int startIndex) {
-        return super.isEqualStartIndex(startIndex)
-               && isValidColumn(lastSearchResult.foundColumn);
+        return super.isEqualStartIndex(startIndex) && isValidColumn(lastSearchResult.foundColumn);
     }
 
     /**
@@ -247,8 +243,7 @@ public class TableSearchable extends AbstractSearchable {
         if (!hasMatch())
             return;
         ensureInsertedSearchHighlighters(searchHL);
-        table.scrollCellToVisible(lastSearchResult.foundRow,
-            lastSearchResult.foundColumn);
+        table.scrollCellToVisible(lastSearchResult.foundRow, lastSearchResult.foundColumn);
     }
 
     /**

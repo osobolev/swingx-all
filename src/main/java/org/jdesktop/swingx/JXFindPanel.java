@@ -82,7 +82,8 @@ public class JXFindPanel extends AbstractPatternPanel {
      *                   information using methods of the {@link Searchable Searchable} interface.
      */
     public void setSearchable(Searchable searchable) {
-        if (this.searchable != null && this.searchable.equals(searchable)) return;
+        if (this.searchable != null && this.searchable.equals(searchable))
+            return;
         Searchable old = this.searchable;
         if (old != null) {
             old.search((Pattern) null);
@@ -107,7 +108,8 @@ public class JXFindPanel extends AbstractPatternPanel {
      * Initializes component and its listeners and models.
      */
     protected void init() {
-        if (initialized) return;
+        if (initialized)
+            return;
         initialized = true;
         initComponents();
         build();
@@ -122,12 +124,8 @@ public class JXFindPanel extends AbstractPatternPanel {
     @Override
     protected void bind() {
         super.bind();
-        getActionContainerFactory().configureButton(wrapCheck,
-            getAction(PatternModel.MATCH_WRAP_ACTION_COMMAND),
-            null);
-        getActionContainerFactory().configureButton(backCheck,
-            getAction(PatternModel.MATCH_BACKWARDS_ACTION_COMMAND),
-            null);
+        getActionContainerFactory().configureButton(wrapCheck, getAction(PatternModel.MATCH_WRAP_ACTION_COMMAND), null);
+        getActionContainerFactory().configureButton(backCheck, getAction(PatternModel.MATCH_BACKWARDS_ACTION_COMMAND), null);
     }
 
     /**
@@ -207,8 +205,7 @@ public class JXFindPanel extends AbstractPatternPanel {
      * @return Index of the next match in document.
      */
     protected int doSearch() {
-        int foundIndex = searchable.search(getPatternModel().getPattern(),
-            getPatternModel().getFoundIndex(), getPatternModel().isBackwards());
+        int foundIndex = searchable.search(getPatternModel().getPattern(), getPatternModel().getFoundIndex(), getPatternModel().isBackwards());
         getPatternModel().setFoundIndex(foundIndex);
         return getPatternModel().getFoundIndex();
 //         first try on #236-swingx - foundIndex wrong in backwards search.
@@ -246,10 +243,8 @@ public class JXFindPanel extends AbstractPatternPanel {
      */
     @Override
     protected void initExecutables() {
-        getActionMap().put(FIND_NEXT_ACTION_COMMAND,
-            createBoundAction(FIND_NEXT_ACTION_COMMAND, "findNext"));
-        getActionMap().put(FIND_PREVIOUS_ACTION_COMMAND,
-            createBoundAction(FIND_PREVIOUS_ACTION_COMMAND, "findPrevious"));
+        getActionMap().put(FIND_NEXT_ACTION_COMMAND, createBoundAction(FIND_NEXT_ACTION_COMMAND, "findNext"));
+        getActionMap().put(FIND_PREVIOUS_ACTION_COMMAND, createBoundAction(FIND_PREVIOUS_ACTION_COMMAND, "findPrevious"));
         super.initExecutables();
     }
 

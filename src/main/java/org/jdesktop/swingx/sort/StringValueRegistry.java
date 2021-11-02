@@ -41,8 +41,7 @@ import java.util.logging.Logger;
 public final class StringValueRegistry implements StringValueProvider {
 
     @SuppressWarnings("unused")
-    private static final Logger LOG = Logger
-        .getLogger(StringValueRegistry.class.getName());
+    private static final Logger LOG = Logger.getLogger(StringValueRegistry.class.getName());
 
     private Map<Class<?>, StringValue> perClass;
     private HashMap<Integer, StringValue> perColumn;
@@ -124,8 +123,7 @@ public final class StringValueRegistry implements StringValueProvider {
      * @param classPerColumn
      */
     public void setColumnClasses(Map<Integer, Class<?>> classPerColumn) {
-        this.classPerColumn = classPerColumn != null ?
-            new HashMap<>(classPerColumn) : null;
+        this.classPerColumn = classPerColumn != null ? new HashMap<>(classPerColumn) : null;
     }
 
     /**
@@ -133,9 +131,11 @@ public final class StringValueRegistry implements StringValueProvider {
      * @return
      */
     private StringValue getStringValueByClass(Class<?> clazz) {
-        if (clazz == null) return null;
+        if (clazz == null)
+            return null;
         StringValue sv = getPerClassMap().get(clazz);
-        if (sv != null) return sv;
+        if (sv != null)
+            return sv;
         return getStringValueByClass(clazz.getSuperclass());
     }
 

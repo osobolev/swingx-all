@@ -45,16 +45,14 @@ public class TreeSearchable extends AbstractSearchable {
     }
 
     @Override
-    protected void findMatchAndUpdateState(Pattern pattern, int startRow,
-                                           boolean backwards) {
+    protected void findMatchAndUpdateState(Pattern pattern, int startRow, boolean backwards) {
         SearchResult searchResult = null;
         if (backwards) {
             for (int index = startRow; index >= 0 && searchResult == null; index--) {
                 searchResult = findMatchAt(pattern, index);
             }
         } else {
-            for (int index = startRow; index < getSize()
-                                       && searchResult == null; index++) {
+            for (int index = startRow; index < getSize() && searchResult == null; index++) {
                 searchResult = findMatchAt(pattern, index);
             }
         }

@@ -36,8 +36,7 @@ import java.util.List;
  * @author Jeanette Winzenburg
  * @see Highlighter
  */
-public class CompoundHighlighter extends AbstractHighlighter
-    implements UIDependent {
+public class CompoundHighlighter extends AbstractHighlighter implements UIDependent {
 
     public static final Highlighter[] EMPTY_HIGHLIGHTERS = new Highlighter[0];
 
@@ -85,7 +84,8 @@ public class CompoundHighlighter extends AbstractHighlighter
      */
     public void setHighlighters(Highlighter... inList) {
         Contract.asNotNull(inList, "Highlighter must not be null");
-        if (highlighters.isEmpty() && inList.length == 0) return;
+        if (highlighters.isEmpty() && inList.length == 0)
+            return;
         removeAllHighlightersSilently();
         for (Highlighter highlighter : inList) {
             addHighlighterSilently(highlighter, false);
@@ -160,7 +160,8 @@ public class CompoundHighlighter extends AbstractHighlighter
      * @return the contained Highlighters, might be empty but never null.
      */
     public Highlighter[] getHighlighters() {
-        if (highlighters.isEmpty()) return EMPTY_HIGHLIGHTERS;
+        if (highlighters.isEmpty())
+            return EMPTY_HIGHLIGHTERS;
         return highlighters.toArray(new Highlighter[0]);
     }
 

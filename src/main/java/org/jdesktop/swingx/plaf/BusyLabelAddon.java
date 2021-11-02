@@ -48,10 +48,10 @@ public class BusyLabelAddon extends AbstractComponentAddon {
         float barWidth = 4;
         float height = 26;
         defaults.add("JXBusyLabel.pointShape", new ShapeUIResource(
-            new RoundRectangle2D.Float(0, 0, barLength, barWidth,
-                barWidth, barWidth)));
+            new RoundRectangle2D.Float(0, 0, barLength, barWidth, barWidth, barWidth)
+        ));
         defaults.add("JXBusyLabel.trajectoryShape", new ShapeUIResource(
-            new Ellipse2D.Float(barLength / 2, barLength / 2, height
-                                                              - barLength, height - barLength)));
+            new Ellipse2D.Float(barLength / 2, barLength / 2, height - barLength, height - barLength)
+        ));
     }
 }

@@ -145,7 +145,8 @@ public class PainterHighlighter extends AbstractHighlighter {
      * @param painter the Painter to uses for decoration.
      */
     public void setPainter(Painter painter) {
-        if (areEqual(painter, getPainter())) return;
+        if (areEqual(painter, getPainter()))
+            return;
         uninstallPainterListener();
         this.painter = painter;
         installPainterListener();
@@ -201,7 +202,8 @@ public class PainterHighlighter extends AbstractHighlighter {
      */
     protected PropertyChangeListener createPainterListener() {
         PropertyChangeListener l = evt -> {
-            if (isAdjusting) return;
+            if (isAdjusting)
+                return;
             fireStateChanged();
         };
         return l;
@@ -229,8 +231,7 @@ public class PainterHighlighter extends AbstractHighlighter {
      * otherwise.
      */
     @Override
-    protected Component doHighlight(Component component,
-                                    ComponentAdapter adapter) {
+    protected Component doHighlight(Component component, ComponentAdapter adapter) {
         ((PainterAware) component).setPainter(painter);
         return component;
     }

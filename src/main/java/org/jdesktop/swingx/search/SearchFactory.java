@@ -197,7 +197,8 @@ public class SearchFactory implements UIDependent {
      *                    type, true for incremental and false for batch.
      */
     public void setUseFindBar(boolean incremental) {
-        if (incremental == useFindBar) return;
+        if (incremental == useFindBar)
+            return;
         this.useFindBar = incremental;
         getFindRemover().endSearching();
     }
@@ -234,7 +235,8 @@ public class SearchFactory implements UIDependent {
      * @param searchable - the object to search.
      */
     public void showFindBar(JComponent target, Searchable searchable) {
-        if (target == null) return;
+        if (target == null)
+            return;
         if (findBar == null) {
             findBar = getSharedFindBar();
         } else {
@@ -459,7 +461,8 @@ public class SearchFactory implements UIDependent {
     }
 
     private JXDialog getDialogForSharedFindPanel() {
-        if (findPanel == null) return null;
+        if (findPanel == null)
+            return null;
         Window window = SwingUtilities.getWindowAncestor(findPanel);
         return window instanceof JXDialog ? (JXDialog) window : null;
     }
@@ -475,7 +478,8 @@ public class SearchFactory implements UIDependent {
      * location.
      */
     protected Point hideSharedFindPanel(boolean dispose) {
-        if (findPanel == null) return null;
+        if (findPanel == null)
+            return null;
         Window window = SwingUtilities.getWindowAncestor(findPanel);
         Point location = lastFindDialogLocation;
         if (window != null) {
@@ -528,7 +532,8 @@ public class SearchFactory implements UIDependent {
         public void propertyChange(PropertyChangeEvent ev) {
 
             Component c = focusManager.getPermanentFocusOwner();
-            if (c == null) return;
+            if (c == null)
+                return;
             for (Container element : getTargets()) {
                 if (element == c || SwingUtilities.isDescendingFrom(c, element)) {
                     return;

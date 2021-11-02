@@ -183,19 +183,16 @@ public class IconBorder implements Border, Serializable {
     /**
      * {@inheritDoc}
      */
-    public void paintBorder(Component c, Graphics g, int x, int y, int width,
-                            int height) {
+    public void paintBorder(Component c, Graphics g, int x, int y, int width, int height) {
         int iconPosition = bidiDecodeLeadingTrailing(c.getComponentOrientation(), this.iconPosition);
         if (iconPosition == SwingConstants.NORTH_EAST) {
             iconBounds.y = y + padding;
             iconBounds.x = x + width - padding - icon.getIconWidth();
         } else if (iconPosition == SwingConstants.EAST) {    // EAST
-            iconBounds.y = y
-                           + (height - icon.getIconHeight()) / 2;
+            iconBounds.y = y + (height - icon.getIconHeight()) / 2;
             iconBounds.x = x + width - padding - icon.getIconWidth();
         } else if (iconPosition == SwingConstants.WEST) {
-            iconBounds.y = y
-                           + (height - icon.getIconHeight()) / 2;
+            iconBounds.y = y + (height - icon.getIconHeight()) / 2;
             iconBounds.x = x + padding;
         }
         iconBounds.width = icon.getIconWidth();

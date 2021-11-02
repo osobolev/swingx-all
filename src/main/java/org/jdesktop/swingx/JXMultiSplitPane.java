@@ -522,9 +522,7 @@ public class JXMultiSplitPane extends JPanel implements BackgroundPaintable {
         if (show) {
             Divider divider = getMultiSplitLayout().dividerAt(x, y);
             if (divider != null) {
-                cursorID = divider.isVertical() ?
-                    Cursor.E_RESIZE_CURSOR :
-                    Cursor.N_RESIZE_CURSOR;
+                cursorID = divider.isVertical() ? Cursor.E_RESIZE_CURSOR : Cursor.N_RESIZE_CURSOR;
             }
         }
         setCursor(Cursor.getPredefinedCursor(cursorID));

@@ -85,8 +85,7 @@ public final class HighlighterFactory {
      * @return a Highlighter striping every second row group background.
      */
     public static Highlighter createSimpleStriping(int rowsPerGroup) {
-        return new UIColorHighlighter(new RowGroupHighlightPredicate(
-            rowsPerGroup));
+        return new UIColorHighlighter(new RowGroupHighlightPredicate(rowsPerGroup));
     }
 
     /**
@@ -111,12 +110,9 @@ public final class HighlighterFactory {
      * @param rowsPerGroup     the number of rows in a group
      * @return a Highlighter striping every second row group background.
      */
-    public static Highlighter createSimpleStriping(Color stripeBackground,
-                                                   int rowsPerGroup) {
-        HighlightPredicate predicate = new RowGroupHighlightPredicate(
-            rowsPerGroup);
-        ColorHighlighter hl = new ColorHighlighter(predicate, stripeBackground,
-            null);
+    public static Highlighter createSimpleStriping(Color stripeBackground, int rowsPerGroup) {
+        HighlightPredicate predicate = new RowGroupHighlightPredicate(rowsPerGroup);
+        ColorHighlighter hl = new ColorHighlighter(predicate, stripeBackground, null);
         return hl;
     }
 
@@ -187,8 +183,7 @@ public final class HighlighterFactory {
      * PENDING JW: internally install a AND predicate to check for LFs
      * which provide striping on the UI-Delegate level?
      */
-    public static class UIColorHighlighter extends ColorHighlighter
-        implements UIDependent {
+    public static class UIColorHighlighter extends ColorHighlighter implements UIDependent {
 
         static {
             LookAndFeelAddons.contribute(new UIColorHighlighterAddon());

@@ -100,8 +100,7 @@ public class OS {
             return false;
         }
 
-        boolean xpthemeActive = Boolean.TRUE.equals(Toolkit.getDefaultToolkit()
-            .getDesktopProperty("win.xpstyle.themeActive"));
+        boolean xpthemeActive = Boolean.TRUE.equals(Toolkit.getDefaultToolkit().getDesktopProperty("win.xpstyle.themeActive"));
         if (!xpthemeActive) {
             return false;
         } else {
@@ -128,8 +127,7 @@ public class OS {
             // guess the name of the current XPStyle
             // (win.xpstyle.colorName property found in awt_DesktopProperties.cpp in
             // JDK source)
-            style = (String) Toolkit.getDefaultToolkit().getDesktopProperty(
-                "win.xpstyle.colorName");
+            style = (String) Toolkit.getDefaultToolkit().getDesktopProperty("win.xpstyle.colorName");
         }
         return style;
     }

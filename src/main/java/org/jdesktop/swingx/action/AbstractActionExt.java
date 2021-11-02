@@ -37,8 +37,7 @@ import java.beans.PropertyChangeListener;
  * allows the action to correctly configured Swing buttons. The {@link #LARGE_ICON} has also been
  * changed to correspond to {@link Action#LARGE_ICON_KEY}.
  */
-public abstract class AbstractActionExt extends AbstractAction
-    implements ItemListener {
+public abstract class AbstractActionExt extends AbstractAction implements ItemListener {
 
     /**
      * The key for the large icon

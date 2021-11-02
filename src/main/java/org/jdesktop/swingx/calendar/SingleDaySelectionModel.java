@@ -119,7 +119,8 @@ public class SingleDaySelectionModel extends AbstractDateSelectionModel {
     @Override
     public void removeSelectionInterval(Date startDate, Date endDate) {
         Contract.asNotNull(startDate, "date must not be null");
-        if (isSelectionEmpty()) return;
+        if (isSelectionEmpty())
+            return;
         if (isSelectionInInterval(startDate, endDate)) {
             selectedDates.clear();
             fireValueChanged(EventType.DATES_REMOVED);
@@ -139,8 +140,8 @@ public class SingleDaySelectionModel extends AbstractDateSelectionModel {
      * @return true if the selected date is contained in the interval
      */
     protected boolean isSelectionInInterval(Date startDate, Date endDate) {
-        if (selectedDates.first().before(startOfDay(startDate))
-            || selectedDates.first().after(endOfDay(endDate))) return false;
+        if (selectedDates.first().before(startOfDay(startDate)) || selectedDates.first().after(endOfDay(endDate)))
+            return false;
         return true;
     }
 
@@ -154,7 +155,8 @@ public class SingleDaySelectionModel extends AbstractDateSelectionModel {
      */
     protected void setSelection(Date date) {
         Contract.asNotNull(date, "date must not be null");
-        if (isSelectedStrict(date)) return;
+        if (isSelectedStrict(date))
+            return;
         if (isSelectable(date)) {
             selectedDates.clear();
             // PENDING JW: use normalized
@@ -203,7 +205,8 @@ public class SingleDaySelectionModel extends AbstractDateSelectionModel {
      * @return true if the given date is selectable, false if not.
      */
     public boolean isSelectable(Date date) {
-        if (outOfBounds(date)) return false;
+        if (outOfBounds(date))
+            return false;
         return !inUnselectables(date);
     }
 
@@ -213,7 +216,8 @@ public class SingleDaySelectionModel extends AbstractDateSelectionModel {
      */
     private boolean inUnselectables(Date date) {
         for (Date unselectable : unselectableDates) {
-            if (isSameDay(unselectable, date)) return true;
+            if (isSameDay(unselectable, date))
+                return true;
         }
         return false;
     }
@@ -226,8 +230,10 @@ public class SingleDaySelectionModel extends AbstractDateSelectionModel {
      * @return
      */
     private boolean outOfBounds(Date date) {
-        if (belowLowerBound(date)) return true;
-        if (aboveUpperBound(date)) return true;
+        if (belowLowerBound(date))
+            return true;
+        if (aboveUpperBound(date))
+            return true;
         return false;
     }
 
@@ -258,7 +264,8 @@ public class SingleDaySelectionModel extends AbstractDateSelectionModel {
      */
     @Override
     public void clearSelection() {
-        if (isSelectionEmpty()) return;
+        if (isSelectionEmpty())
+            return;
         selectedDates.clear();
         fireValueChanged(EventType.SELECTION_CLEARED);
     }
@@ -277,7 +284,8 @@ public class SingleDaySelectionModel extends AbstractDateSelectionModel {
     @Override
     public boolean isSelected(Date date) {
         Contract.asNotNull(date, "date must not be null");
-        if (isSelectionEmpty()) return false;
+        if (isSelectionEmpty())
+            return false;
         return isSameDay(selectedDates.first(), date);
     }
 

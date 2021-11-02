@@ -92,8 +92,7 @@ public class BorderHighlighter extends AbstractHighlighter {
      * @param paddingBorder the border to apply as visual decoration.
      * @param compound      the compound property.
      */
-    public BorderHighlighter(HighlightPredicate predicate,
-                             Border paddingBorder, boolean compound) {
+    public BorderHighlighter(HighlightPredicate predicate, Border paddingBorder, boolean compound) {
         this(predicate, paddingBorder, compound, false);
     }
 
@@ -107,8 +106,7 @@ public class BorderHighlighter extends AbstractHighlighter {
      * @param compound      the compound property
      * @param inner         the inner property
      */
-    public BorderHighlighter(HighlightPredicate predicate,
-                             Border paddingBorder, boolean compound, boolean inner) {
+    public BorderHighlighter(HighlightPredicate predicate, Border paddingBorder, boolean compound, boolean inner) {
         super(predicate);
         this.paddingBorder = paddingBorder;
         this.compound = compound;
@@ -120,8 +118,7 @@ public class BorderHighlighter extends AbstractHighlighter {
      */
     @Override
     protected Component doHighlight(Component renderer, ComponentAdapter adapter) {
-        ((JComponent) renderer).setBorder(compoundBorder(
-            ((JComponent) renderer).getBorder()));
+        ((JComponent) renderer).setBorder(compoundBorder(((JComponent) renderer).getBorder()));
         return renderer;
     }
 
@@ -152,7 +149,8 @@ public class BorderHighlighter extends AbstractHighlighter {
      *                 compounded with the component's border.
      */
     public void setCompound(boolean compound) {
-        if (isCompound() == compound) return;
+        if (isCompound() == compound)
+            return;
         this.compound = compound;
         fireStateChanged();
     }
@@ -176,7 +174,8 @@ public class BorderHighlighter extends AbstractHighlighter {
      * @see #isInner()
      */
     public void setInner(boolean inner) {
-        if (isInner() == inner) return;
+        if (isInner() == inner)
+            return;
         this.inner = inner;
         fireStateChanged();
     }
@@ -199,7 +198,8 @@ public class BorderHighlighter extends AbstractHighlighter {
      * @param padding the Border to use
      */
     public void setBorder(Border padding) {
-        if (areEqual(padding, getBorder())) return;
+        if (areEqual(padding, getBorder()))
+            return;
         this.paddingBorder = padding;
         fireStateChanged();
     }
@@ -223,11 +223,9 @@ public class BorderHighlighter extends AbstractHighlighter {
         if (compound) {
             if (border != null) {
                 if (inner) {
-                    return BorderFactory.createCompoundBorder(border,
-                        paddingBorder);
+                    return BorderFactory.createCompoundBorder(border, paddingBorder);
                 }
-                return BorderFactory.createCompoundBorder(paddingBorder,
-                    border);
+                return BorderFactory.createCompoundBorder(paddingBorder, border);
             }
         }
         return paddingBorder;

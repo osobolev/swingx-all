@@ -108,8 +108,7 @@ public class BoundAction extends AbstractActionExt {
 
                 registerCallback(obj, elems[1]);
             } catch (Exception ex) {
-                LOG.fine("ERROR: setCallback(" + callback
-                         + ") - " + ex.getMessage());
+                LOG.fine("ERROR: setCallback(" + callback + ") - " + ex.getMessage());
             }
         }
     }
@@ -133,8 +132,7 @@ public class BoundAction extends AbstractActionExt {
             addItemListener(new BooleanInvocationHandler(handler, method));
         } else {
             // Create a new ActionListener using the dynamic proxy API.
-            addActionListener(EventHandler.create(ActionListener.class,
-                handler, method));
+            addActionListener(EventHandler.create(ActionListener.class, handler, method));
         }
     }
 
@@ -151,24 +149,19 @@ public class BoundAction extends AbstractActionExt {
 
         BooleanInvocationHandler(Object target, String methodName) {
             // Create the true and false statements.
-            falseStatement = new Statement(target, methodName,
-                new Object[] {Boolean.FALSE});
+            falseStatement = new Statement(target, methodName, new Object[] {Boolean.FALSE});
 
-            trueStatement = new Statement(target, methodName,
-                new Object[] {Boolean.TRUE});
+            trueStatement = new Statement(target, methodName, new Object[] {Boolean.TRUE});
         }
 
         @Override
         public void itemStateChanged(ItemEvent evt) {
-            Statement statement = evt.getStateChange() == ItemEvent.DESELECTED ? falseStatement
-                : trueStatement;
+            Statement statement = evt.getStateChange() == ItemEvent.DESELECTED ? falseStatement : trueStatement;
 
             try {
                 statement.execute();
             } catch (Exception ex) {
-                LOG.log(Level.FINE,
-                    "Couldn't execute boolean method via Statement "
-                    + statement, ex);
+                LOG.log(Level.FINE, "Couldn't execute boolean method via Statement " + statement, ex);
             }
         }
     }
@@ -301,8 +294,7 @@ public class BoundAction extends AbstractActionExt {
     }
 
     @SuppressWarnings("unchecked")
-    private void readObject(ObjectInputStream s) throws ClassNotFoundException,
-        IOException {
+    private void readObject(ObjectInputStream s) throws ClassNotFoundException, IOException {
         s.defaultReadObject();
 
         Object typeOrNull;

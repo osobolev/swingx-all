@@ -105,8 +105,7 @@ public final class TreeModelSupport {
      */
     public void fireTreeStructureChanged(TreePath subTreePath) {
         if (subTreePath != null) {
-            Contract.asNotNull(subTreePath.getPath(),
-                "path must not contain null elements");
+            Contract.asNotNull(subTreePath.getPath(), "path must not contain null elements");
         }
         Object[] pairs = listeners.getListenerList();
 
@@ -140,8 +139,7 @@ public final class TreeModelSupport {
         else {
             Object parent = parentPath.getLastPathComponent();
 
-            fireChildChanged(parentPath, treeModel
-                .getIndexOfChild(parent, node), node);
+            fireChildChanged(parentPath, treeModel.getIndexOfChild(parent, node), node);
         }
     }
 
@@ -156,8 +154,7 @@ public final class TreeModelSupport {
      * @param child      child node that has been modified, must not be null
      */
     public void fireChildChanged(TreePath parentPath, int index, Object child) {
-        fireChildrenChanged(parentPath, new int[] {index},
-            new Object[] {child});
+        fireChildrenChanged(parentPath, new int[] {index}, new Object[] {child});
     }
 
     /**
@@ -177,10 +174,8 @@ public final class TreeModelSupport {
      * @param indices    the positions of the modified children
      * @param children   the modified children
      */
-    public void fireChildrenChanged(TreePath parentPath, int[] indices,
-                                    Object[] children) {
-        Contract.asNotNull(parentPath.getPath(),
-            "path must not be null and must not contain null elements");
+    public void fireChildrenChanged(TreePath parentPath, int[] indices, Object[] children) {
+        Contract.asNotNull(parentPath.getPath(), "path must not be null and must not contain null elements");
         Object[] pairs = listeners.getListenerList();
 
         TreeModelEvent e = null;
@@ -207,8 +202,7 @@ public final class TreeModelSupport {
      * @param child      the added child
      */
     public void fireChildAdded(TreePath parentPath, int index, Object child) {
-        fireChildrenAdded(parentPath, new int[] {index},
-            new Object[] {child});
+        fireChildrenAdded(parentPath, new int[] {index}, new Object[] {child});
     }
 
     /**
@@ -221,8 +215,7 @@ public final class TreeModelSupport {
      * @param child      the removed child
      */
     public void fireChildRemoved(TreePath parentPath, int index, Object child) {
-        fireChildrenRemoved(parentPath, new int[] {index},
-            new Object[] {child});
+        fireChildrenRemoved(parentPath, new int[] {index}, new Object[] {child});
     }
 
     /**
@@ -238,8 +231,7 @@ public final class TreeModelSupport {
      * @param indices    the positions of the added children.
      * @param children   the added children.
      */
-    public void fireChildrenAdded(TreePath parentPath, int[] indices,
-                                  Object[] children) {
+    public void fireChildrenAdded(TreePath parentPath, int[] indices, Object[] children) {
         Object[] pairs = listeners.getListenerList();
 
         TreeModelEvent e = null;
@@ -267,8 +259,7 @@ public final class TreeModelSupport {
      * @param indices    the positions of the removed children before the removal
      * @param children   the removed children
      */
-    public void fireChildrenRemoved(TreePath parentPath, int[] indices,
-                                    Object[] children) {
+    public void fireChildrenRemoved(TreePath parentPath, int[] indices, Object[] children) {
         Object[] pairs = listeners.getListenerList();
 
         TreeModelEvent e = null;
@@ -313,8 +304,7 @@ public final class TreeModelSupport {
      * @see TreeModelEvent
      * @see TreeModelListener
      */
-    private TreeModelEvent createTreeModelEvent(TreePath parentPath,
-                                                int[] indices, Object[] children) {
+    private TreeModelEvent createTreeModelEvent(TreePath parentPath, int[] indices, Object[] children) {
         return new TreeModelEvent(treeModel, parentPath, indices, children);
     }
 

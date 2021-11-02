@@ -55,17 +55,17 @@ public class TreeRolloverProducer extends RolloverProducer {
         if (bounds == null) {
             row = -1;
         } else {
-            if (bounds.y + bounds.height < mousePoint.y
-                || bounds.x > mousePoint.x) {
+            if (bounds.y + bounds.height < mousePoint.y || bounds.x > mousePoint.x) {
                 row = -1;
             }
         }
         // no hit
         if (row < 0)
             return;
-        tree.dispatchEvent(new MouseEvent(tree, e.getID(), e.getWhen(), e
-            .getModifiers(), bounds.x + bounds.width - 2, mousePoint.y, e
-            .getClickCount(), e.isPopupTrigger(), e.getButton()));
+        tree.dispatchEvent(new MouseEvent(
+            tree, e.getID(), e.getWhen(), e.getModifiers(), bounds.x + bounds.width - 2, mousePoint.y,
+            e.getClickCount(), e.isPopupTrigger(), e.getButton()
+        ));
     }
 
     @Override
@@ -76,8 +76,7 @@ public class TreeRolloverProducer extends RolloverProducer {
         if (bounds == null) {
             row = -1;
         } else {
-            if (bounds.y + bounds.height < mousePoint.y
-                || bounds.x > mousePoint.x) {
+            if (bounds.y + bounds.height < mousePoint.y || bounds.x > mousePoint.x) {
                 row = -1;
             }
         }

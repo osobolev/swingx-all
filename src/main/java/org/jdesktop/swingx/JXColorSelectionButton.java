@@ -115,8 +115,7 @@ public class JXColorSelectionButton extends JButton {
     @Override
     protected void paintComponent(Graphics g) {
         // want disabledForeground when disabled, current colour otherwise
-        Color FILL_COLOR = isEnabled() ? PaintUtils.removeAlpha(getBackground())
-            : UIManagerExt.getSafeColor("Button.disabledForeground", Color.LIGHT_GRAY);
+        Color FILL_COLOR = isEnabled() ? PaintUtils.removeAlpha(getBackground()) : UIManagerExt.getSafeColor("Button.disabledForeground", Color.LIGHT_GRAY);
 
         // draw the colorwell image (should only be on OSX)
         if (OS.isMacOSX() && colorwell != null) {
@@ -125,17 +124,11 @@ public class JXColorSelectionButton extends JButton {
 
             // fill in the color area
             g.setColor(FILL_COLOR);
-            g.fillRect(ins.left, ins.top,
-                getWidth() - ins.left - ins.right,
-                getHeight() - ins.top - ins.bottom);
+            g.fillRect(ins.left, ins.top, getWidth() - ins.left - ins.right, getHeight() - ins.top - ins.bottom);
             // draw the borders
             g.setColor(PaintUtils.setBrightness(FILL_COLOR, 0.85f));
-            g.drawRect(ins.left, ins.top,
-                getWidth() - ins.left - ins.right - 1,
-                getHeight() - ins.top - ins.bottom - 1);
-            g.drawRect(ins.left + 1, ins.top + 1,
-                getWidth() - ins.left - ins.right - 3,
-                getHeight() - ins.top - ins.bottom - 3);
+            g.drawRect(ins.left, ins.top, getWidth() - ins.left - ins.right - 1, getHeight() - ins.top - ins.bottom - 1);
+            g.drawRect(ins.left + 1, ins.top + 1, getWidth() - ins.left - ins.right - 3, getHeight() - ins.top - ins.bottom - 3);
         } else {
             Graphics2D g2 = (Graphics2D) g.create();
 
@@ -177,18 +170,14 @@ public class JXColorSelectionButton extends JButton {
      */
     private void showDialog() {
         if (dialog == null) {
-            dialog = JColorChooser.createDialog(this,
-                "Choose a color", true, getChooser(),
-                actionEvent -> {
-                    Color color = getChooser().getColor();
-                    if (color != null) {
-                        setBackground(color);
-                    }
-                },
-                actionEvent -> setBackground(initialColor));
+            dialog = JColorChooser.createDialog(this, "Choose a color", true, getChooser(), actionEvent -> {
+                Color color = getChooser().getColor();
+                if (color != null) {
+                    setBackground(color);
+                }
+            }, actionEvent -> setBackground(initialColor));
             dialog.getContentPane().add(getChooser());
-            getChooser().getSelectionModel().addChangeListener(
-                new ColorChangeListener(this));
+            getChooser().getSelectionModel().addChangeListener(new ColorChangeListener(this));
         }
 
         initialColor = getBackground();

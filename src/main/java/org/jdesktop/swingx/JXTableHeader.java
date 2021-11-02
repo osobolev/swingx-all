@@ -75,12 +75,10 @@ import java.util.logging.Logger;
  * @see JXTable#toggleSortOrder(int)
  * @see JXTable#resetSortOrder()
  */
-public class JXTableHeader extends JTableHeader
-    implements TableColumnModelExtListener {
+public class JXTableHeader extends JTableHeader implements TableColumnModelExtListener {
 
     @SuppressWarnings("unused")
-    private static final Logger LOG = Logger.getLogger(JXTableHeader.class
-        .getName());
+    private static final Logger LOG = Logger.getLogger(JXTableHeader.class.getName());
 
     static {
         LookAndFeelAddons.contribute(new TableHeaderAddon());
@@ -139,7 +137,8 @@ public class JXTableHeader extends JTableHeader
      */
     protected void installTable() {
         updateEnabledFromTable();
-        if (getTable() == null) return;
+        if (getTable() == null)
+            return;
         getTable().addPropertyChangeListener(getTablePropertyChangeListener());
     }
 
@@ -155,7 +154,8 @@ public class JXTableHeader extends JTableHeader
      * This implementation uninstalls the PropertyChangeListener.
      */
     protected void uninstallTable() {
-        if (getTable() == null) return;
+        if (getTable() == null)
+            return;
         getTable().removePropertyChangeListener(getTablePropertyChangeListener());
     }
 
@@ -172,7 +172,8 @@ public class JXTableHeader extends JTableHeader
      */
     @Override
     public void columnPropertyChange(PropertyChangeEvent event) {
-        if (isColumnEvent(event)) return;
+        if (isColumnEvent(event))
+            return;
         resizeAndRepaint();
     }
 
@@ -189,9 +190,7 @@ public class JXTableHeader extends JTableHeader
      * base columnModelEvent.
      */
     protected boolean isColumnEvent(PropertyChangeEvent event) {
-        return "width".equals(event.getPropertyName()) ||
-               "preferredWidth".equals(event.getPropertyName())
-               || "visible".equals(event.getPropertyName());
+        return "width".equals(event.getPropertyName()) || "preferredWidth".equals(event.getPropertyName()) || "visible".equals(event.getPropertyName());
     }
 
     /**
@@ -217,9 +216,11 @@ public class JXTableHeader extends JTableHeader
      * or null if not available.
      */
     protected String getColumnToolTipText(MouseEvent event) {
-        if (getXTable() == null) return null;
+        if (getXTable() == null)
+            return null;
         int column = columnAtPoint(event.getPoint());
-        if (column < 0) return null;
+        if (column < 0)
+            return null;
         TableColumnExt columnExt = getXTable().getColumnExt(column);
         return columnExt != null ? columnExt.getToolTipText() : null;
     }
@@ -310,8 +311,7 @@ public class JXTableHeader extends JTableHeader
         int height = pref.height;
         for (int i = 0; i < getColumnModel().getColumnCount(); i++) {
             TableCellRenderer renderer = getCellRenderer(i);
-            Component comp = renderer.getTableCellRendererComponent(table,
-                getColumnModel().getColumn(i).getHeaderValue(), false, false, -1, i);
+            Component comp = renderer.getTableCellRendererComponent(table, getColumnModel().getColumn(i).getHeaderValue(), false, false, -1, i);
             height = Math.max(height, comp.getPreferredSize().height);
         }
         pref.height = height;
@@ -337,8 +337,7 @@ public class JXTableHeader extends JTableHeader
 //                && (getXTable() != null) 
 //                && getXTable().isColumnControlVisible()){
             TableCellRenderer renderer = getDefaultRenderer();
-            Component comp = renderer.getTableCellRendererComponent(getTable(),
-                "dummy", false, false, -1, -1);
+            Component comp = renderer.getTableCellRendererComponent(getTable(), "dummy", false, false, -1, -1);
             height = comp.getPreferredSize().height;
         }
         return height;
@@ -351,7 +350,8 @@ public class JXTableHeader extends JTableHeader
      */
     @Override
     public void setDraggedColumn(TableColumn column) {
-        if (getDraggedColumn() == column) return;
+        if (getDraggedColumn() == column)
+            return;
         TableColumn old = getDraggedColumn();
         super.setDraggedColumn(column);
         firePropertyChange("draggedColumn", old, getDraggedColumn());
@@ -364,7 +364,8 @@ public class JXTableHeader extends JTableHeader
      */
     @Override
     public void setResizingColumn(TableColumn aColumn) {
-        if (getResizingColumn() == aColumn) return;
+        if (getResizingColumn() == aColumn)
+            return;
         TableColumn old = getResizingColumn();
         super.setResizingColumn(aColumn);
         firePropertyChange("resizingColumn", old, getResizingColumn());
@@ -387,7 +388,8 @@ public class JXTableHeader extends JTableHeader
         super.setDraggedDistance(distance);
         // fire because super doesn't
         firePropertyChange("draggedDistance", old, getDraggedDistance());
-        if (!getAutoscrolls() || getXTable() == null) return;
+        if (!getAutoscrolls() || getXTable() == null)
+            return;
         TableColumn column = getDraggedColumn();
         // fix for #788-swingx: don't try to scroll if we have no dragged column
         // as doing will confuse the horizontalScrollEnabled on the JXTable.
@@ -541,7 +543,8 @@ public class JXTableHeader extends JTableHeader
         }
 
         private void doDoubleSort(MouseEvent e) {
-            if (!hasCachedSortColumn() || e.getClickCount() % 2 == 1) return;
+            if (!hasCachedSortColumn() || e.getClickCount() % 2 == 1)
+                return;
             getXTable().toggleSortOrder(sortColumn);
             uncacheSortColumn();
         }
@@ -579,7 +582,8 @@ public class JXTableHeader extends JTableHeader
         }
 
         private void cacheSortColumn(MouseEvent e) {
-            if (!canCacheSortColumn(e)) uncacheSortColumn();
+            if (!canCacheSortColumn(e))
+                uncacheSortColumn();
             if (e.getClickCount() % 2 == 1) {
                 int column = columnAtPoint(e.getPoint());
                 if (column >= 0) {
@@ -612,8 +616,7 @@ public class JXTableHeader extends JTableHeader
          * @return
          */
         private boolean shouldIgnore(MouseEvent e) {
-            return !SwingUtilities.isLeftMouseButton(e)
-                   || !table.isEnabled();
+            return !SwingUtilities.isLeftMouseButton(e) || !table.isEnabled();
         }
 
         /**
@@ -635,7 +638,8 @@ public class JXTableHeader extends JTableHeader
          * @param e
          */
         private void disableToggleSortOrder(MouseEvent e) {
-            if (!hasSortController()) return;
+            if (!hasSortController())
+                return;
             SortController<?> controller = (SortController<?>) getXTable().getRowSorter();
             cachedSortOrderCycle = controller.getSortOrderCycle();
             controller.setSortOrderCycle();
@@ -652,7 +656,8 @@ public class JXTableHeader extends JTableHeader
          *
          */
         private void resetToggleSortOrder(MouseEvent e) {
-            if (cachedSortOrderCycle == null) return;
+            if (cachedSortOrderCycle == null)
+                return;
             ((SortController<?>) getXTable().getRowSorter()).setSortOrderCycle(cachedSortOrderCycle);
             cachedSortOrderCycle = null;
         }

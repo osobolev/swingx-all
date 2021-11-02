@@ -85,8 +85,7 @@ class BasicCalendarRenderingHandler implements CalendarRenderingHandler {
         providers.put(CalendarState.LEADING, provider);
 
         StringValue wsv = createWeekOfYearStringValue(null);
-        ComponentProvider<?> weekOfYearProvider = new LabelProvider(wsv,
-            JLabel.RIGHT);
+        ComponentProvider<?> weekOfYearProvider = new LabelProvider(wsv, JLabel.RIGHT);
         providers.put(CalendarState.WEEK_OF_YEAR, weekOfYearProvider);
 
         ComponentProvider<?> dayOfWeekProvider = new LabelProvider(JLabel.CENTER) {
@@ -106,8 +105,7 @@ class BasicCalendarRenderingHandler implements CalendarRenderingHandler {
         providers.put(CalendarState.DAY_OF_WEEK, dayOfWeekProvider);
 
         StringValue tsv = createMonthHeaderStringValue(null);
-        ComponentProvider<?> titleProvider = new LabelProvider(tsv,
-            JLabel.CENTER);
+        ComponentProvider<?> titleProvider = new LabelProvider(tsv, JLabel.CENTER);
         providers.put(CalendarState.TITLE, titleProvider);
     }
 
@@ -127,10 +125,8 @@ class BasicCalendarRenderingHandler implements CalendarRenderingHandler {
         String[] monthNames = DateFormatSymbols.getInstance(locale).getMonths();
         StringValue tsv = value -> {
             if (value instanceof Calendar) {
-                String month = monthNames[((Calendar) value)
-                    .get(Calendar.MONTH)];
-                return month + " "
-                       + ((Calendar) value).get(Calendar.YEAR);
+                String month = monthNames[((Calendar) value).get(Calendar.MONTH)];
+                return month + " " + ((Calendar) value).get(Calendar.YEAR);
             }
             return StringValues.TO_STRING.getString(value);
         };
@@ -210,10 +206,7 @@ class BasicCalendarRenderingHandler implements CalendarRenderingHandler {
      */
     @Override
     public JComponent prepareRenderingComponent(JXMonthView monthView, Calendar calendar, CalendarState dayState) {
-        cellContext.installContext(monthView, calendar,
-            isSelected(monthView, calendar, dayState),
-            isFocused(monthView, calendar, dayState),
-            dayState);
+        cellContext.installContext(monthView, calendar, isSelected(monthView, calendar, dayState), isFocused(monthView, calendar, dayState), dayState);
         JComponent comp = providers.get(dayState).getRendererComponent(cellContext);
         return highlight(comp, monthView, calendar, dayState);
     }
@@ -230,8 +223,7 @@ class BasicCalendarRenderingHandler implements CalendarRenderingHandler {
      * @param dayState  the DayState of the cell
      * @param dayState
      */
-    private JComponent highlight(JComponent comp, JXMonthView monthView,
-                                 Calendar calendar, CalendarState dayState) {
+    private JComponent highlight(JComponent comp, JXMonthView monthView, Calendar calendar, CalendarState dayState) {
         CalendarAdapter adapter = getCalendarAdapter(monthView, calendar, dayState);
         return (JComponent) getHighlighter().highlight(comp, adapter);
     }
@@ -255,14 +247,12 @@ class BasicCalendarRenderingHandler implements CalendarRenderingHandler {
             if (!(adapter instanceof CalendarAdapter))
                 return false;
             CalendarAdapter ca = (CalendarAdapter) adapter;
-            return CalendarState.DAY_OF_WEEK == ca.getCalendarState() ||
-                   CalendarState.TITLE == ca.getCalendarState();
+            return CalendarState.DAY_OF_WEEK == ca.getCalendarState() || CalendarState.TITLE == ca.getCalendarState();
         };
         Highlighter font = new AbstractHighlighter(boldPredicate) {
 
             @Override
-            protected Component doHighlight(Component component,
-                                            ComponentAdapter adapter) {
+            protected Component doHighlight(Component component, ComponentAdapter adapter) {
                 component.setFont(getDerivedFont(component.getFont()));
                 return component;
             }
@@ -285,8 +275,7 @@ class BasicCalendarRenderingHandler implements CalendarRenderingHandler {
      * @param dayState
      * @return
      */
-    private CalendarAdapter getCalendarAdapter(JXMonthView monthView,
-                                               Calendar calendar, CalendarState dayState) {
+    private CalendarAdapter getCalendarAdapter(JXMonthView monthView, Calendar calendar, CalendarState dayState) {
         if (calendarAdapter == null) {
             calendarAdapter = new CalendarAdapter(monthView);
         }
@@ -310,8 +299,7 @@ class BasicCalendarRenderingHandler implements CalendarRenderingHandler {
      * @param dayState
      * @return
      */
-    private boolean isFocused(JXMonthView monthView, Calendar calendar,
-                              CalendarState dayState) {
+    private boolean isFocused(JXMonthView monthView, Calendar calendar, CalendarState dayState) {
         return false;
     }
 
@@ -321,9 +309,9 @@ class BasicCalendarRenderingHandler implements CalendarRenderingHandler {
      * @param dayState  the DayState of the cell
      * @return
      */
-    private boolean isSelected(JXMonthView monthView, Calendar calendar,
-                               CalendarState dayState) {
-        if (!isSelectable(dayState)) return false;
+    private boolean isSelected(JXMonthView monthView, Calendar calendar, CalendarState dayState) {
+        if (!isSelectable(dayState))
+            return false;
         return monthView.isSelected(calendar.getTime());
     }
 

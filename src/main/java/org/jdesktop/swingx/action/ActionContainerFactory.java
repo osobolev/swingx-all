@@ -351,8 +351,7 @@ public class ActionContainerFactory {
                 if (groupid != null) {
                     // If this action has a groupid attribute then it's a
                     // GroupAction
-                    menuItem = createRadioButtonMenuItem(getGroup(groupid, container),
-                        (AbstractActionExt) action);
+                    menuItem = createRadioButtonMenuItem(getGroup(groupid, container), (AbstractActionExt) action);
                 } else {
                     menuItem = createCheckBoxMenuItem((AbstractActionExt) action);
                 }
@@ -493,10 +492,11 @@ public class ActionContainerFactory {
      * @throws IllegalArgumentException if the given action doesn't have the state flag set.
      */
     public void configureSelectableButton(AbstractButton button, AbstractActionExt a, ButtonGroup group) {
-        if (a != null && !a.isStateAction()) throw
-            new IllegalArgumentException("the Action must be a stateAction");
+        if (a != null && !a.isStateAction())
+            throw new IllegalArgumentException("the Action must be a stateAction");
         // we assume that all button configuration is done exclusively through this method!!
-        if (button.getAction() == a) return;
+        if (button.getAction() == a)
+            return;
 
         // unconfigure if the old Action is a state AbstractActionExt
         // PENDING JW: automate unconfigure via a PCL that is listening to  
@@ -575,8 +575,7 @@ public class ActionContainerFactory {
     /**
      * Helper method to add a radio button menu item.
      */
-    private JRadioButtonMenuItem createRadioButtonMenuItem(ButtonGroup group,
-                                                           AbstractActionExt a) {
+    private JRadioButtonMenuItem createRadioButtonMenuItem(ButtonGroup group, AbstractActionExt a) {
         JRadioButtonMenuItem mi = new JRadioButtonMenuItem();
         configureSelectableButton(mi, a, group);
         configureMenuItemFromExtActionProperties(mi, a);

@@ -148,8 +148,9 @@ public class BasicTitledPanelUI extends TitledPanelUI {
     }
 
     protected void installComponents(JXTitledPanel titledPanel) {
-        topPanel.add(caption, new GridBagConstraints(1, 0, 1, 1, 1.0, 1.0, GridBagConstraints.NORTHWEST,
-            GridBagConstraints.HORIZONTAL, getCaptionInsets(), 0, 0));
+        topPanel.add(caption, new GridBagConstraints(
+            1, 0, 1, 1, 1.0, 1.0, GridBagConstraints.NORTHWEST, GridBagConstraints.HORIZONTAL, getCaptionInsets(), 0, 0
+        ));
         if (titledPanel.getClientProperty(JXTitledPanel.RIGHT_DECORATION) instanceof JComponent) {
             setRightDecoration((JComponent) titledPanel.getClientProperty(JXTitledPanel.RIGHT_DECORATION));
         }
@@ -310,10 +311,13 @@ public class BasicTitledPanelUI extends TitledPanelUI {
      */
     @Override
     public void setRightDecoration(JComponent decoration) {
-        if (right != null) topPanel.remove(right);
+        if (right != null)
+            topPanel.remove(right);
         right = decoration;
         if (right != null) {
-            topPanel.add(decoration, new GridBagConstraints(2, 0, 1, 1, 0.0, 0.0, GridBagConstraints.EAST, GridBagConstraints.NONE, UIManager.getInsets("JXTitledPanel.rightDecorationInsets"), 0, 0));
+            topPanel.add(decoration, new GridBagConstraints(
+                2, 0, 1, 1, 0.0, 0.0, GridBagConstraints.EAST, GridBagConstraints.NONE, UIManager.getInsets("JXTitledPanel.rightDecorationInsets"), 0, 0
+            ));
         }
     }
 
@@ -329,10 +333,13 @@ public class BasicTitledPanelUI extends TitledPanelUI {
      */
     @Override
     public void setLeftDecoration(JComponent decoration) {
-        if (left != null) topPanel.remove(left);
+        if (left != null)
+            topPanel.remove(left);
         left = decoration;
         if (left != null) {
-            topPanel.add(left, new GridBagConstraints(0, 0, 1, 1, 0.0, 0.0, GridBagConstraints.WEST, GridBagConstraints.NONE, UIManager.getInsets("JXTitledPanel.leftDecorationInsets"), 0, 0));
+            topPanel.add(left, new GridBagConstraints(
+                0, 0, 1, 1, 0.0, 0.0, GridBagConstraints.WEST, GridBagConstraints.NONE, UIManager.getInsets("JXTitledPanel.leftDecorationInsets"), 0, 0
+            ));
         }
     }
 

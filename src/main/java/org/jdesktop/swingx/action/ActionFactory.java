@@ -38,21 +38,16 @@ public class ActionFactory {
     /**
      * Factory Methods for creating BoundActions
      */
-    public static BoundAction createBoundAction(String id, String name,
-                                                String mnemonic) {
+    public static BoundAction createBoundAction(String id, String name, String mnemonic) {
         return createBoundAction(id, name, mnemonic, false);
     }
 
-    public static BoundAction createBoundAction(String id, String name,
-                                                String mnemonic, boolean toggle) {
+    public static BoundAction createBoundAction(String id, String name, String mnemonic, boolean toggle) {
         return createBoundAction(id, name, mnemonic, toggle, null);
     }
 
-    public static BoundAction createBoundAction(String id, String name,
-                                                String mnemonic, boolean toggle,
-                                                String group) {
-        return (BoundAction) configureAction(new BoundAction(name, id),
-            mnemonic, toggle, group);
+    public static BoundAction createBoundAction(String id, String name, String mnemonic, boolean toggle, String group) {
+        return (BoundAction) configureAction(new BoundAction(name, id), mnemonic, toggle, group);
     }
 
     /**
@@ -60,25 +55,19 @@ public class ActionFactory {
      *
      * @see CompositeAction
      */
-    public static CompositeAction createCompositeAction(String id, String name,
-                                                        String mnemonic) {
+    public static CompositeAction createCompositeAction(String id, String name, String mnemonic) {
         return createCompositeAction(id, name, mnemonic, false);
     }
 
-    public static CompositeAction createCompositeAction(String id, String name,
-                                                        String mnemonic, boolean toggle) {
+    public static CompositeAction createCompositeAction(String id, String name, String mnemonic, boolean toggle) {
         return createCompositeAction(id, name, mnemonic, toggle, null);
     }
 
-    public static CompositeAction createCompositeAction(String id, String name,
-                                                        String mnemonic, boolean toggle,
-                                                        String group) {
-        return (CompositeAction) configureAction(new CompositeAction(name, id),
-            mnemonic, toggle, group);
+    public static CompositeAction createCompositeAction(String id, String name, String mnemonic, boolean toggle, String group) {
+        return (CompositeAction) configureAction(new CompositeAction(name, id), mnemonic, toggle, group);
     }
 
-    public static ServerAction createServerAction(String id, String name,
-                                                  String mnemonic) {
+    public static ServerAction createServerAction(String id, String name, String mnemonic) {
         ServerAction action = new ServerAction(name, id);
         if (mnemonic != null && !mnemonic.isEmpty()) {
             action.putValue(Action.MNEMONIC_KEY, (int) mnemonic.charAt(0));
@@ -93,26 +82,19 @@ public class ActionFactory {
         return createTargetableAction(id, name, null);
     }
 
-    public static TargetableAction createTargetableAction(String id, String name,
-                                                          String mnemonic) {
+    public static TargetableAction createTargetableAction(String id, String name, String mnemonic) {
         return createTargetableAction(id, name, mnemonic, false);
     }
 
-    public static TargetableAction createTargetableAction(String id, String name,
-                                                          String mnemonic, boolean toggle) {
+    public static TargetableAction createTargetableAction(String id, String name, String mnemonic, boolean toggle) {
         return createTargetableAction(id, name, mnemonic, toggle, null);
     }
 
-    public static TargetableAction createTargetableAction(String id, String name,
-                                                          String mnemonic, boolean toggle,
-                                                          String group) {
-        return (TargetableAction) configureAction(new TargetableAction(name, id),
-            mnemonic, toggle, group);
+    public static TargetableAction createTargetableAction(String id, String name, String mnemonic, boolean toggle, String group) {
+        return (TargetableAction) configureAction(new TargetableAction(name, id), mnemonic, toggle, group);
     }
 
-    private static Action configureAction(AbstractActionExt action,
-                                          String mnemonic, boolean toggle,
-                                          String group) {
+    private static Action configureAction(AbstractActionExt action, String mnemonic, boolean toggle, String group) {
         action.setMnemonic(mnemonic);
         String description = action.getName() + " action with comand " + action.getActionCommand();
         action.setShortDescription(description);
@@ -135,10 +117,7 @@ public class ActionFactory {
      * @param action the action which will all the attributes will be applied
      * @see AbstractActionExt
      */
-    public static void decorateAction(AbstractAction action,
-                                      String shortDesc, String longDesc,
-                                      Icon smallIcon, Icon largeIcon,
-                                      KeyStroke accel) {
+    public static void decorateAction(AbstractAction action, String shortDesc, String longDesc, Icon smallIcon, Icon largeIcon, KeyStroke accel) {
         if (action instanceof AbstractActionExt) {
             AbstractActionExt a = (AbstractActionExt) action;
             a.setShortDescription(shortDesc);

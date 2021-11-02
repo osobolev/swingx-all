@@ -193,7 +193,8 @@ public class ColumnControlButton extends JButton {
      * icon is null or a UIResource.
      */
     protected void updateActionUI() {
-        if (getAction() == null) return;
+        if (getAction() == null)
+            return;
         Icon icon = (Icon) getAction().getValue(Action.SMALL_ICON);
         if (icon == null || icon instanceof UIResource) {
             icon = UIManager.getIcon(COLUMN_CONTROL_BUTTON_ICON_KEY);
@@ -231,7 +232,8 @@ public class ColumnControlButton extends JButton {
      * @param additionalActionsVisible the additionalActionsVisible to set
      */
     public void setAdditionalActionsVisible(boolean additionalActionsVisible) {
-        if (additionalActionsVisible == getAdditionalActionsVisible()) return;
+        if (additionalActionsVisible == getAdditionalActionsVisible())
+            return;
         boolean old = getAdditionalActionsVisible();
         this.additionalActionsVisible = additionalActionsVisible;
         populatePopup();
@@ -247,7 +249,8 @@ public class ColumnControlButton extends JButton {
      * @param grouper
      */
     public void setActionGrouper(ActionGrouper grouper) {
-        if (!(getColumnControlPopup() instanceof ActionGroupable)) return;
+        if (!(getColumnControlPopup() instanceof ActionGroupable))
+            return;
         ((ActionGroupable) getColumnControlPopup()).setActionGrouper(grouper);
         populatePopup();
     }
@@ -414,8 +417,7 @@ public class ColumnControlButton extends JButton {
             if (column.getIdentifier() != null) {
                 setActionCommand(column.getIdentifier().toString());
             }
-            boolean visible = column instanceof TableColumnExt ?
-                ((TableColumnExt) column).isVisible() : true;
+            boolean visible = column instanceof TableColumnExt ? ((TableColumnExt) column).isVisible() : true;
             updateFromColumnVisible(visible);
         }
 
@@ -499,9 +501,7 @@ public class ColumnControlButton extends JButton {
                 popupMenu.setVisible(false);
             } else if (popupMenu.getComponentCount() > 0) {
                 Dimension buttonSize = owner.getSize();
-                int xPos = owner.getComponentOrientation().isLeftToRight() ? buttonSize.width
-                                                                             - popupMenu.getPreferredSize().width
-                    : 0;
+                int xPos = owner.getComponentOrientation().isLeftToRight() ? buttonSize.width - popupMenu.getPreferredSize().width : 0;
                 popupMenu.show(owner,
                     // JW: trying to allow popup without CCB showing
                     // weird behaviour
@@ -532,8 +532,7 @@ public class ColumnControlButton extends JButton {
          * @inheritDoc
          */
         @Override
-        public void addVisibilityActionItems(
-            List<? extends AbstractActionExt> actions) {
+        public void addVisibilityActionItems(List<? extends AbstractActionExt> actions) {
             addItems(new ArrayList<Action>(actions));
         }
 
@@ -727,8 +726,7 @@ public class ColumnControlButton extends JButton {
      * PRE: columnVisibilityActions populated before calling this.
      */
     protected void addVisibilityActionItems() {
-        getColumnControlPopup().addVisibilityActionItems(
-            Collections.unmodifiableList(getColumnVisibilityActions()));
+        getColumnControlPopup().addVisibilityActionItems(Collections.unmodifiableList(getColumnVisibilityActions()));
     }
 
     /**
@@ -740,9 +738,9 @@ public class ColumnControlButton extends JButton {
      * Does nothing if #getColumnActions() is empty.
      */
     protected void addAdditionalActionItems() {
-        if (!getAdditionalActionsVisible()) return;
-        getColumnControlPopup().addAdditionalActionItems(
-            Collections.unmodifiableList(getAdditionalActions()));
+        if (!getAdditionalActionsVisible())
+            return;
+        getColumnControlPopup().addAdditionalActionItems(Collections.unmodifiableList(getAdditionalActions()));
     }
 
     /**
@@ -843,8 +841,7 @@ public class ColumnControlButton extends JButton {
      * an action which should be included into the popup.
      */
     protected boolean isColumnControlActionKey(Object actionKey) {
-        return actionKey instanceof String &&
-               ((String) actionKey).startsWith(COLUMN_CONTROL_MARKER);
+        return actionKey instanceof String && ((String) actionKey).startsWith(COLUMN_CONTROL_MARKER);
     }
 
     //--------------------------- init
@@ -918,8 +915,7 @@ public class ColumnControlButton extends JButton {
     protected PropertyChangeListener createTablePropertyChangeListener() {
         return evt -> {
             if ("columnModel".equals(evt.getPropertyName())) {
-                updateFromColumnModelChange((TableColumnModel) evt
-                    .getOldValue());
+                updateFromColumnModelChange((TableColumnModel) evt.getOldValue());
             } else if ("enabled".equals(evt.getPropertyName())) {
                 updateFromTableEnabledChanged();
             }
@@ -981,13 +977,11 @@ public class ColumnControlButton extends JButton {
              * @return boolean indicating whether the removed/added is a side-effect
              *    of hiding/showing the column.
              */
-            private boolean isVisibilityChange(TableColumnModelEvent e,
-                                               boolean added) {
+            private boolean isVisibilityChange(TableColumnModelEvent e, boolean added) {
                 // can't tell
                 if (!(e.getSource() instanceof DefaultTableColumnModelExt))
                     return false;
-                DefaultTableColumnModelExt model = (DefaultTableColumnModelExt) e
-                    .getSource();
+                DefaultTableColumnModelExt model = (DefaultTableColumnModelExt) e.getSource();
                 if (added) {
                     return model.isAddedFromInvisibleEvent(e.getToIndex());
                 } else {

@@ -42,15 +42,12 @@ public class PromptTextFieldUI extends PromptTextUI {
         lbl.setColumns(txtField.getColumns());
 
         // Make search field in Leopard paint focused border.
-        lbl.hasFocus = txtField.hasFocus()
-                       && NativeSearchFieldSupport.isNativeSearchField(txtField);
+        lbl.hasFocus = txtField.hasFocus() && NativeSearchFieldSupport.isNativeSearchField(txtField);
 
         // leopard client properties. see
         // http://developer.apple.com/technotes/tn2007/tn2196.html#JTEXTFIELD_VARIANT
-        NativeSearchFieldSupport.setSearchField(lbl, NativeSearchFieldSupport
-            .isSearchField(txtField));
-        NativeSearchFieldSupport.setFindPopupMenu(lbl, NativeSearchFieldSupport
-            .getFindPopupMenu(txtField));
+        NativeSearchFieldSupport.setSearchField(lbl, NativeSearchFieldSupport.isSearchField(txtField));
+        NativeSearchFieldSupport.setFindPopupMenu(lbl, NativeSearchFieldSupport.getFindPopupMenu(txtField));
 
         // here we need to copy the border again for Mac OS X, because the above
         // calls may have replaced it.
@@ -60,8 +57,7 @@ public class PromptTextFieldUI extends PromptTextUI {
             lbl.setBorder(txt.getBorder());
         } else {
             Insets insets = b.getBorderInsets(txt);
-            lbl.setBorder(
-                createEmptyBorder(insets.top, insets.left, insets.bottom, insets.right));
+            lbl.setBorder(createEmptyBorder(insets.top, insets.left, insets.bottom, insets.right));
         }
         //		lbl.setBorder(txtField.getBorder());
 

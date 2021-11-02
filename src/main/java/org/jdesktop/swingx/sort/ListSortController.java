@@ -84,8 +84,7 @@ public class ListSortController<M extends ListModel> extends DefaultSortControll
 
         @Override
         public String getStringValueAt(int row, int column) {
-            return getStringValueProvider().getStringValue(row, column)
-                .getString(getValueAt(row, column));
+            return getStringValueProvider().getStringValue(row, column).getString(getValueAt(row, column));
         }
 
         @Override

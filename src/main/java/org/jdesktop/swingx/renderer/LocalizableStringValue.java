@@ -65,8 +65,7 @@ public class LocalizableStringValue implements StringValue {
      * @param locale the locale to lookup the localized strings, may be null to
      *               denote using JComponent.defaultLocale
      */
-    public LocalizableStringValue(Map<Object, String> lookup, String prefix,
-                                  Locale locale) {
+    public LocalizableStringValue(Map<Object, String> lookup, String prefix, Locale locale) {
         this.lookup = Contract.asNotNull(lookup, "map must not be null");
         this.prefix = prefix;
         setLocale(locale);

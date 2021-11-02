@@ -113,7 +113,8 @@ public class SynthXListUI extends BasicXListUI
     private void updateStyle() {
         // compare local reference to style from factory
         // nothing to do if same
-        if (style == getStyle()) return;
+        if (style == getStyle())
+            return;
         // check if this is called from init or from later update
         // if from later updates, need to cleanup old
         boolean refresh = style != null;
@@ -130,14 +131,12 @@ public class SynthXListUI extends BasicXListUI
         SynthContext selectedContext = getContext(SELECTED);
         Color sbg = list.getSelectionBackground();
         if (sbg == null || sbg instanceof UIResource) {
-            list.setSelectionBackground(style.getColor(
-                selectedContext, ColorType.TEXT_BACKGROUND));
+            list.setSelectionBackground(style.getColor(selectedContext, ColorType.TEXT_BACKGROUND));
         }
 
         Color sfg = list.getSelectionForeground();
         if (sfg == null || sfg instanceof UIResource) {
-            list.setSelectionForeground(style.getColor(
-                selectedContext, ColorType.TEXT_FOREGROUND));
+            list.setSelectionForeground(style.getColor(selectedContext, ColorType.TEXT_FOREGROUND));
         }
         // install cell height
         int height = style.getInt(selectedContext, "List.cellHeight", -1);
@@ -150,10 +149,8 @@ public class SynthXListUI extends BasicXListUI
             installKeyboardActions();
         }
         // install currently unused properties of this delegate
-        useListColors = style.getBoolean(selectedContext,
-            "List.rendererUseListColors", true);
-        useUIBorder = style.getBoolean(selectedContext,
-            "List.rendererUseUIBorder", true);
+        useListColors = style.getBoolean(selectedContext, "List.rendererUseListColors", true);
+        useUIBorder = style.getBoolean(selectedContext, "List.rendererUseUIBorder", true);
     }
 
     /**
@@ -181,8 +178,7 @@ public class SynthXListUI extends BasicXListUI
      * Implemented for SynthUI interface.
      */
     @Override
-    public void paintBorder(SynthContext context, Graphics g, int x, int y,
-                            int w, int h) {
+    public void paintBorder(SynthContext context, Graphics g, int x, int y, int w, int h) {
         SynthUtils.getPainter(context).paintListBorder(context, g, x, y, w, h);
     }
 
@@ -199,7 +195,8 @@ public class SynthXListUI extends BasicXListUI
      */
     @Override
     public SynthContext getContext(JComponent c) {
-        if (c != list) throw new IllegalArgumentException("must be ui-delegate for component");
+        if (c != list)
+            throw new IllegalArgumentException("must be ui-delegate for component");
         return getContext();
     }
 

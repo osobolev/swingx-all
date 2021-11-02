@@ -89,14 +89,11 @@ public class BasicTipOfTheDayUI extends TipOfTheDayUI {
     }
 
     @Override
-    public JDialog createDialog(Component parentComponent,
-                                ShowOnStartupChoice choice) {
+    public JDialog createDialog(Component parentComponent, ShowOnStartupChoice choice) {
         return createDialog(parentComponent, choice, true);
     }
 
-    protected JDialog createDialog(Component parentComponent,
-                                   ShowOnStartupChoice choice,
-                                   boolean showPreviousButton) {
+    protected JDialog createDialog(Component parentComponent, ShowOnStartupChoice choice, boolean showPreviousButton) {
         Locale locale = parentComponent == null ? null : parentComponent.getLocale();
         String title = UIManagerExt.getString("TipOfTheDay.dialogTitle", locale);
 
@@ -106,8 +103,7 @@ public class BasicTipOfTheDayUI extends TipOfTheDayUI {
         if (parentComponent == null) {
             window = JOptionPane.getRootFrame();
         } else {
-            window = parentComponent instanceof Window ? (Window) parentComponent
-                : SwingUtilities.getWindowAncestor(parentComponent);
+            window = parentComponent instanceof Window ? (Window) parentComponent : SwingUtilities.getWindowAncestor(parentComponent);
         }
 
         if (window instanceof Frame) {
@@ -118,8 +114,7 @@ public class BasicTipOfTheDayUI extends TipOfTheDayUI {
 
         dialog.getContentPane().setLayout(new BorderLayout(10, 10));
         dialog.getContentPane().add(tipPane, BorderLayout.CENTER);
-        ((JComponent) dialog.getContentPane()).setBorder(BorderFactory
-            .createEmptyBorder(10, 10, 10, 10));
+        ((JComponent) dialog.getContentPane()).setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
         JCheckBox showOnStartupBox;
 
@@ -128,32 +123,26 @@ public class BasicTipOfTheDayUI extends TipOfTheDayUI {
         dialog.add("South", controls);
 
         if (choice != null) {
-            showOnStartupBox = new JCheckBox(UIManagerExt
-                .getString("TipOfTheDay.showOnStartupText", locale), choice
-                .isShowingOnStartup());
+            showOnStartupBox = new JCheckBox(UIManagerExt.getString("TipOfTheDay.showOnStartupText", locale), choice.isShowingOnStartup());
             controls.add(showOnStartupBox, BorderLayout.CENTER);
         } else {
             showOnStartupBox = null;
         }
 
-        JPanel buttons =
-            new JPanel(new GridLayout(1, showPreviousButton ? 3 : 2, 9, 0));
+        JPanel buttons = new JPanel(new GridLayout(1, showPreviousButton ? 3 : 2, 9, 0));
         controls.add(buttons, BorderLayout.LINE_END);
 
         if (showPreviousButton) {
-            JButton previousTipButton = new JButton(UIManagerExt
-                .getString("TipOfTheDay.previousTipText", locale));
+            JButton previousTipButton = new JButton(UIManagerExt.getString("TipOfTheDay.previousTipText", locale));
             buttons.add(previousTipButton);
             previousTipButton.addActionListener(getActionMap().get("previousTip"));
         }
 
-        JButton nextTipButton = new JButton(UIManagerExt
-            .getString("TipOfTheDay.nextTipText", locale));
+        JButton nextTipButton = new JButton(UIManagerExt.getString("TipOfTheDay.nextTipText", locale));
         buttons.add(nextTipButton);
         nextTipButton.addActionListener(getActionMap().get("nextTip"));
 
-        JButton closeButton = new JButton(UIManagerExt
-            .getString("TipOfTheDay.closeText", locale));
+        JButton closeButton = new JButton(UIManagerExt.getString("TipOfTheDay.closeText", locale));
         buttons.add(closeButton);
 
         ActionListener saveChoice = e -> {
@@ -176,9 +165,9 @@ public class BasicTipOfTheDayUI extends TipOfTheDayUI {
             }
         });
 
-        ((JComponent) dialog.getContentPane()).registerKeyboardAction(saveChoice,
-            KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0),
-            JComponent.WHEN_IN_FOCUSED_WINDOW);
+        ((JComponent) dialog.getContentPane()).registerKeyboardAction(
+            saveChoice, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_IN_FOCUSED_WINDOW
+        );
 
         dialog.pack();
         dialog.setLocationRelativeTo(parentComponent);
@@ -221,8 +210,7 @@ public class BasicTipOfTheDayUI extends TipOfTheDayUI {
     }
 
     protected void installDefaults() {
-        LookAndFeel.installColorsAndFont(tipPane, "TipOfTheDay.background",
-            "TipOfTheDay.foreground", "TipOfTheDay.font");
+        LookAndFeel.installColorsAndFont(tipPane, "TipOfTheDay.background", "TipOfTheDay.foreground", "TipOfTheDay.font");
         LookAndFeel.installBorder(tipPane, "TipOfTheDay.border");
         LookAndFeel.installProperty(tipPane, "opaque", Boolean.TRUE);
         tipFont = UIManager.getFont("TipOfTheDay.tipFont");
@@ -232,8 +220,7 @@ public class BasicTipOfTheDayUI extends TipOfTheDayUI {
         tipPane.setLayout(new BorderLayout());
 
         // tip icon
-        JLabel tipIcon = new JLabel(UIManagerExt
-            .getString("TipOfTheDay.didYouKnowText", tipPane.getLocale()));
+        JLabel tipIcon = new JLabel(UIManagerExt.getString("TipOfTheDay.didYouKnowText", tipPane.getLocale()));
         tipIcon.setIcon(UIManager.getIcon("TipOfTheDay.icon"));
         tipIcon.setBorder(BorderFactory.createEmptyBorder(22, 15, 22, 15));
         tipPane.add("North", tipIcon);
@@ -266,8 +253,7 @@ public class BasicTipOfTheDayUI extends TipOfTheDayUI {
         }
 
         // tip does not fall in current tip range
-        if (tipPane.getModel() == null || tipPane.getModel().getTipCount() == 0
-            || currentTip < 0 && currentTip >= tipPane.getModel().getTipCount()) {
+        if (tipPane.getModel() == null || tipPane.getModel().getTipCount() == 0 || currentTip < 0 && currentTip >= tipPane.getModel().getTipCount()) {
             currentTipComponent = new JLabel();
         } else {
             Tip tip = tipPane.getModel().getTipAt(currentTip);
@@ -290,8 +276,7 @@ public class BasicTipOfTheDayUI extends TipOfTheDayUI {
                     JEditorPane editor = new JEditorPane("text/html", text);
                     editor.setFont(tipPane.getFont());
 //          BasicHTML.updateRenderer(editor, text);
-                    SwingXUtilities.setHtmlFont(
-                        (HTMLDocument) editor.getDocument(), tipPane.getFont());
+                    SwingXUtilities.setHtmlFont((HTMLDocument) editor.getDocument(), tipPane.getFont());
                     editor.setEditable(false);
                     editor.setBorder(null);
                     editor.setMargin(null);

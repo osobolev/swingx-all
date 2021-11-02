@@ -60,11 +60,13 @@ class ToggleActionPropertyChangeListener implements PropertyChangeListener {
     }
 
     protected boolean isToggling(Action action, AbstractButton button) {
-        if (!(action instanceof AbstractAction)) return false;
+        if (!(action instanceof AbstractAction))
+            return false;
         PropertyChangeListener[] listeners = ((AbstractAction) action).getPropertyChangeListeners();
         for (int i = listeners.length - 1; i >= 0; i--) {
             if (listeners[i] instanceof ToggleActionPropertyChangeListener) {
-                if (((ToggleActionPropertyChangeListener) listeners[i]).isToggling(button)) return true;
+                if (((ToggleActionPropertyChangeListener) listeners[i]).isToggling(button))
+                    return true;
             }
         }
         return false;
@@ -77,7 +79,8 @@ class ToggleActionPropertyChangeListener implements PropertyChangeListener {
      * @param action to cleanup.
      */
     protected void releasePCLs(Action action) {
-        if (!(action instanceof AbstractAction)) return;
+        if (!(action instanceof AbstractAction))
+            return;
         PropertyChangeListener[] listeners = ((AbstractAction) action).getPropertyChangeListeners();
         for (int i = listeners.length - 1; i >= 0; i--) {
             if (listeners[i] instanceof ToggleActionPropertyChangeListener) {
@@ -89,7 +92,8 @@ class ToggleActionPropertyChangeListener implements PropertyChangeListener {
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
         AbstractButton button = checkReferent((Action) evt.getSource());
-        if (button == null) return;
+        if (button == null)
+            return;
         String propertyName = evt.getPropertyName();
 
         if ("selected".equals(propertyName)) {

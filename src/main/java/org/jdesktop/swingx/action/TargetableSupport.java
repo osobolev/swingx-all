@@ -50,8 +50,7 @@ public class TargetableSupport {
                 action.actionPerformed((ActionEvent) value);
             } else {
                 // XXX should the value represent the event source?
-                action.actionPerformed(new ActionEvent(value, 0,
-                    command.toString()));
+                action.actionPerformed(new ActionEvent(value, 0, command.toString()));
             }
             return true;
         }

@@ -69,8 +69,7 @@ import java.util.logging.Logger;
 public abstract class CalendarHeaderHandler {
 
     @SuppressWarnings("unused")
-    private static final Logger LOG = Logger
-        .getLogger(CalendarHeaderHandler.class.getName());
+    private static final Logger LOG = Logger.getLogger(CalendarHeaderHandler.class.getName());
 
     public static final String uiControllerID = "CalendarHeaderHandler";
 
@@ -134,8 +133,7 @@ public abstract class CalendarHeaderHandler {
      * monthStringBackground.
      */
     protected void installListeners() {
-        monthView
-            .addPropertyChangeListener(getMonthViewPropertyChangeListener());
+        monthView.addPropertyChangeListener(getMonthViewPropertyChangeListener());
     }
 
     /**
@@ -157,8 +155,7 @@ public abstract class CalendarHeaderHandler {
                     componentOrientationChanged();
                 } else if ("font".equals(evt.getPropertyName())) {
                     fontChanged();
-                } else if ("monthStringBackground".equals(evt
-                    .getPropertyName())) {
+                } else if ("monthStringBackground".equals(evt.getPropertyName())) {
                     monthStringBackgroundChanged();
                 }
             };
@@ -171,8 +168,7 @@ public abstract class CalendarHeaderHandler {
      * monthStringBackground.
      */
     protected void monthStringBackgroundChanged() {
-        getHeaderComponent().setBackground(
-            getAsNotUIResource(monthView.getMonthStringBackground()));
+        getHeaderComponent().setBackground(getAsNotUIResource(monthView.getMonthStringBackground()));
     }
 
     /**
@@ -191,8 +187,7 @@ public abstract class CalendarHeaderHandler {
      * component's orientation.
      */
     protected void componentOrientationChanged() {
-        getHeaderComponent().applyComponentOrientation(
-            monthView.getComponentOrientation());
+        getHeaderComponent().applyComponentOrientation(monthView.getComponentOrientation());
         if (monthView.getComponentOrientation().isLeftToRight()) {
             updateMonthNavigationIcons(monthDownImage, monthUpImage);
         } else {
@@ -237,12 +232,8 @@ public abstract class CalendarHeaderHandler {
      * them with the appropriate next/previous icons.
      */
     protected void installNavigationActions() {
-        installWrapper("scrollToPreviousMonth", "previousMonth", monthView
-            .getComponentOrientation().isLeftToRight() ? monthDownImage
-            : monthUpImage);
-        installWrapper("scrollToNextMonth", "nextMonth", monthView
-            .getComponentOrientation().isLeftToRight() ? monthUpImage
-            : monthDownImage);
+        installWrapper("scrollToPreviousMonth", "previousMonth", monthView.getComponentOrientation().isLeftToRight() ? monthDownImage : monthUpImage);
+        installWrapper("scrollToNextMonth", "nextMonth", monthView.getComponentOrientation().isLeftToRight() ? monthUpImage : monthDownImage);
     }
 
     /**
@@ -254,8 +245,7 @@ public abstract class CalendarHeaderHandler {
      * @param newActionKey the key of the wrapper action
      * @param icon         the icon to use in the wrapper action
      */
-    private void installWrapper(String actionKey, String newActionKey,
-                                Icon icon) {
+    private void installWrapper(String actionKey, String newActionKey, Icon icon) {
         AbstractActionExt wrapper = new AbstractActionExt(null, icon) {
 
             @Override

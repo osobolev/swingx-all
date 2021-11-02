@@ -156,7 +156,8 @@ public class JRendererLabel extends JLabel implements PainterAware, IconAware {
      * @param g the graphics to paint on
      */
     private void paintPainter(Graphics g) {
-        if (painter == null) return;
+        if (painter == null)
+            return;
         // fail fast: we assume that g must not be null
         // which throws an NPE here instead deeper down the bowels
         // this differs from corresponding core implementation!

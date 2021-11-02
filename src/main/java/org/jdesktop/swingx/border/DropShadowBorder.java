@@ -69,12 +69,10 @@ public class DropShadowBorder implements Border, Serializable {
     private static final long serialVersionUID = 715287754750604058L;
 
     private enum Position {
-        TOP, TOP_LEFT, LEFT, BOTTOM_LEFT,
-        BOTTOM, BOTTOM_RIGHT, RIGHT, TOP_RIGHT
+        TOP, TOP_LEFT, LEFT, BOTTOM_LEFT, BOTTOM, BOTTOM_RIGHT, RIGHT, TOP_RIGHT
     }
 
-    private static final Map<Double, Map<Position, BufferedImage>> CACHE
-        = new HashMap<>();
+    private static final Map<Double, Map<Position, BufferedImage>> CACHE = new HashMap<>();
 
     private Color shadowColor;
     private int shadowSize;
@@ -181,70 +179,52 @@ public class DropShadowBorder implements Border, Serializable {
                 }
             }
 
-            g2.setRenderingHint(RenderingHints.KEY_INTERPOLATION,
-                RenderingHints.VALUE_INTERPOLATION_BILINEAR);
-            g2.setRenderingHint(RenderingHints.KEY_RENDERING,
-                RenderingHints.VALUE_RENDER_SPEED);
+            g2.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
+            g2.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_SPEED);
 
             if (showLeftShadow) {
-                Rectangle leftShadowRect =
-                    new Rectangle(x,
-                        topLeftShadowPoint.y + shadowSize,
-                        shadowSize,
-                        bottomLeftShadowPoint.y - topLeftShadowPoint.y - shadowSize);
-                g2.drawImage(images.get(Position.LEFT),
-                    leftShadowRect.x, leftShadowRect.y,
-                    leftShadowRect.width, leftShadowRect.height, null);
+                Rectangle leftShadowRect = new Rectangle(
+                    x, topLeftShadowPoint.y + shadowSize,
+                    shadowSize, bottomLeftShadowPoint.y - topLeftShadowPoint.y - shadowSize
+                );
+                g2.drawImage(images.get(Position.LEFT), leftShadowRect.x, leftShadowRect.y, leftShadowRect.width, leftShadowRect.height, null);
             }
 
             if (showBottomShadow) {
-                Rectangle bottomShadowRect =
-                    new Rectangle(bottomLeftShadowPoint.x + shadowSize,
-                        y + height - shadowSize,
-                        bottomRightShadowPoint.x - bottomLeftShadowPoint.x - shadowSize,
-                        shadowSize);
-                g2.drawImage(images.get(Position.BOTTOM),
-                    bottomShadowRect.x, bottomShadowRect.y,
-                    bottomShadowRect.width, bottomShadowRect.height, null);
+                Rectangle bottomShadowRect = new Rectangle(
+                    bottomLeftShadowPoint.x + shadowSize, y + height - shadowSize,
+                    bottomRightShadowPoint.x - bottomLeftShadowPoint.x - shadowSize, shadowSize
+                );
+                g2.drawImage(images.get(Position.BOTTOM), bottomShadowRect.x, bottomShadowRect.y, bottomShadowRect.width, bottomShadowRect.height, null);
             }
 
             if (showRightShadow) {
-                Rectangle rightShadowRect =
-                    new Rectangle(x + width - shadowSize,
-                        topRightShadowPoint.y + shadowSize,
-                        shadowSize,
-                        bottomRightShadowPoint.y - topRightShadowPoint.y - shadowSize);
-                g2.drawImage(images.get(Position.RIGHT),
-                    rightShadowRect.x, rightShadowRect.y,
-                    rightShadowRect.width, rightShadowRect.height, null);
+                Rectangle rightShadowRect = new Rectangle(
+                    x + width - shadowSize, topRightShadowPoint.y + shadowSize,
+                    shadowSize, bottomRightShadowPoint.y - topRightShadowPoint.y - shadowSize
+                );
+                g2.drawImage(images.get(Position.RIGHT), rightShadowRect.x, rightShadowRect.y, rightShadowRect.width, rightShadowRect.height, null);
             }
 
             if (showTopShadow) {
-                Rectangle topShadowRect =
-                    new Rectangle(topLeftShadowPoint.x + shadowSize,
-                        y,
-                        topRightShadowPoint.x - topLeftShadowPoint.x - shadowSize,
-                        shadowSize);
-                g2.drawImage(images.get(Position.TOP),
-                    topShadowRect.x, topShadowRect.y,
-                    topShadowRect.width, topShadowRect.height, null);
+                Rectangle topShadowRect = new Rectangle(
+                    topLeftShadowPoint.x + shadowSize, y,
+                    topRightShadowPoint.x - topLeftShadowPoint.x - shadowSize, shadowSize
+                );
+                g2.drawImage(images.get(Position.TOP), topShadowRect.x, topShadowRect.y, topShadowRect.width, topShadowRect.height, null);
             }
 
             if (showLeftShadow || showTopShadow) {
-                g2.drawImage(images.get(Position.TOP_LEFT),
-                    topLeftShadowPoint.x, topLeftShadowPoint.y, null);
+                g2.drawImage(images.get(Position.TOP_LEFT), topLeftShadowPoint.x, topLeftShadowPoint.y, null);
             }
             if (showLeftShadow || showBottomShadow) {
-                g2.drawImage(images.get(Position.BOTTOM_LEFT),
-                    bottomLeftShadowPoint.x, bottomLeftShadowPoint.y, null);
+                g2.drawImage(images.get(Position.BOTTOM_LEFT), bottomLeftShadowPoint.x, bottomLeftShadowPoint.y, null);
             }
             if (showRightShadow || showBottomShadow) {
-                g2.drawImage(images.get(Position.BOTTOM_RIGHT),
-                    bottomRightShadowPoint.x, bottomRightShadowPoint.y, null);
+                g2.drawImage(images.get(Position.BOTTOM_RIGHT), bottomRightShadowPoint.x, bottomRightShadowPoint.y, null);
             }
             if (showRightShadow || showTopShadow) {
-                g2.drawImage(images.get(Position.TOP_RIGHT),
-                    topRightShadowPoint.x, topRightShadowPoint.y, null);
+                g2.drawImage(images.get(Position.TOP_RIGHT), topRightShadowPoint.x, topRightShadowPoint.y, null);
             }
         } finally {
             g2.dispose();
@@ -280,8 +260,7 @@ public class DropShadowBorder implements Border, Serializable {
             Graphics2D buffer = (Graphics2D) image.getGraphics();
 
             try {
-                buffer.setPaint(new Color(shadowColor.getRed(), shadowColor.getGreen(),
-                    shadowColor.getBlue(), (int) (shadowOpacity * 255)));
+                buffer.setPaint(new Color(shadowColor.getRed(), shadowColor.getGreen(), shadowColor.getBlue(), (int) (shadowOpacity * 255)));
 //                buffer.setColor(new Color(0.0f, 0.0f, 0.0f, shadowOpacity));
                 buffer.translate(shadowSize, shadowSize);
                 buffer.fill(rect);
@@ -349,16 +328,12 @@ public class DropShadowBorder implements Border, Serializable {
      * BufferedImage.getSubimage(), which will defeat image acceleration
      * strategies on later JDKs.)
      */
-    private BufferedImage getSubImage(BufferedImage img,
-                                      int x, int y, int w, int h) {
+    private BufferedImage getSubImage(BufferedImage img, int x, int y, int w, int h) {
         BufferedImage ret = GraphicsUtilities.createCompatibleTranslucentImage(w, h);
         Graphics2D g2 = ret.createGraphics();
 
         try {
-            g2.drawImage(img,
-                0, 0, w, h,
-                x, y, x + w, y + h,
-                null);
+            g2.drawImage(img, 0, 0, w, h, x, y, x + w, y + h, null);
         } finally {
             g2.dispose();
         }

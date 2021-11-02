@@ -47,15 +47,13 @@ public class HeaderAddon extends AbstractComponentAddon {
 
         defaults.add(JXHeader.uiClassID, "org.jdesktop.swingx.plaf.basic.BasicHeaderUI");
         //TODO image is missing
-        defaults.add("JXHeader.defaultIcon",
-            LookAndFeel.makeIcon(HeaderAddon.class, "basic/resources/header-default.png"));
+        defaults.add("JXHeader.defaultIcon", LookAndFeel.makeIcon(HeaderAddon.class, "basic/resources/header-default.png"));
         //TODO use safe methods
         defaults.add("JXHeader.titleFont", new FontUIResource(UIManager.getFont("Label.font").deriveFont(Font.BOLD)));
         defaults.add("JXHeader.titleForeground", UIManager.getColor("Label.foreground"));
         defaults.add("JXHeader.descriptionFont", UIManager.getFont("Label.font"));
         defaults.add("JXHeader.descriptionForeground", UIManager.getColor("Label.foreground"));
-        defaults.add("JXHeader.background",
-            UIManagerExt.getSafeColor("control", new ColorUIResource(Color.decode("#C0C0C0"))));
+        defaults.add("JXHeader.background", UIManagerExt.getSafeColor("control", new ColorUIResource(Color.decode("#C0C0C0"))));
         defaults.add("JXHeader.startBackground", new ColorUIResource(Color.WHITE));
     }
 

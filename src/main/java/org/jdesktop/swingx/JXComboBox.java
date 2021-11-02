@@ -136,8 +136,7 @@ public class JXComboBox extends JComboBox {
                 SwingUtilities.updateComponentTreeUI((Component) delegateRenderer);
             } else if (delegateRenderer != null) {
                 try {
-                    Component comp = delegateRenderer.getListCellRendererComponent(
-                        getPopupListFor(JXComboBox.this), null, -1, false, false);
+                    Component comp = delegateRenderer.getListCellRendererComponent(getPopupListFor(JXComboBox.this), null, -1, false, false);
                     SwingUtilities.updateComponentTreeUI(comp);
                 } catch (Exception e) {
                     // nothing to do - renderer barked on off-range row
@@ -154,13 +153,11 @@ public class JXComboBox extends JComboBox {
          * The decorators are not applied if the row is invalid.
          */
         @Override
-        public Component getListCellRendererComponent(JList list, Object value, int index,
-                                                      boolean isSelected, boolean cellHasFocus) {
+        public Component getListCellRendererComponent(JList list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
             Component comp = null;
 
             if (index == -1) {
-                comp = delegateRenderer.getListCellRendererComponent(list, value,
-                    getSelectedIndex(), isSelected, cellHasFocus);
+                comp = delegateRenderer.getListCellRendererComponent(list, value, getSelectedIndex(), isSelected, cellHasFocus);
 
                 if (isUseHighlightersForCurrentValue() && compoundHighlighter != null && getSelectedIndex() != -1) {
                     comp = compoundHighlighter.highlight(comp, getComponentAdapter(getSelectedIndex()));
@@ -173,8 +170,7 @@ public class JXComboBox extends JComboBox {
                     comp = wrapper;
                 }
             } else {
-                comp = delegateRenderer.getListCellRendererComponent(list, value, index,
-                    isSelected, cellHasFocus);
+                comp = delegateRenderer.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
 
                 if (compoundHighlighter != null && index >= 0 && index < getItemCount()) {
                     comp = compoundHighlighter.highlight(comp, getComponentAdapter(index));
@@ -191,8 +187,7 @@ public class JXComboBox extends JComboBox {
          */
         @Override
         public boolean isEnabled() {
-            return delegateRenderer instanceof RolloverRenderer &&
-                   ((RolloverRenderer) delegateRenderer).isEnabled();
+            return delegateRenderer instanceof RolloverRenderer && ((RolloverRenderer) delegateRenderer).isEnabled();
         }
 
         /**
@@ -511,8 +506,7 @@ public class JXComboBox extends JComboBox {
      * {@inheritDoc}
      */
     @Override
-    protected boolean processKeyBinding(KeyStroke ks, KeyEvent e, int condition,
-                                        boolean pressed) {
+    protected boolean processKeyBinding(KeyStroke ks, KeyEvent e, int condition, boolean pressed) {
         boolean retValue = super.processKeyBinding(ks, e, condition, pressed);
 
         if (!retValue && editor != null) {
@@ -544,8 +538,7 @@ public class JXComboBox extends JComboBox {
         }
 
         JTable table = (JTable) SwingUtilities.getAncestorOfClass(JTable.class, this);
-        boolean isOwned = table != null
-                          && !Boolean.FALSE.equals(table.getClientProperty("JTable.autoStartsEdit"));
+        boolean isOwned = table != null && !Boolean.FALSE.equals(table.getClientProperty("JTable.autoStartsEdit"));
 
         return isOwned && e.getComponent() == table;
     }
@@ -679,8 +672,7 @@ public class JXComboBox extends JComboBox {
         // == multiple delegation...
         ListCellRenderer oldValue = super.getRenderer();
         getDelegatingRenderer().setDelegateRenderer(renderer);
-        getStringValueRegistry().setStringValue(
-            renderer instanceof StringValue ? (StringValue) renderer : null, 0);
+        getStringValueRegistry().setStringValue(renderer instanceof StringValue ? (StringValue) renderer : null, 0);
         super.setRenderer(delegatingRenderer);
 
         if (oldValue == delegatingRenderer) {
@@ -706,8 +698,7 @@ public class JXComboBox extends JComboBox {
         boolean oldValue = isUseHighlightersForCurrentValue();
         this.useHighlightersForCurrentValue = useHighlightersForCurrentValue;
         repaint();
-        firePropertyChange("useHighlightersForCurrentValue", oldValue,
-            isUseHighlightersForCurrentValue());
+        firePropertyChange("useHighlightersForCurrentValue", oldValue, isUseHighlightersForCurrentValue());
     }
 
     /**
@@ -778,8 +769,7 @@ public class JXComboBox extends JComboBox {
      * @see #setHighlighters(Highlighter[])
      */
     public Highlighter[] getHighlighters() {
-        return getCompoundHighlighter() != null ? getCompoundHighlighter().getHighlighters()
-            : CompoundHighlighter.EMPTY_HIGHLIGHTERS;
+        return getCompoundHighlighter() != null ? getCompoundHighlighter().getHighlighters() : CompoundHighlighter.EMPTY_HIGHLIGHTERS;
     }
 
     /**

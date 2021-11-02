@@ -58,8 +58,7 @@ public final class MappedValues {
          * @param iconDelegate
          * @param booleanDelegate
          */
-        public MappedValueUIResource(StringValue stringDelegate,
-                                     IconValue iconDelegate, BooleanValue booleanDelegate) {
+        public MappedValueUIResource(StringValue stringDelegate, IconValue iconDelegate, BooleanValue booleanDelegate) {
             super(stringDelegate, iconDelegate, booleanDelegate);
         }
 
@@ -67,8 +66,7 @@ public final class MappedValues {
          * @param stringDelegate
          * @param iconDelegate
          */
-        public MappedValueUIResource(StringValue stringDelegate,
-                                     IconValue iconDelegate) {
+        public MappedValueUIResource(StringValue stringDelegate, IconValue iconDelegate) {
             super(stringDelegate, iconDelegate);
         }
     }

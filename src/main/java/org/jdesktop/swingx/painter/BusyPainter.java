@@ -105,13 +105,11 @@ public class BusyPainter extends AbstractPainter<Object> {
     }
 
     protected static Shape getScaledDefaultTrajectory(int height) {
-        return new Ellipse2D.Float((height * 8) / 26 / 2, (height * 8) / 26 / 2, height
-                                                                                 - height * 8 / 26, height - height * 8 / 26);
+        return new Ellipse2D.Float((height * 8) / 26 / 2, (height * 8) / 26 / 2, height - height * 8 / 26, height - height * 8 / 26);
     }
 
     protected static Shape getScaledDefaultPoint(int height) {
-        return new RoundRectangle2D.Float(0, 0, height * 8 / 26, 4,
-            4, 4);
+        return new RoundRectangle2D.Float(0, 0, height * 8 / 26, 4, 4, 4);
     }
 
     /**
@@ -169,16 +167,14 @@ public class BusyPainter extends AbstractPainter<Object> {
             if (ret == PathIterator.SEG_CUBICTO) {
                 float c = calcCube(coords, cp);
                 totalDist += c;
-                segStack.add(new float[] {c, coords[0], coords[1], coords[2],
-                    coords[3], coords[4], coords[5], ret});
+                segStack.add(new float[] {c, coords[0], coords[1], coords[2], coords[3], coords[4], coords[5], ret});
                 cp.x = coords[4];
                 cp.y = coords[5];
             }
             if (ret == PathIterator.SEG_QUADTO) {
                 float c = calcLengthOfQuad(coords, cp);
                 totalDist += c;
-                segStack.add(new float[] {c, coords[0], coords[1], 0, 0, coords[2],
-                    coords[3], ret});
+                segStack.add(new float[] {c, coords[0], coords[1], 0, 0, coords[2], coords[3], ret});
                 cp.x = coords[2];
                 cp.y = coords[3];
             }
@@ -276,8 +272,7 @@ public class BusyPainter extends AbstractPainter<Object> {
         g.rotate(-t);
     }
 
-    private Float calcPoint(float dist2go, Float startPoint,
-                            float[] sgmt, int w, int h) {
+    private Float calcPoint(float dist2go, Float startPoint, float[] sgmt, int w, int h) {
         Float f = new Float();
         if (sgmt[7] == PathIterator.SEG_LINETO) {
             // linear
@@ -350,8 +345,7 @@ public class BusyPainter extends AbstractPainter<Object> {
         float prevLength = 0, prevX = 0, prevY = 0;
         for (float t = 0.01f; t <= 1.0f; t += .01f) {
             Float xy = getXY(t, c1rx, c1ry, c2rx, c2ry);
-            prevLength += (float) Math.sqrt((xy.x - prevX) * (xy.x - prevX)
-                                            + (xy.y - prevY) * (xy.y - prevY));
+            prevLength += (float) Math.sqrt((xy.x - prevX) * (xy.x - prevX) + (xy.y - prevY) * (xy.y - prevY));
             prevX = xy.x;
             prevY = xy.y;
         }
@@ -393,8 +387,7 @@ public class BusyPainter extends AbstractPainter<Object> {
         float prevLength = 0, prevX = 0, prevY = 0;
         for (float t = 0.01f; t <= 1.0f; t += .01f) {
             Float xy = getXY(t, new Float(0, 0), ctrl, end);
-            prevLength += (float) Math.sqrt((xy.x - prevX) * (xy.x - prevX)
-                                            + (xy.y - prevY) * (xy.y - prevY));
+            prevLength += (float) Math.sqrt((xy.x - prevX) * (xy.x - prevX) + (xy.y - prevY) * (xy.y - prevY));
             prevX = xy.x;
             prevY = xy.y;
         }
@@ -423,8 +416,7 @@ public class BusyPainter extends AbstractPainter<Object> {
         float b1 = 3 * t * (invT * invT);
         float b2 = 3 * (t * t) * invT;
         float b3 = t * t * t;
-        xy = new Float(b1 * x1 + b2 * x2 + b3, b1 * y1
-                                               + b2 * y2 + b3);
+        xy = new Float(b1 * x1 + b2 * x2 + b3, b1 * y1 + b2 * y2 + b3);
         return xy;
     }
 
@@ -471,17 +463,12 @@ public class BusyPainter extends AbstractPainter<Object> {
         }
 
         for (int t = 0; t < getTrailLength(); t++) {
-            if (direction == Direction.RIGHT
-                && i == (frame - t + getPoints()) % getPoints()) {
-                float terp = 1 - (float) (getTrailLength() - t)
-                                 / (float) getTrailLength();
-                return PaintUtils.interpolate(getBaseColor(),
-                    getHighlightColor(), terp);
-            } else if (direction == Direction.LEFT
-                       && i == (frame + t) % getPoints()) {
+            if (direction == Direction.RIGHT && i == (frame - t + getPoints()) % getPoints()) {
+                float terp = 1 - (float) (getTrailLength() - t) / (float) getTrailLength();
+                return PaintUtils.interpolate(getBaseColor(), getHighlightColor(), terp);
+            } else if (direction == Direction.LEFT && i == (frame + t) % getPoints()) {
                 float terp = (float) t / (float) getTrailLength();
-                return PaintUtils.interpolate(getBaseColor(),
-                    getHighlightColor(), terp);
+                return PaintUtils.interpolate(getBaseColor(), getHighlightColor(), terp);
             }
         }
         return getBaseColor();

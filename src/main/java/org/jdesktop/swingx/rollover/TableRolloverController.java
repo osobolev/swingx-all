@@ -34,8 +34,7 @@ import java.util.List;
  *
  * @author Jeanette Winzenburg
  */
-public class TableRolloverController<T extends JTable> extends
-    RolloverController<T> {
+public class TableRolloverController<T extends JTable> extends RolloverController<T> {
 
     private Cursor oldCursor;
 
@@ -81,21 +80,18 @@ public class TableRolloverController<T extends JTable> extends
      * @param paintColumn  boolean indicating whether the column should be painted
      * @return list of rectangles to paint, maybe null
      */
-    private List<Rectangle> getPaintRectangles(List<Rectangle> rectangles, Point cellLocation,
-                                               boolean paintRow, boolean paintColumn) {
-        if (!paintRow && !paintColumn) return rectangles;
+    private List<Rectangle> getPaintRectangles(List<Rectangle> rectangles, Point cellLocation, boolean paintRow, boolean paintColumn) {
+        if (!paintRow && !paintColumn)
+            return rectangles;
         if (rectangles == null) {
             rectangles = new ArrayList<>();
         }
-        Rectangle r = component.getCellRect(cellLocation.y, cellLocation.x,
-            false);
+        Rectangle r = component.getCellRect(cellLocation.y, cellLocation.x, false);
         if (paintRow) {
-            rectangles.add(new Rectangle(0, r.y, component.getWidth(),
-                r.height));
+            rectangles.add(new Rectangle(0, r.y, component.getWidth(), r.height));
         }
         if (paintColumn) {
-            rectangles.add(new Rectangle(r.x, 0, r.width, component
-                .getHeight()));
+            rectangles.add(new Rectangle(r.x, 0, r.width, component.getHeight()));
         }
         return rectangles;
     }
@@ -123,17 +119,13 @@ public class TableRolloverController<T extends JTable> extends
      */
     @Override
     protected boolean isClickable(Point location) {
-        return super.isClickable(location)
-               && !component.isCellEditable(location.y, location.x);
+        return super.isClickable(location) && !component.isCellEditable(location.y, location.x);
     }
 
     @Override
-    protected RolloverRenderer getRolloverRenderer(Point location,
-                                                   boolean prepare) {
-        TableCellRenderer renderer = component.getCellRenderer(location.y,
-            location.x);
-        RolloverRenderer rollover = renderer instanceof RolloverRenderer ? (RolloverRenderer) renderer
-            : null;
+    protected RolloverRenderer getRolloverRenderer(Point location, boolean prepare) {
+        TableCellRenderer renderer = component.getCellRenderer(location.y, location.x);
+        RolloverRenderer rollover = renderer instanceof RolloverRenderer ? (RolloverRenderer) renderer : null;
         if (rollover != null && !rollover.isEnabled()) {
             rollover = null;
         }
@@ -147,8 +139,7 @@ public class TableRolloverController<T extends JTable> extends
         if (hasRollover(location)) {
             if (oldCursor == null) {
                 oldCursor = component.getCursor();
-                component.setCursor(Cursor
-                    .getPredefinedCursor(Cursor.HAND_CURSOR));
+                component.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
             }
         } else {
             if (oldCursor != null) {
@@ -161,8 +152,7 @@ public class TableRolloverController<T extends JTable> extends
     @Override
     protected Point getFocusedCell() {
         int leadRow = component.getSelectionModel().getLeadSelectionIndex();
-        int leadColumn = component.getColumnModel().getSelectionModel()
-            .getLeadSelectionIndex();
+        int leadColumn = component.getColumnModel().getSelectionModel().getLeadSelectionIndex();
         return new Point(leadColumn, leadRow);
     }
 }

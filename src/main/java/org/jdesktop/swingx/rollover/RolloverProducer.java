@@ -41,12 +41,10 @@ import java.util.logging.Logger;
  *
  * @author Jeanette Winzenburg
  */
-public abstract class RolloverProducer implements MouseListener, MouseMotionListener,
-    ComponentListener {
+public abstract class RolloverProducer implements MouseListener, MouseMotionListener, ComponentListener {
 
     @SuppressWarnings("unused")
-    private static final Logger LOG = Logger.getLogger(RolloverProducer.class
-        .getName());
+    private static final Logger LOG = Logger.getLogger(RolloverProducer.class.getName());
 
     /**
      * Key for client property mapped from mouse-triggered action.
@@ -238,8 +236,7 @@ public abstract class RolloverProducer implements MouseListener, MouseMotionList
      * @see #updateRolloverPoint(JComponent, Point)
      * @see #updateClientProperty(JComponent, String, boolean)
      */
-    protected void updateRollover(MouseEvent e, String property,
-                                  boolean fireAlways) {
+    protected void updateRollover(MouseEvent e, String property, boolean fireAlways) {
         updateRolloverPoint((JComponent) e.getComponent(), e.getPoint());
         updateClientProperty((JComponent) e.getComponent(), property, fireAlways);
     }
@@ -258,8 +255,7 @@ public abstract class RolloverProducer implements MouseListener, MouseMotionList
      * @param fireAlways a flag indicating whether a client property
      *                   should be forced to fire an event.
      */
-    protected void updateClientProperty(JComponent component, String property,
-                                        boolean fireAlways) {
+    protected void updateClientProperty(JComponent component, String property, boolean fireAlways) {
         if (fireAlways) {
             // fix Issue #864-swingx: force propertyChangeEvent
             component.putClientProperty(property, null);

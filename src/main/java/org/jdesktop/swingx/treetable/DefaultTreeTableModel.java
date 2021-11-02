@@ -118,15 +118,12 @@ public class DefaultTreeTableModel extends AbstractTreeTableModel {
     public void setColumnIdentifiers(List<?> columnIdentifiers) {
         useAutoCalculatedIdentifiers = columnIdentifiers == null;
 
-        this.columnIdentifiers = useAutoCalculatedIdentifiers
-            ? getAutoCalculatedIdentifiers(getRoot())
-            : columnIdentifiers;
+        this.columnIdentifiers = useAutoCalculatedIdentifiers ? getAutoCalculatedIdentifiers(getRoot()) : columnIdentifiers;
 
         modelSupport.fireNewRoot();
     }
 
-    private static List<String> getAutoCalculatedIdentifiers(
-        TreeTableNode exemplar) {
+    private static List<String> getAutoCalculatedIdentifiers(TreeTableNode exemplar) {
         List<String> autoCalculatedIndentifiers = new ArrayList<>();
 
         if (exemplar != null) {
@@ -169,8 +166,7 @@ public class DefaultTreeTableModel extends AbstractTreeTableModel {
     @Override
     public Object getValueAt(Object node, int column) {
         if (!isValidTreeTableNode(node)) {
-            throw new IllegalArgumentException(
-                "node must be a valid node managed by this model");
+            throw new IllegalArgumentException("node must be a valid node managed by this model");
         }
 
         if (column < 0 || column >= getColumnCount()) {
@@ -192,8 +188,7 @@ public class DefaultTreeTableModel extends AbstractTreeTableModel {
     @Override
     public void setValueAt(Object value, Object node, int column) {
         if (!isValidTreeTableNode(node)) {
-            throw new IllegalArgumentException(
-                "node must be a valid node managed by this model");
+            throw new IllegalArgumentException("node must be a valid node managed by this model");
         }
 
         if (column < 0 || column >= getColumnCount()) {
@@ -241,8 +236,7 @@ public class DefaultTreeTableModel extends AbstractTreeTableModel {
     @Override
     public Object getChild(Object parent, int index) {
         if (!isValidTreeTableNode(parent)) {
-            throw new IllegalArgumentException(
-                "parent must be a TreeTableNode managed by this model");
+            throw new IllegalArgumentException("parent must be a TreeTableNode managed by this model");
         }
 
         return ((TreeTableNode) parent).getChildAt(index);
@@ -254,8 +248,7 @@ public class DefaultTreeTableModel extends AbstractTreeTableModel {
     @Override
     public int getChildCount(Object parent) {
         if (!isValidTreeTableNode(parent)) {
-            throw new IllegalArgumentException(
-                "parent must be a TreeTableNode managed by this model");
+            throw new IllegalArgumentException("parent must be a TreeTableNode managed by this model");
         }
 
         return ((TreeTableNode) parent).getChildCount();
@@ -279,8 +272,7 @@ public class DefaultTreeTableModel extends AbstractTreeTableModel {
     @Override
     public boolean isCellEditable(Object node, int column) {
         if (!isValidTreeTableNode(node)) {
-            throw new IllegalArgumentException(
-                "node must be a valid node managed by this model");
+            throw new IllegalArgumentException("node must be a valid node managed by this model");
         }
 
         if (column < 0 || column >= getColumnCount()) {
@@ -302,8 +294,7 @@ public class DefaultTreeTableModel extends AbstractTreeTableModel {
     @Override
     public boolean isLeaf(Object node) {
         if (!isValidTreeTableNode(node)) {
-            throw new IllegalArgumentException(
-                "node must be a TreeTableNode managed by this model");
+            throw new IllegalArgumentException("node must be a TreeTableNode managed by this model");
         }
 
         return ((TreeTableNode) node).isLeaf();
@@ -361,12 +352,10 @@ public class DefaultTreeTableModel extends AbstractTreeTableModel {
      * This is the preferred way to add children as it will create the
      * appropriate event.
      */
-    public void insertNodeInto(MutableTreeTableNode newChild,
-                               MutableTreeTableNode parent, int index) {
+    public void insertNodeInto(MutableTreeTableNode newChild, MutableTreeTableNode parent, int index) {
         parent.insert(newChild, index);
 
-        modelSupport.fireChildAdded(new TreePath(getPathToRoot(parent)), index,
-            newChild);
+        modelSupport.fireChildAdded(new TreePath(getPathToRoot(parent)), index, newChild);
     }
 
     /**
@@ -384,8 +373,7 @@ public class DefaultTreeTableModel extends AbstractTreeTableModel {
         int index = parent.getIndex(node);
         node.removeFromParent();
 
-        modelSupport.fireChildRemoved(new TreePath(getPathToRoot(parent)),
-            index, node);
+        modelSupport.fireChildRemoved(new TreePath(getPathToRoot(parent)), index, node);
     }
 
     /**
