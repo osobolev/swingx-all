@@ -94,6 +94,6 @@ public class DateSelectionEvent extends EventObject {
 
     @Override
     public String toString() {
-        return "[" + String.valueOf(getSource()) + " type: " + getEventType() + " isAdjusting: " + isAdjusting();
+        return "[" + getSource() + " type: " + getEventType() + " isAdjusting: " + isAdjusting();
     }
 }

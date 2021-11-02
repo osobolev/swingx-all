@@ -257,7 +257,7 @@ public class ServerAction extends AbstractAction {
                     buffer.append('\n');
                 }
                 // JW: this used the Debug - maybe use finest level?
-                LOG.finer("returned from connection\n" + buffer.toString());
+                LOG.finer("returned from connection\n" + buffer);
             }
         } catch (UnknownHostException ex) {
             LOG.log(Level.WARNING, "UnknownHostException detected. Could it be a proxy issue?", ex);
@@ -294,7 +294,7 @@ public class ServerAction extends AbstractAction {
             postData.setCharAt(0, '?');
         }
 
-        LOG.finer("ServerAction: POST data: " + postData.toString());
+        LOG.finer("ServerAction: POST data: " + postData);
         return postData.toString();
     }
 
