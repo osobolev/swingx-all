@@ -37,7 +37,12 @@ package org.jdesktop.swingx.graphics;
 import java.awt.Composite;
 import java.awt.CompositeContext;
 import java.awt.RenderingHints;
-import java.awt.image.*;
+import java.awt.image.ColorModel;
+import java.awt.image.DataBuffer;
+import java.awt.image.DirectColorModel;
+import java.awt.image.Raster;
+import java.awt.image.RasterFormatException;
+import java.awt.image.WritableRaster;
 
 /**
  * <p>A blend composite defines the rule according to which a drawing primitive

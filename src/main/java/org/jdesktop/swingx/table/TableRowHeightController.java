@@ -30,7 +30,11 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.logging.Logger;
 
-import static org.jdesktop.swingx.table.TableUtilities.*;
+import static org.jdesktop.swingx.table.TableUtilities.isDataChanged;
+import static org.jdesktop.swingx.table.TableUtilities.isInsert;
+import static org.jdesktop.swingx.table.TableUtilities.isStructureChanged;
+import static org.jdesktop.swingx.table.TableUtilities.isUpdate;
+import static org.jdesktop.swingx.table.TableUtilities.setPreferredRowHeight;
 
 /**
  * A controller to adjust JTable rowHeight based on sizing requirements of its renderers.

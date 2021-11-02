@@ -29,9 +29,20 @@ import org.jdesktop.swingx.painter.PainterPaint;
 import org.jdesktop.swingx.util.GraphicsUtilities;
 import org.jdesktop.swingx.util.PaintUtils;
 
-import javax.swing.*;
+import javax.swing.Action;
+import javax.swing.ButtonModel;
+import javax.swing.CellRendererPane;
+import javax.swing.Icon;
+import javax.swing.JButton;
+import javax.swing.SwingUtilities;
 import javax.swing.plaf.basic.BasicGraphicsUtils;
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Insets;
+import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.awt.image.BufferedImageOp;
 

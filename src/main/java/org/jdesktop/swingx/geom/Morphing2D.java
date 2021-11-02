@@ -22,7 +22,12 @@ package org.jdesktop.swingx.geom;
 
 import java.awt.Rectangle;
 import java.awt.Shape;
-import java.awt.geom.*;
+import java.awt.geom.AffineTransform;
+import java.awt.geom.FlatteningPathIterator;
+import java.awt.geom.IllegalPathStateException;
+import java.awt.geom.PathIterator;
+import java.awt.geom.Point2D;
+import java.awt.geom.Rectangle2D;
 
 /**
  * <p>A morphing shape is a shape which geometry is constructed from two

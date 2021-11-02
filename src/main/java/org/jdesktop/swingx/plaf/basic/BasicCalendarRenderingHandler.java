@@ -1,9 +1,19 @@
 package org.jdesktop.swingx.plaf.basic;
 
 import org.jdesktop.swingx.JXMonthView;
-import org.jdesktop.swingx.decorator.*;
+import org.jdesktop.swingx.decorator.AbstractHighlighter;
+import org.jdesktop.swingx.decorator.ComponentAdapter;
+import org.jdesktop.swingx.decorator.CompoundHighlighter;
+import org.jdesktop.swingx.decorator.HighlightPredicate;
+import org.jdesktop.swingx.decorator.Highlighter;
+import org.jdesktop.swingx.decorator.PainterHighlighter;
 import org.jdesktop.swingx.plaf.UIManagerExt;
-import org.jdesktop.swingx.renderer.*;
+import org.jdesktop.swingx.renderer.CellContext;
+import org.jdesktop.swingx.renderer.ComponentProvider;
+import org.jdesktop.swingx.renderer.FormatStringValue;
+import org.jdesktop.swingx.renderer.LabelProvider;
+import org.jdesktop.swingx.renderer.StringValue;
+import org.jdesktop.swingx.renderer.StringValues;
 
 import javax.swing.JComponent;
 import javax.swing.JLabel;

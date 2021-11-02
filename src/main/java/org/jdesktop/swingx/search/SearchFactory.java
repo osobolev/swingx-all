@@ -20,13 +20,30 @@
  */
 package org.jdesktop.swingx.search;
 
-import org.jdesktop.swingx.*;
+import org.jdesktop.swingx.JXDialog;
+import org.jdesktop.swingx.JXFindBar;
+import org.jdesktop.swingx.JXFindPanel;
+import org.jdesktop.swingx.JXFrame;
+import org.jdesktop.swingx.JXRootPane;
 import org.jdesktop.swingx.plaf.LookAndFeelAddons;
 import org.jdesktop.swingx.plaf.UIDependent;
 import org.jdesktop.swingx.util.Utilities;
 
-import javax.swing.*;
-import java.awt.*;
+import javax.swing.AbstractAction;
+import javax.swing.Action;
+import javax.swing.JComponent;
+import javax.swing.JOptionPane;
+import javax.swing.JToolBar;
+import javax.swing.KeyStroke;
+import javax.swing.SwingUtilities;
+import javax.swing.UIManager;
+import java.awt.Component;
+import java.awt.Container;
+import java.awt.Dialog;
+import java.awt.Frame;
+import java.awt.KeyboardFocusManager;
+import java.awt.Point;
+import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;

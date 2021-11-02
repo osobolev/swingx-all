@@ -24,7 +24,12 @@ package org.jdesktop.swingx.painter;
 import org.jdesktop.beans.JavaBean;
 import org.jdesktop.swingx.painter.effects.AreaEffect;
 
-import java.awt.*;
+import java.awt.BasicStroke;
+import java.awt.Color;
+import java.awt.Graphics2D;
+import java.awt.Paint;
+import java.awt.Rectangle;
+import java.awt.Shape;
 import java.awt.geom.Ellipse2D;
 
 import static org.jdesktop.swingx.painter.PainterUtils.getBackgroundPaint;

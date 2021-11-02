@@ -22,7 +22,15 @@ package org.jdesktop.swingx;
 
 import org.jdesktop.beans.JavaBean;
 
-import javax.swing.*;
+import javax.swing.AbstractButton;
+import javax.swing.BoxLayout;
+import javax.swing.ButtonGroup;
+import javax.swing.ButtonModel;
+import javax.swing.ComboBoxModel;
+import javax.swing.JComboBox;
+import javax.swing.JComponent;
+import javax.swing.JPanel;
+import javax.swing.JRadioButton;
 import javax.swing.event.EventListenerList;
 import java.awt.Component;
 import java.awt.event.ActionEvent;

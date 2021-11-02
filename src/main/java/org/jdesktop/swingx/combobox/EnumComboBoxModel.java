@@ -20,7 +20,10 @@
  */
 package org.jdesktop.swingx.combobox;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.EnumSet;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * <p>

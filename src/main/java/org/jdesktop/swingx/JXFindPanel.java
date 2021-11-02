@@ -25,7 +25,11 @@ import org.jdesktop.beans.JavaBean;
 import org.jdesktop.swingx.search.PatternModel;
 import org.jdesktop.swingx.search.Searchable;
 
-import javax.swing.*;
+import javax.swing.Box;
+import javax.swing.BoxLayout;
+import javax.swing.JCheckBox;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import java.awt.Component;
 import java.util.Locale;
 import java.util.regex.Pattern;

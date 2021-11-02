@@ -24,7 +24,14 @@ package org.jdesktop.swingx.painter;
 import org.jdesktop.beans.JavaBean;
 import org.jdesktop.swingx.painter.effects.AreaEffect;
 
-import java.awt.*;
+import java.awt.BasicStroke;
+import java.awt.Graphics2D;
+import java.awt.Image;
+import java.awt.Insets;
+import java.awt.Paint;
+import java.awt.Rectangle;
+import java.awt.Shape;
+import java.awt.TexturePaint;
 import java.awt.geom.Area;
 import java.awt.image.BufferedImage;
 import java.util.logging.Logger;

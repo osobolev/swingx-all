@@ -28,7 +28,12 @@ import javax.swing.JComponent;
 import javax.swing.border.Border;
 import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.FontUIResource;
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.LinearGradientPaint;
+import java.awt.Paint;
+import java.awt.RenderingHints;
 
 /**
  * Nimbus implementation of the <code>JXTaskPane</code> UI. <br>

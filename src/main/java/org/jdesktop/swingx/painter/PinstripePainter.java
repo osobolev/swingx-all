@@ -23,11 +23,17 @@ package org.jdesktop.swingx.painter;
 
 import org.jdesktop.beans.JavaBean;
 
-import java.awt.*;
+import java.awt.BasicStroke;
+import java.awt.Graphics2D;
+import java.awt.Paint;
+import java.awt.Rectangle;
+import java.awt.Shape;
 import java.awt.geom.Area;
 import java.awt.geom.Line2D;
 
-import static java.lang.Math.*;
+import static java.lang.Math.hypot;
+import static java.lang.Math.round;
+import static java.lang.Math.toRadians;
 import static org.jdesktop.swingx.painter.PainterUtils.getForegroundPaint;
 
 /**

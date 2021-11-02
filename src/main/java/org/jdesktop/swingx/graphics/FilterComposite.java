@@ -5,7 +5,11 @@ import org.jdesktop.swingx.util.Contract;
 import java.awt.Composite;
 import java.awt.CompositeContext;
 import java.awt.RenderingHints;
-import java.awt.image.*;
+import java.awt.image.BufferedImage;
+import java.awt.image.BufferedImageOp;
+import java.awt.image.ColorModel;
+import java.awt.image.Raster;
+import java.awt.image.WritableRaster;
 
 /**
  * A {@code FilterComposite} allows the inclusion of arbitrary image filters during the paint

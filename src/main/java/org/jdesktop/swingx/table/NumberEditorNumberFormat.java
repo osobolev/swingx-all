@@ -20,7 +20,12 @@
  */
 package org.jdesktop.swingx.table;
 
-import java.text.*;
+import java.text.AttributedCharacterIterator;
+import java.text.AttributedString;
+import java.text.FieldPosition;
+import java.text.Format;
+import java.text.NumberFormat;
+import java.text.ParsePosition;
 
 /**
  * A specialised Format for the NumberEditor that returns a null for empty

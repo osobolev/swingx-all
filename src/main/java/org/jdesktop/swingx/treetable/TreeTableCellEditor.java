@@ -23,7 +23,11 @@ package org.jdesktop.swingx.treetable;
 
 import org.jdesktop.swingx.JXTable.GenericEditor;
 
-import javax.swing.*;
+import javax.swing.Icon;
+import javax.swing.JLabel;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.JTree;
 import javax.swing.tree.TreeCellRenderer;
 import java.awt.Component;
 import java.awt.Rectangle;

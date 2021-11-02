@@ -45,7 +45,16 @@ import org.jdesktop.swingx.sort.SortController;
 import org.jdesktop.swingx.sort.StringValueRegistry;
 import org.jdesktop.swingx.table.TableColumnExt;
 
-import javax.swing.*;
+import javax.swing.Action;
+import javax.swing.JComponent;
+import javax.swing.JList;
+import javax.swing.KeyStroke;
+import javax.swing.ListCellRenderer;
+import javax.swing.ListModel;
+import javax.swing.RowFilter;
+import javax.swing.RowSorter;
+import javax.swing.SortOrder;
+import javax.swing.SwingUtilities;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.plaf.ListUI;

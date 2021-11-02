@@ -23,7 +23,11 @@ package org.jdesktop.swingx.painter;
 
 import org.jdesktop.beans.JavaBean;
 
-import java.awt.*;
+import java.awt.Graphics2D;
+import java.awt.Insets;
+import java.awt.Paint;
+import java.awt.Rectangle;
+import java.awt.Shape;
 
 /**
  * A Painter implementation that uses a Paint to fill the entire background

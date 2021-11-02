@@ -20,7 +20,11 @@
  */
 package org.jdesktop.swingx.search;
 
-import org.jdesktop.swingx.decorator.*;
+import org.jdesktop.swingx.decorator.AbstractHighlighter;
+import org.jdesktop.swingx.decorator.ColorHighlighter;
+import org.jdesktop.swingx.decorator.HighlightPredicate;
+import org.jdesktop.swingx.decorator.Highlighter;
+import org.jdesktop.swingx.decorator.SearchPredicate;
 
 import javax.swing.JComponent;
 import java.awt.Color;

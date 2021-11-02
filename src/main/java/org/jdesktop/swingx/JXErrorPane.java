@@ -27,7 +27,12 @@ import org.jdesktop.swingx.plaf.ErrorPaneAddon;
 import org.jdesktop.swingx.plaf.ErrorPaneUI;
 import org.jdesktop.swingx.plaf.LookAndFeelAddons;
 
-import javax.swing.*;
+import javax.swing.Icon;
+import javax.swing.JComponent;
+import javax.swing.JDialog;
+import javax.swing.JFrame;
+import javax.swing.JInternalFrame;
+import javax.swing.SwingUtilities;
 import java.awt.Component;
 import java.lang.reflect.InvocationTargetException;
 

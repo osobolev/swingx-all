@@ -26,7 +26,11 @@ import org.jdesktop.swingx.plaf.basic.BasicTaskPaneUI;
 import javax.swing.JComponent;
 import javax.swing.border.Border;
 import javax.swing.plaf.ComponentUI;
-import java.awt.*;
+import java.awt.GradientPaint;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Paint;
+import java.awt.RenderingHints;
 
 /**
  * Windows implementation of the TaskPaneUI.

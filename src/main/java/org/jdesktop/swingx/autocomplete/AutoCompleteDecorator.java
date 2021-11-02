@@ -22,10 +22,20 @@ package org.jdesktop.swingx.autocomplete;
 
 import org.jdesktop.swingx.autocomplete.workarounds.MacOSXPopupLocationFix;
 
-import javax.swing.*;
+import javax.swing.Action;
+import javax.swing.ActionMap;
+import javax.swing.InputMap;
+import javax.swing.JComboBox;
+import javax.swing.JList;
+import javax.swing.KeyStroke;
+import javax.swing.UIManager;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.plaf.UIResource;
-import javax.swing.text.*;
+import javax.swing.text.DefaultEditorKit;
+import javax.swing.text.Document;
+import javax.swing.text.JTextComponent;
+import javax.swing.text.StyledDocument;
+import javax.swing.text.TextAction;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusListener;

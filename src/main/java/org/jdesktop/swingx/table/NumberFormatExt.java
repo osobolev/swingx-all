@@ -21,7 +21,11 @@
  */
 package org.jdesktop.swingx.table;
 
-import java.text.*;
+import java.text.AttributedCharacterIterator;
+import java.text.AttributedString;
+import java.text.FieldPosition;
+import java.text.NumberFormat;
+import java.text.ParsePosition;
 
 /**
  * A specialised NumberFormat which handles null values and empty Strings.

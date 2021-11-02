@@ -23,7 +23,14 @@ package org.jdesktop.swingx.table;
 import org.jdesktop.swingx.text.NumberFormatExt;
 import org.jdesktop.swingx.text.StrictNumberFormatter;
 
-import javax.swing.*;
+import javax.swing.DefaultCellEditor;
+import javax.swing.InputMap;
+import javax.swing.InputVerifier;
+import javax.swing.JComponent;
+import javax.swing.JFormattedTextField;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.KeyStroke;
 import javax.swing.border.LineBorder;
 import javax.swing.text.NumberFormatter;
 import java.awt.Color;

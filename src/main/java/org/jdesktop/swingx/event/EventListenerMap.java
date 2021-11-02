@@ -20,7 +20,11 @@
  */
 package org.jdesktop.swingx.event;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.EventListener;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Intended to be a replacement for {@link javax.swing.event.EventListenerList}.

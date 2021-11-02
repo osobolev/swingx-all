@@ -23,7 +23,11 @@ package org.jdesktop.swingx.table;
 import org.jdesktop.swingx.JXDatePicker;
 import org.jdesktop.swingx.treetable.AbstractMutableTreeTableNode;
 
-import javax.swing.*;
+import javax.swing.AbstractCellEditor;
+import javax.swing.BorderFactory;
+import javax.swing.JTable;
+import javax.swing.JTree;
+import javax.swing.UIManager;
 import javax.swing.table.TableCellEditor;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.TreeCellEditor;

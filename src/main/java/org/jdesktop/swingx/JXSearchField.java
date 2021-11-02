@@ -9,7 +9,12 @@ import org.jdesktop.swingx.prompt.BuddyButton;
 import org.jdesktop.swingx.search.NativeSearchFieldSupport;
 import org.jdesktop.swingx.search.RecentSearches;
 
-import javax.swing.*;
+import javax.swing.AbstractAction;
+import javax.swing.JButton;
+import javax.swing.JPopupMenu;
+import javax.swing.KeyStroke;
+import javax.swing.SwingUtilities;
+import javax.swing.Timer;
 import javax.swing.text.Document;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;

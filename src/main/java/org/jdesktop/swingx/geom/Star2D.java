@@ -36,7 +36,11 @@ package org.jdesktop.swingx.geom;
 
 import java.awt.Rectangle;
 import java.awt.Shape;
-import java.awt.geom.*;
+import java.awt.geom.AffineTransform;
+import java.awt.geom.GeneralPath;
+import java.awt.geom.PathIterator;
+import java.awt.geom.Point2D;
+import java.awt.geom.Rectangle2D;
 
 /**
  * <p>This class provides a star shape. A star is defined by two radii and a

@@ -23,7 +23,12 @@ package org.jdesktop.swingx.calendar;
 import org.jdesktop.swingx.event.DateSelectionEvent.EventType;
 import org.jdesktop.swingx.util.Contract;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
+import java.util.SortedSet;
+import java.util.TreeSet;
 
 /**
  * @author Joshua Outwater

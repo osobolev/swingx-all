@@ -29,7 +29,9 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.beans.PropertyChangeEvent;
 
-import static org.jdesktop.swingx.autocomplete.AutoCompleteDecorator.*;
+import static org.jdesktop.swingx.autocomplete.AutoCompleteDecorator.createAutoCompleteDocument;
+import static org.jdesktop.swingx.autocomplete.AutoCompleteDecorator.decorate;
+import static org.jdesktop.swingx.autocomplete.AutoCompleteDecorator.undecorate;
 
 /**
  * @author kschaefer

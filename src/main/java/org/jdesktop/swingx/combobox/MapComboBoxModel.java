@@ -21,7 +21,11 @@
 package org.jdesktop.swingx.combobox;
 
 import java.awt.event.ActionEvent;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * A {@code ComboBoxModel} for {@code Map}s. The model will always present a {@code Map}

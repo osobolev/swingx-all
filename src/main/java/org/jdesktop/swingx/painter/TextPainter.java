@@ -27,7 +27,12 @@ import org.jdesktop.swingx.painter.effects.AreaEffect;
 import javax.swing.AbstractButton;
 import javax.swing.JLabel;
 import javax.swing.text.JTextComponent;
-import java.awt.*;
+import java.awt.Font;
+import java.awt.FontMetrics;
+import java.awt.Graphics2D;
+import java.awt.Paint;
+import java.awt.Rectangle;
+import java.awt.Shape;
 import java.awt.font.GlyphVector;
 
 import static org.jdesktop.swingx.painter.PainterUtils.getComponentFont;

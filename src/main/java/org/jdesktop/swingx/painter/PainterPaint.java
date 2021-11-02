@@ -22,7 +22,12 @@ package org.jdesktop.swingx.painter;
 
 import org.jdesktop.swingx.util.GraphicsUtilities;
 
-import java.awt.*;
+import java.awt.Graphics2D;
+import java.awt.Paint;
+import java.awt.PaintContext;
+import java.awt.Rectangle;
+import java.awt.RenderingHints;
+import java.awt.Transparency;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;

@@ -22,7 +22,11 @@ package org.jdesktop.swingx.calendar;
 
 import org.jdesktop.swingx.event.DateSelectionListener;
 
-import java.util.*;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
+import java.util.SortedSet;
+import java.util.TimeZone;
 
 /**
  * The Model used by calendar components. It controls the Calendar to use and

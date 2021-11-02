@@ -25,7 +25,14 @@ import org.jdesktop.swingx.event.DateSelectionEvent.EventType;
 import org.jdesktop.swingx.event.DateSelectionListener;
 import org.jdesktop.swingx.event.EventListenerMap;
 
-import java.util.*;
+import java.util.Calendar;
+import java.util.Collections;
+import java.util.Date;
+import java.util.List;
+import java.util.Locale;
+import java.util.SortedSet;
+import java.util.TimeZone;
+import java.util.TreeSet;
 
 /**
  * Abstract base implementation of DateSelectionModel. Implements

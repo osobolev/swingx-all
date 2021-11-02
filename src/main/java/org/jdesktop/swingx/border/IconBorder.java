@@ -27,7 +27,11 @@ import org.jdesktop.swingx.icon.EmptyIcon;
 import javax.swing.Icon;
 import javax.swing.SwingConstants;
 import javax.swing.border.Border;
-import java.awt.*;
+import java.awt.Component;
+import java.awt.ComponentOrientation;
+import java.awt.Graphics;
+import java.awt.Insets;
+import java.awt.Rectangle;
 import java.io.Serializable;
 
 /**
