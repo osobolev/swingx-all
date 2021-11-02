@@ -33,6 +33,7 @@ import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 import java.awt.image.ColorModel;
 import java.awt.image.Raster;
+import java.util.Objects;
 
 /**
  * @author Karl George Schaefer
@@ -46,7 +47,7 @@ public class PainterPaint<T> implements Paint {
         private BufferedImage saved;
 
         public PainterPaintContext(Painter<T> painter, T object) {
-            painter.getClass(); // null check
+            Objects.requireNonNull(painter);
             this.painter = painter;
             this.object = object;
         }
