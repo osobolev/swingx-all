@@ -37,15 +37,16 @@ import java.awt.Polygon;
  */
 public class BasicMultiThumbSliderUI extends MultiThumbSliderUI {
 
-    protected JXMultiThumbSlider<?> slider;
+    protected JXMultiThumbSlider<Object> slider;
 
     public static ComponentUI createUI(JComponent c) {
         return new BasicMultiThumbSliderUI();
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     public void installUI(JComponent c) {
-        slider = (JXMultiThumbSlider<?>) c;
+        slider = (JXMultiThumbSlider) c;
         slider.setThumbRenderer(new BasicThumbRenderer());
         slider.setTrackRenderer(new BasicTrackRenderer());
     }
@@ -79,9 +80,9 @@ public class BasicMultiThumbSliderUI extends MultiThumbSliderUI {
         }
     }
 
-    private static class BasicTrackRenderer extends JComponent implements TrackRenderer {
+    private static class BasicTrackRenderer extends JComponent implements TrackRenderer<Object> {
 
-        private JXMultiThumbSlider<?> slider;
+        private JXMultiThumbSlider<Object> slider;
 
         @Override
         public void paintComponent(Graphics g) {
@@ -93,7 +94,7 @@ public class BasicMultiThumbSliderUI extends MultiThumbSliderUI {
         }
 
         @Override
-        public JComponent getRendererComponent(JXMultiThumbSlider<?> slider) {
+        public JComponent getRendererComponent(JXMultiThumbSlider<Object> slider) {
             this.slider = slider;
             return this;
         }

@@ -41,7 +41,7 @@ import java.util.List;
  * <p><b>Dependency</b>: Because this class relies on LinearGradientPaint and
  * RadialGradientPaint, it requires the optional MultipleGradientPaint.jar</p>
  */
-public class GradientTrackRenderer extends JComponent implements TrackRenderer {
+public class GradientTrackRenderer extends JComponent implements TrackRenderer<Color> {
 
     private final Paint checker_paint;
 
@@ -49,7 +49,7 @@ public class GradientTrackRenderer extends JComponent implements TrackRenderer {
         checker_paint = PaintUtils.getCheckerPaint();
     }
 
-    private JXMultiThumbSlider slider;
+    private JXMultiThumbSlider<Color> slider;
 
     @Override
     public void paint(Graphics g) {
@@ -100,7 +100,7 @@ public class GradientTrackRenderer extends JComponent implements TrackRenderer {
         g.translate(-thumb_width / 2, -12);
     }
 
-    public JComponent getRendererComponent(JXMultiThumbSlider<?> slider) {
+    public JComponent getRendererComponent(JXMultiThumbSlider<Color> slider) {
         this.slider = slider;
         return this;
     }

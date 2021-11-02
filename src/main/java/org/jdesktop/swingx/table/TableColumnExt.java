@@ -37,7 +37,8 @@ import java.awt.Component;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.Comparator;
-import java.util.Hashtable;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * <code>TableColumn</code> extension for enhanced view column configuration.
@@ -139,7 +140,7 @@ public class TableColumnExt extends TableColumn implements UIDependent {
     /**
      * storage for client properties.
      */
-    protected Hashtable<Object, Object> clientProperties;
+    protected Map<Object, Object> clientProperties;
 
     /**
      * The compound highlighter for the column.
@@ -606,9 +607,9 @@ public class TableColumnExt extends TableColumn implements UIDependent {
         return key == null || clientProperties == null ? null : clientProperties.get(key);
     }
 
-    private Hashtable<Object, Object> getClientProperties() {
+    private Map<Object, Object> getClientProperties() {
         if (clientProperties == null) {
-            clientProperties = new Hashtable<>();
+            clientProperties = new HashMap<>();
         }
         return clientProperties;
     }

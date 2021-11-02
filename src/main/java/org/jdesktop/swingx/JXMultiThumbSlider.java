@@ -72,7 +72,7 @@ public class JXMultiThumbSlider<E> extends JComponent {
 
     private ThumbRenderer thumbRenderer;
 
-    private TrackRenderer trackRenderer;
+    private TrackRenderer<E> trackRenderer;
 
     private MultiThumbModel<E> model;
 
@@ -175,11 +175,11 @@ public class JXMultiThumbSlider<E> extends JComponent {
         this.thumbRenderer = thumbRenderer;
     }
 
-    public TrackRenderer getTrackRenderer() {
+    public TrackRenderer<E> getTrackRenderer() {
         return trackRenderer;
     }
 
-    public void setTrackRenderer(TrackRenderer trackRenderer) {
+    public void setTrackRenderer(TrackRenderer<E> trackRenderer) {
         this.trackRenderer = trackRenderer;
     }
 
