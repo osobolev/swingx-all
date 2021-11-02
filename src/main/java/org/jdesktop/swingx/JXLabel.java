@@ -948,7 +948,7 @@ public class JXLabel extends JLabel implements BackgroundPaintable {
                 } else if ("lineWrap".equals(name) && !isHTML(src.getText())) {
                     src.putClientProperty(BasicHTML.propertyKey, createView(src));
                 }
-            } else if ("lineWrap".equals(name) && !((Boolean) evt.getNewValue())) {
+            } else if ("lineWrap".equals(name) && !((Boolean) evt.getNewValue()).booleanValue()) {
                 restoreHtmlRenderer(src);
             }
         }
@@ -1085,7 +1085,7 @@ public class JXLabel extends JLabel implements BackgroundPaintable {
 
                 attr = new SimpleAttributeSet();
                 Object underline = font.getAttributes().get(TextAttribute.UNDERLINE);
-                boolean canUnderline = underline instanceof Integer && (Integer) underline != -1;
+                boolean canUnderline = underline instanceof Integer && ((Integer) underline).intValue() != -1;
                 StyleConstants.setUnderline(attr, canUnderline);
                 getStyle("default").addAttributes(attr);
             }

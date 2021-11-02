@@ -48,7 +48,7 @@ import java.util.Date;
 public class FileSystemModel extends AbstractTreeTableModel {
 
     // The the returned file length for directories.
-    private static final Long DIRECTORY = 0L;
+    private static final long DIRECTORY = 0L;
 
     /**
      * Creates a file system model using the root directory as the model root.

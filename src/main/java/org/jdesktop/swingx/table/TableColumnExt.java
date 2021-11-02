@@ -355,8 +355,8 @@ public class TableColumnExt extends TableColumn implements UIDependent {
         boolean oldEditable = this.editable;
         this.editable = editable;
         firePropertyChange("editable",
-            Boolean.valueOf(oldEditable),
-            Boolean.valueOf(editable));
+            oldEditable,
+            editable);
     }
 
     /**

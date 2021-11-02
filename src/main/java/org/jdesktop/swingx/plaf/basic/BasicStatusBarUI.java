@@ -444,7 +444,7 @@ public class BasicStatusBarUI extends StatusBarUI {
 
     protected boolean includeSeparators() {
         Boolean b = (Boolean) statusBar.getClientProperty(AUTO_ADD_SEPARATOR);
-        return b == null || b;
+        return b == null || b.booleanValue();
     }
 
     protected BorderUIResource createBorder() {

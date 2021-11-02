@@ -90,7 +90,7 @@ public class VerticalLayout extends AbstractLayoutManager {
 
             if (m.isVisible()) {
                 Dimension componentPreferredSize = parent.getComponent(i).getPreferredSize();
-                pref.height += componentPreferredSize.height + sep.get();
+                pref.height += componentPreferredSize.height + sep.get().intValue();
                 pref.width = Math.max(pref.width, componentPreferredSize.width);
             }
         }

@@ -32,7 +32,6 @@ import java.beans.PropertyChangeListener;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -264,7 +263,7 @@ public class DefaultTableColumnModelExt extends DefaultTableColumnModel
         super.addColumn(col);
         // this is analogous to the proposed fix in #253-swingx
         // but uses the currentColumns as reference.
-        Integer addIndex = currentColumns.indexOf(col);
+        int addIndex = currentColumns.indexOf(col);
         for (int i = 0; i < (getColumnCount() - 1); i++) {
             TableColumn tableCol = getColumn(i);
             int actualPosition = currentColumns.indexOf(tableCol);

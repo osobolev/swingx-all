@@ -358,7 +358,7 @@ public class BasicTaskPaneUI extends TaskPaneUI {
                 Border b = group.getBorder();
 
                 if (b instanceof PaneBorder) {
-                    int key = (Integer) evt.getNewValue();
+                    int key = ((Integer) evt.getNewValue()).intValue();
                     ((PaneBorder) b).label.setDisplayedMnemonic(key);
                 }
             }

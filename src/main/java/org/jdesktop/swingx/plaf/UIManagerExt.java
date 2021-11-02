@@ -286,19 +286,19 @@ public class UIManagerExt {
         Object value = UIManager.get(key, l);
 
         if (value instanceof Integer) {
-            return (Integer) value;
+            return ((Integer) value).intValue();
         }
 
         if (value == null) {
             value = uiDefaultsExt.getFromResourceBundle(key, l);
 
             if (value instanceof Integer) {
-                return (Integer) value;
+                return ((Integer) value).intValue();
             }
 
             if (value instanceof String) {
                 try {
-                    return Integer.decode((String) value);
+                    return Integer.decode((String) value).intValue();
                 } catch (NumberFormatException e) {
                     // ignore - the entry was not parseable, can't do anything
                     // JW: should we log it?
@@ -336,7 +336,7 @@ public class UIManagerExt {
         Object value = UIManager.get(key, l);
 
         if (value instanceof Boolean) {
-            return (Boolean) value;
+            return ((Boolean) value).booleanValue();
         }
 
         //only return resource bundle if not in UIDefaults
@@ -344,11 +344,11 @@ public class UIManagerExt {
             value = uiDefaultsExt.getFromResourceBundle(key, l);
 
             if (value instanceof Boolean) {
-                return (Boolean) value;
+                return ((Boolean) value).booleanValue();
             }
 
             if (value instanceof String) {
-                return Boolean.valueOf((String) value);
+                return Boolean.parseBoolean((String) value);
             }
         }
 

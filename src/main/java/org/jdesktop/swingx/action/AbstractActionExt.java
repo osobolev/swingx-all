@@ -375,7 +375,7 @@ public abstract class AbstractActionExt extends AbstractAction
      * @param state if true then this action will fire ItemEvents
      */
     public void setStateAction(boolean state) {
-        putValue(IS_STATE, Boolean.valueOf(state));
+        putValue(IS_STATE, state);
     }
 
     /**

@@ -213,7 +213,7 @@ public abstract class PromptTextUI extends TextUI {
             promptComponent.setFont(txt.getFont());
         } else {
             promptComponent.setFont(txt.getFont().deriveFont(
-                PromptSupport.getFontStyle(txt)));
+                PromptSupport.getFontStyle(txt).intValue()));
         }
 
         promptComponent.setBackground(PromptSupport.getBackground(txt));
@@ -435,7 +435,7 @@ public abstract class PromptTextUI extends TextUI {
             Method m = delegate.getClass().getMethod("getBaseline",
                 JComponent.class, int.class, int.class);
             Object o = m.invoke(delegate, new Object[] {c, width, height});
-            return (Integer) o;
+            return ((Integer) o).intValue();
         } catch (Exception ex) {
             // ignore
             return -2;

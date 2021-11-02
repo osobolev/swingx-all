@@ -89,7 +89,7 @@ public class HorizontalLayout extends AbstractLayoutManager {
                 Dimension componentPreferredSize =
                     parent.getComponent(i).getPreferredSize();
                 pref.height = Math.max(pref.height, componentPreferredSize.height);
-                pref.width += componentPreferredSize.width + sep.get();
+                pref.width += componentPreferredSize.width + sep.get().intValue();
             }
         }
 

@@ -442,11 +442,11 @@ public class ColumnControlButton extends JButton {
                 @Override
                 public void propertyChange(PropertyChangeEvent evt) {
                     if ("visible".equals(evt.getPropertyName())) {
-                        updateFromColumnVisible((Boolean) evt.getNewValue());
+                        updateFromColumnVisible(((Boolean) evt.getNewValue()).booleanValue());
                     } else if ("headerValue".equals(evt.getPropertyName())) {
                         updateFromColumnHeader(evt.getNewValue());
                     } else if ("hideable".equals(evt.getPropertyName())) {
-                        updateFromColumnHideable((Boolean) evt.getNewValue());
+                        updateFromColumnHideable(((Boolean) evt.getNewValue()).booleanValue());
                     }
                 }
             };

@@ -2348,10 +2348,10 @@ public class JXTable extends JTable implements TableColumnModelExtListener {
     public void columnPropertyChange(PropertyChangeEvent event) {
         if ("editable".equals(event.getPropertyName())) {
             updateEditingAfterColumnChanged((TableColumn) event.getSource(),
-                (Boolean) event.getNewValue());
+                ((Boolean) event.getNewValue()).booleanValue());
         } else if ("sortable".equals(event.getPropertyName())) {
             updateSortableAfterColumnChanged((TableColumn) event.getSource(),
-                (Boolean) event.getNewValue());
+                ((Boolean) event.getNewValue()).booleanValue());
         } else if ("comparator".equals(event.getPropertyName())) {
             updateComparatorAfterColumnChanged((TableColumn) event.getSource(),
                 (Comparator<?>) event.getNewValue());

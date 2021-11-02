@@ -209,7 +209,7 @@ public class DatePickerCellEditor extends AbstractCellEditor implements
             return (Date) value;
         }
         if (value instanceof Long) {
-            return new Date((Long) value);
+            return new Date(((Long) value).longValue());
         }
         if (value instanceof String) {
             try {
