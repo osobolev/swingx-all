@@ -126,7 +126,7 @@ public class CompositeAction extends AbstractActionExt {
 
         for (String id : getActionIDs()) {
             Action action = manager.getAction(id);
-            if (action != null && action instanceof AbstractActionExt) {
+            if (action instanceof AbstractActionExt) {
                 ((AbstractActionExt) action).itemStateChanged(evt);
             }
         }

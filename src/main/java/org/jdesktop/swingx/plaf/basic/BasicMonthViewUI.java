@@ -1934,8 +1934,6 @@ public class BasicMonthViewUI extends MonthViewUI {
                        || JXMonthView.DAYS_OF_THE_WEEK.equals(property)
                        || "border".equals(property)
                        || "showingWeekNumber".equals(property)
-                       || "traversable".equals(property)
-
             ) {
                 monthView.revalidate();
                 monthView.repaint();

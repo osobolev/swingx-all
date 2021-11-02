@@ -267,7 +267,7 @@ public class LinkModel implements Comparable {
         if (this == obj) {
             return true;
         }
-        if (obj != null && obj instanceof LinkModel) {
+        if (obj instanceof LinkModel) {
             LinkModel other = (LinkModel) obj;
             if (!getText().equals(other.getText())) {
                 return false;

@@ -232,7 +232,7 @@ public class ActionManager extends ActionMap {
      */
     private AbstractActionExt getStateChangeAction(Object id) {
         Action a = getAction(id);
-        if (a != null && a instanceof AbstractActionExt) {
+        if (a instanceof AbstractActionExt) {
             AbstractActionExt aa = (AbstractActionExt) a;
             if (aa.isStateAction()) {
                 return aa;
@@ -349,7 +349,7 @@ public class ActionManager extends ActionMap {
      */
     public boolean isStateAction(Object id) {
         Action action = getAction(id);
-        if (action != null && action instanceof AbstractActionExt) {
+        if (action instanceof AbstractActionExt) {
             return ((AbstractActionExt) action).isStateAction();
         }
         return false;

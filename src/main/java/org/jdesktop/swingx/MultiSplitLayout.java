@@ -1788,7 +1788,7 @@ public class MultiSplitLayout implements LayoutManager, Serializable {
 
                             // A visible child is found but it's a divider and therefore
                             // we have to visible and adjacent dividers - so we hide one
-                            if ((rightChild != null) && (rightChild instanceof Divider))
+                            if ((rightChild instanceof Divider))
                                 dividerChild.setVisible(false);
                         }
                     } else if ((splitChild instanceof Divider) && (dividerChild instanceof Divider)) {

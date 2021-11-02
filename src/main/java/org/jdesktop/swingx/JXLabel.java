@@ -324,7 +324,7 @@ public class JXLabel extends JLabel implements BackgroundPaintable {
             w = getVisibleRect().width;
         }
         View view = (View) getClientProperty(BasicHTML.propertyKey);
-        if (view != null && view instanceof Renderer) {
+        if (view instanceof Renderer) {
             view.setSize(w - occupiedWidth, h);
         }
     }
@@ -441,7 +441,7 @@ public class JXLabel extends JLabel implements BackgroundPaintable {
 
                 occupiedWidth = dx + iconR.width + gap;
                 Object parent = getParent();
-                if (parent != null && (parent instanceof JPanel)) {
+                if ((parent instanceof JPanel)) {
                     JPanel panel = ((JPanel) parent);
                     Border b = panel.getBorder();
                     if (b != null) {
