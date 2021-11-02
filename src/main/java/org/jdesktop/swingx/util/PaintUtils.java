@@ -159,8 +159,8 @@ public class PaintUtils {
 
             Constructor<?> con = p.getClass().getDeclaredConstructor(
                 Point2D.class, Point2D.class,
-                new float[0].getClass(),
-                new Color[0].getClass());
+                float[].class,
+                Color[].class);
             return (Paint) con.newInstance(pts[0], pts[1], fractions, colors);
         } catch (Exception ex) {
             ex.printStackTrace();
