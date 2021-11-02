@@ -136,8 +136,8 @@ public class ErrorInfo {
         }
 
         //add the automatically supported properties
-        this.state.put("System.currentTimeMillis", "" + System.currentTimeMillis());
-        this.state.put("isOnEDT", "" + SwingUtilities.isEventDispatchThread());
+        this.state.put("System.currentTimeMillis", String.valueOf(System.currentTimeMillis()));
+        this.state.put("isOnEDT", String.valueOf(SwingUtilities.isEventDispatchThread()));
 
         //now add all the data in the param "state". Thus, if somebody specified a key in the
         //state map, it overrides whatever was in the System map

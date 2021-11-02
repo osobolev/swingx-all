@@ -359,7 +359,7 @@ public class JXComboBox extends JComboBox {
                 }
             } else {
                 startIndex++;
-                typedString = "" + aKey;
+                typedString = String.valueOf(aKey);
                 prefix = typedString;
             }
 

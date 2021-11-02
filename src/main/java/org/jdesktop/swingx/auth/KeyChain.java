@@ -167,10 +167,10 @@ public class KeyChain {
 
             LOG.fine("More testing :");
             for (int i = 0; i < 100; i++) {
-                kc.addPassword("" + i, "sun-ds.sfbay", ("" + i).toCharArray());
+                kc.addPassword(String.valueOf(i), "sun-ds.sfbay", String.valueOf(i).toCharArray());
             }
             for (int i = 0; i < 100; i++) {
-                LOG.fine("key =" + i + " pass =" + kc.getPassword("" + i, "sun-ds.sfbay"));
+                LOG.fine("key =" + i + " pass =" + kc.getPassword(String.valueOf(i), "sun-ds.sfbay"));
             }
             kc.store(new FileOutputStream(file));
         } catch (Exception e) {

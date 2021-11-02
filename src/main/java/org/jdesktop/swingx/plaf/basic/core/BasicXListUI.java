@@ -2430,7 +2430,7 @@ public class BasicXListUI extends BasicListUI {
                 }
             } else {
                 startIndex++;
-                typedString = "" + c;
+                typedString = String.valueOf(c);
                 prefix = typedString;
             }
             lastTime = time;

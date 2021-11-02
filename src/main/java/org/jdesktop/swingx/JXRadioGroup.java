@@ -158,7 +158,7 @@ public class JXRadioGroup<T> extends JPanel {
         } else {
             values.add(radioValue);
             // Note: the "quote + object" trick here allows null values
-            addButton(new JRadioButton("" + radioValue));
+            addButton(new JRadioButton(String.valueOf(radioValue)));
         }
     }
 
