@@ -169,11 +169,6 @@ public class JXLabel extends JLabel implements BackgroundPaintable {
 
     private static final String oldRendererKey = "was" + BasicHTML.propertyKey;
 
-//    private static final Logger log = Logger.getAnonymousLogger();
-//    static {
-//        log.setLevel(Level.FINEST);
-//    }
-
     /**
      * Create a new JXLabel. This has the same semantics as creating a new JLabel.
      */
@@ -391,9 +386,7 @@ public class JXLabel extends JLabel implements BackgroundPaintable {
     @Override
     public Dimension getPreferredSize() {
         Dimension size = super.getPreferredSize();
-        //if (true) return size;
         if (isPreferredSizeSet()) {
-            //log.fine("ret 0");
             return size;
         } else if (this.textRotation != NORMAL) {
             // #swingx-680 change the preferred size when rotation is set ... ideally this would be solved in the LabelUI rather then here
@@ -415,8 +408,6 @@ public class JXLabel extends JLabel implements BackgroundPaintable {
             Insets insets = getInsets();
             int dx = insets.left + insets.right;
             int dy = insets.top + insets.bottom;
-            //log.fine("INSETS:" + insets);
-            //log.fine("BORDER:" + this.getBorder());
             Rectangle textR = new Rectangle();
             Rectangle viewR = new Rectangle();
             textR.x = textR.y = textR.width = textR.height = 0;
@@ -455,7 +446,6 @@ public class JXLabel extends JLabel implements BackgroundPaintable {
                     availTextWidth = viewR.width - (iconR.width + gap);
                 }
                 float xPrefSpan = view.getPreferredSpan(View.X_AXIS);
-                //log.fine("atw:" + availTextWidth + ", vps:" + xPrefSpan);
                 textR.width = Math.min(availTextWidth, (int) xPrefSpan);
                 if (maxLineSpan > 0) {
                     textR.width = Math.min(textR.width, maxLineSpan);
@@ -467,8 +457,6 @@ public class JXLabel extends JLabel implements BackgroundPaintable {
                 if (textR.height == 0) {
                     textR.height = getFont().getSize();
                 }
-                //log.fine("atw:" + availTextWidth + ", vps:" + xPrefSpan + ", h:" + textR.height);
-
             }
             // 3) set text xy based on h/v text pos
             if (getVerticalTextPosition() == TOP) {
@@ -496,27 +484,27 @@ public class JXLabel extends JLabel implements BackgroundPaintable {
             }
 
             // 4) shift label around based on its alignment
-            int labelR_x = Math.min(iconR.x, textR.x);
-            int labelR_width = Math.max(iconR.x + iconR.width, textR.x + textR.width) - labelR_x;
-            int labelR_y = Math.min(iconR.y, textR.y);
-            int labelR_height = Math.max(iconR.y + iconR.height, textR.y + textR.height) - labelR_y;
+            int labelRx = Math.min(iconR.x, textR.x);
+            int labelRwidth = Math.max(iconR.x + iconR.width, textR.x + textR.width) - labelRx;
+            int labelRy = Math.min(iconR.y, textR.y);
+            int labelRheight = Math.max(iconR.y + iconR.height, textR.y + textR.height) - labelRy;
 
             int day;
             if (getVerticalAlignment() == TOP) {
-                day = viewR.y - labelR_y;
+                day = viewR.y - labelRy;
             } else if (getVerticalAlignment() == CENTER) {
-                day = viewR.y + viewR.height / 2 - (labelR_y + labelR_height / 2);
+                day = viewR.y + viewR.height / 2 - (labelRy + labelRheight / 2);
             } else { // (verticalAlignment == BOTTOM)
-                day = viewR.y + viewR.height - (labelR_y + labelR_height);
+                day = viewR.y + viewR.height - (labelRy + labelRheight);
             }
 
             int dax;
             if (getHorizontalAlignment() == LEFT) {
-                dax = viewR.x - labelR_x;
+                dax = viewR.x - labelRx;
             } else if (getHorizontalAlignment() == RIGHT) {
-                dax = viewR.x + viewR.width - (labelR_x + labelR_width);
+                dax = viewR.x + viewR.width - (labelRx + labelRwidth);
             } else { // (horizontalAlignment == CENTER)
-                dax = viewR.x + viewR.width / 2 - (labelR_x + labelR_width / 2);
+                dax = viewR.x + viewR.width / 2 - (labelRx + labelRwidth / 2);
             }
 
             textR.x += dax;
@@ -541,10 +529,8 @@ public class JXLabel extends JLabel implements BackgroundPaintable {
 
             rv.width += dx;
             rv.height += dy;
-            //log.fine("returning: " + rv);
             return rv;
         }
-        //log.fine("ret 3");
         return size;
     }
 
@@ -623,7 +609,6 @@ public class JXLabel extends JLabel implements BackgroundPaintable {
                 // XXX There is a bug here. In order to make painter work with this, caching has to be disabled
                 ((AbstractPainter) getForegroundPainter()).setCacheable(!b);
             }
-            //repaint();
         }
     }
 
@@ -707,7 +692,6 @@ public class JXLabel extends JLabel implements BackgroundPaintable {
      */
     @Override
     protected void paintComponent(Graphics g) {
-        //log.fine("in");
         // resizing the text view causes recursive callback to the paint down the road. In order to prevent such
         // computationally intensive series of repaints every call to paint is skipped while top most call is being
         // executed.
@@ -1129,7 +1113,6 @@ public class JXLabel extends JLabel implements BackgroundPaintable {
             view = v;
             view.setParent(this);
             host = c;
-            //log.fine("vir: " +  host.getVisibleRect());
             int w;
             if (host.getVisibleRect().width == 0) {
                 invalidated = true;
@@ -1137,9 +1120,6 @@ public class JXLabel extends JLabel implements BackgroundPaintable {
             } else {
                 w = host.getVisibleRect().width;
             }
-            //log.fine("w:" + w);
-            // initially layout to the preferred size
-            //setSize(c.getMaxLineSpan() > -1 ? c.getMaxLineSpan() : view.getPreferredSpan(X_AXIS), view.getPreferredSpan(Y_AXIS));
             setSize(c.getMaxLineSpan() > -1 ? c.getMaxLineSpan() : w, host.getVisibleRect().height);
         }
 
@@ -1181,18 +1161,12 @@ public class JXLabel extends JLabel implements BackgroundPaintable {
         @Override
         public void paint(Graphics g, Shape allocation) {
             Rectangle alloc = allocation.getBounds();
-            //log.fine("aloc:" + alloc + "::" + host.getVisibleRect() + "::" + host.getBounds());
-            //view.setSize(alloc.width, alloc.height);
-            //this.width = alloc.width;
-            //this.height = alloc.height;
             if (g.getClipBounds() == null) {
                 g.setClip(alloc);
                 view.paint(g, allocation);
                 g.setClip(null);
             } else {
-                //g.translate(alloc.x, alloc.y);
                 view.paint(g, allocation);
-                //g.translate(-alloc.x, -alloc.y);
             }
         }
 
@@ -1269,12 +1243,8 @@ public class JXLabel extends JLabel implements BackgroundPaintable {
                 if (invalidated) {
                     int w = host.getVisibleRect().width;
                     if (w != 0) {
-                        //log.fine("vrh: " + host.getVisibleRect().height);
                         invalidated = false;
-                        // JXLabelTest4 works
                         setSize(w - host.getOccupiedWidth(), host.getVisibleRect().height);
-                        // JXLabelTest3 works; 20 == width of the parent border!!! ... why should this screw with us?
-                        //setSize(w - (host.getOccupiedWidth()+20), host.getVisibleRect().height);
                     }
                 }
                 return width > 0 ? width : view.getPreferredSpan(axis);

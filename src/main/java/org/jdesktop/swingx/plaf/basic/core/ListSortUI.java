@@ -326,7 +326,6 @@ public final class ListSortUI {
         if (modelIndex < 0) {
             return -1;
         }
-//        Contract.asNotNull(change, "change must not be null?");
         if (change != null && modelIndex >= change.startModelIndex) {
             if (change.type == ListDataEvent.INTERVAL_ADDED) {
                 if (modelIndex + change.length >= change.modelRowCount) {

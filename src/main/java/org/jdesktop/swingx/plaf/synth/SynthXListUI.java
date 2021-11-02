@@ -99,12 +99,6 @@ public class SynthXListUI extends BasicXListUI
      */
     @Override
     protected void installDefaults() {
-        // never happens - the delegate renderer is always not-null and
-        // not a ui-resource
-//        if (list.getCellRenderer() == null ||
-//                 (list.getCellRenderer() instanceof UIResource)) {
-//            list.setCellRenderer(new SynthListCellRenderer());
-//        }
         updateStyle();
     }
 
@@ -238,37 +232,4 @@ public class SynthXListUI extends BasicXListUI
     private SynthStyle getStyle() {
         return SynthLookAndFeel.getStyleFactory().getStyle(list, getRegion());
     }
-
-//    private class SynthListCellRenderer extends DefaultListCellRenderer.UIResource {
-//        public String getName() {
-//            return "List.cellRenderer";
-//        }
-//
-//        public void setBorder(Border b) {
-//            if (useUIBorder || b instanceof SynthBorder) {
-//                super.setBorder(b);
-//            }
-//        }
-//
-//        public Component getListCellRendererComponent(JList list, Object value,
-//                  int index, boolean isSelected, boolean cellHasFocus) {
-//            if (!useListColors && (isSelected || cellHasFocus)) {
-//                SynthLookAndFeel.setSelectedUI((SynthLabelUI)SynthLookAndFeel.
-//                             getUIOfType(getUI(), SynthLabelUI.class),
-//                                   isSelected, cellHasFocus, list.isEnabled(), false);
-//            }
-//            else {
-//                SynthLookAndFeel.resetSelectedUI();
-//            }
-//            
-//            super.getListCellRendererComponent(list, value, index,
-//                                               isSelected, cellHasFocus);
-//            return this;
-//        }
-//
-//        public void paint(Graphics g) {
-//            super.paint(g);
-//            SynthLookAndFeel.resetSelectedUI();
-//        }
-//    }
 }

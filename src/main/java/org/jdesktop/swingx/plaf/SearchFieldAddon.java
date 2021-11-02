@@ -36,7 +36,6 @@ public class SearchFieldAddon extends AbstractComponentAddon {
 
         //webstart fix
         UIManagerExt.addResourceBundle("org.jdesktop.swingx.plaf.basic.resources.SearchField");
-//		UIManager.getDefaults().addResourceBundle("org.jdesktop.swingx.plaf.basic.resources.SearchField");
     }
 
     @Override

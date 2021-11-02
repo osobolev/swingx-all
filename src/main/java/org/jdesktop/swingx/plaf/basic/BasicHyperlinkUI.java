@@ -82,8 +82,6 @@ public class BasicHyperlinkUI extends BasicButtonUI {
 
     private static final Rectangle iconRect = new Rectangle();
 
-//    private static MouseListener handCursorListener = new HandCursor();
-
     protected int dashedRectGapX;
 
     protected int dashedRectGapY;
@@ -142,14 +140,12 @@ public class BasicHyperlinkUI extends BasicButtonUI {
     @Override
     protected void installListeners(AbstractButton b) {
         super.installListeners(b);
-//        b.addMouseListener(handCursorListener);
         b.addPropertyChangeListener(pcListener);
     }
 
     @Override
     protected void uninstallListeners(AbstractButton b) {
         super.uninstallListeners(b);
-//        b.removeMouseListener(handCursorListener);
         b.removePropertyChangeListener(pcListener);
     }
 
@@ -198,13 +194,6 @@ public class BasicHyperlinkUI extends BasicButtonUI {
             paintIcon(g, c, iconRect);
         }
 
-//        Composite oldComposite = ((Graphics2D) g).getComposite();
-//
-//        if (model.isRollover()) {
-//            ((Graphics2D) g).setComposite(AlphaComposite.getInstance(
-//                    AlphaComposite.SRC_OVER, 0.5f));
-//        }
-
         if (text != null && !text.isEmpty()) {
             View v = (View) c.getClientProperty(BasicHTML.propertyKey);
             if (v != null) {
@@ -218,8 +207,6 @@ public class BasicHyperlinkUI extends BasicButtonUI {
             // paint UI specific focus
             paintFocus(g, b, viewRect, textRect, iconRect);
         }
-
-//        ((Graphics2D) g).setComposite(oldComposite);
     }
 
     /**

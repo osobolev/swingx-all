@@ -642,7 +642,6 @@ public class JXEditorPane extends JEditorPane implements /*Searchable, */Targeta
                     length = -1 + startIndex;
                 }
             } else {
-                // start = startIndex + 1;
                 if (start < 0)
                     start = 0;
                 length = getDocument().getLength() - start;

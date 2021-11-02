@@ -58,24 +58,6 @@ public class AlphaPainter<T> extends CompoundPainter<T> {
             g2.dispose();
         }
     }
-    /*
-    public static void main(String ... args) {
-        JXPanel panel = new JXPanel();
-        AlphaPainter alpha = new AlphaPainter();
-        alpha.setAlpha(1f);
-        alpha.setPainters(new PinstripePainter(new Color(255,255,255,125),45,20,20));
-        
-        panel.setBackgroundPainter(new CompoundPainter(
-                new MattePainter(Color.RED),
-                alpha
-                ));
-        
-        JFrame frame = new JFrame();
-        frame.add(panel);
-        frame.pack();
-        frame.setSize(200,200);
-        frame.setVisible(true);
-    }*/
 
     /**
      * Returns the current alpha value for this painter. This is the alpha value that will be applied

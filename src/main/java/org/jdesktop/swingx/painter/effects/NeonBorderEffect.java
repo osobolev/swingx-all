@@ -68,16 +68,6 @@ public class NeonBorderEffect extends AbstractAreaEffect {
     @Override
     protected void paintBorderGlow(Graphics2D gfx, Shape clipShape, int width, int height) {
         
-        /*
-        // draw the effect
-        for(float i=steps-1; i>=0; i=i-1f) {
-            float brushWidth = i * getEffectWidth()/steps;
-            gfx.setPaint(interpolateColor(i/steps,edgeColor,centerColor));
-            gfx.setStroke(new BasicStroke(brushWidth,
-                    BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND));
-            gfx.draw(clipShape);
-        }*/
-        
         /* // an interesting outline effect. stroke the shape with a wide brush
          * // then stroke again with slightly less wide one, then don't fill the middle
         for(int i=0; i<2; i++) {
@@ -112,7 +102,6 @@ public class NeonBorderEffect extends AbstractAreaEffect {
 
             // to make the effect softer use a different stroke
             gfx.setStroke(new BasicStroke(brushWidth, BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND));
-            //gfx.setStroke(new BasicStroke(brushWidth));
             gfx.draw(clipShape);
         }
         gfx.translate(-getOffset().getX(), -getOffset().getY());

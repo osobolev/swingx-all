@@ -54,8 +54,6 @@ public abstract class RolloverProducer implements MouseListener, MouseMotionList
      */
     public static final String ROLLOVER_KEY = "swingx.rollover";
 
-    //        public static final String PRESSED_KEY = "swingx.pressed";
-
     private boolean isDragging;
 
     /**
@@ -131,7 +129,6 @@ public abstract class RolloverProducer implements MouseListener, MouseMotionList
      */
     @Override
     public void mouseEntered(MouseEvent e) {
-//        LOG.info("" + e);
         isDragging = false;
         updateRollover(e, ROLLOVER_KEY, false);
     }
@@ -143,12 +140,6 @@ public abstract class RolloverProducer implements MouseListener, MouseMotionList
     @Override
     public void mouseExited(MouseEvent e) {
         isDragging = false;
-//        screenLocation = null;
-//        LOG.info("" + e);
-//        if (((JComponent) e.getComponent()).getMousePosition(true) != null)  {
-//            updateRollover(e, ROLLOVER_KEY, false);
-//        } else {
-//        }
         ((JComponent) e.getSource()).putClientProperty(ROLLOVER_KEY, null);
         ((JComponent) e.getSource()).putClientProperty(CLICKED_KEY, null);
     }
@@ -210,7 +201,6 @@ public abstract class RolloverProducer implements MouseListener, MouseMotionList
         if (componentLocation == null) {
             componentLocation = new Point(-1, -1);
         }
-//        LOG.info("" + componentLocation + " / " + e);
         updateRolloverPoint((JComponent) e.getComponent(), componentLocation);
         updateClientProperty((JComponent) e.getComponent(), ROLLOVER_KEY, true);
     }

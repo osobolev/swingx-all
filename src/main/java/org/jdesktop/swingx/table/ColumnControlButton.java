@@ -377,10 +377,6 @@ public class ColumnControlButton extends JButton {
          * @param visible column visible state to synch to.
          */
         private void updateFromColumnVisible(boolean visible) {
-//            /*boolean*/ visible = true;
-//            if (canControlColumn()) {
-//                visible = ((TableColumnExt) column).isVisible();
-//            }
             fromColumn = true;
             setSelected(visible);
             fromColumn = false;

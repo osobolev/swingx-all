@@ -539,7 +539,6 @@ public class JXErrorPane extends JComponent {
         }
         window.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         window.pack();
-//        window.setLocationRelativeTo(owner);
         return window;
     }
 

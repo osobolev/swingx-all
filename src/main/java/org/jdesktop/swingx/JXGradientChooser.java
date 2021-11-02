@@ -263,7 +263,6 @@ public class JXGradientChooser extends JXPanel {
         alphaSpinner = new JSpinner();
         changeColorButton = new JXColorSelectionButton();
         alphaSlider = new JSlider();
-        //slider = new javax.swing.JSlider();
         JPanel jPanel4 = new JPanel();
         addThumbButton = new JButton();
         deleteThumbButton = new JButton();
@@ -276,9 +275,7 @@ public class JXGradientChooser extends JXPanel {
         reflectedRadio = new JRadioButton();
         repeatedRadio = new JRadioButton();
         reversedCheck = new JCheckBox();
-        //gradientPreview = new javax.swing.JPanel();
 
-        //setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         jPanel1.setLayout(new GridBagLayout());
 
         topPanel.setLayout(new GridBagLayout());
@@ -507,7 +504,6 @@ public class JXGradientChooser extends JXPanel {
         ActionMap actions = getActionMap();
         actions.put("add-thumb", addThumbAction);
         actions.put("delete-thumb", deleteThumbAction);
-        //actions.put("change-color", changeColorAction);
         addThumbButton.setAction(addThumbAction);
         deleteThumbButton.setAction(deleteThumbAction);
         changeColorButton.addPropertyChangeListener("background", evt -> {
@@ -608,18 +604,6 @@ public class JXGradientChooser extends JXPanel {
             Color color = Color.black;
             int num = slider.getModel().addThumb(pos, color);
             LOG.fine("new number = " + num);
-            /*
-            for (int i = 0; i < slider.getModel().getThumbCount(); i++) {
-                float pos2 = slider.getModel().getThumbAt(i).getPosition();
-                if (pos2 < pos) {
-                    continue;
-                }
-                slider.getModel().insertThumb(pos, color, i);
-                updateFromStop(i,pos,color);
-                break;
-            }
-             */
-
         }
     }
 
@@ -686,7 +670,6 @@ public class JXGradientChooser extends JXPanel {
             gradientPreview.setReflected(reflectedRadio.isSelected());
             gradientPreview.setReversed(reversedCheck.isSelected());
             gradientPreview.setRepeated(repeatedRadio.isSelected());
-            //updateGradientProperty();
             recalcGradientFromStops();
             gradientPreview.repaint();
         }

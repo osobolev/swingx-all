@@ -368,7 +368,6 @@ public class Utilities {
         // JW - fix Issue #353-swingx: play nicer inside sandbox.
         try {
             fields = KeyEvent.class.getDeclaredFields();
-//           fields = KeyEvent.class.getFields();
         } catch (SecurityException e) {
             // JW: need to do better? What are the use-cases where we don't have
             // any access to the fields?

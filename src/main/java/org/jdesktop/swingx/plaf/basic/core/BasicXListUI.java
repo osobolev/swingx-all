@@ -73,10 +73,6 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.List;
 
-//import sun.swing.DefaultLookup;
-//import sun.swing.SwingUtilities2;
-//import sun.swing.UIAction;
-
 /**
  * An extensible implementation of {@code ListUI} for JXList.
  * {@code BasicXListUI} instances cannot be shared between multiple
@@ -680,7 +676,6 @@ public class BasicXListUI extends BasicListUI {
      * @since 1.6
      */
     public int getBaseline(JComponent c, int width, int height) {
-//        super.getBaseline(c, width, height);
         checkBaselinePrecondition(c, width, height);
         int rowHeight = list.getFixedCellHeight();
         UIDefaults lafDefaults = UIManager.getLookAndFeelDefaults();

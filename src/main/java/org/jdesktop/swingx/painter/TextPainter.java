@@ -157,7 +157,6 @@ public class TextPainter extends AbstractAreaPainter<Object> {
 
         // get the font metrics
         FontMetrics metrics = g.getFontMetrics(g.getFont());
-        //Rectangle2D rect = metrics.getStringBounds(text,g);
 
         int tw = metrics.stringWidth(t);
         int th = metrics.getHeight();

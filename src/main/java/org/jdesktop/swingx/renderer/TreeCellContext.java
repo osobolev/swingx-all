@@ -123,8 +123,6 @@ public class TreeCellContext extends CellContext {
     @Override
     public boolean isEditable() {
         return false;
-        // return getComponent() != null ? getComponent().isCellEditable(
-        // getRow(), getColumn()) : false;
     }
 
     /**

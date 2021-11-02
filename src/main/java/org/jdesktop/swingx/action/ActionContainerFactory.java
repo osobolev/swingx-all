@@ -526,7 +526,6 @@ public class ActionContainerFactory {
             // JW: move the initial config into the PCL??
             button.setSelected(a.isSelected());
             new ToggleActionPropertyChangeListener(a, button);
-//          new ToggleActionPCL(button, a);
         }
     }
 

@@ -62,29 +62,4 @@ public class WindowsLookAndFeelAddons extends BasicLookAndFeelAddons {
     protected boolean isSystemAddon() {
         return OS.isWindows() && OS.isUsingWindowsVisualStyles();
     }
-
-//  JW: reverting ...     
-//    /**
-//     * {@inheritDoc} <p>
-//     * 
-//     */
-//    @Override
-//    public void initialize() {
-//        super.initialize();
-//        // fix Issue #1305-swingx: wrapper for core issue #6753637
-//        // set ui property to prevent eating mousePressed when closing popup
-//        UIManager.put("PopupMenu.consumeEventOnClose", Boolean.FALSE);
-//    }
-//
-//    /**
-//     * {@inheritDoc} <p>
-//     */
-//    @Override
-//    public void uninitialize() {
-//        // fix Issue #1305-swingx: wrapper for core issue #6753637
-//        // remove the ui property again
-//        UIManager.put("PopupMenu.consumeEventOnClose", null);
-//        super.uninitialize();
-//    }
-//    
 }

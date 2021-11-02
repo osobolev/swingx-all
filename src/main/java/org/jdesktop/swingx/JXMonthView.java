@@ -1030,7 +1030,6 @@ public class JXMonthView extends JComponent {
      * @param flagged the dates to be flagged
      */
     public void setFlaggedDates(Date... flagged) {
-//        Contract.asNotNull(flagged, "must not be null");
         SortedSet<Date> oldFlagged = getFlaggedDates();
         flaggedDates.clearSelection();
         if (flagged != null) {
@@ -1051,7 +1050,6 @@ public class JXMonthView extends JComponent {
      * @param flagged the dates to be flagged
      */
     public void addFlaggedDates(Date... flagged) {
-//        Contract.asNotNull(flagged, "must not be null");
         SortedSet<Date> oldFlagged = flaggedDates.getSelection();
         if (flagged != null) {
             for (Date date : flagged) {
@@ -1070,7 +1068,6 @@ public class JXMonthView extends JComponent {
      * @param flagged the dates to be unflagged
      */
     public void removeFlaggedDates(Date... flagged) {
-//        Contract.asNotNull(flagged, "must not be null");
         SortedSet<Date> oldFlagged = flaggedDates.getSelection();
         if (flagged != null) {
             for (Date date : flagged) {
@@ -1653,7 +1650,6 @@ public class JXMonthView extends JComponent {
         }
 
         // Modify the initial delay by the current time.
-//        cal.setTimeInMillis(System.currentTimeMillis());
         cal.setTime(getCurrentDate());
         secondsTillTomorrow = secondsTillTomorrow
                               - cal.get(Calendar.HOUR_OF_DAY) * 3600

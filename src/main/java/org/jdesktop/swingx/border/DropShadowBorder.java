@@ -275,7 +275,6 @@ public class DropShadowBorder implements Border, Serializable {
                 buffer.setPaint(new Color(
                     shadowColor.getRed(), shadowColor.getGreen(), shadowColor.getBlue(), (int) (shadowOpacity * 255)
                 ));
-//                buffer.setColor(new Color(0.0f, 0.0f, 0.0f, shadowOpacity));
                 buffer.translate(shadowSize, shadowSize);
                 buffer.fill(rect);
             } finally {

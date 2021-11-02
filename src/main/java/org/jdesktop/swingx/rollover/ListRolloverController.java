@@ -43,14 +43,12 @@ public class ListRolloverController<T extends JList<?>> extends RolloverControll
         // PENDING JW - track down the -1 in location.y
         if (oldLocation != null) {
             Rectangle r = component.getCellBounds(oldLocation.y, oldLocation.y);
-            // LOG.info("old index/cellbounds: " + index + "/" + r);
             if (r != null) {
                 component.repaint(r);
             }
         }
         if (newLocation != null) {
             Rectangle r = component.getCellBounds(newLocation.y, newLocation.y);
-            // LOG.info("new index/cellbounds: " + index + "/" + r);
             if (r != null) {
                 component.repaint(r);
             }
@@ -76,14 +74,6 @@ public class ListRolloverController<T extends JList<?>> extends RolloverControll
                 oldCursor = null;
             }
         }
-//            if (hasRollover(location)) {
-//                oldCursor = component.getCursor();
-//                component.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-//            } else {
-//                component.setCursor(oldCursor);
-//                oldCursor = null;
-//            }
-
     }
 
     @Override

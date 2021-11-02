@@ -180,7 +180,6 @@ public class JXImageView extends JXPanel {
      */
     public void setImage(URL url) throws IOException {
         setImageURL(url);
-        //setImage(ImageIO.read(url));
     }
 
     /**
@@ -349,20 +348,6 @@ public class JXImageView extends JXPanel {
                         fireError(ex);
                     }
                 }
-                /*
-                JFileChooser chooser = new JFileChooser();
-                chooser.showOpenDialog(JXImageView.this);
-                File file = chooser.getSelectedFile();
-                if(file != null) {
-                    try {
-                        setImage(file);
-                    } catch (IOException ex) {
-                        log.fine(ex.getMessage());
-                        ex.printStackTrace();
-                        fireError(ex);
-                    }
-                }
-                 */
             }
         };
         action.putValue(Action.NAME, "Open");
@@ -406,20 +391,6 @@ public class JXImageView extends JXPanel {
                         fireError(ex);
                     }
                 }
-                /*
-                JFileChooser chooser = new JFileChooser();
-                chooser.showSaveDialog(JXImageView.this);
-                File file = chooser.getSelectedFile();
-                if(file != null) {
-                    try {
-                        ImageIO.write(dst,"png",file);
-                    } catch (IOException ex) {
-                        log.fine(ex.getMessage());
-                        ex.printStackTrace();
-                        fireError(ex);
-                    }
-                }
-                 */
             }
         };
 
@@ -576,8 +547,6 @@ public class JXImageView extends JXPanel {
             Point curr = evt.getPoint();
 
             if (isDragEnabled()) {
-                //log.fine("testing drag enabled: " + curr + " " + start);
-                //log.fine("distance = " + curr.distance(start));
                 if (curr.distance(start) > 5) {
                     LOG.fine("starting the drag: ");
                     panel.getTransferHandler().exportAsDrag((JComponent) evt.getSource(), evt, TransferHandler.COPY);
@@ -616,27 +585,17 @@ public class JXImageView extends JXPanel {
         }
 
         @Override
-        public void exportAsDrag(JComponent c, InputEvent evt, int action) {
-            //log.fine("exportting as drag");
-            super.exportAsDrag(c, evt, action);
-        }
-
-        @Override
         public int getSourceActions(JComponent c) {
-            //log.fine("get source actions: " + c);
             return COPY;
         }
 
         @Override
         protected void exportDone(JComponent source, Transferable data, int action) {
-            //log.fine("exportDone: " + source + " " + data + " " +action);
         }
 
         @Override
         public boolean canImport(JComponent c, DataFlavor[] flavors) {
-            //log.fine("canImport:" + c);
             for (DataFlavor flavor : flavors) {
-                //log.fine("testing: "+flavors[i]);
                 if (DataFlavor.javaFileListFlavor.equals(flavor)) {
                     return true;
                 }
@@ -663,24 +622,13 @@ public class JXImageView extends JXPanel {
                 try {
                     if (t.isDataFlavorSupported(DataFlavor.javaFileListFlavor)) {
                         List<File> files = (List<File>) t.getTransferData(DataFlavor.javaFileListFlavor);
-                        //log.fine("doing file list flavor");
                         if (files.size() > 0) {
                             File file = files.get(0);
-                            //log.fine("readingt hte image: " + file.getCanonicalPath());
-                            /*Iterator it = ImageIO.getImageReaders(new FileInputStream(file));
-                            while(it.hasNext()) {
-                                log.fine("can read: " + it.next());
-                            }*/
                             setImageString(file.toURI().toURL().toString());
-                            //BufferedImage img = ImageIO.read(file.toURI().toURL());
-                            //setImage(img);
                             return true;
                         }
                     }
-                    //log.fine("doing a uri list");
                     Object obj = t.getTransferData(urlFlavor);
-                    //log.fine("obj = " + obj + " " + obj.getClass().getPackage() + " "
-                    //        + obj.getClass().getName());
                     if (obj instanceof URL) {
                         setImageString(obj.toString());
                     }
@@ -722,7 +670,6 @@ public class JXImageView extends JXPanel {
 
         @Override
         public Object getTransferData(DataFlavor flavor) throws UnsupportedFlavorException, IOException {
-            //log.fine("doing get trans data: " + flavor);
             if (flavor == DataFlavor.imageFlavor) {
                 return img;
             }
@@ -730,11 +677,9 @@ public class JXImageView extends JXPanel {
                 if (files == null) {
                     files = new ArrayList<>();
                     File file = File.createTempFile(exportName, "." + exportFormat);
-                    //log.fine("writing to: " + file);
                     ImageIO.write(GraphicsUtilities.convertToBufferedImage(img), exportFormat, file);
                     files.add(file);
                 }
-                //log.fine("returning: " + files);
                 return files;
             }
             return null;

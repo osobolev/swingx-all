@@ -1056,7 +1056,6 @@ public class JXTree extends JTree {
      * @return the default cell renderer to use with this tree.
      */
     protected TreeCellRenderer createDefaultCellRenderer() {
-//        return new DefaultTreeCellRenderer();
         return new DefaultXTreeCellRenderer();
     }
 

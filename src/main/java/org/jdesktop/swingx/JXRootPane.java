@@ -156,7 +156,6 @@ public class JXRootPane extends JRootPane {
             Rectangle b = parent.getBounds();
             Insets i = getInsets();
             int w = b.width - i.right - i.left;
-//            int h = b.height - i.top - i.bottom;
             Dimension statusPref = statusBar.getPreferredSize();
             statusBar.setBounds(i.right, b.height - i.bottom - statusPref.height, w, statusPref.height);
             if (contentPane != null) {

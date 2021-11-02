@@ -153,24 +153,6 @@ public class JXColorSelectionButton extends JButton {
         }
     }
 
-//    /**
-//     * Sample usage of JXColorSelectionButton
-//     * @param args not used
-//     */
-//    public static void main(String[] args) {
-//        javax.swing.JFrame frame = new javax.swing.JFrame("Color Button Test");
-//        frame.setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
-//        javax.swing.JPanel panel = new javax.swing.JPanel();
-//        javax.swing.JComponent btn = new JXColorSelectionButton();
-//        btn.setEnabled(true);
-//        panel.add(btn);
-//        panel.add(new javax.swing.JLabel("ColorSelectionButton test"));
-//        
-//        frame.add(panel);
-//        frame.pack();
-//        frame.setVisible(true);
-//    }
-
     /**
      * Conditionally create and show the color chooser dialog.
      */

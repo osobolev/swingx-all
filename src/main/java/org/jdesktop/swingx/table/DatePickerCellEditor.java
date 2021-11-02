@@ -213,10 +213,6 @@ public class DatePickerCellEditor extends AbstractCellEditor implements TableCel
         }
         if (value instanceof String) {
             try {
-                // JW: why was the parsing synchronized?
-//              synchronized (dateFormat) {
-//              datePicker.setDate(dateFormat.parse((String) value));
-//          }
                 return dateFormat.parse((String) value);
             } catch (ParseException e) {
                 handleParseException(e);

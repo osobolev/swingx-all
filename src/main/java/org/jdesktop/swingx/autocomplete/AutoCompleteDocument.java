@@ -85,9 +85,6 @@ public class AutoCompleteDocument implements Document {
             // those that are interested in this event
             for (int i = listeners.length - 2; i >= 0; i -= 2) {
                 if (listeners[i] == DocumentListener.class) {
-                    // Lazily create the event:
-                    // if (e == null)
-                    // e = new ListSelectionEvent(this, firstIndex, lastIndex);
                     ((DocumentListener) listeners[i + 1]).changedUpdate(e);
                 }
             }
@@ -106,9 +103,6 @@ public class AutoCompleteDocument implements Document {
             // those that are interested in this event
             for (int i = listeners.length - 2; i >= 0; i -= 2) {
                 if (listeners[i] == DocumentListener.class) {
-                    // Lazily create the event:
-                    // if (e == null)
-                    // e = new ListSelectionEvent(this, firstIndex, lastIndex);
                     ((DocumentListener) listeners[i + 1]).insertUpdate(e);
                 }
             }
@@ -127,9 +121,6 @@ public class AutoCompleteDocument implements Document {
             // those that are interested in this event
             for (int i = listeners.length - 2; i >= 0; i -= 2) {
                 if (listeners[i] == DocumentListener.class) {
-                    // Lazily create the event:
-                    // if (e == null)
-                    // e = new ListSelectionEvent(this, firstIndex, lastIndex);
                     ((DocumentListener) listeners[i + 1]).removeUpdate(e);
                 }
             }
@@ -148,9 +139,6 @@ public class AutoCompleteDocument implements Document {
             // those that are interested in this event
             for (int i = listeners.length - 2; i >= 0; i -= 2) {
                 if (listeners[i] == UndoableEditListener.class) {
-                    // Lazily create the event:
-                    // if (e == null)
-                    // e = new ListSelectionEvent(this, firstIndex, lastIndex);
                     ((UndoableEditListener) listeners[i + 1]).undoableEditHappened(e);
                 }
             }

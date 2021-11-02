@@ -350,13 +350,9 @@ public class SearchFactory implements UIDependent {
      */
     protected void configureSharedFindBar() {
         Action removeAction = new AbstractAction() {
-
             @Override
             public void actionPerformed(ActionEvent e) {
                 removeFromParent(findBar);
-//                stopSearching();
-//                releaseFindBar();
-
             }
         };
         findBar.getActionMap().put(JXDialog.CLOSE_ACTION_COMMAND, removeAction);
@@ -376,13 +372,10 @@ public class SearchFactory implements UIDependent {
      *                   the object to search.
      */
     public void showFindDialog(JComponent target, Searchable searchable) {
-        Window frame = null; //JOptionPane.getRootFrame();
+        Window frame = null;
         if (target != null) {
             target.putClientProperty(AbstractSearchable.MATCH_HIGHLIGHTER, Boolean.FALSE);
             frame = SwingUtilities.getWindowAncestor(target);
-//            if (window instanceof Frame) {
-//                frame = (Frame) window;
-//            }
         }
         JXDialog topLevel = getDialogForSharedFindPanel();
         JXDialog findDialog;

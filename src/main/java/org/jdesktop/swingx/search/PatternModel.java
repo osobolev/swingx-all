@@ -464,20 +464,6 @@ public class PatternModel {
         public boolean isStartAnchored() {
             return MATCH_RULE_EQUALS.equals(getMatchRule()) || MATCH_RULE_STARTSWITH.equals(getMatchRule());
         }
-        //
-//     /**
-//      * sets the default interpretation of the pattern for strings it will later
-//      * be given. Setting this value to true will force the pattern to match from
-//      * the beginning of tested strings. Setting this value to false will allow
-//      * the pattern to match any part of a tested string.
-//      */
-//     public void setStartAnchored(boolean startAnchored) {
-//         boolean old = isStartAnchored();
-//         this.startAnchored = startAnchored;
-//         updatePattern(createRegEx(getRawText()));
-//         firePropertyChange("startAnchored", old, isStartAnchored());
-//     }
-        //
 
         /**
          * returns true if the pattern must match from the beginning of the string,
@@ -486,37 +472,6 @@ public class PatternModel {
         public boolean isEndAnchored() {
             return MATCH_RULE_EQUALS.equals(getMatchRule()) || MATCH_RULE_ENDSWITH.equals(getMatchRule());
         }
-        //
-//     /**
-//      * sets the default interpretation of the pattern for strings it will later
-//      * be given. Setting this value to true will force the pattern to match the
-//      * end of tested strings. Setting this value to false will allow the pattern
-//      * to match any part of a tested string.
-//      */
-//     public void setEndAnchored(boolean endAnchored) {
-//         boolean old = isEndAnchored();
-//         this.endAnchored = endAnchored;
-//         updatePattern(createRegEx(getRawText()));
-//         firePropertyChange("endAnchored", old, isEndAnchored());
-//     }
-        //
-//     public boolean isStartEndAnchored() {
-//         return isEndAnchored() && isStartAnchored();
-//     }
-//     
-//     /**
-//      * sets the default interpretation of the pattern for strings it will later
-//      * be given. Setting this value to true will force the pattern to match the
-//      * end of tested strings. Setting this value to false will allow the pattern
-//      * to match any part of a tested string.
-//      */
-//     public void setStartEndAnchored(boolean endAnchored) {
-//         boolean old = isStartEndAnchored();
-//         this.endAnchored = endAnchored;
-//         this.startAnchored = endAnchored;
-//         updatePattern(createRegEx(getRawText()));
-//         firePropertyChange("StartEndAnchored", old, isStartEndAnchored());
-//     }
     }
 
     /**

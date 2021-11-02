@@ -236,10 +236,6 @@ public class JXDialog extends JDialog {
         JComponent buttonPanel = createButtonPanel();
         contentBox.add(buttonPanel);
         contentBox.setBorder(BorderFactory.createEmptyBorder(14, 14, 14, 14));
-//        content.applyComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
-
-//        fieldPanel.setAlignmentX();
-//      buttonPanel.setAlignmentX(Component.RIGHT_ALIGNMENT);
         add(contentBox);
     }
 

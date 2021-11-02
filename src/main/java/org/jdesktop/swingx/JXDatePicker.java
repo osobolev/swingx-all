@@ -355,7 +355,6 @@ public class JXDatePicker extends JComponent {
 
     private void initMonthView() {
         monthView = new JXMonthView();
-//        _monthView.setSelectionModel(new SingleDaySelectionModel());
         monthView.setTraversable(true);
         monthView.addPropertyChangeListener(getMonthViewListener());
     }

@@ -141,7 +141,6 @@ public class ShapePainter extends AbstractAreaPainter<Object> {
             Shape s = provideShape(g, component, w, h);
             Rectangle bounds = s.getBounds();
             Rectangle rect = calculateLayout(bounds.width, bounds.height, w, h);
-            //u.p("rect = " + rect);
             g = (Graphics2D) g.create();
 
             try {
@@ -201,7 +200,6 @@ public class ShapePainter extends AbstractAreaPainter<Object> {
 
     private void drawPathEffects(Graphics2D g, Shape s, int w, int h) {
         if (getAreaEffects() != null) {
-            //Paint pt = calculateFillPaint(component, w, h);
             for (AreaEffect ef : getAreaEffects()) {
                 ef.apply(g, s, w, h);
             }

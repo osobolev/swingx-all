@@ -59,14 +59,6 @@ public class PromptTextFieldUI extends PromptTextUI {
             Insets insets = b.getBorderInsets(txt);
             lbl.setBorder(createEmptyBorder(insets.top, insets.left, insets.bottom, insets.right));
         }
-        //		lbl.setBorder(txtField.getBorder());
-
-        // buddy support: not needed, because BuddyLayoutAndBorder queries
-        // original text field
-        // BuddySupport.setOuterMargin(lbl,
-        // BuddySupport.getOuterMargin(txtField));
-        // BuddySupport.setLeft(lbl, BuddySupport.getLeft(txtField));
-        // BuddySupport.setRight(lbl, BuddySupport.getRight(txtField));
 
         return lbl;
     }

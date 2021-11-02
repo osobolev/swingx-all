@@ -41,8 +41,6 @@ import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-//import org.jdesktop.swing.Application;
-
 /**
  * An action which will invoke an http POST operation.
  *

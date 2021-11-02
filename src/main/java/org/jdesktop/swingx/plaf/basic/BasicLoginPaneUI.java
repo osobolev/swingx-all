@@ -68,7 +68,6 @@ public class BasicLoginPaneUI extends LoginPaneUI {
      */
     public BasicLoginPaneUI(JXLoginPane dlg) {
         this.dlg = dlg;
-//        dlg.addPropertyChangeListener("locale", new LocaleHandler());
     }
 
     public static ComponentUI createUI(JComponent c) {

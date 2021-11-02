@@ -226,49 +226,4 @@ public class WeakEventListenerList implements Serializable {
             }
         }
     }
-
-//    // Serialization support.  
-//    private void writeObject(ObjectOutputStream s) throws IOException {
-//        Object[] lList = listenerList;
-//        s.defaultWriteObject();
-//        
-//        // Save the non-null event listeners:
-//        for (int i = 0; i < lList.length; i+=2) {
-//            Class t = (Class)lList[i];
-//            EventListener l = (EventListener)lList[i+1];
-//            if ((l!=null) && (l instanceof Serializable)) {
-//                s.writeObject(t.getName());
-//                s.writeObject(l);
-//            }
-//        }
-//        
-//        s.writeObject(null);
-//    }
-//
-//    private void readObject(ObjectInputStream s) 
-//        throws IOException, ClassNotFoundException {
-//        listenerList = NULL_ARRAY;
-//        s.defaultReadObject();
-//        Object listenerTypeOrNull;
-//        
-//        while (null != (listenerTypeOrNull = s.readObject())) {
-//            ClassLoader cl = Thread.currentThread().getContextClassLoader();
-//            EventListener l = (EventListener)s.readObject();
-//            add((Class<EventListener>)Class.forName((String)listenerTypeOrNull, true, cl), l);
-//        }           
-//    }
-
-//    /**
-//     * Returns a string representation of the EventListenerList.
-//     */
-//    public String toString() {
-//        Object[] lList = listenerList;
-//        String s = "EventListenerList: ";
-//        s += lList.length/2 + " listeners: ";
-//        for (int i = 0 ; i <= lList.length-2 ; i+=2) {
-//            s += " type " + ((Class)lList[i]).getName();
-//            s += " listener " + lList[i+1];
-//        }
-//        return s;
-//    }
 }

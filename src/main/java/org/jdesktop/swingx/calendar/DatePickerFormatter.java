@@ -97,7 +97,6 @@ public class DatePickerFormatter extends JFormattedTextField.AbstractFormatter {
      * @param locale
      */
     public DatePickerFormatter(DateFormat[] formats, Locale locale) {
-//        super();
         if (locale == null) {
             locale = Locale.getDefault();
         }

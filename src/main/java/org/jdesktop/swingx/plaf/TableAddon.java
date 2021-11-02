@@ -85,7 +85,6 @@ public class TableAddon extends AbstractComponentAddon {
             UIManager.getLookAndFeelDefaults().put(key, border);
             // adding to defaults is not
 //            defaults.add(key, border);
-
         }
     }
 

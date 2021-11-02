@@ -463,8 +463,6 @@ public class Morphing2D implements Shape {
                 return myTvals;
             }
 
-            // assert(numCoords >= 8);
-            // assert(((numCoords - 2) % 6) == 0);
             double[] tvals = new double[(numCoords - 2) / 6 + 1];
 
             // First calculate total "length" of path
@@ -571,7 +569,6 @@ public class Morphing2D implements Shape {
                     t1 = oldTvals[oldti++];
                 }
                 double nt = newTvals[newti++];
-                // assert(nt > t0);
                 if (nt < t1) {
                     // Make nt proportional to [t0 => t1] range
                     double relt = (nt - t0) / (t1 - t0);

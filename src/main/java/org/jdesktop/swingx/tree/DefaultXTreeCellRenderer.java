@@ -69,12 +69,6 @@ public class DefaultXTreeCellRenderer extends DefaultTreeCellRenderer {
         if (SwingXUtilities.isUIInstallable(getBorderSelectionColor())) {
             setBorderSelectionColor(UIManager.getColor("Tree.selectionBorderColor"));
         }
-//        Object value = UIManager.get("Tree.drawsFocusBorderAroundIcon");
-//        drawsFocusBorderAroundIcon = (value != null && ((Boolean)value).
-//                                      booleanValue());
-//        value = UIManager.get("Tree.drawDashedFocusIndicator");
-//        drawDashedFocusIndicator = (value != null && ((Boolean)value).
-//                                    booleanValue());
     }
 
     /**

@@ -1231,8 +1231,6 @@ public class JXGraph extends JXPanel {
      * @see #xPositionToPixel(double)
      */
     protected double xPixelToPosition(double pixel) {
-//        double axisV = xPositionToPixel(originX);
-//        return (pixel - axisV) * (maxX - minX) / (double) getWidth();
         return minX + pixel * (maxX - minX) / getWidth();
     }
 
@@ -1249,8 +1247,6 @@ public class JXGraph extends JXPanel {
      * @see #yPositionToPixel(double)
      */
     protected double yPixelToPosition(double pixel) {
-//        double axisH = yPositionToPixel(originY);
-//        return (getHeight() - pixel - axisH) * (maxY - minY) / (double) getHeight();
         return minY + (getHeight() - pixel) * (maxY - minY) / getHeight();
     }
 
@@ -1362,7 +1358,6 @@ public class JXGraph extends JXPanel {
     private void drawVerticalAxisLabels(Graphics2D g2) {
         double axisV = xPositionToPixel(originX);
 
-//        double startY = Math.floor((minY - originY) / majorY) * majorY;
         double startY = Math.floor(minY / majorY) * majorY;
         for (double y = startY; y < maxY + majorY; y += majorY) {
             if (y - majorY / 2.0 < originY && y + majorY / 2.0 > originY) {
@@ -1392,7 +1387,6 @@ public class JXGraph extends JXPanel {
             }
         }
 
-//        double startY = Math.floor((minY - originY) / majorY) * majorY;
         double startY = Math.floor(minY / majorY) * majorY;
         Stroke axisStroke = new BasicStroke(STROKE_AXIS);
         Stroke gridStroke = new BasicStroke(STROKE_GRID);
@@ -1426,7 +1420,6 @@ public class JXGraph extends JXPanel {
         double axisH = yPositionToPixel(originY);
         FontMetrics metrics = g2.getFontMetrics();
 
-//        double startX = Math.floor((minX - originX) / majorX) * majorX;
         double startX = Math.floor(minX / majorX) * majorX;
         for (double x = startX; x < maxX + majorX; x += majorX) {
             if (x - majorX / 2.0 < originX && x + majorX / 2.0 > originX) {
@@ -1455,7 +1448,6 @@ public class JXGraph extends JXPanel {
             }
         }
 
-//        double startX = Math.floor((minX - originX) / majorX) * majorX;
         double startX = Math.floor(minX / majorX) * majorX;
         Stroke axisStroke = new BasicStroke(STROKE_AXIS);
         Stroke gridStroke = new BasicStroke(STROKE_GRID);

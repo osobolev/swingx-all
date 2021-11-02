@@ -458,13 +458,6 @@ public class BasicDatePickerUI extends DatePickerUI {
     protected JFormattedTextField createEditor() {
         JFormattedTextField f = new DefaultEditor(new DatePickerFormatterUIResource(datePicker.getLocale()));
         f.setName("dateField");
-        // this produces a fixed pref widths, looking a bit funny
-        // int columns = UIManagerExt.getInt("JXDatePicker.numColumns", null);
-        // if (columns > 0) {
-        // f.setColumns(columns);
-        // }
-        // that's always 0 as it comes from the resourcebundle
-        // f.setColumns(UIManager.getInt("JXDatePicker.numColumns"));
         Border border = UIManager.getBorder("JXDatePicker.border");
         if (border != null) {
             f.setBorder(border);
@@ -1033,7 +1026,6 @@ public class BasicDatePickerUI extends DatePickerUI {
             // opening
             // not with following line - but need to run tests
             datePicker.getEditor().requestFocusInWindow();
-//            datePicker.requestFocusInWindow();
             SwingUtilities.invokeLater(() -> {
 //                    if (datePicker.getParent() == null) {
 //                        // Tracking #1372-swingx - parent is null if used as
@@ -1211,7 +1203,6 @@ public class BasicDatePickerUI extends DatePickerUI {
             // reason might be that we want to open on pressed
             // typically (or LF-dependent?),
             // the button's action is invoked on released.
-//            LOG.info("opening on mousePressed?");
             toggleShowPopup();
         }
 
@@ -1537,8 +1528,6 @@ public class BasicDatePickerUI extends DatePickerUI {
                 // or the editor. So we have to force it back ... 
                 hidePopup();
                 comp.requestFocusInWindow();
-                // this has no effect as focus changes are asynchronous
-//                inHide = false;
             }
         }
     }

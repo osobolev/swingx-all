@@ -418,58 +418,6 @@ public class UIManagerExt {
         return null;
     }
 
-    //TODO: Font.decode always returns a valid font.  This is not acceptable for UIManager
-//    /**
-//     * Returns a font from the defaults. If the value for {@code key} is not
-//     * a {@code Font}, {@code null} is returned.
-//     * 
-//     * @param key
-//     *                an {@code Object} specifying the font
-//     * @return the {@code Font} object
-//     * @throws NullPointerException
-//     *                 if {@code key} is {@code null}
-//     */
-//    public static Font getFont(Object key) {
-//        return getFont(key, null);
-//    }
-//    
-//    /**
-//     * Returns a font from the defaults. If the value for {@code key} is not
-//     * a {@code Font}, {@code null} is returned.
-//     * 
-//     * @param key
-//     *                an {@code Object} specifying the font
-//     * @param l
-//     *                the {@code Locale} for which the font is desired; refer
-//     *                to {@code UIDefaults} for details on how a {@code null}
-//     *                {@code Locale} is handled
-//     * @return the {@code Font} object
-//     * @throws NullPointerException
-//     *                 if {@code key} is {@code null}
-//     */
-//    public static Font getFont(Object key, Locale l) {
-//        Object value = UIManager.get(key, l);
-//        
-//        if (value instanceof Font) {
-//            return (Font) value;
-//        }
-//        
-//        //only return resource bundle if not in UIDefaults
-//        if (value == null) {
-//            value = uiDefaultsExt.getFromResourceBundle(key, l);
-//            
-//            if (value instanceof Font) {
-//                return (Font) value;
-//            }
-//            
-//            if (value instanceof String) {
-//                return Font.decode((String) value);
-//            }
-//        }
-//        
-//        return null;
-//    }
-
     /**
      * Returns a shape from the defaults. If the value for {@code key} is not a
      * {@code Shape}, {@code null} is returned.

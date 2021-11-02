@@ -52,7 +52,6 @@ public class DefaultTableColumnModelExt extends DefaultTableColumnModel implemen
      * flag to distinguish a shown/hidden column from really added/removed
      * columns during notification. This is brittle!
      */
-//    private static final String IGNORE_EVENT = "TableColumnModelExt.ignoreEvent";
     private boolean isVisibilityChange;
     /**
      * contains a list of all columns, in the order in which were

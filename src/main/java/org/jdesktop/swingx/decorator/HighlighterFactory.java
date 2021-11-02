@@ -240,31 +240,6 @@ public final class HighlighterFactory {
             }
             return color;
         }
-//     /** 
-//      * this is a hack until we can think about something better!
-//      * we map all known selection colors to highlighter colors.
-//      *
-//      */
-//     private void initColorMap() {
-//         colorMap = new HashMap<Color, Color>();
-//         // Ocean
-//         colorMap.put(new Color(184, 207, 229), new Color(230, 238, 246));
-//         // xp blue
-//         colorMap.put(new Color(49, 106, 197), new Color(224, 233, 246));
-//         // xp silver
-//         colorMap.put(new Color(178, 180, 191), new Color(235, 235, 236));
-//         // xp olive
-//         colorMap.put(new Color(147, 160, 112), new Color(228, 231, 219));
-//         // win classic
-//         colorMap.put(new Color(10, 36, 106), new Color(218, 222, 233));
-//         // win 2k?
-//         colorMap.put(new Color(0, 0, 128), new Color(218, 222, 233));
-//         // default metal
-//         colorMap.put(new Color(205, 205, 255), new Color(235, 235, 255));
-//         // mac OS X
-//         colorMap.put(new Color(56, 117, 215), new Color(237, 243, 254));
-//         
-//     }
     }
 
     /**

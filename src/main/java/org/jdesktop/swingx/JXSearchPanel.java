@@ -111,17 +111,6 @@ public class JXSearchPanel extends AbstractPatternPanel {
     }
 
     /**
-     * sets the PatternFilter control.
-     *
-     * PENDING: change to do a addPatternMatcher to enable multiple control.
-     *
-     */
-//    public void setPatternFilter(PatternFilter filter) {
-//        getPatternMatchers().add(filter);
-//        updateFieldName(filter);
-//    }
-
-    /**
      * set the label of the search combo.
      *
      * @param name the label

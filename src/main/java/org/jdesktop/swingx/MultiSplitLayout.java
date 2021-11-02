@@ -1333,10 +1333,8 @@ public class MultiSplitLayout implements LayoutManager, Serializable {
                         splitChildren.next();
                     continue;
                 }
-                if (splitChild instanceof Divider) {
+                if (splitChild instanceof Divider)
                     continue;
-                    //throwInvalidLayout("expected a Split or Leaf Node", splitChild);
-                }
                 if (splitChildren.hasNext()) {
                     Node dividerChild = splitChildren.next();
                     if (!(dividerChild instanceof Divider)) {

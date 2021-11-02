@@ -89,7 +89,6 @@ public class HyperlinkProvider extends ComponentProvider<JXHyperlink> implements
      * @param targetClass the type of values the action can handle.
      */
     public HyperlinkProvider(AbstractHyperlinkAction linkAction, Class<?> targetClass) {
-        //        rendererComponent.addActionListener(createEditorActionListener());
         setLinkAction(linkAction, targetClass);
     }
 
@@ -211,10 +210,9 @@ public class HyperlinkProvider extends ComponentProvider<JXHyperlink> implements
      */
     @Override
     protected void configureState(CellContext context) {
-//        rendererComponent.setHorizontalAlignment(getHorizontalAlignment());
         if (context.getComponent() != null) {
             Point p = (Point) context.getComponent().getClientProperty(RolloverProducer.ROLLOVER_KEY);
-            if (/*hasFocus || */p != null && p.x >= 0 && p.x == context.getColumn() && p.y == context.getRow()) {
+            if (p != null && p.x >= 0 && p.x == context.getColumn() && p.y == context.getRow()) {
                 if (!rendererComponent.getModel().isRollover())
                     rendererComponent.getModel().setRollover(true);
             } else {

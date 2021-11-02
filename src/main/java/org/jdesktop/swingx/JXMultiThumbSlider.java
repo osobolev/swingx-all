@@ -214,7 +214,6 @@ public class JXMultiThumbSlider<E> extends JComponent {
         int thumbIndex = getThumbIndex(selected);
         float value = delta * range;
         getModel().getThumbAt(thumbIndex).setPosition(value);
-        //getModel().setPositionAt(thumb_index,value);
         clipThumbPosition(selected);
     }
 
@@ -307,10 +306,8 @@ public class JXMultiThumbSlider<E> extends JComponent {
                 selected.setLocation(nx, (int) selected.getLocation().getY());
                 setThumbPositionByX(selected);
                 int thumbIndex = getThumbIndex(selected);
-                //log.fine("still dragging: " + thumb_index);
                 for (ThumbListener mtl : listeners) {
                     mtl.thumbMoved(thumbIndex, getModel().getThumbAt(thumbIndex).getPosition());
-                    //getPositionAt(thumb_index));
                 }
                 repaint();
             }
@@ -335,10 +332,6 @@ public class JXMultiThumbSlider<E> extends JComponent {
         ThumbComp(JXMultiThumbSlider<?> slider) {
             this.slider = slider;
             Dimension dim = new Dimension(10, 10);//slider.getHeight());
-            /*if(slider.getThumbRenderer() != null) {
-                JComponent comp = getRenderer();
-                dim = comp.getPreferredSize();
-            }*/
             setSize(dim);
             setMinimumSize(dim);
             setPreferredSize(dim);

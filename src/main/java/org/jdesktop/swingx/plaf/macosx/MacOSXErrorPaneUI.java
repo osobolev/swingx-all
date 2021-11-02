@@ -99,9 +99,6 @@ public class MacOSXErrorPaneUI extends BasicErrorPaneUI {
     @Override
     protected void configureReportAction(AbstractActionExt reportAction) {
         reportAction.setName(UIManagerExt.getString(CLASS_NAME + ".report_button_text", pane.getLocale()));
-//        reportButton.setText("Send Report To Apple");
-//        reportButton.setPreferredSize(new Dimension(100, 30));
-//        reportButton.setMinimumSize(new Dimension(100, 30));
     }
 
     public static ComponentUI createUI(JComponent c) {

@@ -78,7 +78,6 @@ public class TableSearchable extends AbstractSearchable {
         // the alternative is to go one off in the loop. Hmm - which is
         // preferable?
         // updateState(matchRow);
-
     }
 
     /**

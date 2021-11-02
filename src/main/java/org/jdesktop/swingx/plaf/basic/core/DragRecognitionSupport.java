@@ -36,8 +36,6 @@ import javax.swing.TransferHandler;
 import javax.swing.UIManager;
 import java.awt.dnd.DragSource;
 import java.awt.event.MouseEvent;
-//import sun.awt.dnd.SunDragSourceContextPeer;
-//import sun.awt.AppContext;
 
 /**
  * Drag gesture recognition support for classes that have a
@@ -77,15 +75,6 @@ public class DragRecognitionSupport {
      * Returns the DragRecognitionSupport for the caller's AppContext.
      */
     private static DragRecognitionSupport getDragRecognitionSupport() {
-//        DragRecognitionSupport support =
-//            (DragRecognitionSupport)AppContext.getAppContext().
-//                get(DragRecognitionSupport.class);
-//
-//        if (support == null) {
-//            support = new DragRecognitionSupport();
-//            AppContext.getAppContext().put(DragRecognitionSupport.class, support);
-//        }
-
         DragRecognitionSupport support = (DragRecognitionSupport) UIManager.get("sharedInstance.dragRecognitionSupport");
         if (support == null) {
             support = new DragRecognitionSupport();

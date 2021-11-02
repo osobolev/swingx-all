@@ -144,45 +144,4 @@ public class EnumComboBoxModel<E extends Enum<E>> extends ListComboBoxModel<E> {
 
         this.fireContentsChanged(this, 0, getSize());
     }
-    
-    /*
-    public static void main(String[] args) {
-        JFrame frame = new JFrame();
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setLayout(new BoxLayout(frame.getContentPane(),BoxLayout.Y_AXIS));
-        
-        
-        JComboBox combo1 = new JComboBox();
-        combo1.setModel(new EnumComboBoxModel(MyEnum1.class));
-        frame.add(combo1);
-        
-        JComboBox combo2 = new JComboBox();
-        combo2.setModel(new EnumComboBoxModel(MyEnum2.class));
-        frame.add(combo2);
-        
-        EnumComboBoxModel<MyEnum1> enumModel = new EnumComboBoxModel<MyEnum1>(MyEnum1.class);
-        JComboBox combo3 = new JComboBox();
-        combo3.setModel(enumModel);
-        frame.add(combo3);
-        
-        MyEnum1 selected = enumModel.getSelectedItem();
-        
-        //uncomment to see the ClassCastException
-//        enumModel.setSelectedItem("Die clown");
-        
-        frame.pack();
-        frame.setVisible(true);
-    }
-    
-    private enum MyEnum1 {GoodStuff, BadStuff};
-    private enum MyEnum2 {GoodStuff, BadStuff;
-    public String toString() {
-        switch(this) {
-            case GoodStuff: return "Some Good Stuff";
-            case BadStuff: return "Some Bad Stuff";
-        }
-        return "ERROR";
-    }
-    };
-    */
 }

@@ -99,8 +99,6 @@ public class TableRowHeightController {
         for (int row = firstRow; row <= lastRow; row++) {
             int viewRow = table.convertRowIndexToView(row);
             if (viewRow >= 0) {
-//                int oldHeight = table.getRowHeight(viewRow);
-//                LOG.info("in viewRow/old/new: " + viewRow + " / " + oldHeight + " / " + table.getRowHeight(viewRow));
                 setPreferredRowHeight(table, viewRow);
             }
         }

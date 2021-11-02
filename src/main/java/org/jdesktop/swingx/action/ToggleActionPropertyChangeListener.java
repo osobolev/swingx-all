@@ -56,7 +56,6 @@ class ToggleActionPropertyChangeListener implements PropertyChangeListener {
         // action anyway: so a true in isToggling must not happen.
         // 
         return !isToggling(action, button);
-//        return true;
     }
 
     protected boolean isToggling(Action action, AbstractButton button) {
@@ -143,23 +142,4 @@ class ToggleActionPropertyChangeListener implements PropertyChangeListener {
         // JW: should check identity instead of equality?
         return button.equals(checkReferent(null));
     }
-
-    /**
-     * Checks if this is synchronizing to the same target button as the
-     * given listener.
-     *
-     * This may have the side-effect of releasing the weak reference to
-     * the target button.
-     *
-     * @param pcl The listener to test, must not be null.
-     * @return true if the target buttons of the given is equal to this target
-     *    button and the button is strongly reachable, false otherwise.
-     */
-//    public boolean isToggling(ToggleActionPropertyChangeListener pcl) {
-//        AbstractButton other = pcl.checkReferent(null);
-//        if (other != null) {
-//            return isToggling(other);
-//        }
-//        return false;
-//    }
 }

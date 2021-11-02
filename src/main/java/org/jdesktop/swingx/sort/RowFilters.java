@@ -193,7 +193,6 @@ public class RowFilters {
             if (regex == null) {
                 // JW: Exception type changed to comply with swingx convention
                 Contract.asNotNull(regex, "Pattern must be non-null");
-//                throw new IllegalArgumentException("Pattern must be non-null");
             }
             matcher = regex.matcher("");
         }

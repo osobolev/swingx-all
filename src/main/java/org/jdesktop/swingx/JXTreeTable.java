@@ -203,13 +203,6 @@ public class JXTreeTable extends JXTable {
         setShowGrid(false, false);
 
         hierarchicalEditor = new TreeTableCellEditor(renderer);
-
-//        // No grid.
-//        setShowGrid(false); // superclass default is "true"
-//
-//        // Default intercell spacing
-//        setIntercellSpacing(spacing); // for both row margin and column margin
-
     }
 
     /**
@@ -1212,10 +1205,7 @@ public class JXTreeTable extends JXTable {
      */
     public void setTreeTableModel(TreeTableModel treeModel) {
         TreeTableModel old = getTreeTableModel();
-//        boolean rootVisible = isRootVisible();
-//        setRootVisible(false);
         renderer.setModel(treeModel);
-//        setRootVisible(rootVisible);
 
         firePropertyChange("treeTableModel", old, getTreeTableModel());
     }
@@ -1646,10 +1636,6 @@ public class JXTreeTable extends JXTable {
      */
     public void scrollPathToVisible(TreePath path) {
         renderer.scrollPathToVisible(path);
-//        if (path == null) return;
-//        renderer.makeVisible(path);
-//        int row = getRowForPath(path);
-//        scrollRowToVisible(row);
     }
 
     /**
@@ -2392,7 +2378,6 @@ public class JXTreeTable extends JXTable {
 
                     @Override
                     public void treeNodesChanged(TreeModelEvent e) {
-//                        LOG.info("got tree event: changed " + e);
                         delayedFireTableDataUpdated(e);
                     }
 
@@ -2406,7 +2391,6 @@ public class JXTreeTable extends JXTable {
 
                     @Override
                     public void treeNodesRemoved(TreeModelEvent e) {
-//                        LOG.info("got tree event: removed " + e);
                         delayedFireTableDataChanged(e, 2);
                     }
 
@@ -2468,13 +2452,9 @@ public class JXTreeTable extends JXTable {
             // expansion state before invoke may be different 
             // from expansion state in invoke 
             boolean expanded = tree.isExpanded(tme.getTreePath());
-            // quick test if tree throws for unrelated path. Seems like not.
-//            tree.getRowForPath(new TreePath("dummy"));
             SwingUtilities.invokeLater(() -> {
                 int[] indices = tme.getChildIndices();
                 TreePath path = tme.getTreePath();
-                // quick test to see if bailing out is an option
-//                    if (false) {
                 if (indices != null) {
                     if (expanded) { // Dont bother to update if the parent
                         // node is collapsed
@@ -2486,13 +2466,9 @@ public class JXTreeTable extends JXTable {
                         max = startingRow + max;
                         switch (typeChange) {
                         case 1:
-//                                LOG.info("rows inserted: path " + path + "/" + min + "/"
-//                                        + max);
                             fireTableRowsInserted(min, max);
                             break;
                         case 2:
-//                                LOG.info("rows deleted path " + path + "/" + min + "/"
-//                                                + max);
                             fireTableRowsDeleted(min, max);
                             break;
                         }
@@ -2532,8 +2508,6 @@ public class JXTreeTable extends JXTable {
                         // node is collapsed
                         Object[] children = tme.getChildren();
                         // can we be sure that children.length > 0?
-                        // int min = tree.getRowForPath(path.pathByAddingChild(children[0]));
-                        // int max = tree.getRowForPath(path.pathByAddingChild(children[children.length -1]));
                         int min = Integer.MAX_VALUE;
                         int max = Integer.MIN_VALUE;
                         for (int i = 0; i < indices.length; i++) {
@@ -2660,9 +2634,6 @@ public class JXTreeTable extends JXTable {
                 mousePoint.translate(-cellRect.x, -cellRect.y);
                 // translate horizontally to 
                 mousePoint.translate(-pathBounds.x, 0);
-                // show tooltip only if over renderer?
-//                if (mousePoint.x < 0) return null;
-//                p.translate(-pathBounds.x, -pathBounds.y);
                 MouseEvent newEvent = new MouseEvent(
                     rComponent, event.getID(), event.getWhen(), event.getModifiers(), mousePoint.x, mousePoint.y,
                     event.getClickCount(), event.isPopupTrigger()
@@ -3039,7 +3010,6 @@ public class JXTreeTable extends JXTable {
 
             private Rectangle getItemRect(Rectangle itemRect) {
                 getBounds(itemRect);
-//                LOG.info("rect" + itemRect);
                 itemRect.width = hierarchicalColumnWidth - itemRect.x;
                 return itemRect;
             }
@@ -3080,10 +3050,6 @@ public class JXTreeTable extends JXTable {
              */
             @Override
             public String getString(Object node) {
-//                int treeColumn = treeTable.getTreeTableModel().getHierarchicalColumn();
-//                if (treeColumn >= 0) {
-//                    return StringValues.TO_STRING.getString(treeTable.getTreeTableModel().getValueAt(value, treeColumn));
-//                }
                 return StringValues.TO_STRING.getString(getHierarchicalTableValue(node));
             }
 

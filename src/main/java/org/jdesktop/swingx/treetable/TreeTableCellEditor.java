@@ -112,8 +112,6 @@ public class TreeTableCellEditor extends GenericEditor {
     protected void initEditorOffset(JTable table, int row, int column, boolean isSelected) {
         if (tree == null)
             return;
-//        Rectangle bounds = tree.getRowBounds(row);
-//        int offset = bounds.x;
         Object node = tree.getPathForRow(row).getLastPathComponent();
         boolean leaf = tree.getModel().isLeaf(node);
         boolean expanded = tree.isExpanded(row);
@@ -184,12 +182,6 @@ public class TreeTableCellEditor extends GenericEditor {
         @SuppressWarnings("deprecation")
         @Override
         public void reshape(int x, int y, int width, int height) {
-            // Allows precise positioning of text field in the tree cell.
-            // following three lines didn't work out
-            //Border border = this.getBorder(); // get this text field's border
-            //Insets insets = border == null ? null : border.getBorderInsets(this);
-            //int newOffset = offset - (insets == null ? 0 : insets.left);
-
             Rectangle cellRect = table.getCellRect(0, column, false);
             Rectangle nodeRect = tree.getRowBounds(row);
             nodeRect.width -= iconWidth;
@@ -197,11 +189,9 @@ public class TreeTableCellEditor extends GenericEditor {
                 int nodeStart = cellRect.x + nodeRect.x + iconWidth;
                 int nodeEnd = cellRect.x + cellRect.width;
                 super.reshape(nodeStart, y, nodeEnd - nodeStart, height);
-//                int newOffset = nodeLeftX - getInsets().left;
-//                super.reshape(x + newOffset, y, width - newOffset, height);
             } else {
                 int nodeRightX = nodeRect.x + nodeRect.width;
-                nodeRect.x = 0; //Math.max(0, nodeRect.x);
+                nodeRect.x = 0;
                 // ignore the parameter
                 width = nodeRightX - nodeRect.x;
                 super.reshape(cellRect.x + nodeRect.x, y, width, height);

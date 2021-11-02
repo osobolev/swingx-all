@@ -97,8 +97,6 @@ import static org.jdesktop.swingx.util.GraphicsUtilities.createCompatibleTranslu
 @JavaBean
 @SuppressWarnings("nls")
 public class JXPanel extends JPanel implements AlphaPaintable, BackgroundPaintable, Scrollable {
-//    private boolean scrollableTracksViewportHeight = true;
-//    private boolean scrollableTracksViewportWidth = true;
 
     private ScrollableSizeHint scrollableWidthHint = ScrollableSizeHint.FIT;
     private ScrollableSizeHint scrollableHeightHint = ScrollableSizeHint.FIT;

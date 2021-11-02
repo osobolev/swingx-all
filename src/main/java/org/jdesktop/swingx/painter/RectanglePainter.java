@@ -46,12 +46,10 @@ import java.awt.geom.RoundRectangle2D;
 public class RectanglePainter extends AbstractAreaPainter<Object> {
 
     private boolean rounded;
-    //private Insets insets = new Insets(0,0,0,0);
     private int roundWidth;
     private int roundHeight;
     private final int width;
     private final int height;
-    //private double strokeWidth = 1;
 
     /**
      * Creates a new instance of RectanglePainter
@@ -218,11 +216,6 @@ public class RectanglePainter extends AbstractAreaPainter<Object> {
         // border
         // leave the clip to support masking other painters
         ShapeUtils.mergeClip(g, shape);
-        /*
-        Area area = new Area(g.getClip());
-        area.intersect(new Area(shape));//new Rectangle(0,0,width,height)));
-        g.setClip(area);*/
-        //g.setClip(shape);
     }
 
     private void drawBorder(Graphics2D g, Shape shape, int width, int height) {

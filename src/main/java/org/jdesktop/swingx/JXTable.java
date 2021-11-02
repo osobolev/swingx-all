@@ -952,7 +952,7 @@ public class JXTable extends JTable implements TableColumnModelExtListener {
      * Take over ctrl-tab.
      */
     private void initFocusBindings() {
-        setFocusTraversalKeys(KeyboardFocusManager.FORWARD_TRAVERSAL_KEYS, new TreeSet<KeyStroke>());
+        setFocusTraversalKeys(KeyboardFocusManager.FORWARD_TRAVERSAL_KEYS, new TreeSet<KeyStroke>()); // todo: WTF???
         setFocusTraversalKeys(KeyboardFocusManager.BACKWARD_TRAVERSAL_KEYS, new TreeSet<KeyStroke>());
         getInputMap(WHEN_ANCESTOR_OF_FOCUSED_COMPONENT).put(KeyStroke.getKeyStroke("ctrl TAB"), FOCUS_NEXT_COMPONENT);
         getInputMap(WHEN_ANCESTOR_OF_FOCUSED_COMPONENT).put(KeyStroke.getKeyStroke("shift ctrl TAB"), FOCUS_PREVIOUS_COMPONENT);
@@ -1696,7 +1696,6 @@ public class JXTable extends JTable implements TableColumnModelExtListener {
      * @return the default RowSorter.
      */
     protected RowSorter<? extends TableModel> createDefaultRowSorter() {
-//        return new TableRowSorter<TableModel>(getModel());
         return new TableSortController<>(getModel());
     }
 
@@ -2522,7 +2521,6 @@ public class JXTable extends JTable implements TableColumnModelExtListener {
          */
         if (columnFactory == null) {
             return ColumnFactory.getInstance();
-            // columnFactory = ColumnFactory.getInstance();
         }
         return columnFactory;
     }
@@ -3427,8 +3425,6 @@ public class JXTable extends JTable implements TableColumnModelExtListener {
             for (Highlighter highlighter : columnExt.getHighlighters()) {
                 stamp = highlighter.highlight(stamp, adapter);
             }
-            // CompoundHighlighter columnHighlighters
-            // = new CompoundHighlighter(columnExt.getHighlighters());
 
         }
 

@@ -866,7 +866,6 @@ public class BasicErrorPaneUI extends ErrorPaneUI {
             setDefaultCloseOperation(JInternalFrame.DISPOSE_ON_CLOSE);
             KeyStroke ks = KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0);
             getRootPane().registerKeyboardAction(closeAction, ks, JComponent.WHEN_IN_FOCUSED_WINDOW);
-            //setPreferredSize(calculatePreferredDialogSize());
         }
     }
 

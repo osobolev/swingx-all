@@ -115,11 +115,6 @@ public class AbstractAreaEffect implements AreaEffect {
             g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
             paintBorderGlow(g, clipShape, width, height);
         }
-
-        //g.setColor(Color.MAGENTA);
-        //g.draw(clipShape.getBounds2D());
-        //g.drawRect(0,0,width,height);
-
     }
 
     private BufferedImage clipImage = null;
@@ -132,33 +127,6 @@ public class AbstractAreaEffect implements AreaEffect {
         clipImage.getGraphics().clearRect(0, 0, clipImage.getWidth(), clipImage.getHeight());
         return clipImage;
     }
-
-    /*
-    private BufferedImage createClipImage(Shape s, Graphics2D g, int width, int height) {
-        // Create a translucent intermediate image in which we can perform
-        // the soft clipping
-
-        GraphicsConfiguration gc = g.getDeviceConfiguration();
-        BufferedImage img = gc.createCompatibleImage(width, height, Transparency.TRANSLUCENT);
-        Graphics2D g2 = img.createGraphics();
-
-        // Clear the image so all pixels have zero alpha
-        g2.setComposite(AlphaComposite.Clear);
-        g2.fillRect(0, 0, width, height);
-
-        // Render our clip shape into the image.  Note that we enable
-        // antialiasing to achieve the soft clipping effect.  Try
-        // commenting out the line that enables antialiasing, and
-        // you will see that you end up with the usual hard clipping.
-        g2.setComposite(AlphaComposite.Src);
-        g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-        g2.setColor(Color.WHITE);
-        g2.fill(s);
-        g2.dispose();
-
-        return img;
-    }*/
-
 
     /* draws the actual shaded border to the specified graphics
      */
@@ -194,13 +162,6 @@ public class AbstractAreaEffect implements AreaEffect {
             }
         }
 
-        // set the inside/outside mode
-        /*
-        if(inside) {
-            g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_ATOP, brushAlpha));
-        } else {
-            g2.setComposite(AlphaComposite.getInstance(AlphaComposite.DST_OVER, brushAlpha));
-        }*/
         float brushAlpha = 1f / steps;
         g2.setComposite(AlphaComposite.getInstance(AlphaComposite.DST_OVER, brushAlpha));
 

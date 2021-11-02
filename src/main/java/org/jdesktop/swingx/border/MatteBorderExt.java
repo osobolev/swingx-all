@@ -284,7 +284,6 @@ public class MatteBorderExt extends MatteBorder {
 
                 public void paintIcon(Component c, Graphics g, int x, int y) {
                     g.setColor(c.getBackground().darker().darker());
-                    //g.translate(x, y);
                     g.fillRect(x, y, width, height);
                 }
             };

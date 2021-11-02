@@ -1236,8 +1236,6 @@ public class JXLoginPane extends JXPanel {
             assert EventQueue.isDispatchThread();
             getActionMap().get(LOGIN_ACTION_COMMAND).setEnabled(false);
             getActionMap().get(CANCEL_LOGIN_ACTION_COMMAND).setEnabled(true);
-//            remove(contentPanel);
-//            add(progressPanel, BorderLayout.CENTER);
             ((CardLayout) contentCardPane.getLayout()).last(contentCardPane);
             revalidate();
             repaint();
@@ -1247,8 +1245,6 @@ public class JXLoginPane extends JXPanel {
         @Override
         public void loginFailed(LoginEvent source) {
             assert EventQueue.isDispatchThread();
-//            remove(progressPanel);
-//            add(contentPanel, BorderLayout.CENTER);
             ((CardLayout) contentCardPane.getLayout()).first(contentCardPane);
             getActionMap().get(LOGIN_ACTION_COMMAND).setEnabled(true);
             errorMessageLabel.setVisible(true);
@@ -1260,8 +1256,6 @@ public class JXLoginPane extends JXPanel {
         @Override
         public void loginCanceled(LoginEvent source) {
             assert EventQueue.isDispatchThread();
-//            remove(progressPanel);
-//            add(contentPanel, BorderLayout.CENTER);
             ((CardLayout) contentCardPane.getLayout()).first(contentCardPane);
             getActionMap().get(LOGIN_ACTION_COMMAND).setEnabled(true);
             errorMessageLabel.setVisible(false);

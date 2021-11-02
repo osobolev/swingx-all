@@ -326,13 +326,6 @@ public class WrappingProvider extends ComponentProvider<WrappingIconPanel> imple
         rendererComponent.setBorder(BorderFactory.createEmptyBorder());
     }
 
-//    /**
-//     * @return
-//     */
-//    private boolean isBorderAroundIcon() {
-//        return Boolean.TRUE.equals(UIManager.get("Tree.drawsFocusBorderAroundIcon"));
-//    }
-
     @Override
     protected WrappingIconPanel createRendererComponent() {
         return new WrappingIconPanel();

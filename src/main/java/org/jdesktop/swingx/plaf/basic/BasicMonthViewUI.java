@@ -1950,7 +1950,6 @@ public class BasicMonthViewUI extends MonthViewUI {
                 updateLocale(true);
             } else {
                 monthView.repaint();
-//                LOG.info("got propertyChange:" + property);
             }
         }
 
