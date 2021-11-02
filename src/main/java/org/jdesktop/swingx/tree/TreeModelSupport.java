@@ -43,7 +43,7 @@ import javax.swing.tree.TreePath;
  */
 public final class TreeModelSupport {
 
-    protected EventListenerList listeners;
+    private EventListenerList listeners;
 
     private TreeModel treeModel;
 

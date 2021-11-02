@@ -134,7 +134,7 @@ public final class ListSortUI {
      *
      * @param e RowSorter event of type SORTED.
      */
-    protected void sortedChanged(RowSorterEvent e) {
+    private void sortedChanged(RowSorterEvent e) {
         sorterChanged = true;
         if (!ignoreSortChange) {
             prepareForChange(e);
@@ -451,7 +451,7 @@ public final class ListSortUI {
      *
      * @return rowSorterListener to install on sorter.
      */
-    protected RowSorterListener createRowSorterListener() {
+    private RowSorterListener createRowSorterListener() {
         RowSorterListener l = e -> {
             if (e.getType() == RowSorterEvent.Type.SORTED) {
                 sortedChanged(e);

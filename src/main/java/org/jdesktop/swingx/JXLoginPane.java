@@ -1616,7 +1616,7 @@ public class JXLoginPane extends JXPanel {
             init(p);
         }
 
-        protected void init(JXLoginPane p) {
+        private void init(JXLoginPane p) {
             setTitle(UIManagerExt.getString(CLASS_NAME + ".titleString", getLocale()));
             this.panel = p;
             initWindow(this, panel);
