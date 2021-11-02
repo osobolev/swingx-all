@@ -101,7 +101,7 @@ import java.util.List;
  *  JScrollPane     scrollpane = new JScrollPane(treeTable);
  * </pre>
  * See {@link JTable} for an explanation of why putting the treetable
- * inside a scroll pane is necessary.</p>
+ * inside a scroll pane is necessary.
  *
  * <p>A single treetable model instance may be shared among more than one
  * <code>JXTreeTable</code> instances. To access the treetable model, always call
@@ -445,8 +445,6 @@ public class JXTreeTable extends JXTable {
      * evolution to work around #1230), the old long-standing default was
      * TreeTableHackerExt3. If you experience problems with the latest, please
      * let us know.
-     *
-     * @return
      */
     protected TreeTableHacker createTreeTableHacker() {
 //        return new TreeTableHacker();
@@ -2308,7 +2306,7 @@ public class JXTreeTable extends JXTable {
         }
 
         /**
-         * @inherited <p>
+         * {@inheritDoc}
          * <p>
          * Implemented to return the the underlying TreeTableModel.
          */

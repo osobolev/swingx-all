@@ -31,7 +31,7 @@ import java.awt.event.ActionEvent;
 /**
  * Renderer for hyperlinks". <p>
  * <p>
- * The renderer is configured with a LinkAction<T>.
+ * The renderer is configured with a {@code LinkAction<T>}.
  * It's mostly up to the developer to guarantee that the all
  * values which are passed into the getXXRendererComponent(...) are
  * compatible with T: she can provide a runtime class to check against.

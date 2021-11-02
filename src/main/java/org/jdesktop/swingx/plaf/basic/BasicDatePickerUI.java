@@ -820,8 +820,6 @@ public class BasicDatePickerUI extends DatePickerUI {
     /**
      * Called form property listener, updates all components locale, formats
      * etc.
-     *
-     * @author PeS
      */
     protected void updateLocale() {
         Locale locale = datePicker.getLocale();
@@ -1080,8 +1078,6 @@ public class BasicDatePickerUI extends DatePickerUI {
      * PENDING JW: the listener management assumes a stateless implementation
      * relative to the popup/picker. Custom implementations should take care
      * to not keep any references.
-     *
-     * @return
      */
     protected PopupMenuListener createPopupMenuListener() {
         return new PopupMenuListener() {

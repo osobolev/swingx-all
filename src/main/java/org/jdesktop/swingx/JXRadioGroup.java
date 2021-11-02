@@ -65,7 +65,6 @@ import java.util.List;
  * the JXRadioGroup normally, and then call {@link #getChildButton(int)} or
  * {@link #getChildButton(Object)} and configure the buttons.</li>
  * </ol>
- * </p>
  * <p>
  * TODO back with a model (possibly reuse of extend {@link ComboBoxModel}
  * </p>

@@ -178,13 +178,18 @@ public class ColumnFactory {
      * Configures column initial widths properties from <code>JXTable</code>.
      * This implementation sets the column's
      * <code>preferredWidth</code> with the strategy:
-     * <ol> if the column has a prototype, measure the rendering
-     *    component with the prototype as value and use that as
-     *    pref width
-     * <ol> if the column has no prototype, use the standard magic
-     *   pref width (= 75)
-     * <ol> try to measure the column's header and use it's preferred
-     *   width if it exceeds the former.
+     * <ol>
+     * <li>
+     *     if the column has a prototype, measure the rendering
+     *     component with the prototype as value and use that as
+     *     pref width
+     * </li>
+     * <li>
+     *     if the column has no prototype, use the standard magic pref width (= 75)
+     * </li>
+     * <li>
+     *     try to measure the column's header and use it's preferred width if it exceeds the former.
+     * </li>
      * </ol>
      * <p>
      * TODO JW - rename method to better convey what's happening, maybe
@@ -408,7 +413,7 @@ public class ColumnFactory {
      * <p>
      * Subclasses can override to reduce the number (for performance) or support
      * restrictions due to lazy loading, f.i. Implementors must guarantee that
-     * view row access with <code>0 <= row < getRowCount(JXTable)</code>
+     * view row access with {@code 0 <= row < getRowCount(JXTable)}
      * succeeds.
      *
      * @param table the table to access

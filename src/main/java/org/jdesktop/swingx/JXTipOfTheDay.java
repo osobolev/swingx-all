@@ -158,7 +158,7 @@ public class JXTipOfTheDay extends JXPanel {
     }
 
     /**
-     * Notification from the <code>UIManager</code> that the L&F has changed.
+     * Notification from the <code>UIManager</code> that the L&amp;F has changed.
      * Replaces the current UI object with the latest version from the
      * <code>UIManager</code>.
      *
@@ -170,11 +170,9 @@ public class JXTipOfTheDay extends JXPanel {
     }
 
     /**
-     * Sets the L&F object that renders this component.
+     * Sets the L&amp;F object that renders this component.
      *
-     * @param ui the <code>TipOfTheDayUI</code> L&F object
-     * @beaninfo bound: true hidden: true description: The UI object that
-     * implements the taskpane group's LookAndFeel.
+     * @param ui the <code>TipOfTheDayUI</code> L&amp;F object
      * @see javax.swing.UIDefaults#getUI
      */
     public void setUI(TipOfTheDayUI ui) {
@@ -182,9 +180,9 @@ public class JXTipOfTheDay extends JXPanel {
     }
 
     /**
-     * Gets the UI object which implements the L&F for this component.
+     * Gets the UI object which implements the L&amp;F for this component.
      *
-     * @return the TipOfTheDayUI object that implements the TipOfTheDayUI L&F
+     * @return the TipOfTheDayUI object that implements the TipOfTheDayUI L&amp;F
      */
     @Override
     public TipOfTheDayUI getUI() {
@@ -192,7 +190,7 @@ public class JXTipOfTheDay extends JXPanel {
     }
 
     /**
-     * Returns the name of the L&F class that renders this component.
+     * Returns the name of the L&amp;F class that renders this component.
      *
      * @return the string {@link #uiClassID}
      * @see javax.swing.JComponent#getUIClassID
@@ -413,7 +411,7 @@ public class JXTipOfTheDay extends JXPanel {
 
     /**
      * Calls
-     * {@link TipOfTheDayUI#createDialog(Component, ShowOnStartupChoice)}.
+     * {@link TipOfTheDayUI#createDialog}.
      * <p>
      * This method can be overriden in order to control things such as the
      * placement of the dialog or its title.

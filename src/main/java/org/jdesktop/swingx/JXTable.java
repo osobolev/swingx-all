@@ -1893,7 +1893,7 @@ public class JXTable extends JTable implements TableColumnModelExtListener {
      * a sorted column's order is reversed.
      * <p>
      * <p>
-     * PRE: 0 <= columnIndex < getColumnCount()
+     * PRE: {@code 0 <= columnIndex < getColumnCount()}
      *
      * @param columnIndex the columnIndex in view coordinates.
      */
@@ -1907,7 +1907,7 @@ public class JXTable extends JTable implements TableColumnModelExtListener {
      * Sorts the table by the given column using SortOrder.
      * Delegates to the SortController if available, or does nothing if not.<p>
      * <p>
-     * PRE: 0 <= columnIndex < getColumnCount()
+     * PRE: {@code 0 <= columnIndex < getColumnCount()}
      * <p>
      *
      * @param columnIndex the column index in view coordinates.
@@ -2305,7 +2305,7 @@ public class JXTable extends JTable implements TableColumnModelExtListener {
      * index
      * @throws ArrayIndexOutOfBoundsException if columnIndex out of allowed
      *                                        range, that is if
-     *                                        <code> (columnIndex < 0) || (columnIndex >= getColumnCount())</code>
+     *                                        {@code (columnIndex < 0) || (columnIndex >= getColumnCount())}
      * @see #getColumnExt(Object)
      * @see #getColumn(int)
      * @see TableColumnModelExt#getColumnExt(int)
@@ -3002,7 +3002,7 @@ public class JXTable extends JTable implements TableColumnModelExtListener {
         }
 
         /**
-         * @inherited <p>
+         * {@inheritDoc}
          */
         @Override
         public Class<?> getColumnClass(int column) {

@@ -158,9 +158,6 @@ public class HyperlinkAction extends AbstractHyperlinkAction<URI> {
         }
     }
 
-    /**
-     * @return
-     */
     public Action getDesktopAction() {
         return desktopAction;
     }

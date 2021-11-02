@@ -29,7 +29,6 @@ import java.util.logging.Level;
  * of the application.</p>
  *
  * @author rbair
- * @status REVIEWED
  */
 public class ErrorLevel extends Level {
 

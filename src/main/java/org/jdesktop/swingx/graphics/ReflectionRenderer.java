@@ -74,7 +74,7 @@ import java.beans.PropertyChangeSupport;
  *   <li><i>opacity</i>: 35%</li>
  *   <li><i>length</i>: 40%</li>
  *   <li><i>blur enabled</i>: false</li>
- * </ul></p>
+ * </ul>
  * <h2>Generating Reflections</h2>
  * <p>A reflection is generated as a <code>BufferedImage</code> from another
  * <code>BufferedImage</code>. Once the renderer is set up, you must call
@@ -84,7 +84,7 @@ import java.beans.PropertyChangeSupport;
  * ReflectionRenderer renderer = new ReflectionRenderer();
  * // renderer setup
  * BufferedImage reflection = renderer.createReflection(bufferedImage);
- * </pre></p>
+ * </pre>
  * <p>The returned image contains only the reflection. You will have to append
  * it to the source image at painting time to get a realistic results. You can
  * also asks the rendered to return a picture composed of both the source image
@@ -93,7 +93,7 @@ import java.beans.PropertyChangeSupport;
  * ReflectionRenderer renderer = new ReflectionRenderer();
  * // renderer setup
  * BufferedImage reflection = renderer.appendReflection(bufferedImage);
- * </pre></p>
+ * </pre>
  * <h2>Properties Changes</h2>
  * <p>This renderer allows to register property change listeners with
  * {@link #addPropertyChangeListener}. Listening to properties changes is very
@@ -142,7 +142,7 @@ public class ReflectionRenderer {
      *   <li><i>opacity</i>: 35%</li>
      *   <li><i>length</i>: 40%</li>
      *   <li><i>blurring</i>: disabled with a radius of 1 pixel</li>
-     * </ul></p>
+     * </ul>
      * <p>These properties provide a regular, good looking reflection.</p>
      *
      * @see #getOpacity()
@@ -165,7 +165,7 @@ public class ReflectionRenderer {
      * <ul>
      *   <li><i>length</i>: 40%</li>
      *   <li><i>blurring</i>: disabled with a radius of 1 pixel</li>
-     * </ul></p>
+     * </ul>
      *
      * @param opacity the opacity of the reflection, between 0.0 and 1.0
      * @see #getOpacity()

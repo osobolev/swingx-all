@@ -58,7 +58,7 @@ import java.lang.ref.WeakReference;
  *  Painter backgroundPainter = new RectanglePainter(this.getBackground(), null);
  *  Painter p = new CompoundPainter(backgroundPainter, pinstripes, veil);
  *  panel.setBackgroundPainter(p);
- * </code></pre></p>
+ * </code></pre>
  *
  * @author rbair
  */
@@ -251,7 +251,7 @@ public class CompoundPainter<T> extends AbstractPainter<T> {
      * should be checked for their <code>dirty</code> flag as part of
      * processing.<br>
      * Default value is: <code>true</code><br>
-     * This should be set to </code>false</code> if the cacheable state
+     * This should be set to <code>false</code> if the cacheable state
      * of the child <code>Painter</code>s are different from each other.  This
      * will allow the cacheable == <code>true</code> <code>Painter</code>s to
      * keep their cached image during regular repaints.  In this case,
@@ -281,7 +281,7 @@ public class CompoundPainter<T> extends AbstractPainter<T> {
     /**
      * {@inheritDoc}
      *
-     * @impl This <code>CompoundPainter</code> is dirty if it, or (optionally) any of its children,
+     * @implNote This <code>CompoundPainter</code> is dirty if it, or (optionally) any of its children,
      * are dirty. If the super implementation returns <code>true</code>, we return
      * <code>true</code>. Otherwise, if {@link #isCheckingDirtyChildPainters()} is
      * <code>true</code>, we iterate over all child <code>Painter</code>s and query them to

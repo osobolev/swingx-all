@@ -159,9 +159,6 @@ public class NumberEditorExt extends DefaultCellEditor {
         return hasStrictFormatter() ? number : (Number) constructor.newInstance(new Object[] {number.toString()});
     }
 
-    /**
-     * @return
-     */
     protected boolean hasStrictFormatter() {
         return useStrictFormatter;
     }

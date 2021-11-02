@@ -139,7 +139,7 @@ public abstract class AbstractTreeTableModel implements TreeTableModel {
      *
      * @param node a node in the tree, obtained from this data source
      * @return true if <code>node</code> is a leaf
-     * @impl {@code true} if {@code getChildCount(node) == 0}
+     * @implNote {@code true} if {@code getChildCount(node) == 0}
      */
     @Override
     public boolean isLeaf(Object node) {
@@ -153,7 +153,7 @@ public abstract class AbstractTreeTableModel implements TreeTableModel {
      * @param value  the new value
      * @param node   the node whose value is to be changed
      * @param column the column whose value is to be changed
-     * @impl is no-op; provided for convenience for uneditable models
+     * @implNote is no-op; provided for convenience for uneditable models
      * @see #getValueAt
      * @see #isCellEditable
      * @see javax.swing.table.TableModel#setValueAt(Object, int, int)
@@ -171,7 +171,7 @@ public abstract class AbstractTreeTableModel implements TreeTableModel {
      *
      * @param path     path to the node that has changed
      * @param newValue the new value from the <code>TreeCellEditor</code>
-     * @impl is no-op. A {@code JXTreeTable} does not usually edit the node directly.
+     * @implNote is no-op. A {@code JXTreeTable} does not usually edit the node directly.
      */
     @Override
     public void valueForPathChanged(TreePath path, Object newValue) {

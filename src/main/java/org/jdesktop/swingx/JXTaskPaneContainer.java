@@ -45,7 +45,7 @@ import java.awt.event.ContainerEvent;
  * expanding its content.
  *
  * <p>
- * <code>JXTaskPaneContainer<code> can be added to a JScrollPane.
+ * <code>JXTaskPaneContainer</code> can be added to a JScrollPane.
  *
  * <p>
  * Example:
@@ -78,16 +78,6 @@ import java.awt.event.ContainerEvent;
  * </pre>
  *
  * @author <a href="mailto:fred@L2FProd.com">Frederic Lavigne</a>
- * @javabean.attribute name="isContainer"
- * value="Boolean.TRUE"
- * rtexpr="true"
- * @javabean.class name="JXTaskPaneContainer"
- * shortDescription="A component that contains JTaskPaneGroups."
- * stopClass="java.awt.Component"
- * @javabean.icons mono16="JXTaskPaneContainer16-mono.gif"
- * color16="JXTaskPaneContainer16.gif"
- * mono32="JXTaskPaneContainer32-mono.gif"
- * color32="JXTaskPaneContainer32.gif"
  */
 @JavaBean
 public class JXTaskPaneContainer extends JXPanel {
@@ -124,7 +114,7 @@ public class JXTaskPaneContainer extends JXPanel {
     }
 
     /**
-     * Notification from the <code>UIManager</code> that the L&F has changed.
+     * Notification from the <code>UIManager</code> that the L&amp;F has changed.
      * Replaces the current UI object with the latest version from the
      * <code>UIManager</code>.
      *
@@ -136,11 +126,9 @@ public class JXTaskPaneContainer extends JXPanel {
     }
 
     /**
-     * Sets the L&F object that renders this component.
+     * Sets the L&amp;F object that renders this component.
      *
-     * @param ui the <code>TaskPaneContainerUI</code> L&F object
-     * @beaninfo bound: true hidden: true description: The UI object that
-     * implements the taskpane's LookAndFeel.
+     * @param ui the <code>TaskPaneContainerUI</code> L&amp;F object
      * @see javax.swing.UIDefaults#getUI
      */
     public void setUI(TaskPaneContainerUI ui) {
@@ -148,7 +136,7 @@ public class JXTaskPaneContainer extends JXPanel {
     }
 
     /**
-     * Returns the name of the L&F class that renders this component.
+     * Returns the name of the L&amp;F class that renders this component.
      *
      * @return the string {@link #uiClassID}
      * @see javax.swing.JComponent#getUIClassID

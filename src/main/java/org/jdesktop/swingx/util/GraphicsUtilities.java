@@ -398,7 +398,7 @@ public class GraphicsUtilities {
      * @return a new compatible <code>BufferedImage</code> containing a
      * thumbnail of <code>image</code>
      * @throws IllegalArgumentException if <code>newWidth</code> is larger than
-     *                                  the width of <code>image</code> or if code>newHeight</code> is larger
+     *                                  the width of <code>image</code> or if <code>newHeight</code> is larger
      *                                  than the height of <code>image</code> or if one of the dimensions
      *                                  is &lt;= 0
      * @see #createThumbnailFast(BufferedImage, int)
@@ -547,7 +547,7 @@ public class GraphicsUtilities {
      * @return a new compatible <code>BufferedImage</code> containing a
      * thumbnail of <code>image</code>
      * @throws IllegalArgumentException if <code>newWidth</code> is larger than
-     *                                  the width of <code>image</code> or if code>newHeight</code> is larger
+     *                                  the width of <code>image</code> or if <code>newHeight</code> is larger
      *                                  than the height of <code>image or if one the dimensions is not &gt; 0</code>
      * @see #createThumbnailFast(BufferedImage, int)
      * @see #createThumbnailFast(BufferedImage, int, int)

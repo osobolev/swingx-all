@@ -29,8 +29,6 @@ interface Mnemonicable {
      * button to be activated whether or not the Shift modifier was pressed.
      *
      * @param mnemonic the key code which represents the mnemonic
-     * @beaninfo bound: true attribute: visualUpdate true description: the
-     * keyboard character mnemonic
      * @see java.awt.event.KeyEvent
      * @see #setDisplayedMnemonicIndex
      */
@@ -65,10 +63,6 @@ interface Mnemonicable {
      * @param index Index into the String to underline
      * @throws IllegalArgumentException will be thrown if <code>index</code>
      *                                  is &gt;= length of the text, or &lt; -1
-     * @beaninfo bound: true
-     * attribute: visualUpdate true
-     * description: the index into the String to draw the keyboard character
-     * mnemonic at
      * @see #getDisplayedMnemonicIndex
      * @since 1.4
      */

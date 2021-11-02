@@ -256,7 +256,7 @@ public abstract class AbstractMutableTreeTableNode implements MutableTreeTableNo
      *
      * @param aValue the value to set
      * @param column the column to set the value on
-     * @impl does nothing. It is provided for convenience.
+     * @implNote does nothing. It is provided for convenience.
      */
     @Override
     public void setValueAt(Object aValue, int column) {

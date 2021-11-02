@@ -152,8 +152,6 @@ public abstract class PromptTextUI extends TextUI {
 
     /**
      * Creates a component which should be used to render the prompt text.
-     *
-     * @return
      */
     protected abstract JTextComponent createPromptComponent();
 
@@ -325,8 +323,7 @@ public abstract class PromptTextUI extends TextUI {
     }
 
     /**
-     * Calls {@link #modelToView(JTextComponent, int, Bias)} with
-     * {@link Bias#Forward}.
+     * Calls {@link #modelToView(JTextComponent, int, javax.swing.text.Position.Bias)} with {@link javax.swing.text.Position.Bias#Forward}.
      */
     @Override
     public Rectangle modelToView(JTextComponent t, int pos) throws BadLocationException {

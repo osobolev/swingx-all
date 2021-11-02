@@ -136,7 +136,6 @@ import java.util.regex.Pattern;
  * toolBar.add(editorPane.getParagraphSelector());
  * setToolBar(toolBar);
  * </pre>
- * </p>
  *
  * @author Mark Davidson
  */
@@ -511,7 +510,7 @@ public class JXEditorPane extends JEditorPane implements /*Searchable, */Targeta
     }
 
     /**
-     * The paste method has been overloaded to strip off the <html><body> tags
+     * The paste method has been overloaded to strip off the {@code <html><body>} tags
      * This doesn't really work.
      */
     @Override

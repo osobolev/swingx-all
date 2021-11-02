@@ -39,7 +39,7 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 
 /**
- * <p>A simple horizontal separator that contains a title.<br/>
+ * <p>A simple horizontal separator that contains a title.<br>
  *
  * <p>JXTitledSeparator allows you to specify the title via the {@link #setTitle} method.
  * The title alignment may be specified by using the {@link #setHorizontalAlignment}
@@ -75,7 +75,6 @@ import java.awt.Insets;
  * </code></pre>
  *
  * @author rbair
- * @status REVIEWED
  */
 @JavaBean
 public class JXTitledSeparator extends JXPanel {

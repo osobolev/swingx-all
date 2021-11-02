@@ -73,8 +73,8 @@ public class Star2D implements Shape {
      * @param outerRadius   the distance between the center of the star and the
      *                      tip of the branches
      * @param branchesCount the number of branches in this star; must be &gt;= 3
-     * @throws IllegalArgumentException if <code>branchesCount<code> is < 3 or
-     *                                  if <code>innerRadius</code> is &gt;= <code>outerRadius</code>
+     * @throws IllegalArgumentException if {@code branchesCount < 3} or
+     *                                  if {@code innerRadius >= outerRadius}
      */
     public Star2D(double x, double y, double innerRadius, double outerRadius, int branchesCount) {
         if (branchesCount < 3) {

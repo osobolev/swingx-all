@@ -112,18 +112,6 @@ import java.awt.LayoutManager;
  *
  * @author <a href="mailto:fred@L2FProd.com">Frederic Lavigne</a>
  * @author Karl George Schaefer
- * @javabean.attribute name="isContainer"
- * value="Boolean.TRUE"
- * rtexpr="true"
- * @javabean.attribute name="containerDelegate"
- * value="getContentPane"
- * @javabean.class name="JXTaskPane"
- * shortDescription="JXTaskPane is a container for tasks and other arbitrary components."
- * stopClass="java.awt.Component"
- * @javabean.icons mono16="JXTaskPane16-mono.gif"
- * color16="JXTaskPane16.gif"
- * mono32="JXTaskPane32-mono.gif"
- * color32="JXTaskPane32.gif"
  * @see JXTaskPaneContainer
  * @see JXCollapsiblePane
  */
@@ -239,7 +227,7 @@ public class JXTaskPane extends JPanel implements JXCollapsiblePane.CollapsibleP
     }
 
     /**
-     * Notification from the <code>UIManager</code> that the L&F has changed.
+     * Notification from the <code>UIManager</code> that the L&amp;F has changed.
      * Replaces the current UI object with the latest version from the <code>UIManager</code>.
      *
      * @see JComponent#updateUI
@@ -255,11 +243,9 @@ public class JXTaskPane extends JPanel implements JXCollapsiblePane.CollapsibleP
     }
 
     /**
-     * Sets the L&F object that renders this component.
+     * Sets the L&amp;F object that renders this component.
      *
-     * @param ui the <code>TaskPaneUI</code> L&F object
-     * @beaninfo bound: true hidden: true description: The UI object that
-     * implements the taskpane group's LookAndFeel.
+     * @param ui the <code>TaskPaneUI</code> L&amp;F object
      * @see javax.swing.UIDefaults#getUI
      */
     public void setUI(TaskPaneUI ui) {
@@ -267,7 +253,7 @@ public class JXTaskPane extends JPanel implements JXCollapsiblePane.CollapsibleP
     }
 
     /**
-     * Returns the name of the L&F class that renders this component.
+     * Returns the name of the L&amp;F class that renders this component.
      *
      * @return the string {@link #uiClassID}
      * @see JComponent#getUIClassID
@@ -291,8 +277,6 @@ public class JXTaskPane extends JPanel implements JXCollapsiblePane.CollapsibleP
      * Sets the title to be displayed in the border of this pane.
      *
      * @param title the title to be displayed in the border of this pane
-     * @javabean.property bound="true"
-     * preferred="true"
      */
     public void setTitle(String title) {
         String old = this.title;
@@ -315,8 +299,6 @@ public class JXTaskPane extends JPanel implements JXCollapsiblePane.CollapsibleP
      * the recommended icon size.
      *
      * @param icon the icon to be displayed in the border of this pane
-     * @javabean.property bound="true"
-     * preferred="true"
      */
     public void setIcon(Icon icon) {
         Icon old = this.icon;
@@ -346,7 +328,6 @@ public class JXTaskPane extends JPanel implements JXCollapsiblePane.CollapsibleP
      * the current context.
      *
      * @param special true if this pane is "special", false otherwise
-     * @javabean.property bound="true" preferred="true"
      */
     public void setSpecial(boolean special) {
         boolean oldValue = isSpecial();
@@ -359,8 +340,6 @@ public class JXTaskPane extends JPanel implements JXCollapsiblePane.CollapsibleP
      *
      * @param scrollOnExpand true to scroll this group to be
      *                       visible if this group is expanded.
-     * @javabean.property bound="true"
-     * preferred="true"
      * @see #setCollapsed(boolean)
      */
     public void setScrollOnExpand(boolean scrollOnExpand) {
@@ -388,8 +367,6 @@ public class JXTaskPane extends JPanel implements JXCollapsiblePane.CollapsibleP
      * animation is complete.
      *
      * @param collapsed true to collapse the group, false to expand it
-     * @javabean.property bound="true"
-     * preferred="false"
      */
     public void setCollapsed(boolean collapsed) {
         collapsePane.setCollapsed(collapsed);
@@ -409,8 +386,6 @@ public class JXTaskPane extends JPanel implements JXCollapsiblePane.CollapsibleP
      * Enables or disables animation during expand/collapse transition.
      *
      * @param animated
-     * @javabean.property bound="true"
-     * preferred="true"
      */
     public void setAnimated(boolean animated) {
         boolean oldValue = isAnimated();
@@ -430,20 +405,19 @@ public class JXTaskPane extends JPanel implements JXCollapsiblePane.CollapsibleP
     }
 
     /**
-     * {@inheritDoc}
+     * Returns the keyboard mnemonic for this component.
      * <p>
      * If the character defined by the mnemonic is found within the task pane's
      * text string, the first occurrence of it will be underlined to indicate
      * the mnemonic to the user.
+     *
+     * @return the keyboard mnemonic
      */
     @Override
     public int getMnemonic() {
         return mnemonic;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public void setMnemonic(int mnemonic) {
         int oldValue = getMnemonic();
@@ -484,17 +458,11 @@ public class JXTaskPane extends JPanel implements JXCollapsiblePane.CollapsibleP
         }
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public int getDisplayedMnemonicIndex() {
         return mnemonicIndex;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public void setDisplayedMnemonicIndex(int index) throws IllegalArgumentException {
         int oldValue = mnemonicIndex;

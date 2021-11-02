@@ -142,10 +142,10 @@ public class JRendererCheckBox extends JCheckBox implements PainterAware {
      * <li> reset the flag
      * </ol>
      * <li> else
-     * <ol> apply swingx painter
-     * <ol> call super
-     * <li>
      * <ol>
+     * <li> apply swingx painter
+     * <li> call super
+     * </ol>
      * </ol>
      * <p>
      * Note that Nimbus is special cased (mainly due to its bug of

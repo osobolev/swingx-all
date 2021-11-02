@@ -53,7 +53,7 @@ public class TableAddon extends AbstractComponentAddon {
     }
 
     /**
-     * @inherited <p>
+     * {@inheritDoc}
      * <p>
      * PENDING JW: move to addLinuxDefaults after testing
      */

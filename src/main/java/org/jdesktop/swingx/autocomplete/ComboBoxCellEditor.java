@@ -45,7 +45,6 @@ import java.util.EventObject;
  * TableColumn column = table.getColumnModel().getColumn(0);
  * column.setCellEditor(new ComboBoxCellEditor(comboBox));
  * </code></pre>
- * </p>
  */
 public class ComboBoxCellEditor extends DefaultCellEditor {
 

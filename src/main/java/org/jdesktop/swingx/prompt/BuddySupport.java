@@ -146,7 +146,6 @@ public class BuddySupport {
      * Create a gap to insert between to buddies.
      *
      * @param width
-     * @return
      */
     public static Component createGap(int width) {
         return Box.createHorizontalStrut(width);

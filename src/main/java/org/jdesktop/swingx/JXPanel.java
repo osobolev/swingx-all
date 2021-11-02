@@ -75,7 +75,6 @@ import static org.jdesktop.swingx.util.GraphicsUtilities.createCompatibleTranslu
  * container.add(panel);
  * </pre>
  *
- * </p>
  * <h3>Painter Support</h3>
  * <p>
  * {@code JXPanel} has support for {@linkplain Painter}s.
@@ -87,8 +86,6 @@ import static org.jdesktop.swingx.util.GraphicsUtilities.createCompatibleTranslu
  * JXPanel panel = new JXPanel();
  * panel.setBackgroundPainter(new PinstripePainter());
  * </pre>
- *
- * </p>
  *
  * @author rbair
  * @see Scrollable
@@ -220,17 +217,11 @@ public class JXPanel extends JPanel implements AlphaPaintable, BackgroundPaintab
         return super.isOpaque();
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public float getAlpha() {
         return alpha;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public void setAlpha(float alpha) {
         if (isPatch()) {
@@ -307,9 +298,6 @@ public class JXPanel extends JPanel implements AlphaPaintable, BackgroundPaintab
     void uninstallRepaintManager() {
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public float getEffectiveAlpha() {
         float a = getAlpha();
@@ -326,17 +314,11 @@ public class JXPanel extends JPanel implements AlphaPaintable, BackgroundPaintab
         return a;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public boolean isInheritAlpha() {
         return inheritAlpha;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public void setInheritAlpha(boolean val) {
         boolean oldValue = isInheritAlpha();
@@ -669,8 +651,6 @@ public class JXPanel extends JPanel implements AlphaPaintable, BackgroundPaintab
     /**
      * Returns whether or not the container hierarchy below is
      * transparent.
-     *
-     * @return
      */
     protected boolean isAlpha() {
         // PENDING JW: use effective alpha?
@@ -679,8 +659,6 @@ public class JXPanel extends JPanel implements AlphaPaintable, BackgroundPaintab
 
     /**
      * Returns whether or not the background is transparent.
-     *
-     * @return
      */
     protected boolean isTransparentBackground() {
         return getBackground().getAlpha() < 255;
@@ -688,8 +666,6 @@ public class JXPanel extends JPanel implements AlphaPaintable, BackgroundPaintab
 
     /**
      * Returns whether or not the background should be painted.
-     *
-     * @return
      */
     protected boolean isPaintingBackground() {
         return super.isOpaque();

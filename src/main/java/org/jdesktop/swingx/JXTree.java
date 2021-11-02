@@ -86,8 +86,7 @@ import java.util.regex.Pattern;
  * decorate the rendering component.
  * <p>
  *
- * <pre><code>
- *
+ * <pre>{@code
  * JXTree tree = new JXTree(new FileSystemModel());
  * // use system file icons and name to render
  * tree.setCellRenderer(new DefaultTreeRenderer(IconValues.FILE_ICON,
@@ -102,8 +101,7 @@ import java.util.regex.Pattern;
  * };
  * // highlight with foreground color
  * tree.addHighlighter(new ColorHighlighter(predicate, null, Color.RED);
- *
- * </code></pre>
+ * }</pre>
  *
  * <i>Note:</i> for full functionality, a DefaultTreeRenderer must be installed
  * as TreeCellRenderer. This is not done by default, because there are
@@ -611,9 +609,6 @@ public class JXTree extends JTree {
      *
      * @param selectionForeground the <code>Color</code> to use in the foreground
      *                            for selected list items
-     * @beaninfo bound: true
-     * attribute: visualUpdate true
-     * description: The foreground color of selected cells.
      * @see #getSelectionForeground
      * @see #setSelectionBackground
      * @see #setForeground
@@ -638,9 +633,6 @@ public class JXTree extends JTree {
      *
      * @param selectionBackground the <code>Color</code> to use for the
      *                            background of selected cells
-     * @beaninfo bound: true
-     * attribute: visualUpdate true
-     * description: The background color of selected cells.
      * @see #getSelectionBackground
      * @see #setSelectionForeground
      * @see #setForeground
@@ -1119,7 +1111,7 @@ public class JXTree extends JTree {
      * after messaging the delegate.<p>
      * <p>
      * PENDING JW: formally implement UIDependent?
-     * PENDING JW: missing updateUI anyway (got lost when c&p from JXList ;-)
+     * PENDING JW: missing updateUI anyway (got lost when c&amp;p from JXList ;-)
      * PENDING JW: missing override of updateUI in xtree ...
      */
     public class DelegatingRenderer implements TreeCellRenderer, RolloverRenderer {

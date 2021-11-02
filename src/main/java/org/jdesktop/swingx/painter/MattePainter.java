@@ -35,7 +35,7 @@ import java.awt.Shape;
  * <pre><code>
  *  MattePainter p = new MattePainter(Color.GREEN);
  *  panel.setBackgroundPainter(p);
- * </code></pre></p>
+ * </code></pre>
  *
  * <p>Since it accepts a Paint, it is also possible to paint a texture or use other
  * more exotic Paint implementations. To paint a BufferedImage texture as the
@@ -45,7 +45,7 @@ import java.awt.Shape;
  *      new Rectangle2D.Double(0, 0, bufferedImage.getWidth(), bufferedImage.getHeight()));
  *  MattePainter p = new MattePainter(paint);
  *  panel.setBackgroundPainter(p);
- * </code></pre></p>
+ * </code></pre>
  *
  * <p>If no paint is specified, then nothing is painted</p>
  *

@@ -63,7 +63,7 @@ import static java.util.Collections.unmodifiableList;
  * JList list = [...];
  * JTextField textField = [...];
  * AutoCompleteDecorator.<b>decorate</b>(list, textField);
- * </code></pre></p>
+ * </code></pre>
  *
  * @author Thomas Bierhance
  * @author Karl Schaefer

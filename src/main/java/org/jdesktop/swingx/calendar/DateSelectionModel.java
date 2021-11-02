@@ -277,7 +277,7 @@ public interface DateSelectionModel {
     boolean isSelectionEmpty();
 
     /**
-     * Returns a <code>SortedSet</code> of <code>Date</codes>s that are unselectable.
+     * Returns a <code>SortedSet</code> of <code>Date</code>s that are unselectable.
      *
      * @return sorted set of dates
      */

@@ -30,7 +30,7 @@ package org.jdesktop.swingx.autocomplete;
  * </p><p>
  * An example for i18n:
  * </p><p>
- * <code><pre>
+ * <pre><code>
  * public class I18NStringConverter extends ObjectToStringConverter {
  *   ResourceBundle bundle;
  *
@@ -43,7 +43,7 @@ package org.jdesktop.swingx.autocomplete;
  *   }
  * }
  * </code></pre>
- * </p><p>
+ * <p>
  * It's also possible to return more than one string representation. The
  * following example shows a converter that will allow a user to choose an
  * airport using either the airport's full description (<tt>toString()</tt>) or
@@ -64,7 +64,6 @@ package org.jdesktop.swingx.autocomplete;
  *   }
  * }
  * </code></pre>
- * </p>
  *
  * @author Thomas Bierhance
  */

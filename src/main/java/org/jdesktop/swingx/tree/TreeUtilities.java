@@ -307,7 +307,6 @@ public class TreeUtilities {
          * Returns an enumeration on the children of the root node.
          *
          * @param node
-         * @return
          */
         protected Enumeration<M> getChildren(M node) {
             return (Enumeration<M>) node.children();

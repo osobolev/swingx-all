@@ -422,8 +422,6 @@ public class CellContext implements Serializable {
 
     /**
      * Returns the Font of the target component or null if no component installed.
-     *
-     * @return
      */
     protected Font getFont() {
         return getComponent() != null ? getComponent().getFont() : null;

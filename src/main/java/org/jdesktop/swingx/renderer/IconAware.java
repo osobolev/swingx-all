@@ -25,8 +25,6 @@ public interface IconAware {
 
     /**
      * Returns the icon property.
-     *
-     * @return
      */
     Icon getIcon();
 }

@@ -55,7 +55,7 @@ import java.util.Map;
  * <li>null: indicates a separator should be inserted.
  * <li>java.util.List: represents a submenu. See the note below which describes
  * the configuration of menus.
- * </li>
+ * </ul>
  * The order of elements in an action-list determines the arrangement of the ui
  * components which are constructed from the action-list.
  * <p>

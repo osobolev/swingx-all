@@ -51,7 +51,7 @@ import java.beans.PropertyChangeListener;
  * As an example, a ValueBasedPainterHighlighter might safely change any painter
  * property to decorate a component depending on content.
  *
- * <pre><code>
+ * <pre>{@code
  * &#64;Override
  * protected Component doHighlight(Component renderer, ComponentAdapter adapter) {
  *      float end = getEndOfGradient((Number) adapter.getValue());
@@ -66,7 +66,7 @@ import java.beans.PropertyChangeListener;
  *     return super.canHighlight(renderer, adapter) &&
  *        (adapter.getValue() instanceof Number);
  * }
- * </code></pre>
+ * }</pre>
  * <p>
  * NOTE: this will change once the Painter api is stable.
  *

@@ -311,7 +311,7 @@ public abstract class AbstractSearchable implements Searchable {
 
     /**
      * Matches the cell at row/lastFoundColumn against the pattern.
-     * Called if sameRowIndex && !hasEqualRegEx.
+     * Called if {@code sameRowIndex && !hasEqualRegEx}.
      * PRE: lastFoundColumn valid.
      *
      * @param pattern <code>Pattern</code> that we will try to match
@@ -333,7 +333,7 @@ public abstract class AbstractSearchable implements Searchable {
     }
 
     /**
-     * Checks if index is in range: 0 <= index < getSize().
+     * Checks if index is in range: {@code 0 <= index < getSize()}.
      *
      * @param index possible start position that we will check for validity
      * @return <code>true</code> if given parameter is valid index

@@ -49,7 +49,7 @@ import java.util.Vector;
 
 /**
  * A utility class for obtaining configuration properties from the
- * {@code UIDefaults}. This class handles SwingX-specific L&F needs, such as
+ * {@code UIDefaults}. This class handles SwingX-specific L&amp;F needs, such as
  * the installation of painters and shapes. There are several categories of
  * utility methods:
  * <ul>

@@ -211,7 +211,7 @@ public interface TableColumnModelExt extends TableColumnModel {
      * index
      * @throws ArrayIndexOutOfBoundsException if columnIndex out of allowed
      *                                        range, that is if
-     *                                        <code> (columnIndex < 0) || (columnIndex >= getColumnCount())</code>.
+     *                                        {@code (columnIndex < 0) || (columnIndex >= getColumnCount())}.
      */
     TableColumnExt getColumnExt(int columnIndex);
 

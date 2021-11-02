@@ -146,9 +146,6 @@ public class BasicErrorPaneUI extends ErrorPaneUI {
 
     //---------------------------------------------------------- constructor
 
-    /**
-     * {@inheritDoc}
-     */
     public static ComponentUI createUI(JComponent c) {
         return new BasicErrorPaneUI();
     }

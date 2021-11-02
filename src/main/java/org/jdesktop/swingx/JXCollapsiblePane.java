@@ -148,14 +148,6 @@ import java.beans.PropertyChangeListener;
  * @author rbair (from the JDNC project)
  * @author <a href="mailto:fred@L2FProd.com">Frederic Lavigne</a>
  * @author Karl George Schaefer
- * @javabean.attribute name="isContainer"
- * value="Boolean.TRUE"
- * rtexpr="true"
- * @javabean.attribute name="containerDelegate"
- * value="getContentPane"
- * @javabean.class name="JXCollapsiblePane"
- * shortDescription="A pane which hides its content with an animation."
- * stopClass="java.awt.Component"
  */
 @JavaBean
 public class JXCollapsiblePane extends JXPanel {
@@ -476,7 +468,6 @@ public class JXCollapsiblePane extends JXPanel {
      * (collapsing) or show (expanding) its content area.
      *
      * @param animated
-     * @javabean.property bound="true" preferred="true"
      */
     public void setAnimated(boolean animated) {
         if (animated != useAnimation) {
@@ -524,8 +515,6 @@ public class JXCollapsiblePane extends JXPanel {
      * @param direction the new {@link Direction} for this collapsible pane
      * @throws IllegalStateException when this method is called while a
      *                               collapsing/restore operation is running
-     * @javabean.property bound="true"
-     * preferred="true"
      * @see #getDirection()
      */
     public void setDirection(Direction direction) {
@@ -580,8 +569,6 @@ public class JXCollapsiblePane extends JXPanel {
      * the component's state is accurate.  This means that animated collapsible
      * pane's only fire events once the animation is complete.
      *
-     * @javabean.property bound="true"
-     * preferred="true"
      * @see #isAnimated()
      * @see #setAnimated(boolean)
      */

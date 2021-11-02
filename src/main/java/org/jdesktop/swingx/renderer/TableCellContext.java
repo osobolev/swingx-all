@@ -93,7 +93,8 @@ public class TableCellContext extends CellContext {
     }
 
     /**
-     * @inherited <p>
+     * {@inheritDoc}
+     * <p>
      * Overridden to respect UI alternating row colors.
      */
     @Override

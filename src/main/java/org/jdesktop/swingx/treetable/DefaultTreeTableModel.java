@@ -161,7 +161,7 @@ public class DefaultTreeTableModel extends AbstractTreeTableModel {
      * @throws IllegalArgumentException if {@code node} is not an instance of {@code TreeTableNode}
      *                                  or is not managed by this model, or {@code column} is not a
      *                                  valid column index
-     * @impl delegates to {@code TreeTableNode.getValueAt(int)}
+     * @implNote delegates to {@code TreeTableNode.getValueAt(int)}
      */
     @Override
     public Object getValueAt(Object node, int column) {

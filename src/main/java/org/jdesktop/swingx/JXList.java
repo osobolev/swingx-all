@@ -525,9 +525,6 @@ public class JXList<E> extends JList<E> {
      *
      * @param autoCreateRowSorter whether or not a {@code RowSorter}
      *                            should be automatically created
-     * @beaninfo bound: true
-     * preferred: true
-     * description: Whether or not to turn on sorting by default.
      */
     public void setAutoCreateRowSorter(boolean autoCreateRowSorter) {
         if (getAutoCreateRowSorter() == autoCreateRowSorter)
@@ -859,8 +856,7 @@ public class JXList<E> extends JList<E> {
      *
      * @param viewIndex the index in view coordinates
      * @return the element at the index
-     * @throws IndexOutOfBoundsException if viewIndex < 0 or viewIndex >=
-     *                                   getElementCount()
+     * @throws IndexOutOfBoundsException if {@code viewIndex < 0 or viewIndex >= getElementCount()}
      */
     public E getElementAt(int viewIndex) {
         return getModel().getElementAt(convertIndexToModel(viewIndex));
@@ -908,13 +904,13 @@ public class JXList<E> extends JList<E> {
                     setSelectedIndex(i);
                     if (shouldScroll)
                         ensureIndexIsVisible(i);
-                    repaint();  /** FIX-ME setSelectedIndex does not redraw all the time with the basic l&f**/
+                    repaint();  /** FIX-ME setSelectedIndex does not redraw all the time with the basic l&amp;f**/
                     return;
                 }
             }
             setSelectedIndex(-1);
         }
-        repaint(); /** FIX-ME setSelectedIndex does not redraw all the time with the basic l&f**/
+        repaint(); /** FIX-ME setSelectedIndex does not redraw all the time with the basic l&amp;f**/
     }
 
     /**
@@ -963,7 +959,7 @@ public class JXList<E> extends JList<E> {
      *
      * @param viewIndex index in view coordinates
      * @return index in model coordinates
-     * @throws IndexOutOfBoundsException if viewIndex < 0 or viewIndex >= getElementCount()
+     * @throws IndexOutOfBoundsException if {@code viewIndex < 0 or viewIndex >= getElementCount()}
      */
     public int convertIndexToModel(int viewIndex) {
         return getRowSorter() != null ? getRowSorter().convertRowIndexToModel(viewIndex) : viewIndex;

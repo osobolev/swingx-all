@@ -249,7 +249,7 @@ public class JXSearchField extends JXTextField {
      * Milliseconds.
      *
      * @return the instant search delay in milliseconds
-     * @see {@link #setInstantSearchDelay(int)}
+     * @see #setInstantSearchDelay(int)
      */
     public int getInstantSearchDelay() {
         return instantSearchDelay;
@@ -279,8 +279,6 @@ public class JXSearchField extends JXTextField {
 
     /**
      * Get the current {@link LayoutStyle}.
-     *
-     * @return
      */
     public LayoutStyle getLayoutStyle() {
         return layoutStyle;
@@ -289,8 +287,6 @@ public class JXSearchField extends JXTextField {
     /**
      * Returns <code>true</code> if the current {@link LayoutStyle} is
      * {@link LayoutStyle#VISTA}.
-     *
-     * @return
      */
     public boolean isVistaLayoutStyle() {
         return LayoutStyle.VISTA.equals(getLayoutStyle());
@@ -299,8 +295,6 @@ public class JXSearchField extends JXTextField {
     /**
      * Returns <code>true</code> if the current {@link LayoutStyle} is
      * {@link LayoutStyle#MAC}.
-     *
-     * @return
      */
     public boolean isMacLayoutStyle() {
         return LayoutStyle.MAC.equals(getLayoutStyle());
@@ -318,7 +312,7 @@ public class JXSearchField extends JXTextField {
     }
 
     /**
-     * Returns the cancel action, or an instance of {@link ClearAction}, if
+     * Returns the cancel action, or an instance of ClearAction, if
      * none has been set.
      *
      * @return the cancel action
@@ -390,7 +384,7 @@ public class JXSearchField extends JXTextField {
      * Sets the action that is invoked when the enter key is pressed or the find
      * button is clicked.
      *
-     * @return the find action
+     * @param findAction the find action
      */
     public final void setFindAction(ActionListener findAction) {
         NativeSearchFieldSupport.setFindAction(this, findAction);
@@ -565,8 +559,6 @@ public class JXSearchField extends JXTextField {
 
     /**
      * TODO
-     *
-     * @return
      */
     public final boolean isManagingRecentSearches() {
         return recentSearches != null;
@@ -579,7 +571,6 @@ public class JXSearchField extends JXTextField {
     /**
      * Returns the key used to persist recent searches.
      *
-     * @return
      * @see #setRecentSearchesSaveKey(String)
      */
     public String getRecentSearchesSaveKey() {
@@ -618,8 +609,6 @@ public class JXSearchField extends JXTextField {
 
     /**
      * TODO
-     *
-     * @return
      */
     public RecentSearches getRecentSearches() {
         return recentSearches;

@@ -124,9 +124,6 @@ public class TableRowHeightController {
         updatePreferredRowHeights();
     }
 
-    /**
-     * @return
-     */
     protected PropertyChangeListener createTablePropertyListener() {
         return new PropertyChangeListener() {
 
@@ -182,9 +179,6 @@ public class TableRowHeightController {
         // whatever else turns out to be needed
     }
 
-    /**
-     * @return
-     */
     protected TableModelListener getTableModelListener() {
         if (tableModelListener == null) {
             tableModelListener = createTableModelListener();
@@ -192,9 +186,6 @@ public class TableRowHeightController {
         return tableModelListener;
     }
 
-    /**
-     * @return
-     */
     protected PropertyChangeListener getPropertyChangeListener() {
         if (tablePropertyListener == null) {
             tablePropertyListener = createTablePropertyListener();

@@ -71,7 +71,7 @@ import java.awt.Insets;
  *              JXStatusBar.Constraint.ResizeBehavior.FILL) // Fill with no inserts
  *      JProgressBar pbar = new JProgressBar();
  *      bar.add(pbar, c2);            // Fill with no inserts - will use remaining space
- * </code></pre></p>
+ * </code></pre>
  *
  * <p>Two common use cases for status bars include tracking application status and
  * progress. <code>JXStatusBar</code> does not manage these tasks, but instead special components
@@ -91,12 +91,11 @@ import java.awt.Insets;
  *      sbar.add(new JSeparator(JSeparator.VERTICAL));
  *      sbar.add(comp2);
  *      sbar.add(comp3);
- *  </code></pre></p>
+ *  </code></pre>
  *
  * @author pdoubleya
  * @author rbair
  * @author Karl George Schaefer
- * @status REVIEWED
  */
 @JavaBean
 public class JXStatusBar extends JComponent {
@@ -141,7 +140,7 @@ public class JXStatusBar extends JComponent {
     }
 
     /**
-     * Returns the look and feel (L&F) object that renders this component.
+     * Returns the look and feel (L&amp;F) object that renders this component.
      *
      * @return the StatusBarUI object that renders this component
      */
@@ -150,13 +149,9 @@ public class JXStatusBar extends JComponent {
     }
 
     /**
-     * Sets the look and feel (L&F) object that renders this component.
+     * Sets the look and feel (L&amp;F) object that renders this component.
      *
-     * @param ui the StatusBarUI L&F object
-     * @beaninfo bound: true
-     * hidden: true
-     * attribute: visualUpdate true
-     * description: The component's look and feel delegate.
+     * @param ui the StatusBarUI L&amp;F object
      * @see javax.swing.UIDefaults#getUI
      */
     public void setUI(StatusBarUI ui) {
@@ -164,12 +159,10 @@ public class JXStatusBar extends JComponent {
     }
 
     /**
-     * Returns a string that specifies the name of the L&F class that renders
+     * Returns a string that specifies the name of the L&amp;F class that renders
      * this component.
      *
      * @return "StatusBarUI"
-     * @beaninfo expert: true description: A string that specifies the name of
-     * the L&F class.
      * @see JComponent#getUIClassID
      * @see javax.swing.UIDefaults#getUI
      */
@@ -179,7 +172,7 @@ public class JXStatusBar extends JComponent {
     }
 
     /**
-     * Notification from the <code>UIManager</code> that the L&F has changed.
+     * Notification from the <code>UIManager</code> that the L&amp;F has changed.
      * Replaces the current UI object with the latest version from the
      * <code>UIManager</code>.
      *

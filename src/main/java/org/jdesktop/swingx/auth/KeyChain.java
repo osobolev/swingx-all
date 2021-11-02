@@ -42,7 +42,6 @@ import java.util.logging.Logger;
  * for multiple servers/accounts. The actual store for the KeyStore
  * can be any OutputStream and it can work in the webstart sandbox
  * using Muffins.
- * </p>
  * <p>
  * To contstruct a <b>KeyChain</b>, you need to pass in an InputStream to the
  * store and it will initialize the KeyStore from the InputStream.

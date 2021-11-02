@@ -61,8 +61,6 @@ import java.beans.VetoableChangeSupport;
  * }
  * </code></pre>
  *
- * </p>
- *
  * <p>
  * You will notice that "getFoo()" is used in the setFoo method rather than
  * accessing "foo" directly for the gets. This is done intentionally so that if
@@ -120,7 +118,6 @@ import java.beans.VetoableChangeSupport;
  *  }
  * </code></pre>
  *
- * </p>
  * <p>
  * {@code AbstractBean} is not {@link java.io.Serializable}. Special care must
  * be taken when creating {@code Serializable} subclasses, as the
@@ -134,7 +131,6 @@ import java.beans.VetoableChangeSupport;
  * </p>
  *
  * @author rbair
- * @status REVIEWED
  * @see AbstractSerializableBean
  */
 @SuppressWarnings("nls")
@@ -218,9 +214,9 @@ public abstract class AbstractBean {
      * <code>PropertyChangeListenerProxy</code>, perform the cast, and examine
      * the parameter.
      *
-     * <pre>
+     * <pre>{@code
      * PropertyChangeListener[] listeners = bean.getPropertyChangeListeners();
-     * for (int i = 0; i < listeners.length; i++) {
+     * for (int i = 0; i &lt; listeners.length; i++) {
      *     if (listeners[i] instanceof PropertyChangeListenerProxy) {
      *     PropertyChangeListenerProxy proxy =
      *                    (PropertyChangeListenerProxy)listeners[i];
@@ -230,7 +226,7 @@ public abstract class AbstractBean {
      *     }
      *   }
      * }
-     * </pre>
+     * }</pre>
      *
      * @return all of the <code>PropertyChangeListeners</code> added or an
      * empty array if no listeners have been added

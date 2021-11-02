@@ -48,7 +48,7 @@ import java.awt.event.ActionListener;
  *     frame.add(label);
  *     //...
  *     label.setBusy(true);
- * </code></pre></p>
+ * </code></pre>
  * Another more complicated example:
  * <pre><code>
  * JXBusyLabel label = new JXBusyLabel(new Dimension(100,84));
@@ -344,7 +344,7 @@ public class JXBusyLabel extends JLabel {
     //------------------------------------------------------------- UI Logic
 
     /**
-     * Notification from the <code>UIManager</code> that the L&F has changed.
+     * Notification from the <code>UIManager</code> that the L&amp;F has changed.
      * Replaces the current UI object with the latest version from the
      * <code>UIManager</code>.
      *
@@ -356,7 +356,7 @@ public class JXBusyLabel extends JLabel {
     }
 
     /**
-     * Returns the name of the L&F class that renders this component.
+     * Returns the name of the L&amp;F class that renders this component.
      *
      * @return the string {@link #uiClassID}
      * @see javax.swing.JComponent#getUIClassID

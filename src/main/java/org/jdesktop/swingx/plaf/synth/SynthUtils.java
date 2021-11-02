@@ -67,7 +67,6 @@ public class SynthUtils {
     /**
      * @param context
      * @param style
-     * @return
      */
     public static SynthContext getContext(SynthContext context, SynthStyle style) {
         if (context.getStyle().equals(style))

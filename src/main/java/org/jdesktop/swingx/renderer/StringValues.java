@@ -50,7 +50,7 @@ public final class StringValues {
     public static final StringValue TO_STRING = value -> value != null ? value.toString() : EMPTY.getString(value);
 
     /**
-     * A {@code StringValue} that presents the current L&F display name for a
+     * A {@code StringValue} that presents the current L&amp;F display name for a
      * given file. If the value passed to {@code FILE_NAME} is not a
      * {@link File}, this has the same effect as {@link StringValues#TO_STRING}.
      */
@@ -65,7 +65,7 @@ public final class StringValues {
     };
 
     /**
-     * A {@code StringValue} that presents the current L&F type name for a
+     * A {@code StringValue} that presents the current L&amp;F type name for a
      * given file. If the value passed to {@code FILE_TYPE} is not a
      * {@link File}, this has the same effect as {@link StringValues#TO_STRING}.
      */

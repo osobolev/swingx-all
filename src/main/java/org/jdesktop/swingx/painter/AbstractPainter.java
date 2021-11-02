@@ -52,7 +52,7 @@ import java.lang.ref.SoftReference;
  *      g.setPaint(Color.BLUE);
  *      g.fillRect(0, 0, width, height);
  *  }
- * </code></pre></p>
+ * </code></pre>
  *
  * @author rbair
  */

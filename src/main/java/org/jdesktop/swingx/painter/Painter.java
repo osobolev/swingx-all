@@ -48,7 +48,7 @@ import java.awt.Graphics2D;
  *             //and so forth
  *         }
  *     }
- * </code></pre></p>
+ * </code></pre>
  *
  * <p>This class is <strong>not</strong> threadsafe.</p>
  *

@@ -236,8 +236,6 @@ public interface HighlightPredicate {
 
     /**
      * Determines if the displayed text is truncated.
-     *
-     * @author Karl Schaefer
      */
     HighlightPredicate IS_TEXT_TRUNCATED = (renderer, adapter) -> {
         JComponent c = renderer instanceof JComponent ? (JComponent) renderer : null;
@@ -470,8 +468,8 @@ public interface HighlightPredicate {
          * Instantiates a predicate with the given grouping.
          *
          * @param linesPerGroup number of lines constituting a group, must
-         *                      be > 0
-         * @throws IllegalArgumentException if linesPerGroup < 1
+         *                      be &gt; 0
+         * @throws IllegalArgumentException if linesPerGroup &lt; 1
          */
         public RowGroupHighlightPredicate(int linesPerGroup) {
             if (linesPerGroup < 1)

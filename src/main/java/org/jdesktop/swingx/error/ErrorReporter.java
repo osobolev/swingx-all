@@ -30,7 +30,6 @@ package org.jdesktop.swingx.error;
  *
  * @author Alexander Zuev
  * @author rbair
- * @status REVIEWED
  */
 public interface ErrorReporter {
 

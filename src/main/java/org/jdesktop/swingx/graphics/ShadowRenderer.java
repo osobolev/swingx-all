@@ -59,7 +59,7 @@ import static org.jdesktop.swingx.util.GraphicsUtilities.createCompatibleTranslu
  *   <li><i>size</i>: 5 pixels</li>
  *   <li><i>opacity</i>: 50%</li>
  *   <li><i>color</i>: Black</li>
- * </ul></p>
+ * </ul>
  * <h2>Generating a Shadow</h2>
  * <p>A shadow is generated as a <code>BufferedImage</code> from another
  * <code>BufferedImage</code>. Once the renderer is set up, you must call
@@ -68,7 +68,7 @@ import static org.jdesktop.swingx.util.GraphicsUtilities.createCompatibleTranslu
  * ShadowRenderer renderer = new ShadowRenderer();
  * // renderer setup
  * BufferedImage shadow = renderer.createShadow(bufferedImage);
- * </pre></p>
+ * </pre>
  * <p>The generated image dimensions are computed as following:</p>
  * <pre>
  * width  = imageWidth  + 2 * shadowSize
@@ -126,7 +126,7 @@ public class ShadowRenderer {
      *   <li><i>size</i>: 5 pixels</li>
      *   <li><i>opacity</i>: 50%</li>
      *   <li><i>color</i>: Black</li>
-     * </ul></p>
+     * </ul>
      * <p>These properties provide a regular, good looking shadow.</p>
      */
     public ShadowRenderer() {

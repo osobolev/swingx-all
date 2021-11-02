@@ -344,7 +344,7 @@ public class JXTableHeader extends JTableHeader implements TableColumnModelExtLi
     }
 
     /**
-     * @inherited <p>
+     * {@inheritDoc}
      * <p>
      * Overridden to fire a propertyChange for draggedColumn.
      */
@@ -358,7 +358,7 @@ public class JXTableHeader extends JTableHeader implements TableColumnModelExtLi
     }
 
     /**
-     * @inherited <p>
+     * {@inheritDoc}
      * <p>
      * Overridden to fire a propertyChange for resizingColumn.
      */

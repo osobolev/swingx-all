@@ -18,7 +18,7 @@ package org.jdesktop.swingx.treetable;
  * JXTreeTable table = new JXTreeTable();
  * ColumnFactory factory = new ColumnFactory() {
  *
- *     @Override
+ *     &#64;Override
  *     public void configureTableColumn(TableModel model,
  *             TableColumnExt columnExt) {
  *         super.configureTableColumn(model, columnExt);

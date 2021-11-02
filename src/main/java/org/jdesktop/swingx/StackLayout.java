@@ -44,7 +44,7 @@ import java.util.List;
  * panel.add(new JLabel("At bottom"), StackLayout.BOTTOM);
  * </pre>
  * If you don't specify the constraint, the component will be added at the top
- * of the components stack.</p>
+ * of the components stack.
  * <p>All the components managed by this layout will be given the same size as
  * the container itself. The minimum, maximum and preferred size of the
  * container are based upon the largest minimum, maximum and preferred size of

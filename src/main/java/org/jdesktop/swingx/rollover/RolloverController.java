@@ -172,7 +172,7 @@ public abstract class RolloverController<T extends JComponent> implements Proper
      * component.
      * <p>
      * p.x == focused column, p.y == focused row.
-     * A null return value or any coordinate value of < 0
+     * A null return value or any coordinate value of &lt; 0
      * is interpreted as "outside".
      *
      * @return the location of the focused cell.
