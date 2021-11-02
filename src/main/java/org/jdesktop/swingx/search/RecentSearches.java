@@ -139,7 +139,7 @@ public class RecentSearches implements ActionListener {
      * @return the recent searches
      */
     public String[] getRecentSearches() {
-        return recentSearches.toArray(new String[] {});
+        return recentSearches.toArray(new String[0]);
     }
 
     /**
@@ -205,7 +205,7 @@ public class RecentSearches implements ActionListener {
      * @return all registered {@link ChangeListener}s
      */
     public ChangeListener[] getChangeListeners() {
-        return listeners.toArray(new ChangeListener[] {});
+        return listeners.toArray(new ChangeListener[0]);
     }
 
     private void fireChangeEvent() {
