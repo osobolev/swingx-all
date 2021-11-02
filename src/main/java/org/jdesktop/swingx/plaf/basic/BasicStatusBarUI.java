@@ -216,7 +216,7 @@ public class BasicStatusBarUI extends StatusBarUI {
     /**
      * Used to help reduce the amount of trash being generated
      */
-    private static Insets TEMP_INSETS;
+    private static final Insets TEMP_INSETS = new Insets(0, 0, 0, 0);
     /**
      * The one and only JXStatusBar for this UI delegate
      */
@@ -400,7 +400,7 @@ public class BasicStatusBarUI extends StatusBarUI {
 
         if (includeSeparators()) {
             //now paint the separators
-            TEMP_INSETS = getSeparatorInsets(TEMP_INSETS);
+            getSeparatorInsets(TEMP_INSETS);
             for (int i = 0; i < statusBar.getComponentCount() - 1; i++) {
                 Component comp = statusBar.getComponent(i);
                 int x = comp.getX() + comp.getWidth() + TEMP_INSETS.left;

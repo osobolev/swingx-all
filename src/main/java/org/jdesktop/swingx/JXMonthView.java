@@ -231,7 +231,7 @@ public class JXMonthView extends JComponent {
     /**
      * Localizable day column headers. Default typically installed by the uidelegate.
      */
-    private String[] _daysOfTheWeek;
+    private String[] daysOfTheWeek;
 
     protected Insets _monthStringInsets = new Insets(0, 0, 0, 0);
     private int boxPaddingX;
@@ -1259,7 +1259,7 @@ public class JXMonthView extends JComponent {
         }
 
         String[] oldValue = getDaysOfTheWeek();
-        _daysOfTheWeek = days;
+        daysOfTheWeek = days;
         firePropertyChange(DAYS_OF_THE_WEEK, oldValue, days);
     }
 
@@ -1273,9 +1273,9 @@ public class JXMonthView extends JComponent {
      * @see MonthViewUI
      */
     public String[] getDaysOfTheWeek() {
-        if (_daysOfTheWeek != null) {
+        if (daysOfTheWeek != null) {
             String[] days = new String[DAYS_IN_WEEK];
-            System.arraycopy(_daysOfTheWeek, 0, days, 0, DAYS_IN_WEEK);
+            System.arraycopy(daysOfTheWeek, 0, days, 0, DAYS_IN_WEEK);
             return days;
         }
         return getUI().getDaysOfTheWeek();

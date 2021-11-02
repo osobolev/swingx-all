@@ -457,7 +457,7 @@ public class BasicHyperlinkUI extends BasicButtonUI {
          * Overrides to the default stylesheet.  Should consider
          * just creating a completely fresh stylesheet.
          */
-        private static final String styleChanges =
+        private static final String STYLE_CHANGES =
             "p { margin-top: 0; margin-bottom: 0; margin-left: 0; margin-right: 0; text-decoration: underline }" +
             "body { margin-top: 0; margin-bottom: 0; margin-left: 0; margin-right: 0; text-decoration: underline }" +
             "font {text-decoration: underline}";
@@ -476,7 +476,7 @@ public class BasicHyperlinkUI extends BasicButtonUI {
             public StyleSheet getStyleSheet() {
                 if (defaultStyles == null) {
                     defaultStyles = new StyleSheet();
-                    StringReader r = new StringReader(styleChanges);
+                    StringReader r = new StringReader(STYLE_CHANGES);
                     try {
                         defaultStyles.loadRules(r, null);
                     } catch (Throwable e) {

@@ -119,7 +119,7 @@ public class JXColorSelectionButton extends JButton {
     @Override
     protected void paintComponent(Graphics g) {
         // want disabledForeground when disabled, current colour otherwise
-        Color FILL_COLOR = isEnabled()
+        Color fillColor = isEnabled()
             ? PaintUtils.removeAlpha(getBackground())
             : UIManagerExt.getSafeColor("Button.disabledForeground", Color.LIGHT_GRAY);
 
@@ -129,10 +129,10 @@ public class JXColorSelectionButton extends JButton {
             GraphicsUtilities.tileStretchPaint(g, this, colorwell, ins);
 
             // fill in the color area
-            g.setColor(FILL_COLOR);
+            g.setColor(fillColor);
             g.fillRect(ins.left, ins.top, getWidth() - ins.left - ins.right, getHeight() - ins.top - ins.bottom);
             // draw the borders
-            g.setColor(PaintUtils.setBrightness(FILL_COLOR, 0.85f));
+            g.setColor(PaintUtils.setBrightness(fillColor, 0.85f));
             g.drawRect(ins.left, ins.top, getWidth() - ins.left - ins.right - 1, getHeight() - ins.top - ins.bottom - 1);
             g.drawRect(ins.left + 1, ins.top + 1, getWidth() - ins.left - ins.right - 3, getHeight() - ins.top - ins.bottom - 3);
         } else {
@@ -141,12 +141,12 @@ public class JXColorSelectionButton extends JButton {
             try {
                 g2.setRenderingHint(KEY_ANTIALIASING, VALUE_ANTIALIAS_ON);
                 g2.setColor(Color.LIGHT_GRAY);
-                int DIAM = Math.min(getWidth(), getHeight());
+                int diam = Math.min(getWidth(), getHeight());
                 final int inset = 3;
-                g2.fill(new Ellipse2D.Float(inset, inset, DIAM - 2 * inset, DIAM - 2 * inset));
-                g2.setColor(FILL_COLOR);
+                g2.fill(new Ellipse2D.Float(inset, inset, diam - 2 * inset, diam - 2 * inset));
+                g2.setColor(fillColor);
                 final int border = 1;
-                g2.fill(new Ellipse2D.Float(inset + border, inset + border, DIAM - 2 * inset - 2 * border, DIAM - 2 * inset - 2 * border));
+                g2.fill(new Ellipse2D.Float(inset + border, inset + border, diam - 2 * inset - 2 * border, diam - 2 * inset - 2 * border));
             } finally {
                 g2.dispose();
             }

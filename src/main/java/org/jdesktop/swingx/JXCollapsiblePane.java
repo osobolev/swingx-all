@@ -804,7 +804,7 @@ public class JXCollapsiblePane extends JXPanel {
          * Mutex used to ensure that the startDimension/finalDimension are not changed
          * during a repaint operation.
          */
-        private final Object ANIMATION_MUTEX = "Animation Synchronization Mutex";
+        private final Object animationMutex = "Animation Synchronization Mutex";
         /**
          * This is the starting dimension when animating. If > finalDimension, then the
          * animation is going to be to scroll up the component. If it is less than
@@ -830,7 +830,7 @@ public class JXCollapsiblePane extends JXPanel {
              * of (1)) 3) Calculate the alpha value 4) Resize the ContentContainer 5)
              * Revalidate/Repaint the content container
              */
-            synchronized (ANIMATION_MUTEX) {
+            synchronized (animationMutex) {
                 if (startDimension == finalDimension) {
                     animateTimer.stop();
                     animateAlpha = animationParams.alphaEnd;
@@ -964,7 +964,7 @@ public class JXCollapsiblePane extends JXPanel {
          * @param stopDimension
          */
         public void reinit(int startDimension, int stopDimension) {
-            synchronized (ANIMATION_MUTEX) {
+            synchronized (animationMutex) {
                 this.startDimension = startDimension;
                 this.finalDimension = stopDimension;
                 animateAlpha = animationParams.alphaStart;

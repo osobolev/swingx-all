@@ -43,7 +43,7 @@ public class DatePickerFormatter extends JFormattedTextField.AbstractFormatter {
 
     private static final Logger LOG = Logger.getLogger(DatePickerFormatter.class.getName());
 
-    private final DateFormat[] _formats;
+    private final DateFormat[] formats;
 
     /**
      * Instantiates a formatter with the localized format patterns defined
@@ -105,7 +105,7 @@ public class DatePickerFormatter extends JFormattedTextField.AbstractFormatter {
             formats = createDefaultFormats(locale);
         }
         Contract.asNotNull(formats, "The array of DateFormats must not contain null formats");
-        _formats = formats;
+        this.formats = formats;
     }
 
     /**
@@ -115,8 +115,8 @@ public class DatePickerFormatter extends JFormattedTextField.AbstractFormatter {
      * not null.
      */
     public DateFormat[] getFormats() {
-        DateFormat[] results = new DateFormat[_formats.length];
-        System.arraycopy(_formats, 0, results, 0, results.length);
+        DateFormat[] results = new DateFormat[formats.length];
+        System.arraycopy(formats, 0, results, 0, results.length);
         return results;
     }
 
@@ -134,9 +134,9 @@ public class DatePickerFormatter extends JFormattedTextField.AbstractFormatter {
         // in.
         ParseException pex = null;
         Object result = null;
-        for (DateFormat _format : _formats) {
+        for (DateFormat format : formats) {
             try {
-                result = _format.parse(text);
+                result = format.parse(text);
                 pex = null;
                 break;
             } catch (ParseException ex) {
@@ -156,8 +156,8 @@ public class DatePickerFormatter extends JFormattedTextField.AbstractFormatter {
      */
     @Override
     public String valueToString(Object value) throws ParseException {
-        if (value != null && _formats.length > 0) {
-            return _formats[0].format(value);
+        if (value != null && formats.length > 0) {
+            return formats[0].format(value);
         }
         return null;
     }

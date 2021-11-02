@@ -44,7 +44,7 @@ public class LazyActionMap extends ActionMapUIResource {
      * Object to invoke <code>loadActionMap</code> on. This may be
      * a Class object.
      */
-    private Object _loader;
+    private Object loader;
 
     /**
      * Installs an ActionMap that will be populated by invoking the
@@ -69,7 +69,7 @@ public class LazyActionMap extends ActionMapUIResource {
     }
 
     private LazyActionMap(Class<?> loader) {
-        _loader = loader;
+        this.loader = loader;
     }
 
     public void put(Action action) {
@@ -117,10 +117,10 @@ public class LazyActionMap extends ActionMapUIResource {
     }
 
     private void loadIfNecessary() {
-        if (_loader != null) {
-            Object loader = _loader;
+        if (loader != null) {
+            Object loader = this.loader;
 
-            _loader = null;
+            this.loader = null;
             Class<?> klass = (Class<?>) loader;
             try {
                 Method method = klass.getDeclaredMethod("loadActionMap", LazyActionMap.class);

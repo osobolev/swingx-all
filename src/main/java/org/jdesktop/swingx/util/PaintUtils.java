@@ -258,10 +258,10 @@ public class PaintUtils {
     }
 
     private static double calcAngle(Point2D p1, Point2D p2) {
-        double x_off = p2.getX() - p1.getX();
-        double y_off = p2.getY() - p1.getY();
-        double angle = Math.atan(y_off / x_off);
-        if (x_off < 0) {
+        double xOff = p2.getX() - p1.getX();
+        double yOff = p2.getY() - p1.getY();
+        double angle = Math.atan(yOff / xOff);
+        if (xOff < 0) {
             angle += Math.PI;
         }
 

@@ -81,6 +81,7 @@ import java.util.List;
 public class TargetManager {
 
     private static TargetManager INSTANCE;
+
     private List<Targetable> targetList;
     private Targetable target;
     private final PropertyChangeSupport propertySupport;

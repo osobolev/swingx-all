@@ -122,31 +122,30 @@ public class AbstractAreaEffect implements AreaEffect {
 
     }
 
-    BufferedImage _clipImage = null;
+    private BufferedImage clipImage = null;
 
     private BufferedImage getClipImage(Rectangle effectBounds) {
         // set up a temp buffer
-        if (_clipImage == null || _clipImage.getWidth() != effectBounds.width || _clipImage.getHeight() != effectBounds.height) {
-            _clipImage = createCompatibleTranslucentImage(effectBounds.width, effectBounds.height);
+        if (clipImage == null || clipImage.getWidth() != effectBounds.width || clipImage.getHeight() != effectBounds.height) {
+            clipImage = createCompatibleTranslucentImage(effectBounds.width, effectBounds.height);
         }
-        _clipImage.getGraphics().clearRect(0, 0, _clipImage.getWidth(), _clipImage.getHeight());
-        return _clipImage;
+        clipImage.getGraphics().clearRect(0, 0, clipImage.getWidth(), clipImage.getHeight());
+        return clipImage;
     }
-    
-    
+
     /*
     private BufferedImage createClipImage(Shape s, Graphics2D g, int width, int height) {
         // Create a translucent intermediate image in which we can perform
         // the soft clipping
-     
+
         GraphicsConfiguration gc = g.getDeviceConfiguration();
         BufferedImage img = gc.createCompatibleImage(width, height, Transparency.TRANSLUCENT);
         Graphics2D g2 = img.createGraphics();
-     
+
         // Clear the image so all pixels have zero alpha
         g2.setComposite(AlphaComposite.Clear);
         g2.fillRect(0, 0, width, height);
-     
+
         // Render our clip shape into the image.  Note that we enable
         // antialiasing to achieve the soft clipping effect.  Try
         // commenting out the line that enables antialiasing, and
@@ -156,7 +155,7 @@ public class AbstractAreaEffect implements AreaEffect {
         g2.setColor(Color.WHITE);
         g2.fill(s);
         g2.dispose();
-     
+
         return img;
     }*/
 

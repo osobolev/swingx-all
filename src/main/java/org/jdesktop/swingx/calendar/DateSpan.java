@@ -33,8 +33,8 @@ import java.util.Date;
  */
 public class DateSpan {
 
-    private final long _start;
-    private final long _end;
+    private final long start;
+    private final long end;
 
     /**
      * Creates a <code>DateSpan</code> between the two end points.
@@ -45,9 +45,9 @@ public class DateSpan {
      *                                  <code>end</code>
      */
     public DateSpan(long start, long end) {
-        _start = start;
-        _end = end;
-        if (_start > _end) {
+        this.start = start;
+        this.end = end;
+        if (this.start > this.end) {
             throw new IllegalArgumentException("Start date must be before end date");
         }
     }
@@ -70,7 +70,7 @@ public class DateSpan {
      * @return start of the  span.
      */
     public long getStart() {
-        return _start;
+        return start;
     }
 
     /**
@@ -79,7 +79,7 @@ public class DateSpan {
      * @return end of the span.
      */
     public long getEnd() {
-        return _end;
+        return end;
     }
 
     /**
@@ -193,7 +193,7 @@ public class DateSpan {
         }
         if (o instanceof DateSpan) {
             DateSpan ds = (DateSpan) o;
-            return _start == ds.getStart() && _end == ds.getEnd();
+            return start == ds.getStart() && end == ds.getEnd();
         }
         return false;
     }
@@ -204,8 +204,8 @@ public class DateSpan {
     @Override
     public int hashCode() {
         int result = 17;
-        result = 37 * result + (int) (_start ^ _start >>> 32);
-        result = 37 * result + (int) (_end ^ _end >>> 32);
+        result = 37 * result + (int) (start ^ start >>> 32);
+        result = 37 * result + (int) (end ^ end >>> 32);
         return result;
     }
 

@@ -35,7 +35,8 @@ import java.awt.Component;
  */
 public class AlignmentHighlighter extends AbstractHighlighter {
 
-    private static final int defaultAlignment = SwingConstants.LEADING;
+    private static final int DEFAULT_ALIGNMENT = SwingConstants.LEADING;
+
     private int alignment;
 
     /**
@@ -43,7 +44,7 @@ public class AlignmentHighlighter extends AbstractHighlighter {
      * applied always.
      */
     public AlignmentHighlighter() {
-        this(defaultAlignment);
+        this(DEFAULT_ALIGNMENT);
     }
 
     /**
@@ -65,7 +66,7 @@ public class AlignmentHighlighter extends AbstractHighlighter {
      * @param predicate the HighlightPredicate to use, may be null to default to ALWAYS.
      */
     public AlignmentHighlighter(HighlightPredicate predicate) {
-        this(predicate, defaultAlignment);
+        this(predicate, DEFAULT_ALIGNMENT);
     }
 
     /**

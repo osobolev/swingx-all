@@ -528,10 +528,10 @@ public class JXGradientChooser extends JXPanel {
         gradientPreview.picker = this; //wow, nasty
 
         ///To still refactor below::
-        SpinnerNumberModel alpha_model = new SpinnerNumberModel(100, 0, 100, 1);
-        alphaSpinner.setModel(alpha_model);
-        SpinnerNumberModel location_model = new SpinnerNumberModel(100, 0, 100, 1);
-        colorLocationSpinner.setModel(location_model);
+        SpinnerNumberModel alphaModel = new SpinnerNumberModel(100, 0, 100, 1);
+        alphaSpinner.setModel(alphaModel);
+        SpinnerNumberModel locationModel = new SpinnerNumberModel(100, 0, 100, 1);
+        colorLocationSpinner.setModel(locationModel);
 
         slider.setOpaque(false);
         slider.setPreferredSize(new Dimension(100, 35));

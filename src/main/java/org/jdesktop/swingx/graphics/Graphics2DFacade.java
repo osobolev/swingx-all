@@ -377,13 +377,13 @@ public abstract class Graphics2DFacade extends Graphics2D {
     }
 
     @Override
-    public void transform(AffineTransform Tx) {
-        delegate.transform(Tx);
+    public void transform(AffineTransform tx) {
+        delegate.transform(tx);
     }
 
     @Override
-    public void setTransform(AffineTransform Tx) {
-        delegate.setTransform(Tx);
+    public void setTransform(AffineTransform tx) {
+        delegate.setTransform(tx);
     }
 
     @Override

@@ -43,10 +43,10 @@ import java.util.List;
  */
 public class GradientTrackRenderer extends JComponent implements TrackRenderer<Color> {
 
-    private final Paint checker_paint;
+    private final Paint checkerPaint;
 
     public GradientTrackRenderer() {
-        checker_paint = PaintUtils.getCheckerPaint();
+        checkerPaint = PaintUtils.getCheckerPaint();
     }
 
     private JXMultiThumbSlider<Color> slider;
@@ -76,18 +76,18 @@ public class GradientTrackRenderer extends JComponent implements TrackRenderer<C
         }
 
         // calculate the track area
-        int thumb_width = 12;
-        int track_width = slider.getWidth() - thumb_width;
-        g.translate(thumb_width / 2, 12);
-        Rectangle2D rect = new Rectangle(0, 0, track_width, 20);
+        int thumbWidth = 12;
+        int trackWidth = slider.getWidth() - thumbWidth;
+        g.translate(thumbWidth / 2, 12);
+        Rectangle2D rect = new Rectangle(0, 0, trackWidth, 20);
 
         // fill in the checker
-        g.setPaint(checker_paint);
+        g.setPaint(checkerPaint);
         g.fill(rect);
 
         // fill in the gradient
         Point2D start = new Point2D.Float(0, 0);
-        Point2D end = new Point2D.Float(track_width, 0);
+        Point2D end = new Point2D.Float(trackWidth, 0);
         MultipleGradientPaint paint = new LinearGradientPaint(
             (float) start.getX(), (float) start.getY(), (float) end.getX(), (float) end.getY(), fractions, colors
         );
@@ -97,7 +97,7 @@ public class GradientTrackRenderer extends JComponent implements TrackRenderer<C
         // draw a border
         g.setColor(Color.black);
         g.draw(rect);
-        g.translate(-thumb_width / 2, -12);
+        g.translate(-thumbWidth / 2, -12);
     }
 
     public JComponent getRendererComponent(JXMultiThumbSlider<Color> slider) {

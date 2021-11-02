@@ -201,17 +201,17 @@ public class JXDatePicker extends JComponent {
     /**
      * The editable date field that displays the date
      */
-    private JFormattedTextField _dateField;
+    private JFormattedTextField dateField;
 
     /**
      * Popup that displays the month view with controls for
      * traversing/selecting dates.
      */
-    private JPanel _linkPanel;
-    private MessageFormat _linkFormat;
+    private JPanel linkPanel;
+    private MessageFormat linkFormat;
     private Date linkDate;
 
-    private JXMonthView _monthView;
+    private JXMonthView monthView;
     private boolean editable = true;
     // PENDING JW: remove - duplication, we have access to super's listenerlist
     private EventListenerMap listenerMap;
@@ -349,15 +349,15 @@ public class JXDatePicker extends JComponent {
         initMonthView();
 
         updateLinkFormat();
-        linkDate = _monthView.getToday();
-        _linkPanel = new TodayPanel();
+        linkDate = monthView.getToday();
+        linkPanel = new TodayPanel();
     }
 
     private void initMonthView() {
-        _monthView = new JXMonthView();
+        monthView = new JXMonthView();
 //        _monthView.setSelectionModel(new SingleDaySelectionModel());
-        _monthView.setTraversable(true);
-        _monthView.addPropertyChangeListener(getMonthViewListener());
+        monthView.setTraversable(true);
+        monthView.addPropertyChangeListener(getMonthViewListener());
     }
 
     /**
@@ -476,7 +476,7 @@ public class JXDatePicker extends JComponent {
         }
 
         DateFormat[] old = getFormats();
-        _dateField.setFormatterFactory(new DefaultFormatterFactory(new DatePickerFormatter(formats, getLocale())));
+        dateField.setFormatterFactory(new DefaultFormatterFactory(new DatePickerFormatter(formats, getLocale())));
         firePropertyChange("formats", old, getFormats());
     }
 
@@ -491,9 +491,9 @@ public class JXDatePicker extends JComponent {
      */
     public DateFormat[] getFormats() {
         // Dig this out from the factory, if possible, otherwise return null.
-        AbstractFormatterFactory factory = _dateField.getFormatterFactory();
+        AbstractFormatterFactory factory = dateField.getFormatterFactory();
         if (factory != null) {
-            AbstractFormatter formatter = factory.getFormatter(_dateField);
+            AbstractFormatter formatter = factory.getFormatter(dateField);
             if (formatter instanceof DatePickerFormatter) {
                 return ((DatePickerFormatter) formatter).getFormats();
             }
@@ -508,7 +508,7 @@ public class JXDatePicker extends JComponent {
      * @return the month view component
      */
     public JXMonthView getMonthView() {
-        return _monthView;
+        return monthView;
     }
 
     /**
@@ -526,7 +526,7 @@ public class JXDatePicker extends JComponent {
         JXMonthView oldMonthView = getMonthView();
         TimeZone oldTZ = getTimeZone();
         oldMonthView.removePropertyChangeListener(getMonthViewListener());
-        _monthView = monthView;
+        this.monthView = monthView;
         getMonthView().addPropertyChangeListener(getMonthViewListener());
         firePropertyChange(MONTH_VIEW, oldMonthView, getMonthView());
         firePropertyChange("timeZone", oldTZ, getTimeZone());
@@ -539,7 +539,7 @@ public class JXDatePicker extends JComponent {
      * @return The <code>TimeZone</code> used by the <code>JXMonthView</code>.
      */
     public TimeZone getTimeZone() {
-        return _monthView.getTimeZone();
+        return monthView.getTimeZone();
     }
 
     /**
@@ -555,7 +555,7 @@ public class JXDatePicker extends JComponent {
      * @param tz The <code>TimeZone</code>.
      */
     public void setTimeZone(TimeZone tz) {
-        _monthView.setTimeZone(tz);
+        monthView.setTimeZone(tz);
     }
 
     /**
@@ -606,17 +606,17 @@ public class JXDatePicker extends JComponent {
     }
 
     /**
-     * @param _linkFormat the _linkFormat to set
+     * @param linkFormat the _linkFormat to set
      */
-    protected void setLinkFormat(MessageFormat _linkFormat) {
-        this._linkFormat = _linkFormat;
+    protected void setLinkFormat(MessageFormat linkFormat) {
+        this.linkFormat = linkFormat;
     }
 
     /**
      * @return the _linkFormat
      */
     protected MessageFormat getLinkFormat() {
-        return _linkFormat;
+        return linkFormat;
     }
 
     /**
@@ -640,7 +640,7 @@ public class JXDatePicker extends JComponent {
      * @return The currently installed link panel
      */
     public JPanel getLinkPanel() {
-        return _linkPanel;
+        return linkPanel;
     }
 
     /**
@@ -650,9 +650,9 @@ public class JXDatePicker extends JComponent {
      * @param linkPanel The new panel to install in the popup
      */
     public void setLinkPanel(JPanel linkPanel) {
-        JPanel oldLinkPanel = _linkPanel;
-        _linkPanel = linkPanel;
-        firePropertyChange(LINK_PANEL, oldLinkPanel, _linkPanel);
+        JPanel oldLinkPanel = this.linkPanel;
+        this.linkPanel = linkPanel;
+        firePropertyChange(LINK_PANEL, oldLinkPanel, this.linkPanel);
     }
 
     /**
@@ -665,7 +665,7 @@ public class JXDatePicker extends JComponent {
      */
 //    @Deprecated
     public JFormattedTextField getEditor() {
-        return _dateField;
+        return dateField;
     }
 
     /**
@@ -684,15 +684,15 @@ public class JXDatePicker extends JComponent {
 //    @Deprecated
     public void setEditor(JFormattedTextField editor) {
         Contract.asNotNull(editor, "editor must not be null");
-        JFormattedTextField oldEditor = _dateField;
-        _dateField = editor;
-        firePropertyChange(EDITOR, oldEditor, _dateField);
+        JFormattedTextField oldEditor = dateField;
+        dateField = editor;
+        firePropertyChange(EDITOR, oldEditor, dateField);
     }
 
     @Override
     public void setComponentOrientation(ComponentOrientation orientation) {
         super.setComponentOrientation(orientation);
-        _monthView.setComponentOrientation(orientation);
+        monthView.setComponentOrientation(orientation);
     }
 
     /**
@@ -701,7 +701,7 @@ public class JXDatePicker extends JComponent {
      * @return true if the current value being edited is valid.
      */
     public boolean isEditValid() {
-        return _dateField.isEditValid();
+        return dateField.isEditValid();
     }
 
     /**
@@ -715,7 +715,7 @@ public class JXDatePicker extends JComponent {
      *                        can not be parsed.
      */
     public void commitEdit() throws ParseException {
-        _dateField.commitEdit();
+        dateField.commitEdit();
         fireActionPerformed(COMMIT_KEY);
     }
 
@@ -724,7 +724,7 @@ public class JXDatePicker extends JComponent {
      */
     public void cancelEdit() {
         // hmmm... no direct api?
-        _dateField.setValue(_dateField.getValue());
+        dateField.setValue(dateField.getValue());
         fireActionPerformed(CANCEL_KEY);
     }
 
@@ -974,7 +974,7 @@ public class JXDatePicker extends JComponent {
 
             TodayAction() {
                 super(getLinkFormat().format(new Object[] {getLinkDay()}));
-                Calendar cal = _monthView.getCalendar();
+                Calendar cal = monthView.getCalendar();
                 cal.setTime(getLinkDay());
                 putValue(NAME, getLinkFormat().format(new Object[] {cal.getTime()}));
             }

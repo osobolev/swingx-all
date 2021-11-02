@@ -36,13 +36,13 @@ public class GradientThumbRenderer extends JComponent implements ThumbRenderer {
 
     private static final Logger LOG = Logger.getLogger(GradientThumbRenderer.class.getName());
 
-    private Image thumb_black;
-    private Image thumb_gray;
+    private Image thumbBlack;
+    private Image thumbGray;
 
     public GradientThumbRenderer() {
         try {
-            thumb_black = ImageIO.read(GradientThumbRenderer.class.getResource("/icons/thumb_black.png"));
-            thumb_gray = ImageIO.read(GradientThumbRenderer.class.getResource("/icons/thumb_gray.png"));
+            thumbBlack = ImageIO.read(GradientThumbRenderer.class.getResource("/icons/thumb_black.png"));
+            thumbGray = ImageIO.read(GradientThumbRenderer.class.getResource("/icons/thumb_gray.png"));
         } catch (Exception ex) {
             LOG.log(Level.WARNING, "Cannot load icons", ex);
         }
@@ -57,9 +57,9 @@ public class GradientThumbRenderer extends JComponent implements ThumbRenderer {
         g.setColor(getForeground());
         g.fillRect(0, 0, w - 1, w - 1);
         if (selected) {
-            g.drawImage(thumb_black, 0, 0, null);
+            g.drawImage(thumbBlack, 0, 0, null);
         } else {
-            g.drawImage(thumb_gray, 0, 0, null);
+            g.drawImage(thumbGray, 0, 0, null);
         }
     }
 

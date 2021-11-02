@@ -1194,7 +1194,7 @@ public class BasicDatePickerUI extends DatePickerUI {
         PropertyChangeListener, DateSelectionListener, ActionListener, FocusListener {
 
         //------------- implement Mouse/MotionListener        
-        private boolean _forwardReleaseEvent = false;
+        private boolean forwardReleaseEvent = false;
 
         @Override
         public void mouseClicked(MouseEvent ev) {
@@ -1222,11 +1222,11 @@ public class BasicDatePickerUI extends DatePickerUI {
             }
 
             // Retarget mouse event to the month view.
-            if (_forwardReleaseEvent) {
+            if (forwardReleaseEvent) {
                 JXMonthView monthView = datePicker.getMonthView();
                 ev = SwingUtilities.convertMouseEvent(popupButton, ev, monthView);
                 monthView.dispatchEvent(ev);
-                _forwardReleaseEvent = false;
+                forwardReleaseEvent = false;
             }
         }
 
@@ -1244,7 +1244,7 @@ public class BasicDatePickerUI extends DatePickerUI {
                 return;
             }
 
-            _forwardReleaseEvent = true;
+            forwardReleaseEvent = true;
 
             if (!popup.isShowing()) {
                 return;

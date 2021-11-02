@@ -117,63 +117,63 @@ public class ColorUtilities {
         else if (b > 255)
             b = 255;
 
-        float var_R = r / 255f;
-        float var_G = g / 255f;
-        float var_B = b / 255f;
+        float varR = r / 255f;
+        float varG = g / 255f;
+        float varB = b / 255f;
 
-        float var_Min;
-        float var_Max;
-        if (var_R > var_G) {
-            var_Min = var_G;
-            var_Max = var_R;
+        float varMin;
+        float varMax;
+        if (varR > varG) {
+            varMin = varG;
+            varMax = varR;
         } else {
-            var_Min = var_R;
-            var_Max = var_G;
+            varMin = varR;
+            varMax = varG;
         }
-        if (var_B > var_Max) {
-            var_Max = var_B;
+        if (varB > varMax) {
+            varMax = varB;
         }
-        if (var_B < var_Min) {
-            var_Min = var_B;
+        if (varB < varMin) {
+            varMin = varB;
         }
 
-        float del_Max = var_Max - var_Min;
+        float delMax = varMax - varMin;
 
-        float H;
-        float S;
-        float L = (var_Max + var_Min) / 2f;
-        if (del_Max - 0.01f <= 0.0f) {
-            H = 0;
-            S = 0;
+        float h;
+        float s;
+        float l = (varMax + varMin) / 2f;
+        if (delMax - 0.01f <= 0.0f) {
+            h = 0;
+            s = 0;
         } else {
-            if (L < 0.5f) {
-                S = del_Max / (var_Max + var_Min);
+            if (l < 0.5f) {
+                s = delMax / (varMax + varMin);
             } else {
-                S = del_Max / (2 - var_Max - var_Min);
+                s = delMax / (2 - varMax - varMin);
             }
 
-            float del_R = ((var_Max - var_R) / 6f + del_Max / 2f) / del_Max;
-            float del_G = ((var_Max - var_G) / 6f + del_Max / 2f) / del_Max;
-            float del_B = ((var_Max - var_B) / 6f + del_Max / 2f) / del_Max;
+            float delR = ((varMax - varR) / 6f + delMax / 2f) / delMax;
+            float delG = ((varMax - varG) / 6f + delMax / 2f) / delMax;
+            float delB = ((varMax - varB) / 6f + delMax / 2f) / delMax;
 
-            if (var_R == var_Max) {
-                H = del_B - del_G;
-            } else if (var_G == var_Max) {
-                H = 1 / 3f + del_R - del_B;
+            if (varR == varMax) {
+                h = delB - delG;
+            } else if (varG == varMax) {
+                h = 1 / 3f + delR - delB;
             } else {
-                H = 2 / 3f + del_G - del_R;
+                h = 2 / 3f + delG - delR;
             }
-            if (H < 0) {
-                H += 1;
+            if (h < 0) {
+                h += 1;
             }
-            if (H > 1) {
-                H -= 1;
+            if (h > 1) {
+                h -= 1;
             }
         }
 
-        hsl[0] = H;
-        hsl[1] = S;
-        hsl[2] = L;
+        hsl[0] = h;
+        hsl[1] = s;
+        hsl[2] = l;
 
         return hsl;
     }
@@ -224,30 +224,30 @@ public class ColorUtilities {
         else if (l > 1.0f)
             l = 1.0f;
 
-        int R;
-        int G;
-        int B;
+        int r;
+        int g;
+        int b;
         if (s - 0.01f <= 0.0f) {
-            R = (int) (l * 255.0f);
-            G = (int) (l * 255.0f);
-            B = (int) (l * 255.0f);
+            r = (int) (l * 255.0f);
+            g = (int) (l * 255.0f);
+            b = (int) (l * 255.0f);
         } else {
-            float var_2;
+            float var2;
             if (l < 0.5f) {
-                var_2 = l * (1 + s);
+                var2 = l * (1 + s);
             } else {
-                var_2 = l + s - s * l;
+                var2 = l + s - s * l;
             }
-            float var_1 = 2 * l - var_2;
+            float var1 = 2 * l - var2;
 
-            R = (int) (255.0f * hue2RGB(var_1, var_2, h + 1.0f / 3.0f));
-            G = (int) (255.0f * hue2RGB(var_1, var_2, h));
-            B = (int) (255.0f * hue2RGB(var_1, var_2, h - 1.0f / 3.0f));
+            r = (int) (255.0f * hue2RGB(var1, var2, h + 1.0f / 3.0f));
+            g = (int) (255.0f * hue2RGB(var1, var2, h));
+            b = (int) (255.0f * hue2RGB(var1, var2, h - 1.0f / 3.0f));
         }
 
-        rgb[0] = R;
-        rgb[1] = G;
-        rgb[2] = B;
+        rgb[0] = r;
+        rgb[1] = g;
+        rgb[2] = b;
 
         return rgb;
     }

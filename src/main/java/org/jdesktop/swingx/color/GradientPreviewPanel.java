@@ -52,12 +52,12 @@ public class GradientPreviewPanel extends JXPanel {
 
     private static final Logger LOG = Logger.getLogger(GradientPreviewPanel.class.getName());
 
-    private final Paint checker_texture;
+    private final Paint checkerTexture;
     private Point2D start;
     private Point2D end;
     public JXGradientChooser picker;
-    boolean moving_start = false;
-    boolean moving_end = false;
+    boolean movingStart = false;
+    boolean movingEnd = false;
     private boolean radial = false;
     private boolean reversed = false;
     private boolean reflected = false;
@@ -67,7 +67,7 @@ public class GradientPreviewPanel extends JXPanel {
     public GradientPreviewPanel() {
         start = new Point2D.Float(10, 10);
         end = new Point2D.Float(80, 10);
-        checker_texture = PaintUtils.getCheckerPaint();
+        checkerTexture = PaintUtils.getCheckerPaint();
         MouseInputAdapter ma = new GradientMouseHandler();
         this.addMouseListener(ma);
         this.addMouseMotionListener(ma);
@@ -139,7 +139,7 @@ public class GradientPreviewPanel extends JXPanel {
             Graphics2D g2 = (Graphics2D) g;
 
             // fill the background with checker first
-            g2.setPaint(checker_texture);
+            g2.setPaint(checkerTexture);
             g.fillRect(0, 0, getWidth(), getHeight());
 
             Paint paint = getGradient();
@@ -221,16 +221,16 @@ public class GradientPreviewPanel extends JXPanel {
 
         @Override
         public void mousePressed(MouseEvent evt) {
-            moving_start = false;
-            moving_end = false;
+            movingStart = false;
+            movingEnd = false;
             if (evt.getPoint().distance(start) < 5) {
-                moving_start = true;
+                movingStart = true;
                 start = evt.getPoint();
                 return;
             }
 
             if (evt.getPoint().distance(end) < 5) {
-                moving_end = true;
+                movingEnd = true;
                 end = evt.getPoint();
                 return;
             }
@@ -240,7 +240,7 @@ public class GradientPreviewPanel extends JXPanel {
 
         @Override
         public void mouseDragged(MouseEvent evt) {
-            if (moving_start) {
+            if (movingStart) {
                 start = evt.getPoint();
             } else {
                 end = evt.getPoint();
