@@ -120,10 +120,9 @@ public class UserPermissions {
         return true;
     }
 
-    void setRoles(String[] roles) {
+    public void setRoles(String[] roles) {
         String[] oldValue = this.roles;
         this.roles = roles;
         propertyChange.firePropertyChange("roles", oldValue, roles);
     }
 }
-
