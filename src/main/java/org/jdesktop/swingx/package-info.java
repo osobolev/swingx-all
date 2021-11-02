@@ -126,9 +126,7 @@
  * <li> {@link org.jdesktop.swingx.JXEditorPane}
  * <li> {@link org.jdesktop.swingx.JXGradientChooser}
  * <li> {@link org.jdesktop.swingx.JXGraph}
- * <li>Image containers {@link org.jdesktop.swingx.JXImageView ImageView}
- * and {@link org.jdesktop.swingx.JXImagePanel ImagePanel} (PENDING JW:
- * merge/remove one?)
+ * <li> {@link org.jdesktop.swingx.JXImageView}
  * <li> {@link org.jdesktop.swingx.JXMultiThumbSlider MultiThumbSlider}
  *
  * </ul>

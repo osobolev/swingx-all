@@ -25,11 +25,13 @@ import javax.swing.plaf.UIResource;
 import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.Transferable;
 import java.awt.datatransfer.UnsupportedFlavorException;
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.Reader;
-import java.io.StringBufferInputStream;
 import java.io.StringReader;
+import java.nio.charset.StandardCharsets;
+import java.util.logging.Logger;
 
 /**
  * A transferable implementation for the default data transfer of some Swing
@@ -150,7 +152,7 @@ public class BasicTransferable implements Transferable, UIResource {
             } else if (Reader.class.equals(flavor.getRepresentationClass())) {
                 return new StringReader(data);
             } else if (InputStream.class.equals(flavor.getRepresentationClass())) {
-                return new StringBufferInputStream(data);
+                return new ByteArrayInputStream(data.getBytes(StandardCharsets.UTF_8));
             }
             // fall through to unsupported
         } else if (isPlainFlavor(flavor)) {
@@ -161,7 +163,7 @@ public class BasicTransferable implements Transferable, UIResource {
             } else if (Reader.class.equals(flavor.getRepresentationClass())) {
                 return new StringReader(data);
             } else if (InputStream.class.equals(flavor.getRepresentationClass())) {
-                return new StringBufferInputStream(data);
+                return new ByteArrayInputStream(data.getBytes(StandardCharsets.UTF_8));
             }
             // fall through to unsupported
 
