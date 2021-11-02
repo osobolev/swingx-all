@@ -31,7 +31,6 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.net.UnknownHostException;
-import java.security.AccessControlException;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -269,11 +268,27 @@ public class ServerAction extends AbstractAction {
         } catch (UnknownHostException ex) {
             LOG.log(Level.WARNING, "UnknownHostException detected. Could it be a proxy issue?", ex);
             
-        } catch (AccessControlException ex) {
-            LOG.log(Level.WARNING, "AccessControlException detected", ex);
+        } catch (RuntimeException ex) {
+            if (aceClass != null && aceClass.isInstance(ex)) {
+                LOG.log(Level.WARNING, "AccessControlException detected", ex);
+            } else {
+                throw ex;
+            }
         } catch (IOException ex) {
             LOG.log(Level.WARNING, "IOException detected", ex);
         }
+    }
+
+    private static final Class<?> aceClass;
+
+    static {
+        Class<?> cls;
+        try {
+            cls = Class.forName("java.security.AccessControlException");
+        } catch (ClassNotFoundException ex) {
+            cls = null;
+        }
+        aceClass = cls;
     }
 
     /**
