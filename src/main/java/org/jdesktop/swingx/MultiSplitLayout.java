@@ -2112,7 +2112,7 @@ public class MultiSplitLayout implements LayoutManager, Serializable {
             parseSplit(st, root);
             return root.getChildren().get(0);
         } catch (Exception e) {
-            System.err.println(e);
+            e.printStackTrace();
         } finally {
             try {
                 r.close();

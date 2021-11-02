@@ -40,7 +40,7 @@ public class GradientThumbRenderer extends JComponent implements ThumbRenderer {
             thumb_black = ImageIO.read(GradientThumbRenderer.class.getResource("/icons/thumb_black.png"));
             thumb_gray = ImageIO.read(GradientThumbRenderer.class.getResource("/icons/thumb_gray.png"));
         } catch (Exception ex) {
-//            ex.printStackTrace();
+            ex.printStackTrace();
         }
     }
 
