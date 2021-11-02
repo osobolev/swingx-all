@@ -97,8 +97,6 @@ public class BasicTipOfTheDayUI extends TipOfTheDayUI {
         Locale locale = parentComponent == null ? null : parentComponent.getLocale();
         String title = UIManagerExt.getString("TipOfTheDay.dialogTitle", locale);
 
-        JDialog dialog;
-
         Window window;
         if (parentComponent == null) {
             window = JOptionPane.getRootFrame();
@@ -106,6 +104,7 @@ public class BasicTipOfTheDayUI extends TipOfTheDayUI {
             window = parentComponent instanceof Window ? (Window) parentComponent : SwingUtilities.getWindowAncestor(parentComponent);
         }
 
+        JDialog dialog;
         if (window instanceof Frame) {
             dialog = new JDialog((Frame) window, title, true);
         } else {
@@ -116,12 +115,11 @@ public class BasicTipOfTheDayUI extends TipOfTheDayUI {
         dialog.getContentPane().add(tipPane, BorderLayout.CENTER);
         ((JComponent) dialog.getContentPane()).setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
-        JCheckBox showOnStartupBox;
-
         // tip controls
         JPanel controls = new JPanel(new BorderLayout());
         dialog.add("South", controls);
 
+        JCheckBox showOnStartupBox;
         if (choice != null) {
             showOnStartupBox = new JCheckBox(UIManagerExt.getString("TipOfTheDay.showOnStartupText", locale), choice.isShowingOnStartup());
             controls.add(showOnStartupBox, BorderLayout.CENTER);

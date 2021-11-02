@@ -498,9 +498,7 @@ public class JXTaskPane extends JPanel implements JXCollapsiblePane.CollapsibleP
     @Override
     public void setDisplayedMnemonicIndex(int index) throws IllegalArgumentException {
         int oldValue = mnemonicIndex;
-        if (index == -1) {
-            mnemonicIndex = -1;
-        } else {
+        if (index != -1) {
             String text = getTitle();
             int textLength = text == null ? 0 : text.length();
             if (index < -1 || index >= textLength) {  // index out of range

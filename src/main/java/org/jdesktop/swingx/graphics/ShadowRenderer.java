@@ -299,22 +299,14 @@ public class ShadowRenderer {
         int left = size;
         int right = shadowSize - left;
 
-        int yStop = dstHeight - right;
-
         int shadowRgb = color.getRGB() & 0x00FFFFFF;
-        int[] aHistory = new int[shadowSize];
-        int historyIdx;
-
-        int aSum;
 
         BufferedImage dst = createCompatibleTranslucentImage(dstWidth, dstHeight);
 
-        int[] dstBuffer = new int[dstWidth * dstHeight];
         int[] srcBuffer = new int[srcWidth * srcHeight];
 
         GraphicsUtilities.getPixels(image, 0, 0, srcWidth, srcHeight, srcBuffer);
 
-        int lastPixelOffset = right * dstWidth;
         float hSumDivider = 1.0f / shadowSize;
         float vSumDivider = opacity / shadowSize;
 
@@ -328,8 +320,10 @@ public class ShadowRenderer {
             vSumLookup[i] = (int) (i * vSumDivider);
         }
 
-        int srcOffset;
-
+        int[] dstBuffer = new int[dstWidth * dstHeight];
+        int aSum;
+        int historyIdx;
+        int[] aHistory = new int[shadowSize];
         // horizontal pass : extract the alpha mask from the source picture and
         // blur it into the destination picture
         for (int srcY = 0, dstOffset = left * dstWidth; srcY < srcHeight; srcY++) {
@@ -341,7 +335,7 @@ public class ShadowRenderer {
 
             aSum = 0;
             historyIdx = 0;
-            srcOffset = srcY * srcWidth;
+            int srcOffset = srcY * srcWidth;
 
             // compute the blur average with pixels from the source image
             for (int srcX = 0; srcX < srcWidth; srcX++) {
@@ -377,6 +371,8 @@ public class ShadowRenderer {
             }
         }
 
+        int lastPixelOffset = right * dstWidth;
+        int yStop = dstHeight - right;
         // vertical pass
         for (int x = 0, bufferOffset = 0; x < dstWidth; x++, bufferOffset = x) {
 

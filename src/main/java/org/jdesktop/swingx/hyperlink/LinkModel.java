@@ -108,7 +108,7 @@ public class LinkModel implements Comparable {
     }
 
     public void setURLString(String howToURLString) {
-        URL url = null;
+        URL url;
         try {
             url = new URL(howToURLString);
         } catch (MalformedURLException e) {

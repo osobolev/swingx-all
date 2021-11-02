@@ -211,7 +211,7 @@ public class DateUtils {
      * @see Date#getTime()
      */
     public static boolean isFirstOfYear(long date) {
-        boolean ret = false;
+        boolean ret;
         Calendar calendar = CALENDAR;
         synchronized (calendar) {
             calendar.setTimeInMillis(date);
@@ -233,7 +233,7 @@ public class DateUtils {
      * @see Date#getTime()
      */
     public static boolean isFirstOfMonth(long date) {
-        boolean ret = false;
+        boolean ret;
         Calendar calendar = CALENDAR;
         synchronized (calendar) {
             calendar.setTimeInMillis(date);

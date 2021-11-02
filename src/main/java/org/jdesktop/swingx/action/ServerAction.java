@@ -230,13 +230,13 @@ public class ServerAction extends AbstractAction {
             // Write POST data to real output stream.
             byteStream.writeTo(uc.getOutputStream());
 
-            BufferedReader buf = null;
             if (uc instanceof HttpURLConnection) {
                 HttpURLConnection huc = (HttpURLConnection) uc;
                 int code = huc.getResponseCode();
                 String message = huc.getResponseMessage();
 
                 // Handle the result.
+                BufferedReader buf;
                 if (code < 400) {
                     // action succeeded send to status bar
                     // XXX TODO: setStatusMessage(createMessage(code, message));

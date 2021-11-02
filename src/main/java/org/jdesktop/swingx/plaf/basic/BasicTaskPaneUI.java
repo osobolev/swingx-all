@@ -442,7 +442,7 @@ public class BasicTaskPaneUI extends TaskPaneUI {
      */
     protected static class ChevronIcon implements Icon {
 
-        boolean up = true;
+        boolean up;
 
         public ChevronIcon(boolean up) {
             this.up = up;

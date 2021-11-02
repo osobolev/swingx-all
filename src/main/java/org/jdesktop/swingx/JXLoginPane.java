@@ -568,7 +568,6 @@ public class JXLoginPane extends JXPanel {
         capsOn = new JLabel();
         capsOn.setText(isCapsLockOn() ? UIManagerExt.getString(CLASS_NAME + ".capsOnWarning", getLocale()) : " ");
 
-        int lShift = 3;// lShift is used to align all other components with the checkbox
         GridLayout grid = new GridLayout(2, 1);
         grid.setVgap(5);
         JPanel fields = new JPanel(grid);
@@ -581,6 +580,8 @@ public class JXLoginPane extends JXPanel {
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.anchor = GridBagConstraints.LINE_START;
+        // lShift is used to align all other components with the checkbox
+        int lShift = 3;
         gridBagConstraints.insets = new Insets(4, lShift, 5, 11);
         loginPanel.add(nameLabel, gridBagConstraints);
 
@@ -1567,7 +1568,7 @@ public class JXLoginPane extends JXPanel {
      */
     public static Status showLoginDialog(Component parent, JXLoginPane panel) {
         Window w = WindowUtils.findWindow(parent);
-        JXLoginDialog dlg = null;
+        JXLoginDialog dlg;
         if (w == null) {
             dlg = new JXLoginDialog((Frame) null, panel);
         } else if (w instanceof Dialog) {

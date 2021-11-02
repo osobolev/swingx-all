@@ -77,7 +77,6 @@ public abstract class PromptTextUI extends TextUI {
          */
         @Override
         public void deinstall(JTextComponent c) {
-            c = null;
         }
 
         /**

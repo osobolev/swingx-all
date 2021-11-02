@@ -45,12 +45,12 @@ import java.awt.geom.RoundRectangle2D;
 @SuppressWarnings("nls")
 public class RectanglePainter extends AbstractAreaPainter<Object> {
 
-    private boolean rounded = false;
+    private boolean rounded;
     //private Insets insets = new Insets(0,0,0,0);
-    private int roundWidth = 20;
-    private int roundHeight = 20;
-    private int width = -1;
-    private int height = -1;
+    private int roundWidth;
+    private int roundHeight;
+    private int width;
+    private int height;
     //private double strokeWidth = 1;
 
     /**

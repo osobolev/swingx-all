@@ -308,9 +308,8 @@ public class Utilities {
 
         Rectangle bounds = new Rectangle(gconf.getBounds());
 
-        String str;
-
-        str = System.getProperty("netbeans.screen.insets"); // NOI18N
+        // NOI18N
+        String str = System.getProperty("netbeans.screen.insets");
 
         if (str != null) {
             StringTokenizer st = new StringTokenizer(str, ", "); // NOI18N
@@ -491,14 +490,10 @@ public class Utilities {
     public static KeyStroke stringToKey(String s) {
         StringTokenizer st = new StringTokenizer(s.toUpperCase(Locale.ENGLISH), "-", true); // NOI18N
 
-        int needed = 0;
-
         HashMap names = initNameAndValues()[0];
-
-        int lastModif = -1;
-
         try {
-            for (; ; ) {
+            int needed = 0;
+            for (int lastModif = -1; ; ) {
                 String el = st.nextToken();
 
                 // required key
@@ -581,8 +576,6 @@ public class Utilities {
 
         boolean isMeta = (mask & KeyEvent.META_MASK) != 0 || (mask & KeyEvent.CTRL_DOWN_MASK) != 0;
 
-        boolean isAlt = (mask & KeyEvent.ALT_MASK) != 0 || (mask & KeyEvent.ALT_DOWN_MASK) != 0;
-
         boolean isOnlyMeta = isMeta && (mask & ~(KeyEvent.META_DOWN_MASK | KeyEvent.META_MASK)) == 0;
 
         //Mac OS consumes keys Command+ these keys - the app will never see
@@ -590,6 +583,7 @@ public class Utilities {
         if (isOnlyMeta) {
             return key != KeyEvent.VK_H && key != KeyEvent.VK_SPACE && key != KeyEvent.VK_TAB;
         } else {
+            boolean isAlt = (mask & KeyEvent.ALT_MASK) != 0 || (mask & KeyEvent.ALT_DOWN_MASK) != 0;
             return !(key == KeyEvent.VK_D && isMeta && isAlt);
         }
     }
@@ -718,10 +712,9 @@ public class Utilities {
     public static Object toPrimitiveArray(Object[] array) {
         if (array instanceof Integer[]) {
             int[] r = new int[array.length];
-            int i;
             int k = array.length;
 
-            for (i = 0; i < k; i++) {
+            for (int i = 0; i < k; i++) {
                 r[i] = array[i] == null ? 0 : ((Integer) array[i]).intValue();
             }
 
@@ -730,10 +723,9 @@ public class Utilities {
 
         if (array instanceof Boolean[]) {
             boolean[] r = new boolean[array.length];
-            int i;
             int k = array.length;
 
-            for (i = 0; i < k; i++) {
+            for (int i = 0; i < k; i++) {
                 r[i] = array[i] != null && ((Boolean) array[i]).booleanValue();
             }
 
@@ -742,10 +734,9 @@ public class Utilities {
 
         if (array instanceof Byte[]) {
             byte[] r = new byte[array.length];
-            int i;
             int k = array.length;
 
-            for (i = 0; i < k; i++) {
+            for (int i = 0; i < k; i++) {
                 r[i] = array[i] == null ? 0 : ((Byte) array[i]).byteValue();
             }
 
@@ -754,10 +745,9 @@ public class Utilities {
 
         if (array instanceof Character[]) {
             char[] r = new char[array.length];
-            int i;
             int k = array.length;
 
-            for (i = 0; i < k; i++) {
+            for (int i = 0; i < k; i++) {
                 r[i] = array[i] == null ? 0 : ((Character) array[i]).charValue();
             }
 
@@ -766,10 +756,9 @@ public class Utilities {
 
         if (array instanceof Double[]) {
             double[] r = new double[array.length];
-            int i;
             int k = array.length;
 
-            for (i = 0; i < k; i++) {
+            for (int i = 0; i < k; i++) {
                 r[i] = array[i] == null ? 0 : ((Double) array[i]).doubleValue();
             }
 
@@ -778,10 +767,9 @@ public class Utilities {
 
         if (array instanceof Float[]) {
             float[] r = new float[array.length];
-            int i;
             int k = array.length;
 
-            for (i = 0; i < k; i++) {
+            for (int i = 0; i < k; i++) {
                 r[i] = array[i] == null ? 0 : ((Float) array[i]).floatValue();
             }
 
@@ -790,10 +778,9 @@ public class Utilities {
 
         if (array instanceof Long[]) {
             long[] r = new long[array.length];
-            int i;
             int k = array.length;
 
-            for (i = 0; i < k; i++) {
+            for (int i = 0; i < k; i++) {
                 r[i] = array[i] == null ? 0 : ((Long) array[i]).longValue();
             }
 
@@ -802,10 +789,9 @@ public class Utilities {
 
         if (array instanceof Short[]) {
             short[] r = new short[array.length];
-            int i;
             int k = array.length;
 
-            for (i = 0; i < k; i++) {
+            for (int i = 0; i < k; i++) {
                 r[i] = array[i] == null ? 0 : ((Short) array[i]).shortValue();
             }
 
@@ -829,11 +815,10 @@ public class Utilities {
         }
 
         if (array instanceof int[]) {
-            int i;
             int k = ((int[]) array).length;
             Integer[] r = new Integer[k];
 
-            for (i = 0; i < k; i++) {
+            for (int i = 0; i < k; i++) {
                 r[i] = ((int[]) array)[i];
             }
 
@@ -841,11 +826,10 @@ public class Utilities {
         }
 
         if (array instanceof boolean[]) {
-            int i;
             int k = ((boolean[]) array).length;
             Boolean[] r = new Boolean[k];
 
-            for (i = 0; i < k; i++) {
+            for (int i = 0; i < k; i++) {
                 r[i] = ((boolean[]) array)[i] ? Boolean.TRUE : Boolean.FALSE;
             }
 
@@ -853,11 +837,10 @@ public class Utilities {
         }
 
         if (array instanceof byte[]) {
-            int i;
             int k = ((byte[]) array).length;
             Byte[] r = new Byte[k];
 
-            for (i = 0; i < k; i++) {
+            for (int i = 0; i < k; i++) {
                 r[i] = ((byte[]) array)[i];
             }
 
@@ -865,11 +848,10 @@ public class Utilities {
         }
 
         if (array instanceof char[]) {
-            int i;
             int k = ((char[]) array).length;
             Character[] r = new Character[k];
 
-            for (i = 0; i < k; i++) {
+            for (int i = 0; i < k; i++) {
                 r[i] = ((char[]) array)[i];
             }
 
@@ -877,11 +859,10 @@ public class Utilities {
         }
 
         if (array instanceof double[]) {
-            int i;
             int k = ((double[]) array).length;
             Double[] r = new Double[k];
 
-            for (i = 0; i < k; i++) {
+            for (int i = 0; i < k; i++) {
                 r[i] = ((double[]) array)[i];
             }
 
@@ -889,11 +870,10 @@ public class Utilities {
         }
 
         if (array instanceof float[]) {
-            int i;
             int k = ((float[]) array).length;
             Float[] r = new Float[k];
 
-            for (i = 0; i < k; i++) {
+            for (int i = 0; i < k; i++) {
                 r[i] = ((float[]) array)[i];
             }
 
@@ -901,11 +881,10 @@ public class Utilities {
         }
 
         if (array instanceof long[]) {
-            int i;
             int k = ((long[]) array).length;
             Long[] r = new Long[k];
 
-            for (i = 0; i < k; i++) {
+            for (int i = 0; i < k; i++) {
                 r[i] = ((long[]) array)[i];
             }
 
@@ -913,11 +892,10 @@ public class Utilities {
         }
 
         if (array instanceof short[]) {
-            int i;
             int k = ((short[]) array).length;
             Short[] r = new Short[k];
 
-            for (i = 0; i < k; i++) {
+            for (int i = 0; i < k; i++) {
                 r[i] = ((short[]) array)[i];
             }
 
@@ -1023,14 +1001,14 @@ public class Utilities {
     }
 
     private static String trimString(String s) {
-        int idx = 0;
-        char c;
         int slen = s.length();
 
         if (slen == 0) {
             return s;
         }
 
+        char c;
+        int idx = 0;
         do {
             c = s.charAt(idx++);
         } while ((c == '\n' || c == '\r') && idx < slen);

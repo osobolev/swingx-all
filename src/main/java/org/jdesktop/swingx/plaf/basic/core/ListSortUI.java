@@ -266,10 +266,9 @@ public final class ListSortUI {
             viewSelection.clearSelection();
             int min = modelSelection.getMinSelectionIndex();
             int max = modelSelection.getMaxSelectionIndex();
-            int viewIndex;
             for (int modelIndex = min; modelIndex <= max; modelIndex++) {
                 if (modelSelection.isSelectedIndex(modelIndex)) {
-                    viewIndex = sorter.convertRowIndexToView(modelIndex);
+                    int viewIndex = sorter.convertRowIndexToView(modelIndex);
                     if (viewIndex != -1) {
                         viewSelection.addSelectionInterval(viewIndex, viewIndex);
                     }

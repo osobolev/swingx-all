@@ -134,9 +134,8 @@ public class TableCellContext extends CellContext {
      */
     @Override
     protected Color getSelectionBackground() {
-        Color selection = null;
         if (isDropOn()) {
-            selection = getDropCellBackground();
+            Color selection = getDropCellBackground();
             if (selection != null)
                 return selection;
         }
@@ -148,9 +147,8 @@ public class TableCellContext extends CellContext {
      */
     @Override
     protected Color getSelectionForeground() {
-        Color selection = null;
         if (isDropOn()) {
-            selection = getDropCellForeground();
+            Color selection = getDropCellForeground();
             if (selection != null)
                 return selection;
         }

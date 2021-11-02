@@ -641,9 +641,8 @@ public class JXMonthView extends JComponent {
                 int lastMonth = cal.get(Calendar.MONTH);
                 int lastYear = cal.get(Calendar.YEAR);
 
-                int diffMonths = month - lastMonth + (year - lastYear) * MONTHS_IN_YEAR;
-
                 cal.setTime(firstDisplayedDay);
+                int diffMonths = month - lastMonth + (year - lastYear) * MONTHS_IN_YEAR;
                 cal.add(Calendar.MONTH, diffMonths);
                 setFirstDisplayedDay(cal.getTime());
             }
@@ -1495,8 +1494,7 @@ public class JXMonthView extends JComponent {
      * will be returned.
      */
     public Color getDayForeground(int dayOfWeek) {
-        Color c;
-        c = dayToColorTable.get(dayOfWeek);
+        Color c = dayToColorTable.get(dayOfWeek);
         if (c == null) {
             c = getForeground();
         }
@@ -1803,8 +1801,8 @@ public class JXMonthView extends JComponent {
      */
     @Deprecated
     protected void cleanupWeekSelectionDates(Date startDate, Date endDate) {
-        int count = 1;
         cal.setTime(startDate);
+        int count = 1;
         while (cal.getTimeInMillis() < endDate.getTime()) {
             cal.add(Calendar.DAY_OF_MONTH, 1);
             count++;

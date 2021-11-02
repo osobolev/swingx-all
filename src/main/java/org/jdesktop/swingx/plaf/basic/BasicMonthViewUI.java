@@ -1833,10 +1833,10 @@ public class BasicMonthViewUI extends MonthViewUI {
                 maxMonthHeight = Math.max(maxMonthHeight, pref.height);
             }
 
-            int maxBoxWidth = 0;
-            int maxBoxHeight = 0;
             calendar = getCalendar();
             CalendarUtils.startOfWeek(calendar);
+            int maxBoxHeight = 0;
+            int maxBoxWidth = 0;
             for (int i = 0; i < JXMonthView.DAYS_IN_WEEK; i++) {
                 JComponent comp = getRenderingHandler().prepareRenderingComponent(monthView, calendar, CalendarState.DAY_OF_WEEK);
                 Dimension pref = comp.getPreferredSize();
@@ -2246,9 +2246,8 @@ public class BasicMonthViewUI extends MonthViewUI {
      * @return
      */
     private CalendarHeaderHandler instantiateClass(String handlerClassName) {
-        Class<?> handler = null;
         try {
-            handler = Class.forName(handlerClassName);
+            Class<?> handler = Class.forName(handlerClassName);
             return instantiateClass(handler);
         } catch (ClassNotFoundException e) {
             // TODO Auto-generated catch block

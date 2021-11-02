@@ -131,8 +131,7 @@ public class EnumComboBoxModel<E extends Enum<E>> extends ListComboBoxModel<E> {
     @Override
     @SuppressWarnings("unchecked")
     public void setSelectedItem(Object anItem) {
-        E input = null;
-
+        E input;
         if (enumClass.isInstance(anItem)) {
             input = (E) anItem;
         } else {

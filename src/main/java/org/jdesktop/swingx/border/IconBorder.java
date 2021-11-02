@@ -132,8 +132,7 @@ public class IconBorder implements Border, Serializable {
     }
 
     private boolean isValidPosition(int position) {
-        boolean result = false;
-
+        boolean result;
         switch (position) {
         case SwingConstants.LEADING:
         case SwingConstants.TRAILING:

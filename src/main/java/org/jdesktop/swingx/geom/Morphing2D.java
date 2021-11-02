@@ -157,10 +157,10 @@ public class Morphing2D implements Shape {
     public Rectangle2D getBounds2D() {
         int n = startGeometry.getNumCoords();
         double xmin;
-        double ymin;
         double xmax;
-        double ymax;
         xmin = xmax = interp(startGeometry.getCoord(0), endGeometry.getCoord(0), morph);
+        double ymin;
+        double ymax;
         ymin = ymax = interp(startGeometry.getCoord(1), endGeometry.getCoord(1), morph);
         for (int i = 2; i < n; i += 2) {
             double x = interp(startGeometry.getCoord(i), endGeometry.getCoord(i), morph);
@@ -272,9 +272,9 @@ public class Morphing2D implements Shape {
             }
             double curx = bezierCoords[0] = coords[0];
             double cury = bezierCoords[1] = coords[1];
+            numCoords = 2;
             double newx;
             double newy;
-            numCoords = 2;
             while (!pi.isDone()) {
                 if (numCoords + 6 > bezierCoords.length) {
                     // Keep array size to a multiple of 6 plus 2
@@ -404,11 +404,11 @@ public class Morphing2D implements Shape {
              *   way we order it as either way will require half of the
              *   path to unwind and re-wind itself.
              */
-            double area = 0;
             // Note that first and last points are the same so we
             // do not need to process coords[0,1] against coords[n-2,n-1]
             curx = bezierCoords[0];
             cury = bezierCoords[1];
+            double area = 0;
             for (int i = 2; i < numCoords; i += 2) {
                 newx = bezierCoords[i];
                 newy = bezierCoords[i + 1];
@@ -477,14 +477,10 @@ public class Morphing2D implements Shape {
             int ci = 2;
             int ti = 0;
             while (ci < numCoords) {
-                double prevx;
-                double prevy;
-                double newx;
-                double newy;
-                prevx = segx;
-                prevy = segy;
-                newx = bezierCoords[ci++];
-                newy = bezierCoords[ci++];
+                double prevx = segx;
+                double prevy = segy;
+                double newx = bezierCoords[ci++];
+                double newy = bezierCoords[ci++];
                 prevx -= newx;
                 prevy -= newy;
                 double len = Math.sqrt(prevx * prevx + prevy * prevy);
@@ -547,16 +543,14 @@ public class Morphing2D implements Shape {
             double[] newCoords = new double[2 + (newTvals.length - 1) * 6];
             double[] oldTvals = getTvals();
             int oldci = 0;
-            double x0;
             double xc0;
             double xc1;
             double x1;
-            double y0;
+            double x0 = xc0 = xc1 = x1 = oldCoords[oldci++];
             double yc0;
             double yc1;
             double y1;
-            x0 = xc0 = xc1 = x1 = oldCoords[oldci++];
-            y0 = yc0 = yc1 = y1 = oldCoords[oldci++];
+            double y0 = yc0 = yc1 = y1 = oldCoords[oldci++];
             int newci = 0;
             newCoords[newci++] = x0;
             newCoords[newci++] = y0;

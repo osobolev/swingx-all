@@ -48,7 +48,6 @@ public class LoginPaneAddon extends AbstractComponentAddon {
     @Override
     protected void addBasicDefaults(LookAndFeelAddons addon, DefaultsList defaults) {
         super.addBasicDefaults(addon, defaults);
-        Color errorBG = new Color(255, 215, 215);
 
         defaults.add(JXLoginPane.uiClassID, "org.jdesktop.swingx.plaf.basic.BasicLoginPaneUI");
         defaults.add("JXLoginPane.errorIcon", LookAndFeel.makeIcon(LoginPaneAddon.class, "basic/resources/error16.png"));
@@ -60,6 +59,7 @@ public class LoginPaneAddon extends AbstractComponentAddon {
         defaults.add("JXLoginPane.bannerForeground", new ColorUIResource(Color.WHITE));
         defaults.add("JXLoginPane.bannerDarkBackground", new ColorUIResource(Color.GRAY));
         defaults.add("JXLoginPane.bannerLightBackground", new ColorUIResource(Color.LIGHT_GRAY));
+        Color errorBG = new Color(255, 215, 215);
         defaults.add("JXLoginPane.errorBackground", new ColorUIResource(errorBG));
         defaults.add(
             "JXLoginPane.errorBorder",

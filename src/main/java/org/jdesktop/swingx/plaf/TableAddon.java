@@ -81,11 +81,11 @@ public class TableAddon extends AbstractComponentAddon {
      * @param borderKey
      */
     private void replaceBorder(DefaultsList defaults, String componentPrefix, String borderKey) {
-        String key = componentPrefix + borderKey;
         Border border = UIManager.getBorder(componentPrefix + borderKey);
         if (border instanceof AbstractBorder && border instanceof UIResource && border.getClass().getName().contains("ListTable")) {
             border = new SafeBorder((AbstractBorder) border);
             // PENDING JW: this is fishy ... adding to lookAndFeelDefaults is taken
+            String key = componentPrefix + borderKey;
             UIManager.getLookAndFeelDefaults().put(key, border);
             // adding to defaults is not
 //            defaults.add(key, border);

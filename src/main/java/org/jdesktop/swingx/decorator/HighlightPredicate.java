@@ -243,11 +243,6 @@ public interface HighlightPredicate {
         JComponent c = renderer instanceof JComponent ? (JComponent) renderer : null;
         String text = adapter.getString();
         Icon icon = null;
-        //defaults from JLabel
-        int verticalAlignment = SwingConstants.CENTER;
-        int horizontalAlignment = SwingConstants.LEADING;
-        int verticalTextPosition = SwingConstants.CENTER;
-        int horizontalTextPosition = SwingConstants.TRAILING;
         int gap = 0;
 
         if (renderer instanceof JLabel) {
@@ -265,6 +260,10 @@ public interface HighlightPredicate {
             cellBounds.height -= insets.top + insets.bottom;
         }
 
+        int horizontalTextPosition = SwingConstants.TRAILING;
+        int verticalTextPosition = SwingConstants.CENTER;
+        int horizontalAlignment = SwingConstants.LEADING;
+        int verticalAlignment = SwingConstants.CENTER;
         String result = SwingUtilities.layoutCompoundLabel(
             c, renderer.getFontMetrics(renderer.getFont()), text, icon, verticalAlignment,
             horizontalAlignment, verticalTextPosition, horizontalTextPosition, cellBounds,

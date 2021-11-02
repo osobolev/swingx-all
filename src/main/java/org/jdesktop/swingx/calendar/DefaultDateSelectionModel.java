@@ -265,9 +265,9 @@ public class DefaultDateSelectionModel extends AbstractDateSelectionModel {
     }
 
     private boolean addSelectionImpl(Date startDate, Date endDate) {
-        boolean hasAdded = false;
         calendar.setTime(startDate);
         Date date = calendar.getTime();
+        boolean hasAdded = false;
         while (date.before(endDate) || date.equals(endDate)) {
             if (!isUnselectableDate(date)) {
                 hasAdded = true;

@@ -116,22 +116,15 @@ public class GaussianBlurFilter extends AbstractFilter {
      * @param radius    the radius of the blur effect
      */
     static void blur(int[] srcPixels, int[] dstPixels, int width, int height, float[] kernel, int radius) {
-        float a;
-        float r;
-        float g;
-        float b;
-
-        int ca;
-        int cr;
-        int cg;
-        int cb;
-
         for (int y = 0; y < height; y++) {
             int index = y;
             int offset = y * width;
 
             for (int x = 0; x < width; x++) {
-                a = r = g = b = 0.0f;
+                float r;
+                float g;
+                float b;
+                float a = r = g = b = 0.0f;
 
                 for (int i = -radius; i <= radius; i++) {
                     int subOffset = x + i;
@@ -148,10 +141,10 @@ public class GaussianBlurFilter extends AbstractFilter {
                     b += blurFactor * (pixel & 0xFF);
                 }
 
-                ca = (int) (a + 0.5f);
-                cr = (int) (r + 0.5f);
-                cg = (int) (g + 0.5f);
-                cb = (int) (b + 0.5f);
+                int ca = (int) (a + 0.5f);
+                int cr = (int) (r + 0.5f);
+                int cg = (int) (g + 0.5f);
+                int cb = (int) (b + 0.5f);
 
                 dstPixels[index] = (ca > 255 ? 255 : ca) << 24 |
                                    (cr > 255 ? 255 : cr) << 16 |

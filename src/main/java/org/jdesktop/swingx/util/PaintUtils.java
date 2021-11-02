@@ -187,7 +187,6 @@ public class PaintUtils {
         Point2D end = pts[1];
 
         double angle = calcAngle(start, end);
-        double a2 = Math.toDegrees(angle);
         double e = 1;
 
         // if it is near 0 degrees
@@ -197,6 +196,7 @@ public class PaintUtils {
         }
 
         // near 45
+        double a2 = Math.toDegrees(angle);
         if (isNear(a2, 45, e)) {
             start = new Point2D.Float(0, 0);
             end = new Point2D.Float(normalize(end.getX(), width), normalize(end.getY(), height));

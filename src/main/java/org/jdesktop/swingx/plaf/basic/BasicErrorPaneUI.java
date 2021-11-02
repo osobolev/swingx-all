@@ -378,7 +378,7 @@ public class BasicErrorPaneUI extends ErrorPaneUI {
         expandedHeight = 0;
         collapsedHeight = 0;
         Window w = WindowUtils.findWindow(owner);
-        JXErrorDialog dlg = null;
+        JXErrorDialog dlg;
         if (w instanceof Dialog) {
             dlg = new JXErrorDialog((Dialog) w, pane);
         } else if (w instanceof Frame) {
@@ -705,7 +705,7 @@ public class BasicErrorPaneUI extends ErrorPaneUI {
 
         @Override
         public void actionPerformed(ActionEvent ae) {
-            Dimension contentSize = null;
+            Dimension contentSize;
             if (w instanceof JDialog) {
                 contentSize = ((JDialog) w).getContentPane().getSize();
             } else {
@@ -1106,6 +1106,6 @@ public class BasicErrorPaneUI extends ErrorPaneUI {
     private static String escapeXml(String input) {
         String s = input == null ? "" : input.replace("&", "&amp;");
         s = s.replace("<", "&lt;");
-        return s = s.replace(">", "&gt;");
+        return s.replace(">", "&gt;");
     }
 }

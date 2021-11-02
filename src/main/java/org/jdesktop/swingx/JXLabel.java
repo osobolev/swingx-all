@@ -429,7 +429,6 @@ public class JXLabel extends JLabel implements BackgroundPaintable {
             Rectangle iconR = calculateIconRect();
             // 2) init textR
             boolean textIsEmpty = getText() == null || getText().isEmpty();
-            int lsb = 0;
             /* Unless both text and icon are non-null, we effectively ignore
              * the value of textIconGap.
              */
@@ -438,7 +437,6 @@ public class JXLabel extends JLabel implements BackgroundPaintable {
                 textR.width = textR.height = 0;
                 gap = 0;
             } else {
-                int availTextWidth;
                 gap = iconR.width == 0 ? 0 : getIconTextGap();
 
                 occupiedWidth = dx + iconR.width + gap;
@@ -451,6 +449,7 @@ public class JXLabel extends JLabel implements BackgroundPaintable {
                         occupiedWidth += in.left + in.right;
                     }
                 }
+                int availTextWidth;
                 if (getHorizontalTextPosition() == CENTER) {
                     availTextWidth = viewR.width;
                 } else {
@@ -503,7 +502,6 @@ public class JXLabel extends JLabel implements BackgroundPaintable {
             int labelR_y = Math.min(iconR.y, textR.y);
             int labelR_height = Math.max(iconR.y + iconR.height, textR.y + textR.height) - labelR_y;
 
-            int dax;
             int day;
             if (getVerticalAlignment() == TOP) {
                 day = viewR.y - labelR_y;
@@ -513,6 +511,7 @@ public class JXLabel extends JLabel implements BackgroundPaintable {
                 day = viewR.y + viewR.height - (labelR_y + labelR_height);
             }
 
+            int dax;
             if (getHorizontalAlignment() == LEFT) {
                 dax = viewR.x - labelR_x;
             } else if (getHorizontalAlignment() == RIGHT) {
@@ -527,6 +526,7 @@ public class JXLabel extends JLabel implements BackgroundPaintable {
             iconR.x += dax;
             iconR.y += day;
 
+            int lsb = 0;
             if (lsb < 0) {
                 // lsb is negative. Shift the x location so that the text is
                 // visually drawn at the right location.
@@ -810,7 +810,6 @@ public class JXLabel extends JLabel implements BackgroundPaintable {
             } else {
                 float w = v.getPreferredSpan(View.X_AXIS);
                 float h = v.getPreferredSpan(View.Y_AXIS);
-                double c = w;
                 double alpha = textRotation;// % (Math.PI/2d);
                 boolean ready = false;
                 while (!ready) {
@@ -833,7 +832,7 @@ public class JXLabel extends JLabel implements BackgroundPaintable {
                     double cw = (getWidth() - Math.abs(h * Math.sin(alpha))) / Math.abs(Math.cos(alpha));
                     double ch = (getHeight() - Math.abs(h * Math.cos(alpha))) / Math.abs(Math.sin(alpha));
                     // min of whichever is above 0 (!!! no min of abs values)
-                    c = cw < 0 ? ch : ch > 0 ? Math.min(cw, ch) : cw;
+                    double c = cw < 0 ? ch : ch > 0 ? Math.min(cw, ch) : cw;
                     // make it one pix smaller to ensure text is not cut on the left
                     c--;
                     if (c > w) {

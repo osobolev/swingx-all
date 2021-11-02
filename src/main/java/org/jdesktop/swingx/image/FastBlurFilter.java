@@ -129,22 +129,13 @@ public class FastBlurFilter extends AbstractFilter {
      */
     static void blur(int[] srcPixels, int[] dstPixels, int width, int height, int radius) {
         int windowSize = radius * 2 + 1;
-        int radiusPlusOne = radius + 1;
-
-        int sumAlpha;
-        int sumRed;
-        int sumGreen;
-        int sumBlue;
-
-        int srcIndex = 0;
-        int dstIndex;
-        int pixel;
 
         int[] sumLookupTable = new int[256 * windowSize];
         for (int i = 0; i < sumLookupTable.length; i++) {
             sumLookupTable[i] = i / windowSize;
         }
 
+        int radiusPlusOne = radius + 1;
         int[] indexLookupTable = new int[radiusPlusOne];
         if (radius < width) {
             for (int i = 0; i < indexLookupTable.length; i++) {
@@ -159,11 +150,15 @@ public class FastBlurFilter extends AbstractFilter {
             }
         }
 
+        int srcIndex = 0;
         for (int y = 0; y < height; y++) {
-            sumAlpha = sumRed = sumGreen = sumBlue = 0;
-            dstIndex = y;
+            int sumBlue;
+            int sumGreen;
+            int sumRed;
+            int sumAlpha = sumRed = sumGreen = sumBlue = 0;
+            int dstIndex = y;
 
-            pixel = srcPixels[srcIndex];
+            int pixel = srcPixels[srcIndex];
             sumAlpha += radiusPlusOne * (pixel >> 24 & 0xFF);
             sumRed += radiusPlusOne * (pixel >> 16 & 0xFF);
             sumGreen += radiusPlusOne * (pixel >> 8 & 0xFF);

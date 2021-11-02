@@ -123,8 +123,6 @@ public class ColorUtilities {
 
         float var_Min;
         float var_Max;
-        float del_Max;
-
         if (var_R > var_G) {
             var_Min = var_G;
             var_Max = var_R;
@@ -139,7 +137,7 @@ public class ColorUtilities {
             var_Min = var_B;
         }
 
-        del_Max = var_Max - var_Min;
+        float del_Max = var_Max - var_Min;
 
         float H;
         float S;

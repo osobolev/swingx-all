@@ -579,11 +579,10 @@ public class BasicXListUI extends BasicListUI {
             }
         }
 
-        Rectangle rect = null;
+        Rectangle rect;
         int index = loc.getIndex();
-        boolean decr = false;
-
         if (layoutOrientation == JList.HORIZONTAL_WRAP) {
+            boolean decr = false;
             if (index == size) {
                 decr = true;
             } else if (index != 0 && convertModelToRow(index) != convertModelToRow(index - 1)) {
@@ -1305,12 +1304,12 @@ public class BasicXListUI extends BasicListUI {
             return -1;
         } else {
             int y = insets.top;
-            int row = 0;
 
             if (closest && y0 < y) {
                 return 0;
             }
             int i;
+            int row = 0;
             for (i = 0; i < size; i++) {
                 if (y0 >= y && y0 < y + cellHeights[i]) {
                     return row;
@@ -2115,7 +2114,7 @@ public class BasicXListUI extends BasicListUI {
                 return -1;
             }
 
-            int index = -1;
+            int index;
             Rectangle visRect = list.getVisibleRect();
             ListSelectionModel lsm = list.getSelectionModel();
             int lead = adjustIndex(lsm.getLeadSelectionIndex(), list);
@@ -2418,7 +2417,6 @@ public class BasicXListUI extends BasicListUI {
                 // Nothing to select
                 return;
             }
-            boolean startingFromSelection = true;
 
             char c = e.getKeyChar();
 
@@ -2440,6 +2438,7 @@ public class BasicXListUI extends BasicListUI {
             }
             lastTime = time;
 
+            boolean startingFromSelection = true;
             if (startIndex < 0 || startIndex >= getElementCount()) {
                 startingFromSelection = false;
                 startIndex = 0;
@@ -2876,11 +2875,10 @@ public class BasicXListUI extends BasicListUI {
                     return null;
                 }
 
-                StringBuilder plainBuf = new StringBuilder();
                 StringBuilder htmlBuf = new StringBuilder();
-
                 htmlBuf.append("<html>\n<body>\n<ul>\n");
 
+                StringBuilder plainBuf = new StringBuilder();
                 for (Object obj : values) {
                     String val = obj == null ? "" : obj.toString();
                     plainBuf.append(val + "\n");

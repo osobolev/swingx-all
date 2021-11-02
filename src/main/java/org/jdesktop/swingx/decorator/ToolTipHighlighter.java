@@ -112,8 +112,7 @@ public class ToolTipHighlighter extends AbstractHighlighter {
      */
     @Override
     protected Component doHighlight(Component component, ComponentAdapter adapter) {
-        String toolTipText = null;
-
+        String toolTipText;
         if (toolTipValue == null) {
             toolTipText = adapter.getString();
         } else {

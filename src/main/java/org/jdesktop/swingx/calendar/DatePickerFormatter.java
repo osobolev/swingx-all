@@ -42,7 +42,7 @@ import java.util.logging.Logger;
 public class DatePickerFormatter extends JFormattedTextField.AbstractFormatter {
 
     private static final Logger LOG = Logger.getLogger(DatePickerFormatter.class.getName());
-    private DateFormat[] _formats = null;
+    private DateFormat[] _formats;
 
     /**
      * Instantiates a formatter with the localized format patterns defined
@@ -124,9 +124,6 @@ public class DatePickerFormatter extends JFormattedTextField.AbstractFormatter {
      */
     @Override
     public Object stringToValue(String text) throws ParseException {
-        Object result = null;
-        ParseException pex = null;
-
         if (text == null || text.trim().length() == 0) {
             return null;
         }
@@ -134,6 +131,8 @@ public class DatePickerFormatter extends JFormattedTextField.AbstractFormatter {
         // If the current formatter did not work loop through the other
         // formatters and see if any of them can parse the string passed
         // in.
+        ParseException pex = null;
+        Object result = null;
         for (DateFormat _format : _formats) {
             try {
                 result = _format.parse(text);

@@ -834,7 +834,6 @@ public class JXTreeTable extends JXTable {
                 return false;
             if (!mightBeExpansionTrigger(e))
                 return false;
-            boolean changedExpansion = false;
             MouseEvent me = (MouseEvent) e;
             if (hackAroundDragEnabled(me)) {
                 /*
@@ -856,6 +855,7 @@ public class JXTreeTable extends JXTable {
             // selection remaining the same. To avoid this, we
             // only dispatch when the modifiers are 0 (or the left mouse
             // button).
+            boolean changedExpansion = false;
             if (me.getModifiers() == 0 || me.getModifiers() == InputEvent.BUTTON1_MASK) {
                 MouseEvent pressed = new MouseEvent(
                     renderer, me.getID(), me.getWhen(), me.getModifiers(),
@@ -939,7 +939,6 @@ public class JXTreeTable extends JXTable {
                 return false;
             if (!mightBeExpansionTrigger(e))
                 return false;
-            boolean changedExpansion = false;
             MouseEvent me = (MouseEvent) e;
             if (hackAroundDragEnabled(me)) {
                 /*
@@ -960,6 +959,7 @@ public class JXTreeTable extends JXTable {
             // selection remaining the same. To avoid this, we
             // only dispatch when the modifiers are 0 (or the left mouse
             // button).
+            boolean changedExpansion = false;
             if (me.getModifiers() == 0 || me.getModifiers() == InputEvent.BUTTON1_MASK) {
                 // compute where the mouse point is relative to the tree
                 // as renderer, that the x coordinate translated to be relative

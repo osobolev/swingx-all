@@ -156,8 +156,7 @@ public class JXComboBox extends JComboBox {
          */
         @Override
         public Component getListCellRendererComponent(JList list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
-            Component comp = null;
-
+            Component comp;
             if (index == -1) {
                 comp = delegateRenderer.getListCellRendererComponent(list, value, getSelectedIndex(), isSelected, cellHasFocus);
 

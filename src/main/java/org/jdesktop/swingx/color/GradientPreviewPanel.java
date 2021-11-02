@@ -49,7 +49,7 @@ import java.util.logging.Logger;
  */
 public class GradientPreviewPanel extends JXPanel {
 
-    private Paint checker_texture = null;
+    private Paint checker_texture;
     private Point2D start;
     private Point2D end;
     public JXGradientChooser picker;
@@ -178,7 +178,7 @@ public class GradientPreviewPanel extends JXPanel {
         }
 
         // create the underlying gradient paint
-        MultipleGradientPaint paint = null;
+        MultipleGradientPaint paint;
         if (isRadial()) { //picker.styleCombo.getSelectedItem().toString().equals("Radial")) {
             paint = new RadialGradientPaint(
                 start, (float) start.distance(end), start,

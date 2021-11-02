@@ -322,7 +322,7 @@ public class JXCollapsiblePane extends JXPanel {
     /**
      * Defines the orientation of the component.
      */
-    private Direction direction = Direction.UP;
+    private Direction direction;
 
     /**
      * Timer used for doing the transparency animation (fade-in)

@@ -168,8 +168,6 @@ public class EyeDropperColorChooserPanel extends AbstractColorChooserPanel {
      */
     // <editor-fold defaultstate="collapsed" desc=" Generated Code ">//GEN-BEGIN:initComponents
     private void initComponents() {
-        GridBagConstraints gridBagConstraints;
-
         eyeDropper = new JButton();
         magPanel = new MagnifyingPanel();
         activeColor = new JXColorSelectionButton();
@@ -189,7 +187,7 @@ public class EyeDropperColorChooserPanel extends AbstractColorChooserPanel {
         magPanel.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0)));
         magPanel.setMinimumSize(new Dimension(100, 100));
         magPanel.setPreferredSize(new Dimension(100, 100));
-        gridBagConstraints = new GridBagConstraints();
+        GridBagConstraints gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.gridheight = 3;

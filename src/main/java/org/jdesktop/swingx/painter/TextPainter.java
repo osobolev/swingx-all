@@ -48,8 +48,8 @@ import static org.jdesktop.swingx.painter.PainterUtils.getForegroundPaint;
 @SuppressWarnings("nls")
 public class TextPainter extends AbstractAreaPainter<Object> {
 
-    private String text = "";
-    private Font font = null;
+    private String text;
+    private Font font;
 
     /**
      * Creates a new instance of TextPainter

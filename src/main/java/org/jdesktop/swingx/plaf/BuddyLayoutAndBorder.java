@@ -167,7 +167,7 @@ public class BuddyLayoutAndBorder implements LayoutManager, Border, PropertyChan
      */
     @Override
     public Insets getBorderInsets(Component c) {
-        Insets insets = null;
+        Insets insets;
         if (borderDelegate != null) {
             // Original insets are cloned to make it work in Mac OS X Aqua LnF.
             // Seems that this LnF uses a shared insets instance which should

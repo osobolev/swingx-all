@@ -1380,9 +1380,6 @@ public class JXGraph extends JXPanel {
         double minorSpacing = majorY / getMinorCountY();
         double axisV = xPositionToPixel(originX);
 
-        Stroke gridStroke = new BasicStroke(STROKE_GRID);
-        Stroke axisStroke = new BasicStroke(STROKE_AXIS);
-
         Rectangle clip = g2.getClipBounds();
 
         int position;
@@ -1397,6 +1394,8 @@ public class JXGraph extends JXPanel {
 
 //        double startY = Math.floor((minY - originY) / majorY) * majorY;
         double startY = Math.floor(minY / majorY) * majorY;
+        Stroke axisStroke = new BasicStroke(STROKE_AXIS);
+        Stroke gridStroke = new BasicStroke(STROKE_GRID);
         for (double y = startY; y < maxY + majorY; y += majorY) {
             g2.setStroke(gridStroke);
             g2.setColor(getMinorGridColor());
@@ -1445,9 +1444,6 @@ public class JXGraph extends JXPanel {
         double minorSpacing = majorX / getMinorCountX();
         double axisH = yPositionToPixel(originY);
 
-        Stroke gridStroke = new BasicStroke(STROKE_GRID);
-        Stroke axisStroke = new BasicStroke(STROKE_AXIS);
-
         Rectangle clip = g2.getClipBounds();
 
         int position;
@@ -1461,6 +1457,8 @@ public class JXGraph extends JXPanel {
 
 //        double startX = Math.floor((minX - originX) / majorX) * majorX;
         double startX = Math.floor(minX / majorX) * majorX;
+        Stroke axisStroke = new BasicStroke(STROKE_AXIS);
+        Stroke gridStroke = new BasicStroke(STROKE_GRID);
         for (double x = startX; x < maxX + majorX; x += majorX) {
             g2.setStroke(gridStroke);
             g2.setColor(getMinorGridColor());
@@ -1643,8 +1641,7 @@ public class JXGraph extends JXPanel {
 
         @Override
         public int hashCode() {
-            int result;
-            result = equation.hashCode();
+            int result = equation.hashCode();
             result = 29 * result + color.hashCode();
             return result;
         }

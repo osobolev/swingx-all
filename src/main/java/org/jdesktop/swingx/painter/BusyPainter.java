@@ -142,10 +142,10 @@ public class BusyPainter extends AbstractPainter<Object> {
         float[] coords = new float[6];
         Float cp = new Float();
         Float sp = new Float();
-        int ret;
         float totalDist = 0;
         List<float[]> segStack = new ArrayList<>();
         do {
+            int ret;
             try {
                 ret = pi.currentSegment(coords);
             } catch (NoSuchElementException e) {
@@ -212,8 +212,8 @@ public class BusyPainter extends AbstractPainter<Object> {
         center.y = (float) height / 2;
 
         // draw the stuff
-        int i = 0;
         g.translate(center.x, center.y);
+        int i = 0;
         for (Float p : pList) {
             drawAt(g, i++, p, center);
         }
@@ -415,12 +415,11 @@ public class BusyPainter extends AbstractPainter<Object> {
      * @author chet
      */
     private Float getXY(float t, float x1, float y1, float x2, float y2) {
-        Float xy;
         float invT = 1 - t;
         float b1 = 3 * t * (invT * invT);
         float b2 = 3 * (t * t) * invT;
         float b3 = t * t * t;
-        xy = new Float(b1 * x1 + b2 * x2 + b3, b1 * y1 + b2 * y2 + b3);
+        Float xy = new Float(b1 * x1 + b2 * x2 + b3, b1 * y1 + b2 * y2 + b3);
         return xy;
     }
 
@@ -445,12 +444,11 @@ public class BusyPainter extends AbstractPainter<Object> {
          *
          *     b0 = (1 -t)^2, b1 = 2*t*(1-t), b2 = t^2
          */
-        Float xy;
         float invT = 1 - t;
         float b0 = invT * invT;
         float b1 = 2 * t * invT;
         float b2 = t * t;
-        xy = new Float(b0 * begin.x + b1 * ctrl.x + b2 * end.x, b0 * begin.y + b1 * ctrl.y + b2 * end.y);
+        Float xy = new Float(b0 * begin.x + b1 * ctrl.x + b2 * end.x, b0 * begin.y + b1 * ctrl.y + b2 * end.y);
 
         return xy;
     }

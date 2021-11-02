@@ -788,7 +788,7 @@ public class MultiSplitLayout implements LayoutManager, Serializable {
         assert split.isVisible();
         Rectangle splitBounds = new Rectangle(bounds.x, bounds.y, 0, 0);
         List<Node> splitChildren = split.getChildren();
-        Node lastChild = null;
+        Node lastChild;
         int lastVisibleChildIdx = splitChildren.size();
         do {
             lastVisibleChildIdx--;
@@ -1126,7 +1126,7 @@ public class MultiSplitLayout implements LayoutManager, Serializable {
         } else if (root instanceof Split) {
             Split split = (Split) root;
             Iterator<Node> splitChildren = split.getChildren().iterator();
-            Rectangle childBounds = null;
+            Rectangle childBounds;
             int divSize = getDividerSize();
             boolean initSplit = false;
 
@@ -1149,7 +1149,7 @@ public class MultiSplitLayout implements LayoutManager, Serializable {
                     }
                     Divider dividerChild = splitChildren.hasNext() ? (Divider) splitChildren.next() : null;
 
-                    double childWidth = 0.0;
+                    double childWidth;
                     if (getFloatingDividers()) {
                         childWidth = preferredNodeSize(splitChild).getWidth();
                     } else {
@@ -1170,8 +1170,7 @@ public class MultiSplitLayout implements LayoutManager, Serializable {
 
                     if ((initSplit || getFloatingDividers()) && dividerChild != null && dividerChild.isVisible()) {
                         double dividerX = childBounds.getMaxX();
-                        Rectangle dividerBounds;
-                        dividerBounds = boundsWithXandWidth(bounds, dividerX, divSize);
+                        Rectangle dividerBounds = boundsWithXandWidth(bounds, dividerX, divSize);
                         dividerChild.setBounds(dividerBounds);
                     }
                     if (dividerChild != null && dividerChild.isVisible()) {
@@ -1196,7 +1195,7 @@ public class MultiSplitLayout implements LayoutManager, Serializable {
                     }
                     Divider dividerChild = splitChildren.hasNext() ? (Divider) splitChildren.next() : null;
 
-                    double childHeight = 0.0;
+                    double childHeight;
                     if (getFloatingDividers()) {
                         childHeight = preferredNodeSize(splitChild).getHeight();
                     } else {

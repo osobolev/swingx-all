@@ -240,7 +240,6 @@ public class BasicTitledPanelUI extends TitledPanelUI {
         titledPanel.putClientProperty(JXTitledPanel.RIGHT_DECORATION, right);
         caption = null;
         topPanel = null;
-        titledPanel = null;
         left = null;
         right = null;
     }

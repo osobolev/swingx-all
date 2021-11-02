@@ -239,10 +239,8 @@ public class BoundAction extends AbstractActionExt {
     @Override
     public void itemStateChanged(ItemEvent evt) {
         // Update all objects that share this item
-        boolean newValue;
         boolean oldValue = isSelected();
-
-        newValue = evt.getStateChange() == ItemEvent.SELECTED;
+        boolean newValue = evt.getStateChange() == ItemEvent.SELECTED;
 
         if (oldValue != newValue) {
             setSelected(newValue);

@@ -218,9 +218,10 @@ public final class MacOSXPopupLocationFix {
             // tweak the insets for aqua, they're reported incorrectly there
             if (aqua) {
                 int aquaBottomInsets = 21; // unreported insets, shown in screenshot, https://glazedlists.dev.java.net/issues/show_bug.cgi?id=332
-                int aquaTopInsets = 22; // for Apple menu bar, found via debugger
 
                 screenInsets.bottom = Math.max(screenInsets.bottom, aquaBottomInsets);
+                // for Apple menu bar, found via debugger
+                int aquaTopInsets = 22;
                 screenInsets.top = Math.max(screenInsets.top, aquaTopInsets);
             }
 
