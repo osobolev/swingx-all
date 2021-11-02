@@ -37,6 +37,7 @@ import java.awt.Paint;
 import java.awt.RadialGradientPaint;
 import java.awt.RenderingHints;
 import java.awt.event.MouseEvent;
+import java.awt.geom.AffineTransform;
 import java.awt.geom.Point2D;
 import java.util.List;
 import java.util.logging.Logger;
@@ -182,7 +183,7 @@ public class GradientPreviewPanel extends JXPanel {
         if (isRadial()) { //picker.styleCombo.getSelectedItem().toString().equals("Radial")) {
             paint = new RadialGradientPaint(
                 start, (float) start.distance(end), start,
-                fractions, colors, cycle, MultipleGradientPaint.ColorSpaceType.SRGB, null
+                fractions, colors, cycle, MultipleGradientPaint.ColorSpaceType.SRGB, new AffineTransform()
             );
         } else {
             paint = new LinearGradientPaint(
