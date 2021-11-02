@@ -223,9 +223,7 @@ public class TargetManager {
 
         // The target list has the next chance to handle the command.
         if (targetList != null) {
-            Iterator<Targetable> iter = targetList.iterator();
-            while (iter.hasNext()) {
-                Targetable target = iter.next();
+            for (Targetable target : targetList) {
                 if (target.hasCommand(command) &&
                     target.doCommand(command, value)) {
                     return true;
@@ -272,8 +270,8 @@ public class TargetManager {
         target = null;
 
         PropertyChangeListener[] listeners = propertySupport.getPropertyChangeListeners();
-        for (int i = 0; i < listeners.length; i++) {
-            propertySupport.removePropertyChangeListener(listeners[i]);
+        for (PropertyChangeListener listener : listeners) {
+            propertySupport.removePropertyChangeListener(listener);
         }
         INSTANCE = null;
     }

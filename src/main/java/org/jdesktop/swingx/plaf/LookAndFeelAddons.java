@@ -130,15 +130,13 @@ public abstract class LookAndFeelAddons {
      * @see UIManager#setLookAndFeel
      */
     public void initialize() {
-        for (Iterator<ComponentAddon> iter = contributedComponents.iterator(); iter.hasNext(); ) {
-            ComponentAddon addon = iter.next();
+        for (ComponentAddon addon : contributedComponents) {
             addon.initialize(this);
         }
     }
 
     public void uninitialize() {
-        for (Iterator<ComponentAddon> iter = contributedComponents.iterator(); iter.hasNext(); ) {
-            ComponentAddon addon = iter.next();
+        for (ComponentAddon addon : contributedComponents) {
             addon.uninitialize(this);
         }
     }

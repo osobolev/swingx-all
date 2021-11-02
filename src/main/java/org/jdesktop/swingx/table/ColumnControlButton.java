@@ -818,9 +818,9 @@ public class ColumnControlButton extends JButton {
     protected List getColumnControlActionKeys() {
         Object[] allKeys = table.getActionMap().allKeys();
         List columnKeys = new ArrayList();
-        for (int i = 0; i < allKeys.length; i++) {
-            if (isColumnControlActionKey(allKeys[i])) {
-                columnKeys.add(allKeys[i]);
+        for (Object key : allKeys) {
+            if (isColumnControlActionKey(key)) {
+                columnKeys.add(key);
             }
         }
         // JW: this will blow for non-String keys!

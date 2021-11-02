@@ -636,15 +636,15 @@ public class JXImageView extends JXPanel {
         @Override
         public boolean canImport(JComponent c, DataFlavor[] flavors) {
             //log.fine("canImport:" + c);
-            for (int i = 0; i < flavors.length; i++) {
+            for (DataFlavor flavor : flavors) {
                 //log.fine("testing: "+flavors[i]);
-                if (DataFlavor.javaFileListFlavor.equals(flavors[i])) {
+                if (DataFlavor.javaFileListFlavor.equals(flavor)) {
                     return true;
                 }
-                if (DataFlavor.imageFlavor.equals(flavors[i])) {
+                if (DataFlavor.imageFlavor.equals(flavor)) {
                     return true;
                 }
-                if (urlFlavor.match(flavors[i])) {
+                if (urlFlavor.match(flavor)) {
                     return true;
                 }
             }

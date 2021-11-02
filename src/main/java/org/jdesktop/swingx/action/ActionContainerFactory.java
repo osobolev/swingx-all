@@ -122,10 +122,7 @@ public class ActionContainerFactory {
      */
     public JToolBar createToolBar(List<?> list) {
         JToolBar toolbar = new JToolBar();
-        Iterator<?> iter = list.iterator();
-        while (iter.hasNext()) {
-            Object element = iter.next();
-
+        for (Object element : list) {
             if (element == null) {
                 toolbar.addSeparator();
             } else {
@@ -165,10 +162,7 @@ public class ActionContainerFactory {
      */
     public JPopupMenu createPopup(List<?> list) {
         JPopupMenu popup = new JPopupMenu();
-        Iterator<?> iter = list.iterator();
-        while (iter.hasNext()) {
-            Object element = iter.next();
-
+        for (Object element : list) {
             if (element == null) {
                 popup.addSeparator();
             } else if (element instanceof List<?>) {

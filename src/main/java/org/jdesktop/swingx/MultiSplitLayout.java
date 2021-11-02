@@ -1790,9 +1790,7 @@ public class MultiSplitLayout implements LayoutManager, Serializable {
          */
         public void restoreDividers(Split split) {
             boolean nextDividerVisible = false;
-            ListIterator<Node> splitChildren = split.getChildren().listIterator();
-            while (splitChildren.hasNext()) {
-                Node splitChild = splitChildren.next();
+            for (Node splitChild : split.getChildren()) {
                 if (splitChild instanceof Divider) {
                     Node prev = splitChild.previousSibling();
                     if (prev.isVisible()) {

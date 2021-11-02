@@ -109,8 +109,7 @@ public class DefaultTableColumnModelExt extends DefaultTableColumnModel
      */
     @Override
     public TableColumnExt getColumnExt(Object identifier) {
-        for (Iterator<TableColumn> iter = initialColumns.iterator(); iter.hasNext(); ) {
-            TableColumn column = iter.next();
+        for (TableColumn column : initialColumns) {
             if ((column instanceof TableColumnExt) && (identifier.equals(column.getIdentifier()))) {
                 return (TableColumnExt) column;
             }

@@ -167,8 +167,8 @@ public class JXSearchPanel extends AbstractPatternPanel {
      */
     @Override
     public void match() {
-        for (Iterator<PatternMatcher> iter = getPatternMatchers().iterator(); iter.hasNext(); ) {
-            iter.next().setPattern(getPattern());
+        for (PatternMatcher patternMatcher : getPatternMatchers()) {
+            patternMatcher.setPattern(getPattern());
         }
     }
 

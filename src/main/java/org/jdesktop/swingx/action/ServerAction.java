@@ -204,9 +204,7 @@ public class ServerAction extends AbstractAction {
             // Get all the header name/value pairs ans set the request headers
             Set<String> headerNames = getHeaderNames();
             if (headerNames != null && !headerNames.isEmpty()) {
-                Iterator<String> iter = headerNames.iterator();
-                while (iter.hasNext()) {
-                    String name = (String) iter.next();
+                for (String name : headerNames) {
                     uc.setRequestProperty(name, getHeaderValue(name));
                 }
             }

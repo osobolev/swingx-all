@@ -513,8 +513,7 @@ public class SearchFactory implements UIDependent {
 
             Component c = focusManager.getPermanentFocusOwner();
             if (c == null) return;
-            for (Iterator<Container> iter = getTargets().iterator(); iter.hasNext(); ) {
-                Container element = iter.next();
+            for (Container element : getTargets()) {
                 if ((element == c) || (SwingUtilities.isDescendingFrom(c, element))) {
                     return;
                 }

@@ -372,9 +372,9 @@ public class Utilities {
         HashMap<String, Integer> names = new HashMap<>(((fields.length * 4) / 3) + 5, 0.75f);
         HashMap<Integer, String> values = new HashMap<>(((fields.length * 4) / 3) + 5, 0.75f);
 
-        for (int i = 0; i < fields.length; i++) {
-            if (Modifier.isStatic(fields[i].getModifiers())) {
-                String name = fields[i].getName();
+        for (Field field : fields) {
+            if (Modifier.isStatic(field.getModifiers())) {
+                String name = field.getName();
 
                 if (name.startsWith("VK_")) { // NOI18N
 
@@ -382,7 +382,7 @@ public class Utilities {
                     name = name.substring(3);
 
                     try {
-                        int numb = fields[i].getInt(null);
+                        int numb = field.getInt(null);
                         Integer value = numb;
                         names.put(name, value);
                         values.put(value, name);
@@ -946,8 +946,8 @@ public class Utilities {
         {
             boolean ok = true;
 
-            for (int i = 0; i < workingSet.length; i++) {
-                ok = ok && (workingSet[i].length() < width);
+            for (String value : workingSet) {
+                ok = ok && (value.length() < width);
 
                 if (!ok) {
                     break widthcheck;
@@ -961,11 +961,11 @@ public class Utilities {
 
         int lineStart = 0; // the position of start of currently processed line in the original string
 
-        for (int i = 0; i < workingSet.length; i++) {
-            if (workingSet[i].length() < width) {
-                lines.add(workingSet[i]);
+        for (String value : workingSet) {
+            if (value.length() < width) {
+                lines.add(value);
             } else {
-                breakIterator.setText(workingSet[i]);
+                breakIterator.setText(value);
 
                 int nextStart = breakIterator.next();
                 int prevStart = 0;
@@ -977,26 +977,24 @@ public class Utilities {
                     }
 
                     if (nextStart == BreakIterator.DONE) {
-                        nextStart = prevStart = workingSet[i].length();
+                        nextStart = prevStart = value.length();
                     }
 
                     if (prevStart == 0) {
                         prevStart = nextStart;
                     }
 
-                    lines.add(workingSet[i].substring(lineStart, prevStart));
+                    lines.add(value.substring(lineStart, prevStart));
 
                     lineStart = prevStart;
                     prevStart = 0;
-                } while (lineStart < workingSet[i].length());
+                } while (lineStart < value.length());
 
                 lineStart = 0;
             }
         }
 
-        String[] s = new String[lines.size()];
-
-        return (String[]) lines.toArray(s);
+        return lines.toArray(new String[0]);
     }
 
     private static String trimString(String s) {

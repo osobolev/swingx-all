@@ -2988,8 +2988,7 @@ public class BasicXListUI extends BasicListUI {
 
                 htmlBuf.append("<html>\n<body>\n<ul>\n");
 
-                for (int i = 0; i < values.length; i++) {
-                    Object obj = values[i];
+                for (Object obj : values) {
                     String val = ((obj == null) ? "" : obj.toString());
                     plainBuf.append(val + "\n");
                     htmlBuf.append("  <li>" + val + "\n");

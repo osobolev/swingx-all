@@ -111,10 +111,7 @@ public class EnumComboBoxModel<E extends Enum<E>> extends ListComboBoxModel<E> {
         valueMap = new HashMap<>();
         enumClass = en;
 
-        Iterator<E> iter = data.iterator();
-
-        while (iter.hasNext()) {
-            E element = iter.next();
+        for (E element : data) {
             String s = element.toString();
 
             if (valueMap.containsKey(s)) {

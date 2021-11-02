@@ -94,8 +94,7 @@ public class AutoCompleteComboBoxEditor implements ComboBoxEditor {
         Object wrappedItem = wrapped.getItem();
 
         String[] oldAsStrings = stringConverter.getPossibleStringsForItem(oldItem);
-        for (int i = 0, n = oldAsStrings.length; i < n; i++) {
-            String oldAsString = oldAsStrings[i];
+        for (String oldAsString : oldAsStrings) {
             if (oldAsString != null && oldAsString.equals(wrappedItem)) {
                 return oldItem;
             }

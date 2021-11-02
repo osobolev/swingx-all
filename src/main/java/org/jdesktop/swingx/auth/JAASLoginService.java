@@ -123,12 +123,12 @@ public class JAASLoginService extends LoginService {
         }
 
         public void handle(Callback[] callbacks) throws java.io.IOException {
-            for (int i = 0; i < callbacks.length; i++) {
-                if (callbacks[i] instanceof NameCallback) {
-                    NameCallback cb = (NameCallback) callbacks[i];
+            for (Callback callback : callbacks) {
+                if (callback instanceof NameCallback) {
+                    NameCallback cb = (NameCallback) callback;
                     cb.setName(name);
-                } else if (callbacks[i] instanceof PasswordCallback) {
-                    PasswordCallback cb = (PasswordCallback) callbacks[i];
+                } else if (callback instanceof PasswordCallback) {
+                    PasswordCallback cb = (PasswordCallback) callback;
                     cb.setPassword(password);
                 }
             }

@@ -167,8 +167,8 @@ public final class SwingXUtilities {
         Component[] children = getChildren(c);
 
         if (children != null) {
-            for (int i = 0; i < children.length; i++) {
-                setComponentTreeEnabled(children[i], enabled);
+            for (Component child : children) {
+                setComponentTreeEnabled(child, enabled);
             }
         }
     }
@@ -186,8 +186,8 @@ public final class SwingXUtilities {
         Component[] children = getChildren(c);
 
         if (children != null) {
-            for (int i = 0; i < children.length; i++) {
-                setComponentTreeLocale(children[i], locale);
+            for (Component child : children) {
+                setComponentTreeLocale(child, locale);
             }
         }
     }
@@ -205,8 +205,8 @@ public final class SwingXUtilities {
         Component[] children = getChildren(c);
 
         if (children != null) {
-            for (int i = 0; i < children.length; i++) {
-                setComponentTreeBackground(children[i], color);
+            for (Component child : children) {
+                setComponentTreeBackground(child, color);
             }
         }
     }
@@ -224,8 +224,8 @@ public final class SwingXUtilities {
         Component[] children = getChildren(c);
 
         if (children != null) {
-            for (int i = 0; i < children.length; i++) {
-                setComponentTreeForeground(children[i], color);
+            for (Component child : children) {
+                setComponentTreeForeground(child, color);
             }
         }
     }
@@ -242,8 +242,8 @@ public final class SwingXUtilities {
         Component[] children = getChildren(c);
 
         if (children != null) {
-            for (int i = 0; i < children.length; i++) {
-                setComponentTreeFont(children[i], font);
+            for (Component child : children) {
+                setComponentTreeFont(child, font);
             }
         }
     }

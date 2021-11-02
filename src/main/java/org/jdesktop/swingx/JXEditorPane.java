@@ -512,11 +512,11 @@ public class JXEditorPane extends JEditorPane implements /*Searchable, */Targeta
         if (content != null) {
             DataFlavor[] flavors = content.getTransferDataFlavors();
             try {
-                for (int i = 0; i < flavors.length; i++) {
-                    if (String.class.equals(flavors[i].getRepresentationClass())) {
-                        Object data = content.getTransferData(flavors[i]);
+                for (DataFlavor flavor : flavors) {
+                    if (String.class.equals(flavor.getRepresentationClass())) {
+                        Object data = content.getTransferData(flavor);
 
-                        if (flavors[i].isMimeTypeEqual("text/plain")) {
+                        if (flavor.isMimeTypeEqual("text/plain")) {
                             // This works but we lose all the formatting.
                             replaceSelection(data.toString());
                             break;

@@ -155,10 +155,10 @@ public final class MacOSXPopupLocationFix {
 
             // try to find the graphics configuration for our point of interest
             GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
-            GraphicsDevice[] gd = ge.getScreenDevices();
-            for (int i = 0; i < gd.length; i++) {
-                if (gd[i].getType() != GraphicsDevice.TYPE_RASTER_SCREEN) continue;
-                GraphicsConfiguration defaultGraphicsConfiguration = gd[i].getDefaultConfiguration();
+            GraphicsDevice[] gds = ge.getScreenDevices();
+            for (GraphicsDevice gd : gds) {
+                if (gd.getType() != GraphicsDevice.TYPE_RASTER_SCREEN) continue;
+                GraphicsConfiguration defaultGraphicsConfiguration = gd.getDefaultConfiguration();
                 if (!defaultGraphicsConfiguration.getBounds().contains(point)) continue;
                 return defaultGraphicsConfiguration;
             }

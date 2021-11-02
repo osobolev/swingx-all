@@ -686,8 +686,8 @@ public class TableColumnExt extends TableColumn implements UIDependent {
                     propertyName,
                     oldValue, newValue);
 
-                for (int i = 0; i < pcl.length; i++) {
-                    pcl[i].propertyChange(pce);
+                for (PropertyChangeListener listener : pcl) {
+                    listener.propertyChange(pce);
                 }
             }
         }

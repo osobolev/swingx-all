@@ -760,8 +760,8 @@ public class BasicErrorPaneUI extends ErrorPaneUI {
         public Dimension getPreferredSize() {
             int width = 0;
             int height = 0;
-            for (int iter = 0; iter < group.length; iter++) {
-                Dimension size = group[iter].getRealPreferredSize();
+            for (EqualSizeJButton btn : group) {
+                Dimension size = btn.getRealPreferredSize();
                 width = Math.max(size.width, width);
                 height = Math.max(size.height, height);
             }

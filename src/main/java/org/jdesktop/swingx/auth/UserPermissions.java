@@ -87,8 +87,8 @@ public class UserPermissions {
      */
     public boolean isUserInRole(String role) {
         if (roles != null) {
-            for (int iter = 0; iter < roles.length; iter++) {
-                if (roles[iter].equals(role)) {
+            for (String r : roles) {
+                if (r.equals(role)) {
                     return true;
                 }
             }
@@ -100,8 +100,8 @@ public class UserPermissions {
      * Returns true if the user is in one of the given roles (case sensitive).
      */
     public boolean isUserInARole(String[] roles) {
-        for (int iter = 0; iter < roles.length; iter++) {
-            if (isUserInRole(roles[iter])) {
+        for (String role : roles) {
+            if (isUserInRole(role)) {
                 return true;
             }
         }
@@ -112,8 +112,8 @@ public class UserPermissions {
      * Returns true if the user is in all of the given roles (case sensitive).
      */
     public boolean isUserInRoles(String[] roles) {
-        for (int iter = 0; iter < roles.length; iter++) {
-            if (!isUserInRole(roles[iter])) {
+        for (String role : roles) {
+            if (!isUserInRole(role)) {
                 return false;
             }
         }

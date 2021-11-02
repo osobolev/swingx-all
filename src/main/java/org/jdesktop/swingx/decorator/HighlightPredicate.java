@@ -539,8 +539,8 @@ public interface HighlightPredicate {
          */
         public ColumnHighlightPredicate(int... columns) {
             columnList = new ArrayList<>();
-            for (int i = 0; i < columns.length; i++) {
-                columnList.add(columns[i]);
+            for (int column : columns) {
+                columnList.add(column);
             }
         }
 
@@ -582,8 +582,8 @@ public interface HighlightPredicate {
          */
         public IdentifierHighlightPredicate(Object... columns) {
             columnList = new ArrayList<>();
-            for (int i = 0; i < columns.length; i++) {
-                columnList.add(columns[i]);
+            for (Object column : columns) {
+                columnList.add(column);
             }
         }
 
@@ -626,8 +626,8 @@ public interface HighlightPredicate {
          */
         public DepthHighlightPredicate(int... depths) {
             depthList = new ArrayList<>();
-            for (int i = 0; i < depths.length; i++) {
-                depthList.add(depths[i]);
+            for (int depth : depths) {
+                depthList.add(depth);
             }
         }
 

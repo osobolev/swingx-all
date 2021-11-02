@@ -69,15 +69,15 @@ public abstract class AbstractActionExt extends AbstractAction
      */
     public AbstractActionExt(AbstractActionExt action) {
         Object[] keys = action.getKeys();
-        for (int i = 0; i < keys.length; i++) {
-            putValue((String) keys[i], action.getValue((String) keys[i]));
+        for (Object key : keys) {
+            putValue((String) key, action.getValue((String) key));
         }
         this.enabled = action.enabled;
 
         // Copy change listeners.
         PropertyChangeListener[] listeners = action.getPropertyChangeListeners();
-        for (int i = 0; i < listeners.length; i++) {
-            addPropertyChangeListener(listeners[i]);
+        for (PropertyChangeListener listener : listeners) {
+            addPropertyChangeListener(listener);
         }
     }
 
@@ -340,8 +340,8 @@ public abstract class AbstractActionExt extends AbstractAction
      */
     public void dispose() {
         PropertyChangeListener[] listeners = getPropertyChangeListeners();
-        for (int i = 0; i < listeners.length; i++) {
-            removePropertyChangeListener(listeners[i]);
+        for (PropertyChangeListener listener : listeners) {
+            removePropertyChangeListener(listener);
         }
     }
 
