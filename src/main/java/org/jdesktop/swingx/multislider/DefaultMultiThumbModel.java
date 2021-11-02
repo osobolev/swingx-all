@@ -86,8 +86,7 @@ public class DefaultMultiThumbModel<E> extends AbstractMultiThumbModel<E> {
 
     @Override
     public List<Thumb<E>> getSortedThumbs() {
-        List<Thumb<E>> list = new ArrayList<>();
-        list.addAll(thumbs);
+        List<Thumb<E>> list = new ArrayList<>(thumbs);
         Collections.sort(list, new Comparator<Thumb<E>>() {
             @Override
             public int compare(Thumb<E> o1, Thumb<E> o2) {

@@ -1003,9 +1003,7 @@ public class JXMonthView extends JComponent {
         Contract.asNotNull(unselectableDates,
             "unselectable dates must not be null");
         SortedSet<Date> unselectableSet = new TreeSet<>();
-        for (Date unselectableDate : unselectableDates) {
-            unselectableSet.add(unselectableDate);
-        }
+        Collections.addAll(unselectableSet, unselectableDates);
         getSelectionModel().setUnselectableDates(unselectableSet);
         // PENDING JW: check that ui does the repaint!
         repaint();

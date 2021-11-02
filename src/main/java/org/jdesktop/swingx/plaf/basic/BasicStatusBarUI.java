@@ -507,9 +507,9 @@ public class BasicStatusBarUI extends StatusBarUI {
             public Dimension preferredLayoutSize(Container parent) {
                 Dimension prefSize = new Dimension();
                 int count = 0;
-                for (Component comp : constraints.keySet()) {
-                    Constraint c = constraints.get(comp);
-                    Dimension d = comp.getPreferredSize();
+                for (Map.Entry<Component, Constraint> entry : constraints.entrySet()) {
+                    Constraint c = entry.getValue();
+                    Dimension d = entry.getKey().getPreferredSize();
                     int prefWidth = 0;
                     if (c != null) {
                         Insets i = c.getInsets();

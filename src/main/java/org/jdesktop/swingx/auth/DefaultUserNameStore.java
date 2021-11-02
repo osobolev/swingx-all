@@ -122,9 +122,7 @@ public class DefaultUserNameStore extends UserNameStore {
     public void addUserName(String name) {
         if (!containsUserName(name)) {
             String[] newNames = new String[userNames.length + 1];
-            for (int i = 0; i < userNames.length; i++) {
-                newNames[i] = userNames[i];
-            }
+            System.arraycopy(userNames, 0, newNames, 0, userNames.length);
             newNames[newNames.length - 1] = name;
             setUserNames(newNames);
         }

@@ -546,9 +546,7 @@ public class BasicMonthViewUI extends MonthViewUI {
             String[] dateFormatSymbols = DateFormatSymbols.getInstance(locale)
                 .getShortWeekdays();
             daysOfTheWeek = new String[JXMonthView.DAYS_IN_WEEK];
-            for (int i = Calendar.SUNDAY; i <= Calendar.SATURDAY; i++) {
-                daysOfTheWeek[i - 1] = dateFormatSymbols[i];
-            }
+            System.arraycopy(dateFormatSymbols, Calendar.SUNDAY, daysOfTheWeek, 0, Calendar.SATURDAY);
         }
         if (revalidate) {
             monthView.invalidate();

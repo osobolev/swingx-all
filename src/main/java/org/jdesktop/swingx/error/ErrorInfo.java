@@ -142,9 +142,7 @@ public class ErrorInfo {
         //now add all the data in the param "state". Thus, if somebody specified a key in the
         //state map, it overrides whatever was in the System map
         if (state != null) {
-            for (Map.Entry<String, String> entry : state.entrySet()) {
-                this.state.put(entry.getKey(), entry.getValue());
-            }
+            this.state.putAll(state);
         }
     }
 

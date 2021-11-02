@@ -23,7 +23,12 @@ package org.jdesktop.swingx.decorator;
 import org.jdesktop.swingx.rollover.RolloverProducer;
 import org.jdesktop.swingx.util.Contract;
 
-import javax.swing.*;
+import javax.swing.AbstractButton;
+import javax.swing.Icon;
+import javax.swing.JComponent;
+import javax.swing.JLabel;
+import javax.swing.SwingConstants;
+import javax.swing.SwingUtilities;
 import java.awt.Component;
 import java.awt.Insets;
 import java.awt.Point;
@@ -32,6 +37,7 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -582,9 +588,7 @@ public interface HighlightPredicate {
          */
         public IdentifierHighlightPredicate(Object... columns) {
             columnList = new ArrayList<>();
-            for (Object column : columns) {
-                columnList.add(column);
-            }
+            Collections.addAll(columnList, columns);
         }
 
         /**
