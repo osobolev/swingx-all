@@ -42,8 +42,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.geom.Ellipse2D;
 import java.awt.image.BufferedImage;
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
 
 import static java.awt.RenderingHints.KEY_ANTIALIASING;
 import static java.awt.RenderingHints.VALUE_ANTIALIAS_ON;
@@ -91,11 +89,7 @@ public class JXColorSelectionButton extends JButton {
             ex.printStackTrace();
         }
 
-        this.addPropertyChangeListener("background", new PropertyChangeListener() {
-            public void propertyChange(PropertyChangeEvent propertyChangeEvent) {
-                getChooser().setColor(getBackground());
-            }
-        });
+        this.addPropertyChangeListener("background", propertyChangeEvent -> getChooser().setColor(getBackground()));
     }
 
     /**
@@ -185,19 +179,13 @@ public class JXColorSelectionButton extends JButton {
         if (dialog == null) {
             dialog = JColorChooser.createDialog(this,
                 "Choose a color", true, getChooser(),
-                new ActionListener() {
-                    public void actionPerformed(ActionEvent actionEvent) {
-                        Color color = getChooser().getColor();
-                        if (color != null) {
-                            setBackground(color);
-                        }
+                actionEvent -> {
+                    Color color = getChooser().getColor();
+                    if (color != null) {
+                        setBackground(color);
                     }
                 },
-                new ActionListener() {
-                    public void actionPerformed(ActionEvent actionEvent) {
-                        setBackground(initialColor);
-                    }
-                });
+                actionEvent -> setBackground(initialColor));
             dialog.getContentPane().add(getChooser());
             getChooser().getSelectionModel().addChangeListener(
                 new ColorChangeListener(this));

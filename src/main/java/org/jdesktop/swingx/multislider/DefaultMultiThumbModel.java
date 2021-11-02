@@ -22,8 +22,6 @@
 package org.jdesktop.swingx.multislider;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
@@ -91,19 +89,16 @@ public class DefaultMultiThumbModel<E> extends AbstractMultiThumbModel<E> {
     @Override
     public List<Thumb<E>> getSortedThumbs() {
         List<Thumb<E>> list = new ArrayList<>(thumbs);
-        Collections.sort(list, new Comparator<Thumb<E>>() {
-            @Override
-            public int compare(Thumb<E> o1, Thumb<E> o2) {
-                float f1 = o1.getPosition();
-                float f2 = o2.getPosition();
-                if (f1 < f2) {
-                    return -1;
-                }
-                if (f1 > f2) {
-                    return 1;
-                }
-                return 0;
+        list.sort((o1, o2) -> {
+            float f1 = o1.getPosition();
+            float f2 = o2.getPosition();
+            if (f1 < f2) {
+                return -1;
             }
+            if (f1 > f2) {
+                return 1;
+            }
+            return 0;
         });
         return list;
     }

@@ -32,7 +32,6 @@ import javax.swing.plaf.UIResource;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
-import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.logging.Logger;
 
@@ -153,18 +152,14 @@ public abstract class CalendarHeaderHandler {
      */
     private PropertyChangeListener getMonthViewPropertyChangeListener() {
         if (monthViewPropertyChangeListener == null) {
-            monthViewPropertyChangeListener = new PropertyChangeListener() {
-
-                @Override
-                public void propertyChange(PropertyChangeEvent evt) {
-                    if ("componentOrientation".equals(evt.getPropertyName())) {
-                        componentOrientationChanged();
-                    } else if ("font".equals(evt.getPropertyName())) {
-                        fontChanged();
-                    } else if ("monthStringBackground".equals(evt
-                        .getPropertyName())) {
-                        monthStringBackgroundChanged();
-                    }
+            monthViewPropertyChangeListener = evt -> {
+                if ("componentOrientation".equals(evt.getPropertyName())) {
+                    componentOrientationChanged();
+                } else if ("font".equals(evt.getPropertyName())) {
+                    fontChanged();
+                } else if ("monthStringBackground".equals(evt
+                    .getPropertyName())) {
+                    monthStringBackgroundChanged();
                 }
             };
         }

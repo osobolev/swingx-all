@@ -55,7 +55,6 @@ import javax.swing.RowFilter;
 import javax.swing.RowSorter;
 import javax.swing.SortOrder;
 import javax.swing.SwingUtilities;
-import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.plaf.ListUI;
 import javax.swing.text.Position.Bias;
@@ -1233,12 +1232,7 @@ public class JXList extends JList {
      * highlighters.
      */
     protected ChangeListener createHighlighterChangeListener() {
-        return new ChangeListener() {
-            @Override
-            public void stateChanged(ChangeEvent e) {
-                repaint();
-            }
-        };
+        return e -> repaint();
     }
 
     /**

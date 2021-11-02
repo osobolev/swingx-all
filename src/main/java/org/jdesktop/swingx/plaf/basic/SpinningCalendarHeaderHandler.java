@@ -20,7 +20,6 @@ import javax.swing.UIManager;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
-import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -214,15 +213,11 @@ public class SpinningCalendarHeaderHandler extends CalendarHeaderHandler {
      */
     private PropertyChangeListener getPropertyChangeListener() {
         if (monthPropertyListener == null) {
-            monthPropertyListener = new PropertyChangeListener() {
-
-                @Override
-                public void propertyChange(PropertyChangeEvent evt) {
-                    if ("firstDisplayedDay".equals(evt.getPropertyName())) {
-                        firstDisplayedDayChanged();
-                    } else if ("locale".equals(evt.getPropertyName())) {
-                        localeChanged();
-                    }
+            monthPropertyListener = evt -> {
+                if ("firstDisplayedDay".equals(evt.getPropertyName())) {
+                    firstDisplayedDayChanged();
+                } else if ("locale".equals(evt.getPropertyName())) {
+                    localeChanged();
                 }
             };
         }

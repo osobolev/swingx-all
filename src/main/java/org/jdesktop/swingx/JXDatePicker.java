@@ -53,7 +53,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyVetoException;
 import java.text.DateFormat;
@@ -372,13 +371,9 @@ public class JXDatePicker extends JComponent {
      */
     private PropertyChangeListener getMonthViewListener() {
         if (monthViewListener == null) {
-            monthViewListener = new PropertyChangeListener() {
-
-                @Override
-                public void propertyChange(PropertyChangeEvent evt) {
-                    if ("timeZone".equals(evt.getPropertyName())) {
-                        updateTimeZone((TimeZone) evt.getOldValue(), (TimeZone) evt.getNewValue());
-                    }
+            monthViewListener = evt -> {
+                if ("timeZone".equals(evt.getPropertyName())) {
+                    updateTimeZone((TimeZone) evt.getOldValue(), (TimeZone) evt.getNewValue());
                 }
             };
         }

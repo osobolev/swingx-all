@@ -324,13 +324,8 @@ public class BasicTaskPaneUI extends TaskPaneUI {
      * Ensures expanded group is visible. Issues delayed request for scrolling to visible.
      */
     protected void ensureVisible() {
-        SwingUtilities.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                group.scrollRectToVisible(new Rectangle(group.getWidth(), group
-                    .getHeight()));
-            }
-        });
+        SwingUtilities.invokeLater(() -> group.scrollRectToVisible(new Rectangle(group.getWidth(), group
+            .getHeight())));
     }
 
     /**

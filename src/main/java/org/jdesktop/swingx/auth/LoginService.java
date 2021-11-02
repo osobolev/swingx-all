@@ -140,26 +140,20 @@ public abstract class LoginService extends AbstractBean {
                             });
                             return false;
                         }
-                        EventQueue.invokeLater(new Runnable() {
-                            public void run() {
-                                if (result) {
-                                    fireLoginSucceeded(new LoginEvent(
-                                        LoginService.this));
-                                } else {
-                                    fireLoginFailed(new LoginEvent(
-                                        LoginService.this));
-                                }
+                        EventQueue.invokeLater(() -> {
+                            if (result) {
+                                fireLoginSucceeded(new LoginEvent(
+                                    LoginService.this));
+                            } else {
+                                fireLoginFailed(new LoginEvent(
+                                    LoginService.this));
                             }
                         });
                         return result;
                     } catch (Throwable failed) {
                         if (!isCancelled()) {
-                            SwingUtilities.invokeLater(new Runnable() {
-                                public void run() {
-                                    fireLoginFailed(new LoginEvent(
-                                        LoginService.this, failed));
-                                }
-                            });
+                            SwingUtilities.invokeLater(() -> fireLoginFailed(new LoginEvent(
+                                LoginService.this, failed)));
                         } else {
                             EventQueue.invokeLater(new Runnable() {
                                 public void run() {

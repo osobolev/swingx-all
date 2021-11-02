@@ -62,8 +62,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.MouseEvent;
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
 import java.util.logging.Logger;
 
 /**
@@ -515,12 +513,9 @@ public class JXGradientChooser extends JXPanel {
         //actions.put("change-color", changeColorAction);
         addThumbButton.setAction(addThumbAction);
         deleteThumbButton.setAction(deleteThumbAction);
-        changeColorButton.addPropertyChangeListener("background", new PropertyChangeListener() {
-            @Override
-            public void propertyChange(PropertyChangeEvent evt) {
-                selectColorForThumb();
-                updateGradientProperty();
-            }
+        changeColorButton.addPropertyChangeListener("background", evt -> {
+            selectColorForThumb();
+            updateGradientProperty();
         });
         colorLocationSpinner.addChangeListener(new ChangeLocationListener());
         ChangeAlphaListener changeAlphaListener = new ChangeAlphaListener();
@@ -555,12 +550,7 @@ public class JXGradientChooser extends JXPanel {
         slider.addMultiThumbListener(new StopListener());
 
         // called when the gradient property of the preview pane changes
-        gradientPreview.addPropertyChangeListener("gradient", new PropertyChangeListener() {
-            @Override
-            public void propertyChange(PropertyChangeEvent propertyChangeEvent) {
-                recalcGradientFromStops();
-            }
-        });
+        gradientPreview.addPropertyChangeListener("gradient", propertyChangeEvent -> recalcGradientFromStops());
 
         recalcGradientFromStops();
     }
@@ -746,19 +736,9 @@ public class JXGradientChooser extends JXPanel {
 
         JPanel panel = new JPanel();
         JButton cancel = new JButton("Cancel");
-        cancel.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
-                dialog.setVisible(false);
-            }
-        });
+        cancel.addActionListener(actionEvent -> dialog.setVisible(false));
         JButton okay = new JButton("Ok");
-        okay.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
-                dialog.setVisible(false);
-            }
-        });
+        okay.addActionListener(actionEvent -> dialog.setVisible(false));
         okay.setDefaultCapable(true);
 
         GridLayout gl = new GridLayout();

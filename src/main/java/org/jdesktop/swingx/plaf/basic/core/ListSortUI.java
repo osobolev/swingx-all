@@ -452,13 +452,9 @@ public final class ListSortUI {
      * @return rowSorterListener to install on sorter.
      */
     protected RowSorterListener createRowSorterListener() {
-        RowSorterListener l = new RowSorterListener() {
-
-            @Override
-            public void sorterChanged(RowSorterEvent e) {
-                if (e.getType() == RowSorterEvent.Type.SORTED) {
-                    sortedChanged(e);
-                }
+        RowSorterListener l = e -> {
+            if (e.getType() == RowSorterEvent.Type.SORTED) {
+                sortedChanged(e);
             }
         };
         return l;

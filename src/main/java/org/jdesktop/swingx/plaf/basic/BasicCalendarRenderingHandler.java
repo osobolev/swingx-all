@@ -125,18 +125,14 @@ class BasicCalendarRenderingHandler implements CalendarRenderingHandler {
             locale = Locale.getDefault();
         }
         String[] monthNames = DateFormatSymbols.getInstance(locale).getMonths();
-        StringValue tsv = new StringValue() {
-
-            @Override
-            public String getString(Object value) {
-                if (value instanceof Calendar) {
-                    String month = monthNames[((Calendar) value)
-                        .get(Calendar.MONTH)];
-                    return month + " "
-                           + ((Calendar) value).get(Calendar.YEAR);
-                }
-                return StringValues.TO_STRING.getString(value);
+        StringValue tsv = value -> {
+            if (value instanceof Calendar) {
+                String month = monthNames[((Calendar) value)
+                    .get(Calendar.MONTH)];
+                return month + " "
+                       + ((Calendar) value).get(Calendar.YEAR);
             }
+            return StringValues.TO_STRING.getString(value);
         };
         return tsv;
     }
@@ -151,15 +147,11 @@ class BasicCalendarRenderingHandler implements CalendarRenderingHandler {
      * @return a StringValue appropriate for rendering week of year.
      */
     protected StringValue createWeekOfYearStringValue(Locale locale) {
-        StringValue wsv = new StringValue() {
-
-            @Override
-            public String getString(Object value) {
-                if (value instanceof Calendar) {
-                    value = ((Calendar) value).get(Calendar.WEEK_OF_YEAR);
-                }
-                return StringValues.TO_STRING.getString(value);
+        StringValue wsv = value -> {
+            if (value instanceof Calendar) {
+                value = ((Calendar) value).get(Calendar.WEEK_OF_YEAR);
             }
+            return StringValues.TO_STRING.getString(value);
         };
         return wsv;
     }
@@ -258,17 +250,12 @@ class BasicCalendarRenderingHandler implements CalendarRenderingHandler {
      *
      */
     private void installHighlighters() {
-        HighlightPredicate boldPredicate = new HighlightPredicate() {
-
-            @Override
-            public boolean isHighlighted(Component renderer,
-                                         ComponentAdapter adapter) {
-                if (!(adapter instanceof CalendarAdapter))
-                    return false;
-                CalendarAdapter ca = (CalendarAdapter) adapter;
-                return CalendarState.DAY_OF_WEEK == ca.getCalendarState() ||
-                       CalendarState.TITLE == ca.getCalendarState();
-            }
+        HighlightPredicate boldPredicate = (renderer, adapter) -> {
+            if (!(adapter instanceof CalendarAdapter))
+                return false;
+            CalendarAdapter ca = (CalendarAdapter) adapter;
+            return CalendarState.DAY_OF_WEEK == ca.getCalendarState() ||
+                   CalendarState.TITLE == ca.getCalendarState();
         };
         Highlighter font = new AbstractHighlighter(boldPredicate) {
 
@@ -281,15 +268,10 @@ class BasicCalendarRenderingHandler implements CalendarRenderingHandler {
         };
         highlighter.addHighlighter(font);
 
-        HighlightPredicate unselectable = new HighlightPredicate() {
-
-            @Override
-            public boolean isHighlighted(Component renderer,
-                                         ComponentAdapter adapter) {
-                if (!(adapter instanceof CalendarAdapter))
-                    return false;
-                return ((CalendarAdapter) adapter).isUnselectable();
-            }
+        HighlightPredicate unselectable = (renderer, adapter) -> {
+            if (!(adapter instanceof CalendarAdapter))
+                return false;
+            return ((CalendarAdapter) adapter).isUnselectable();
         };
         textCross.setForeground(unselectableDayForeground);
         Highlighter painterHL = new PainterHighlighter(unselectable, textCross);

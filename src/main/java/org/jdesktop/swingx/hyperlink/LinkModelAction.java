@@ -23,7 +23,6 @@ package org.jdesktop.swingx.hyperlink;
 import javax.swing.Action;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
 /**
@@ -130,13 +129,7 @@ public class LinkModelAction<T extends LinkModel> extends AbstractHyperlinkActio
 
     private PropertyChangeListener getTargetListener() {
         if (linkListener == null) {
-            linkListener = new PropertyChangeListener() {
-
-                @Override
-                public void propertyChange(PropertyChangeEvent evt) {
-                    updateFromTarget();
-                }
-            };
+            linkListener = evt -> updateFromTarget();
         }
         return linkListener;
     }

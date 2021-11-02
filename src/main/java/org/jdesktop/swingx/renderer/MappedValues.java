@@ -34,15 +34,12 @@ public final class MappedValues {
      * A {@code MappedValue} that returns either a {@code String} or {@code Icon}, but not both.
      */
     @SuppressWarnings("serial")
-    public static final MappedValue STRING_OR_ICON_ONLY = new MappedValue(new StringValue() {
-        @Override
-        public String getString(Object value) {
-            if (value instanceof Icon) {
-                return StringValues.EMPTY.getString(value);
-            }
-
-            return StringValues.TO_STRING.getString(value);
+    public static final MappedValue STRING_OR_ICON_ONLY = new MappedValue((StringValue) value -> {
+        if (value instanceof Icon) {
+            return StringValues.EMPTY.getString(value);
         }
+
+        return StringValues.TO_STRING.getString(value);
     }, IconValues.ICON);
 
     /**

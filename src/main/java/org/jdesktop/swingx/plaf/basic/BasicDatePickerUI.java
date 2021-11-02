@@ -1054,9 +1054,7 @@ public class BasicDatePickerUI extends DatePickerUI {
             // not with following line - but need to run tests
             datePicker.getEditor().requestFocusInWindow();
 //            datePicker.requestFocusInWindow();
-            SwingUtilities.invokeLater(new Runnable() {
-                @Override
-                public void run() {
+            SwingUtilities.invokeLater(() -> {
 //                    if (datePicker.getParent() == null) {
 //                        // Tracking #1372-swingx - parent is null if used as
 //                        // DatePickerCellEditor,
@@ -1066,8 +1064,7 @@ public class BasicDatePickerUI extends DatePickerUI {
 //                         LOG.info("couldn't show popup for: " + datePicker.getName());
 //                        return;
 //                    }
-                    popup.show(datePicker, 0, datePicker.getHeight());
-                }
+                popup.show(datePicker, 0, datePicker.getHeight());
             });
         }
     }

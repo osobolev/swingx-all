@@ -242,13 +242,7 @@ public class JXTreeTable extends JXTable {
         setSelectionModel(selectionWrapper.getListSelectionModel());
 
         // propagate the lineStyle property to the renderer
-        PropertyChangeListener l = new PropertyChangeListener() {
-
-            @Override
-            public void propertyChange(PropertyChangeEvent evt) {
-                JXTreeTable.this.renderer.putClientProperty(evt.getPropertyName(), evt.getNewValue());
-            }
-        };
+        PropertyChangeListener l = evt -> this.renderer.putClientProperty(evt.getPropertyName(), evt.getNewValue());
         addPropertyChangeListener("JTree.lineStyle", l);
     }
 
@@ -2298,17 +2292,14 @@ public class JXTreeTable extends JXTable {
                     updateAfterExpansionEvent(event);
                 }
             });
-            tree.addPropertyChangeListener("model", new PropertyChangeListener() {
-                @Override
-                public void propertyChange(PropertyChangeEvent evt) {
-                    TreeTableModel model = (TreeTableModel) evt.getOldValue();
-                    model.removeTreeModelListener(getTreeModelListener());
+            tree.addPropertyChangeListener("model", evt -> {
+                TreeTableModel model = (TreeTableModel) evt.getOldValue();
+                model.removeTreeModelListener(getTreeModelListener());
 
-                    model = (TreeTableModel) evt.getNewValue();
-                    model.addTreeModelListener(getTreeModelListener());
+                model = (TreeTableModel) evt.getNewValue();
+                model.addTreeModelListener(getTreeModelListener());
 
-                    fireTableStructureChanged();
-                }
+                fireTableStructureChanged();
             });
         }
 
@@ -2481,12 +2472,7 @@ public class JXTreeTable extends JXTable {
          * processed. SwingUtilities.invokeLater is used to handle this.
          */
         private void delayedFireTableStructureChanged() {
-            SwingUtilities.invokeLater(new Runnable() {
-                @Override
-                public void run() {
-                    fireTableStructureChanged();
-                }
-            });
+            SwingUtilities.invokeLater(() -> fireTableStructureChanged());
         }
 
         /**
@@ -2494,12 +2480,7 @@ public class JXTreeTable extends JXTable {
          * processed. SwingUtilities.invokeLater is used to handle this.
          */
         private void delayedFireTableDataChanged() {
-            SwingUtilities.invokeLater(new Runnable() {
-                @Override
-                public void run() {
-                    fireTableDataChanged();
-                }
-            });
+            SwingUtilities.invokeLater(() -> fireTableDataChanged());
         }
 
         /**
@@ -2515,51 +2496,48 @@ public class JXTreeTable extends JXTable {
             boolean expanded = tree.isExpanded(tme.getTreePath());
             // quick test if tree throws for unrelated path. Seems like not.
 //            tree.getRowForPath(new TreePath("dummy"));
-            SwingUtilities.invokeLater(new Runnable() {
-                @Override
-                public void run() {
-                    int[] indices = tme.getChildIndices();
-                    TreePath path = tme.getTreePath();
-                    // quick test to see if bailing out is an option
+            SwingUtilities.invokeLater(() -> {
+                int[] indices = tme.getChildIndices();
+                TreePath path = tme.getTreePath();
+                // quick test to see if bailing out is an option
 //                    if (false) {
-                    if (indices != null) {
-                        if (expanded) { // Dont bother to update if the parent
-                            // node is collapsed
-                            // indices must in ascending order, as per TreeEvent/Listener doc
-                            int min = indices[0];
-                            int max = indices[indices.length - 1];
-                            int startingRow = tree.getRowForPath(path) + 1;
-                            min = startingRow + min;
-                            max = startingRow + max;
-                            switch (typeChange) {
-                            case 1:
+                if (indices != null) {
+                    if (expanded) { // Dont bother to update if the parent
+                        // node is collapsed
+                        // indices must in ascending order, as per TreeEvent/Listener doc
+                        int min = indices[0];
+                        int max = indices[indices.length - 1];
+                        int startingRow = tree.getRowForPath(path) + 1;
+                        min = startingRow + min;
+                        max = startingRow + max;
+                        switch (typeChange) {
+                        case 1:
 //                                LOG.info("rows inserted: path " + path + "/" + min + "/"
 //                                        + max);
-                                fireTableRowsInserted(min, max);
-                                break;
-                            case 2:
+                            fireTableRowsInserted(min, max);
+                            break;
+                        case 2:
 //                                LOG.info("rows deleted path " + path + "/" + min + "/"
 //                                                + max);
-                                fireTableRowsDeleted(min, max);
-                                break;
-                            }
-                        } else {
-                            // not expanded - but change might effect appearance
-                            // of parent
-                            // Issue #82-swingx
-                            int row = tree.getRowForPath(path);
-                            // fix Issue #247-swingx: prevent accidental
-                            // structureChanged
-                            // for collapsed path
-                            // in this case row == -1, which ==
-                            // TableEvent.HEADER_ROW
-                            if (row >= 0)
-                                fireTableRowsUpdated(row, row);
+                            fireTableRowsDeleted(min, max);
+                            break;
                         }
-                    } else { // case where the event is fired to identify
-                        // root.
-                        fireTableDataChanged();
+                    } else {
+                        // not expanded - but change might effect appearance
+                        // of parent
+                        // Issue #82-swingx
+                        int row = tree.getRowForPath(path);
+                        // fix Issue #247-swingx: prevent accidental
+                        // structureChanged
+                        // for collapsed path
+                        // in this case row == -1, which ==
+                        // TableEvent.HEADER_ROW
+                        if (row >= 0)
+                            fireTableRowsUpdated(row, row);
                     }
+                } else { // case where the event is fired to identify
+                    // root.
+                    fireTableDataChanged();
                 }
             });
         }
@@ -2572,49 +2550,46 @@ public class JXTreeTable extends JXTable {
          */
         protected void delayedFireTableDataUpdated(TreeModelEvent tme) {
             boolean expanded = tree.isExpanded(tme.getTreePath());
-            SwingUtilities.invokeLater(new Runnable() {
-                @Override
-                public void run() {
-                    int[] indices = tme.getChildIndices();
-                    TreePath path = tme.getTreePath();
-                    if (indices != null) {
-                        if (expanded) { // Dont bother to update if the parent
-                            // node is collapsed
-                            Object[] children = tme.getChildren();
-                            // can we be sure that children.length > 0?
-                            // int min = tree.getRowForPath(path.pathByAddingChild(children[0]));
-                            // int max = tree.getRowForPath(path.pathByAddingChild(children[children.length -1]));
-                            int min = Integer.MAX_VALUE;
-                            int max = Integer.MIN_VALUE;
-                            for (int i = 0; i < indices.length; i++) {
-                                Object child = children[i];
-                                TreePath childPath = path
-                                    .pathByAddingChild(child);
-                                int index = tree.getRowForPath(childPath);
-                                if (index < min) {
-                                    min = index;
-                                }
-                                if (index > max) {
-                                    max = index;
-                                }
+            SwingUtilities.invokeLater(() -> {
+                int[] indices = tme.getChildIndices();
+                TreePath path = tme.getTreePath();
+                if (indices != null) {
+                    if (expanded) { // Dont bother to update if the parent
+                        // node is collapsed
+                        Object[] children = tme.getChildren();
+                        // can we be sure that children.length > 0?
+                        // int min = tree.getRowForPath(path.pathByAddingChild(children[0]));
+                        // int max = tree.getRowForPath(path.pathByAddingChild(children[children.length -1]));
+                        int min = Integer.MAX_VALUE;
+                        int max = Integer.MIN_VALUE;
+                        for (int i = 0; i < indices.length; i++) {
+                            Object child = children[i];
+                            TreePath childPath = path
+                                .pathByAddingChild(child);
+                            int index = tree.getRowForPath(childPath);
+                            if (index < min) {
+                                min = index;
                             }
-//                            LOG.info("Updated: parentPath/min/max" + path + "/" + min + "/" + max);
-                            // JW: the index is occasionally - 1 - need further digging 
-                            fireTableRowsUpdated(Math.max(0, min), Math.max(0, max));
-                        } else {
-                            // not expanded - but change might effect appearance
-                            // of parent Issue #82-swingx
-                            int row = tree.getRowForPath(path);
-                            // fix Issue #247-swingx: prevent accidental structureChanged
-                            // for collapsed path in this case row == -1, 
-                            // which == TableEvent.HEADER_ROW
-                            if (row >= 0)
-                                fireTableRowsUpdated(row, row);
+                            if (index > max) {
+                                max = index;
+                            }
                         }
-                    } else { // case where the event is fired to identify
-                        // root.
-                        fireTableDataChanged();
+//                            LOG.info("Updated: parentPath/min/max" + path + "/" + min + "/" + max);
+                        // JW: the index is occasionally - 1 - need further digging
+                        fireTableRowsUpdated(Math.max(0, min), Math.max(0, max));
+                    } else {
+                        // not expanded - but change might effect appearance
+                        // of parent Issue #82-swingx
+                        int row = tree.getRowForPath(path);
+                        // fix Issue #247-swingx: prevent accidental structureChanged
+                        // for collapsed path in this case row == -1,
+                        // which == TableEvent.HEADER_ROW
+                        if (row >= 0)
+                            fireTableRowsUpdated(row, row);
                     }
+                } else { // case where the event is fired to identify
+                    // root.
+                    fireTableDataChanged();
                 }
             });
         }

@@ -283,16 +283,13 @@ class JXImagePanel extends JXPanel {
                 protected void done() {
                     super.done();
 
-                    SwingUtilities.invokeLater(new Runnable() {
-                        @Override
-                        public void run() {
-                            try {
-                                JXImagePanel.this.setImage(get());
-                            } catch (InterruptedException e) {
-                                // ignore - canceled image load
-                            } catch (ExecutionException e) {
-                                LOG.log(Level.WARNING, "", e);
-                            }
+                    SwingUtilities.invokeLater(() -> {
+                        try {
+                            JXImagePanel.this.setImage(get());
+                        } catch (InterruptedException e) {
+                            // ignore - canceled image load
+                        } catch (ExecutionException e) {
+                            LOG.log(Level.WARNING, "", e);
                         }
                     });
                 }

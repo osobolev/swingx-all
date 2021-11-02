@@ -183,34 +183,16 @@ public class AutoCompleteDocument implements Document {
     private final Handler handler;
 
     // Note: these comparators do not impose any ordering - e.g. they do not ensure that sgn(compare(x, y)) == -sgn(compare(y, x))
-    private static final Comparator<String> EQUALS_IGNORE_CASE = new Comparator<String>() {
-        @Override
-        public int compare(String o1, String o2) {
-            return o1.equalsIgnoreCase(o2) ? 0 : -1;
-        }
+    private static final Comparator<String> EQUALS_IGNORE_CASE = (o1, o2) -> o1.equalsIgnoreCase(o2) ? 0 : -1;
+
+    private static final Comparator<String> STARTS_WITH_IGNORE_CASE = (o1, o2) -> {
+        if (o1.length() < o2.length()) return -1;
+        return o1.regionMatches(true, 0, o2, 0, o2.length()) ? 0 : -1;
     };
 
-    private static final Comparator<String> STARTS_WITH_IGNORE_CASE = new Comparator<String>() {
-        @Override
-        public int compare(String o1, String o2) {
-            if (o1.length() < o2.length()) return -1;
-            return o1.regionMatches(true, 0, o2, 0, o2.length()) ? 0 : -1;
-        }
-    };
+    private static final Comparator<String> EQUALS = (o1, o2) -> o1.equals(o2) ? 0 : -1;
 
-    private static final Comparator<String> EQUALS = new Comparator<String>() {
-        @Override
-        public int compare(String o1, String o2) {
-            return o1.equals(o2) ? 0 : -1;
-        }
-    };
-
-    private static final Comparator<String> STARTS_WITH = new Comparator<String>() {
-        @Override
-        public int compare(String o1, String o2) {
-            return o1.startsWith(o2) ? 0 : -1;
-        }
-    };
+    private static final Comparator<String> STARTS_WITH = (o1, o2) -> o1.startsWith(o2) ? 0 : -1;
 
     /**
      * Creates a new AutoCompleteDocument for the given AbstractAutoCompleteAdaptor.

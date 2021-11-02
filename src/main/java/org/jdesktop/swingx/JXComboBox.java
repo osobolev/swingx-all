@@ -41,7 +41,6 @@ import javax.swing.KeyStroke;
 import javax.swing.ListCellRenderer;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
-import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.plaf.UIResource;
 import javax.swing.plaf.basic.ComboPopup;
@@ -523,18 +522,15 @@ public class JXComboBox extends JComboBox {
                 pendingEvents.add(e);
                 isDispatching = true;
 
-                SwingUtilities.invokeLater(new Runnable() {
-                    @Override
-                    public void run() {
-                        try {
-                            for (KeyEvent event : pendingEvents) {
-                                editor.getEditorComponent().dispatchEvent(event);
-                            }
-
-                            pendingEvents.clear();
-                        } finally {
-                            isDispatching = false;
+                SwingUtilities.invokeLater(() -> {
+                    try {
+                        for (KeyEvent event : pendingEvents) {
+                            editor.getEditorComponent().dispatchEvent(event);
                         }
+
+                        pendingEvents.clear();
+                    } finally {
+                        isDispatching = false;
                     }
                 });
             }
@@ -844,13 +840,10 @@ public class JXComboBox extends JComboBox {
      * @return the ChangeListener defining the reaction to changes of highlighters.
      */
     protected ChangeListener createHighlighterChangeListener() {
-        return new ChangeListener() {
-            @Override
-            public void stateChanged(ChangeEvent e) {
-                // need to fire change so JXComboBox can update
-                firePropertyChange("highlighters", null, getHighlighters());
-                repaint();
-            }
+        return e -> {
+            // need to fire change so JXComboBox can update
+            firePropertyChange("highlighters", null, getHighlighters());
+            repaint();
         };
     }
 

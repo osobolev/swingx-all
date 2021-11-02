@@ -463,13 +463,9 @@ public class JXTableHeader extends JTableHeader
      * @return the PropertyChangeListener to register on the owning table.
      */
     protected PropertyChangeListener createTablePropertyChangeListener() {
-        PropertyChangeListener l = new PropertyChangeListener() {
-
-            @Override
-            public void propertyChange(PropertyChangeEvent evt) {
-                if ("enabled".equals(evt.getPropertyName())) {
-                    updateEnabledFromTable();
-                }
+        PropertyChangeListener l = evt -> {
+            if ("enabled".equals(evt.getPropertyName())) {
+                updateEnabledFromTable();
             }
         };
         return l;

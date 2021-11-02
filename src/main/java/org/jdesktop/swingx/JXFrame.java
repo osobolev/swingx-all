@@ -35,8 +35,6 @@ import java.awt.Cursor;
 import java.awt.GraphicsConfiguration;
 import java.awt.Toolkit;
 import java.awt.event.AWTEventListener;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
@@ -184,51 +182,40 @@ public class JXFrame extends JFrame {
         }
 
         //create the event handler for key preview functionality
-        keyEventListener = new AWTEventListener() {
-            @Override
-            public void eventDispatched(AWTEvent aWTEvent) {
-                if (aWTEvent instanceof KeyEvent) {
-                    KeyEvent evt = (KeyEvent) aWTEvent;
-                    for (KeyListener kl : getKeyListeners()) {
-                        int id = aWTEvent.getID();
-                        switch (id) {
-                        case KeyEvent.KEY_PRESSED:
-                            kl.keyPressed(evt);
-                            break;
-                        case KeyEvent.KEY_RELEASED:
-                            kl.keyReleased(evt);
-                            break;
-                        case KeyEvent.KEY_TYPED:
-                            kl.keyTyped(evt);
-                            break;
-                        default:
-                            System.err.println("Unhandled Key ID: " + id);
-                        }
+        keyEventListener = aWTEvent -> {
+            if (aWTEvent instanceof KeyEvent) {
+                KeyEvent evt = (KeyEvent) aWTEvent;
+                for (KeyListener kl : getKeyListeners()) {
+                    int id = aWTEvent.getID();
+                    switch (id) {
+                    case KeyEvent.KEY_PRESSED:
+                        kl.keyPressed(evt);
+                        break;
+                    case KeyEvent.KEY_RELEASED:
+                        kl.keyReleased(evt);
+                        break;
+                    case KeyEvent.KEY_TYPED:
+                        kl.keyTyped(evt);
+                        break;
+                    default:
+                        System.err.println("Unhandled Key ID: " + id);
                     }
                 }
             }
         };
 
-        idleTimer = new Timer(100, new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
-                setIdle(true);
-            }
-        });
+        idleTimer = new Timer(100, actionEvent -> setIdle(true));
 
         //create the event handler for key preview functionality
-        idleListener = new AWTEventListener() {
-            @Override
-            public void eventDispatched(AWTEvent aWTEvent) {
-                //reset the timer
-                idleTimer.stop();
-                //if the user is idle, then change to not idle
-                if (isIdle()) {
-                    setIdle(false);
-                }
-                //start the timer
-                idleTimer.restart();
+        idleListener = aWTEvent -> {
+            //reset the timer
+            idleTimer.stop();
+            //if the user is idle, then change to not idle
+            if (isIdle()) {
+                setIdle(false);
             }
+            //start the timer
+            idleTimer.restart();
         };
     }
 

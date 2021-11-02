@@ -36,7 +36,6 @@ import javax.swing.SwingUtilities;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import java.awt.Dimension;
-import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.Locale;
 
@@ -283,29 +282,26 @@ public abstract class AbstractPatternPanel extends JXPanel {
      * <code>PropertyChangeListener</code>
      */
     protected PropertyChangeListener getPatternModelListener() {
-        return new PropertyChangeListener() {
-            @Override
-            public void propertyChange(PropertyChangeEvent evt) {
-                String property = evt.getPropertyName();
-                if ("pattern".equals(property)) {
-                    refreshPatternFromModel();
-                } else if ("rawText".equals(property)) {
-                    refreshDocumentFromModel();
-                } else if ("caseSensitive".equals(property)) {
-                    getAction(PatternModel.MATCH_CASE_ACTION_COMMAND).
-                        setSelected(((Boolean) evt.getNewValue()).booleanValue());
-                } else if ("wrapping".equals(property)) {
-                    getAction(PatternModel.MATCH_WRAP_ACTION_COMMAND).
-                        setSelected(((Boolean) evt.getNewValue()).booleanValue());
-                } else if ("backwards".equals(property)) {
-                    getAction(PatternModel.MATCH_BACKWARDS_ACTION_COMMAND).
-                        setSelected(((Boolean) evt.getNewValue()).booleanValue());
-                } else if ("incremental".equals(property)) {
-                    getAction(PatternModel.MATCH_INCREMENTAL_ACTION_COMMAND).
-                        setSelected(((Boolean) evt.getNewValue()).booleanValue());
-                } else if ("empty".equals(property)) {
-                    refreshEmptyFromModel();
-                }
+        return evt -> {
+            String property = evt.getPropertyName();
+            if ("pattern".equals(property)) {
+                refreshPatternFromModel();
+            } else if ("rawText".equals(property)) {
+                refreshDocumentFromModel();
+            } else if ("caseSensitive".equals(property)) {
+                getAction(PatternModel.MATCH_CASE_ACTION_COMMAND).
+                    setSelected(((Boolean) evt.getNewValue()).booleanValue());
+            } else if ("wrapping".equals(property)) {
+                getAction(PatternModel.MATCH_WRAP_ACTION_COMMAND).
+                    setSelected(((Boolean) evt.getNewValue()).booleanValue());
+            } else if ("backwards".equals(property)) {
+                getAction(PatternModel.MATCH_BACKWARDS_ACTION_COMMAND).
+                    setSelected(((Boolean) evt.getNewValue()).booleanValue());
+            } else if ("incremental".equals(property)) {
+                getAction(PatternModel.MATCH_INCREMENTAL_ACTION_COMMAND).
+                    setSelected(((Boolean) evt.getNewValue()).booleanValue());
+            } else if ("empty".equals(property)) {
+                refreshEmptyFromModel();
             }
         };
     }
@@ -333,12 +329,7 @@ public abstract class AbstractPatternPanel extends JXPanel {
      */
     protected void refreshDocumentFromModel() {
         if (searchField.getText().equals(getPatternModel().getRawText())) return;
-        SwingUtilities.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                searchField.setText(getPatternModel().getRawText());
-            }
-        });
+        SwingUtilities.invokeLater(() -> searchField.setText(getPatternModel().getRawText()));
     }
 
     /**

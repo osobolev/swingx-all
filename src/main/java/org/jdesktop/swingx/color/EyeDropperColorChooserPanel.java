@@ -42,8 +42,6 @@ import java.awt.Robot;
 import java.awt.event.MouseEvent;
 import java.awt.geom.Point2D;
 import java.awt.image.BufferedImage;
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
 
 /**
  * <p>EyeDropperColorChooserPanel is a pluggable panel for the
@@ -74,16 +72,14 @@ public class EyeDropperColorChooserPanel extends AbstractColorChooserPanel {
      * Example usage
      */
     public static void main(String... args) {
-        SwingUtilities.invokeLater(new Runnable() {
-            public void run() {
-                JColorChooser chooser = new JColorChooser();
-                chooser.addChooserPanel(new EyeDropperColorChooserPanel());
-                JFrame frame = new JFrame();
-                frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                frame.add(chooser);
-                frame.pack();
-                frame.setVisible(true);
-            }
+        SwingUtilities.invokeLater(() -> {
+            JColorChooser chooser = new JColorChooser();
+            chooser.addChooserPanel(new EyeDropperColorChooserPanel());
+            JFrame frame = new JFrame();
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            frame.add(chooser);
+            frame.pack();
+            frame.setVisible(true);
         });
     }
 
@@ -120,13 +116,11 @@ public class EyeDropperColorChooserPanel extends AbstractColorChooserPanel {
             ex.printStackTrace();
         }
 
-        magPanel.addPropertyChangeListener(new PropertyChangeListener() {
-            public void propertyChange(PropertyChangeEvent evt) {
-                Color color = new Color(((MagnifyingPanel) magPanel).activeColor);
-                activeColor.setBackground(color);
-                hexColor.setText(PaintUtils.toHexString(color).substring(1));
-                rgbColor.setText(color.getRed() + "," + color.getGreen() + "," + color.getBlue());
-            }
+        magPanel.addPropertyChangeListener(evt -> {
+            Color color = new Color(((MagnifyingPanel) magPanel).activeColor);
+            activeColor.setBackground(color);
+            hexColor.setText(PaintUtils.toHexString(color).substring(1));
+            rgbColor.setText(color.getRed() + "," + color.getGreen() + "," + color.getBlue());
         });
     }
 

@@ -24,7 +24,6 @@ package org.jdesktop.swingx.decorator;
 import org.jdesktop.swingx.plaf.UIDependent;
 import org.jdesktop.swingx.util.Contract;
 
-import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import java.awt.Component;
 import java.util.ArrayList;
@@ -201,13 +200,7 @@ public class CompoundHighlighter extends AbstractHighlighter
      * @return the listener for contained Highlighters.
      */
     protected ChangeListener createHighlighterChangeListener() {
-        return highlighterChangeListener = new ChangeListener() {
-
-            @Override
-            public void stateChanged(ChangeEvent e) {
-                fireStateChanged();
-            }
-        };
+        return highlighterChangeListener = e -> fireStateChanged();
     }
 
     /**

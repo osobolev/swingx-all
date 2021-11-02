@@ -3289,12 +3289,7 @@ public class JXTable extends JTable implements TableColumnModelExtListener {
      * highlighters.
      */
     protected ChangeListener createHighlighterChangeListener() {
-        return new ChangeListener() {
-            @Override
-            public void stateChanged(ChangeEvent e) {
-                repaint();
-            }
-        };
+        return e -> repaint();
     }
 
     /**

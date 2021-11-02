@@ -65,12 +65,7 @@ public class EditorPaneLinkVisitor implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() instanceof LinkModel) {
             LinkModel link = (LinkModel) e.getSource();
-            SwingUtilities.invokeLater(new Runnable() {
-                @Override
-                public void run() {
-                    visit(link);
-                }
-            });
+            SwingUtilities.invokeLater(() -> visit(link));
         }
     }
 
@@ -102,12 +97,9 @@ public class EditorPaneLinkVisitor implements ActionListener {
     }
 
     protected HyperlinkListener createHyperlinkListener() {
-        return new HyperlinkListener() {
-            @Override
-            public void hyperlinkUpdate(HyperlinkEvent e) {
-                if (HyperlinkEvent.EventType.ACTIVATED == e.getEventType()) {
-                    visitInternal(e.getURL());
-                }
+        return e -> {
+            if (HyperlinkEvent.EventType.ACTIVATED == e.getEventType()) {
+                visitInternal(e.getURL());
             }
         };
     }

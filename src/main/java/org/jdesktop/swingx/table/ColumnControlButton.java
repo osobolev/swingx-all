@@ -51,7 +51,6 @@ import java.awt.Dimension;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ItemEvent;
-import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -447,16 +446,13 @@ public class ColumnControlButton extends JButton {
          * column
          */
         protected PropertyChangeListener createPropertyChangeListener() {
-            return new PropertyChangeListener() {
-                @Override
-                public void propertyChange(PropertyChangeEvent evt) {
-                    if ("visible".equals(evt.getPropertyName())) {
-                        updateFromColumnVisible(((Boolean) evt.getNewValue()).booleanValue());
-                    } else if ("headerValue".equals(evt.getPropertyName())) {
-                        updateFromColumnHeader(evt.getNewValue());
-                    } else if ("hideable".equals(evt.getPropertyName())) {
-                        updateFromColumnHideable(((Boolean) evt.getNewValue()).booleanValue());
-                    }
+            return evt -> {
+                if ("visible".equals(evt.getPropertyName())) {
+                    updateFromColumnVisible(((Boolean) evt.getNewValue()).booleanValue());
+                } else if ("headerValue".equals(evt.getPropertyName())) {
+                    updateFromColumnHeader(evt.getNewValue());
+                } else if ("hideable".equals(evt.getPropertyName())) {
+                    updateFromColumnHideable(((Boolean) evt.getNewValue()).booleanValue());
                 }
             };
         }
@@ -920,15 +916,12 @@ public class ColumnControlButton extends JButton {
      * @return the <code>PropertyChangeListener</code> for use with the table.
      */
     protected PropertyChangeListener createTablePropertyChangeListener() {
-        return new PropertyChangeListener() {
-            @Override
-            public void propertyChange(PropertyChangeEvent evt) {
-                if ("columnModel".equals(evt.getPropertyName())) {
-                    updateFromColumnModelChange((TableColumnModel) evt
-                        .getOldValue());
-                } else if ("enabled".equals(evt.getPropertyName())) {
-                    updateFromTableEnabledChanged();
-                }
+        return evt -> {
+            if ("columnModel".equals(evt.getPropertyName())) {
+                updateFromColumnModelChange((TableColumnModel) evt
+                    .getOldValue());
+            } else if ("enabled".equals(evt.getPropertyName())) {
+                updateFromTableEnabledChanged();
             }
         };
     }

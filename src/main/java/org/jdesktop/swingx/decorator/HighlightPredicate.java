@@ -232,55 +232,45 @@ public interface HighlightPredicate {
     /**
      * Selected predicate.
      */
-    HighlightPredicate IS_SELECTED = new HighlightPredicate() {
-
-        @Override
-        public boolean isHighlighted(Component renderer,
-                                     ComponentAdapter adapter) {
-            return adapter.isSelected();
-        }
-    };
+    HighlightPredicate IS_SELECTED = (renderer, adapter) -> adapter.isSelected();
 
     /**
      * Determines if the displayed text is truncated.
      *
      * @author Karl Schaefer
      */
-    HighlightPredicate IS_TEXT_TRUNCATED = new HighlightPredicate() {
-        @Override
-        public boolean isHighlighted(Component renderer, ComponentAdapter adapter) {
-            JComponent c = renderer instanceof JComponent ? (JComponent) renderer : null;
-            String text = adapter.getString();
-            Icon icon = null;
-            //defaults from JLabel
-            int verticalAlignment = SwingConstants.CENTER;
-            int horizontalAlignment = SwingConstants.LEADING;
-            int verticalTextPosition = SwingConstants.CENTER;
-            int horizontalTextPosition = SwingConstants.TRAILING;
-            int gap = 0;
+    HighlightPredicate IS_TEXT_TRUNCATED = (renderer, adapter) -> {
+        JComponent c = renderer instanceof JComponent ? (JComponent) renderer : null;
+        String text = adapter.getString();
+        Icon icon = null;
+        //defaults from JLabel
+        int verticalAlignment = SwingConstants.CENTER;
+        int horizontalAlignment = SwingConstants.LEADING;
+        int verticalTextPosition = SwingConstants.CENTER;
+        int horizontalTextPosition = SwingConstants.TRAILING;
+        int gap = 0;
 
-            if (renderer instanceof JLabel) {
-                icon = ((JLabel) renderer).getIcon();
-                gap = ((JLabel) renderer).getIconTextGap();
-            } else if (renderer instanceof AbstractButton) {
-                icon = ((AbstractButton) renderer).getIcon();
-                gap = ((AbstractButton) renderer).getIconTextGap();
-            }
-
-            Rectangle cellBounds = adapter.getCellBounds();
-            if (c != null && c.getBorder() != null) {
-                Insets insets = c.getBorder().getBorderInsets(c);
-                cellBounds.width -= insets.left + insets.right;
-                cellBounds.height -= insets.top + insets.bottom;
-            }
-
-            String result = SwingUtilities.layoutCompoundLabel(c, renderer
-                    .getFontMetrics(renderer.getFont()), text, icon, verticalAlignment,
-                horizontalAlignment, verticalTextPosition, horizontalTextPosition, cellBounds,
-                new Rectangle(), new Rectangle(), gap);
-
-            return !text.equals(result);
+        if (renderer instanceof JLabel) {
+            icon = ((JLabel) renderer).getIcon();
+            gap = ((JLabel) renderer).getIconTextGap();
+        } else if (renderer instanceof AbstractButton) {
+            icon = ((AbstractButton) renderer).getIcon();
+            gap = ((AbstractButton) renderer).getIconTextGap();
         }
+
+        Rectangle cellBounds = adapter.getCellBounds();
+        if (c != null && c.getBorder() != null) {
+            Insets insets = c.getBorder().getBorderInsets(c);
+            cellBounds.width -= insets.left + insets.right;
+            cellBounds.height -= insets.top + insets.bottom;
+        }
+
+        String result = SwingUtilities.layoutCompoundLabel(c, renderer
+                .getFontMetrics(renderer.getFont()), text, icon, verticalAlignment,
+            horizontalAlignment, verticalTextPosition, horizontalTextPosition, cellBounds,
+            new Rectangle(), new Rectangle(), gap);
+
+        return !text.equals(result);
     };
 
     /**
@@ -303,13 +293,7 @@ public interface HighlightPredicate {
      * PENDING: this is zero based (that is "really" even 0, 2, 4 ..), differing
      * from the old AlternateRowHighlighter.
      */
-    HighlightPredicate EVEN = new HighlightPredicate() {
-
-        @Override
-        public boolean isHighlighted(Component renderer, ComponentAdapter adapter) {
-            return adapter.row % 2 == 0;
-        }
-    };
+    HighlightPredicate EVEN = (renderer, adapter) -> adapter.row % 2 == 0;
 
     /**
      * Odd rows.
@@ -317,39 +301,19 @@ public interface HighlightPredicate {
      * PENDING: this is zero based (that is 1, 3, 4 ..), differs from
      * the old implementation which was one based?
      */
-    HighlightPredicate ODD = new HighlightPredicate() {
-
-        @Override
-        public boolean isHighlighted(Component renderer, ComponentAdapter adapter) {
-            return !EVEN.isHighlighted(renderer, adapter);
-        }
-    };
+    HighlightPredicate ODD = (renderer, adapter) -> !EVEN.isHighlighted(renderer, adapter);
 
     /**
      * Negative BigDecimals.
      */
-    HighlightPredicate BIG_DECIMAL_NEGATIVE = new HighlightPredicate() {
-
-        @Override
-        public boolean isHighlighted(Component renderer,
-                                     ComponentAdapter adapter) {
-            return (adapter.getValue() instanceof BigDecimal)
-                   && ((BigDecimal) adapter.getValue()).compareTo(BigDecimal.ZERO) < 0;
-        }
-    };
+    HighlightPredicate BIG_DECIMAL_NEGATIVE = (renderer, adapter) -> (adapter.getValue() instanceof BigDecimal)
+                                                             && ((BigDecimal) adapter.getValue()).compareTo(BigDecimal.ZERO) < 0;
 
     /**
      * Negative Number.
      */
-    HighlightPredicate INTEGER_NEGATIVE = new HighlightPredicate() {
-
-        @Override
-        public boolean isHighlighted(Component renderer,
-                                     ComponentAdapter adapter) {
-            return (adapter.getValue() instanceof Number)
-                   && ((Number) adapter.getValue()).intValue() < 0;
-        }
-    };
+    HighlightPredicate INTEGER_NEGATIVE = (renderer, adapter) -> (adapter.getValue() instanceof Number)
+                                                         && ((Number) adapter.getValue()).intValue() < 0;
 
     // PENDING: these general type empty arrays don't really belong here?
     HighlightPredicate[] EMPTY_PREDICATE_ARRAY = new HighlightPredicate[0];

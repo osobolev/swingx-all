@@ -21,7 +21,6 @@
  */
 package org.jdesktop.swingx.sort;
 
-import org.jdesktop.swingx.renderer.StringValue;
 import org.jdesktop.swingx.renderer.StringValues;
 import org.jdesktop.swingx.util.Contract;
 
@@ -266,13 +265,7 @@ public abstract class DefaultSortController<M> extends DefaultRowSorter<M, Integ
         return Arrays.copyOf(DEFAULT_CYCLE, DEFAULT_CYCLE.length);
     }
 
-    private static final StringValueProvider DEFAULT_PROVIDER = new StringValueProvider() {
-
-        @Override
-        public StringValue getStringValue(int row, int column) {
-            return StringValues.TO_STRING;
-        }
-    };
+    private static final StringValueProvider DEFAULT_PROVIDER = (row, column) -> StringValues.TO_STRING;
 
     @SuppressWarnings({"unchecked", "rawtypes"})
     private static class ComparableComparator implements Comparator {

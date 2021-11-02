@@ -270,12 +270,7 @@ public class BasicErrorPaneUI extends ErrorPaneUI {
         detailsPanel.setVisible(false);
         copyToClipboardButton = new JButton(UIManagerExt.getString(
             CLASS_NAME + ".copy_to_clipboard_button_text", errorMessage.getLocale()));
-        copyToClipboardListener = new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent ae) {
-                details.copy();
-            }
-        };
+        copyToClipboardListener = ae -> details.copy();
         copyToClipboardButton.addActionListener(copyToClipboardListener);
 
         detailsPanel.setLayout(createDetailPanelLayout());

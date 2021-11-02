@@ -37,27 +37,17 @@ public final class IconValues {
      * no icon instead of f.i. a default provided by the CellContext.
      */
     @SuppressWarnings("serial")
-    public static final IconValue NONE = new IconValue() {
-
-        @Override
-        public Icon getIcon(Object value) {
-            return IconValue.NULL_ICON;
-        }
-    };
+    public static final IconValue NONE = value -> IconValue.NULL_ICON;
 
     /**
      * Returns the value as Icon if possible or null.
      */
     @SuppressWarnings("serial")
-    public static final IconValue ICON = new IconValue() {
-
-        @Override
-        public Icon getIcon(Object value) {
-            if (value instanceof Icon) {
-                return (Icon) value;
-            }
-            return null;
+    public static final IconValue ICON = value -> {
+        if (value instanceof Icon) {
+            return (Icon) value;
         }
+        return null;
     };
 
     /**
@@ -66,17 +56,14 @@ public final class IconValues {
      * the same effect as {@link IconValues#NONE}.
      */
     @SuppressWarnings("serial")
-    public static final IconValue FILE_ICON = new IconValue() {
-        @Override
-        public Icon getIcon(Object value) {
-            if (value instanceof File) {
-                FileSystemView fsv = FileSystemView.getFileSystemView();
+    public static final IconValue FILE_ICON = value -> {
+        if (value instanceof File) {
+            FileSystemView fsv = FileSystemView.getFileSystemView();
 
-                return fsv.getSystemIcon((File) value);
-            }
-
-            return IconValues.NONE.getIcon(value);
+            return fsv.getSystemIcon((File) value);
         }
+
+        return IconValues.NONE.getIcon(value);
     };
 
     private IconValues() {

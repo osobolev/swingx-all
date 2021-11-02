@@ -21,8 +21,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
 
 /**
  * A text field with a find icon in which the user enters text that identifies
@@ -193,26 +191,17 @@ public class JXSearchField extends JXTextField {
         });
 
         // Map specific native properties to general JXSearchField properties.
-        addPropertyChangeListener(NativeSearchFieldSupport.FIND_POPUP_PROPERTY, new PropertyChangeListener() {
-            @Override
-            public void propertyChange(PropertyChangeEvent evt) {
-                JPopupMenu oldPopup = (JPopupMenu) evt.getOldValue();
-                firePropertyChange("findPopupMenu", oldPopup, evt.getNewValue());
-            }
+        addPropertyChangeListener(NativeSearchFieldSupport.FIND_POPUP_PROPERTY, evt -> {
+            JPopupMenu oldPopup = (JPopupMenu) evt.getOldValue();
+            firePropertyChange("findPopupMenu", oldPopup, evt.getNewValue());
         });
-        addPropertyChangeListener(NativeSearchFieldSupport.CANCEL_ACTION_PROPERTY, new PropertyChangeListener() {
-            @Override
-            public void propertyChange(PropertyChangeEvent evt) {
-                ActionListener oldAction = (ActionListener) evt.getOldValue();
-                firePropertyChange("cancelAction", oldAction, evt.getNewValue());
-            }
+        addPropertyChangeListener(NativeSearchFieldSupport.CANCEL_ACTION_PROPERTY, evt -> {
+            ActionListener oldAction = (ActionListener) evt.getOldValue();
+            firePropertyChange("cancelAction", oldAction, evt.getNewValue());
         });
-        addPropertyChangeListener(NativeSearchFieldSupport.FIND_ACTION_PROPERTY, new PropertyChangeListener() {
-            @Override
-            public void propertyChange(PropertyChangeEvent evt) {
-                ActionListener oldAction = (ActionListener) evt.getOldValue();
-                firePropertyChange("findAction", oldAction, evt.getNewValue());
-            }
+        addPropertyChangeListener(NativeSearchFieldSupport.FIND_ACTION_PROPERTY, evt -> {
+            ActionListener oldAction = (ActionListener) evt.getOldValue();
+            firePropertyChange("findAction", oldAction, evt.getNewValue());
         });
     }
 
@@ -377,12 +366,7 @@ public class JXSearchField extends JXTextField {
     public final JButton getCancelButton() {
         if (cancelButton == null) {
             cancelButton = createCancelButton();
-            cancelButton.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    getCancelAction().actionPerformed(e);
-                }
-            });
+            cancelButton.addActionListener(e -> getCancelAction().actionPerformed(e));
         }
         return cancelButton;
     }
@@ -438,12 +422,7 @@ public class JXSearchField extends JXTextField {
     public final JButton getFindButton() {
         if (findButton == null) {
             findButton = createFindButton();
-            findButton.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    getFindAction().actionPerformed(e);
-                }
-            });
+            findButton.addActionListener(e -> getFindAction().actionPerformed(e));
         }
         return findButton;
     }
@@ -673,12 +652,7 @@ public class JXSearchField extends JXTextField {
      */
     public Timer getInstantSearchTimer() {
         if (instantSearchTimer == null) {
-            instantSearchTimer = new Timer(0, new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    postActionEvent();
-                }
-            });
+            instantSearchTimer = new Timer(0, e -> postActionEvent());
             instantSearchTimer.setRepeats(false);
         }
         return instantSearchTimer;

@@ -29,7 +29,6 @@ import org.jdesktop.swingx.renderer.AbstractRenderer;
 import javax.swing.DefaultCellEditor;
 import javax.swing.JComponent;
 import javax.swing.SwingUtilities;
-import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.table.TableCellEditor;
 import javax.swing.table.TableCellRenderer;
@@ -314,12 +313,9 @@ public class TableColumnExt extends TableColumn implements UIDependent {
      * highlighters.
      */
     protected ChangeListener createHighlighterChangeListener() {
-        return new ChangeListener() {
-            @Override
-            public void stateChanged(ChangeEvent e) {
-                if (ignoreHighlighterStateChange) return;
-                firePropertyChange("highlighterStateChanged", false, true);
-            }
+        return e -> {
+            if (ignoreHighlighterStateChange) return;
+            firePropertyChange("highlighterStateChanged", false, true);
         };
     }
 

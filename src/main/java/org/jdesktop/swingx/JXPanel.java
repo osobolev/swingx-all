@@ -41,7 +41,6 @@ import java.awt.Insets;
 import java.awt.LayoutManager;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
-import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.logging.Logger;
 
@@ -495,13 +494,7 @@ public class JXPanel extends JPanel implements AlphaPaintable, BackgroundPaintab
      */
     protected PropertyChangeListener getPainterChangeListener() {
         if (painterChangeListener == null) {
-            painterChangeListener = new PropertyChangeListener() {
-
-                @Override
-                public void propertyChange(PropertyChangeEvent evt) {
-                    repaint();
-                }
-            };
+            painterChangeListener = evt -> repaint();
         }
         return painterChangeListener;
     }

@@ -83,12 +83,9 @@ public class ErrorSupport {
      */
     public void fireErrorEvent(Throwable throwable) {
         ErrorEvent evt = new ErrorEvent(throwable, source);
-        SwingUtilities.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                for (ErrorListener el : listeners) {
-                    el.errorOccured(evt);
-                }
+        SwingUtilities.invokeLater(() -> {
+            for (ErrorListener el : listeners) {
+                el.errorOccured(evt);
             }
         });
     }

@@ -141,12 +141,9 @@ public class TableRowHeightController {
              * @param evt
              */
             private void invokedPropertyChanged(PropertyChangeEvent evt) {
-                SwingUtilities.invokeLater(new Runnable() {
-                    @Override
-                    public void run() {
-                        if ("model".equals(evt.getPropertyName())) {
-                            updateModel((TableModel) evt.getOldValue());
-                        }
+                SwingUtilities.invokeLater(() -> {
+                    if ("model".equals(evt.getPropertyName())) {
+                        updateModel((TableModel) evt.getOldValue());
                     }
                 });
             }
@@ -158,12 +155,7 @@ public class TableRowHeightController {
         TableModelListener l = new TableModelListener() {
             @Override
             public void tableChanged(TableModelEvent e) {
-                SwingUtilities.invokeLater(new Runnable() {
-                    @Override
-                    public void run() {
-                        invokedTableChanged(e);
-                    }
-                });
+                SwingUtilities.invokeLater(() -> invokedTableChanged(e));
             }
 
             private void invokedTableChanged(TableModelEvent e) {

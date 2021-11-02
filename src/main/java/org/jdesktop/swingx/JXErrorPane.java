@@ -386,12 +386,9 @@ public class JXErrorPane extends JComponent {
      *              of the dialog.
      */
     public static void showDialog(Component owner, JXErrorPane pane) {
-        Runnable r = new Runnable() {
-            @Override
-            public void run() {
-                JDialog dlg = createDialog(owner, pane);
-                dlg.setVisible(true);
-            }
+        Runnable r = () -> {
+            JDialog dlg = createDialog(owner, pane);
+            dlg.setVisible(true);
         };
 
         if (!SwingUtilities.isEventDispatchThread()) {
@@ -490,12 +487,9 @@ public class JXErrorPane extends JComponent {
      *              of the frame.
      */
     public static void showFrame(Component owner, JXErrorPane pane) {
-        Runnable r = new Runnable() {
-            @Override
-            public void run() {
-                JFrame window = createFrame(owner, pane);
-                window.setVisible(true);
-            }
+        Runnable r = () -> {
+            JFrame window = createFrame(owner, pane);
+            window.setVisible(true);
         };
 
         if (!SwingUtilities.isEventDispatchThread()) {
@@ -594,12 +588,9 @@ public class JXErrorPane extends JComponent {
      *              of the frame.
      */
     public static void showInternalFrame(Component owner, JXErrorPane pane) {
-        Runnable r = new Runnable() {
-            @Override
-            public void run() {
-                JInternalFrame window = createInternalFrame(owner, pane);
-                window.setVisible(true);
-            }
+        Runnable r = () -> {
+            JInternalFrame window = createInternalFrame(owner, pane);
+            window.setVisible(true);
         };
 
         if (!SwingUtilities.isEventDispatchThread()) {

@@ -35,8 +35,6 @@ import javax.swing.border.LineBorder;
 import javax.swing.text.NumberFormatter;
 import java.awt.Color;
 import java.awt.Component;
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
 import java.text.NumberFormat;
 import java.text.ParseException;
 
@@ -269,16 +267,13 @@ public class NumberEditorExt extends DefaultCellEditor {
          * value is valid. So do the red border thing here.
          */
         textField.addPropertyChangeListener("editValid",
-            new PropertyChangeListener() {
-                @Override
-                public void propertyChange(PropertyChangeEvent evt) {
-                    if (evt.getNewValue() == Boolean.TRUE) {
-                        ((JFormattedTextField) evt.getSource())
-                            .setBorder(new LineBorder(Color.black));
-                    } else {
-                        ((JFormattedTextField) evt.getSource())
-                            .setBorder(new LineBorder(Color.red));
-                    }
+            evt -> {
+                if (evt.getNewValue() == Boolean.TRUE) {
+                    ((JFormattedTextField) evt.getSource())
+                        .setBorder(new LineBorder(Color.black));
+                } else {
+                    ((JFormattedTextField) evt.getSource())
+                        .setBorder(new LineBorder(Color.red));
                 }
             });
         return textField;
@@ -323,16 +318,13 @@ public class NumberEditorExt extends DefaultCellEditor {
          * value is valid. So do the red border thing here.
          */
         textField.addPropertyChangeListener("editValid",
-            new PropertyChangeListener() {
-                @Override
-                public void propertyChange(PropertyChangeEvent evt) {
-                    if (evt.getNewValue() == Boolean.TRUE) {
-                        ((JFormattedTextField) evt.getSource())
-                            .setBorder(new LineBorder(Color.black));
-                    } else {
-                        ((JFormattedTextField) evt.getSource())
-                            .setBorder(new LineBorder(Color.red));
-                    }
+            evt -> {
+                if (evt.getNewValue() == Boolean.TRUE) {
+                    ((JFormattedTextField) evt.getSource())
+                        .setBorder(new LineBorder(Color.black));
+                } else {
+                    ((JFormattedTextField) evt.getSource())
+                        .setBorder(new LineBorder(Color.red));
                 }
             });
         return textField;

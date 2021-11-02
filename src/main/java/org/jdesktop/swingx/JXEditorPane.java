@@ -321,13 +321,10 @@ public class JXEditorPane extends JEditorPane implements /*Searchable, */Targeta
         // well supported with the current design ... nobody 
         // really cares about enabled as it should. 
         //
-        Runnable doEnabled = new Runnable() {
-            @Override
-            public void run() {
-                ActionManager manager = ActionManager.getInstance();
-                manager.setEnabled(ACTION_UNDO, undoManager.canUndo());
-                manager.setEnabled(ACTION_REDO, undoManager.canRedo());
-            }
+        Runnable doEnabled = () -> {
+            ActionManager manager = ActionManager.getInstance();
+            manager.setEnabled(ACTION_UNDO, undoManager.canUndo());
+            manager.setEnabled(ACTION_REDO, undoManager.canRedo());
         };
         SwingUtilities.invokeLater(doEnabled);
     }

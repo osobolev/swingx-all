@@ -64,7 +64,6 @@ import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
@@ -415,15 +414,12 @@ public class JXLoginPane extends JXPanel {
 
         // #732 set all internal components opacity to false in order to allow top level (frame's content pane) background painter to have any effect.
         setOpaque(false);
-        CapsLockSupport.getInstance().addPropertyChangeListener("capsLockEnabled", new PropertyChangeListener() {
-            @Override
-            public void propertyChange(PropertyChangeEvent evt) {
-                if (capsOn != null) {
-                    if (Boolean.TRUE.equals(evt.getNewValue())) {
-                        capsOn.setText(UIManagerExt.getString(CLASS_NAME + ".capsOnWarning", getLocale()));
-                    } else {
-                        capsOn.setText(" ");
-                    }
+        CapsLockSupport.getInstance().addPropertyChangeListener("capsLockEnabled", evt -> {
+            if (capsOn != null) {
+                if (Boolean.TRUE.equals(evt.getNewValue())) {
+                    capsOn.setText(UIManagerExt.getString(CLASS_NAME + ".capsOnWarning", getLocale()));
+                } else {
+                    capsOn.setText(" ");
                 }
             }
         });
@@ -1469,12 +1465,7 @@ public class JXLoginPane extends JXPanel {
                     }
                 });
 
-                super.addItemListener(new ItemListener() {
-                    @Override
-                    public void itemStateChanged(ItemEvent e) {
-                        updatePassword((String) getSelectedItem());
-                    }
-                });
+                super.addItemListener(e -> updatePassword((String) getSelectedItem()));
             }
         }
 
@@ -1679,42 +1670,36 @@ public class JXLoginPane extends JXPanel {
         JButton okButton = new JButton(panel.getActionMap().get(LOGIN_ACTION_COMMAND));
         JButton cancelButton = new JButton(
             UIManagerExt.getString(CLASS_NAME + ".cancelString", panel.getLocale()));
-        cancelButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                //change panel status to canceled!
-                panel.status = Status.CANCELLED;
+        cancelButton.addActionListener(e -> {
+            //change panel status to canceled!
+            panel.status = Status.CANCELLED;
+            w.setVisible(false);
+            w.dispose();
+        });
+        panel.addPropertyChangeListener("status", evt -> {
+            Status status = (Status) evt.getNewValue();
+            switch (status) {
+            case NOT_STARTED:
+                break;
+            case IN_PROGRESS:
+                cancelButton.setEnabled(false);
+                break;
+            case CANCELLED:
+                cancelButton.setEnabled(true);
+                w.pack();
+                break;
+            case FAILED:
+                cancelButton.setEnabled(true);
+                panel.passwordField.requestFocusInWindow();
+                w.pack();
+                break;
+            case SUCCEEDED:
                 w.setVisible(false);
                 w.dispose();
             }
-        });
-        panel.addPropertyChangeListener("status", new PropertyChangeListener() {
-            @Override
-            public void propertyChange(PropertyChangeEvent evt) {
-                Status status = (Status) evt.getNewValue();
-                switch (status) {
-                case NOT_STARTED:
-                    break;
-                case IN_PROGRESS:
-                    cancelButton.setEnabled(false);
-                    break;
-                case CANCELLED:
-                    cancelButton.setEnabled(true);
-                    w.pack();
-                    break;
-                case FAILED:
-                    cancelButton.setEnabled(true);
-                    panel.passwordField.requestFocusInWindow();
-                    w.pack();
-                    break;
-                case SUCCEEDED:
-                    w.setVisible(false);
-                    w.dispose();
-                }
-                for (PropertyChangeListener l : w.getPropertyChangeListeners("status")) {
-                    PropertyChangeEvent pce = new PropertyChangeEvent(w, "status", evt.getOldValue(), evt.getNewValue());
-                    l.propertyChange(pce);
-                }
+            for (PropertyChangeListener l : w.getPropertyChangeListeners("status")) {
+                PropertyChangeEvent pce = new PropertyChangeEvent(w, "status", evt.getOldValue(), evt.getNewValue());
+                l.propertyChange(pce);
             }
         });
         // FIX for #663 - commented out two lines below. Not sure why they were here in a first place.
@@ -1742,12 +1727,9 @@ public class JXLoginPane extends JXPanel {
             f.setResizable(false);
             f.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
             KeyStroke ks = KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0);
-            ActionListener closeAction = new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    f.setVisible(false);
-                    f.dispose();
-                }
+            ActionListener closeAction = e -> {
+                f.setVisible(false);
+                f.dispose();
             };
             f.getRootPane().registerKeyboardAction(closeAction, ks, JComponent.WHEN_IN_FOCUSED_WINDOW);
         } else if (w instanceof JDialog) {
@@ -1755,12 +1737,7 @@ public class JXLoginPane extends JXPanel {
             d.getRootPane().setDefaultButton(okButton);
             d.setResizable(false);
             KeyStroke ks = KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0);
-            ActionListener closeAction = new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    d.setVisible(false);
-                }
-            };
+            ActionListener closeAction = e -> d.setVisible(false);
             d.getRootPane().registerKeyboardAction(closeAction, ks, JComponent.WHEN_IN_FOCUSED_WINDOW);
         }
         w.pack();
