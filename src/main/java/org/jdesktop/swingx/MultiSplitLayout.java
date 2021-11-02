@@ -1895,7 +1895,7 @@ public class MultiSplitLayout implements LayoutManager, Serializable {
         @Override
         public String toString() {
             int nChildren = getChildren().size();
-            StringBuffer sb = new StringBuffer("MultiSplitLayout.Split");
+            StringBuilder sb = new StringBuilder("MultiSplitLayout.Split");
             sb.append(" \"");
             sb.append(getName());
             sb.append("\"");
@@ -1959,7 +1959,7 @@ public class MultiSplitLayout implements LayoutManager, Serializable {
 
         @Override
         public String toString() {
-            StringBuffer sb = new StringBuffer("MultiSplitLayout.Leaf");
+            StringBuilder sb = new StringBuilder("MultiSplitLayout.Leaf");
             sb.append(" \"");
             sb.append(getName());
             sb.append("\"");

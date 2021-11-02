@@ -2983,8 +2983,8 @@ public class BasicXListUI extends BasicListUI {
                     return null;
                 }
 
-                StringBuffer plainBuf = new StringBuffer();
-                StringBuffer htmlBuf = new StringBuffer();
+                StringBuilder plainBuf = new StringBuilder();
+                StringBuilder htmlBuf = new StringBuilder();
 
                 htmlBuf.append("<html>\n<body>\n<ul>\n");
 
