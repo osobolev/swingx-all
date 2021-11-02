@@ -1362,9 +1362,6 @@ public class BasicXListUI extends BasicListUI {
         if (layoutOrientation == JList.VERTICAL || column == 0 && columnCount == 1) {
             return getElementCount();
         }
-        if (column >= columnCount) {
-            return -1;
-        }
         if (layoutOrientation == JList.VERTICAL_WRAP) {
             if (column < columnCount - 1) {
                 return rowsPerColumn;

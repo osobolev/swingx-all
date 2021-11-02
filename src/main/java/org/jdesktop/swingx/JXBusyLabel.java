@@ -300,7 +300,7 @@ public class JXBusyLabel extends JLabel {
             busyPainter = createBusyPainter(prefSize.width == 0 && prefSize.height == 0 && !isPreferredSizeSet() ? null : prefSize);
 
             if (null != busyPainter) {
-                if (!isPreferredSizeSet() && (null == prefSize || prefSize.width == 0 || prefSize.height == 0)) {
+                if (!isPreferredSizeSet() && (prefSize.width == 0 || prefSize.height == 0)) {
                     Rectangle rt = busyPainter.getTrajectory().getBounds();
                     Rectangle rp = busyPainter.getPointShape().getBounds();
                     int max = Math.max(rp.width, rp.height);
