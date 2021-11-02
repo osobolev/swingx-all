@@ -31,6 +31,7 @@ import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.UIResource;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
@@ -169,12 +170,12 @@ public abstract class LookAndFeelAddons {
          */
     }
 
-    public static void setAddon(String addonClassName) throws InstantiationException, IllegalAccessException, ClassNotFoundException {
+    public static void setAddon(String addonClassName) throws InstantiationException, IllegalAccessException, ClassNotFoundException, InvocationTargetException, NoSuchMethodException {
         setAddon(Class.forName(addonClassName, true, getClassLoader()));
     }
 
-    public static void setAddon(Class<?> addonClass) throws InstantiationException, IllegalAccessException {
-        LookAndFeelAddons addon = (LookAndFeelAddons) addonClass.newInstance();
+    public static void setAddon(Class<?> addonClass) throws InstantiationException, IllegalAccessException, NoSuchMethodException, InvocationTargetException {
+        LookAndFeelAddons addon = (LookAndFeelAddons) addonClass.getConstructor().newInstance();
         setAddon(addon);
     }
 

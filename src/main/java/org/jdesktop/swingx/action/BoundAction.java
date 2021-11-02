@@ -104,7 +104,7 @@ public class BoundAction extends AbstractActionExt {
             try {
                 Class<?> clz = Class.forName(elems[0]);
 
-                Object obj = clz.newInstance();
+                Object obj = clz.getConstructor().newInstance();
 
                 registerCallback(obj, elems[1]);
             } catch (Exception ex) {
