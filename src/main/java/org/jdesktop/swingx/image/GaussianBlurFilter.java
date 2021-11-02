@@ -146,10 +146,10 @@ public class GaussianBlurFilter extends AbstractFilter {
                 int cg = (int) (g + 0.5f);
                 int cb = (int) (b + 0.5f);
 
-                dstPixels[index] = (Math.min(ca, 255)) << 24 |
-                                   (Math.min(cr, 255)) << 16 |
-                                   (Math.min(cg, 255)) << 8 |
-                                   (Math.min(cb, 255));
+                dstPixels[index] = Math.min(ca, 255) << 24 |
+                                   Math.min(cr, 255) << 16 |
+                                   Math.min(cg, 255) << 8 |
+                                   Math.min(cb, 255);
                 index += height;
             }
         }
