@@ -68,7 +68,7 @@ import java.awt.event.KeyListener;
  * @author unascribed from JDNC
  */
 @JavaBean
-@SuppressWarnings({"nls", "serial"})
+@SuppressWarnings("nls")
 public class JXFrame extends JFrame {
 
     /**

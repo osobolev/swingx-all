@@ -747,7 +747,6 @@ public class JXList extends JList {
      *
      * @return the filter used in the sorter.
      */
-    @SuppressWarnings("unchecked")
     public RowFilter<?, ?> getRowFilter() {
         return hasSortController() ? getSortController().getRowFilter() : null;
     }

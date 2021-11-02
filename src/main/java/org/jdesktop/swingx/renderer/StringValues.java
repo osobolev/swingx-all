@@ -40,7 +40,6 @@ public final class StringValues {
     /**
      * A {@code StringValue} that always presents an empty string.
      */
-    @SuppressWarnings("serial")
     public static final StringValue EMPTY = value -> "";
 
     /**
@@ -48,7 +47,6 @@ public final class StringValues {
      * value for the given object. If the value passed is {@code null}, this has
      * the same effect as {@link StringValues#EMPTY}.
      */
-    @SuppressWarnings("serial")
     public static final StringValue TO_STRING = value -> value != null ? value.toString() : EMPTY.getString(value);
 
     /**
@@ -56,7 +54,6 @@ public final class StringValues {
      * given file. If the value passed to {@code FILE_NAME} is not a
      * {@link File}, this has the same effect as {@link StringValues#TO_STRING}.
      */
-    @SuppressWarnings("serial")
     public static final StringValue FILE_NAME = value -> {
         if (value instanceof File) {
             FileSystemView fsv = FileSystemView.getFileSystemView();
@@ -72,7 +69,6 @@ public final class StringValues {
      * given file. If the value passed to {@code FILE_TYPE} is not a
      * {@link File}, this has the same effect as {@link StringValues#TO_STRING}.
      */
-    @SuppressWarnings("serial")
     public static final StringValue FILE_TYPE = value -> {
         if (value instanceof File) {
             FileSystemView fsv = FileSystemView.getFileSystemView();

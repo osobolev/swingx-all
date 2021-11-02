@@ -36,13 +36,11 @@ public final class IconValues {
      * Always NULL_ICON. This is useful to indicate that we really want
      * no icon instead of f.i. a default provided by the CellContext.
      */
-    @SuppressWarnings("serial")
     public static final IconValue NONE = value -> IconValue.NULL_ICON;
 
     /**
      * Returns the value as Icon if possible or null.
      */
-    @SuppressWarnings("serial")
     public static final IconValue ICON = value -> {
         if (value instanceof Icon) {
             return (Icon) value;
@@ -55,7 +53,6 @@ public final class IconValues {
      * If the value passed to {@code FILE_ICON} is not a {@link File}, this has
      * the same effect as {@link IconValues#NONE}.
      */
-    @SuppressWarnings("serial")
     public static final IconValue FILE_ICON = value -> {
         if (value instanceof File) {
             FileSystemView fsv = FileSystemView.getFileSystemView();

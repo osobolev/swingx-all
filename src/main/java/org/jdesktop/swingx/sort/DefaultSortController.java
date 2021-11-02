@@ -50,7 +50,7 @@ public abstract class DefaultSortController<M> extends DefaultRowSorter<M, Integ
     /**
      * Comparator that uses compareTo on the contents.
      */
-    @SuppressWarnings({"unchecked", "rawtypes"})
+    @SuppressWarnings("rawtypes")
     public static final Comparator COMPARABLE_COMPARATOR = new ComparableComparator();
 
     private static final SortOrder[] DEFAULT_CYCLE = {SortOrder.ASCENDING, SortOrder.DESCENDING};

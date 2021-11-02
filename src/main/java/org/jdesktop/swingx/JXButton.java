@@ -69,7 +69,7 @@ import java.awt.image.BufferedImageOp;
  * @author Karl George Schaefer
  */
 @JavaBean
-@SuppressWarnings({"nls", "serial"})
+@SuppressWarnings("nls")
 public class JXButton extends JButton implements BackgroundPaintable {
 
     private class BackgroundButton extends JButton {

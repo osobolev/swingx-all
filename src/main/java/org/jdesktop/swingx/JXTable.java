@@ -1866,7 +1866,6 @@ public class JXTable extends JTable implements TableColumnModelExtListener {
      *
      * @return the filter used in the sorter.
      */
-    @SuppressWarnings("unchecked")
     public RowFilter<?, ?> getRowFilter() {
         return hasSortController() ? getSortController().getRowFilter() : null;
     }
