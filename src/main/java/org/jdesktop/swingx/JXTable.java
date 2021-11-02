@@ -95,7 +95,6 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
-import java.util.Enumeration;
 import java.util.EventObject;
 import java.util.HashMap;
 import java.util.List;
@@ -4081,14 +4080,12 @@ public class JXTable extends JTable implements TableColumnModelExtListener {
     public void updateUI() {
         super.updateUI();
         updateColumnControlUI();
-        for (Enumeration<?> defaultEditors = defaultEditorsByColumnClass
-            .elements(); defaultEditors.hasMoreElements(); ) {
-            updateEditorUI(defaultEditors.nextElement());
+        for (Object o : defaultEditorsByColumnClass.values()) {
+            updateEditorUI(o);
         }
 
-        for (Enumeration<?> defaultRenderers = defaultRenderersByColumnClass
-            .elements(); defaultRenderers.hasMoreElements(); ) {
-            updateRendererUI(defaultRenderers.nextElement());
+        for (Object o : defaultRenderersByColumnClass.values()) {
+            updateRendererUI(o);
         }
         for (TableColumn column : getColumns(true)) {
             updateColumnUI(column);
