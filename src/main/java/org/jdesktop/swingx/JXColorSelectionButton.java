@@ -179,7 +179,7 @@ public class JXColorSelectionButton extends JButton {
      */
     private void showDialog() {
         if (dialog == null) {
-            dialog = JColorChooser.createDialog(JXColorSelectionButton.this,
+            dialog = JColorChooser.createDialog(this,
                 "Choose a color", true, getChooser(),
                 new ActionListener() {
                     public void actionPerformed(ActionEvent actionEvent) {
@@ -196,7 +196,7 @@ public class JXColorSelectionButton extends JButton {
                 });
             dialog.getContentPane().add(getChooser());
             getChooser().getSelectionModel().addChangeListener(
-                new ColorChangeListener(JXColorSelectionButton.this));
+                new ColorChangeListener(this));
         }
 
         initialColor = getBackground();

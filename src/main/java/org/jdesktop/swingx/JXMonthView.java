@@ -1798,7 +1798,7 @@ public class JXMonthView extends JComponent {
 
         for (ActionListener listener : listeners) {
             if (e == null) {
-                e = new ActionEvent(JXMonthView.this,
+                e = new ActionEvent(this,
                     ActionEvent.ACTION_PERFORMED,
                     actionCommand);
             }
