@@ -285,7 +285,7 @@ public class AbstractAreaEffect implements AreaEffect {
     public void setBrushSteps(int brushSteps) {
         int oldBrushSteps = this.brushSteps;
         this.brushSteps = brushSteps;
-        propertyChangeSupport.firePropertyChange("brushSteps", Integer.valueOf(oldBrushSteps), Integer.valueOf(brushSteps));
+        propertyChangeSupport.firePropertyChange("brushSteps", oldBrushSteps, brushSteps);
     }
 
     /**
@@ -310,7 +310,7 @@ public class AbstractAreaEffect implements AreaEffect {
     public void setEffectWidth(int effectWidth) {
         int oldEffectWidth = this.effectWidth;
         this.effectWidth = effectWidth;
-        propertyChangeSupport.firePropertyChange("effectWidth", Integer.valueOf(oldEffectWidth), Integer.valueOf(effectWidth));
+        propertyChangeSupport.firePropertyChange("effectWidth", oldEffectWidth, effectWidth);
     }
 
     /**
@@ -335,7 +335,7 @@ public class AbstractAreaEffect implements AreaEffect {
     public void setRenderInsideShape(boolean renderInsideShape) {
         boolean oldRenderInsideShape = this.renderInsideShape;
         this.renderInsideShape = renderInsideShape;
-        propertyChangeSupport.firePropertyChange("renderInsideShape", Boolean.valueOf(oldRenderInsideShape), Boolean.valueOf(renderInsideShape));
+        propertyChangeSupport.firePropertyChange("renderInsideShape", oldRenderInsideShape, renderInsideShape);
     }
 
     /**
@@ -385,7 +385,7 @@ public class AbstractAreaEffect implements AreaEffect {
     public void setShouldFillShape(boolean shouldFillShape) {
         boolean oldShouldFillShape = this.shouldFillShape;
         this.shouldFillShape = shouldFillShape;
-        propertyChangeSupport.firePropertyChange("shouldFillShape", Boolean.valueOf(oldShouldFillShape), Boolean.valueOf(shouldFillShape));
+        propertyChangeSupport.firePropertyChange("shouldFillShape", oldShouldFillShape, shouldFillShape);
     }
 
     /**
@@ -410,6 +410,6 @@ public class AbstractAreaEffect implements AreaEffect {
     public void setShapeMasked(boolean shapeMasked) {
         boolean oldShapeMasked = this.shapeMasked;
         this.shapeMasked = shapeMasked;
-        propertyChangeSupport.firePropertyChange("shapeMasked", Boolean.valueOf(oldShapeMasked), Boolean.valueOf(shapeMasked));
+        propertyChangeSupport.firePropertyChange("shapeMasked", oldShapeMasked, shapeMasked);
     }
 }
