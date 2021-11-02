@@ -529,7 +529,7 @@ public class JXSearchField extends JXTextField {
      * if this search field is enabled, otherwise it will be disabled.
      */
     protected void updateButtonState() {
-        getCancelButton().setEnabled(isEditable() & isEnabled());
+        getCancelButton().setEnabled(isEditable() && isEnabled());
         getFindButton().setEnabled(isEnabled());
         getPopupButton().setEnabled(isEnabled());
     }
