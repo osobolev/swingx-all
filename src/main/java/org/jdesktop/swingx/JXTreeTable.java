@@ -2472,7 +2472,7 @@ public class JXTreeTable extends JXTable {
          * processed. SwingUtilities.invokeLater is used to handle this.
          */
         private void delayedFireTableStructureChanged() {
-            SwingUtilities.invokeLater(() -> fireTableStructureChanged());
+            SwingUtilities.invokeLater(this::fireTableStructureChanged);
         }
 
         /**
@@ -2480,7 +2480,7 @@ public class JXTreeTable extends JXTable {
          * processed. SwingUtilities.invokeLater is used to handle this.
          */
         private void delayedFireTableDataChanged() {
-            SwingUtilities.invokeLater(() -> fireTableDataChanged());
+            SwingUtilities.invokeLater(this::fireTableDataChanged);
         }
 
         /**
