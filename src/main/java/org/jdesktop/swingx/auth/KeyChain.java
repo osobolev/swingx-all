@@ -74,13 +74,7 @@ public class KeyChain {
         try {
             store = KeyStore.getInstance("JCEKS");
             store.load(inputStream, masterPassword);
-        } catch (KeyStoreException ex) {
-            LOG.log(Level.WARNING, "", ex);
-        } catch (CertificateException ex) {
-            LOG.log(Level.WARNING, "", ex);
-        } catch (NoSuchAlgorithmException ex) {
-            LOG.log(Level.WARNING, "", ex);
-        } catch (EOFException ex) {
+        } catch (KeyStoreException | EOFException | NoSuchAlgorithmException | CertificateException ex) {
             LOG.log(Level.WARNING, "", ex);
         }
     }
@@ -101,11 +95,7 @@ public class KeyChain {
                 .getEntry(user + "@" + server,
                     new KeyStore.PasswordProtection(masterPassword));
             return new String(entry2.getSecretKey().getEncoded());
-        } catch (KeyStoreException ex) {
-            LOG.log(Level.WARNING, "", ex);
-        } catch (UnrecoverableEntryException ex) {
-            LOG.log(Level.WARNING, "", ex);
-        } catch (NoSuchAlgorithmException ex) {
+        } catch (KeyStoreException | NoSuchAlgorithmException | UnrecoverableEntryException ex) {
             LOG.log(Level.WARNING, "", ex);
         }
 
@@ -155,11 +145,7 @@ public class KeyChain {
     public void store(OutputStream ostream) throws IOException {
         try {
             store.store(ostream, masterPassword);
-        } catch (KeyStoreException ex) {
-            LOG.log(Level.WARNING, "", ex);
-        } catch (CertificateException ex) {
-            LOG.log(Level.WARNING, "", ex);
-        } catch (NoSuchAlgorithmException ex) {
+        } catch (KeyStoreException | NoSuchAlgorithmException | CertificateException ex) {
             LOG.log(Level.WARNING, "", ex);
         }
     }

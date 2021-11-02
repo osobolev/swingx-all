@@ -386,8 +386,7 @@ public class Utilities {
                         Integer value = numb;
                         names.put(name, value);
                         values.put(value, name);
-                    } catch (IllegalArgumentException ex) {
-                    } catch (IllegalAccessException ex) {
+                    } catch (IllegalArgumentException | IllegalAccessException ex) {
                     }
                 }
             }
