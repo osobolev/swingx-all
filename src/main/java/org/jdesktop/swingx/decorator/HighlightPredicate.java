@@ -406,7 +406,7 @@ public interface HighlightPredicate {
         public HighlightPredicate[] getHighlightPredicates() {
             if (predicate.isEmpty())
                 return EMPTY_PREDICATE_ARRAY;
-            return predicate.toArray(new HighlightPredicate[0]);
+            return predicate.toArray(EMPTY_PREDICATE_ARRAY);
         }
     }
 
@@ -457,7 +457,7 @@ public interface HighlightPredicate {
         public HighlightPredicate[] getHighlightPredicates() {
             if (predicate.isEmpty())
                 return EMPTY_PREDICATE_ARRAY;
-            return predicate.toArray(new HighlightPredicate[0]);
+            return predicate.toArray(EMPTY_PREDICATE_ARRAY);
         }
     }
 
