@@ -45,9 +45,10 @@ import java.util.Calendar;
 import java.util.Collections;
 import java.util.Date;
 import java.util.EventListener;
-import java.util.Hashtable;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 import java.util.SortedSet;
 import java.util.TimeZone;
 import java.util.TreeSet;
@@ -242,7 +243,7 @@ public class JXMonthView extends JComponent {
     private Color monthStringForeground;
     private Color daysOfTheWeekForeground;
     private Color selectedBackground;
-    private final Hashtable<Integer, Color> dayToColorTable = new Hashtable<>();
+    private final Map<Integer, Color> dayToColorTable = new HashMap<>();
     private Color flaggedDayForeground;
 
     private Color selectedForeground;
