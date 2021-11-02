@@ -27,6 +27,7 @@ dependencies {
 tasks {
     withType(JavaCompile::class) {
         options.encoding = "UTF-8"
+        options.compilerArgs.add("-Xlint:deprecation,unchecked")
     }
     javadoc {
         options.encoding = "UTF-8"
