@@ -105,6 +105,6 @@ public class ResetDTCRColorHighlighter extends ColorHighlighter {
             this.color = color;
         }
 
-        Color color;
+        final Color color;
     }
 }

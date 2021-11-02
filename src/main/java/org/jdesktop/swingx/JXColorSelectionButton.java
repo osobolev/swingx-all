@@ -98,7 +98,7 @@ public class JXColorSelectionButton extends JButton {
      */
     private static class ColorChangeListener implements ChangeListener {
 
-        public JXColorSelectionButton button;
+        private final JXColorSelectionButton button;
 
         ColorChangeListener(JXColorSelectionButton button) {
             this.button = button;

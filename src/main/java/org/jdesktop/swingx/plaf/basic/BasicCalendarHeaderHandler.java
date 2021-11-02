@@ -179,9 +179,9 @@ public class BasicCalendarHeaderHandler extends CalendarHeaderHandler {
      */
     static class BasicCalendarHeader extends JXPanel {
 
-        protected AbstractButton prevButton;
-        protected AbstractButton nextButton;
-        protected JXHyperlink zoomOutLink;
+        protected final AbstractButton prevButton;
+        protected final AbstractButton nextButton;
+        protected final JXHyperlink zoomOutLink;
 
         BasicCalendarHeader() {
             setLayout(new BoxLayout(this, BoxLayout.LINE_AXIS));

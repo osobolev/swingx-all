@@ -251,7 +251,7 @@ public class Morphing2D implements Shape {
         static final double MIN_LEN = 0.001;
         double[] bezierCoords;
         int numCoords;
-        int windingrule;
+        final int windingrule;
         double[] myTvals;
 
         Geometry(Shape s) {
@@ -605,10 +605,10 @@ public class Morphing2D implements Shape {
 
     private static class Iterator implements PathIterator {
 
-        AffineTransform at;
-        Geometry g0;
-        Geometry g1;
-        double t;
+        final AffineTransform at;
+        final Geometry g0;
+        final Geometry g1;
+        final double t;
         int cindex;
 
         Iterator(AffineTransform at, Geometry g0, Geometry g1, double t) {

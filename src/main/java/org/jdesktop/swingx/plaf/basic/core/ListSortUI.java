@@ -452,22 +452,22 @@ public final class ListSortUI {
         // JW: if we received a dataChanged, there _is no_ notion 
         // of end/start/length of change 
         // Starting index of the change, in terms of the model, -1 if dataChanged
-        int startModelIndex;
+        final int startModelIndex;
 
         // Ending index of the change, in terms of the model, -1 if dataChanged
-        int endModelIndex;
+        final int endModelIndex;
 
         // Length of the change (end - start + 1), - 1 if dataChanged
-        int length;
+        final int length;
 
         // Type of change
-        int type;
+        final int type;
 
         // Number of rows in the model
-        int modelRowCount;
+        final int modelRowCount;
 
         // True if the event indicates all the contents have changed
-        boolean allRowsChanged;
+        final boolean allRowsChanged;
 
         ModelChange(ListDataEvent e) {
             type = e.getType();

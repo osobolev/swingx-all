@@ -31,7 +31,7 @@ import java.awt.Graphics2D;
 
 public class PainterIcon implements Icon {
 
-    Dimension size;
+    final Dimension size;
     private Painter painter;
 
     public PainterIcon(Dimension size) {

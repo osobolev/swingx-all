@@ -442,7 +442,7 @@ public class BasicTaskPaneUI extends TaskPaneUI {
      */
     protected static class ChevronIcon implements Icon {
 
-        boolean up;
+        final boolean up;
 
         public ChevronIcon(boolean up) {
             this.up = up;
@@ -475,7 +475,7 @@ public class BasicTaskPaneUI extends TaskPaneUI {
      */
     protected static class ContentPaneBorder implements Border, UIResource {
 
-        Color color;
+        final Color color;
 
         public ContentPaneBorder(Color color) {
             this.color = color;

@@ -206,7 +206,7 @@ public class HyperlinkAction extends AbstractHyperlinkAction<URI> {
      */
     private abstract static class URIVisitor {
 
-        protected boolean desktopSupported = Desktop.isDesktopSupported();
+        protected final boolean desktopSupported = Desktop.isDesktopSupported();
 
         /**
          * Returns a boolean indicating whether the action is supported on the

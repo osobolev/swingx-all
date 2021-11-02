@@ -176,9 +176,9 @@ public class AutoCompleteDocument implements Document {
     /**
      * The adaptor that is used to find and select items.
      */
-    AbstractAutoCompleteAdaptor adaptor;
+    final AbstractAutoCompleteAdaptor adaptor;
 
-    ObjectToStringConverter stringConverter;
+    final ObjectToStringConverter stringConverter;
 
     private final Handler handler;
 

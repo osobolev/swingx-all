@@ -1124,7 +1124,7 @@ public class JXLabel extends JLabel implements BackgroundPaintable {
      */
     static class Renderer extends WrappedPlainView {
 
-        JXLabel host;
+        final JXLabel host;
 
         boolean invalidated = false;
 

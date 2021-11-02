@@ -47,9 +47,9 @@ import java.awt.Rectangle;
 public class WrappingIconPanel extends JXPanel implements PainterAware, IconAware {
 
     protected JComponent delegate;
-    JLabel iconLabel;
-    String labelPosition = BorderLayout.CENTER; //2;
-    int iconLabelGap;
+    final JLabel iconLabel;
+    final String labelPosition = BorderLayout.CENTER; //2;
+    final int iconLabelGap;
     private Border ltorBorder;
     private Border rtolBorder;
     private boolean dropHackEnabled;

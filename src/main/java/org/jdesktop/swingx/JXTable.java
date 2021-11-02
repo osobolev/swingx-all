@@ -3589,8 +3589,6 @@ public class JXTable extends JTable implements TableColumnModelExtListener {
      */
     public static class GenericEditor extends DefaultCellEditor {
 
-        Class<?>[] argTypes = new Class<?>[] {String.class};
-
         Constructor<?> constructor;
 
         Object value;
@@ -3636,7 +3634,7 @@ public class JXTable extends JTable implements TableColumnModelExtListener {
                 if (type == Object.class) {
                     type = String.class;
                 }
-                constructor = type.getConstructor(argTypes);
+                constructor = type.getConstructor(String.class);
             } catch (Exception e) {
                 return null;
             }
