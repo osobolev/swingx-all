@@ -922,6 +922,7 @@ public class JXList<E> extends JList<E> {
      * @see #getModel
      * @see #addListSelectionListener
      */
+    @SuppressWarnings("deprecation")
     @Override
     public Object[] getSelectedValues() {
         int[] selectedIndexes = getSelectedIndices();
