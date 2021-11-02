@@ -78,6 +78,8 @@ import java.util.logging.Logger;
 @JavaBean
 public class JXGradientChooser extends JXPanel {
 
+    private static final Logger LOG = Logger.getLogger(JXGradientChooser.class.getName());
+
     private enum GradientStyle {Linear, Radial}
 
     /**
@@ -119,7 +121,6 @@ public class JXGradientChooser extends JXPanel {
     }
 
     private boolean thumbsMoving = false;
-    private final Logger log = Logger.getLogger(JXGradientChooser.class.getName());
 
     /**
      * Sets the gradient within this panel to the new gradient. This will delete
@@ -154,7 +155,7 @@ public class JXGradientChooser extends JXPanel {
                 }
             }
         } else {
-            log.fine("not updating because it's moving");
+            LOG.fine("not updating because it's moving");
         }
         if (mgrad instanceof RadialGradientPaint) {
             if (styleCombo.getSelectedItem() != GradientStyle.Radial) {
@@ -195,7 +196,7 @@ public class JXGradientChooser extends JXPanel {
     }
 
     private void updateFromStop(int thumb, float position, Color color) {
-        log.fine("updating: " + thumb + " " + position + " " + color);
+        LOG.fine("updating: " + thumb + " " + position + " " + color);
         if (thumb == -1) {
             colorLocationSpinner.setEnabled(false);
             alphaSpinner.setEnabled(false);
@@ -606,7 +607,7 @@ public class JXGradientChooser extends JXPanel {
             float pos = 0.2f;
             Color color = Color.black;
             int num = slider.getModel().addThumb(pos, color);
-            log.fine("new number = " + num);
+            LOG.fine("new number = " + num);
             /*
             for (int i = 0; i < slider.getModel().getThumbCount(); i++) {
                 float pos2 = slider.getModel().getThumbAt(i).getPosition();
@@ -645,7 +646,7 @@ public class JXGradientChooser extends JXPanel {
 
         @Override
         public void thumbMoved(int thumb, float pos) {
-            log.fine("moved: " + thumb + " " + pos);
+            LOG.fine("moved: " + thumb + " " + pos);
             Color color = slider.getModel().getThumbAt(thumb).getObject();
             thumbsMoving = true;
             updateFromStop(thumb, pos, color);
@@ -663,7 +664,7 @@ public class JXGradientChooser extends JXPanel {
             thumbsMoving = true;
             float pos = slider.getModel().getThumbAt(thumb).getPosition();
             Color color = slider.getModel().getThumbAt(thumb).getObject();
-            log.fine("selected = " + thumb + " " + pos + " " + color);
+            LOG.fine("selected = " + thumb + " " + pos + " " + color);
             updateFromStop(thumb, pos, color);
             updateDeleteButtons();
             slider.repaint();

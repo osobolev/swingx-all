@@ -87,7 +87,8 @@ import java.util.logging.Logger;
 @JavaBean
 public class JXImageView extends JXPanel {
 
-    private final Logger log = Logger.getLogger(JXImageView.class.getName());
+    private static final Logger LOG = Logger.getLogger(JXImageView.class.getName());
+
     /* ======= instance variables ========= */
     // the image this view will show
     private Image image;
@@ -577,7 +578,7 @@ public class JXImageView extends JXPanel {
                 //log.fine("testing drag enabled: " + curr + " " + start);
                 //log.fine("distance = " + curr.distance(start));
                 if (curr.distance(start) > 5) {
-                    JXImageView.this.log.fine("starting the drag: ");
+                    LOG.fine("starting the drag: ");
                     panel.getTransferHandler().exportAsDrag((JComponent) evt.getSource(), evt, TransferHandler.COPY);
                     return;
                 }
@@ -684,7 +685,7 @@ public class JXImageView extends JXPanel {
                     }
                     return true;
                 } catch (Exception ex) {
-                    log.severe(ex.getMessage());
+                    LOG.severe(ex.getMessage());
                     ex.printStackTrace();
                     fireError(ex);
                 }

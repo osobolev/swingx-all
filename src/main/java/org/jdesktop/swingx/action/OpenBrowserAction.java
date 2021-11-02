@@ -39,7 +39,7 @@ import java.util.logging.Logger;
  */
 public class OpenBrowserAction extends AbstractAction {
 
-    private static final Logger log = Logger.getLogger(OpenBrowserAction.class.getName());
+    private static final Logger LOG = Logger.getLogger(OpenBrowserAction.class.getName());
 
     private URI uri;
 
@@ -111,7 +111,7 @@ public class OpenBrowserAction extends AbstractAction {
             try {
                 Desktop.getDesktop().browse(uri);
             } catch (IOException ioe) {
-                log.log(Level.WARNING, "unable to browse: " + uri, ioe);
+                LOG.log(Level.WARNING, "unable to browse: " + uri, ioe);
             }
         }
     }

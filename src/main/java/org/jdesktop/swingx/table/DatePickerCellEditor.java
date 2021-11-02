@@ -52,6 +52,8 @@ import java.util.logging.Logger;
  */
 public class DatePickerCellEditor extends AbstractCellEditor implements TableCellEditor, TreeCellEditor {
 
+    private static final Logger LOG = Logger.getLogger(DatePickerCellEditor.class.getName());
+
     protected JXDatePicker datePicker;
 
     protected DateFormat dateFormat;
@@ -61,8 +63,6 @@ public class DatePickerCellEditor extends AbstractCellEditor implements TableCel
     private ActionListener pickerActionListener;
 
     protected boolean ignoreAction;
-
-    private static final Logger logger = Logger.getLogger(DatePickerCellEditor.class.getName());
 
     private static final long serialVersionUID = -1L;
 
@@ -235,7 +235,7 @@ public class DatePickerCellEditor extends AbstractCellEditor implements TableCel
      * @param e
      */
     protected void handleParseException(ParseException e) {
-        logger.log(Level.SEVERE, e.getMessage(), e.getMessage());
+        LOG.log(Level.SEVERE, e.getMessage(), e.getMessage());
     }
 
     protected boolean isEmpty(Object value) {

@@ -38,7 +38,6 @@ import java.util.logging.Logger;
  */
 public class HyperlinkAction extends AbstractHyperlinkAction<URI> {
 
-    @SuppressWarnings("unused")
     private static final Logger LOG = Logger.getLogger(HyperlinkAction.class.getName());
 
     private final Action desktopAction;

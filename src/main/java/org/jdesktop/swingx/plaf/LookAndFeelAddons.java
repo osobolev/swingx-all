@@ -69,6 +69,8 @@ import java.util.logging.Logger;
 @SuppressWarnings("nls")
 public abstract class LookAndFeelAddons {
 
+    private static final Logger LOG = Logger.getLogger(LookAndFeelAddons.class.getName());
+
     private static final List<ComponentAddon> contributedComponents = new ArrayList<>();
 
     /**
@@ -305,10 +307,9 @@ public abstract class LookAndFeelAddons {
         String uiClassname = (String) UIManager.get(component.getUIClassID());
         // possible workaround and more debug info on #784
         if (uiClassname == null) {
-            Logger logger = Logger.getLogger("LookAndFeelAddons");
-            logger.warning("Failed to retrieve UI for " + component.getClass().getName() + " with UIClassID " + component.getUIClassID());
-            if (logger.isLoggable(Level.FINE)) {
-                logger.fine("Existing UI defaults keys: " + new ArrayList<>(UIManager.getDefaults().keySet()));
+            LOG.warning("Failed to retrieve UI for " + component.getClass().getName() + " with UIClassID " + component.getUIClassID());
+            if (LOG.isLoggable(Level.FINE)) {
+                LOG.fine("Existing UI defaults keys: " + new ArrayList<>(UIManager.getDefaults().keySet()));
             }
             // really ugly hack. Should be removed as soon as we figure out what is causing the
             // issue

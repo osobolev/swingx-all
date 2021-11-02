@@ -50,6 +50,8 @@ import java.util.logging.Logger;
  */
 public class GradientPreviewPanel extends JXPanel {
 
+    private static final Logger LOG = Logger.getLogger(GradientPreviewPanel.class.getName());
+
     private final Paint checker_texture;
     private Point2D start;
     private Point2D end;
@@ -152,7 +154,7 @@ public class GradientPreviewPanel extends JXPanel {
 
             drawHandles(g2);
         } catch (Exception ex) {
-            log.severe("ex: " + ex);
+            LOG.severe("ex: " + ex);
         }
     }
 
@@ -288,4 +290,3 @@ public class GradientPreviewPanel extends JXPanel {
         firePropertyChange("repeated", old, isRepeated());
     }
 }
-

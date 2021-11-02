@@ -26,6 +26,8 @@ import java.util.prefs.Preferences;
  */
 public class RecentSearches implements ActionListener {
 
+    private static final Logger LOG = Logger.getLogger(RecentSearches.class.getName());
+
     private Preferences prefsNode;
 
     private int maxRecents = 5;
@@ -64,7 +66,7 @@ public class RecentSearches implements ActionListener {
             } catch (RuntimeException ace) {
                 // disable persistency, if we aren't allowed to access
                 // preferences.
-                Logger.getLogger(getClass().getName()).warning("cannot acces preferences. persistency disabled.");
+                LOG.warning("cannot acces preferences. persistency disabled.");
             }
         }
 

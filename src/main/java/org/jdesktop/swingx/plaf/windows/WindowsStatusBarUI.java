@@ -39,7 +39,8 @@ import java.util.logging.Logger;
  */
 public class WindowsStatusBarUI extends BasicStatusBarUI {
 
-    private static final Logger log = Logger.getLogger(WindowsStatusBarUI.class.getName());
+    private static final Logger LOG = Logger.getLogger(WindowsStatusBarUI.class.getName());
+
     private BufferedImage leftImage;
     private BufferedImage middleImage;
     private BufferedImage rightImage;
@@ -56,7 +57,7 @@ public class WindowsStatusBarUI extends BasicStatusBarUI {
             rightImage = ImageIO.read(WindowsStatusBarUI.class.getResource(UIManagerExt.getString("StatusBar.rightImage")));
         } catch (Exception e) {
             // log the message in case of init failure
-            log.log(Level.FINE, e.getLocalizedMessage(), e);
+            LOG.log(Level.FINE, e.getLocalizedMessage(), e);
         }
     }
 
@@ -77,7 +78,7 @@ public class WindowsStatusBarUI extends BasicStatusBarUI {
     @Override
     protected void paintBackground(Graphics2D g, JXStatusBar statusBar) {
         if (leftImage == null || middleImage == null || rightImage == null) {
-            log.severe("Failed to initialize necessary assets. Set logging to FINE to see more details.");
+            LOG.severe("Failed to initialize necessary assets. Set logging to FINE to see more details.");
             return;
         }
         //if bidi, reverse the image painting order
