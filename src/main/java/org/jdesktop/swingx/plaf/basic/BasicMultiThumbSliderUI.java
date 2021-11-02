@@ -74,7 +74,7 @@ public class BasicMultiThumbSliderUI extends MultiThumbSliderUI {
         }
 
         @Override
-        public JComponent getThumbRendererComponent(JXMultiThumbSlider slider, int index, boolean selected) {
+        public JComponent getThumbRendererComponent(JXMultiThumbSlider<?> slider, int index, boolean selected) {
             return this;
         }
     }
@@ -93,7 +93,7 @@ public class BasicMultiThumbSliderUI extends MultiThumbSliderUI {
         }
 
         @Override
-        public JComponent getRendererComponent(JXMultiThumbSlider slider) {
+        public JComponent getRendererComponent(JXMultiThumbSlider<?> slider) {
             this.slider = slider;
             return this;
         }

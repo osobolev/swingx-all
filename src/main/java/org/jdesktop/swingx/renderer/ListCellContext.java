@@ -42,7 +42,7 @@ public class ListCellContext extends CellContext {
      * @param expanded  the cell's expanded state
      * @param leaf      the cell's leaf state
      */
-    public void installContext(JList component, Object value, int row, int column,
+    public void installContext(JList<?> component, Object value, int row, int column,
                                boolean selected, boolean focused, boolean expanded, boolean leaf) {
         this.component = component;
         installState(value, row, column, selected, focused, expanded, leaf);
@@ -61,8 +61,8 @@ public class ListCellContext extends CellContext {
     }
 
     @Override
-    public JList getComponent() {
-        return (JList) super.getComponent();
+    public JList<?> getComponent() {
+        return (JList<?>) super.getComponent();
     }
 
     /**

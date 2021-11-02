@@ -67,18 +67,18 @@ import java.util.Vector;
  * @author Jeanette Winzenburg
  */
 @SuppressWarnings("nls")
-public class JXComboBox extends JComboBox {
+public class JXComboBox<E> extends JComboBox<E> {
 
     /**
      * A decorator for the original ListCellRenderer. Needed to hook highlighters
      * after messaging the delegate.<p>
      */
-    public class DelegatingRenderer implements ListCellRenderer, RolloverRenderer, UIDependent {
+    public class DelegatingRenderer implements ListCellRenderer<E>, RolloverRenderer, UIDependent {
 
         /**
          * the delegate.
          */
-        private ListCellRenderer delegateRenderer;
+        private ListCellRenderer<? super E> delegateRenderer;
         private final JRendererPanel wrapper;
 
         /**
@@ -95,7 +95,7 @@ public class JXComboBox extends JComboBox {
          * @param delegate the delegate to use, if {@code null} the combo box's default is
          *                 created and used.
          */
-        public DelegatingRenderer(ListCellRenderer delegate) {
+        public DelegatingRenderer(ListCellRenderer<? super E> delegate) {
             wrapper = new JRendererPanel(new BorderLayout());
             setDelegateRenderer(delegate);
         }
@@ -106,7 +106,7 @@ public class JXComboBox extends JComboBox {
          *
          * @param delegate the delegate to use, if null the list's default is created and used.
          */
-        public void setDelegateRenderer(ListCellRenderer delegate) {
+        public void setDelegateRenderer(ListCellRenderer<? super E> delegate) {
             if (delegate == null) {
                 delegate = createDefaultCellRenderer();
             }
@@ -119,7 +119,7 @@ public class JXComboBox extends JComboBox {
          * @return the delegate renderer used by this renderer, guaranteed to
          * not-null.
          */
-        public ListCellRenderer getDelegateRenderer() {
+        public ListCellRenderer<? super E> getDelegateRenderer() {
             return delegateRenderer;
         }
 
@@ -155,7 +155,7 @@ public class JXComboBox extends JComboBox {
          * The decorators are not applied if the row is invalid.
          */
         @Override
-        public Component getListCellRendererComponent(JList list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
+        public Component getListCellRendererComponent(JList<? extends E> list, E value, int index, boolean isSelected, boolean cellHasFocus) {
             Component comp;
             if (index == -1) {
                 comp = delegateRenderer.getListCellRendererComponent(list, value, getSelectedIndex(), isSelected, cellHasFocus);
@@ -205,7 +205,7 @@ public class JXComboBox extends JComboBox {
     @SuppressWarnings("hiding")
     protected static class ComboBoxAdapter extends ComponentAdapter {
 
-        private final JXComboBox comboBox;
+        private final JXComboBox<?> comboBox;
 
         /**
          * Constructs a <code>ListAdapter</code> for the specified target
@@ -213,7 +213,7 @@ public class JXComboBox extends JComboBox {
          *
          * @param component the target list.
          */
-        public ComboBoxAdapter(JXComboBox component) {
+        public ComboBoxAdapter(JXComboBox<?> component) {
             super(component);
             comboBox = component;
         }
@@ -223,7 +223,7 @@ public class JXComboBox extends JComboBox {
          *
          * @return the target component as a {@link JXComboBox}
          */
-        public JXComboBox getComboBox() {
+        public JXComboBox<?> getComboBox() {
             return comboBox;
         }
 
@@ -246,8 +246,7 @@ public class JXComboBox extends JComboBox {
         @Override
         public boolean hasFocus() {
             if (isPopupVisible()) {
-                JList list = getPopupListFor(comboBox);
-
+                JList<?> list = getPopupListFor(comboBox);
                 return list != null && list.isFocusOwner() && row == list.getLeadSelectionIndex();
             }
 
@@ -287,8 +286,7 @@ public class JXComboBox extends JComboBox {
          */
         @Override
         public Rectangle getCellBounds() {
-            JList list = getPopupListFor(comboBox);
-
+            JList<?> list = getPopupListFor(comboBox);
             if (list == null) {
                 assert false;
                 return new Rectangle(comboBox.getSize());
@@ -319,8 +317,7 @@ public class JXComboBox extends JComboBox {
         @Override
         public boolean isSelected() {
             if (isPopupVisible()) {
-                JList list = getPopupListFor(comboBox);
-
+                JList<?> list = getPopupListFor(comboBox);
                 return list != null && row == list.getLeadSelectionIndex();
             }
 
@@ -441,7 +438,7 @@ public class JXComboBox extends JComboBox {
      * @param model the <code>ComboBoxModel</code> that provides the displayed list of items
      * @see DefaultComboBoxModel
      */
-    public JXComboBox(ComboBoxModel model) {
+    public JXComboBox(ComboBoxModel<E> model) {
         super(model);
         init();
     }
@@ -453,7 +450,7 @@ public class JXComboBox extends JComboBox {
      * @param items an array of objects to insert into the combo box
      * @see DefaultComboBoxModel
      */
-    public JXComboBox(Object[] items) {
+    public JXComboBox(E[] items) {
         super(items);
         init();
     }
@@ -465,7 +462,7 @@ public class JXComboBox extends JComboBox {
      * @param items an array of vectors to insert into the combo box
      * @see DefaultComboBoxModel
      */
-    public JXComboBox(Vector<?> items) {
+    public JXComboBox(Vector<E> items) {
         super(items);
         init();
     }
@@ -478,7 +475,7 @@ public class JXComboBox extends JComboBox {
         }
     }
 
-    protected static JList getPopupListFor(JComboBox comboBox) {
+    protected static JList getPopupListFor(JComboBox<?> comboBox) {
         int count = comboBox.getUI().getAccessibleChildrenCount(comboBox);
 
         for (int i = 0; i < count; i++) {
@@ -621,7 +618,7 @@ public class JXComboBox extends JComboBox {
      *
      * @return the default cell renderer to use with this list.
      */
-    protected ListCellRenderer createDefaultCellRenderer() {
+    protected ListCellRenderer<? super E> createDefaultCellRenderer() {
         return new DefaultListRenderer();
     }
 
@@ -636,7 +633,7 @@ public class JXComboBox extends JComboBox {
      * @see DelegatingRenderer
      */
     @Override
-    public ListCellRenderer getRenderer() {
+    public ListCellRenderer<? super E> getRenderer() {
         // PENDING JW: something wrong here - why exactly can't we return super? 
         // not even if we force the initial setting in init?
 //        return super.getCellRenderer();
@@ -650,7 +647,7 @@ public class JXComboBox extends JComboBox {
      * @return the wrapped renderer.
      * @see #setRenderer(ListCellRenderer)
      */
-    public ListCellRenderer getWrappedRenderer() {
+    public ListCellRenderer<? super E> getWrappedRenderer() {
         return getDelegatingRenderer().getDelegateRenderer();
     }
 
@@ -668,10 +665,10 @@ public class JXComboBox extends JComboBox {
      * @see #getRenderer()
      */
     @Override
-    public void setRenderer(ListCellRenderer renderer) {
+    public void setRenderer(ListCellRenderer<? super E> renderer) {
         // PENDING: do something against recursive setting
         // == multiple delegation...
-        ListCellRenderer oldValue = super.getRenderer();
+        ListCellRenderer<? super E> oldValue = super.getRenderer();
         getDelegatingRenderer().setDelegateRenderer(renderer);
         getStringValueRegistry().setStringValue(renderer instanceof StringValue ? (StringValue) renderer : null, 0);
         super.setRenderer(delegatingRenderer);
@@ -854,7 +851,7 @@ public class JXComboBox extends JComboBox {
                 ((UIDependent) keySelectionManager).updateUI();
             }
 
-            ListCellRenderer renderer = getRenderer();
+            ListCellRenderer<?> renderer = getRenderer();
 
             if (renderer instanceof UIDependent) {
                 ((UIDependent) renderer).updateUI();

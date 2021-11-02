@@ -29,9 +29,9 @@ import java.util.regex.Pattern;
 
 public class ListSearchable extends AbstractSearchable {
 
-    protected JXList list;
+    protected JXList<?> list;
 
-    public ListSearchable(JXList list) {
+    public ListSearchable(JXList<?> list) {
         this.list = list;
     }
 
@@ -88,7 +88,7 @@ public class ListSearchable extends AbstractSearchable {
      * {@inheritDoc}
      */
     @Override
-    public JXList getTarget() {
+    public JXList<?> getTarget() {
         return list;
     }
 

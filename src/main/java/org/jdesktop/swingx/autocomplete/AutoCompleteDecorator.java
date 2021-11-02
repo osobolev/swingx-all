@@ -130,7 +130,7 @@ public class AutoCompleteDecorator {
      * @param comboBox a combo box
      * @see #decorate(JComboBox, ObjectToStringConverter)
      */
-    public static void decorate(JComboBox comboBox) {
+    public static void decorate(JComboBox<?> comboBox) {
         decorate(comboBox, null);
     }
 
@@ -154,7 +154,7 @@ public class AutoCompleteDecorator {
      * @param comboBox        a combo box
      * @param stringConverter the converter used to transform items to strings
      */
-    public static void decorate(JComboBox comboBox, ObjectToStringConverter stringConverter) {
+    public static void decorate(JComboBox<?> comboBox, ObjectToStringConverter stringConverter) {
         undecorate(comboBox);
 
         boolean strictMatching = !comboBox.isEditable();
@@ -190,7 +190,7 @@ public class AutoCompleteDecorator {
         }
     }
 
-    static void undecorate(JComboBox comboBox) {
+    static void undecorate(JComboBox<?> comboBox) {
         JTextComponent editorComponent = (JTextComponent) comboBox.getEditor().getEditorComponent();
 
         if (editorComponent.getDocument() instanceof AutoCompleteDocument) {
@@ -252,7 +252,7 @@ public class AutoCompleteDecorator {
      * @param textComponent the text component that will be enabled for automatic
      *                      completion
      */
-    public static void decorate(JList list, JTextComponent textComponent) {
+    public static void decorate(JList<?> list, JTextComponent textComponent) {
         decorate(list, textComponent, null);
     }
 
@@ -266,7 +266,7 @@ public class AutoCompleteDecorator {
      *                        completion
      * @param stringConverter the converter used to transform items to strings
      */
-    public static void decorate(JList list, JTextComponent textComponent, ObjectToStringConverter stringConverter) {
+    public static void decorate(JList<?> list, JTextComponent textComponent, ObjectToStringConverter stringConverter) {
         undecorate(list);
 
         AbstractAutoCompleteAdaptor adaptor = new ListAdaptor(list, textComponent, stringConverter);
@@ -274,7 +274,7 @@ public class AutoCompleteDecorator {
         decorate(textComponent, document, adaptor);
     }
 
-    static void undecorate(JList list) {
+    static void undecorate(JList<?> list) {
         for (ListSelectionListener l : list.getListSelectionListeners()) {
             if (l instanceof ListAdaptor) {
                 list.removeListSelectionListener(l);

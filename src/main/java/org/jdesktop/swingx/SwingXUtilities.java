@@ -460,7 +460,7 @@ public final class SwingXUtilities {
         return component == null || !component.isEnabled() || !SwingUtilities.isLeftMouseButton(mouseEvent) || mouseEvent.isConsumed();
     }
 
-    public static int loc2IndexFileList(JList list, Point point) {
+    public static int loc2IndexFileList(JList<?> list, Point point) {
         int i = list.locationToIndex(point);
         if (i != -1) {
             Object localObject = list.getClientProperty("List.isFileList");
@@ -474,9 +474,9 @@ public final class SwingXUtilities {
     }
 
     // PENDING JW: this isn't aware of sorting/filtering - fix!
-    private static boolean pointIsInActualBounds(JList list, int index, Point point) {
+    private static boolean pointIsInActualBounds(JList<?> list, int index, Point point) {
         ListCellRenderer renderer = list.getCellRenderer();
-        ListModel model = list.getModel();
+        ListModel<?> model = list.getModel();
         Object element = model.getElementAt(index);
         Component comp = renderer.getListCellRendererComponent(list, element, index, false, false);
 

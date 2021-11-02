@@ -5,13 +5,13 @@ import javax.swing.ComboBoxModel;
 import javax.swing.ListModel;
 import javax.swing.event.ListDataListener;
 
-public class ListModelComboBoxWrapper extends AbstractListModel implements ComboBoxModel {
+public class ListModelComboBoxWrapper<E> extends AbstractListModel<E> implements ComboBoxModel<E> {
 
-    private final ListModel delegate;
+    private final ListModel<E> delegate;
 
     private Object selectedItem;
 
-    public ListModelComboBoxWrapper(ListModel delegate) {
+    public ListModelComboBoxWrapper(ListModel<E> delegate) {
         this.delegate = delegate;
     }
 
@@ -21,7 +21,7 @@ public class ListModelComboBoxWrapper extends AbstractListModel implements Combo
     }
 
     @Override
-    public Object getElementAt(int index) {
+    public E getElementAt(int index) {
         return delegate.getElementAt(index);
     }
 

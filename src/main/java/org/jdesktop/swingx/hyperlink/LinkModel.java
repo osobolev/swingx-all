@@ -35,7 +35,7 @@ import java.util.logging.Logger;
  * @author Mark Davidson
  * @author Jeanette Winzenburg
  */
-public class LinkModel implements Comparable {
+public class LinkModel implements Comparable<LinkModel> {
 
     private static final Logger LOG = Logger.getLogger(LinkModel.class.getName());
 
@@ -247,14 +247,14 @@ public class LinkModel implements Comparable {
     }
 
     // Comparable interface for sorting.
-    public int compareTo(Object obj) {
+    public int compareTo(LinkModel obj) {
         if (obj == null) {
             return 1;
         }
         if (obj == this) {
             return 0;
         }
-        return text.compareTo(((LinkModel) obj).text);
+        return text.compareTo(obj.text);
     }
 
     @Override

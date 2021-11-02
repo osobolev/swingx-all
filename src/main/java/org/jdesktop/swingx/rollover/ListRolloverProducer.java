@@ -35,7 +35,7 @@ public class ListRolloverProducer extends RolloverProducer {
 
     @Override
     protected void updateRolloverPoint(JComponent component, Point mousePoint) {
-        JList list = (JList) component;
+        JList<?> list = (JList<?>) component;
         int row = list.locationToIndex(mousePoint);
         if (row >= 0) {
             Rectangle cellBounds = list.getCellBounds(row, row);

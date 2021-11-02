@@ -83,7 +83,7 @@ public class JXSearchPanel extends AbstractPatternPanel {
      */
     public static final String MATCH_RULE_ACTION_COMMAND = "selectMatchRule";
 
-    private JXComboBox searchCriteria;
+    private JXComboBox<String> searchCriteria;
 
     private List<PatternMatcher> patternMatchers;
 
@@ -210,9 +210,9 @@ public class JXSearchPanel extends AbstractPatternPanel {
     @Override
     protected void bind() {
         super.bind();
-        List<?> matchRules = getPatternModel().getMatchRules();
+        List<String> matchRules = getPatternModel().getMatchRules();
         // PENDING: map rules to localized strings
-        ComboBoxModel model = new DefaultComboBoxModel(matchRules.toArray());
+        ComboBoxModel<String> model = new DefaultComboBoxModel<>(matchRules.toArray(new String[0]));
         model.setSelectedItem(getPatternModel().getMatchRule());
         searchCriteria.setModel(model);
         searchCriteria.setAction(getAction(MATCH_RULE_ACTION_COMMAND));
@@ -256,6 +256,6 @@ public class JXSearchPanel extends AbstractPatternPanel {
     @Override
     protected void initComponents() {
         super.initComponents();
-        searchCriteria = new JXComboBox();
+        searchCriteria = new JXComboBox<>();
     }
 }

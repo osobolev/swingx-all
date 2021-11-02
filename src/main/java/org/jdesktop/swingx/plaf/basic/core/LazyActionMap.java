@@ -59,7 +59,7 @@ public class LazyActionMap extends ActionMapUIResource {
      * @param defaultsKey Key to use to defaults table to check for
      *                    existing map and what resulting Map will be registered on.
      */
-    public static void installLazyActionMap(JComponent c, Class loaderClass, String defaultsKey) {
+    public static void installLazyActionMap(JComponent c, Class<?> loaderClass, String defaultsKey) {
         ActionMap map = (ActionMap) UIManager.get(defaultsKey);
         if (map == null) {
             map = new LazyActionMap(loaderClass);
@@ -68,7 +68,7 @@ public class LazyActionMap extends ActionMapUIResource {
         SwingUtilities.replaceUIActionMap(c, map);
     }
 
-    private LazyActionMap(Class loader) {
+    private LazyActionMap(Class<?> loader) {
         _loader = loader;
     }
 
@@ -121,7 +121,7 @@ public class LazyActionMap extends ActionMapUIResource {
             Object loader = _loader;
 
             _loader = null;
-            Class klass = (Class) loader;
+            Class<?> klass = (Class<?>) loader;
             try {
                 Method method = klass.getDeclaredMethod("loadActionMap", LazyActionMap.class);
                 method.invoke(klass, this);

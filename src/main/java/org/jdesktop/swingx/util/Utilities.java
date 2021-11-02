@@ -353,9 +353,9 @@ public class Utilities {
      * and second
      * hashtable for mapping of values to their names (Integer, String)
      */
-    private static synchronized HashMap[] initNameAndValues() {
+    private static synchronized HashMap<?, ?>[] initNameAndValues() {
         if (namesAndValues != null) {
-            HashMap[] arr = (HashMap[]) namesAndValues.get();
+            HashMap<?, ?>[] arr = (HashMap<?, ?>[]) namesAndValues.get();
 
             if (arr != null) {
                 return arr;
@@ -407,7 +407,7 @@ public class Utilities {
             values.put(n, "WINDOWS"); // NOI18N
         }
 
-        HashMap[] arr = {names, values};
+        HashMap<?, ?>[] arr = {names, values};
 
         namesAndValues = new SoftReference<>(arr);
 
@@ -429,9 +429,8 @@ public class Utilities {
             sb.append('-');
         }
 
-        HashMap[] namesAndValues = initNameAndValues();
-
-        String c = (String) namesAndValues[1].get(stroke.getKeyCode());
+        HashMap<?, ?> values = initNameAndValues()[1];
+        String c = (String) values.get(stroke.getKeyCode());
 
         if (c == null) {
             sb.append(stroke.getKeyChar());
@@ -485,7 +484,7 @@ public class Utilities {
     public static KeyStroke stringToKey(String s) {
         StringTokenizer st = new StringTokenizer(s.toUpperCase(Locale.ENGLISH), "-", true); // NOI18N
 
-        HashMap names = initNameAndValues()[0];
+        HashMap<?, ?> names = initNameAndValues()[0];
         try {
             int needed = 0;
             for (int lastModif = -1; ; ) {

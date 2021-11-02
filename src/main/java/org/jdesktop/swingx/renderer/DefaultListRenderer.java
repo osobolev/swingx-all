@@ -64,7 +64,7 @@ import java.awt.Component;
  * @see IconValue
  * @see MappedValue
  */
-public class DefaultListRenderer extends AbstractRenderer implements ListCellRenderer {
+public class DefaultListRenderer extends AbstractRenderer implements ListCellRenderer<Object> {
 
     protected ListCellContext cellContext;
 
