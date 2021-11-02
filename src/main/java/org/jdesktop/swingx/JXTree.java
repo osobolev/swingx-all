@@ -8,54 +8,18 @@
  * modify it under the terms of the GNU Lesser General Public
  * License as published by the Free Software Foundation; either
  * version 2.1 of the License, or (at your option) any later version.
- * 
+ *
  * This library is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  * Lesser General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
 package org.jdesktop.swingx;
-
-import java.awt.Color;
-import java.awt.Component;
-import java.awt.KeyboardFocusManager;
-import java.awt.Rectangle;
-import java.awt.Window;
-import java.awt.event.ActionEvent;
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
-import java.util.Hashtable;
-import java.util.Vector;
-import java.util.logging.Logger;
-import java.util.regex.Pattern;
-
-import javax.swing.Action;
-import javax.swing.ActionMap;
-import javax.swing.CellEditor;
-import javax.swing.Icon;
-import javax.swing.JComponent;
-import javax.swing.JPopupMenu;
-import javax.swing.JTree;
-import javax.swing.KeyStroke;
-import javax.swing.SwingUtilities;
-import javax.swing.UIManager;
-import javax.swing.event.CellEditorListener;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
-import javax.swing.event.TreeModelEvent;
-import javax.swing.event.TreeModelListener;
-import javax.swing.plaf.basic.BasicTreeUI;
-import javax.swing.text.Position.Bias;
-import javax.swing.tree.DefaultTreeCellRenderer;
-import javax.swing.tree.TreeCellRenderer;
-import javax.swing.tree.TreeModel;
-import javax.swing.tree.TreeNode;
-import javax.swing.tree.TreePath;
 
 import org.jdesktop.beans.JavaBean;
 import org.jdesktop.swingx.decorator.ComponentAdapter;
@@ -75,27 +39,40 @@ import org.jdesktop.swingx.search.TreeSearchable;
 import org.jdesktop.swingx.tree.DefaultXTreeCellEditor;
 import org.jdesktop.swingx.tree.DefaultXTreeCellRenderer;
 
+import javax.swing.*;
+import javax.swing.event.*;
+import javax.swing.plaf.basic.BasicTreeUI;
+import javax.swing.text.Position.Bias;
+import javax.swing.tree.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+import java.util.Hashtable;
+import java.util.Vector;
+import java.util.logging.Logger;
+import java.util.regex.Pattern;
 
 /**
  * Enhanced Tree component with support for SwingX rendering, highlighting,
  * rollover and search functionality.
  * <p>
- * 
+ *
  * <h2>Rendering and Highlighting</h2>
- * 
+ * <p>
  * As all SwingX collection views, a JXTree is a HighlighterClient (PENDING JW:
  * formally define and implement, like in AbstractTestHighlighter), that is it
  * provides consistent api to add and remove Highlighters which can visually
  * decorate the rendering component.
  * <p>
- * 
+ *
  * <pre><code>
- * 
+ *
  * JXTree tree = new JXTree(new FileSystemModel());
  * // use system file icons and name to render
- * tree.setCellRenderer(new DefaultTreeRenderer(IconValues.FILE_ICON, 
+ * tree.setCellRenderer(new DefaultTreeRenderer(IconValues.FILE_ICON,
  *      StringValues.FILE_NAME));
- * // highlight condition: file modified after a date     
+ * // highlight condition: file modified after a date
  * HighlightPredicate predicate = new HighlightPredicate() {
  *    public boolean isHighlighted(Component renderer,
  *                     ComponentAdapter adapter) {
@@ -103,15 +80,15 @@ import org.jdesktop.swingx.tree.DefaultXTreeCellRenderer;
  *       return file != null ? lastWeek < file.lastModified : false;
  *    }
  * };
- * // highlight with foreground color 
- * tree.addHighlighter(new ColorHighlighter(predicate, null, Color.RED);      
- * 
+ * // highlight with foreground color
+ * tree.addHighlighter(new ColorHighlighter(predicate, null, Color.RED);
+ *
  * </code></pre>
- * 
+ *
  * <i>Note:</i> for full functionality, a DefaultTreeRenderer must be installed
  * as TreeCellRenderer. This is not done by default, because there are
  * unresolved issues when editing. PENDING JW: still? Check!
- * 
+ *
  * <i>Note:</i> to support the highlighting this implementation wraps the
  * TreeCellRenderer set by client code with a DelegatingRenderer which applies
  * the Highlighter after delegating the default configuration to the wrappee. As
@@ -119,26 +96,26 @@ import org.jdesktop.swingx.tree.DefaultXTreeCellRenderer;
  * renderer. To access the latter, client code must call getWrappedCellRenderer.
  * <p>
  * <h2>Rollover</h2>
- * 
+ * <p>
  * As all SwingX collection views, a JXTree supports per-cell rollover. If
  * enabled, the component fires rollover events on enter/exit of a cell which by
  * default is promoted to the renderer if it implements RolloverRenderer, that
  * is simulates live behaviour. The rollover events can be used by client code
  * as well, f.i. to decorate the rollover row using a Highlighter.
- * 
+ *
  * <pre><code>
- * 
+ *
  * JXTree tree = new JXTree();
  * tree.setRolloverEnabled(true);
  * tree.setCellRenderer(new DefaultTreeRenderer());
- * tree.addHighlighter(new ColorHighlighter(HighlightPredicate.ROLLOVER_ROW, 
- *      null, Color.RED);      
- * 
+ * tree.addHighlighter(new ColorHighlighter(HighlightPredicate.ROLLOVER_ROW,
+ *      null, Color.RED);
+ *
  * </code></pre>
- * 
- * 
+ *
+ *
  * <h2>Search</h2>
- * 
+ * <p>
  * As all SwingX collection views, a JXTree is searchable. A search action is
  * registered in its ActionMap under the key "find". The default behaviour is to
  * ask the SearchFactory to open a search component on this component. The
@@ -146,14 +123,14 @@ import org.jdesktop.swingx.tree.DefaultXTreeCellRenderer;
  * cmd-f for Mac). Client code can register custom actions and/or bindings as
  * appropriate.
  * <p>
- * 
+ * <p>
  * JXTree provides api to vend a renderer-controlled String representation of
  * cell content. This allows the Searchable and Highlighters to use WYSIWYM
  * (What-You-See-Is-What-You-Match), that is pattern matching against the actual
  * string as seen by the user.
- * 
+ *
  * <h2>Miscellaneous</h2>
- * 
+ *
  * <ul>
  * <li> Improved usability for editing: guarantees that the tree is the
  * focusOwner if editing terminated by user gesture and guards against data
@@ -162,35 +139,43 @@ import org.jdesktop.swingx.tree.DefaultXTreeCellRenderer;
  * JXList
  * <li> Convenience methods and actions to expand, collapse all nodes
  * </ul>
- * 
+ *
  * @author Ramesh Gupta
  * @author Jeanette Winzenburg
- * 
  * @see org.jdesktop.swingx.renderer.DefaultTreeRenderer
  * @see org.jdesktop.swingx.renderer.ComponentProvider
  * @see Highlighter
  * @see org.jdesktop.swingx.decorator.HighlightPredicate
  * @see SearchFactory
  * @see Searchable
- * 
  */
 @JavaBean
 public class JXTree extends JTree {
+
     @SuppressWarnings("unused")
     private static final Logger LOG = Logger.getLogger(JXTree.class.getName());
-    
-    
-    /** Empty int array used in getSelectedRows(). */
+
+    /**
+     * Empty int array used in getSelectedRows().
+     */
     private static final int[] EMPTY_INT_ARRAY = new int[0];
-    /** Empty TreePath used in getSelectedPath() if selection empty. */
+    /**
+     * Empty TreePath used in getSelectedPath() if selection empty.
+     */
     private static final TreePath[] EMPTY_TREEPATH_ARRAY = new TreePath[0];
 
-    /** Collection of active Highlighters. */
+    /**
+     * Collection of active Highlighters.
+     */
     protected CompoundHighlighter compoundHighlighter;
-    /** Listener to changes of Highlighters in collection. */
+    /**
+     * Listener to changes of Highlighters in collection.
+     */
     private ChangeListener highlighterChangeListener;
 
-    /** Wrapper around the installed renderer, needed to support Highlighters. */
+    /**
+     * Wrapper around the installed renderer, needed to support Highlighters.
+     */
     private DelegatingRenderer delegatingRenderer;
 
     /**
@@ -202,10 +187,10 @@ public class JXTree extends JTree {
      * The RolloverController used if rollover is enabled.
      */
     private TreeRolloverController<JXTree> linkController;
-    
+
     private boolean overwriteIcons;
     private Searchable searchable;
-    
+
     // hacks around core focus issues around editing.
     /**
      * The propertyChangeListener responsible for terminating
@@ -213,18 +198,20 @@ public class JXTree extends JTree {
      */
     private CellEditorRemover editorRemover;
     /**
-     * The CellEditorListener responsible to force the 
+     * The CellEditorListener responsible to force the
      * focus back to the tree after terminating edits.
      */
     private CellEditorListener editorListener;
-    
-    /** Color of selected foreground. Added for consistent api across collection components. */
+
+    /**
+     * Color of selected foreground. Added for consistent api across collection components.
+     */
     private Color selectionForeground;
-    /** Color of selected background. Added for consistent api across collection components. */
+    /**
+     * Color of selected background. Added for consistent api across collection components.
+     */
     private Color selectionBackground;
-    
-    
-    
+
     /**
      * Constructs a <code>JXTree</code> with a sample model. The default model
      * used by this tree defines a leaf node as any node without children.
@@ -237,7 +224,7 @@ public class JXTree extends JTree {
      * Constructs a <code>JXTree</code> with each element of the specified array
      * as the child of a new root node which is not displayed. By default, this
      * tree defines a leaf node as any node without children.
-     *
+     * <p>
      * This version of the constructor simply invokes the super class version
      * with the same arguments.
      *
@@ -252,7 +239,7 @@ public class JXTree extends JTree {
      * Constructs a <code>JXTree</code> with each element of the specified
      * Vector as the child of a new root node which is not displayed.
      * By default, this tree defines a leaf node as any node without children.
-     *
+     * <p>
      * This version of the constructor simply invokes the super class version
      * with the same arguments.
      *
@@ -268,7 +255,7 @@ public class JXTree extends JTree {
      * display with root. Each value-half of the key/value pairs in the HashTable
      * becomes a child of the new root node. By default, the tree defines a leaf
      * node as any node without children.
-     *
+     * <p>
      * This version of the constructor simply invokes the super class version
      * with the same arguments.
      *
@@ -283,7 +270,7 @@ public class JXTree extends JTree {
      * Constructs a <code>JXTree</code> with the specified TreeNode as its root,
      * which displays the root node. By default, the tree defines a leaf node as
      * any node without children.
-     *
+     * <p>
      * This version of the constructor simply invokes the super class version
      * with the same arguments.
      *
@@ -298,13 +285,13 @@ public class JXTree extends JTree {
      * Constructs a <code>JXTree</code> with the specified TreeNode as its root,
      * which displays the root node and which decides whether a node is a leaf
      * node in the specified manner.
-     *
+     * <p>
      * This version of the constructor simply invokes the super class version
      * with the same arguments.
      *
-     * @param root root node of this tree
+     * @param root               root node of this tree
      * @param asksAllowsChildren if true, only nodes that do not allow children
-     * are leaf nodes; otherwise, any node without children is a leaf node;
+     *                           are leaf nodes; otherwise, any node without children is a leaf node;
      * @see javax.swing.tree.DefaultTreeModel#asksAllowsChildren
      */
     public JXTree(TreeNode root, boolean asksAllowsChildren) {
@@ -315,12 +302,11 @@ public class JXTree extends JTree {
     /**
      * Constructs an instance of <code>JXTree</code> which displays the root
      * node -- the tree is created using the specified data model.
-     * 
+     * <p>
      * This version of the constructor simply invokes the super class version
      * with the same arguments.
-     * 
-     * @param newModel
-     *            the <code>TreeModel</code> to use as the data model
+     *
+     * @param newModel the <code>TreeModel</code> to use as the data model
      */
     public JXTree(TreeModel newModel) {
         super(newModel);
@@ -330,7 +316,7 @@ public class JXTree extends JTree {
     /**
      * Instantiates JXTree state which is new compared to super. Installs the
      * Delegating renderer and editor, registers actions and keybindings.
-     * 
+     * <p>
      * This must be called from each constructor.
      */
     private void init() {
@@ -368,27 +354,28 @@ public class JXTree extends JTree {
      * <p>
      * This class will expand an invisible root when a child has been added to
      * it.
-     * 
+     *
      * @author Karl George Schaefer
      */
     protected class XTreeModelHandler extends TreeModelHandler {
+
         /**
          * {@inheritDoc}
          */
         @Override
         public void treeNodesInserted(TreeModelEvent e) {
             TreePath path = e.getTreePath();
-            
+
             //fixes SwingX bug #612
             if (path.getParentPath() == null && !isRootVisible() && isCollapsed(path)) {
                 //should this be wrapped in SwingUtilities.invokeLater?
                 expandPath(path);
             }
-            
+
             super.treeNodesInserted(e);
         }
     }
-    
+
     /**
      * {@inheritDoc}
      */
@@ -402,6 +389,7 @@ public class JXTree extends JTree {
      * TODO: Is there a way that we can make this static?
      */
     private class Actions extends UIAction {
+
         Actions(String name) {
             super(name);
         }
@@ -410,19 +398,17 @@ public class JXTree extends JTree {
         public void actionPerformed(ActionEvent evt) {
             if ("expand-all".equals(getName())) {
                 expandAll();
-            }
-            else if ("collapse-all".equals(getName())) {
+            } else if ("collapse-all".equals(getName())) {
                 collapseAll();
             }
         }
     }
 
-
 //-------------------- search support
-    
+
     /**
      * Creates and returns the action to invoke on a find request.
-     * 
+     *
      * @return the action to invoke on a find request.
      */
     private Action createFindAction() {
@@ -443,12 +429,10 @@ public class JXTree extends JTree {
     }
 
     /**
-     * Returns a Searchable for this component, guaranteed to be not null. This 
+     * Returns a Searchable for this component, guaranteed to be not null. This
      * implementation lazily creates a TreeSearchable if necessary.
-     *  
-     * 
+     *
      * @return a not-null Searchable for this component.
-     * 
      * @see #setSearchable(Searchable)
      * @see TreeSearchable
      */
@@ -460,35 +444,34 @@ public class JXTree extends JTree {
     }
 
     /**
-     * Sets the Searchable for this component. If null, a default 
+     * Sets the Searchable for this component. If null, a default
      * Searchable will be created and used.
-     * 
-     * @param searchable the Searchable to use for this component, may be null to 
-     *   indicate using the default.
-     * 
+     *
+     * @param searchable the Searchable to use for this component, may be null to
+     *                   indicate using the default.
      * @see #getSearchable()
      */
     public void setSearchable(Searchable searchable) {
         this.searchable = searchable;
     }
-    
+
     /**
-     * Returns the string representation of the cell value at the given position. 
-     * 
+     * Returns the string representation of the cell value at the given position.
+     *
      * @param row the row index of the cell in view coordinates
-     * @return the string representation of the cell value as it will appear in the 
-     *   table. 
+     * @return the string representation of the cell value as it will appear in the
+     * table.
      */
     public String getStringAt(int row) {
         return getStringAt(getPathForRow(row));
     }
 
     /**
-     * Returns the string representation of the cell value at the given position. 
-     * 
+     * Returns the string representation of the cell value at the given position.
+     *
      * @param path the TreePath representing the node.
-     * @return the string representation of the cell value as it will appear in the 
-     *   table, or null if the path is not visible. 
+     * @return the string representation of the cell value as it will appear in the
+     * table, or null if the path is not visible.
      */
     public String getStringAt(TreePath path) {
         if (path == null) return null;
@@ -499,37 +482,36 @@ public class JXTree extends JTree {
         return StringValues.TO_STRING.getString(path.getLastPathComponent());
     }
 
-    
     /**
-     * Overridden to respect the string representation, if any. This takes over 
+     * Overridden to respect the string representation, if any. This takes over
      * completely (as compared to super), internally messaging the Searchable.
      * <p>
-     * 
+     * <p>
      * PENDING JW: re-visit once we support deep node search.
-     * 
      */
     @Override
     public TreePath getNextMatch(String prefix, int startingRow, Bias bias) {
         Pattern pattern = Pattern.compile("^" + prefix, Pattern.CASE_INSENSITIVE);
-        int row = getSearchable().search(pattern, startingRow, bias ==Bias.Backward);
+        int row = getSearchable().search(pattern, startingRow, bias == Bias.Backward);
         return getPathForRow(row);
     }
 
 //--------------------- misc. new api and super overrides
+
     /**
      * Collapses all nodes in this tree.
      */
     public void collapseAll() {
-        for (int i = getRowCount() - 1; i >= 0 ; i--) {
+        for (int i = getRowCount() - 1; i >= 0; i--) {
             collapseRow(i);
         }
     }
 
     /**
      * Expands all nodes in this tree.<p>
-     * 
+     * <p>
      * Note: it's not recommended to use this method on the EDT for large/deep trees
-     * because expansion can take a considerable amount of time. 
+     * because expansion can take a considerable amount of time.
      */
     public void expandAll() {
         if (getRowCount() == 0) {
@@ -542,7 +524,6 @@ public class JXTree extends JTree {
 
     /**
      * Expands the root path if a TreeModel has been set, does nothing if not.
-     * 
      */
     private void expandRoot() {
         TreeModel model = getModel();
@@ -554,27 +535,27 @@ public class JXTree extends JTree {
     /**
      * {@inheritDoc}
      * <p>
-     * 
+     * <p>
      * Overridden to always return a not-null array (following SwingX
      * convention).
      */
     @Override
     public int[] getSelectionRows() {
         int[] rows = super.getSelectionRows();
-        return rows != null ? rows : EMPTY_INT_ARRAY; 
+        return rows != null ? rows : EMPTY_INT_ARRAY;
     }
-    
+
     /**
      * {@inheritDoc}
      * <p>
-     * 
+     * <p>
      * Overridden to always return a not-null array (following SwingX
      * convention).
      */
     @Override
     public TreePath[] getSelectionPaths() {
         TreePath[] paths = super.getSelectionPaths();
-        return paths != null ? paths : EMPTY_TREEPATH_ARRAY; 
+        return paths != null ? paths : EMPTY_TREEPATH_ARRAY;
     }
 
     /**
@@ -588,7 +569,7 @@ public class JXTree extends JTree {
     public Color getSelectionBackground() {
         return selectionBackground;
     }
-    
+
     /**
      * Returns the selection foreground color.
      *
@@ -599,7 +580,7 @@ public class JXTree extends JTree {
     public Color getSelectionForeground() {
         return selectionForeground;
     }
-   
+
     /**
      * Sets the foreground color for selected cells.  Cell renderers
      * can use this color to render text and graphics for selected
@@ -610,17 +591,16 @@ public class JXTree extends JTree {
      * <p>
      * This is a JavaBeans bound property.
      *
-     * @param selectionForeground  the <code>Color</code> to use in the foreground
-     *                             for selected list items
+     * @param selectionForeground the <code>Color</code> to use in the foreground
+     *                            for selected list items
+     * @beaninfo bound: true
+     * attribute: visualUpdate true
+     * description: The foreground color of selected cells.
      * @see #getSelectionForeground
      * @see #setSelectionBackground
      * @see #setForeground
      * @see #setBackground
      * @see #setFont
-     * @beaninfo
-     *       bound: true
-     *   attribute: visualUpdate true
-     * description: The foreground color of selected cells.
      */
     public void setSelectionForeground(Color selectionForeground) {
         Object oldValue = getSelectionForeground();
@@ -638,17 +618,16 @@ public class JXTree extends JTree {
      * <p>
      * This is a JavaBeans bound property.
      *
-     * @param selectionBackground  the <code>Color</code> to use for the 
-     *                             background of selected cells
+     * @param selectionBackground the <code>Color</code> to use for the
+     *                            background of selected cells
+     * @beaninfo bound: true
+     * attribute: visualUpdate true
+     * description: The background color of selected cells.
      * @see #getSelectionBackground
      * @see #setSelectionForeground
      * @see #setForeground
      * @see #setBackground
      * @see #setFont
-     * @beaninfo
-     *       bound: true
-     *   attribute: visualUpdate true
-     * description: The background color of selected cells.
      */
     public void setSelectionBackground(Color selectionBackground) {
         Object oldValue = getSelectionBackground();
@@ -657,13 +636,12 @@ public class JXTree extends JTree {
         repaint();
     }
 
-    
-//------------------------- update ui 
-    
+//------------------------- update ui
+
     /**
      * {@inheritDoc} <p>
-     * 
-     * Overridden to update selection background/foreground. Mimicking behaviour of 
+     * <p>
+     * Overridden to update selection background/foreground. Mimicking behaviour of
      * ui-delegates for JTable, JList.
      */
     @Override
@@ -676,7 +654,6 @@ public class JXTree extends JTree {
         invalidateCellSizeCache();
     }
 
-    
     /**
      * Quick fix for #1060-swingx: icons lost on toggling LAF
      */
@@ -695,7 +672,7 @@ public class JXTree extends JTree {
 
     /**
      * Installs selection colors from UIManager. <p>
-     * 
+     *
      * <b>Note:</b> this should be done in the UI delegate.
      */
     private void installSelectionColors() {
@@ -705,12 +682,11 @@ public class JXTree extends JTree {
         if (SwingXUtilities.isUIInstallable(getSelectionForeground())) {
             setSelectionForeground(UIManager.getColor("Tree.selectionForeground"));
         }
-        
     }
 
     /**
      * Uninstalls selection colors. <p>
-     * 
+     *
      * <b>Note:</b> this should be done in the UI delegate.
      */
     private void uninstallSelectionColors() {
@@ -724,7 +700,7 @@ public class JXTree extends JTree {
 
     /**
      * Updates highlighter after <code>updateUI</code> changes.
-     * 
+     *
      * @see UIDependent
      */
     protected void updateHighlighterUI() {
@@ -732,23 +708,20 @@ public class JXTree extends JTree {
         compoundHighlighter.updateUI();
     }
 
-
-
 //------------------------ Rollover support
-    
+
     /**
      * Sets the property to enable/disable rollover support. If enabled, the list
-     * fires property changes on per-cell mouse rollover state, i.e. 
+     * fires property changes on per-cell mouse rollover state, i.e.
      * when the mouse enters/leaves a list cell. <p>
-     * 
-     * This can be enabled to show "live" rollover behaviour, f.i. the cursor over a cell 
+     * <p>
+     * This can be enabled to show "live" rollover behaviour, f.i. the cursor over a cell
      * rendered by a JXHyperlink.<p>
-     * 
+     * <p>
      * The default value is false.
-     * 
+     *
      * @param rolloverEnabled a boolean indicating whether or not the rollover
-     *   functionality should be enabled.
-     * 
+     *                        functionality should be enabled.
      * @see #isRolloverEnabled()
      * @see #getLinkController()
      * @see #createRolloverProducer()
@@ -770,25 +743,23 @@ public class JXTree extends JTree {
     }
 
     /**
-     * Returns a boolean indicating whether or not rollover support is enabled. 
+     * Returns a boolean indicating whether or not rollover support is enabled.
      *
-     * @return a boolean indicating whether or not rollover support is enabled. 
-     * 
+     * @return a boolean indicating whether or not rollover support is enabled.
      * @see #setRolloverEnabled(boolean)
      */
     public boolean isRolloverEnabled() {
         return rolloverProducer != null;
     }
-    
+
     /**
-     * Returns the RolloverController for this component. Lazyly creates the 
-     * controller if necessary, that is the return value is guaranteed to be 
+     * Returns the RolloverController for this component. Lazyly creates the
+     * controller if necessary, that is the return value is guaranteed to be
      * not null. <p>
-     * 
+     * <p>
      * PENDING JW: rename to getRolloverController
-     * 
+     *
      * @return the RolloverController for this tree, guaranteed to be not null.
-     * 
      * @see #setRolloverEnabled(boolean)
      * @see #createLinkController()
      * @see org.jdesktop.swingx.rollover.RolloverController
@@ -802,9 +773,8 @@ public class JXTree extends JTree {
 
     /**
      * Creates and returns a RolloverController appropriate for this tree.
-     * 
+     *
      * @return a RolloverController appropriate for this tree.
-     * 
      * @see #getLinkController()
      * @see org.jdesktop.swingx.rollover.RolloverController
      */
@@ -815,34 +785,30 @@ public class JXTree extends JTree {
     /**
      * Creates and returns the RolloverProducer to use with this tree.
      * <p>
-     * 
+     *
      * @return <code>RolloverProducer</code> to use with this tree
-     * 
      * @see #setRolloverEnabled(boolean)
      */
     protected RolloverProducer createRolloverProducer() {
         return new TreeRolloverProducer();
     }
 
-  
 //----------------------- Highlighter api
-    
+
     /**
      * Sets the <code>Highlighter</code>s to the table, replacing any old settings.
      * None of the given Highlighters must be null.<p>
-     * 
-     * This is a bound property. <p> 
-     * 
+     * <p>
+     * This is a bound property. <p>
+     * <p>
      * Note: as of version #1.257 the null constraint is enforced strictly. To remove
      * all highlighters use this method without param.
-     * 
+     *
      * @param highlighters zero or more not null highlighters to use for renderer decoration.
      * @throws NullPointerException if array is null or array contains null values.
-     * 
      * @see #getHighlighters()
      * @see #addHighlighter(Highlighter)
      * @see #removeHighlighter(Highlighter)
-     * 
      */
     public void setHighlighters(Highlighter... highlighters) {
         Highlighter[] old = getHighlighters();
@@ -853,22 +819,21 @@ public class JXTree extends JTree {
     /**
      * Returns the <code>Highlighter</code>s used by this table.
      * Maybe empty, but guarantees to be never null.
-     * 
+     *
      * @return the Highlighters used by this table, guaranteed to never null.
      * @see #setHighlighters(Highlighter[])
      */
     public Highlighter[] getHighlighters() {
         return getCompoundHighlighter().getHighlighters();
     }
-    
+
     /**
      * Appends a <code>Highlighter</code> to the end of the list of used
-     * <code>Highlighter</code>s. The argument must not be null. 
+     * <code>Highlighter</code>s. The argument must not be null.
      * <p>
-     * 
+     *
      * @param highlighter the <code>Highlighter</code> to add, must not be null.
      * @throws NullPointerException if <code>Highlighter</code> is null.
-     * 
      * @see #removeHighlighter(Highlighter)
      * @see #setHighlighters(Highlighter[])
      */
@@ -880,9 +845,9 @@ public class JXTree extends JTree {
 
     /**
      * Removes the given Highlighter. <p>
-     * 
+     * <p>
      * Does nothing if the Highlighter is not contained.
-     * 
+     *
      * @param highlighter the Highlighter to remove.
      * @see #addHighlighter(Highlighter)
      * @see #setHighlighters(Highlighter...)
@@ -892,11 +857,11 @@ public class JXTree extends JTree {
         getCompoundHighlighter().removeHighlighter(highlighter);
         firePropertyChange("highlighters", old, getHighlighters());
     }
-    
+
     /**
      * Returns the CompoundHighlighter assigned to the table, null if none.
      * PENDING: open up for subclasses again?.
-     * 
+     *
      * @return the CompoundHighlighter assigned to the table.
      */
     protected CompoundHighlighter getCompoundHighlighter() {
@@ -908,11 +873,11 @@ public class JXTree extends JTree {
     }
 
     /**
-     * Returns the <code>ChangeListener</code> to use with highlighters. Lazily 
+     * Returns the <code>ChangeListener</code> to use with highlighters. Lazily
      * creates the listener.
-     * 
-     * @return the ChangeListener for observing changes of highlighters, 
-     *   guaranteed to be <code>not-null</code>
+     *
+     * @return the ChangeListener for observing changes of highlighters,
+     * guaranteed to be <code>not-null</code>
      */
     protected ChangeListener getHighlighterChangeListener() {
         if (highlighterChangeListener == null) {
@@ -925,9 +890,9 @@ public class JXTree extends JTree {
      * Creates and returns the ChangeListener observing Highlighters.
      * <p>
      * Here: repaints the table on receiving a stateChanged.
-     * 
+     *
      * @return the ChangeListener defining the reaction to changes of
-     *         highlighters.
+     * highlighters.
      */
     protected ChangeListener createHighlighterChangeListener() {
         return new ChangeListener() {
@@ -937,15 +902,15 @@ public class JXTree extends JTree {
             }
         };
     }
-    
+
     /**
      * Sets the Icon to use for the handle of an expanded node.<p>
-     * 
+     * <p>
      * Note: this will only succeed if the current ui delegate is
      * a BasicTreeUI otherwise it will do nothing.<p>
-     * 
+     * <p>
      * PENDING JW: incomplete api (no getter) and not a bound property.
-     * 
+     *
      * @param expandedIcon the Icon to use for the handle of an expanded node.
      */
     public void setExpandedIcon(Icon expandedIcon) {
@@ -953,15 +918,15 @@ public class JXTree extends JTree {
             ((BasicTreeUI) getUI()).setExpandedIcon(expandedIcon);
         }
     }
-    
+
     /**
      * Sets the Icon to use for the handle of a collapsed node.
-     * 
+     * <p>
      * Note: this will only succeed if the current ui delegate is
      * a BasicTreeUI otherwise it will do nothing.
-     *  
+     * <p>
      * PENDING JW: incomplete api (no getter) and not a bound property.
-     * 
+     *
      * @param collapsedIcon the Icon to use for the handle of a collapsed node.
      */
     public void setCollapsedIcon(Icon collapsedIcon) {
@@ -969,69 +934,68 @@ public class JXTree extends JTree {
             ((BasicTreeUI) getUI()).setCollapsedIcon(collapsedIcon);
         }
     }
-    
+
     /**
      * Sets the Icon to use for a leaf node.<p>
-     * 
-     * Note: this will only succeed if current renderer is a 
+     * <p>
+     * Note: this will only succeed if current renderer is a
      * DefaultTreeCellRenderer.<p>
-     * 
-     * PENDING JW: this (all setXXIcon) is old api pulled up from the JXTreeTable. 
+     * <p>
+     * PENDING JW: this (all setXXIcon) is old api pulled up from the JXTreeTable.
      * Need to review if we really want it - problematic if sharing the same
      * renderer instance across different trees.
-     * 
+     * <p>
      * PENDING JW: incomplete api (no getter) and not a bound property.<p>
-     * 
+     *
      * @param leafIcon the Icon to use for a leaf node.
      */
     public void setLeafIcon(Icon leafIcon) {
         getDelegatingRenderer().setLeafIcon(leafIcon);
     }
-    
+
     /**
      * Sets the Icon to use for an open folder node.
-     * 
-     * Note: this will only succeed if current renderer is a 
+     * <p>
+     * Note: this will only succeed if current renderer is a
      * DefaultTreeCellRenderer.
-     * 
+     * <p>
      * PENDING JW: incomplete api (no getter) and not a bound property.
-     * 
+     *
      * @param openIcon the Icon to use for an open folder node.
      */
     public void setOpenIcon(Icon openIcon) {
         getDelegatingRenderer().setOpenIcon(openIcon);
     }
-    
+
     /**
      * Sets the Icon to use for a closed folder node.
-     * 
-     * Note: this will only succeed if current renderer is a 
+     * <p>
+     * Note: this will only succeed if current renderer is a
      * DefaultTreeCellRenderer.
-     * 
+     * <p>
      * PENDING JW: incomplete api (no getter) and not a bound property.
-     * 
+     *
      * @param closedIcon the Icon to use for a closed folder node.
      */
     public void setClosedIcon(Icon closedIcon) {
         getDelegatingRenderer().setClosedIcon(closedIcon);
     }
-    
+
     /**
-     * Property to control whether per-tree icons should be 
+     * Property to control whether per-tree icons should be
      * copied to the renderer on setCellRenderer. <p>
-     * 
+     * <p>
      * The default value is false.
-     * 
-     * PENDING: should update the current renderer's icons when 
+     * <p>
+     * PENDING: should update the current renderer's icons when
      * setting to true?
-     * 
+     *
      * @param overwrite a boolean to indicate if the per-tree Icons should
-     *   be copied to the new renderer on setCellRenderer.
-     * 
-     * @see #isOverwriteRendererIcons()  
+     *                  be copied to the new renderer on setCellRenderer.
+     * @see #isOverwriteRendererIcons()
      * @see #setLeafIcon(Icon)
      * @see #setOpenIcon(Icon)
-     * @see #setClosedIcon(Icon)  
+     * @see #setClosedIcon(Icon)
      */
     public void setOverwriteRendererIcons(boolean overwrite) {
         if (overwriteIcons == overwrite) return;
@@ -1041,22 +1005,20 @@ public class JXTree extends JTree {
     }
 
     /**
-     * Returns a boolean indicating whether the per-tree icons should be 
+     * Returns a boolean indicating whether the per-tree icons should be
      * copied to the renderer on setCellRenderer.
-     * 
+     *
      * @return true if a TreeCellRenderer's icons will be overwritten with the
-     *   tree's Icons, false if the renderer's icons will be unchanged.
-     *   
+     * tree's Icons, false if the renderer's icons will be unchanged.
      * @see #setOverwriteRendererIcons(boolean)
      * @see #setLeafIcon(Icon)
      * @see #setOpenIcon(Icon)
-     * @see #setClosedIcon(Icon)  
-     *     
+     * @see #setClosedIcon(Icon)
      */
     public boolean isOverwriteRendererIcons() {
         return overwriteIcons;
     }
-    
+
     private DelegatingRenderer getDelegatingRenderer() {
         if (delegatingRenderer == null) {
             // only called once... to get hold of the default?
@@ -1069,12 +1031,12 @@ public class JXTree extends JTree {
      * Creates and returns the default cell renderer to use. Subclasses may
      * override to use a different type.
      * <p>
-     * 
+     * <p>
      * This implementation returns a renderer of type
      * <code>DefaultTreeCellRenderer</code>. <b>Note:</b> Will be changed to
      * return a renderer of type <code>DefaultTreeRenderer</code>,
      * once WrappingProvider is reasonably stable.
-     * 
+     *
      * @return the default cell renderer to use with this tree.
      */
     protected TreeCellRenderer createDefaultCellRenderer() {
@@ -1084,11 +1046,11 @@ public class JXTree extends JTree {
 
     /**
      * {@inheritDoc} <p>
-     * 
+     * <p>
      * Overridden to return the delegating renderer which is wrapped around the
-     * original to support highlighting. The returned renderer is of type 
+     * original to support highlighting. The returned renderer is of type
      * DelegatingRenderer and guaranteed to not-null<p>
-     * 
+     *
      * @see #setCellRenderer(TreeCellRenderer)
      * @see DelegatingRenderer
      */
@@ -1103,7 +1065,7 @@ public class JXTree extends JTree {
     /**
      * Returns the renderer installed by client code or the default if none has
      * been set.
-     * 
+     *
      * @return the wrapped renderer.
      * @see #setCellRenderer(TreeCellRenderer)
      */
@@ -1113,14 +1075,14 @@ public class JXTree extends JTree {
 
     /**
      * {@inheritDoc} <p>
-     * 
+     * <p>
      * Overridden to wrap the given renderer in a DelegatingRenderer to support
      * highlighting. <p>
-     * 
+     * <p>
      * Note: the wrapping implies that the renderer returned from the getCellRenderer
      * is <b>not</b> the renderer as given here, but the wrapper. To access the original,
      * use <code>getWrappedCellRenderer</code>.
-     * 
+     *
      * @see #getWrappedCellRenderer()
      * @see #getCellRenderer()
      */
@@ -1131,29 +1093,29 @@ public class JXTree extends JTree {
         getDelegatingRenderer().setDelegateRenderer(renderer);
         super.setCellRenderer(delegatingRenderer);
         // quick hack for #1061: renderer/editor inconsistent
-        if ((renderer instanceof DefaultTreeCellRenderer) && 
-                (getCellEditor() instanceof DefaultXTreeCellEditor)) {
-           ((DefaultXTreeCellEditor) getCellEditor()).setRenderer((DefaultTreeCellRenderer) renderer); 
+        if ((renderer instanceof DefaultTreeCellRenderer) &&
+            (getCellEditor() instanceof DefaultXTreeCellEditor)) {
+            ((DefaultXTreeCellEditor) getCellEditor()).setRenderer((DefaultTreeCellRenderer) renderer);
         }
         firePropertyChange("cellRenderer", null, delegatingRenderer);
     }
 
-    
     /**
      * A decorator for the original TreeCellRenderer. Needed to hook highlighters
      * after messaging the delegate.<p>
-     * 
-     * PENDING JW: formally implement UIDependent? 
+     * <p>
+     * PENDING JW: formally implement UIDependent?
      * PENDING JW: missing updateUI anyway (got lost when c&p from JXList ;-)
      * PENDING JW: missing override of updateUI in xtree ...
      */
     public class DelegatingRenderer implements TreeCellRenderer, RolloverRenderer {
-        private Icon    closedIcon = null;
-        private Icon    openIcon = null;
-        private Icon    leafIcon = null;
-       
+
+        private Icon closedIcon = null;
+        private Icon openIcon = null;
+        private Icon leafIcon = null;
+
         private TreeCellRenderer delegate;
-        
+
         /**
          * Instantiates a DelegatingRenderer with tree's default renderer as delegate.
          */
@@ -1165,20 +1127,20 @@ public class JXTree extends JTree {
         /**
          * Instantiates a DelegatingRenderer with the given delegate. If the
          * delegate is null, the default is created via the list's factory method.
-         * 
+         *
          * @param delegate the delegate to use, if null the tree's default is
-         *   created and used.
+         *                 created and used.
          */
         public DelegatingRenderer(TreeCellRenderer delegate) {
-            initIcons((DefaultTreeCellRenderer) (delegate instanceof DefaultTreeCellRenderer ? 
-                    delegate : new DefaultTreeCellRenderer()));
+            initIcons((DefaultTreeCellRenderer) (delegate instanceof DefaultTreeCellRenderer ?
+                delegate : new DefaultTreeCellRenderer()));
             setDelegateRenderer(delegate);
         }
 
         /**
          * initially sets the icons to the defaults as given
          * by a DefaultTreeCellRenderer.
-         * 
+         *
          * @param renderer
          */
         private void initIcons(DefaultTreeCellRenderer renderer) {
@@ -1190,14 +1152,14 @@ public class JXTree extends JTree {
         /**
          * Sets the delegate. If the
          * delegate is null, the default is created via the list's factory method.
-         * Updates the folder/leaf icons. 
-         * 
+         * Updates the folder/leaf icons.
+         * <p>
          * THINK: how to update? always override with this.icons, only
          * if renderer's icons are null, update this icons if they are not,
          * update all if only one is != null.... ??
-         * 
+         *
          * @param delegate the delegate to use, if null the list's default is
-         *   created and used.
+         *                 created and used.
          */
         public void setDelegateRenderer(TreeCellRenderer delegate) {
             if (delegate == null) {
@@ -1206,14 +1168,13 @@ public class JXTree extends JTree {
             this.delegate = delegate;
             updateIcons();
         }
-        
+
         /**
          * tries to set the renderers icons. Can succeed only if the
          * delegate is a DefaultTreeCellRenderer.
          * THINK: how to update? always override with this.icons, only
          * if renderer's icons are null, update this icons if they are not,
          * update all if only one is != null.... ??
-         * 
          */
         private void updateIcons() {
             if (!isOverwriteRendererIcons()) return;
@@ -1228,81 +1189,78 @@ public class JXTree extends JTree {
             }
             this.closedIcon = closedIcon;
         }
-        
+
         public void setOpenIcon(Icon openIcon) {
             if (delegate instanceof DefaultTreeCellRenderer) {
                 ((DefaultTreeCellRenderer) delegate).setOpenIcon(openIcon);
             }
             this.openIcon = openIcon;
         }
-        
+
         public void setLeafIcon(Icon leafIcon) {
             if (delegate instanceof DefaultTreeCellRenderer) {
                 ((DefaultTreeCellRenderer) delegate).setLeafIcon(leafIcon);
             }
             this.leafIcon = leafIcon;
         }
-        
+
         //--------------- TreeCellRenderer
-        
+
         /**
          * Returns the delegate.
-         * 
+         *
          * @return the delegate renderer used by this renderer, guaranteed to
-         *   not-null.
+         * not-null.
          */
         public TreeCellRenderer getDelegateRenderer() {
             return delegate;
         }
-        
+
         /**
          * {@inheritDoc} <p>
-         * 
+         * <p>
          * Overridden to apply the highlighters, if any, after calling the delegate.
          * The decorators are not applied if the row is invalid.
          */
         @Override
         public Component getTreeCellRendererComponent(JTree tree, Object value,
-                boolean selected, boolean expanded, boolean leaf, int row,
-                boolean hasFocus) {
+                                                      boolean selected, boolean expanded, boolean leaf, int row,
+                                                      boolean hasFocus) {
             Component result = delegate.getTreeCellRendererComponent(tree,
-                    value, selected, expanded, leaf, row, hasFocus);
+                value, selected, expanded, leaf, row, hasFocus);
 
             if ((compoundHighlighter != null) && (row < getRowCount())
-                    && (row >= 0)) {
+                && (row >= 0)) {
                 result = compoundHighlighter.highlight(result,
-                        getComponentAdapter(row));
-            } 
-            
+                    getComponentAdapter(row));
+            }
+
             return result;
         }
-            
-            // ------------------ RolloverRenderer
+
+        // ------------------ RolloverRenderer
 
         @Override
         public boolean isEnabled() {
             return (delegate instanceof RolloverRenderer)
-                    && ((RolloverRenderer) delegate).isEnabled();
+                   && ((RolloverRenderer) delegate).isEnabled();
         }
-            
+
         @Override
         public void doClick() {
             if (isEnabled()) {
                 ((RolloverRenderer) delegate).doClick();
             }
         }
-
     }
 
     /**
      * Invalidates cell size caching in the ui delegate. May do nothing if there's no
      * safe (i.e. without reflection) way to message the delegate. <p>
-     * 
-     * This implementation calls BasicTreeUI setLeftChildIndent with the old indent if available. 
-     * Beware: clearing the cache is an undocumented implementation side-effect of the 
+     * <p>
+     * This implementation calls BasicTreeUI setLeftChildIndent with the old indent if available.
+     * Beware: clearing the cache is an undocumented implementation side-effect of the
      * method. Revisit if we ever should have a custom ui delegate.
-     * 
-     * 
      */
     public void invalidateCellSizeCache() {
         if (getUI() instanceof BasicTreeUI) {
@@ -1310,17 +1268,17 @@ public class JXTree extends JTree {
             ui.setLeftChildIndent(ui.getLeftChildIndent());
         }
     }
-    
+
 //----------------------- edit
-    
+
     /**
      * {@inheritDoc} <p>
-     * Overridden to fix focus issues with editors. 
+     * Overridden to fix focus issues with editors.
      * This method installs and updates the internal CellEditorRemover which
      * terminates ongoing edits if appropriate. Additionally, it
-     * registers a CellEditorListener with the cell editor to grab the 
+     * registers a CellEditorListener with the cell editor to grab the
      * focus back to tree, if appropriate.
-     * 
+     *
      * @see #updateEditorRemover()
      */
     @Override
@@ -1332,7 +1290,6 @@ public class JXTree extends JTree {
         }
     }
 
-    
     /**
      * Hack to grab focus after editing.
      */
@@ -1357,17 +1314,15 @@ public class JXTree extends JTree {
                 public void editingStopped(ChangeEvent e) {
                     terminated(e);
                 }
-                
             };
         }
         getCellEditor().addCellEditorListener(editorListener);
-
     }
 
     /**
      * This is called from cell editor listener if edit terminated.
      * Trying to analyse if we should grab the focus back to the
-     * tree after. Brittle ... we assume we are the first to 
+     * tree after. Brittle ... we assume we are the first to
      * get the event, so we can analyse the hierarchy before the
      * editing component is removed.
      */
@@ -1377,33 +1332,30 @@ public class JXTree extends JTree {
         }
     }
 
-
     /**
-     * Returns a boolean to indicate if the current focus owner 
-     * is descending from this table. 
+     * Returns a boolean to indicate if the current focus owner
+     * is descending from this table.
      * Returns false if not editing, otherwise walks the focusOwner
      * hierarchy, taking popups into account. <p>
-     * 
+     * <p>
      * PENDING: copied from JXTable ... should be somewhere in a utility
      * class?
-     * 
+     *
      * @return a boolean to indicate if the current focus
-     *   owner is contained.
+     * owner is contained.
      */
     private boolean isFocusOwnerDescending() {
         if (!isEditing()) return false;
-        Component focusOwner = 
+        Component focusOwner =
             KeyboardFocusManager.getCurrentKeyboardFocusManager().getFocusOwner();
         // PENDING JW: special casing to not fall through ... really wanted?
         if (focusOwner == null) return false;
         if (SwingXUtilities.isDescendingFrom(focusOwner, this)) return true;
         // same with permanent focus owner
-        Component permanent = 
+        Component permanent =
             KeyboardFocusManager.getCurrentKeyboardFocusManager().getPermanentFocusOwner();
         return SwingXUtilities.isDescendingFrom(permanent, this);
     }
-
-
 
     /**
      * Overridden to release the CellEditorRemover, if any.
@@ -1419,8 +1371,6 @@ public class JXTree extends JTree {
 
     /**
      * Lazily creates and updates the internal CellEditorRemover.
-     * 
-     *
      */
     private void updateEditorRemover() {
         if (editorRemover == null) {
@@ -1429,17 +1379,20 @@ public class JXTree extends JTree {
         editorRemover.updateKeyboardFocusManager();
     }
 
-    /** This class tracks changes in the keyboard focus state. It is used
+    /**
+     * This class tracks changes in the keyboard focus state. It is used
      * when the JXTree is editing to determine when to terminate the edit.
      * If focus switches to a component outside of the JXTree, but in the
-     * same window, this will terminate editing. The exact terminate 
+     * same window, this will terminate editing. The exact terminate
      * behaviour is controlled by the invokeStopEditing property.
-     * 
+     *
      * @see JTree#setInvokesStopCellEditing(boolean)
-     * 
      */
     public class CellEditorRemover implements PropertyChangeListener {
-        /** the focusManager this is listening to. */
+
+        /**
+         * the focusManager this is listening to.
+         */
         KeyboardFocusManager focusManager;
 
         public CellEditorRemover() {
@@ -1447,8 +1400,7 @@ public class JXTree extends JTree {
         }
 
         /**
-         * Updates itself to listen to the current KeyboardFocusManager. 
-         *
+         * Updates itself to listen to the current KeyboardFocusManager.
          */
         public void updateKeyboardFocusManager() {
             KeyboardFocusManager current = KeyboardFocusManager.getCurrentKeyboardFocusManager();
@@ -1457,17 +1409,16 @@ public class JXTree extends JTree {
 
         /**
          * stops listening.
-         *
          */
         public void release() {
             setKeyboardFocusManager(null);
         }
-        
+
         /**
-         * Sets the focusManager this is listening to. 
-         * Unregisters/registers itself from/to the old/new manager, 
-         * respectively. 
-         * 
+         * Sets the focusManager this is listening to.
+         * Unregisters/registers itself from/to the old/new manager,
+         * respectively.
+         *
          * @param current the KeyboardFocusManager to listen too.
          */
         private void setKeyboardFocusManager(KeyboardFocusManager current) {
@@ -1480,10 +1431,10 @@ public class JXTree extends JTree {
             focusManager = current;
             if (focusManager != null) {
                 focusManager.addPropertyChangeListener("permanentFocusOwner",
-                        this);
+                    this);
             }
-
         }
+
         @Override
         public void propertyChange(PropertyChangeEvent ev) {
             if (!isEditing()) {
@@ -1518,10 +1469,10 @@ public class JXTree extends JTree {
     }
 
 // ------------------ oldish String conversion api, no longer recommended
-    
+
     /**
      * {@inheritDoc} <p>
-     * 
+     * <p>
      * Overridden to initialize the String conversion method of the model, if any.<p>
      * PENDING JW: remove - that is an outdated approach?
      */
@@ -1530,9 +1481,8 @@ public class JXTree extends JTree {
         super.setModel(newModel);
     }
 
+//------------------------------- ComponentAdapter
 
-    
-//------------------------------- ComponentAdapter    
     /**
      * @return the unconfigured ComponentAdapter.
      */
@@ -1546,7 +1496,7 @@ public class JXTree extends JTree {
     /**
      * Convenience to access a configured ComponentAdapter.
      * Note: the column index of the configured adapter is always 0.
-     * 
+     *
      * @param index the row index in view coordinates, must be valid.
      * @return the configured ComponentAdapter.
      */
@@ -1560,6 +1510,7 @@ public class JXTree extends JTree {
     protected ComponentAdapter dataAdapter;
 
     protected static class TreeAdapter extends ComponentAdapter {
+
         private final JXTree tree;
 
         /**
@@ -1572,7 +1523,7 @@ public class JXTree extends JTree {
             super(component);
             tree = component;
         }
-        
+
         public JXTree getTree() {
             return tree;
         }
@@ -1593,7 +1544,7 @@ public class JXTree extends JTree {
             TreePath path = tree.getPathForRow(row);
             return path.getLastPathComponent();
         }
-        
+
         /**
          * {@inheritDoc}
          */
@@ -1601,7 +1552,7 @@ public class JXTree extends JTree {
         public String getStringAt(int row, int column) {
             return tree.getStringAt(row);
         }
-        
+
         /**
          * {@inheritDoc}
          */
@@ -1609,7 +1560,7 @@ public class JXTree extends JTree {
         public Rectangle getCellBounds() {
             return tree.getRowBounds(row);
         }
-        
+
         /**
          * {@inheritDoc}
          */
@@ -1618,7 +1569,7 @@ public class JXTree extends JTree {
             //this is not as robust as JXTable; should it be? -- kgs
             return tree.isPathEditable(tree.getPathForRow(row));
         }
-        
+
         /**
          * {@inheritDoc}
          */
@@ -1642,7 +1593,7 @@ public class JXTree extends JTree {
         public int getDepth() {
             return tree.getPathForRow(row).getPathCount() - 1;
         }
-        
+
         /**
          * {@inheritDoc}
          */
@@ -1667,6 +1618,4 @@ public class JXTree extends JTree {
             return false;        /** TODO:  */
         }
     }
-
-
 }

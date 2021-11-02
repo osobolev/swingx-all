@@ -21,13 +21,13 @@
 
 package org.jdesktop.swingx.painter;
 
+import org.jdesktop.beans.JavaBean;
+
 import java.awt.Graphics2D;
 import java.awt.geom.AffineTransform;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.lang.ref.WeakReference;
-
-import org.jdesktop.beans.JavaBean;
 
 /**
  * <p>A {@link Painter} implementation composed of an array of <code>Painter</code>s.
@@ -65,48 +65,52 @@ import org.jdesktop.beans.JavaBean;
 @JavaBean
 @SuppressWarnings("nls")
 public class CompoundPainter<T> extends AbstractPainter<T> {
+
     private static class Handler implements PropertyChangeListener {
+
         private final WeakReference<CompoundPainter<?>> ref;
-        
+
         public Handler(CompoundPainter<?> painter) {
             ref = new WeakReference<CompoundPainter<?>>(painter);
         }
-        
+
         /**
          * {@inheritDoc}
          */
         @Override
         public void propertyChange(PropertyChangeEvent evt) {
             CompoundPainter<?> painter = ref.get();
-            
+
             if (painter == null) {
                 AbstractPainter<?> src = (AbstractPainter<?>) evt.getSource();
                 src.removePropertyChangeListener(this);
             } else {
                 String property = evt.getPropertyName();
-                
+
                 if ("dirty".equals(property) && evt.getNewValue() == Boolean.FALSE) {
                     return;
                 }
-                
+
                 painter.setDirty(true);
             }
         }
     }
-    
+
     private Handler handler;
-    
+
     private Painter[] painters = new Painter[0];
     private AffineTransform transform;
     private boolean clipPreserved = false;
 
     private boolean checkForDirtyChildPainters = true;
 
-    /** Creates a new instance of CompoundPainter */
+    /**
+     * Creates a new instance of CompoundPainter
+     */
     public CompoundPainter() {
         this((Painter[]) null);
     }
-    
+
     /**
      * Convenience constructor for creating a CompoundPainter for an array
      * of painters. A defensive copy of the given array is made, so that future
@@ -116,70 +120,71 @@ public class CompoundPainter<T> extends AbstractPainter<T> {
      */
     public CompoundPainter(Painter... painters) {
         handler = new Handler(this);
-        
+
         setPainters(painters);
     }
-    
+
     /**
      * Sets the array of Painters to use. These painters will be executed in
-     * order. A null value will be treated as an empty array. To prevent unexpected 
-     * behavior all values in provided array are copied to internally held array. 
+     * order. A null value will be treated as an empty array. To prevent unexpected
+     * behavior all values in provided array are copied to internally held array.
      * Any changes to the original array will not be reflected.
      *
      * @param painters array of painters, which will be painted in order
      */
     public void setPainters(Painter... painters) {
         Painter[] old = getPainters();
-        
+
         for (Painter p : old) {
             if (p instanceof AbstractPainter) {
                 ((AbstractPainter<?>) p).removePropertyChangeListener(handler);
             }
         }
-        
+
         this.painters = new Painter[painters == null ? 0 : painters.length];
         if (painters != null) {
             System.arraycopy(painters, 0, this.painters, 0, this.painters.length);
         }
-        
+
         for (Painter<?> p : this.painters) {
             if (p instanceof AbstractPainter) {
                 ((AbstractPainter<?>) p).addPropertyChangeListener(handler);
             }
         }
-        
+
         setDirty(true);
         firePropertyChange("painters", old, getPainters());
     }
-    
+
     /**
      * Gets the array of painters used by this CompoundPainter
+     *
      * @return a defensive copy of the painters used by this CompoundPainter.
-     *         This will never be null.
+     * This will never be null.
      */
     public final Painter[] getPainters() {
         Painter[] results = new Painter[painters.length];
         System.arraycopy(painters, 0, results, 0, results.length);
         return results;
     }
-    
-    
+
     /**
-     * Indicates if the clip produced by any painter is left set once it finishes painting. 
+     * Indicates if the clip produced by any painter is left set once it finishes painting.
      * Normally the clip will be reset between each painter. Setting clipPreserved to
      * true can be used to let one painter mask other painters that come after it.
+     *
      * @return if the clip should be preserved
      * @see #setClipPreserved(boolean)
      */
     public boolean isClipPreserved() {
         return clipPreserved;
     }
-    
+
     /**
      * Sets if the clip should be preserved.
      * Normally the clip will be reset between each painter. Setting clipPreserved to
      * true can be used to let one painter mask other painters that come after it.
-     * 
+     *
      * @param shouldRestoreState new value of the clipPreserved property
      * @see #isClipPreserved()
      */
@@ -187,11 +192,12 @@ public class CompoundPainter<T> extends AbstractPainter<T> {
         boolean oldShouldRestoreState = isClipPreserved();
         this.clipPreserved = shouldRestoreState;
         setDirty(true);
-        firePropertyChange("clipPreserved",oldShouldRestoreState,shouldRestoreState);
+        firePropertyChange("clipPreserved", oldShouldRestoreState, shouldRestoreState);
     }
 
     /**
      * Gets the current transform applied to all painters in this CompoundPainter. May be null.
+     *
      * @return the current AffineTransform
      */
     public AffineTransform getTransform() {
@@ -200,20 +206,21 @@ public class CompoundPainter<T> extends AbstractPainter<T> {
 
     /**
      * Set a transform to be applied to all painters contained in this CompoundPainter
+     *
      * @param transform a new AffineTransform
      */
     public void setTransform(AffineTransform transform) {
         AffineTransform old = getTransform();
         this.transform = transform;
         setDirty(true);
-        firePropertyChange("transform",old,transform);
+        firePropertyChange("transform", old, transform);
     }
-    
+
     /**
      * <p>Iterates over all child <code>Painter</code>s and gives them a chance
      * to validate themselves. If any of the child painters are dirty, then
      * this <code>CompoundPainter</code> marks itself as dirty.</p>
-     *
+     * <p>
      * {@inheritDoc}
      */
     @Override
@@ -251,15 +258,15 @@ public class CompoundPainter<T> extends AbstractPainter<T> {
      * client code should call {@link #clearCache()} manually when the cacheable
      * <code>Painter</code>s should be updated.
      *
-     *
      * @see #isDirty()
      */
     public boolean isCheckingDirtyChildPainters() {
         return checkForDirtyChildPainters;
     }
+
     /**
-     * Set the flag used by {@link #isDirty()} to check if the 
-     * child <code>Painter</code>s should be checked for their 
+     * Set the flag used by {@link #isDirty()} to check if the
+     * child <code>Painter</code>s should be checked for their
      * <code>dirty</code> flag as part of processing.
      *
      * @see #isCheckingDirtyChildPainters()
@@ -268,18 +275,18 @@ public class CompoundPainter<T> extends AbstractPainter<T> {
     public void setCheckingDirtyChildPainters(boolean b) {
         boolean old = isCheckingDirtyChildPainters();
         this.checkForDirtyChildPainters = b;
-        firePropertyChange("checkingDirtyChildPainters",old, isCheckingDirtyChildPainters());
+        firePropertyChange("checkingDirtyChildPainters", old, isCheckingDirtyChildPainters());
     }
 
     /**
      * {@inheritDoc}
-     * 
+     *
      * @impl This <code>CompoundPainter</code> is dirty if it, or (optionally) any of its children,
-     *       are dirty. If the super implementation returns <code>true</code>, we return
-     *       <code>true</code>. Otherwise, if {@link #isCheckingDirtyChildPainters()} is
-     *       <code>true</code>, we iterate over all child <code>Painter</code>s and query them to
-     *       see if they are dirty. If so, then <code>true</code> is returned. Otherwise, we return
-     *       <code>false</code>.
+     * are dirty. If the super implementation returns <code>true</code>, we return
+     * <code>true</code>. Otherwise, if {@link #isCheckingDirtyChildPainters()} is
+     * <code>true</code>, we iterate over all child <code>Painter</code>s and query them to
+     * see if they are dirty. If so, then <code>true</code> is returned. Otherwise, we return
+     * <code>false</code>.
      * @see #isCheckingDirtyChildPainters()
      */
     @Override
@@ -287,8 +294,7 @@ public class CompoundPainter<T> extends AbstractPainter<T> {
         boolean dirty = super.isDirty();
         if (dirty) {
             return true;
-        } 
-        else if (isCheckingDirtyChildPainters()) {
+        } else if (isCheckingDirtyChildPainters()) {
             for (Painter<?> p : painters) {
                 if (p instanceof AbstractPainter) {
                     AbstractPainter<?> ap = (AbstractPainter<?>) p;
@@ -300,7 +306,7 @@ public class CompoundPainter<T> extends AbstractPainter<T> {
         }
         return false;
     }
-    
+
     /**
      * {@inheritDoc}
      */
@@ -308,9 +314,9 @@ public class CompoundPainter<T> extends AbstractPainter<T> {
     protected void setDirty(boolean d) {
         boolean old = super.isDirty();
         boolean ours = isDirty();
-        
+
         super.setDirty(d);
-        
+
         //must perform this check to ensure we do not double notify
         if (d != old && d == ours) {
             firePropertyChange("dirty", old, isDirty());
@@ -325,7 +331,7 @@ public class CompoundPainter<T> extends AbstractPainter<T> {
      *
      * <p>Call #clearLocalCache if you only want to clear the cache of this
      * <code>CompoundPainter</code>
-     *
+     * <p>
      * {@inheritDoc}
      */
     @Override
@@ -355,12 +361,12 @@ public class CompoundPainter<T> extends AbstractPainter<T> {
     protected void doPaint(Graphics2D g, T component, int width, int height) {
         for (Painter<T> p : getPainters()) {
             Graphics2D temp = (Graphics2D) g.create();
-            
+
             try {
                 p.paint(temp, component, width, height);
-            if(isClipPreserved()) {
-                g.setClip(temp.getClip());
-            }
+                if (isClipPreserved()) {
+                    g.setClip(temp.getClip());
+                }
             } finally {
                 temp.dispose();
             }
@@ -378,7 +384,7 @@ public class CompoundPainter<T> extends AbstractPainter<T> {
             g.setTransform(tx);
         }
     }
-    
+
     /**
      * {@inheritDoc}
      */

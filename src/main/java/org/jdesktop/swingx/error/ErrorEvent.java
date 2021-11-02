@@ -32,12 +32,14 @@ import java.util.EventObject;
  * @see ErrorSupport
  */
 public class ErrorEvent extends EventObject {
+
     private Throwable throwable;
-    
+
     /**
      * Creates a new instance of <CODE>ErrorEvent</CODE>
+     *
      * @param throwable The Error or Exception which occurred.
-     * @param source The object which threw the Error or Exception
+     * @param source    The object which threw the Error or Exception
      */
     public ErrorEvent(Throwable throwable, Object source) {
         super(source);
@@ -46,10 +48,10 @@ public class ErrorEvent extends EventObject {
 
     /**
      * Gets the Error or Exception which occurred.
+     *
      * @return The Error or Exception which occurred.
      */
     public Throwable getThrowable() {
         return throwable;
     }
-    
 }

@@ -8,40 +8,34 @@
  * modify it under the terms of the GNU Lesser General Public
  * License as published by the Free Software Foundation; either
  * version 2.1 of the License, or (at your option) any later version.
- * 
+ *
  * This library is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  * Lesser General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  */
 package org.jdesktop.swingx.search;
 
+import org.jdesktop.swingx.decorator.*;
+
+import javax.swing.JComponent;
 import java.awt.Color;
 import java.util.regex.MatchResult;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import javax.swing.JComponent;
-
-import org.jdesktop.swingx.decorator.AbstractHighlighter;
-import org.jdesktop.swingx.decorator.ColorHighlighter;
-import org.jdesktop.swingx.decorator.HighlightPredicate;
-import org.jdesktop.swingx.decorator.Highlighter;
-import org.jdesktop.swingx.decorator.SearchPredicate;
-
 /**
  * An abstract implementation of Searchable supporting
  * incremental search.
- * 
+ * <p>
  * Keeps internal state to represent the previous search result.
- * For all methods taking a String as parameter: compiles the String 
+ * For all methods taking a String as parameter: compiles the String
  * to a Pattern as-is and routes to the central method taking a Pattern.
- * 
- * 
+ *
  * @author Jeanette Winzenburg
  */
 public abstract class AbstractSearchable implements Searchable {
@@ -52,19 +46,20 @@ public abstract class AbstractSearchable implements Searchable {
     protected final SearchResult lastSearchResult = new SearchResult();
 
     private AbstractHighlighter matchHighlighter;
-    
 
-    /** key for client property to use SearchHighlighter as match marker. */
+    /**
+     * key for client property to use SearchHighlighter as match marker.
+     */
     public static final String MATCH_HIGHLIGHTER = "match.highlighter";
 
     /**
-     * Performs a forward search starting at the beginning 
+     * Performs a forward search starting at the beginning
      * across the Searchable using String that represents a
      * regex pattern; {@link Pattern}.
-     * 
+     *
      * @param searchString <code>String</code> that we will try to locate
      * @return the position of the match in appropriate coordinates or -1 if
-     *   no match found.
+     * no match found.
      */
     @Override
     public int search(String searchString) {
@@ -75,12 +70,12 @@ public abstract class AbstractSearchable implements Searchable {
      * Performs a forward search starting at the given startIndex
      * using String that represents a regex
      * pattern; {@link Pattern}.
-     * 
+     *
      * @param searchString <code>String</code> that we will try to locate
-     * @param startIndex position in the document in the appropriate coordinates
-     * from which we will start search or -1 to start from the beginning
+     * @param startIndex   position in the document in the appropriate coordinates
+     *                     from which we will start search or -1 to start from the beginning
      * @return the position of the match in appropriate coordinates or -1 if
-     *   no match found.
+     * no match found.
      */
     @Override
     public int search(String searchString, int startIndex) {
@@ -92,13 +87,13 @@ public abstract class AbstractSearchable implements Searchable {
      * using String that represents a regex
      * pattern; {@link Pattern}. The search direction
      * depends on the boolean parameter: forward/backward if false/true, respectively.
-     * 
+     *
      * @param searchString <code>String</code> that we will try to locate
-     * @param startIndex position in the document in the appropriate coordinates
-     * from which we will start search or -1 to start from the beginning
-     * @param backward <code>true</code> if we should perform search towards the beginning
+     * @param startIndex   position in the document in the appropriate coordinates
+     *                     from which we will start search or -1 to start from the beginning
+     * @param backward     <code>true</code> if we should perform search towards the beginning
      * @return the position of the match in appropriate coordinates or -1 if
-     *   no match found.
+     * no match found.
      */
     @Override
     public int search(String searchString, int startIndex, boolean backward) {
@@ -110,12 +105,12 @@ public abstract class AbstractSearchable implements Searchable {
     }
 
     /**
-     * Performs a forward search starting at the beginning 
+     * Performs a forward search starting at the beginning
      * across the Searchable using the pattern; {@link Pattern}.
-     * 
+     *
      * @param pattern <code>Pattern</code> that we will try to locate
      * @return the position of the match in appropriate coordinates or -1 if
-     *   no match found.
+     * no match found.
      */
     @Override
     public int search(Pattern pattern) {
@@ -126,11 +121,11 @@ public abstract class AbstractSearchable implements Searchable {
      * Performs a forward search starting at the given startIndex
      * using the Pattern; {@link Pattern}.
      *
-     * @param pattern <code>Pattern</code> that we will try to locate
+     * @param pattern    <code>Pattern</code> that we will try to locate
      * @param startIndex position in the document in the appropriate coordinates
-     * from which we will start search or -1 to start from the beginning
+     *                   from which we will start search or -1 to start from the beginning
      * @return the position of the match in appropriate coordinates or -1 if
-     *   no match found.
+     * no match found.
      */
     @Override
     public int search(Pattern pattern, int startIndex) {
@@ -140,17 +135,17 @@ public abstract class AbstractSearchable implements Searchable {
     /**
      * Performs a  search starting at the given startIndex
      * using the pattern; {@link Pattern}.
-     * The search direction depends on the boolean parameter: 
+     * The search direction depends on the boolean parameter:
      * forward/backward if false/true, respectively.<p>
-     * 
+     * <p>
      * Updates visible and internal search state.
-     * 
-     * @param pattern <code>Pattern</code> that we will try to locate
+     *
+     * @param pattern    <code>Pattern</code> that we will try to locate
      * @param startIndex position in the document in the appropriate coordinates
-     * from which we will start search or -1 to start from the beginning
-     * @param backwards <code>true</code> if we should perform search towards the beginning
+     *                   from which we will start search or -1 to start from the beginning
+     * @param backwards  <code>true</code> if we should perform search towards the beginning
      * @return the position of the match in appropriate coordinates or -1 if
-     *   no match found.
+     * no match found.
      */
     @Override
     public int search(Pattern pattern, int startIndex, boolean backwards) {
@@ -162,54 +157,52 @@ public abstract class AbstractSearchable implements Searchable {
     /**
      * Performs a  search starting at the given startIndex
      * using the pattern; {@link Pattern}.
-     * The search direction depends on the boolean parameter: 
+     * The search direction depends on the boolean parameter:
      * forward/backward if false/true, respectively.<p>
-     * 
+     * <p>
      * Updates internal search state.
-     * 
-     * @param pattern <code>Pattern</code> that we will try to locate
+     *
+     * @param pattern    <code>Pattern</code> that we will try to locate
      * @param startIndex position in the document in the appropriate coordinates
-     * from which we will start search or -1 to start from the beginning
-     * @param backwards <code>true</code> if we should perform search towards the beginning
+     *                   from which we will start search or -1 to start from the beginning
+     * @param backwards  <code>true</code> if we should perform search towards the beginning
      * @return the position of the match in appropriate coordinates or -1 if
-     *   no match found.
+     * no match found.
      */
     protected int doSearch(Pattern pattern, final int startIndex, boolean backwards) {
         if (isTrivialNoMatch(pattern, startIndex)) {
             updateState(null);
             return lastSearchResult.foundRow;
         }
-        
+
         int startRow;
         if (isEqualStartIndex(startIndex)) { // implies: the last found coordinates are valid
             if (!isEqualPattern(pattern)) {
-               SearchResult searchResult = findExtendedMatch(pattern, startIndex);
-               if (searchResult != null) {
-                   updateState(searchResult);
-                   return lastSearchResult.foundRow;
-               }
-
+                SearchResult searchResult = findExtendedMatch(pattern, startIndex);
+                if (searchResult != null) {
+                    updateState(searchResult);
+                    return lastSearchResult.foundRow;
+                }
             }
             // didn't find a match, make sure to move the startPosition
             // for looking for the next/previous match
             startRow = moveStartPosition(startIndex, backwards);
-            
-        } else { 
+        } else {
             // startIndex is different from last search, reset the column to -1
             // and make sure a -1 startIndex is mapped to first/last row, respectively.
-            startRow = adjustStartPosition(startIndex, backwards); 
+            startRow = adjustStartPosition(startIndex, backwards);
         }
         findMatchAndUpdateState(pattern, startRow, backwards);
         return lastSearchResult.foundRow;
     }
 
     /**
-     * Loops through the searchable until a match is found or the 
+     * Loops through the searchable until a match is found or the
      * end is reached. Updates internal search state.
      *
-     * @param pattern <code>Pattern</code> that we will try to locate
-     * @param startRow position in the document in the appropriate coordinates
-     * from which we will start search or -1 to start from the beginning
+     * @param pattern   <code>Pattern</code> that we will try to locate
+     * @param startRow  position in the document in the appropriate coordinates
+     *                  from which we will start search or -1 to start from the beginning
      * @param backwards <code>true</code> if we should perform search towards the beginning
      */
     protected abstract void findMatchAndUpdateState(Pattern pattern, int startRow, boolean backwards);
@@ -217,13 +210,13 @@ public abstract class AbstractSearchable implements Searchable {
     /**
      * Returns a boolean indicating if it can be trivially decided to not match.
      * <p>
-     * 
-     * This implementation returns true if pattern is null or startIndex 
+     * <p>
+     * This implementation returns true if pattern is null or startIndex
      * exceeds the upper size limit.<p>
-     * 
-     * @param pattern <code>Pattern</code> that we will try to locate
+     *
+     * @param pattern    <code>Pattern</code> that we will try to locate
      * @param startIndex position in the document in the appropriate coordinates
-     * from which we will start search or -1 to start from the beginning
+     *                   from which we will start search or -1 to start from the beginning
      * @return true if we can say ahead that no match will be found with given search criteria
      */
     protected boolean isTrivialNoMatch(Pattern pattern, final int startIndex) {
@@ -234,10 +227,10 @@ public abstract class AbstractSearchable implements Searchable {
      * Called if <code>startIndex</code> is different from last search
      * and make sure a backwards/forwards search starts at last/first row,
      * respectively.<p>
-     * 
+     *
      * @param startIndex position in the document in the appropriate coordinates
-     * from which we will start search or -1 to start from the beginning
-     * @param backwards <code>true</code> if we should perform search from towards the beginning
+     *                   from which we will start search or -1 to start from the beginning
+     * @param backwards  <code>true</code> if we should perform search from towards the beginning
      * @return adjusted <code>startIndex</code>
      */
     protected int adjustStartPosition(int startIndex, boolean backwards) {
@@ -253,36 +246,35 @@ public abstract class AbstractSearchable implements Searchable {
 
     /**
      * Moves the internal start position for matching as appropriate and returns
-     * the new startIndex to use. Called if search was messaged with the same 
+     * the new startIndex to use. Called if search was messaged with the same
      * startIndex as previously.
      * <p>
-     * 
-     * This implementation returns a by 1 decremented/incremented startIndex 
-     * depending on backwards true/false, respectively. 
-     *   
+     * <p>
+     * This implementation returns a by 1 decremented/incremented startIndex
+     * depending on backwards true/false, respectively.
+     *
      * @param startIndex position in the document in the appropriate coordinates
-     * from which we will start search or -1 to start from the beginning
-     * @param backwards <code>true</code> if we should perform search towards the beginning
+     *                   from which we will start search or -1 to start from the beginning
+     * @param backwards  <code>true</code> if we should perform search towards the beginning
      * @return adjusted <code>startIndex</code>
      */
     protected int moveStartPosition(int startIndex, boolean backwards) {
         if (backwards) {
-                   startIndex--;
-           } else {
-                   startIndex++;
-           }
+            startIndex--;
+        } else {
+            startIndex++;
+        }
         return startIndex;
     }
-    
 
     /**
-     * Checks if the given Pattern should be considered as the same as 
+     * Checks if the given Pattern should be considered as the same as
      * in a previous search.
      * <p>
      * This implementation compares the patterns' regex.
-     * 
+     *
      * @param pattern <code>Pattern</code> that we will compare with last request
-     * @return if provided <code>Pattern</code> is the same as the stored from 
+     * @return if provided <code>Pattern</code> is the same as the stored from
      * the previous search attempt
      */
     protected boolean isEqualPattern(Pattern pattern) {
@@ -292,20 +284,20 @@ public abstract class AbstractSearchable implements Searchable {
     /**
      * Checks if the startIndex should be considered as the same as in
      * the previous search.
-     * 
+     *
      * @param startIndex <code>startIndex</code> that we will compare with the index
-     * stored by the previous search request
+     *                   stored by the previous search request
      * @return true if the startIndex should be re-matched, false if not.
      */
     protected boolean isEqualStartIndex(final int startIndex) {
         return isValidIndex(startIndex) && (startIndex == lastSearchResult.foundRow);
     }
-    
+
     /**
      * Checks if the searchString should be interpreted as empty.
      * <p>
      * This implementation returns true if string is null or has zero length.
-     * 
+     *
      * @param searchString <code>String</code> that we should evaluate
      * @return true if the provided <code>String</code> should be interpreted as empty
      */
@@ -313,53 +305,52 @@ public abstract class AbstractSearchable implements Searchable {
         return (searchString == null) || searchString.length() == 0;
     }
 
-
     /**
      * Matches the cell at row/lastFoundColumn against the pattern.
      * Called if sameRowIndex && !hasEqualRegEx.
      * PRE: lastFoundColumn valid.
-     * 
+     *
      * @param pattern <code>Pattern</code> that we will try to match
-     * @param row position at which we will get the value to match with the provided <code>Pattern</code>
+     * @param row     position at which we will get the value to match with the provided <code>Pattern</code>
      * @return result of the match; {@link SearchResult}
      */
     protected abstract SearchResult findExtendedMatch(Pattern pattern, int row);
- 
+
     /**
      * Factory method to create a SearchResult from the given parameters.
-     * 
+     *
      * @param matcher the matcher after a successful find. Must not be null.
-     * @param row the found index
-     * @param column the found column
+     * @param row     the found index
+     * @param column  the found column
      * @return newly created <code>SearchResult</code>
      */
     protected SearchResult createSearchResult(Matcher matcher, int row, int column) {
-        return new SearchResult(matcher.pattern(), 
-                matcher.toMatchResult(), row, column);
+        return new SearchResult(matcher.pattern(),
+            matcher.toMatchResult(), row, column);
     }
 
-   /** 
-    * Checks if index is in range: 0 <= index < getSize().
-    * 
-    * @param index possible start position that we will check for validity
-    * @return <code>true</code> if given parameter is valid index
-    */ 
-   protected boolean isValidIndex(int index) {
+    /**
+     * Checks if index is in range: 0 <= index < getSize().
+     *
+     * @param index possible start position that we will check for validity
+     * @return <code>true</code> if given parameter is valid index
+     */
+    protected boolean isValidIndex(int index) {
         return index >= 0 && index < getSize();
     }
 
-   /**
-    * Returns the size of this searchable.
-    * 
-    * @return size of this searchable
-    */
-   protected abstract int getSize();
-   
+    /**
+     * Returns the size of this searchable.
+     *
+     * @return size of this searchable
+     */
+    protected abstract int getSize();
+
     /**
      * Updates inner searchable state based on provided search result
      *
-     * @param searchResult <code>SearchResult</code> that represents the new state 
-     *  of this <code>AbstractSearchable</code>
+     * @param searchResult <code>SearchResult</code> that represents the new state
+     *                     of this <code>AbstractSearchable</code>
      */
     protected void updateState(SearchResult searchResult) {
         lastSearchResult.updateFrom(searchResult);
@@ -372,36 +363,36 @@ public abstract class AbstractSearchable implements Searchable {
 
     /**
      * It's the responsibility of subclasses to covariant override.
-     * 
+     *
      * @return the target component
      */
     public abstract JComponent getTarget();
 
     /**
      * Removes the highlighter.
-     * 
+     *
      * @param searchHighlighter the Highlighter to remove.
      */
     protected abstract void removeHighlighter(Highlighter searchHighlighter);
 
     /**
      * Returns the highlighters registered on the search target.
-     * 
+     *
      * @return all registered highlighters
      */
     protected abstract Highlighter[] getHighlighters();
 
     /**
      * Adds the highlighter to the target.
-     * 
+     *
      * @param highlighter the Highlighter to add.
      */
     protected abstract void addHighlighter(Highlighter highlighter);
-    
+
     /**
-     * Ensure that the given Highlighter is the last in the list of 
+     * Ensure that the given Highlighter is the last in the list of
      * the highlighters registered on the target.
-     * 
+     *
      * @param highlighter the Highlighter to be inserted as last.
      */
     protected void ensureInsertedSearchHighlighters(Highlighter highlighter) {
@@ -412,16 +403,16 @@ public abstract class AbstractSearchable implements Searchable {
 
     /**
      * Returns a flag indicating if the given highlighter is last in the
-     * list of highlighters registered on the target. If so returns true. 
-     * If not, it has the side-effect of removing the highlighter and returns false. 
-     * 
+     * list of highlighters registered on the target. If so returns true.
+     * If not, it has the side-effect of removing the highlighter and returns false.
+     *
      * @param searchHighlighter the highlighter to check for being last
      * @return a boolean indicating whether the highlighter is last.
      */
     private boolean isInPipeline(Highlighter searchHighlighter) {
         Highlighter[] inPipeline = getHighlighters();
-        if ((inPipeline.length > 0) && 
-           (searchHighlighter.equals(inPipeline[inPipeline.length -1]))) {
+        if ((inPipeline.length > 0) &&
+            (searchHighlighter.equals(inPipeline[inPipeline.length - 1]))) {
             return true;
         }
         removeHighlighter(searchHighlighter);
@@ -430,27 +421,26 @@ public abstract class AbstractSearchable implements Searchable {
 
     /**
      * Converts and returns the given column index from view coordinates to model
-     * coordinates. 
+     * coordinates.
      * <p>
      * This implementation returns the view coordinate, that is assumes
-     * that both coordinate systems are the same. 
-     * 
-     * @param viewColumn the column index in view coordinates, must be a valid index 
-     *   in that system. 
-     * @return the column index in model coordinates. 
+     * that both coordinate systems are the same.
+     *
+     * @param viewColumn the column index in view coordinates, must be a valid index
+     *                   in that system.
+     * @return the column index in model coordinates.
      */
     protected int convertColumnIndexToModel(int viewColumn) {
         return viewColumn;
     }
-    
+
     /**
-     * 
      * @param result
      * @return {@code true} if the {@code result} contains a match;
-     *         {@code false} otherwise
+     * {@code false} otherwise
      */
     private boolean hasMatch(SearchResult result) {
-        boolean noMatch =  (result.getFoundRow() < 0) || (result.getFoundColumn() < 0);
+        boolean noMatch = (result.getFoundRow() < 0) || (result.getFoundColumn() < 0);
         return !noMatch;
     }
 
@@ -458,6 +448,7 @@ public abstract class AbstractSearchable implements Searchable {
      * Returns a boolean indicating whether the current search result is a match.
      * <p>
      * PENDING JW: move to SearchResult?
+     *
      * @return a boolean indicating whether the current search result is a match.
      */
     protected boolean hasMatch() {
@@ -469,27 +460,26 @@ public abstract class AbstractSearchable implements Searchable {
      * Highlighter. Typically, if true, the match highlighter is used, otherwise
      * a match is indicated by selection.
      * <p>
-     * 
+     * <p>
      * This implementation returns true if the target component has a client
      * property for key MATCH_HIGHLIGHTER with value Boolean.TRUE, false
      * otherwise. The SearchFactory sets that client property in incremental
      * search mode, that is when triggering a search via the JXFindBar as
-     * installed by the factory. 
-     * 
+     * installed by the factory.
+     *
      * @return a boolean indicating whether a match should be marked by a using
-     *         a Highlighter.
-     *         
-     * @see SearchFactory        
+     * a Highlighter.
+     * @see SearchFactory
      */
     protected boolean markByHighlighter() {
         return Boolean.TRUE.equals(getTarget().getClientProperty(
-                MATCH_HIGHLIGHTER));
+            MATCH_HIGHLIGHTER));
     }
 
     /**
      * Sets the AbstractHighlighter to use as match marker, if enabled. A null value
      * will re-install the default.
-     * 
+     *
      * @param hl the Highlighter to use as match marker.
      */
     public void setMatchHighlighter(AbstractHighlighter hl) {
@@ -499,10 +489,10 @@ public abstract class AbstractSearchable implements Searchable {
             moveMatchMarker();
         }
     }
-    
+
     /**
      * Returns the Hihglighter to use as match marker, lazyly created if null.
-     * 
+     *
      * @return a highlighter used for matching, guaranteed to be not null.
      */
     protected AbstractHighlighter getMatchHighlighter() {
@@ -514,19 +504,18 @@ public abstract class AbstractSearchable implements Searchable {
 
     /**
      * Creates and returns the Highlighter used as match marker.
-     * 
+     *
      * @return a highlighter used for matching
      */
     protected AbstractHighlighter createMatchHighlighter() {
-        return new ColorHighlighter(HighlightPredicate.NEVER, Color.YELLOW.brighter(), 
-                null, Color.YELLOW.brighter(), 
-                null);
+        return new ColorHighlighter(HighlightPredicate.NEVER, Color.YELLOW.brighter(),
+            null, Color.YELLOW.brighter(),
+            null);
     }
 
-    
     /**
      * Configures and returns the match highlighter for the current match.
-     * 
+     *
      * @return a highlighter configured for matching
      */
     protected AbstractHighlighter getConfiguredMatchHighlighter() {
@@ -538,23 +527,24 @@ public abstract class AbstractSearchable implements Searchable {
     /**
      * Creates and returns a HighlightPredicate appropriate for the current
      * search result.
-     * 
+     *
      * @return a HighlightPredicate appropriate for the current search result.
      */
     protected HighlightPredicate createMatchPredicate() {
-        return hasMatch() ? 
-                new SearchPredicate(lastSearchResult.pattern, lastSearchResult.foundRow, 
-                        convertColumnIndexToModel(lastSearchResult.foundColumn))
-                : HighlightPredicate.NEVER;
+        return hasMatch() ?
+            new SearchPredicate(lastSearchResult.pattern, lastSearchResult.foundRow,
+                convertColumnIndexToModel(lastSearchResult.foundColumn))
+            : HighlightPredicate.NEVER;
     }
 
     /**
      * A convenience class to hold search state.<p>
-     * 
+     * <p>
      * NOTE: this is still in-flow, probably will take more responsibility/
      * or even change altogether on further factoring
      */
     public static class SearchResult {
+
         int foundRow;
         int foundColumn;
         MatchResult matchResult;
@@ -566,14 +556,14 @@ public abstract class AbstractSearchable implements Searchable {
         public SearchResult() {
             reset();
         }
-        
+
         /**
          * Instantiates a SearchResult with the given state.
-         * 
-         * @param ex the Pattern used for matching
+         *
+         * @param ex     the Pattern used for matching
          * @param result the current MatchResult
-         * @param row the row index of the current match
-         * @param column  the column index of the current match
+         * @param row    the row index of the current match
+         * @param column the column index of the current match
          */
         public SearchResult(Pattern ex, MatchResult result, int row, int column) {
             pattern = ex;
@@ -581,11 +571,11 @@ public abstract class AbstractSearchable implements Searchable {
             foundRow = row;
             foundColumn = column;
         }
-        
+
         /**
          * Sets internal state to the same as the given SearchResult. Resets internals
          * if the param is null.
-         * 
+         *
          * @param searchResult the SearchResult to copy internal state from.
          */
         public void updateFrom(SearchResult searchResult) {
@@ -601,66 +591,64 @@ public abstract class AbstractSearchable implements Searchable {
 
         /**
          * Returns the regex of the Pattern used for matching.
-         * 
+         *
          * @return the regex of the Pattern used for matching.
          */
         public String getRegEx() {
             return pattern != null ? pattern.pattern() : null;
         }
-      
+
         /**
          * Resets all internal state to no-match.
          */
         public void reset() {
-            foundRow= -1;
+            foundRow = -1;
             foundColumn = -1;
             matchResult = null;
             pattern = null;
-        } 
-        
+        }
+
         /**
          * Resets the column to OFF.
          */
         public void resetFoundColumn() {
             foundColumn = -1;
         }
-        
+
         /**
          * Returns the column index of the match position.
-         * 
+         *
          * @return the column index of the match position.
          */
         public int getFoundColumn() {
             return foundColumn;
         }
-        
+
         /**
          * Returns the row index of the match position.
-         * 
+         *
          * @return the row index of the match position.
          */
         public int getFoundRow() {
             return foundRow;
         }
-        
+
         /**
          * Returns the MatchResult representing the current match.
-         * 
+         *
          * @return the MatchResult representing the current match.
          */
         public MatchResult getMatchResult() {
             return matchResult;
         }
-        
+
         /**
          * Returns the Pattern used for matching.
-         * 
+         *
          * @return the Pattern used for the matching.
          */
         public Pattern getPattern() {
             return pattern;
         }
-
     }
-
 }

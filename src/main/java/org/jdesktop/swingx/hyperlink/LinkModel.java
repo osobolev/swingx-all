@@ -8,12 +8,12 @@
  * modify it under the terms of the GNU Lesser General Public
  * License as published by the Free Software Foundation; either
  * version 2.1 of the License, or (at your option) any later version.
- * 
+ *
  * This library is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  * Lesser General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
@@ -29,16 +29,16 @@ import java.util.logging.Logger;
 
 /**
  * An bean which represents an URL link.
- * 
+ * <p>
  * Text, URL and visited are bound properties. Compares by Text.
- * 
+ *
  * @author Mark Davidson
  * @author Jeanette Winzenburg
  */
 public class LinkModel implements Comparable {
 
     private static final Logger LOG = Logger.getLogger(LinkModel.class
-            .getName());
+        .getName());
 
     private String text; // display text
 
@@ -59,7 +59,6 @@ public class LinkModel implements Comparable {
     private static URL defaultURL;
 
     /**
-     * 
      * @param text
      * @param target
      * @param url
@@ -73,17 +72,17 @@ public class LinkModel implements Comparable {
     public LinkModel() {
         this(" ", null, null);
     }
-    
+
     public LinkModel(String text) {
         this(text, null, null);
     }
 
     /**
-     * @param text text to that a renderer would display
-     * @param target the target that a URL should load into.
+     * @param text     text to that a renderer would display
+     * @param target   the target that a URL should load into.
      * @param template a string that represents a URL with
-     * &amp;{N} place holders for string substitution
-     * @param args an array of strings which will be used for substitition
+     *                 &amp;{N} place holders for string substitution
+     * @param args     an array of strings which will be used for substitition
      */
     public LinkModel(String text, String target, String template, String[] args) {
         setText(text);
@@ -115,8 +114,8 @@ public class LinkModel implements Comparable {
             url = new URL(howToURLString);
         } catch (MalformedURLException e) {
             url = getDefaultURL();
-            LOG.warning("the given urlString is malformed: " + howToURLString + 
-                    "\n falling back to default url: " + url);
+            LOG.warning("the given urlString is malformed: " + howToURLString +
+                        "\n falling back to default url: " + url);
         }
         setURL(url);
     }
@@ -127,7 +126,7 @@ public class LinkModel implements Comparable {
                 defaultURL = new URL(defaultURLString);
             } catch (MalformedURLException e) {
                 LOG.fine("should not happen - defaultURL is wellFormed: "
-                        + defaultURLString);
+                         + defaultURLString);
             }
         }
         return defaultURL;
@@ -135,7 +134,7 @@ public class LinkModel implements Comparable {
 
     /**
      * Set the url and resets the visited flag.
-     * 
+     * <p>
      * Think: keep list of visited urls here?
      */
     public void setURL(URL url) {
@@ -158,16 +157,16 @@ public class LinkModel implements Comparable {
      * Create a URL from a template string that has place holders and an array
      * of strings which will be substituted into the place holders. The place
      * holders are represented as
-     * 
-     * @{N} where N = { 1..n }
-     *      <p>
-     *      For example, if the template contains a string like:
-     *      http://bugz.sfbay/cgi-bin/showbug?cat=@{1}&sub_cat=@{2} and a two
-     *      arg array contains: java, classes_swing The resulting URL will be:
-     *      http://bugz.sfbay/cgi-bin/showbug?cat=java&sub_cat=classes_swing
-     *      <p>
+     *
      * @param template a url string that contains the placeholders
-     * @param args an array of strings that will be substituted
+     * @param args     an array of strings that will be substituted
+     * @{N} where N = { 1..n }
+     * <p>
+     * For example, if the template contains a string like:
+     * http://bugz.sfbay/cgi-bin/showbug?cat=@{1}&sub_cat=@{2} and a two
+     * arg array contains: java, classes_swing The resulting URL will be:
+     * http://bugz.sfbay/cgi-bin/showbug?cat=java&sub_cat=classes_swing
+     * <p>
      */
     private URL createURL(String template, String[] args) {
         URL url = null;
@@ -194,7 +193,7 @@ public class LinkModel implements Comparable {
 
     /**
      * Return the target for the URL.
-     * 
+     *
      * @return value of the target. If null then "_blank" will be returned.
      */
     public String getTarget() {
@@ -223,7 +222,6 @@ public class LinkModel implements Comparable {
 
     public void addPropertyChangeListener(PropertyChangeListener l) {
         getPropertyChangeSupport().addPropertyChangeListener(l);
-
     }
 
     public void removePropertyChangeListener(PropertyChangeListener l) {
@@ -233,18 +231,17 @@ public class LinkModel implements Comparable {
     }
 
     protected void firePropertyChange(String property, Object oldValue,
-            Object newValue) {
+                                      Object newValue) {
         if (propertyChangeSupport == null)
             return;
         propertyChangeSupport.firePropertyChange(property, oldValue, newValue);
     }
 
     protected void firePropertyChange(String property, boolean oldValue,
-            boolean newValue) {
+                                      boolean newValue) {
         if (propertyChangeSupport == null)
             return;
         propertyChangeSupport.firePropertyChange(property, oldValue, newValue);
-
     }
 
     private PropertyChangeSupport getPropertyChangeSupport() {
@@ -291,7 +288,7 @@ public class LinkModel implements Comparable {
 
         result = 37 * result + ((getText() == null) ? 0 : getText().hashCode());
         result = 37 * result
-                + ((getTarget() == null) ? 1 : getTarget().hashCode());
+                 + ((getTarget() == null) ? 1 : getTarget().hashCode());
         result = 37 * result + ((getURL() == null) ? 2 : getURL().hashCode());
 
         return result;
@@ -313,5 +310,4 @@ public class LinkModel implements Comparable {
 
         return buffer.toString();
     }
-
 }

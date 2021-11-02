@@ -8,12 +8,12 @@
  * modify it under the terms of the GNU Lesser General Public
  * License as published by the Free Software Foundation; either
  * version 2.1 of the License, or (at your option) any later version.
- * 
+ *
  * This library is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  * Lesser General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
@@ -21,12 +21,11 @@
  */
 package org.jdesktop.swingx.rollover;
 
+import javax.swing.JComponent;
+import javax.swing.JTree;
 import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.event.MouseEvent;
-
-import javax.swing.JComponent;
-import javax.swing.JTree;
 
 /**
  * Tree-specific implementation of RolloverProducer.
@@ -36,9 +35,9 @@ import javax.swing.JTree;
  * outside of the label bounds) is re-dispatched as a pressed just inside the
  * label bounds. This is a first go for #166-swingx.
  * <p>
- * 
+ * <p>
  * PENDING JW: bidi-compliance of pressed?
- * 
+ *
  * @author Jeanette Winzenburg
  */
 public class TreeRolloverProducer extends RolloverProducer {
@@ -57,7 +56,7 @@ public class TreeRolloverProducer extends RolloverProducer {
             row = -1;
         } else {
             if ((bounds.y + bounds.height < mousePoint.y)
-                    || bounds.x > mousePoint.x) {
+                || bounds.x > mousePoint.x) {
                 row = -1;
             }
         }
@@ -65,8 +64,8 @@ public class TreeRolloverProducer extends RolloverProducer {
         if (row < 0)
             return;
         tree.dispatchEvent(new MouseEvent(tree, e.getID(), e.getWhen(), e
-                .getModifiers(), bounds.x + bounds.width - 2, mousePoint.y, e
-                .getClickCount(), e.isPopupTrigger(), e.getButton()));
+            .getModifiers(), bounds.x + bounds.width - 2, mousePoint.y, e
+            .getClickCount(), e.isPopupTrigger(), e.getButton()));
     }
 
     @Override
@@ -78,7 +77,7 @@ public class TreeRolloverProducer extends RolloverProducer {
             row = -1;
         } else {
             if ((bounds.y + bounds.height < mousePoint.y)
-                    || bounds.x > mousePoint.x) {
+                || bounds.x > mousePoint.x) {
                 row = -1;
             }
         }
@@ -86,5 +85,4 @@ public class TreeRolloverProducer extends RolloverProducer {
         rollover.x = col;
         rollover.y = row;
     }
-
 }

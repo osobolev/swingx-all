@@ -8,34 +8,28 @@
  * modify it under the terms of the GNU Lesser General Public
  * License as published by the Free Software Foundation; either
  * version 2.1 of the License, or (at your option) any later version.
- * 
+ *
  * This library is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  * Lesser General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  */
 package org.jdesktop.swingx.autocomplete;
 
+import javax.swing.text.*;
 import java.awt.Color;
 import java.awt.Font;
 
-import javax.swing.text.AttributeSet;
-import javax.swing.text.DefaultStyledDocument;
-import javax.swing.text.Document;
-import javax.swing.text.Element;
-import javax.swing.text.Style;
-import javax.swing.text.StyledDocument;
-
 /**
- *
  * @author Karl George Schaefer
  */
 public class AutoCompleteStyledDocument extends AutoCompleteDocument implements
-        StyledDocument {
+    StyledDocument {
+
     /**
      * @param adaptor
      * @param strictMatching
@@ -43,8 +37,8 @@ public class AutoCompleteStyledDocument extends AutoCompleteDocument implements
      * @param delegate
      */
     public AutoCompleteStyledDocument(AbstractAutoCompleteAdaptor adaptor,
-            boolean strictMatching, ObjectToStringConverter stringConverter,
-            StyledDocument delegate) {
+                                      boolean strictMatching, ObjectToStringConverter stringConverter,
+                                      StyledDocument delegate) {
         super(adaptor, strictMatching, stringConverter, delegate);
     }
 
@@ -54,7 +48,7 @@ public class AutoCompleteStyledDocument extends AutoCompleteDocument implements
      * @param stringConverter
      */
     public AutoCompleteStyledDocument(AbstractAutoCompleteAdaptor adaptor,
-            boolean strictMatching, ObjectToStringConverter stringConverter) {
+                                      boolean strictMatching, ObjectToStringConverter stringConverter) {
         super(adaptor, strictMatching, stringConverter);
     }
 
@@ -63,10 +57,10 @@ public class AutoCompleteStyledDocument extends AutoCompleteDocument implements
      * @param strictMatching
      */
     public AutoCompleteStyledDocument(AbstractAutoCompleteAdaptor adaptor,
-            boolean strictMatching) {
+                                      boolean strictMatching) {
         super(adaptor, strictMatching);
     }
-    
+
     /**
      * {@inheritDoc}
      */
@@ -152,9 +146,9 @@ public class AutoCompleteStyledDocument extends AutoCompleteDocument implements
      */
     @Override
     public void setCharacterAttributes(int offset, int length,
-            AttributeSet s, boolean replace) {
-                ((StyledDocument) delegate).setCharacterAttributes(offset, length, s, replace);
-            }
+                                       AttributeSet s, boolean replace) {
+        ((StyledDocument) delegate).setCharacterAttributes(offset, length, s, replace);
+    }
 
     /**
      * {@inheritDoc}
@@ -169,7 +163,7 @@ public class AutoCompleteStyledDocument extends AutoCompleteDocument implements
      */
     @Override
     public void setParagraphAttributes(int offset, int length,
-            AttributeSet s, boolean replace) {
-                ((StyledDocument) delegate).setParagraphAttributes(offset, length, s, replace);
-            }
+                                       AttributeSet s, boolean replace) {
+        ((StyledDocument) delegate).setParagraphAttributes(offset, length, s, replace);
+    }
 }

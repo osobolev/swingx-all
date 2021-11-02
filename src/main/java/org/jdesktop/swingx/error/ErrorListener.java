@@ -31,15 +31,16 @@ import java.util.EventListener;
  * which can be throw directly (say from the constructor of the JX component) should not use
  * the ErrorListener mechanism.
  *
+ * @author Joshua Marinacci joshua.marinacci@sun.com
  * @see ErrorEvent
  * @see ErrorSupport
- * @author Joshua Marinacci joshua.marinacci@sun.com
  */
 public interface ErrorListener extends EventListener {
-    
+
     /**
      * Tells listeners that an error has occured within the watched component.
-     * @param event 
+     *
+     * @param event
      */
     public void errorOccured(ErrorEvent event);
 }

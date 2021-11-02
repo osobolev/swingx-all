@@ -27,16 +27,18 @@ import java.awt.Point;
 
 /**
  * An effect which draws a shadow inside the path painter.
+ *
  * @author joshy
  */
 public class InnerShadowPathEffect extends AbstractAreaEffect {
-    
-    /** Creates a new instance of InnerShadowPathEffect */
+
+    /**
+     * Creates a new instance of InnerShadowPathEffect
+     */
     public InnerShadowPathEffect() {
         super();
         setRenderInsideShape(true);
         setBrushColor(Color.BLACK);
-        setOffset(new Point(2,2));
+        setOffset(new Point(2, 2));
     }
-    
 }

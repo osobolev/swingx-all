@@ -27,17 +27,19 @@ import java.awt.Point;
 
 /**
  * An effect which draws a shadow around the the painter's shape.
+ *
  * @author joshy
  */
 public class ShadowPathEffect extends AbstractAreaEffect {
-    
-    /** Creates a new instance of ShadowPathEffect */
+
+    /**
+     * Creates a new instance of ShadowPathEffect
+     */
     public ShadowPathEffect() {
         super();
         setBrushColor(Color.BLACK);
         setRenderInsideShape(false);
         setShouldFillShape(true);
-        setOffset(new Point(3,3));
+        setOffset(new Point(3, 3));
     }
-    
 }

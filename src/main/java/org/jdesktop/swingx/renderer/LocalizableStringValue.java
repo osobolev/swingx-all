@@ -1,10 +1,10 @@
 package org.jdesktop.swingx.renderer;
 
-import java.util.Locale;
-import java.util.Map;
-
 import org.jdesktop.swingx.plaf.UIManagerExt;
 import org.jdesktop.swingx.util.Contract;
+
+import java.util.Locale;
+import java.util.Map;
 
 /**
  * A StringValue which looks up localized String representations for objects.
@@ -20,9 +20,9 @@ public class LocalizableStringValue implements StringValue {
     /**
      * Instantiates a LocaleStringValue which looks up localized String
      * representations for items in the map using the JComponent defaultLocale.
-     * 
+     *
      * @param lookup a map containing Entries of objects and a string key to
-     *        look up its string representation in the UIManager
+     *               look up its string representation in the UIManager
      */
     public LocalizableStringValue(Map<Object, String> lookup) {
         this(lookup, null, null);
@@ -31,11 +31,11 @@ public class LocalizableStringValue implements StringValue {
     /**
      * Instantiates a LocaleStringValue which looks up localized String
      * representations for items in the map using the given Locale.
-     * 
+     *
      * @param lookup a map containing Entries of objects and a string key to
-     *        look up its string representation in the UIManager
+     *               look up its string representation in the UIManager
      * @param locale the locale to lookup the localized strings, may be null to
-     *        denote using JComponent.defaultLocale
+     *               denote using JComponent.defaultLocale
      */
     public LocalizableStringValue(Map<Object, String> lookup, Locale locale) {
         this(lookup, null, locale);
@@ -44,11 +44,11 @@ public class LocalizableStringValue implements StringValue {
     /**
      * Instantiates a LocaleStringValue which looks up localized String
      * representations for items in the map using the JComponent defaultLocale.
-     * 
+     *
      * @param lookup a map containing Entries of objects and a string key to
-     *        look up its string representation in the UIManager
+     *               look up its string representation in the UIManager
      * @param prefix a common prefix for all string keys in the map, may be null
-     *    to denote that the keys should be use as are 
+     *               to denote that the keys should be use as are
      */
     public LocalizableStringValue(Map<Object, String> lookup, String prefix) {
         this(lookup, prefix, null);
@@ -57,29 +57,27 @@ public class LocalizableStringValue implements StringValue {
     /**
      * Instantiates a LocaleStringValue which looks up localized String
      * representations for items in the map using the given Locale.
-     * 
+     *
      * @param lookup a map containing Entries of objects and a string key to
-     *        look up its string representation in the UIManager
+     *               look up its string representation in the UIManager
      * @param prefix a common prefix for all string keys in the map, may be null
-     *    to denote that the keys should be use as are 
+     *               to denote that the keys should be use as are
      * @param locale the locale to lookup the localized strings, may be null to
-     *        denote using JComponent.defaultLocale
+     *               denote using JComponent.defaultLocale
      */
     public LocalizableStringValue(Map<Object, String> lookup, String prefix,
-            Locale locale) {
+                                  Locale locale) {
         this.lookup = Contract.asNotNull(lookup, "map must not be null");
         this.prefix = prefix;
         setLocale(locale);
     }
 
     /**
-     * 
      * @inherited <p>
-     * 
-     *            Implemented to lookup the value's localized string
-     *            representation, if contained in the lookup map. Returns
-     *            toString if not.
-     * 
+     * <p>
+     * Implemented to lookup the value's localized string
+     * representation, if contained in the lookup map. Returns
+     * toString if not.
      */
     @Override
     public String getString(Object value) {
@@ -99,9 +97,9 @@ public class LocalizableStringValue implements StringValue {
 
     /**
      * Sets the Locale to use for lookup of localized string representation.
-     * 
+     *
      * @param locale the locale to lookup the localized strings, may be null to
-     *        denote using Locale's default.
+     *               denote using Locale's default.
      */
     public final void setLocale(Locale locale) {
         this.locale = locale;
@@ -110,7 +108,7 @@ public class LocalizableStringValue implements StringValue {
     /**
      * Returns the Locale to use for lookup, guaranteed to be not null. If
      * the initial setting had been null, returns current Locale's default.
-     * 
+     *
      * @return the Locale used for lookup.
      */
     public Locale getLocale() {

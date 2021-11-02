@@ -8,61 +8,42 @@
  * modify it under the terms of the GNU Lesser General Public
  * License as published by the Free Software Foundation; either
  * version 2.1 of the License, or (at your option) any later version.
- * 
+ *
  * This library is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  * Lesser General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  */
 package org.jdesktop.swingx.action;
 
+import javax.swing.*;
 import java.awt.Insets;
 import java.beans.PropertyChangeListener;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-
-import javax.swing.AbstractButton;
-import javax.swing.Action;
-import javax.swing.ActionMap;
-import javax.swing.ButtonGroup;
-import javax.swing.Icon;
-import javax.swing.JButton;
-import javax.swing.JCheckBoxMenuItem;
-import javax.swing.JComponent;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
-import javax.swing.JPopupMenu;
-import javax.swing.JRadioButtonMenuItem;
-import javax.swing.JToggleButton;
-import javax.swing.JToolBar;
+import java.util.*;
 
 /**
  * Creates user interface elements based on action ids and lists of action ids.
  * All action ids must represent actions managed by the ActionManager.
  * <p>
  * <h3>Action Lists</h3>
- * Use the createXXX(List) methods to construct containers of actions like menu 
- * bars, menus, popups and toolbars from actions represented as action ids in a 
+ * Use the createXXX(List) methods to construct containers of actions like menu
+ * bars, menus, popups and toolbars from actions represented as action ids in a
  * <i>java.util.List</i>. Each element in the action-list can be one of 3 types:
  * <ul>
  * <li>action id: corresponds to an action managed by the ActionManager
  * <li>null: indicates a separator should be inserted.
- * <li>java.util.List: represents a submenu. See the note below which describes 
- * the configuration of menus. 
+ * <li>java.util.List: represents a submenu. See the note below which describes
+ * the configuration of menus.
  * </li>
- * The order of elements in an action-list determines the arrangement of the ui 
+ * The order of elements in an action-list determines the arrangement of the ui
  * components which are constructed from the action-list.
  * <p>
- * For a menu or submenu, the first element in the action-list represents a menu 
- * and subsequent elements represent menu items or separators (if null). 
+ * For a menu or submenu, the first element in the action-list represents a menu
+ * and subsequent elements represent menu items or separators (if null).
  * <p>
  * This class can be used as a general component factory which will construct
  * components from Actions if the <code>create&lt;comp&gt;(Action,...)</code>
@@ -71,23 +52,24 @@ import javax.swing.JToolBar;
  * @see ActionManager
  */
 public class ActionContainerFactory {
+
     /**
      * Standard margin for toolbar buttons to improve their look
      */
     private static Insets TOOLBAR_BUTTON_MARGIN = new Insets(1, 1, 1, 1);
-    
+
     private ActionMap manager;
 
     // Map between group id + component and the ButtonGroup
     private Map<Integer, ButtonGroup> groupMap;
 
     /**
-     * Constructs an container factory which uses the default 
+     * Constructs an container factory which uses the default
      * ActionManager.
-     *
      */
     public ActionContainerFactory() {
     }
+
     /**
      * Constructs an container factory which uses managed actions.
      *
@@ -141,7 +123,7 @@ public class ActionContainerFactory {
     public JToolBar createToolBar(List<?> list) {
         JToolBar toolbar = new JToolBar();
         Iterator<?> iter = list.iterator();
-        while(iter.hasNext()) {
+        while (iter.hasNext()) {
             Object element = iter.next();
 
             if (element == null) {
@@ -158,16 +140,15 @@ public class ActionContainerFactory {
                  */
                 button.setMargin(TOOLBAR_BUTTON_MARGIN);
                 button.setBorderPainted(false);
-                
+
                 toolbar.add(button);
             }
         }
         return toolbar;
     }
 
-
     /**
-     * Constructs a popup menu from an array of action ids.  
+     * Constructs a popup menu from an array of action ids.
      *
      * @param list an array of action ids used to construct the popup.
      * @return the popup or null
@@ -185,14 +166,14 @@ public class ActionContainerFactory {
     public JPopupMenu createPopup(List<?> list) {
         JPopupMenu popup = new JPopupMenu();
         Iterator<?> iter = list.iterator();
-        while(iter.hasNext()) {
+        while (iter.hasNext()) {
             Object element = iter.next();
 
             if (element == null) {
                 popup.addSeparator();
             } else if (element instanceof List<?>) {
-                JMenu newMenu= createMenu((List<?>)element);
-                if (newMenu!= null) {
+                JMenu newMenu = createMenu((List<?>) element);
+                if (newMenu != null) {
                     popup.add(newMenu);
                 }
             } else {
@@ -240,10 +221,9 @@ public class ActionContainerFactory {
                 menubar.add(menu);
             }
         }
-        
+
         return menubar;
     }
-
 
     /**
      * Creates and returns a menu from a List which represents actions, separators
@@ -252,10 +232,10 @@ public class ActionContainerFactory {
      * Subsequent actions in the list represent menu items.
      *
      * @param actionIds an array of action ids used to construct the menu and menu items.
-     *             the first element represents the action used for the menu,
+     *                  the first element represents the action used for the menu,
      * @return the constructed JMenu or null
      */
-     public JMenu createMenu(Object[] actionIds) {
+    public JMenu createMenu(Object[] actionIds) {
         return createMenu(Arrays.asList(actionIds));
     }
 
@@ -272,11 +252,11 @@ public class ActionContainerFactory {
     public JMenu createMenu(List<?> list) {
         // The first item will be the action for the JMenu
         Action action = getAction(list.get(0));
-        
+
         if (action == null) {
             return null;
         }
-        
+
         JMenu menu = new JMenu(action);
 
         // The rest of the items represent the menu items.
@@ -299,7 +279,7 @@ public class ActionContainerFactory {
                 }
             }
         }
-        
+
         return menu;
     }
 
@@ -313,7 +293,7 @@ public class ActionContainerFactory {
     /**
      * Returns the button group corresponding to the groupid
      *
-     * @param groupid the value of the groupid attribute for the action element
+     * @param groupid   the value of the groupid attribute for the action element
      * @param container a container which will further identify the ButtonGroup
      */
     private ButtonGroup getGroup(String groupid, JComponent container) {
@@ -345,36 +325,35 @@ public class ActionContainerFactory {
         return createMenuItem(getAction(id), container);
     }
 
-
     /**
      * Creates a menu item based on the attributes of the action element.
      * Will return a JMenuItem, JRadioButtonMenuItem or a JCheckBoxMenuItem
      * depending on the context of the Action.
      *
-     * @param action a managed Action
+     * @param action    a managed Action
      * @param container the parent container may be null for non-group actions.
      * @return a JMenuItem or subclass depending on type.
      */
     private JMenuItem createMenuItem(Action action, JComponent container) {
         JMenuItem menuItem = null;
         if (action instanceof AbstractActionExt) {
-            AbstractActionExt ta = (AbstractActionExt)action;
+            AbstractActionExt ta = (AbstractActionExt) action;
 
             if (ta.isStateAction()) {
-                String groupid = (String)ta.getGroup();
+                String groupid = (String) ta.getGroup();
                 if (groupid != null) {
                     // If this action has a groupid attribute then it's a
                     // GroupAction
                     menuItem = createRadioButtonMenuItem(getGroup(groupid, container),
-                                                         (AbstractActionExt)action);
+                        (AbstractActionExt) action);
                 } else {
-                    menuItem = createCheckBoxMenuItem((AbstractActionExt)action);
+                    menuItem = createCheckBoxMenuItem((AbstractActionExt) action);
                 }
             }
         }
 
         if (menuItem == null) {
-            menuItem= new JMenuItem(action);
+            menuItem = new JMenuItem(action);
             configureMenuItemFromExtActionProperties(menuItem, action);
         }
         return menuItem;
@@ -392,17 +371,16 @@ public class ActionContainerFactory {
         return createMenuItem(action, null);
     }
 
-
     /**
-     * Creates, configures and returns an AbstractButton. 
-     * 
-     * The attributes of the action element 
+     * Creates, configures and returns an AbstractButton.
+     * <p>
+     * The attributes of the action element
      * registered with the ActionManger by the given id.
      * Will return a JButton or a JToggleButton.
-     * 
-     * @param id the identifier 
+     *
+     * @param id        the identifier
      * @param container the JComponent which parents the group, if any.
-     * @return an AbstractButton based on the 
+     * @return an AbstractButton based on the
      */
     public AbstractButton createButton(Object id, JComponent container) {
         return createButton(getAction(id), container);
@@ -414,9 +392,9 @@ public class ActionContainerFactory {
      * the returned component within a ButtonGroup. If the action doesn't
      * represent a grouped component then this value can be null.
      *
-     * @param action an action used to create the button
+     * @param action    an action used to create the button
      * @param container the parent container to uniquely identify
-     *        grouped components or null
+     *                  grouped components or null
      * @return will return a JButton or a JToggleButton.
      */
     public AbstractButton createButton(Action action, JComponent container) {
@@ -427,12 +405,12 @@ public class ActionContainerFactory {
         AbstractButton button = null;
         if (action instanceof AbstractActionExt) {
             // Check to see if we should create a toggle button
-            AbstractActionExt ta = (AbstractActionExt)action;
+            AbstractActionExt ta = (AbstractActionExt) action;
 
             if (ta.isStateAction()) {
                 // If this action has a groupid attribute then it's a
                 // GroupAction
-                String groupid = (String)ta.getGroup();
+                String groupid = (String) ta.getGroup();
                 if (groupid == null) {
                     button = createToggleButton(ta);
                 } else {
@@ -455,59 +433,59 @@ public class ActionContainerFactory {
      * @param action an action used to create the button
      * @return will return a JButton or a JToggleButton.
      */
-    public AbstractButton createButton(Action action)  {
+    public AbstractButton createButton(Action action) {
         return createButton(action, null);
     }
 
     /**
      * Adds and configures a toggle button.
+     *
      * @param a an abstraction of a toggle action.
      */
-    private JToggleButton createToggleButton(AbstractActionExt a)  {
+    private JToggleButton createToggleButton(AbstractActionExt a) {
         return createToggleButton(a, null);
     }
 
     /**
      * Adds and configures a toggle button.
-     * @param a an abstraction of a toggle action.
+     *
+     * @param a     an abstraction of a toggle action.
      * @param group the group to add the toggle button or null
      */
-    private JToggleButton createToggleButton(AbstractActionExt a, ButtonGroup group)  {
+    private JToggleButton createToggleButton(AbstractActionExt a, ButtonGroup group) {
         JToggleButton button = new JToggleButton();
         configureButton(button, a, group);
         return button;
     }
 
     /**
-     * 
      * @param button
      * @param a
      * @param group
      */
     public void configureButton(JToggleButton button, AbstractActionExt a, ButtonGroup group) {
-       configureSelectableButton(button, a, group);
-       configureButtonFromExtActionProperties(button, a);
+        configureSelectableButton(button, a, group);
+        configureButtonFromExtActionProperties(button, a);
     }
 
     /**
      * method to configure a "selectable" button from the given AbstractActionExt.
      * As there is some un-/wiring involved to support synch of the selected property between
-     * the action and the button, all config and unconfig (== setting a null action!) 
+     * the action and the button, all config and unconfig (== setting a null action!)
      * should be passed through this method. <p>
-     * 
-     * It's up to the client to only pass in button's where selected and/or the 
-     * group property makes sense. 
-     * 
+     * <p>
+     * It's up to the client to only pass in button's where selected and/or the
+     * group property makes sense.
+     * <p>
      * PENDING: the group properties are yet untested.
      * PENDING: think about automated unconfig.
-     * 
+     *
      * @param button where selected makes sense
      * @param a
-     * @param group the button should be added to.
-     * @throws IllegalArgumentException if the given action doesn't have the state flag set. 
-     * 
+     * @param group  the button should be added to.
+     * @throws IllegalArgumentException if the given action doesn't have the state flag set.
      */
-    public void configureSelectableButton(AbstractButton button, AbstractActionExt a, ButtonGroup group){
+    public void configureSelectableButton(AbstractButton button, AbstractActionExt a, ButtonGroup group) {
         if ((a != null) && !a.isStateAction()) throw
             new IllegalArgumentException("the Action must be a stateAction");
         // we assume that all button configuration is done exclusively through this method!!
@@ -532,7 +510,7 @@ public class ActionContainerFactory {
                 }
             }
         }
-        
+
         button.setAction(a);
         if (group != null) {
             group.add(button);
@@ -543,24 +521,23 @@ public class ActionContainerFactory {
             button.setSelected(a.isSelected());
             new ToggleActionPropertyChangeListener(a, button);
 //          new ToggleActionPCL(button, a);
-        } 
-        
+        }
     }
 
     /**
      * This method will be called after buttons created from an action. Override
      * for custom configuration.
-     * 
+     *
      * @param button the button to be configured
      * @param action the action used to construct the menu item.
      */
-    protected void configureButtonFromExtActionProperties(AbstractButton button, Action action)  {
+    protected void configureButtonFromExtActionProperties(AbstractButton button, Action action) {
         if (action.getValue(Action.SHORT_DESCRIPTION) == null) {
-            button.setToolTipText((String)action.getValue(Action.NAME));
+            button.setToolTipText((String) action.getValue(Action.NAME));
         }
         // Use the large icon for toolbar buttons.
         if (action.getValue(AbstractActionExt.LARGE_ICON) != null) {
-            button.setIcon((Icon)action.getValue(AbstractActionExt.LARGE_ICON));
+            button.setIcon((Icon) action.getValue(AbstractActionExt.LARGE_ICON));
         }
         // Don't show the text under the toolbar buttons if they have an icon
         if (button.getIcon() != null) {
@@ -568,13 +545,12 @@ public class ActionContainerFactory {
         }
     }
 
-
     /**
      * This method will be called after menu items are created.
      * Override for custom configuration.
      *
      * @param menuItem the menu item to be configured
-     * @param action the action used to construct the menu item.
+     * @param action   the action used to construct the menu item.
      */
     protected void configureMenuItemFromExtActionProperties(JMenuItem menuItem, Action action) {
     }
@@ -593,12 +569,10 @@ public class ActionContainerFactory {
      * Helper method to add a radio button menu item.
      */
     private JRadioButtonMenuItem createRadioButtonMenuItem(ButtonGroup group,
-                                                                  AbstractActionExt a)  {
+                                                           AbstractActionExt a) {
         JRadioButtonMenuItem mi = new JRadioButtonMenuItem();
         configureSelectableButton(mi, a, group);
         configureMenuItemFromExtActionProperties(mi, a);
         return mi;
     }
-    
-    
 }

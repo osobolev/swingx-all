@@ -20,14 +20,13 @@
  */
 package org.jdesktop.swingx.treetable;
 
+import javax.swing.tree.TreePath;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.swing.tree.TreePath;
-
 /**
  * {@code DefaultTreeTableModel} is a concrete implementation of
- * {@code AbstractTreeTableModel} and is provided purely as a convenience for 
+ * {@code AbstractTreeTableModel} and is provided purely as a convenience for
  * use with {@code TreeTableNode}s. Applications that use {@code JXTreeTable}
  * without {@code TreeTableNode}s are expected to provide their own
  * implementation of a {@code TreeTableModel}.
@@ -43,12 +42,15 @@ import javax.swing.tree.TreePath;
  * root node. Normally, the root node can be little more than a shell (in
  * displays that hide it), but without identifiers, the model relies on the root
  * node metadata for display.
- * 
+ *
  * @author Ramesh Gupta
  * @author Karl Schaefer
  */
 public class DefaultTreeTableModel extends AbstractTreeTableModel {
-    /** The <code>List</code> of column identifiers. */
+
+    /**
+     * The <code>List</code> of column identifiers.
+     */
     protected List<?> columnIdentifiers;
 
     private boolean useAutoCalculatedIdentifiers;
@@ -63,9 +65,8 @@ public class DefaultTreeTableModel extends AbstractTreeTableModel {
     /**
      * Creates a new {@code DefaultTreeTableModel} with the specified
      * {@code root}.
-     * 
-     * @param root
-     *            the root node of the tree
+     *
+     * @param root the root node of the tree
      */
     public DefaultTreeTableModel(TreeTableNode root) {
         this(root, null);
@@ -74,21 +75,19 @@ public class DefaultTreeTableModel extends AbstractTreeTableModel {
     /**
      * Creates a new {@code DefaultTreeTableModel} with the specified {@code
      * root} and column names.
-     * 
-     * @param root
-     *            the root node of the tree
-     * @param columnNames
-     *            the names of the columns used by this model
+     *
+     * @param root        the root node of the tree
+     * @param columnNames the names of the columns used by this model
      * @see #setColumnIdentifiers(List)
      */
     public DefaultTreeTableModel(TreeTableNode root, List<?> columnNames) {
         super(root);
-        
+
         setColumnIdentifiers(columnNames);
     }
 
     private boolean isValidTreeTableNode(Object node) {
-         boolean result = false;
+        boolean result = false;
 
         if (node instanceof TreeTableNode) {
             TreeTableNode ttn = (TreeTableNode) node;
@@ -111,24 +110,23 @@ public class DefaultTreeTableModel extends AbstractTreeTableModel {
      * number of columns, all the extra columns at the end of a row are
      * discarded.
      * <p>
-     * 
-     * @param columnIdentifiers
-     *            vector of column identifiers. If <code>null</code>, set the
-     *            model to zero columns
+     *
+     * @param columnIdentifiers vector of column identifiers. If <code>null</code>, set the
+     *                          model to zero columns
      */
     // from DefaultTableModel
     public void setColumnIdentifiers(List<?> columnIdentifiers) {
         useAutoCalculatedIdentifiers = columnIdentifiers == null;
 
         this.columnIdentifiers = useAutoCalculatedIdentifiers
-                ? getAutoCalculatedIdentifiers(getRoot())
-                : columnIdentifiers;
-                
+            ? getAutoCalculatedIdentifiers(getRoot())
+            : columnIdentifiers;
+
         modelSupport.fireNewRoot();
     }
 
     private static List<String> getAutoCalculatedIdentifiers(
-            TreeTableNode exemplar) {
+        TreeTableNode exemplar) {
         List<String> autoCalculatedIndentifiers = new ArrayList<String>();
 
         if (exemplar != null) {
@@ -140,17 +138,15 @@ public class DefaultTreeTableModel extends AbstractTreeTableModel {
 
         return autoCalculatedIndentifiers;
     }
-    
+
     /**
      * Returns the root of the tree. Returns {@code null} only if the tree has
      * no nodes.
-     * 
+     *
      * @return the root of the tree
-     * 
-     * @throws ClassCastException
-     *             if {@code root} is not a {@code TreeTableNode}. Even though
-     *             subclasses have direct access to {@code root}, they should
-     *             avoid accessing it directly.
+     * @throws ClassCastException if {@code root} is not a {@code TreeTableNode}. Even though
+     *                            subclasses have direct access to {@code root}, they should
+     *                            avoid accessing it directly.
      * @see AbstractTreeTableModel#root
      * @see #setRoot(TreeTableNode)
      */
@@ -161,23 +157,20 @@ public class DefaultTreeTableModel extends AbstractTreeTableModel {
 
     /**
      * Gets the value for the {@code node} at {@code column}.
-     * 
-     * @impl delegates to {@code TreeTableNode.getValueAt(int)}
-     * @param node
-     *            the node whose value is to be queried
-     * @param column
-     *            the column whose value is to be queried
+     *
+     * @param node   the node whose value is to be queried
+     * @param column the column whose value is to be queried
      * @return the value Object at the specified cell
-     * @throws IllegalArgumentException
-     *             if {@code node} is not an instance of {@code TreeTableNode}
-     *             or is not managed by this model, or {@code column} is not a
-     *             valid column index
+     * @throws IllegalArgumentException if {@code node} is not an instance of {@code TreeTableNode}
+     *                                  or is not managed by this model, or {@code column} is not a
+     *                                  valid column index
+     * @impl delegates to {@code TreeTableNode.getValueAt(int)}
      */
     @Override
     public Object getValueAt(Object node, int column) {
         if (!isValidTreeTableNode(node)) {
             throw new IllegalArgumentException(
-                    "node must be a valid node managed by this model");
+                "node must be a valid node managed by this model");
         }
 
         if (column < 0 || column >= getColumnCount()) {
@@ -185,11 +178,11 @@ public class DefaultTreeTableModel extends AbstractTreeTableModel {
         }
 
         TreeTableNode ttn = (TreeTableNode) node;
-        
+
         if (column >= ttn.getColumnCount()) {
             return null;
         }
-        
+
         return ttn.getValueAt(column);
     }
 
@@ -200,7 +193,7 @@ public class DefaultTreeTableModel extends AbstractTreeTableModel {
     public void setValueAt(Object value, Object node, int column) {
         if (!isValidTreeTableNode(node)) {
             throw new IllegalArgumentException(
-                    "node must be a valid node managed by this model");
+                "node must be a valid node managed by this model");
         }
 
         if (column < 0 || column >= getColumnCount()) {
@@ -249,7 +242,7 @@ public class DefaultTreeTableModel extends AbstractTreeTableModel {
     public Object getChild(Object parent, int index) {
         if (!isValidTreeTableNode(parent)) {
             throw new IllegalArgumentException(
-                    "parent must be a TreeTableNode managed by this model");
+                "parent must be a TreeTableNode managed by this model");
         }
 
         return ((TreeTableNode) parent).getChildAt(index);
@@ -262,7 +255,7 @@ public class DefaultTreeTableModel extends AbstractTreeTableModel {
     public int getChildCount(Object parent) {
         if (!isValidTreeTableNode(parent)) {
             throw new IllegalArgumentException(
-                    "parent must be a TreeTableNode managed by this model");
+                "parent must be a TreeTableNode managed by this model");
         }
 
         return ((TreeTableNode) parent).getChildCount();
@@ -287,7 +280,7 @@ public class DefaultTreeTableModel extends AbstractTreeTableModel {
     public boolean isCellEditable(Object node, int column) {
         if (!isValidTreeTableNode(node)) {
             throw new IllegalArgumentException(
-                    "node must be a valid node managed by this model");
+                "node must be a valid node managed by this model");
         }
 
         if (column < 0 || column >= getColumnCount()) {
@@ -310,7 +303,7 @@ public class DefaultTreeTableModel extends AbstractTreeTableModel {
     public boolean isLeaf(Object node) {
         if (!isValidTreeTableNode(node)) {
             throw new IllegalArgumentException(
-                    "node must be a TreeTableNode managed by this model");
+                "node must be a TreeTableNode managed by this model");
         }
 
         return ((TreeTableNode) node).isLeaf();
@@ -318,15 +311,13 @@ public class DefaultTreeTableModel extends AbstractTreeTableModel {
 
     /**
      * Gets the path from the root to the specified node.
-     * 
-     * @param aNode
-     *            the node to query
+     *
+     * @param aNode the node to query
      * @return an array of {@code TreeTableNode}s, where
-     *         {@code arr[0].equals(getRoot())} and
-     *         {@code arr[arr.length - 1].equals(aNode)}, or an empty array if
-     *         the node is not found.
-     * @throws NullPointerException
-     *             if {@code aNode} is {@code null}
+     * {@code arr[0].equals(getRoot())} and
+     * {@code arr[arr.length - 1].equals(aNode)}, or an empty array if
+     * the node is not found.
+     * @throws NullPointerException if {@code aNode} is {@code null}
      */
     public TreeTableNode[] getPathToRoot(TreeTableNode aNode) {
         List<TreeTableNode> path = new ArrayList<TreeTableNode>();
@@ -349,9 +340,8 @@ public class DefaultTreeTableModel extends AbstractTreeTableModel {
      * Sets the root for this table model. If no column identifiers have been
      * specified, this will rebuild the identifier list, using {@code root} as
      * an examplar of the table.
-     * 
-     * @param root
-     *            the node to set as root
+     *
+     * @param root the node to set as root
      */
     public void setRoot(TreeTableNode root) {
         this.root = root;
@@ -372,11 +362,11 @@ public class DefaultTreeTableModel extends AbstractTreeTableModel {
      * appropriate event.
      */
     public void insertNodeInto(MutableTreeTableNode newChild,
-            MutableTreeTableNode parent, int index) {
+                               MutableTreeTableNode parent, int index) {
         parent.insert(newChild, index);
 
         modelSupport.fireChildAdded(new TreePath(getPathToRoot(parent)), index,
-                newChild);
+            newChild);
     }
 
     /**
@@ -395,7 +385,7 @@ public class DefaultTreeTableModel extends AbstractTreeTableModel {
         node.removeFromParent();
 
         modelSupport.fireChildRemoved(new TreePath(getPathToRoot(parent)),
-                index, node);
+            index, node);
     }
 
     /**
@@ -407,28 +397,23 @@ public class DefaultTreeTableModel extends AbstractTreeTableModel {
      * the path. This change does not alter a nodes children in any way. If you
      * need to change structure of the node, use one of the provided mutator
      * methods.
-     * 
-     * @param path
-     *            path to the node that has changed
-     * @param newValue
-     *            the new value
-     * @throws NullPointerException
-     *             if {@code path} is {@code null}
-     * @throws IllegalArgumentException
-     *             if {@code path} is not a path managed by this model
-     * @throws ClassCastException
-     *             if {@code path.getLastPathComponent()} is not a {@code
-     *             TreeTableNode}
+     *
+     * @param path     path to the node that has changed
+     * @param newValue the new value
+     * @throws NullPointerException     if {@code path} is {@code null}
+     * @throws IllegalArgumentException if {@code path} is not a path managed by this model
+     * @throws ClassCastException       if {@code path.getLastPathComponent()} is not a {@code
+     *                                  TreeTableNode}
      */
     @Override
     public void valueForPathChanged(TreePath path, Object newValue) {
         if (path.getPathComponent(0) != root) {
             throw new IllegalArgumentException("invalid path");
         }
-        
+
         TreeTableNode node = (TreeTableNode) path.getLastPathComponent();
         node.setUserObject(newValue);
-        
+
         modelSupport.firePathChanged(path);
     }
 
@@ -438,15 +423,11 @@ public class DefaultTreeTableModel extends AbstractTreeTableModel {
      * <p>
      * This method is a convenient cover for
      * {@link #valueForPathChanged(TreePath, Object)}.
-     * 
-     * @param node
-     *            the node to modify
-     * @param userObject
-     *            the new user object to set
-     * @throws NullPointerException
-     *             if {@code node} is {@code null}
-     * @throws IllegalArgumentException
-     *             if {@code node} is not a node managed by this model
+     *
+     * @param node       the node to modify
+     * @param userObject the new user object to set
+     * @throws NullPointerException     if {@code node} is {@code null}
+     * @throws IllegalArgumentException if {@code node} is not a node managed by this model
      */
     public void setUserObject(TreeTableNode node, Object userObject) {
         valueForPathChanged(new TreePath(getPathToRoot(node)), userObject);

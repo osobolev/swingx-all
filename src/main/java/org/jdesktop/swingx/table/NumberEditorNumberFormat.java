@@ -20,23 +20,18 @@
  */
 package org.jdesktop.swingx.table;
 
-import java.text.AttributedCharacterIterator;
-import java.text.AttributedString;
-import java.text.FieldPosition;
-import java.text.Format;
-import java.text.NumberFormat;
-import java.text.ParsePosition;
+import java.text.*;
 
 /**
  * A specialised Format for the NumberEditor that returns a null for empty
  * strings.
- * 
+ *
  * @author Noel Grandin
- * 
- * @deprecated (pre-1.6.2) replaced by NumberEditorExt, no longer used internally
+ * @deprecated (pre - 1.6.2) replaced by NumberEditorExt, no longer used internally
  */
 @Deprecated
 class NumberEditorNumberFormat extends Format {
+
     private final NumberFormat childFormat;
 
     public NumberEditorNumberFormat(NumberFormat childFormat) {
@@ -55,7 +50,7 @@ class NumberEditorNumberFormat extends Format {
 
     @Override
     public StringBuffer format(Object obj, StringBuffer toAppendTo,
-            FieldPosition pos) {
+                               FieldPosition pos) {
         if (obj == null)
             return new StringBuffer("");
         return childFormat.format(obj, toAppendTo, pos);

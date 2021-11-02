@@ -1,22 +1,21 @@
 package org.jdesktop.swingx.prompt;
 
-import java.awt.Cursor;
-import java.awt.Insets;
+import org.jdesktop.swingx.plaf.SearchFieldUI;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.border.Border;
-
-import org.jdesktop.swingx.plaf.SearchFieldUI;
+import java.awt.Cursor;
+import java.awt.Insets;
 
 /**
  * Non focusable, no border, no margin and insets button with no content area
  * filled.
- * 
+ *
  * @author Peter Weishapl <petw@gmx.net>
- * 
  */
 public class BuddyButton extends JButton {
+
     public BuddyButton() {
         this(null);
     }

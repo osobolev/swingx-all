@@ -8,49 +8,43 @@
  * modify it under the terms of the GNU Lesser General Public
  * License as published by the Free Software Foundation; either
  * version 2.1 of the License, or (at your option) any later version.
- * 
+ *
  * This library is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  * Lesser General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  */
 package org.jdesktop.swingx.color;
 
-import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.LinearGradientPaint;
-import java.awt.MultipleGradientPaint;
-import java.awt.Paint;
-import java.awt.Rectangle;
-import java.awt.geom.Point2D;
-import java.awt.geom.Rectangle2D;
-import java.util.List;
-
-import javax.swing.JComponent;
-
 import org.jdesktop.swingx.JXMultiThumbSlider;
 import org.jdesktop.swingx.multislider.Thumb;
 import org.jdesktop.swingx.multislider.TrackRenderer;
 import org.jdesktop.swingx.util.PaintUtils;
+
+import javax.swing.JComponent;
+import java.awt.*;
+import java.awt.geom.Point2D;
+import java.awt.geom.Rectangle2D;
+import java.util.List;
 
 /**
  * <p><b>Dependency</b>: Because this class relies on LinearGradientPaint and
  * RadialGradientPaint, it requires the optional MultipleGradientPaint.jar</p>
  */
 public class GradientTrackRenderer extends JComponent implements TrackRenderer {
+
     private Paint checker_paint;
 
     public GradientTrackRenderer() {
         checker_paint = PaintUtils.getCheckerPaint();
     }
-    
+
     private JXMultiThumbSlider slider;
-    
+
     @Override
     public void paint(Graphics g) {
         super.paint(g);
@@ -59,8 +53,8 @@ public class GradientTrackRenderer extends JComponent implements TrackRenderer {
 
     @Override
     protected void paintComponent(Graphics gfx) {
-        Graphics2D g = (Graphics2D)gfx;
-        
+        Graphics2D g = (Graphics2D) gfx;
+
         // get the list of colors
         List<Thumb<Color>> stops = slider.getModel().getSortedThumbs();
         int len = stops.size();
@@ -69,8 +63,8 @@ public class GradientTrackRenderer extends JComponent implements TrackRenderer {
         float[] fractions = new float[len];
         Color[] colors = new Color[len];
         int i = 0;
-        for(Thumb<Color> thumb : stops) {
-            colors[i] = (Color)thumb.getObject();
+        for (Thumb<Color> thumb : stops) {
+            colors[i] = (Color) thumb.getObject();
             fractions[i] = thumb.getPosition();
             i++;
         }
@@ -86,14 +80,14 @@ public class GradientTrackRenderer extends JComponent implements TrackRenderer {
         g.fill(rect);
 
         // fill in the gradient
-        Point2D start = new Point2D.Float(0,0);
-        Point2D end = new Point2D.Float(track_width,0);
+        Point2D start = new Point2D.Float(0, 0);
+        Point2D end = new Point2D.Float(track_width, 0);
         MultipleGradientPaint paint = new LinearGradientPaint(
-                (float)start.getX(),
-                (float)start.getY(),
-                (float)end.getX(),
-                (float)end.getY(),
-                fractions,colors);
+            (float) start.getX(),
+            (float) start.getY(),
+            (float) end.getX(),
+            (float) end.getY(),
+            fractions, colors);
         g.setPaint(paint);
         g.fill(rect);
 

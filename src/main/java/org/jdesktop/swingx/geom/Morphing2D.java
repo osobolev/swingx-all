@@ -22,12 +22,7 @@ package org.jdesktop.swingx.geom;
 
 import java.awt.Rectangle;
 import java.awt.Shape;
-import java.awt.geom.AffineTransform;
-import java.awt.geom.FlatteningPathIterator;
-import java.awt.geom.IllegalPathStateException;
-import java.awt.geom.PathIterator;
-import java.awt.geom.Point2D;
-import java.awt.geom.Rectangle2D;
+import java.awt.geom.*;
 
 /**
  * <p>A morphing shape is a shape which geometry is constructed from two
@@ -40,6 +35,7 @@ import java.awt.geom.Rectangle2D;
  * @author Romain Guy <romain.guy@mac.com> (Maintainer)
  */
 public class Morphing2D implements Shape {
+
     private double morph;
     private Geometry startGeometry;
     private Geometry endGeometry;
@@ -51,7 +47,6 @@ public class Morphing2D implements Shape {
      *
      * @param startShape the shape to morph from
      * @param endShape   the shape to morph to
-     *
      * @throws IllegalPathStateException if the shapes do not have the same
      *                                   winding rule
      * @see #getMorphing()
@@ -75,7 +70,6 @@ public class Morphing2D implements Shape {
      * <p>Returns the morphing value between the two shapes.</p>
      *
      * @return the morphing value between the two shapes
-     *
      * @see #setMorphing(double)
      */
     public double getMorphing() {
@@ -91,7 +85,6 @@ public class Morphing2D implements Shape {
      * is clamped in the appropriate range.</p>
      *
      * @param morph the morphing value between the two shapes
-     *
      * @see #getMorphing()
      */
     public void setMorphing(double morph) {
@@ -161,14 +154,14 @@ public class Morphing2D implements Shape {
         int n = startGeometry.getNumCoords();
         double xmin, ymin, xmax, ymax;
         xmin = xmax = interp(startGeometry.getCoord(0), endGeometry.getCoord(0),
-                             morph);
+            morph);
         ymin = ymax = interp(startGeometry.getCoord(1), endGeometry.getCoord(1),
-                             morph);
+            morph);
         for (int i = 2; i < n; i += 2) {
             double x = interp(startGeometry.getCoord(i),
-                              endGeometry.getCoord(i), morph);
+                endGeometry.getCoord(i), morph);
             double y = interp(startGeometry.getCoord(i + 1),
-                              endGeometry.getCoord(i + 1), morph);
+                endGeometry.getCoord(i + 1), morph);
             if (xmin > x) {
                 xmin = x;
             }
@@ -250,6 +243,7 @@ public class Morphing2D implements Shape {
     }
 
     private static class Geometry {
+
         static final double THIRD = (1.0 / 3.0);
         static final double MIN_LEN = 0.001;
         double bezierCoords[];
@@ -286,51 +280,50 @@ public class Morphing2D implements Shape {
                     bezierCoords = newCoords;
                 }
                 switch (pi.currentSegment(coords)) {
-                    case PathIterator.SEG_MOVETO:
-                        throw new InternalError(
-                                "Cannot handle multiple subpaths");
-                    case PathIterator.SEG_CLOSE:
-                        if (curx == bezierCoords[0] && cury == bezierCoords[1])
-                        {
-                            break;
-                        }
-                        coords[0] = bezierCoords[0];
-                        coords[1] = bezierCoords[1];
-                        /* NO BREAK */
-                    case PathIterator.SEG_LINETO:
-                        newx = coords[0];
-                        newy = coords[1];
-                        // A third of the way from curxy to newxy:
-                        bezierCoords[numCoords++] = interp(curx, newx, THIRD);
-                        bezierCoords[numCoords++] = interp(cury, newy, THIRD);
-                        // A third of the way from newxy back to curxy:
-                        bezierCoords[numCoords++] = interp(newx, curx, THIRD);
-                        bezierCoords[numCoords++] = interp(newy, cury, THIRD);
-                        bezierCoords[numCoords++] = curx = newx;
-                        bezierCoords[numCoords++] = cury = newy;
+                case PathIterator.SEG_MOVETO:
+                    throw new InternalError(
+                        "Cannot handle multiple subpaths");
+                case PathIterator.SEG_CLOSE:
+                    if (curx == bezierCoords[0] && cury == bezierCoords[1]) {
                         break;
-                    case PathIterator.SEG_QUADTO:
-                        double ctrlx = coords[0];
-                        double ctrly = coords[1];
-                        newx = coords[2];
-                        newy = coords[3];
-                        // A third of the way from ctrlxy back to curxy:
-                        bezierCoords[numCoords++] = interp(ctrlx, curx, THIRD);
-                        bezierCoords[numCoords++] = interp(ctrly, cury, THIRD);
-                        // A third of the way from ctrlxy to newxy:
-                        bezierCoords[numCoords++] = interp(ctrlx, newx, THIRD);
-                        bezierCoords[numCoords++] = interp(ctrly, newy, THIRD);
-                        bezierCoords[numCoords++] = curx = newx;
-                        bezierCoords[numCoords++] = cury = newy;
-                        break;
-                    case PathIterator.SEG_CUBICTO:
-                        bezierCoords[numCoords++] = coords[0];
-                        bezierCoords[numCoords++] = coords[1];
-                        bezierCoords[numCoords++] = coords[2];
-                        bezierCoords[numCoords++] = coords[3];
-                        bezierCoords[numCoords++] = curx = coords[4];
-                        bezierCoords[numCoords++] = cury = coords[5];
-                        break;
+                    }
+                    coords[0] = bezierCoords[0];
+                    coords[1] = bezierCoords[1];
+                    /* NO BREAK */
+                case PathIterator.SEG_LINETO:
+                    newx = coords[0];
+                    newy = coords[1];
+                    // A third of the way from curxy to newxy:
+                    bezierCoords[numCoords++] = interp(curx, newx, THIRD);
+                    bezierCoords[numCoords++] = interp(cury, newy, THIRD);
+                    // A third of the way from newxy back to curxy:
+                    bezierCoords[numCoords++] = interp(newx, curx, THIRD);
+                    bezierCoords[numCoords++] = interp(newy, cury, THIRD);
+                    bezierCoords[numCoords++] = curx = newx;
+                    bezierCoords[numCoords++] = cury = newy;
+                    break;
+                case PathIterator.SEG_QUADTO:
+                    double ctrlx = coords[0];
+                    double ctrly = coords[1];
+                    newx = coords[2];
+                    newy = coords[3];
+                    // A third of the way from ctrlxy back to curxy:
+                    bezierCoords[numCoords++] = interp(ctrlx, curx, THIRD);
+                    bezierCoords[numCoords++] = interp(ctrly, cury, THIRD);
+                    // A third of the way from ctrlxy to newxy:
+                    bezierCoords[numCoords++] = interp(ctrlx, newx, THIRD);
+                    bezierCoords[numCoords++] = interp(ctrly, newy, THIRD);
+                    bezierCoords[numCoords++] = curx = newx;
+                    bezierCoords[numCoords++] = cury = newy;
+                    break;
+                case PathIterator.SEG_CUBICTO:
+                    bezierCoords[numCoords++] = coords[0];
+                    bezierCoords[numCoords++] = coords[1];
+                    bezierCoords[numCoords++] = coords[2];
+                    bezierCoords[numCoords++] = coords[3];
+                    bezierCoords[numCoords++] = curx = coords[4];
+                    bezierCoords[numCoords++] = cury = coords[5];
+                    break;
                 }
                 pi.next();
             }
@@ -372,8 +365,8 @@ public class Morphing2D implements Shape {
                 // Copy all coordinates from minPt to the end of the
                 // array to the beginning of the new array
                 System.arraycopy(bezierCoords, minPt,
-                                 newCoords, 0,
-                                 numCoords - minPt);
+                    newCoords, 0,
+                    numCoords - minPt);
                 // Now we do not want to copy 0,1 as they are duplicates
                 // of the last 2 coordinates which we just copied.  So
                 // we start the source copy at index 2, but we still
@@ -382,8 +375,8 @@ public class Morphing2D implements Shape {
                 // of the array, thus ensuring that thew new array starts
                 // and ends with the same pair of coordinates...
                 System.arraycopy(bezierCoords, 2,
-                                 newCoords, numCoords - minPt,
-                                 minPt);
+                    newCoords, numCoords - minPt,
+                    minPt);
                 bezierCoords = newCoords;
             }
             /* Clockwise enforcement:
@@ -611,6 +604,7 @@ public class Morphing2D implements Shape {
     }
 
     private static class Iterator implements PathIterator {
+
         AffineTransform at;
         Geometry g0;
         Geometry g1;
@@ -698,8 +692,8 @@ public class Morphing2D implements Shape {
             if (n > 0) {
                 for (int i = 0; i < n; i++) {
                     coords[i] = interp(g0.getCoord(cindex + i),
-                                       g1.getCoord(cindex + i),
-                                       t);
+                        g1.getCoord(cindex + i),
+                        t);
                 }
                 if (at != null) {
                     at.transform(coords, 0, coords, 0, n / 2);

@@ -20,59 +20,6 @@
  */
 package org.jdesktop.swingx.plaf.basic;
 
-import java.awt.BorderLayout;
-import java.awt.Component;
-import java.awt.Container;
-import java.awt.Dialog;
-import java.awt.Dimension;
-import java.awt.Frame;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.Insets;
-import java.awt.LayoutManager;
-import java.awt.Point;
-import java.awt.Window;
-import java.awt.datatransfer.StringSelection;
-import java.awt.datatransfer.Transferable;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.ComponentAdapter;
-import java.awt.event.ComponentEvent;
-import java.awt.event.KeyEvent;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
-import java.util.logging.Level;
-
-import javax.swing.AbstractAction;
-import javax.swing.AbstractButton;
-import javax.swing.Action;
-import javax.swing.BorderFactory;
-import javax.swing.Icon;
-import javax.swing.JButton;
-import javax.swing.JComponent;
-import javax.swing.JDialog;
-import javax.swing.JEditorPane;
-import javax.swing.JFrame;
-import javax.swing.JInternalFrame;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.KeyStroke;
-import javax.swing.LookAndFeel;
-import javax.swing.SwingUtilities;
-import javax.swing.TransferHandler;
-import javax.swing.UIManager;
-import javax.swing.border.EmptyBorder;
-import javax.swing.plaf.ComponentUI;
-import javax.swing.plaf.UIResource;
-import javax.swing.plaf.basic.BasicHTML;
-import javax.swing.text.JTextComponent;
-import javax.swing.text.StyledEditorKit;
-import javax.swing.text.html.HTMLEditorKit;
-
 import org.jdesktop.swingx.JXEditorPane;
 import org.jdesktop.swingx.JXErrorPane;
 import org.jdesktop.swingx.action.AbstractActionExt;
@@ -83,6 +30,22 @@ import org.jdesktop.swingx.plaf.ErrorPaneUI;
 import org.jdesktop.swingx.plaf.UIManagerExt;
 import org.jdesktop.swingx.util.WindowUtils;
 
+import javax.swing.*;
+import javax.swing.border.EmptyBorder;
+import javax.swing.plaf.ComponentUI;
+import javax.swing.plaf.UIResource;
+import javax.swing.plaf.basic.BasicHTML;
+import javax.swing.text.JTextComponent;
+import javax.swing.text.StyledEditorKit;
+import javax.swing.text.html.HTMLEditorKit;
+import java.awt.*;
+import java.awt.datatransfer.StringSelection;
+import java.awt.datatransfer.Transferable;
+import java.awt.event.*;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+import java.util.logging.Level;
+
 /**
  * Base implementation of the <code>JXErrorPane</code> UI.
  *
@@ -90,6 +53,7 @@ import org.jdesktop.swingx.util.WindowUtils;
  * @author rah003
  */
 public class BasicErrorPaneUI extends ErrorPaneUI {
+
     /**
      * Used as a prefix when pulling data out of UIManager for i18n
      */
@@ -179,7 +143,7 @@ public class BasicErrorPaneUI extends ErrorPaneUI {
     public void installUI(JComponent c) {
         super.installUI(c);
 
-        this.pane = (JXErrorPane)c;
+        this.pane = (JXErrorPane) c;
 
         installDefaults();
         installComponents();
@@ -188,7 +152,7 @@ public class BasicErrorPaneUI extends ErrorPaneUI {
         //if the report action needs to be defined, do so
         Action a = c.getActionMap().get(JXErrorPane.REPORT_ACTION_KEY);
         if (a == null) {
-            final JXErrorPane pane = (JXErrorPane)c;
+            final JXErrorPane pane = (JXErrorPane) c;
             AbstractActionExt reportAction = new AbstractActionExt() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
@@ -221,14 +185,12 @@ public class BasicErrorPaneUI extends ErrorPaneUI {
     protected void installDefaults() {
     }
 
-
     /**
      * Uninstalls the default colors, and default font into the Error Pane.
      */
     protected void uninstallDefaults() {
         LookAndFeel.uninstallBorder(pane);
     }
-
 
     /**
      * Create and install the listeners for the Error Pane.
@@ -241,7 +203,6 @@ public class BasicErrorPaneUI extends ErrorPaneUI {
         pane.addPropertyChangeListener(errorPaneListener);
     }
 
-
     /**
      * Remove the installed listeners from the Error Pane.
      * The number and types of listeners removed and in this method should be
@@ -251,7 +212,6 @@ public class BasicErrorPaneUI extends ErrorPaneUI {
         //remove the property change listener from the pane
         pane.removePropertyChangeListener(errorPaneListener);
     }
-
 
     //    ===============================
     //     begin Sub-Component Management
@@ -275,12 +235,12 @@ public class BasicErrorPaneUI extends ErrorPaneUI {
         errorMessage.putClientProperty(JXEditorPane.HONOR_DISPLAY_PROPERTIES, Boolean.TRUE);
 
         closeButton = new JButton(UIManagerExt.getString(
-                CLASS_NAME + ".ok_button_text", errorMessage.getLocale()));
+            CLASS_NAME + ".ok_button_text", errorMessage.getLocale()));
 
         reportButton = new EqualSizeJButton(pane.getActionMap().get(JXErrorPane.REPORT_ACTION_KEY));
 
         detailButton = new EqualSizeJButton(UIManagerExt.getString(
-                CLASS_NAME + ".details_expand_text", errorMessage.getLocale()));
+            CLASS_NAME + ".details_expand_text", errorMessage.getLocale()));
 
         details = new JXEditorPane();
         details.setContentType("text/html");
@@ -292,7 +252,7 @@ public class BasicErrorPaneUI extends ErrorPaneUI {
         detailsPanel = new JPanel();
         detailsPanel.setVisible(false);
         copyToClipboardButton = new JButton(UIManagerExt.getString(
-                CLASS_NAME + ".copy_to_clipboard_button_text", errorMessage.getLocale()));
+            CLASS_NAME + ".copy_to_clipboard_button_text", errorMessage.getLocale()));
         copyToClipboardListener = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
@@ -308,7 +268,7 @@ public class BasicErrorPaneUI extends ErrorPaneUI {
         // Create error scroll pane. Make sure this happens before call to createErrorPaneLayout() in case any extending
         // class wants to manipulate the component there.
         errorScrollPane = new JScrollPane(errorMessage);
-        errorScrollPane.setBorder(new EmptyBorder(0,0,5,0));
+        errorScrollPane.setBorder(new EmptyBorder(0, 0, 5, 0));
         errorScrollPane.setOpaque(false);
         errorScrollPane.getViewport().setOpaque(false);
 
@@ -338,9 +298,9 @@ public class BasicErrorPaneUI extends ErrorPaneUI {
 
         //make the buttons the same size
         EqualSizeJButton[] buttons = new EqualSizeJButton[] {
-            (EqualSizeJButton)detailButton, (EqualSizeJButton)reportButton };
-        ((EqualSizeJButton)reportButton).setGroup(buttons);
-        ((EqualSizeJButton)detailButton).setGroup(buttons);
+            (EqualSizeJButton) detailButton, (EqualSizeJButton) reportButton};
+        ((EqualSizeJButton) reportButton).setGroup(buttons);
+        ((EqualSizeJButton) detailButton).setGroup(buttons);
 
         reportButton.setMinimumSize(reportButton.getPreferredSize());
         detailButton.setMinimumSize(detailButton.getPreferredSize());
@@ -410,9 +370,9 @@ public class BasicErrorPaneUI extends ErrorPaneUI {
         Window w = WindowUtils.findWindow(owner);
         JXErrorDialog dlg = null;
         if (w instanceof Dialog) {
-            dlg = new JXErrorDialog((Dialog)w, pane);
+            dlg = new JXErrorDialog((Dialog) w, pane);
         } else if (w instanceof Frame) {
-            dlg = new JXErrorDialog((Frame)w, pane);
+            dlg = new JXErrorDialog((Frame) w, pane);
         } else {
             // default fallback to null
             dlg = new JXErrorDialog(JOptionPane.getRootFrame(), pane);
@@ -443,7 +403,7 @@ public class BasicErrorPaneUI extends ErrorPaneUI {
 
     protected LayoutManager createDetailPanelLayout() {
         GridBagLayout layout = new GridBagLayout();
-        layout.addLayoutComponent(detailsScrollPane, new GridBagConstraints(0,0,1,1,1.0,1.0,GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(6,0,0,0),0,0));
+        layout.addLayoutComponent(detailsScrollPane, new GridBagConstraints(0, 0, 1, 1, 1.0, 1.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(6, 0, 0, 0), 0, 0));
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.anchor = GridBagConstraints.LINE_END;
         gbc.fill = GridBagConstraints.NONE;
@@ -515,8 +475,8 @@ public class BasicErrorPaneUI extends ErrorPaneUI {
      * scroll pane.  Otherwise, just set the details section.
      *
      * @param details Details to be shown in the detail section of the dialog.
-     * This can be null if you do not want to display the details section of the
-     * dialog.
+     *                This can be null if you do not want to display the details section of the
+     *                dialog.
      */
     private void setDetails(String details) {
         if (details == null || details.equals("")) {
@@ -530,16 +490,17 @@ public class BasicErrorPaneUI extends ErrorPaneUI {
     protected void configureDetailsButton(boolean expanded) {
         if (expanded) {
             detailButton.setText(UIManagerExt.getString(
-                    CLASS_NAME + ".details_contract_text", detailButton.getLocale()));
+                CLASS_NAME + ".details_contract_text", detailButton.getLocale()));
         } else {
             detailButton.setText(UIManagerExt.getString(
-                    CLASS_NAME + ".details_expand_text", detailButton.getLocale()));
+                CLASS_NAME + ".details_expand_text", detailButton.getLocale()));
         }
     }
 
     /**
      * Set the details section to be either visible or invisible.  Set the
      * text of the Details button accordingly.
+     *
      * @param b if true details section will be visible
      */
     private void setDetailsVisible(boolean b) {
@@ -576,10 +537,11 @@ public class BasicErrorPaneUI extends ErrorPaneUI {
 
     /**
      * Set the error message for the dialog box
+     *
      * @param errorMessage Message for the error dialog
      */
     private void setErrorMessage(String errorMessage) {
-        if(BasicHTML.isHTMLString(errorMessage)) {
+        if (BasicHTML.isHTMLString(errorMessage)) {
             this.errorMessage.setContentType("text/html");
         } else {
             this.errorMessage.setContentType("text/plain");
@@ -603,7 +565,7 @@ public class BasicErrorPaneUI extends ErrorPaneUI {
             iconLabel.setIcon(pane.getIcon());
             setErrorMessage("");
             closeButton.setText(UIManagerExt.getString(
-                    CLASS_NAME + ".ok_button_text", closeButton.getLocale()));
+                CLASS_NAME + ".ok_button_text", closeButton.getLocale()));
             setDetails("");
             //TODO Does this ever happen? It seems like if errorInfo is null and
             //this is called, it would be an IllegalStateException.
@@ -612,10 +574,10 @@ public class BasicErrorPaneUI extends ErrorPaneUI {
             //or to the "fatal" text depending on the error level of the incident info
             if (errorInfo.getErrorLevel() == ErrorLevel.FATAL) {
                 closeButton.setText(UIManagerExt.getString(
-                        CLASS_NAME + ".fatal_button_text", closeButton.getLocale()));
+                    CLASS_NAME + ".fatal_button_text", closeButton.getLocale()));
             } else {
                 closeButton.setText(UIManagerExt.getString(
-                        CLASS_NAME + ".ok_button_text", closeButton.getLocale()));
+                    CLASS_NAME + ".ok_button_text", closeButton.getLocale()));
             }
 
             //if the icon for the pane has not been specified by the developer,
@@ -631,7 +593,7 @@ public class BasicErrorPaneUI extends ErrorPaneUI {
             iconLabel.setIcon(icon);
             setErrorMessage(errorInfo.getBasicErrorMessage());
             String details = errorInfo.getDetailedErrorMessage();
-            if(details == null) {
+            if (details == null) {
                 details = getDetailsAsHTML(errorInfo);
             }
             setDetails(details);
@@ -644,7 +606,7 @@ public class BasicErrorPaneUI extends ErrorPaneUI {
      * error message property of the incident info is null.
      */
     protected String getDetailsAsHTML(ErrorInfo errorInfo) {
-        if(errorInfo.getErrorException() != null) {
+        if (errorInfo.getErrorException() != null) {
             //convert the stacktrace into a more pleasent bit of HTML
             StringBuffer html = new StringBuffer("<html>");
             html.append("<h2>" + escapeXml(errorInfo.getTitle()) + "</h2>");
@@ -660,8 +622,8 @@ public class BasicErrorPaneUI extends ErrorPaneUI {
             html.append("</pre>");
             html.append("<b>Stack Trace:</b>");
             Throwable ex = errorInfo.getErrorException();
-            while(ex != null) {
-                html.append("<h4>"+ex.getMessage()+"</h4>");
+            while (ex != null) {
+                html.append("<h4>" + ex.getMessage() + "</h4>");
                 html.append("<pre>");
                 for (StackTraceElement el : ex.getStackTrace()) {
                     html.append("    " + el.toString().replace("<init>", "&lt;init&gt;") + "\n");
@@ -679,14 +641,15 @@ public class BasicErrorPaneUI extends ErrorPaneUI {
     //------------------------------------------------ actions/inner classes
 
     /**
-     *  Default action for closing the JXErrorPane's enclosing window
-     *  (JDialog, JFrame, or JInternalFrame)
+     * Default action for closing the JXErrorPane's enclosing window
+     * (JDialog, JFrame, or JInternalFrame)
      */
     private static final class CloseAction extends AbstractAction {
+
         private Window w;
 
         /**
-         *  @param w cannot be null
+         * @param w cannot be null
          */
         private CloseAction(Window w) {
             if (w == null) {
@@ -704,7 +667,6 @@ public class BasicErrorPaneUI extends ErrorPaneUI {
             w.dispose();
         }
     }
-
 
     /**
      * Listener for Details click events.  Alternates whether the details section
@@ -724,7 +686,9 @@ public class BasicErrorPaneUI extends ErrorPaneUI {
     }
 
     private final class ResizeWindow implements ActionListener {
+
         private Window w;
+
         private ResizeWindow(Window w) {
             if (w == null) {
                 throw new NullPointerException();
@@ -736,9 +700,9 @@ public class BasicErrorPaneUI extends ErrorPaneUI {
         public void actionPerformed(ActionEvent ae) {
             Dimension contentSize = null;
             if (w instanceof JDialog) {
-                contentSize = ((JDialog)w).getContentPane().getSize();
+                contentSize = ((JDialog) w).getContentPane().getSize();
             } else {
-                contentSize = ((JFrame)w).getContentPane().getSize();
+                contentSize = ((JFrame) w).getContentPane().getSize();
             }
 
             Dimension dialogSize = w.getSize();
@@ -797,7 +761,7 @@ public class BasicErrorPaneUI extends ErrorPaneUI {
         public Dimension getPreferredSize() {
             int width = 0;
             int height = 0;
-            for(int iter = 0 ; iter < group.length ; iter++) {
+            for (int iter = 0; iter < group.length; iter++) {
                 Dimension size = group[iter].getRealPreferredSize();
                 width = Math.max(size.width, width);
                 height = Math.max(size.height, height);
@@ -805,7 +769,6 @@ public class BasicErrorPaneUI extends ErrorPaneUI {
 
             return new Dimension(width, height);
         }
-
     }
 
     /**
@@ -813,7 +776,9 @@ public class BasicErrorPaneUI extends ErrorPaneUI {
      * operations for the Details pane.
      */
     private static final class DetailsTransferHandler extends TransferHandler {
+
         private JTextComponent details;
+
         private DetailsTransferHandler(JTextComponent detailComponent) {
             if (detailComponent == null) {
                 throw new NullPointerException("detail component cannot be null");
@@ -836,10 +801,10 @@ public class BasicErrorPaneUI extends ErrorPaneUI {
         public int getSourceActions(JComponent c) {
             return TransferHandler.COPY;
         }
-
     }
 
     private final class JXErrorDialog extends JDialog {
+
         public JXErrorDialog(Frame parent, JXErrorPane p) {
             super(parent, true);
             init(p);
@@ -858,13 +823,15 @@ public class BasicErrorPaneUI extends ErrorPaneUI {
     }
 
     private final class JXErrorFrame extends JFrame {
+
         public JXErrorFrame(JXErrorPane p) {
             setTitle(p.getErrorInfo().getTitle());
-                initWindow(this, p);
+            initWindow(this, p);
         }
     }
 
     private final class JXInternalErrorFrame extends JInternalFrame {
+
         public JXInternalErrorFrame(JXErrorPane p) {
             setTitle(p.getErrorInfo().getTitle());
 
@@ -919,14 +886,14 @@ public class BasicErrorPaneUI extends ErrorPaneUI {
         }
 
         if (w instanceof JFrame) {
-            final JFrame f = (JFrame)w;
+            final JFrame f = (JFrame) w;
             f.getRootPane().setDefaultButton(closeButton);
             f.setResizable(true);
             f.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
             KeyStroke ks = KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0);
             f.getRootPane().registerKeyboardAction(closeAction, ks, JComponent.WHEN_IN_FOCUSED_WINDOW);
         } else if (w instanceof JDialog) {
-            final JDialog d = (JDialog)w;
+            final JDialog d = (JDialog) w;
             d.getRootPane().setDefaultButton(closeButton);
             d.setResizable(true);
             d.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
@@ -961,6 +928,7 @@ public class BasicErrorPaneUI extends ErrorPaneUI {
     }
 
     private final class ErrorPaneListener implements PropertyChangeListener {
+
         @Override
         public void propertyChange(PropertyChangeEvent evt) {
             reinit();
@@ -971,20 +939,24 @@ public class BasicErrorPaneUI extends ErrorPaneUI {
      * Lays out the BasicErrorPaneUI components.
      */
     private final class ErrorPaneLayout implements LayoutManager {
+
         private JEditorPane dummy = new JEditorPane();
 
         @Override
-        public void addLayoutComponent(String name, Component comp) {}
+        public void addLayoutComponent(String name, Component comp) {
+        }
+
         @Override
-        public void removeLayoutComponent(Component comp) {}
+        public void removeLayoutComponent(Component comp) {
+        }
 
         /**
          * The preferred size is:
-         *  The width of the parent container
-         *  The height necessary to show the entire message text
-         *    (as long as said height does not go off the screen)
-         *    plus the buttons
-         *
+         * The width of the parent container
+         * The height necessary to show the entire message text
+         * (as long as said height does not go off the screen)
+         * plus the buttons
+         * <p>
          * The preferred height changes depending on whether the details
          * are visible, or not.
          */
@@ -1008,17 +980,16 @@ public class BasicErrorPaneUI extends ErrorPaneUI {
                 int errorMessagePrefHeight = dummy.getPreferredSize().height;
 
                 prefHeight =
-                        //the greater of the error message height or the icon height
-                        Math.max(errorMessagePrefHeight, iconLabel.getPreferredSize().height) +
-                        //the space between the error message and the button
-                        10 +
-                        //the button preferred height
-                        closeButton.getPreferredSize().height;
+                    //the greater of the error message height or the icon height
+                    Math.max(errorMessagePrefHeight, iconLabel.getPreferredSize().height) +
+                    //the space between the error message and the button
+                    10 +
+                    //the button preferred height
+                    closeButton.getPreferredSize().height;
 
                 if (detailsPanel.isVisible()) {
                     prefHeight += getDetailsHeight();
                 }
-
             }
 
             if (iconLabel != null && iconLabel.getIcon() != null) {
@@ -1027,8 +998,8 @@ public class BasicErrorPaneUI extends ErrorPaneUI {
             }
 
             return new Dimension(
-                    prefWidth + insets.left + insets.right,
-                    prefHeight + insets.top + insets.bottom);
+                prefWidth + insets.left + insets.right,
+                prefHeight + insets.top + insets.bottom);
         }
 
         @Override
@@ -1056,7 +1027,7 @@ public class BasicErrorPaneUI extends ErrorPaneUI {
                 dim = dummy.getPreferredSize();
                 int spx = x;
                 int spy = y;
-                Dimension spDim = new Dimension (parent.getWidth() - leftEdge - insets.right, dim.height);
+                Dimension spDim = new Dimension(parent.getWidth() - leftEdge - insets.right, dim.height);
                 y += dim.height + 10;
                 int rightEdge = parent.getWidth() - insets.right;
                 x = rightEdge;
@@ -1089,7 +1060,7 @@ public class BasicErrorPaneUI extends ErrorPaneUI {
                     y = buttonY + dim.height + 6;
                     x = leftEdge;
                     int width = rightEdge - x;
-                    detailsPanel.setBounds(x, y, width, parent.getHeight() - (y + insets.bottom) );
+                    detailsPanel.setBounds(x, y, width, parent.getHeight() - (y + insets.bottom));
                 }
             }
         }
@@ -1100,8 +1071,8 @@ public class BasicErrorPaneUI extends ErrorPaneUI {
         //otherwise, center based on the center of the screen
         if (owner != null) {
             Point p = owner.getLocation();
-            p.x += owner.getWidth()/2;
-            p.y += owner.getHeight()/2;
+            p.x += owner.getWidth() / 2;
+            p.y += owner.getHeight() / 2;
             SwingUtilities.convertPointToScreen(p, owner);
             w.setLocation(p);
         } else {
@@ -1114,8 +1085,8 @@ public class BasicErrorPaneUI extends ErrorPaneUI {
         //otherwise, center based on the center of the screen
         if (owner != null) {
             Point p = owner.getLocation();
-            p.x += owner.getWidth()/2;
-            p.y += owner.getHeight()/2;
+            p.x += owner.getWidth() / 2;
+            p.y += owner.getHeight() / 2;
             SwingUtilities.convertPointToScreen(p, owner);
             w.setLocation(p);
         } else {

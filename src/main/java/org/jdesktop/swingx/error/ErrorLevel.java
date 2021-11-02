@@ -28,10 +28,11 @@ import java.util.logging.Level;
  * Fatal errors are those unrecoverable errors that must result in the termination
  * of the application.</p>
  *
- * @status REVIEWED
  * @author rbair
+ * @status REVIEWED
  */
 public class ErrorLevel extends Level {
+
     /**
      * FATAL is a message level indicating a catastrophic failure that should
      * result in the immediate termination of the application.
@@ -41,10 +42,12 @@ public class ErrorLevel extends Level {
      * program execution.   They should be reasonably intelligible
      * to end users and to system administrators.
      * This level is initialized to <CODE>1100</CODE>.
-     */    
+     */
     public static final ErrorLevel FATAL = new ErrorLevel("FATAL", 1100);
-    
-    /** Creates a new instance of ErrorLevel */
+
+    /**
+     * Creates a new instance of ErrorLevel
+     */
     protected ErrorLevel(String name, int value) {
         super(name, value);
     }

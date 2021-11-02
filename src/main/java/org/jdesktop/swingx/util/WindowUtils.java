@@ -21,23 +21,15 @@
 
 package org.jdesktop.swingx.util;
 
-import static java.awt.GraphicsEnvironment.getLocalGraphicsEnvironment;
-
-import java.awt.Component;
-import java.awt.Container;
-import java.awt.GraphicsConfiguration;
-import java.awt.Insets;
-import java.awt.Point;
-import java.awt.Rectangle;
-import java.awt.Toolkit;
-import java.awt.Window;
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.swing.JDialog;
 import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
+import java.awt.*;
+import java.util.ArrayList;
+import java.util.List;
+
+import static java.awt.GraphicsEnvironment.getLocalGraphicsEnvironment;
 
 /**
  * Encapsulates various utilities for windows (ie: <code>Frame</code> and
@@ -46,12 +38,13 @@ import javax.swing.SwingUtilities;
  * @author Richard Bair
  */
 public final class WindowUtils {
+
     /**
      * Hide the constructor - don't wan't anybody creating an instance of this
      */
     private WindowUtils() {
     }
-    
+
     private static GraphicsConfiguration getDefaultGraphicsConfiguration() {
         return getLocalGraphicsEnvironment().getDefaultScreenDevice().getDefaultConfiguration();
     }
@@ -59,19 +52,19 @@ public final class WindowUtils {
     private static boolean isUnowned(Window window) {
         return window.getOwner() == null || (window instanceof JDialog && JOptionPane.getRootFrame().equals(window.getOwner()));
     }
-    
+
     private static Rectangle getUsableDeviceBounds(GraphicsConfiguration gc) {
         Rectangle bounds = gc.getBounds();
         Insets insets = Toolkit.getDefaultToolkit().getScreenInsets(gc);
-        
+
         bounds.x += insets.left;
         bounds.y += insets.top;
         bounds.width -= (insets.left + insets.right);
         bounds.height -= (insets.top + insets.bottom);
-        
+
         return bounds;
     }
-    
+
     /**
      * <p>
      * Returns the <code>Point</code> at which a window should be placed to
@@ -85,24 +78,23 @@ public final class WindowUtils {
      *
      * @param window The window to calculate the center point for.  This object
      *               can not be null.
-     *
      * @return the <code>Point</code> at which the window should be placed to
-     *         center that window on the screen.
+     * center that window on the screen.
      */
     public static Point getPointForCentering(Window window) {
         Window w = window.isShowing() || isUnowned(window) ? window : window.getOwner();
         GraphicsConfiguration gc = w.getGraphicsConfiguration();
-        
+
         Rectangle usableBounds = getUsableDeviceBounds(gc);
         int screenWidth = usableBounds.width;
         int screenHeight = usableBounds.height;
         int width = window.getWidth();
         int height = window.getHeight();
-        
+
         return new Point(((screenWidth - width) / 2) + usableBounds.x,
-                ((screenHeight - height) / 2) + usableBounds.y);
+            ((screenHeight - height) / 2) + usableBounds.y);
     }
-    
+
     /**
      * <p/>
      * Returns the <code>Point</code> at which a window should be placed to
@@ -114,25 +106,24 @@ public final class WindowUtils {
      * decided that it is better to not alter an object within a method.
      * </p>
      *
-     * @param window  The window (JInternalFrame) to calculate the center point
-     *                for.  This object can not be null.
-     *
+     * @param window The window (JInternalFrame) to calculate the center point
+     *               for.  This object can not be null.
      * @return the <code>Point</code> at which the window should be placed to
-     *         center that window on the given desktop
+     * center that window on the given desktop
      */
     public static Point getPointForCentering(JInternalFrame window) {
         Window w = SwingUtilities.getWindowAncestor(window);
         GraphicsConfiguration gc = w == null ? getDefaultGraphicsConfiguration()
-                : w.getGraphicsConfiguration();
-        
+            : w.getGraphicsConfiguration();
+
         Rectangle usableBounds = getUsableDeviceBounds(gc);
         int screenWidth = usableBounds.width;
         int screenHeight = usableBounds.height;
         int width = window.getWidth();
         int height = window.getHeight();
-        
+
         return new Point(((screenWidth - width) / 2) + usableBounds.x,
-                ((screenHeight - height) / 2) + usableBounds.y);
+            ((screenHeight - height) / 2) + usableBounds.y);
     }
 
     /**
@@ -143,9 +134,8 @@ public final class WindowUtils {
      * </p>
      *
      * @param originWindow Window from which the staggered location will be calculated
-     *
      * @return location staggered from the upper left location of the origin
-     *         window
+     * window
      */
     public static Point getPointForStaggering(Window originWindow) {
         Point origin = originWindow.getLocation();

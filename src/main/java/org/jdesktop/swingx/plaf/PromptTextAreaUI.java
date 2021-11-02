@@ -7,11 +7,11 @@ import javax.swing.text.JTextComponent;
 /**
  * {@link PromptTextUI} implementation for rendering prompts on
  * {@link JTextArea}s and uses a {@link JTextArea} as a prompt component.
- * 
+ *
  * @author Peter Weishapl <petw@gmx.net>
- * 
  */
 public class PromptTextAreaUI extends PromptTextUI {
+
     /**
      * Shared prompt renderer.
      */
@@ -19,7 +19,7 @@ public class PromptTextAreaUI extends PromptTextUI {
 
     /**
      * Creates a new {@link PromptTextAreaUI}.
-     * 
+     *
      * @param delegate
      */
     public PromptTextAreaUI(TextUI delegate) {

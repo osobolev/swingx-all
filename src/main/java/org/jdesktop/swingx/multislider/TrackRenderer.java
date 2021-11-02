@@ -20,11 +20,11 @@
  */
 package org.jdesktop.swingx.multislider;
 
-import javax.swing.JComponent;
-
 import org.jdesktop.swingx.JXMultiThumbSlider;
 
+import javax.swing.JComponent;
 
 public interface TrackRenderer {
+
     public JComponent getRendererComponent(JXMultiThumbSlider slider);
 }

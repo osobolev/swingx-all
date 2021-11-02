@@ -8,12 +8,12 @@
  * modify it under the terms of the GNU Lesser General Public
  * License as published by the Free Software Foundation; either
  * version 2.1 of the License, or (at your option) any later version.
- * 
+ *
  * This library is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  * Lesser General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
@@ -21,6 +21,26 @@
 
 package org.jdesktop.swingx;
 
+import org.jdesktop.beans.JavaBean;
+import org.jdesktop.swingx.action.ActionManager;
+import org.jdesktop.swingx.action.Targetable;
+import org.jdesktop.swingx.action.TargetableSupport;
+import org.jdesktop.swingx.plaf.UIAction;
+import org.jdesktop.swingx.search.SearchFactory;
+import org.jdesktop.swingx.search.Searchable;
+
+import javax.swing.*;
+import javax.swing.event.CaretEvent;
+import javax.swing.event.CaretListener;
+import javax.swing.event.UndoableEditEvent;
+import javax.swing.event.UndoableEditListener;
+import javax.swing.text.*;
+import javax.swing.text.html.HTML;
+import javax.swing.text.html.HTMLDocument;
+import javax.swing.text.html.HTMLEditorKit;
+import javax.swing.undo.CannotRedoException;
+import javax.swing.undo.CannotUndoException;
+import javax.swing.undo.UndoManager;
 import java.awt.Component;
 import java.awt.Rectangle;
 import java.awt.datatransfer.Clipboard;
@@ -44,52 +64,12 @@ import java.util.regex.MatchResult;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import javax.swing.ActionMap;
-import javax.swing.DefaultComboBoxModel;
-import javax.swing.DefaultListCellRenderer;
-import javax.swing.JComboBox;
-import javax.swing.JComponent;
-import javax.swing.JEditorPane;
-import javax.swing.JList;
-import javax.swing.KeyStroke;
-import javax.swing.SwingConstants;
-import javax.swing.SwingUtilities;
-import javax.swing.event.CaretEvent;
-import javax.swing.event.CaretListener;
-import javax.swing.event.UndoableEditEvent;
-import javax.swing.event.UndoableEditListener;
-import javax.swing.text.AttributeSet;
-import javax.swing.text.BadLocationException;
-import javax.swing.text.Document;
-import javax.swing.text.EditorKit;
-import javax.swing.text.Element;
-import javax.swing.text.MutableAttributeSet;
-import javax.swing.text.Segment;
-import javax.swing.text.SimpleAttributeSet;
-import javax.swing.text.StyleConstants;
-import javax.swing.text.StyledDocument;
-import javax.swing.text.StyledEditorKit;
-import javax.swing.text.html.HTML;
-import javax.swing.text.html.HTMLDocument;
-import javax.swing.text.html.HTMLEditorKit;
-import javax.swing.undo.CannotRedoException;
-import javax.swing.undo.CannotUndoException;
-import javax.swing.undo.UndoManager;
-
-import org.jdesktop.beans.JavaBean;
-import org.jdesktop.swingx.action.ActionManager;
-import org.jdesktop.swingx.action.Targetable;
-import org.jdesktop.swingx.action.TargetableSupport;
-import org.jdesktop.swingx.plaf.UIAction;
-import org.jdesktop.swingx.search.SearchFactory;
-import org.jdesktop.swingx.search.Searchable;
-
 /**
  * <p>
  * {@code JXEditorPane} offers enhanced functionality over the standard {@code
- * JEditorPane}.  Unlike its parent, {@code JXEdtiorPane} {@link 
- * JEditorPane#HONOR_DISPLAY_PROPERTIES honors display properties} by default.  
- * Users can revert to the behavior of {@code JEditorPane} by setting the 
+ * JEditorPane}.  Unlike its parent, {@code JXEdtiorPane} {@link
+ * JEditorPane#HONOR_DISPLAY_PROPERTIES honors display properties} by default.
+ * Users can revert to the behavior of {@code JEditorPane} by setting the
  * property to {@code false}.
  * </p>
  * <h3>Additional Features</h3>
@@ -128,7 +108,7 @@ import org.jdesktop.swingx.search.Searchable;
  * Creating a {@code JXEditorPane} is no different than creating a {@code
  * JEditorPane}. However, the following example demonstrates the best way to
  * access the improved command functionality.
- * 
+ *
  * <pre>
  * JXEditorPane editorPane = new JXEditorPane("some URL");
  * add(editorPane);
@@ -138,14 +118,14 @@ import org.jdesktop.swingx.search.Searchable;
  * setToolBar(toolBar);
  * </pre>
  * </p>
- * 
+ *
  * @author Mark Davidson
  */
 @JavaBean
 public class JXEditorPane extends JEditorPane implements /*Searchable, */Targetable {
 
     private static final Logger LOG = Logger.getLogger(JXEditorPane.class
-            .getName());
+        .getName());
 
     private UndoableEditListener undoHandler;
     private UndoManager undoManager;
@@ -167,7 +147,7 @@ public class JXEditorPane extends JEditorPane implements /*Searchable, */Targeta
      * find/undo/redo are. So, I added the actions here. The really hacky part
      * is that by defining an Action to go along with the cut/copy/paste keys,
      * I loose the default handling in the cut/copy/paste routines. So, I have
-     * to remove cut/copy/paste from the action map, call the appropriate 
+     * to remove cut/copy/paste from the action map, call the appropriate
      * method (cut, copy, or paste) and then add the action back into the
      * map. Yuck!
      */
@@ -177,7 +157,7 @@ public class JXEditorPane extends JEditorPane implements /*Searchable, */Targeta
 
     private TargetableSupport targetSupport = new TargetableSupport(this);
     private Searchable searchable;
-    
+
     /**
      * Creates a new <code>JXEditorPane</code>.
      * The document model is set to <code>null</code>.
@@ -191,8 +171,8 @@ public class JXEditorPane extends JEditorPane implements /*Searchable, */Targeta
      * a URL specification.
      *
      * @param url the URL
-     * @exception IOException if the URL is <code>null</code> or
-     *      cannot be accessed
+     * @throws IOException if the URL is <code>null</code> or
+     *                     cannot be accessed
      */
     public JXEditorPane(String url) throws IOException {
         super(url);
@@ -206,8 +186,8 @@ public class JXEditorPane extends JEditorPane implements /*Searchable, */Targeta
      *
      * @param type mime type of the given text
      * @param text the text to initialize with; may be <code>null</code>
-     * @exception NullPointerException if the <code>type</code> parameter
-     *      is <code>null</code>
+     * @throws NullPointerException if the <code>type</code> parameter
+     *                              is <code>null</code>
      */
     public JXEditorPane(String type, String text) {
         super(type, text);
@@ -218,8 +198,8 @@ public class JXEditorPane extends JEditorPane implements /*Searchable, */Targeta
      * Creates a <code>JXEditorPane</code> based on a specified URL for input.
      *
      * @param initialPage the URL
-     * @exception IOException if the URL is <code>null</code>
-     *      or cannot be accessed
+     * @throws IOException if the URL is <code>null</code>
+     *                     or cannot be accessed
      */
     public JXEditorPane(URL initialPage) throws IOException {
         super(initialPage);
@@ -235,22 +215,22 @@ public class JXEditorPane extends JEditorPane implements /*Searchable, */Targeta
     }
 
     private class PropertyHandler implements PropertyChangeListener {
+
         @Override
         public void propertyChange(PropertyChangeEvent evt) {
             String name = evt.getPropertyName();
             if (name.equals("document")) {
-                Document doc = (Document)evt.getOldValue();
+                Document doc = (Document) evt.getOldValue();
                 if (doc != null) {
                     doc.removeUndoableEditListener(getUndoableEditListener());
                 }
 
-                doc = (Document)evt.getNewValue();
+                doc = (Document) evt.getNewValue();
                 if (doc != null) {
                     doc.addUndoableEditListener(getUndoableEditListener());
                 }
             }
         }
-
     }
 
     // pp for testing
@@ -293,7 +273,7 @@ public class JXEditorPane extends JEditorPane implements /*Searchable, */Targeta
         map.put(ACTION_CUT, new Actions(ACTION_CUT));
         map.put(ACTION_COPY, new Actions(ACTION_COPY));
         map.put(ACTION_PASTE, new Actions(ACTION_PASTE));
-        
+
         KeyStroke findStroke = SearchFactory.getInstance().getSearchAccelerator();
         getInputMap(JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT).put(findStroke, "find");
     }
@@ -301,6 +281,7 @@ public class JXEditorPane extends JEditorPane implements /*Searchable, */Targeta
     // undo/redo implementation
 
     private class UndoHandler implements UndoableEditListener {
+
         @Override
         public void undoableEditHappened(UndoableEditEvent evt) {
             undoManager.addEdit(evt.getEdit());
@@ -310,7 +291,6 @@ public class JXEditorPane extends JEditorPane implements /*Searchable, */Targeta
 
     /**
      * Updates the state of the actions in response to an undo/redo operation. <p>
-     * 
      */
     private void updateActionState() {
         // Update the state of the undo and redo actions
@@ -323,13 +303,13 @@ public class JXEditorPane extends JEditorPane implements /*Searchable, */Targeta
         // really cares about enabled as it should. 
         //
         Runnable doEnabled = new Runnable() {
-                @Override
-                public void run() {
-                    ActionManager manager = ActionManager.getInstance();
-                    manager.setEnabled(ACTION_UNDO, undoManager.canUndo());
-                    manager.setEnabled(ACTION_REDO, undoManager.canRedo());
-                }
-            };
+            @Override
+            public void run() {
+                ActionManager manager = ActionManager.getInstance();
+                manager.setEnabled(ACTION_UNDO, undoManager.canUndo());
+                manager.setEnabled(ACTION_REDO, undoManager.canRedo());
+            }
+        };
         SwingUtilities.invokeLater(doEnabled);
     }
 
@@ -337,9 +317,9 @@ public class JXEditorPane extends JEditorPane implements /*Searchable, */Targeta
      * A small class which dispatches actions.
      * TODO: Is there a way that we can make this static?
      * JW: these if-constructs are totally crazy ... we live in OO world!
-     * 
      */
     private class Actions extends UIAction {
+
         Actions(String name) {
             super(name);
         }
@@ -349,16 +329,14 @@ public class JXEditorPane extends JEditorPane implements /*Searchable, */Targeta
             String name = getName();
             if (ACTION_FIND.equals(name)) {
                 find();
-            }
-            else if (ACTION_UNDO.equals(name)) {
+            } else if (ACTION_UNDO.equals(name)) {
                 try {
                     undoManager.undo();
                 } catch (CannotUndoException ex) {
                     LOG.info("Could not undo");
                 }
                 updateActionState();
-            }
-            else if (ACTION_REDO.equals(name)) {
+            } else if (ACTION_REDO.equals(name)) {
                 try {
                     undoManager.redo();
                 } catch (CannotRedoException ex) {
@@ -380,49 +358,45 @@ public class JXEditorPane extends JEditorPane implements /*Searchable, */Targeta
                 map.remove(ACTION_PASTE);
                 paste();
                 map.put(ACTION_PASTE, this);
-            }
-            else {
+            } else {
                 LOG.fine("ActionHandled: " + name);
             }
-
         }
 
         @Override
         public boolean isEnabled(Object sender) {
-                String name = getName();
-                if (ACTION_UNDO.equals(name)) {
-                    return isEditable() && undoManager.canUndo();
-                } 
-                if (ACTION_REDO.equals(name)) {
-                    return isEditable() && undoManager.canRedo();
-                } 
-                if (ACTION_PASTE.equals(name)) {
-                    if (!isEditable()) return false;
-                    // is this always possible?
-                    boolean dataOnClipboard = false;
-                    try {
-                        dataOnClipboard = getToolkit()
-                        .getSystemClipboard().getContents(null) != null;
-                    } catch (Exception e) {
-                        // can't do anything - clipboard unaccessible
-                    }
-                    return dataOnClipboard;
-                } 
-                boolean selectedText = getSelectionEnd()
-                    - getSelectionStart() > 0;
-                if (ACTION_CUT.equals(name)) {
-                   return isEditable() && selectedText;
+            String name = getName();
+            if (ACTION_UNDO.equals(name)) {
+                return isEditable() && undoManager.canUndo();
+            }
+            if (ACTION_REDO.equals(name)) {
+                return isEditable() && undoManager.canRedo();
+            }
+            if (ACTION_PASTE.equals(name)) {
+                if (!isEditable()) return false;
+                // is this always possible?
+                boolean dataOnClipboard = false;
+                try {
+                    dataOnClipboard = getToolkit()
+                                          .getSystemClipboard().getContents(null) != null;
+                } catch (Exception e) {
+                    // can't do anything - clipboard unaccessible
                 }
-                if (ACTION_COPY.equals(name)) {
-                    return selectedText;
-                } 
-                if (ACTION_FIND.equals(name)) {
-                    return getDocument().getLength() > 0;
-                }
-                return true;
+                return dataOnClipboard;
+            }
+            boolean selectedText = getSelectionEnd()
+                                   - getSelectionStart() > 0;
+            if (ACTION_CUT.equals(name)) {
+                return isEditable() && selectedText;
+            }
+            if (ACTION_COPY.equals(name)) {
+                return selectedText;
+            }
+            if (ACTION_FIND.equals(name)) {
+                return getDocument().getLength() > 0;
+            }
+            return true;
         }
-        
-        
     }
 
     /**
@@ -479,7 +453,7 @@ public class JXEditorPane extends JEditorPane implements /*Searchable, */Targeta
         @Override
         public void itemStateChanged(ItemEvent evt) {
             if (evt.getStateChange() == ItemEvent.SELECTED) {
-                applyTag((HTML.Tag)evt.getItem());
+                applyTag((HTML.Tag) evt.getItem());
             }
         }
 
@@ -496,14 +470,13 @@ public class JXEditorPane extends JEditorPane implements /*Searchable, */Targeta
                                                           boolean isSelected,
                                                           boolean cellHasFocus) {
                 super.getListCellRendererComponent(list, value, index, isSelected,
-                                                   cellHasFocus);
+                    cellHasFocus);
 
-                setText((String)itemMap.get(value));
+                setText((String) itemMap.get(value));
 
                 return this;
             }
         }
-
 
         // TODO: Should have a rendererer which does stuff like:
         // Paragraph, Heading 1, etc...
@@ -517,7 +490,7 @@ public class JXEditorPane extends JEditorPane implements /*Searchable, */Targeta
         if (!(doc instanceof HTMLDocument)) {
             return;
         }
-        HTMLDocument hdoc = (HTMLDocument)doc;
+        HTMLDocument hdoc = (HTMLDocument) doc;
         int start = getSelectionStart();
         int end = getSelectionEnd();
 
@@ -547,7 +520,7 @@ public class JXEditorPane extends JEditorPane implements /*Searchable, */Targeta
                             // This works but we lose all the formatting.
                             replaceSelection(data.toString());
                             break;
-                        } 
+                        }
                     }
                 }
             } catch (Exception ex) {
@@ -562,7 +535,6 @@ public class JXEditorPane extends JEditorPane implements /*Searchable, */Targeta
     }
 
     /**
-     * 
      * @return a not-null Searchable for this editor.
      */
     public Searchable getSearchable() {
@@ -573,19 +545,20 @@ public class JXEditorPane extends JEditorPane implements /*Searchable, */Targeta
     }
 
     /**
-     * sets the Searchable for this editor. If null, a default 
+     * sets the Searchable for this editor. If null, a default
      * searchable will be used.
-     * 
+     *
      * @param searchable
      */
     public void setSearchable(Searchable searchable) {
         this.searchable = searchable;
     }
-    
+
     /**
      * A {@code Searchable} implementation for {@code Document}s.
      */
     public class DocumentSearchable implements Searchable {
+
         @Override
         public int search(String searchString) {
             return search(searchString, -1);
@@ -595,7 +568,7 @@ public class JXEditorPane extends JEditorPane implements /*Searchable, */Targeta
         public int search(String searchString, int columnIndex) {
             return search(searchString, columnIndex, false);
         }
-        
+
         @Override
         public int search(String searchString, int columnIndex, boolean backward) {
             Pattern pattern = null;
@@ -608,9 +581,9 @@ public class JXEditorPane extends JEditorPane implements /*Searchable, */Targeta
         /**
          * checks if the searchString should be interpreted as empty.
          * here: returns true if string is null or has zero length.
-         *
+         * <p>
          * TODO: This should be in a utility class.
-         * 
+         *
          * @param searchString
          * @return true if string is null or has zero length
          */
@@ -632,15 +605,16 @@ public class JXEditorPane extends JEditorPane implements /*Searchable, */Targeta
 
         MatchResult lastMatchResult;
         String lastRegEx;
+
         /**
          * @return start position of matching string or -1
          */
         @Override
         public int search(Pattern pattern, final int startIndex,
-                boolean backwards) {
+                          boolean backwards) {
             if ((pattern == null)
-                    || (getDocument().getLength() == 0)
-                    || ((startIndex > -1) && (getDocument().getLength() < startIndex))) {
+                || (getDocument().getLength() == 0)
+                || ((startIndex > -1) && (getDocument().getLength() < startIndex))) {
                 updateStateAfterNotFound();
                 return -1;
             }
@@ -673,7 +647,7 @@ public class JXEditorPane extends JEditorPane implements /*Searchable, */Targeta
                 getDocument().getText(start, length, segment);
             } catch (BadLocationException ex) {
                 LOG.log(Level.FINE,
-                        "this should not happen (calculated the valid start/length) " , ex);
+                    "this should not happen (calculated the valid start/length) ", ex);
             }
 
             Matcher matcher = pattern.matcher(segment.toString());
@@ -684,16 +658,15 @@ public class JXEditorPane extends JEditorPane implements /*Searchable, */Targeta
                 updateStateAfterNotFound();
             }
             return lastFoundIndex;
-
         }
 
         /**
-         * Search from same startIndex as the previous search. 
-         * Checks if the match is different from the last (either 
+         * Search from same startIndex as the previous search.
+         * Checks if the match is different from the last (either
          * extended/reduced) at the same position. Returns true
-         * if the current match result represents a different match 
+         * if the current match result represents a different match
          * than the last, false if no match or the same.
-         * 
+         *
          * @param pattern
          * @param start
          * @return true if the current match result represents a different
@@ -711,7 +684,7 @@ public class JXEditorPane extends JEditorPane implements /*Searchable, */Targeta
                 getDocument().getText(start, length, segment);
             } catch (BadLocationException ex) {
                 LOG.log(Level.FINE,
-                        "this should not happen (calculated the valid start/length) " , ex);
+                    "this should not happen (calculated the valid start/length) ", ex);
             }
             Matcher matcher = pattern.matcher(segment.toString());
             MatchResult currentResult = getMatchResult(matcher, true);
@@ -719,19 +692,18 @@ public class JXEditorPane extends JEditorPane implements /*Searchable, */Targeta
                 // JW: how to compare match results reliably?
                 // the group().equals probably isn't the best idea...
                 // better check pattern?
-                if ((currentResult.start() == 0) && 
-                   (!lastMatchResult.group().equals(currentResult.group()))) {
+                if ((currentResult.start() == 0) &&
+                    (!lastMatchResult.group().equals(currentResult.group()))) {
                     updateStateAfterFound(currentResult, start);
                     return true;
-                } 
+                }
             }
             return false;
         }
 
         /**
          * Checks if the startIndex is a candidate for trying a re-match.
-         * 
-         * 
+         *
          * @param startIndex
          * @return true if the startIndex should be re-matched, false if not.
          */
@@ -746,7 +718,7 @@ public class JXEditorPane extends JEditorPane implements /*Searchable, */Targeta
          */
         private int updateStateAfterFound(MatchResult currentResult, final int offset) {
             int end = currentResult.end() + offset;
-            int found = currentResult.start() + offset; 
+            int found = currentResult.start() + offset;
             select(found, end);
             getCaret().setSelectionVisible(true);
             lastFoundIndex = found;
@@ -760,7 +732,7 @@ public class JXEditorPane extends JEditorPane implements /*Searchable, */Targeta
          * @param useFirst whether or not to return after the first match is found.
          * @return <code>MatchResult</code> or null
          */
-        private MatchResult getMatchResult(Matcher matcher, boolean  useFirst) {
+        private MatchResult getMatchResult(Matcher matcher, boolean useFirst) {
             MatchResult currentResult = null;
             while (matcher.find()) {
                 currentResult = matcher.toMatchResult();
@@ -770,6 +742,7 @@ public class JXEditorPane extends JEditorPane implements /*Searchable, */Targeta
         }
 
         /**
+         *
          */
         private void updateStateAfterNotFound() {
             lastFoundIndex = -1;
@@ -777,9 +750,8 @@ public class JXEditorPane extends JEditorPane implements /*Searchable, */Targeta
             lastRegEx = null;
             setCaretPosition(getSelectionEnd());
         }
-
     }
-    
+
     @Override
     public boolean hasCommand(Object command) {
         return targetSupport.hasCommand(command);
@@ -794,13 +766,13 @@ public class JXEditorPane extends JEditorPane implements /*Searchable, */Targeta
     public boolean doCommand(Object command, Object value) {
         return targetSupport.doCommand(command, value);
     }
-    
+
     /**
      * {@inheritDoc}
      */
     @Override
     public int getScrollableUnitIncrement(Rectangle visibleRect, int orientation, int direction) {
-        switch(orientation) {
+        switch (orientation) {
         case SwingConstants.VERTICAL:
             return getFontMetrics(getFont()).getHeight();
         case SwingConstants.HORIZONTAL:
@@ -809,21 +781,22 @@ public class JXEditorPane extends JEditorPane implements /*Searchable, */Targeta
             throw new IllegalArgumentException("Invalid orientation: " + orientation);
         }
     }
-    
+
     /**
      * Listens to the caret placement and adjusts the editing
      * properties as appropriate.
-     *
+     * <p>
      * Should add more attributes as required.
      */
     private class CaretHandler implements CaretListener {
+
         @Override
         public void caretUpdate(CaretEvent evt) {
-            StyledDocument document = (StyledDocument)getDocument();
+            StyledDocument document = (StyledDocument) getDocument();
             int dot = evt.getDot();
             //SwingX #257--ensure display shows the valid attributes
             dot = dot > 0 ? dot - 1 : dot;
-            
+
             Element elem = document.getCharacterElement(dot);
             AttributeSet set = elem.getAttributes();
 
@@ -842,9 +815,9 @@ public class JXEditorPane extends JEditorPane implements /*Searchable, */Targeta
             }
 
             switch (StyleConstants.getAlignment(set)) {
-                // XXX There is a bug here. the setSelected method
-                // should only affect the UI actions rather than propagate
-                // down into the action map actions.
+            // XXX There is a bug here. the setSelected method
+            // should only affect the UI actions rather than propagate
+            // down into the action map actions.
             case StyleConstants.ALIGN_LEFT:
                 manager.setSelected("left-justify", true);
                 break;
@@ -859,7 +832,7 @@ public class JXEditorPane extends JEditorPane implements /*Searchable, */Targeta
             }
         }
     }
-    
+
     /**
      * Handles sloppy HTML. This implementation currently only looks for
      * tags that have a / at the end (self-closing tags) and fixes them
@@ -872,6 +845,7 @@ public class JXEditorPane extends JEditorPane implements /*Searchable, */Targeta
      * @author rbair
      */
     private static final class SloppyHTMLEditorKit extends HTMLEditorKit {
+
         @Override
         public void read(Reader in, Document doc, int pos) throws IOException, BadLocationException {
             //read the reader into a String
@@ -885,6 +859,6 @@ public class JXEditorPane extends JEditorPane implements /*Searchable, */Targeta
             StringReader reader = new StringReader(buffer.toString().replaceAll("/>", ">"));
             super.read(reader, doc, pos);
         }
-    }    
+    }
 }
 

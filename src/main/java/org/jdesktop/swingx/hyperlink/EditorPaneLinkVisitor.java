@@ -8,48 +8,47 @@
  * modify it under the terms of the GNU Lesser General Public
  * License as published by the Free Software Foundation; either
  * version 2.1 of the License, or (at your option) any later version.
- * 
+ *
  * This library is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  * Lesser General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  */
 package org.jdesktop.swingx.hyperlink;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.io.IOException;
-import java.net.URL;
+import org.jdesktop.swingx.JXEditorPane;
 
 import javax.swing.SwingUtilities;
 import javax.swing.event.HyperlinkEvent;
 import javax.swing.event.HyperlinkListener;
 import javax.swing.text.Document;
-
-import org.jdesktop.swingx.JXEditorPane;
-
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.net.URL;
 
 /**
  * A ActionListener using a JXEditorPane to "visit" a LinkModel.
- * 
+ * <p>
  * adds an internal HyperlinkListener to visit links contained
- * in the document. 
- * 
+ * in the document.
+ *
  * @author Jeanette Winzenburg
  */
 public class EditorPaneLinkVisitor implements ActionListener {
+
     private JXEditorPane editorPane;
     private HyperlinkListener hyperlinkListener;
     private LinkModel internalLink;
-    
+
     public EditorPaneLinkVisitor() {
         this(null);
     }
-    
+
     public EditorPaneLinkVisitor(JXEditorPane pane) {
         if (pane == null) {
             pane = createDefaultEditorPane();
@@ -57,12 +56,11 @@ public class EditorPaneLinkVisitor implements ActionListener {
         this.editorPane = pane;
         pane.addHyperlinkListener(getHyperlinkListener());
     }
-    
 
     public JXEditorPane getOutputComponent() {
         return editorPane;
     }
-    
+
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() instanceof LinkModel) {
@@ -71,11 +69,9 @@ public class EditorPaneLinkVisitor implements ActionListener {
                 @Override
                 public void run() {
                     visit(link);
-
                 }
             });
         }
-   
     }
 
     public void visit(LinkModel link) {
@@ -112,9 +108,7 @@ public class EditorPaneLinkVisitor implements ActionListener {
                 if (HyperlinkEvent.EventType.ACTIVATED == e.getEventType()) {
                     visitInternal(e.getURL());
                 }
-                
             }
-            
         };
     }
 
@@ -133,6 +127,4 @@ public class EditorPaneLinkVisitor implements ActionListener {
             // todo: error feedback
         }
     }
-
-
 }

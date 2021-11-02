@@ -8,25 +8,24 @@
  * modify it under the terms of the GNU Lesser General Public
  * License as published by the Free Software Foundation; either
  * version 2.1 of the License, or (at your option) any later version.
- * 
+ *
  * This library is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  * Lesser General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  */
 package org.jdesktop.swingx.autocomplete;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.MouseEvent;
-import java.util.EventObject;
-
 import javax.swing.DefaultCellEditor;
 import javax.swing.JComboBox;
 import javax.swing.text.JTextComponent;
+import java.awt.event.ActionEvent;
+import java.awt.event.MouseEvent;
+import java.util.EventObject;
 
 /**
  * <p>This is a cell editor that can be used when a combo box (that has been set
@@ -49,9 +48,10 @@ import javax.swing.text.JTextComponent;
  * </p>
  */
 public class ComboBoxCellEditor extends DefaultCellEditor {
-    
+
     /**
      * Creates a new ComboBoxCellEditor.
+     *
      * @param comboBox the comboBox that should be used as the cell editor.
      */
     public ComboBoxCellEditor(final JComboBox comboBox) {
@@ -91,22 +91,21 @@ public class ComboBoxCellEditor extends DefaultCellEditor {
             @Override
             public void actionPerformed(ActionEvent e) {
                 JTextComponent editorComponent = (JTextComponent) comboBox.getEditor()
-                        .getEditorComponent();
+                    .getEditorComponent();
 
                 if (editorComponent.getDocument() instanceof AutoCompleteDocument) {
                     AutoCompleteDocument document = (AutoCompleteDocument) editorComponent
-                            .getDocument();
+                        .getDocument();
                     // if auto completion is happening right now, cell editing should not be stopped
                     if (!document.selecting) {
                         ComboBoxCellEditor.this.stopCellEditing();
                     }
-
                 } else {
                     ComboBoxCellEditor.this.stopCellEditing();
                 }
             }
         };
-        
+
         comboBox.addActionListener(this.delegate);
     }
 }

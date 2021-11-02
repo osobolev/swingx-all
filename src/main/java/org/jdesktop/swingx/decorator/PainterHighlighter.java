@@ -8,30 +8,30 @@
  * modify it under the terms of the GNU Lesser General Public
  * License as published by the Free Software Foundation; either
  * version 2.1 of the License, or (at your option) any later version.
- * 
+ *
  * This library is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  * Lesser General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  */
 package org.jdesktop.swingx.decorator;
 
-import java.awt.Component;
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
-
 import org.jdesktop.swingx.painter.AbstractPainter;
 import org.jdesktop.swingx.painter.Painter;
 import org.jdesktop.swingx.renderer.PainterAware;
 
+import java.awt.Component;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+
 /**
  * Highlighter implementation which uses a Painter to decorate the component.
  * <p>
- * 
+ * <p>
  * As Painter implementations can be mutable and Highlighters have the
  * responsibility to notify their own listeners about any changes which might
  * effect the visuals, this class provides api to install/uninstall a listener
@@ -39,7 +39,7 @@ import org.jdesktop.swingx.renderer.PainterAware;
  * AbstractHighlighter by registering a PropertyChangeListener. Subclasses might
  * override to correctly handle different types as well.
  * <p>
- * 
+ * <p>
  * Subclasses might be implemented to change the Painter during the decoration
  * process, which must not passed-on to the Highlighter's listeners. The default
  * routing is controlled by a flag isAdjusting. This is set/reset in this
@@ -48,10 +48,10 @@ import org.jdesktop.swingx.renderer.PainterAware;
  * painter listener). That is, subclasses are free to change painter properties
  * during the decoration.
  * <p>
- * 
+ * <p>
  * As an example, a ValueBasedPainterHighlighter might safely change any painter
  * property to decorate a component depending on content.
- * 
+ *
  * <pre><code>
  * &#64;Override
  * protected Component doHighlight(Component renderer, ComponentAdapter adapter) {
@@ -61,52 +61,57 @@ import org.jdesktop.swingx.renderer.PainterAware;
  *      ((PainterAware) renderer).setPainter(painter);
  *      return renderer;
  * }
- * 
+ *
  * &#64;Override
  * protected boolean canHighlight(Component renderer, ComponentAdapter adapter) {
  *     return super.canHighlight(renderer, adapter) &&
  *        (adapter.getValue() instanceof Number);
  * }
  * </code></pre>
- * 
+ * <p>
  * NOTE: this will change once the Painter api is stable.
- * 
+ *
  * @author Jeanette Winzenburg
  */
 public class PainterHighlighter extends AbstractHighlighter {
 
-    /** The painter to use for decoration. */
+    /**
+     * The painter to use for decoration.
+     */
     private Painter painter;
-    /** The listener registered with the Painter. */
+    /**
+     * The listener registered with the Painter.
+     */
     private PropertyChangeListener painterListener;
-    /** 
+    /**
      * A flag indicating whether or not changes in the Painter
-     * should be passed-on to the Highlighter's ChangeListeners. 
+     * should be passed-on to the Highlighter's ChangeListeners.
      */
     private boolean isAdjusting;
 
     /**
-     * Instantiates a PainterHighlighter with null painter and 
+     * Instantiates a PainterHighlighter with null painter and
      * default predicate.
      */
     public PainterHighlighter() {
         this(null, null);
     }
+
     /**
      * Instantiates a PainterHighlighter with null painter which
      * uses the given predicate.
-     * 
+     *
      * @param predicate the HighlightPredicate which controls the highlight
-     *   application.
+     *                  application.
      */
     public PainterHighlighter(HighlightPredicate predicate) {
         this(predicate, null);
     }
-    
+
     /**
-     * Instantiates a PainterHighlighter with the given Painter and 
+     * Instantiates a PainterHighlighter with the given Painter and
      * default predicate.
-     * 
+     *
      * @param painter the painter to use
      */
     public PainterHighlighter(Painter painter) {
@@ -114,8 +119,9 @@ public class PainterHighlighter extends AbstractHighlighter {
     }
 
     /**
-     * Instantiates a PainterHighlighter with the given painter and 
+     * Instantiates a PainterHighlighter with the given painter and
      * predicate.
+     *
      * @param predicate
      * @param painter
      */
@@ -124,11 +130,9 @@ public class PainterHighlighter extends AbstractHighlighter {
         setPainter(painter);
     }
 
-    
-
     /**
-     * Returns to Painter used in this Highlighter. 
-     * 
+     * Returns to Painter used in this Highlighter.
+     *
      * @return the Painter used in this Highlighter, may be null.
      */
     public Painter getPainter() {
@@ -138,7 +142,7 @@ public class PainterHighlighter extends AbstractHighlighter {
     /**
      * Sets the Painter to use in this Highlighter, may be null.
      * Un/installs the listener to changes painter's properties.
-     * 
+     *
      * @param painter the Painter to uses for decoration.
      */
     public void setPainter(Painter painter) {
@@ -171,13 +175,12 @@ public class PainterHighlighter extends AbstractHighlighter {
         }
     }
 
- 
     /**
      * Lazyly creates and returns the property change listener used
      * to listen to changes of the painter.
-     * 
+     *
      * @return the property change listener used to listen to changes
-     *   of the painter.
+     * of the painter.
      */
     protected final PropertyChangeListener getPainterListener() {
         if (painterListener == null) {
@@ -189,13 +192,13 @@ public class PainterHighlighter extends AbstractHighlighter {
     /**
      * Creates and returns the property change listener used
      * to listen to changes of the painter. <p>
-     * 
+     * <p>
      * This implementation fires a stateChanged on receiving
-     * any propertyChange, if the isAdjusting flag is false. 
+     * any propertyChange, if the isAdjusting flag is false.
      * Otherwise does nothing.
-     * 
+     *
      * @return the property change listener used to listen to changes
-     *   of the painter.
+     * of the painter.
      */
     protected PropertyChangeListener createPainterListener() {
         PropertyChangeListener l = new PropertyChangeListener() {
@@ -205,17 +208,16 @@ public class PainterHighlighter extends AbstractHighlighter {
                 if (isAdjusting) return;
                 fireStateChanged();
             }
-            
         };
         return l;
     }
-    
+
     /**
      * {@inheritDoc} <p>
-     * 
-     * Overridden to set/reset the flag indicating whether or not 
-     * painter's property changes should be passed on to the 
-     * Highlighter's listener. 
+     * <p>
+     * Overridden to set/reset the flag indicating whether or not
+     * painter's property changes should be passed on to the
+     * Highlighter's listener.
      */
     @Override
     public Component highlight(Component component, ComponentAdapter adapter) {
@@ -233,21 +235,19 @@ public class PainterHighlighter extends AbstractHighlighter {
      */
     @Override
     protected Component doHighlight(Component component,
-            ComponentAdapter adapter) {
-       ((PainterAware) component).setPainter(painter);
+                                    ComponentAdapter adapter) {
+        ((PainterAware) component).setPainter(painter);
         return component;
     }
 
     /**
      * {@inheritDoc} <p>
-     * 
+     * <p>
      * Overridden to return false if the Painter is null or the component is not
-     *   of type PainterAware.
+     * of type PainterAware.
      */
     @Override
     protected boolean canHighlight(Component component, ComponentAdapter adapter) {
         return getPainter() != null && (component instanceof PainterAware);
     }
-    
-    
 }

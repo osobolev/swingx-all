@@ -1,17 +1,17 @@
 package org.jdesktop.swingx.plaf;
 
-import java.awt.Font;
-import java.net.URL;
+import org.jdesktop.swingx.JXSearchField.LayoutStyle;
 
 import javax.swing.ImageIcon;
 import javax.swing.UIManager;
 import javax.swing.plaf.IconUIResource;
 import javax.swing.plaf.InsetsUIResource;
-
-import org.jdesktop.swingx.JXSearchField.LayoutStyle;
+import java.awt.Font;
+import java.net.URL;
 
 @SuppressWarnings("nls")
 public class SearchFieldAddon extends AbstractComponentAddon {
+
     public static final String SEARCH_FIELD_SOURCE = "searchField";
     public static final String BUTTON_SOURCE = "button";
 
@@ -21,35 +21,35 @@ public class SearchFieldAddon extends AbstractComponentAddon {
 
     @Override
     protected void addBasicDefaults(LookAndFeelAddons addon, DefaultsList defaults) {
-		super.addBasicDefaults(addon, defaults);
-		defaults.add("SearchField.layoutStyle", LayoutStyle.MAC);
-		defaults.add("SearchField.icon", getIcon("basic/resources/search.gif"));
-		defaults.add("SearchField.rolloverIcon", getIcon("basic/resources/search_rollover.gif"));
-		defaults.add("SearchField.pressedIcon", getIcon("basic/resources/search.gif"));
-		defaults.add("SearchField.popupIcon", getIcon("basic/resources/search_popup.gif"));
-		defaults.add("SearchField.popupRolloverIcon", getIcon("basic/resources/search_popup_rollover.gif"));
-		defaults.add("SearchField.clearIcon", getIcon("basic/resources/clear.gif"));
-		defaults.add("SearchField.clearRolloverIcon", getIcon("basic/resources/clear_rollover.gif"));
-		defaults.add("SearchField.clearPressedIcon", getIcon("basic/resources/clear_pressed.gif"));
-		defaults.add("SearchField.buttonMargin", new InsetsUIResource(1, 1, 1, 1));
-		defaults.add("SearchField.popupSource", BUTTON_SOURCE);
-		
-		//webstart fix
-		UIManagerExt.addResourceBundle("org.jdesktop.swingx.plaf.basic.resources.SearchField");
+        super.addBasicDefaults(addon, defaults);
+        defaults.add("SearchField.layoutStyle", LayoutStyle.MAC);
+        defaults.add("SearchField.icon", getIcon("basic/resources/search.gif"));
+        defaults.add("SearchField.rolloverIcon", getIcon("basic/resources/search_rollover.gif"));
+        defaults.add("SearchField.pressedIcon", getIcon("basic/resources/search.gif"));
+        defaults.add("SearchField.popupIcon", getIcon("basic/resources/search_popup.gif"));
+        defaults.add("SearchField.popupRolloverIcon", getIcon("basic/resources/search_popup_rollover.gif"));
+        defaults.add("SearchField.clearIcon", getIcon("basic/resources/clear.gif"));
+        defaults.add("SearchField.clearRolloverIcon", getIcon("basic/resources/clear_rollover.gif"));
+        defaults.add("SearchField.clearPressedIcon", getIcon("basic/resources/clear_pressed.gif"));
+        defaults.add("SearchField.buttonMargin", new InsetsUIResource(1, 1, 1, 1));
+        defaults.add("SearchField.popupSource", BUTTON_SOURCE);
+
+        //webstart fix
+        UIManagerExt.addResourceBundle("org.jdesktop.swingx.plaf.basic.resources.SearchField");
 //		UIManager.getDefaults().addResourceBundle("org.jdesktop.swingx.plaf.basic.resources.SearchField");
-	}
+    }
 
     @Override
     protected void addMetalDefaults(LookAndFeelAddons addon, DefaultsList defaults) {
         super.addMetalDefaults(addon, defaults);
-        
+
         defaults.add("SearchField.buttonMargin", new InsetsUIResource(0, 0, 1, 1));
     }
 
     @Override
     protected void addWindowsDefaults(LookAndFeelAddons addon, DefaultsList defaults) {
         super.addWindowsDefaults(addon, defaults);
-        
+
         defaults.add("SearchField.promptFontStyle", Font.ITALIC);
         defaults.add("SearchField.layoutStyle", LayoutStyle.VISTA);
         defaults.add("SearchField.icon", getIcon("windows/resources/search.gif"));
@@ -77,7 +77,7 @@ public class SearchFieldAddon extends AbstractComponentAddon {
     @Override
     protected void addMotifDefaults(LookAndFeelAddons addon, DefaultsList defaults) {
         super.addMotifDefaults(addon, defaults);
-        
+
         defaults.add("SearchField.icon", getIcon("macosx/resources/search.png"));
         defaults.add("SearchField.rolloverIcon", getIcon("macosx/resources/search.png"));
         defaults.add("SearchField.pressedIcon", getIcon("macosx/resources/search.png"));
@@ -92,7 +92,7 @@ public class SearchFieldAddon extends AbstractComponentAddon {
     @Override
     protected void addMacDefaults(LookAndFeelAddons addon, DefaultsList defaults) {
         super.addMacDefaults(addon, defaults);
-        
+
         defaults.add("SearchField.icon", getIcon("macosx/resources/search.png"));
         defaults.add("SearchField.rolloverIcon", getIcon("macosx/resources/search.png"));
         defaults.add("SearchField.pressedIcon", getIcon("macosx/resources/search.png"));
@@ -110,8 +110,8 @@ public class SearchFieldAddon extends AbstractComponentAddon {
     @Override
     protected boolean isWindows(LookAndFeelAddons addon) {
         return super.isWindows(addon)
-                || UIManager.getLookAndFeel().getClass().getName().indexOf("Windows") != -1
-                || UIManager.getLookAndFeel().getClass().getName().indexOf("PlasticXP") != -1;
+               || UIManager.getLookAndFeel().getClass().getName().indexOf("Windows") != -1
+               || UIManager.getLookAndFeel().getClass().getName().indexOf("PlasticXP") != -1;
     }
 
     private IconUIResource getIcon(String resourceName) {

@@ -36,11 +36,7 @@ package org.jdesktop.swingx.geom;
 
 import java.awt.Rectangle;
 import java.awt.Shape;
-import java.awt.geom.AffineTransform;
-import java.awt.geom.GeneralPath;
-import java.awt.geom.PathIterator;
-import java.awt.geom.Point2D;
-import java.awt.geom.Rectangle2D;
+import java.awt.geom.*;
 
 /**
  * <p>This class provides a star shape. A star is defined by two radii and a
@@ -53,6 +49,7 @@ import java.awt.geom.Rectangle2D;
  */
 
 public class Star2D implements Shape {
+
     private Shape starShape;
     private double x;
     private double y;
@@ -65,15 +62,15 @@ public class Star2D implements Shape {
      * <code>x</code> and <code>y</code> coordinates. The number of branches
      * and their length can be specified.</p>
      *
-     * @param x the location of the star center
-     * @param y the location of the star center
-     * @param innerRadius the distance between the center of the star and the
-     *   origin of the branches
-     * @param outerRadius the distance between the center of the star and the
-     *   tip of the branches
+     * @param x             the location of the star center
+     * @param y             the location of the star center
+     * @param innerRadius   the distance between the center of the star and the
+     *                      origin of the branches
+     * @param outerRadius   the distance between the center of the star and the
+     *                      tip of the branches
      * @param branchesCount the number of branches in this star; must be &gt;= 3
      * @throws IllegalArgumentException if <code>branchesCount<code> is < 3 or
-     *   if <code>innerRadius</code> is &gt;= <code>outerRadius</code>
+     *                                  if <code>innerRadius</code> is &gt;= <code>outerRadius</code>
      */
     public Star2D(double x, double y,
                   double innerRadius, double outerRadius,
@@ -142,7 +139,7 @@ public class Star2D implements Shape {
      * lower than the outer radius.</p>
      *
      * @param innerRadius the distance between the center of the star and the
-     *   origin of the branches
+     *                    origin of the branches
      * @throws IllegalArgumentException if the inner radius is &gt;= outer radius
      */
     public void setInnerRadius(double innerRadius) {
@@ -153,7 +150,7 @@ public class Star2D implements Shape {
 
         this.innerRadius = innerRadius;
         starShape = generateStar(getX(), getY(), innerRadius, getOuterRadius(),
-                                 getBranchesCount());
+            getBranchesCount());
     }
 
     /**
@@ -164,7 +161,7 @@ public class Star2D implements Shape {
     public void setX(double x) {
         this.x = x;
         starShape = generateStar(x, getY(), getInnerRadius(), getOuterRadius(),
-                                 getBranchesCount());
+            getBranchesCount());
     }
 
     /**
@@ -175,7 +172,7 @@ public class Star2D implements Shape {
     public void setY(double y) {
         this.y = y;
         starShape = generateStar(getX(), y, getInnerRadius(), getOuterRadius(),
-                                 getBranchesCount());
+            getBranchesCount());
     }
 
     /**
@@ -184,7 +181,7 @@ public class Star2D implements Shape {
      * greater than the inner radius.</p>
      *
      * @param outerRadius the distance between the center of the star and the
-     *   tips of the branches
+     *                    tips of the branches
      * @throws IllegalArgumentException if the inner radius is &gt;= outer radius
      */
     public void setOuterRadius(double outerRadius) {
@@ -195,7 +192,7 @@ public class Star2D implements Shape {
 
         this.outerRadius = outerRadius;
         starShape = generateStar(getX(), getY(), getInnerRadius(), outerRadius,
-                                 getBranchesCount());
+            getBranchesCount());
     }
 
     /**
@@ -213,7 +210,7 @@ public class Star2D implements Shape {
 
         this.branchesCount = branchesCount;
         starShape = generateStar(getX(), getY(), getInnerRadius(),
-                                 getOuterRadius(), branchesCount);
+            getOuterRadius(), branchesCount);
     }
 
     /**

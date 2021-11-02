@@ -20,51 +20,38 @@
  */
 package org.jdesktop.swingx.color;
 
-import java.awt.AWTException;
-import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.Point;
-import java.awt.Rectangle;
-import java.awt.Robot;
+import org.jdesktop.swingx.JXColorSelectionButton;
+import org.jdesktop.swingx.util.PaintUtils;
+
+import javax.swing.*;
+import javax.swing.colorchooser.AbstractColorChooserPanel;
+import javax.swing.event.MouseInputAdapter;
+import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.geom.Point2D;
 import java.awt.image.BufferedImage;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
-import javax.swing.JColorChooser;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JTextArea;
-import javax.swing.SwingUtilities;
-import javax.swing.colorchooser.AbstractColorChooserPanel;
-import javax.swing.event.MouseInputAdapter;
-
-import org.jdesktop.swingx.JXColorSelectionButton;
-import org.jdesktop.swingx.util.PaintUtils;
-
 /**
- * <p>EyeDropperColorChooserPanel is a pluggable panel for the 
- * {@link JColorChooser} which allows the user to grab any 
+ * <p>EyeDropperColorChooserPanel is a pluggable panel for the
+ * {@link JColorChooser} which allows the user to grab any
  * color from the screen using a magnifying glass.</p>
  *
  * <p>Example usage:</p>
  * <pre><code>
  *    public static void main(String ... args) {
-        SwingUtilities.invokeLater(new Runnable() {
-            public void run() {
-                JColorChooser chooser = new JColorChooser();
-                chooser.addChooserPanel(new EyeDropperColorChooserPanel());
-                JFrame frame = new JFrame();
-                frame.add(chooser);
-                frame.pack();
-                frame.setVisible(true);
-            }
-        });
-    }
+ * SwingUtilities.invokeLater(new Runnable() {
+ * public void run() {
+ * JColorChooser chooser = new JColorChooser();
+ * chooser.addChooserPanel(new EyeDropperColorChooserPanel());
+ * JFrame frame = new JFrame();
+ * frame.add(chooser);
+ * frame.pack();
+ * frame.setVisible(true);
+ * }
+ * });
+ * }
  * </code></pre>
  *
  * @author joshua@marinacci.org
@@ -74,7 +61,7 @@ public class EyeDropperColorChooserPanel extends AbstractColorChooserPanel {
     /**
      * Example usage
      */
-    public static void main(String ... args) {
+    public static void main(String... args) {
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
                 JColorChooser chooser = new JColorChooser();
@@ -87,7 +74,7 @@ public class EyeDropperColorChooserPanel extends AbstractColorChooserPanel {
             }
         });
     }
-    
+
     /**
      * Creates new EyeDropperColorChooserPanel
      */
@@ -97,15 +84,17 @@ public class EyeDropperColorChooserPanel extends AbstractColorChooserPanel {
             @Override
             public void mousePressed(MouseEvent evt) {
             }
+
             @Override
             public void mouseDragged(MouseEvent evt) {
                 Point pt = evt.getPoint();
-                SwingUtilities.convertPointToScreen(pt,evt.getComponent());
-                ((MagnifyingPanel)magPanel).setMagPoint(pt);
+                SwingUtilities.convertPointToScreen(pt, evt.getComponent());
+                ((MagnifyingPanel) magPanel).setMagPoint(pt);
             }
+
             @Override
             public void mouseReleased(MouseEvent evt) {
-                Color newColor = new Color(((MagnifyingPanel)magPanel).activeColor);
+                Color newColor = new Color(((MagnifyingPanel) magPanel).activeColor);
                 getColorSelectionModel().setSelectedColor(newColor);
             }
         };
@@ -113,50 +102,53 @@ public class EyeDropperColorChooserPanel extends AbstractColorChooserPanel {
         eyeDropper.addMouseMotionListener(mia);
         try {
             eyeDropper.setIcon(new ImageIcon(
-                    EyeDropperColorChooserPanel.class.getResource("mag.png")));
+                EyeDropperColorChooserPanel.class.getResource("mag.png")));
             eyeDropper.setText("");
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-        
+
         magPanel.addPropertyChangeListener(new PropertyChangeListener() {
             public void propertyChange(PropertyChangeEvent evt) {
-                Color color = new Color(((MagnifyingPanel)magPanel).activeColor);
+                Color color = new Color(((MagnifyingPanel) magPanel).activeColor);
                 activeColor.setBackground(color);
                 hexColor.setText(PaintUtils.toHexString(color).substring(1));
-                rgbColor.setText(color.getRed() +"," + color.getGreen() + "," + color.getBlue());
+                rgbColor.setText(color.getRed() + "," + color.getGreen() + "," + color.getBlue());
             }
         });
     }
-    
+
     private class MagnifyingPanel extends JPanel {
+
         private Point2D point;
         private int activeColor;
+
         public void setMagPoint(Point2D point) {
             this.point = point;
             repaint();
         }
+
         @Override
         public void paintComponent(Graphics g) {
-            if(point != null) {
-                Rectangle rect = new Rectangle((int)point.getX()-10,(int)point.getY()-10,20,20);
+            if (point != null) {
+                Rectangle rect = new Rectangle((int) point.getX() - 10, (int) point.getY() - 10, 20, 20);
                 try {
-                    BufferedImage img =new Robot().createScreenCapture(rect);
-                    g.drawImage(img,0,0,getWidth(),getHeight(),null);
+                    BufferedImage img = new Robot().createScreenCapture(rect);
+                    g.drawImage(img, 0, 0, getWidth(), getHeight(), null);
                     int oldColor = activeColor;
-                    activeColor = img.getRGB(img.getWidth()/2,img.getHeight()/2);
+                    activeColor = img.getRGB(img.getWidth() / 2, img.getHeight() / 2);
                     firePropertyChange("activeColor", oldColor, activeColor);
                 } catch (AWTException ex) {
                     ex.printStackTrace();
                 }
             }
             g.setColor(Color.black);
-            g.drawRect(getWidth()/2 - 5, getHeight()/2 -5, 10,10);
+            g.drawRect(getWidth() / 2 - 5, getHeight() / 2 - 5, 10, 10);
         }
     }
-    
-    
-    /** This method is called from within the constructor to
+
+    /**
+     * This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
      * always regenerated by the Form Editor.
@@ -249,10 +241,8 @@ public class EyeDropperColorChooserPanel extends AbstractColorChooserPanel {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
         gridBagConstraints.insets = new java.awt.Insets(0, 4, 0, 4);
         add(jLabel2, gridBagConstraints);
-
     }// </editor-fold>//GEN-END:initComponents
-    
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton activeColor;
     private javax.swing.JButton eyeDropper;
@@ -261,21 +251,21 @@ public class EyeDropperColorChooserPanel extends AbstractColorChooserPanel {
     private JPanel magPanel;
     private javax.swing.JTextField rgbColor;
     // End of variables declaration//GEN-END:variables
-    
+
     /**
      * {@inheritDoc}
      */
     @Override
     public void updateChooser() {
     }
-    
+
     /**
      * {@inheritDoc}
      */
     @Override
     protected void buildChooser() {
     }
-    
+
     /**
      * {@inheritDoc}
      */
@@ -283,7 +273,7 @@ public class EyeDropperColorChooserPanel extends AbstractColorChooserPanel {
     public String getDisplayName() {
         return "Grab from Screen";
     }
-    
+
     /**
      * {@inheritDoc}
      */
@@ -291,7 +281,7 @@ public class EyeDropperColorChooserPanel extends AbstractColorChooserPanel {
     public Icon getSmallDisplayIcon() {
         return new ImageIcon();
     }
-    
+
     /**
      * {@inheritDoc}
      */

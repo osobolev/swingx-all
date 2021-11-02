@@ -20,24 +20,14 @@
  */
 package org.jdesktop.swingx.autocomplete;
 
-import java.util.Comparator;
-import static org.jdesktop.swingx.autocomplete.ObjectToStringConverter.DEFAULT_IMPLEMENTATION;
+import org.jdesktop.swingx.util.Contract;
 
 import javax.swing.UIManager;
-import javax.swing.event.DocumentEvent;
-import javax.swing.event.DocumentListener;
-import javax.swing.event.EventListenerList;
-import javax.swing.event.UndoableEditEvent;
-import javax.swing.event.UndoableEditListener;
-import javax.swing.text.AttributeSet;
-import javax.swing.text.BadLocationException;
-import javax.swing.text.Document;
-import javax.swing.text.Element;
-import javax.swing.text.PlainDocument;
-import javax.swing.text.Position;
-import javax.swing.text.Segment;
+import javax.swing.event.*;
+import javax.swing.text.*;
+import java.util.Comparator;
 
-import org.jdesktop.swingx.util.Contract;
+import static org.jdesktop.swingx.autocomplete.ObjectToStringConverter.DEFAULT_IMPLEMENTATION;
 
 /**
  * A document that can be plugged into any JTextComponent to enable automatic completion.
@@ -45,7 +35,9 @@ import org.jdesktop.swingx.util.Contract;
  */
 @SuppressWarnings("nls")
 public class AutoCompleteDocument implements Document {
+
     private class Handler implements DocumentListener, UndoableEditListener {
+
         private final EventListenerList listenerList = new EventListenerList();
 
         public void addDocumentListener(DocumentListener listener) {
@@ -81,12 +73,12 @@ public class AutoCompleteDocument implements Document {
             Object[] listeners = listenerList.getListenerList();
             // Process the listeners last to first, notifying
             // those that are interested in this event
-            for (int i = listeners.length-2; i>=0; i-=2) {
-                if (listeners[i]==DocumentListener.class) {
+            for (int i = listeners.length - 2; i >= 0; i -= 2) {
+                if (listeners[i] == DocumentListener.class) {
                     // Lazily create the event:
                     // if (e == null)
                     // e = new ListSelectionEvent(this, firstIndex, lastIndex);
-                    ((DocumentListener)listeners[i+1]).changedUpdate(e);
+                    ((DocumentListener) listeners[i + 1]).changedUpdate(e);
                 }
             }
         }
@@ -102,12 +94,12 @@ public class AutoCompleteDocument implements Document {
             Object[] listeners = listenerList.getListenerList();
             // Process the listeners last to first, notifying
             // those that are interested in this event
-            for (int i = listeners.length-2; i>=0; i-=2) {
-                if (listeners[i]==DocumentListener.class) {
+            for (int i = listeners.length - 2; i >= 0; i -= 2) {
+                if (listeners[i] == DocumentListener.class) {
                     // Lazily create the event:
                     // if (e == null)
                     // e = new ListSelectionEvent(this, firstIndex, lastIndex);
-                    ((DocumentListener)listeners[i+1]).insertUpdate(e);
+                    ((DocumentListener) listeners[i + 1]).insertUpdate(e);
                 }
             }
         }
@@ -123,12 +115,12 @@ public class AutoCompleteDocument implements Document {
             Object[] listeners = listenerList.getListenerList();
             // Process the listeners last to first, notifying
             // those that are interested in this event
-            for (int i = listeners.length-2; i>=0; i-=2) {
-                if (listeners[i]==DocumentListener.class) {
+            for (int i = listeners.length - 2; i >= 0; i -= 2) {
+                if (listeners[i] == DocumentListener.class) {
                     // Lazily create the event:
                     // if (e == null)
                     // e = new ListSelectionEvent(this, firstIndex, lastIndex);
-                    ((DocumentListener)listeners[i+1]).removeUpdate(e);
+                    ((DocumentListener) listeners[i + 1]).removeUpdate(e);
                 }
             }
         }
@@ -144,12 +136,12 @@ public class AutoCompleteDocument implements Document {
             Object[] listeners = listenerList.getListenerList();
             // Process the listeners last to first, notifying
             // those that are interested in this event
-            for (int i = listeners.length-2; i>=0; i-=2) {
-                if (listeners[i]==UndoableEditListener.class) {
-                // Lazily create the event:
-                // if (e == null)
-                // e = new ListSelectionEvent(this, firstIndex, lastIndex);
-                ((UndoableEditListener)listeners[i+1]).undoableEditHappened(e);
+            for (int i = listeners.length - 2; i >= 0; i -= 2) {
+                if (listeners[i] == UndoableEditListener.class) {
+                    // Lazily create the event:
+                    // if (e == null)
+                    // e = new ListSelectionEvent(this, firstIndex, lastIndex);
+                    ((UndoableEditListener) listeners[i + 1]).undoableEditHappened(e);
                 }
             }
         }
@@ -163,10 +155,12 @@ public class AutoCompleteDocument implements Document {
 
     protected final Document delegate;
 
-    /** Flag to indicate if adaptor.setSelectedItem has been called.
+    /**
+     * Flag to indicate if adaptor.setSelectedItem has been called.
      * Subsequent calls to remove/insertString should be ignored
      * as they are likely have been caused by the adapted Component that
-     * is trying to set the text for the selected component.*/
+     * is trying to set the text for the selected component.
+     */
     boolean selecting = false;
 
     /**
@@ -210,15 +204,16 @@ public class AutoCompleteDocument implements Document {
 
     /**
      * Creates a new AutoCompleteDocument for the given AbstractAutoCompleteAdaptor.
-     * @param adaptor The adaptor that will be used to find and select matching
-     * items.
-     * @param strictMatching true, if only items from the adaptor's list should
-     * be allowed to be entered
+     *
+     * @param adaptor         The adaptor that will be used to find and select matching
+     *                        items.
+     * @param strictMatching  true, if only items from the adaptor's list should
+     *                        be allowed to be entered
      * @param stringConverter the converter used to transform items to strings
-     * @param delegate the {@code Document} delegate backing this document
+     * @param delegate        the {@code Document} delegate backing this document
      */
     public AutoCompleteDocument(AbstractAutoCompleteAdaptor adaptor, boolean strictMatching,
-            ObjectToStringConverter stringConverter, Document delegate) {
+                                ObjectToStringConverter stringConverter, Document delegate) {
         this.adaptor = Contract.asNotNull(adaptor, "adaptor cannot be null");
         this.strictMatching = strictMatching;
         this.stringConverter = stringConverter == null ? DEFAULT_IMPLEMENTATION : stringConverter;
@@ -237,13 +232,13 @@ public class AutoCompleteDocument implements Document {
         this.adaptor.markEntireText();
     }
 
-
     /**
      * Creates a new AutoCompleteDocument for the given AbstractAutoCompleteAdaptor.
-     * @param adaptor The adaptor that will be used to find and select matching
-     * items.
-     * @param strictMatching true, if only items from the adaptor's list should
-     * be allowed to be entered
+     *
+     * @param adaptor         The adaptor that will be used to find and select matching
+     *                        items.
+     * @param strictMatching  true, if only items from the adaptor's list should
+     *                        be allowed to be entered
      * @param stringConverter the converter used to transform items to strings
      */
     public AutoCompleteDocument(AbstractAutoCompleteAdaptor adaptor, boolean strictMatching, ObjectToStringConverter stringConverter) {
@@ -252,10 +247,11 @@ public class AutoCompleteDocument implements Document {
 
     /**
      * Creates a new AutoCompleteDocument for the given AbstractAutoCompleteAdaptor.
+     *
      * @param strictMatching true, if only items from the adaptor's list should
-     * be allowed to be entered
-     * @param adaptor The adaptor that will be used to find and select matching
-     * items.
+     *                       be allowed to be entered
+     * @param adaptor        The adaptor that will be used to find and select matching
+     *                       items.
      */
     public AutoCompleteDocument(AbstractAutoCompleteAdaptor adaptor, boolean strictMatching) {
         this(adaptor, strictMatching, null);
@@ -292,7 +288,7 @@ public class AutoCompleteDocument implements Document {
         LookupResult lookupResult;
         String pattern = getText(0, getLength());
 
-        if(pattern == null || pattern.length() == 0) {
+        if (pattern == null || pattern.length() == 0) {
             lookupResult = new LookupResult(null, "");
             setSelectedItem(lookupResult.matchingItem, lookupResult.matchingString);
         } else {
@@ -316,8 +312,8 @@ public class AutoCompleteDocument implements Document {
                 }
             } else {
                 // no item matches => use the current input as selected item
-                lookupResult.matchingItem=getText(0, getLength());
-                lookupResult.matchingString=getText(0, getLength());
+                lookupResult.matchingItem = getText(0, getLength());
+                lookupResult.matchingString = getText(0, getLength());
                 setSelectedItem(lookupResult.matchingItem, lookupResult.matchingString);
             }
         }
@@ -347,8 +343,9 @@ public class AutoCompleteDocument implements Document {
 
     /**
      * Selects the given item using the AbstractAutoCompleteAdaptor.
+     *
      * @param itemAsString string representation of the item to be selected
-     * @param item the item that is to be selected
+     * @param item         the item that is to be selected
      */
     private void setSelectedItem(Object item, String itemAsString) {
         selecting = true;
@@ -419,8 +416,10 @@ public class AutoCompleteDocument implements Document {
     }
 
     private static class LookupResult {
+
         Object matchingItem;
         String matchingString;
+
         public LookupResult(Object matchingItem, String matchingString) {
             this.matchingItem = matchingItem;
             this.matchingString = matchingString;
@@ -549,6 +548,7 @@ public class AutoCompleteDocument implements Document {
 
     /**
      * Returns if only items from the adaptor's list should be allowed to be entered.
+     *
      * @return if only items from the adaptor's list should be allowed to be entered
      */
     public boolean isStrictMatching() {

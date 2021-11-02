@@ -20,12 +20,7 @@
  */
 package org.jdesktop.swingx;
 
-import java.awt.Component;
-import java.awt.Container;
-import java.awt.Dimension;
-import java.awt.Insets;
-import java.awt.LayoutManager2;
-import java.awt.Rectangle;
+import java.awt.*;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -46,19 +41,24 @@ import java.util.List;
  * If you don't specify the constraint, the component will be added at the top
  * of the components stack.</p>
  * <p>All the components managed by this layout will be given the same size as
- * the container itself. The minimum, maximum and preferred size of the 
+ * the container itself. The minimum, maximum and preferred size of the
  * container are based upon the largest minimum, maximum and preferred size of
  * the children components.</p>
  * <p><code>StackLayout</code> works only with JSE 1.5 and Java SE 6 and
  * greater.</p>
- * 
+ *
  * @author Romain Guy <romain.guy@mac.com>
  */
 
 public class StackLayout implements LayoutManager2 {
-    /** Use this constraint to add a component at the bottom of the stack. */
+
+    /**
+     * Use this constraint to add a component at the bottom of the stack.
+     */
     public static final String BOTTOM = "bottom";
-    /** Use this contrainst to add a component at the top of the stack. */
+    /**
+     * Use this contrainst to add a component at the top of the stack.
+     */
     public static final String TOP = "top";
 
     // removing components does not happen often compared to adding components
@@ -99,7 +99,7 @@ public class StackLayout implements LayoutManager2 {
             components.remove(comp);
         }
     }
-    
+
     /**
      * {@inheritDoc}
      */
@@ -132,7 +132,7 @@ public class StackLayout implements LayoutManager2 {
             int width = 0;
             int height = 0;
 
-            for (Component comp: components) {
+            for (Component comp : components) {
                 Dimension size = comp.getPreferredSize();
                 width = Math.max(size.width, width);
                 height = Math.max(size.height, height);
@@ -141,7 +141,7 @@ public class StackLayout implements LayoutManager2 {
             Insets insets = parent.getInsets();
             width += insets.left + insets.right;
             height += insets.top + insets.bottom;
-            
+
             return new Dimension(width, height);
         }
     }
@@ -155,7 +155,7 @@ public class StackLayout implements LayoutManager2 {
             int width = 0;
             int height = 0;
 
-            for (Component comp: components) {
+            for (Component comp : components) {
                 Dimension size = comp.getMinimumSize();
                 width = Math.max(size.width, width);
                 height = Math.max(size.height, height);
@@ -164,7 +164,7 @@ public class StackLayout implements LayoutManager2 {
             Insets insets = parent.getInsets();
             width += insets.left + insets.right;
             height += insets.top + insets.bottom;
-            
+
             return new Dimension(width, height);
         }
     }
@@ -175,7 +175,7 @@ public class StackLayout implements LayoutManager2 {
     @Override
     public Dimension maximumLayoutSize(final Container target) {
         return new Dimension(Integer.MAX_VALUE,
-                             Integer.MAX_VALUE);
+            Integer.MAX_VALUE);
     }
 
     /**
@@ -186,11 +186,11 @@ public class StackLayout implements LayoutManager2 {
         synchronized (parent.getTreeLock()) {
             int width = parent.getWidth();
             int height = parent.getHeight();
-            
+
             Rectangle bounds = new Rectangle(0, 0, width, height);
 
             int componentsCount = components.size();
-            
+
             for (int i = 0; i < componentsCount; i++) {
                 Component comp = components.get(i);
                 comp.setBounds(bounds);

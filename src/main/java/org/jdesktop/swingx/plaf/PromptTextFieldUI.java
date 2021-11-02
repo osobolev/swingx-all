@@ -1,29 +1,28 @@
 package org.jdesktop.swingx.plaf;
 
-import static javax.swing.BorderFactory.createEmptyBorder;
-
-import java.awt.Insets;
-import java.awt.Rectangle;
+import org.jdesktop.swingx.search.NativeSearchFieldSupport;
+import org.jdesktop.swingx.util.OS;
 
 import javax.swing.JTextField;
 import javax.swing.border.Border;
 import javax.swing.plaf.TextUI;
 import javax.swing.text.JTextComponent;
+import java.awt.Insets;
+import java.awt.Rectangle;
 
-import org.jdesktop.swingx.search.NativeSearchFieldSupport;
-import org.jdesktop.swingx.util.OS;
+import static javax.swing.BorderFactory.createEmptyBorder;
 
 /**
  * {@link PromptTextUI} implementation for rendering prompts on
  * {@link JTextField}s and uses a {@link JTextField} as a prompt component.
- * 
+ *
  * @author Peter Weishapl <petw@gmx.net>
- * 
  */
 public class PromptTextFieldUI extends PromptTextUI {
+
     /**
      * Creates a new {@link PromptTextFieldUI}.
-     * 
+     *
      * @param delegate
      */
     public PromptTextFieldUI(TextUI delegate) {
@@ -44,14 +43,14 @@ public class PromptTextFieldUI extends PromptTextUI {
 
         // Make search field in Leopard paint focused border.
         lbl.hasFocus = txtField.hasFocus()
-                && NativeSearchFieldSupport.isNativeSearchField(txtField);
+                       && NativeSearchFieldSupport.isNativeSearchField(txtField);
 
         // leopard client properties. see
         // http://developer.apple.com/technotes/tn2007/tn2196.html#JTEXTFIELD_VARIANT
         NativeSearchFieldSupport.setSearchField(lbl, NativeSearchFieldSupport
-                .isSearchField(txtField));
+            .isSearchField(txtField));
         NativeSearchFieldSupport.setFindPopupMenu(lbl, NativeSearchFieldSupport
-                .getFindPopupMenu(txtField));
+            .getFindPopupMenu(txtField));
 
         // here we need to copy the border again for Mac OS X, because the above
         // calls may have replaced it.
@@ -62,7 +61,7 @@ public class PromptTextFieldUI extends PromptTextUI {
         } else {
             Insets insets = b.getBorderInsets(txt);
             lbl.setBorder(
-                    createEmptyBorder(insets.top, insets.left, insets.bottom, insets.right));
+                createEmptyBorder(insets.top, insets.left, insets.bottom, insets.right));
         }
         //		lbl.setBorder(txtField.getBorder());
 
@@ -85,6 +84,7 @@ public class PromptTextFieldUI extends PromptTextUI {
     }
 
     private static final class LabelField extends JTextField {
+
         boolean hasFocus;
 
         @Override
@@ -94,7 +94,7 @@ public class PromptTextFieldUI extends PromptTextUI {
 
         /**
          * {@inheritDoc} <p>
-         * 
+         * <p>
          * Overridden to not automatically de/register itself from/to the ToolTipManager.
          * As rendering component it is not considered to be active in any way, so the
          * manager must not listen.
@@ -112,7 +112,8 @@ public class PromptTextFieldUI extends PromptTextUI {
          * @since 1.5
          */
         @Override
-        public void invalidate() {}
+        public void invalidate() {
+        }
 
         /**
          * Overridden for performance reasons.
@@ -120,7 +121,8 @@ public class PromptTextFieldUI extends PromptTextUI {
          * for more information.
          */
         @Override
-        public void validate() {}
+        public void validate() {
+        }
 
         /**
          * Overridden for performance reasons.
@@ -128,7 +130,8 @@ public class PromptTextFieldUI extends PromptTextUI {
          * for more information.
          */
         @Override
-        public void revalidate() {}
+        public void revalidate() {
+        }
 
         /**
          * Overridden for performance reasons.
@@ -136,7 +139,8 @@ public class PromptTextFieldUI extends PromptTextUI {
          * for more information.
          */
         @Override
-        public void repaint(long tm, int x, int y, int width, int height) {}
+        public void repaint(long tm, int x, int y, int width, int height) {
+        }
 
         /**
          * Overridden for performance reasons.
@@ -144,7 +148,8 @@ public class PromptTextFieldUI extends PromptTextUI {
          * for more information.
          */
         @Override
-        public void repaint(Rectangle r) { }
+        public void repaint(Rectangle r) {
+        }
 
         /**
          * Overridden for performance reasons.
@@ -164,14 +169,14 @@ public class PromptTextFieldUI extends PromptTextUI {
          */
         @Override
         protected void firePropertyChange(String propertyName, Object oldValue, Object newValue) {
-        	if (OS.isMacOSX()) {
-        		super.firePropertyChange(propertyName, oldValue, newValue);
-        	} else {
-        		// Strings get interned...
-        		if ("document".equals(propertyName)) {
-        			super.firePropertyChange(propertyName, oldValue, newValue);
-        		}
-        	}
+            if (OS.isMacOSX()) {
+                super.firePropertyChange(propertyName, oldValue, newValue);
+            } else {
+                // Strings get interned...
+                if ("document".equals(propertyName)) {
+                    super.firePropertyChange(propertyName, oldValue, newValue);
+                }
+            }
         }
 
         /**
@@ -181,9 +186,9 @@ public class PromptTextFieldUI extends PromptTextUI {
          */
         @Override
         public void firePropertyChange(String propertyName, boolean oldValue, boolean newValue) {
-        	if (OS.isMacOSX()) {
-        		super.firePropertyChange(propertyName, oldValue, newValue);
-        	}
+            if (OS.isMacOSX()) {
+                super.firePropertyChange(propertyName, oldValue, newValue);
+            }
         }
     }
 }

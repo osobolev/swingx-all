@@ -20,125 +20,157 @@
  */
 package org.jdesktop.swingx.util;
 
-
-import java.awt.Component;
-import java.awt.GraphicsConfiguration;
-import java.awt.GraphicsEnvironment;
-import java.awt.Insets;
-import java.awt.KeyboardFocusManager;
-import java.awt.Rectangle;
-import java.awt.Toolkit;
-import java.awt.Window;
+import javax.swing.KeyStroke;
+import javax.swing.SwingUtilities;
+import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.lang.ref.Reference;
 import java.lang.ref.SoftReference;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.text.BreakIterator;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Locale;
-import java.util.NoSuchElementException;
-import java.util.StringTokenizer;
+import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import javax.swing.KeyStroke;
-import javax.swing.SwingUtilities;
-
 /**
  * Contribution from NetBeans: Issue #319-swingx. <p>
- * 
+ * <p>
  * PENDING: need to reconcile with OS, JVM... added as-is
  * because needed the shortcut handling to fix #
  *
  * @author apple
  */
 public class Utilities {
+
     private Utilities() {
     }
-    
+
     private static final int CTRL_WILDCARD_MASK = 32768;
     private static final int ALT_WILDCARD_MASK = CTRL_WILDCARD_MASK * 2;
-    
-    /** Operating system is Windows NT. */
+
+    /**
+     * Operating system is Windows NT.
+     */
     public static final int OS_WINNT = 1 << 0;
 
-    /** Operating system is Windows 95. */
+    /**
+     * Operating system is Windows 95.
+     */
     public static final int OS_WIN95 = OS_WINNT << 1;
 
-    /** Operating system is Windows 98. */
+    /**
+     * Operating system is Windows 98.
+     */
     public static final int OS_WIN98 = OS_WIN95 << 1;
 
-    /** Operating system is Solaris. */
+    /**
+     * Operating system is Solaris.
+     */
     public static final int OS_SOLARIS = OS_WIN98 << 1;
 
-    /** Operating system is Linux. */
+    /**
+     * Operating system is Linux.
+     */
     public static final int OS_LINUX = OS_SOLARIS << 1;
 
-    /** Operating system is HP-UX. */
+    /**
+     * Operating system is HP-UX.
+     */
     public static final int OS_HP = OS_LINUX << 1;
 
-    /** Operating system is IBM AIX. */
+    /**
+     * Operating system is IBM AIX.
+     */
     public static final int OS_AIX = OS_HP << 1;
 
-    /** Operating system is SGI IRIX. */
+    /**
+     * Operating system is SGI IRIX.
+     */
     public static final int OS_IRIX = OS_AIX << 1;
 
-    /** Operating system is Sun OS. */
+    /**
+     * Operating system is Sun OS.
+     */
     public static final int OS_SUNOS = OS_IRIX << 1;
 
-    /** Operating system is Compaq TRU64 Unix */
+    /**
+     * Operating system is Compaq TRU64 Unix
+     */
     public static final int OS_TRU64 = OS_SUNOS << 1;
 
-    /** Operating system is OS/2. */
+    /**
+     * Operating system is OS/2.
+     */
     public static final int OS_OS2 = OS_TRU64 << 2;
 
-    /** Operating system is Mac. */
+    /**
+     * Operating system is Mac.
+     */
     public static final int OS_MAC = OS_OS2 << 1;
 
-    /** Operating system is Windows 2000. */
+    /**
+     * Operating system is Windows 2000.
+     */
     public static final int OS_WIN2000 = OS_MAC << 1;
 
-    /** Operating system is Compaq OpenVMS */
+    /**
+     * Operating system is Compaq OpenVMS
+     */
     public static final int OS_VMS = OS_WIN2000 << 1;
 
     /**
-     *Operating system is one of the Windows variants but we don't know which
-     *one it is
+     * Operating system is one of the Windows variants but we don't know which
+     * one it is
      */
     public static final int OS_WIN_OTHER = OS_VMS << 1;
 
-    /** Operating system is unknown. */
+    /**
+     * Operating system is unknown.
+     */
     public static final int OS_OTHER = OS_WIN_OTHER << 1;
 
-    /** Operating system is FreeBSD
+    /**
+     * Operating system is FreeBSD
+     *
      * @since 4.50
      */
     public static final int OS_FREEBSD = OS_OTHER << 1;
 
-    /** A mask for Windows platforms. */
+    /**
+     * A mask for Windows platforms.
+     */
     public static final int OS_WINDOWS_MASK = OS_WINNT | OS_WIN95 | OS_WIN98 | OS_WIN2000 | OS_WIN_OTHER;
 
-    /** A mask for Unix platforms. */
+    /**
+     * A mask for Unix platforms.
+     */
     public static final int OS_UNIX_MASK = OS_SOLARIS | OS_LINUX | OS_HP | OS_AIX | OS_IRIX | OS_SUNOS | OS_TRU64 |
-        OS_MAC | OS_FREEBSD;
+                                           OS_MAC | OS_FREEBSD;
 
-    /** A height of the windows's taskbar */
+    /**
+     * A height of the windows's taskbar
+     */
     public static final int TYPICAL_WINDOWS_TASKBAR_HEIGHT = 27;
 
-    /** A height of the Mac OS X's menu */
+    /**
+     * A height of the Mac OS X's menu
+     */
     private static final int TYPICAL_MACOSX_MENU_HEIGHT = 24;
-    
+
     private static int operatingSystem = -1;
-    
-    /** reference to map that maps allowed key names to their values (String, Integer)
-    and reference to map for mapping of values to their names */
+
+    /**
+     * reference to map that maps allowed key names to their values (String, Integer)
+     * and reference to map for mapping of values to their names
+     */
     private static Reference<Object> namesAndValues;
 
-    /** Get the operating system on which NetBeans is running.
-    * @return one of the <code>OS_*</code> constants (such as {@link #OS_WINNT})
-    */
+    /**
+     * Get the operating system on which NetBeans is running.
+     *
+     * @return one of the <code>OS_*</code> constants (such as {@link #OS_WINNT})
+     */
     public static int getOperatingSystem() {
         if (operatingSystem == -1) {
             String osName = System.getProperty("os.name");
@@ -187,26 +219,31 @@ public class Utilities {
         }
         return operatingSystem;
     }
-    
-    /** Test whether NetBeans is running on some variant of Windows.
-    * @return <code>true</code> if Windows, <code>false</code> if some other manner of operating system
-    */
+
+    /**
+     * Test whether NetBeans is running on some variant of Windows.
+     *
+     * @return <code>true</code> if Windows, <code>false</code> if some other manner of operating system
+     */
     public static boolean isWindows() {
         return (getOperatingSystem() & OS_WINDOWS_MASK) != 0;
     }
 
-    /** Test whether NetBeans is running on some variant of Unix.
-    * Linux is included as well as the commercial vendors, and Mac OS X.
-    * @return <code>true</code> some sort of Unix, <code>false</code> if some other manner of operating system
-    */
+    /**
+     * Test whether NetBeans is running on some variant of Unix.
+     * Linux is included as well as the commercial vendors, and Mac OS X.
+     *
+     * @return <code>true</code> some sort of Unix, <code>false</code> if some other manner of operating system
+     */
     public static boolean isUnix() {
         return (getOperatingSystem() & OS_UNIX_MASK) != 0;
     }
-    
-    /** Test whether the operating system supports icons on frames (windows).
-    * @return <code>true</code> if it does <em>not</em>
-    *
-    */
+
+    /**
+     * Test whether the operating system supports icons on frames (windows).
+     *
+     * @return <code>true</code> if it does <em>not</em>
+     */
     public static boolean isLargeFrameIcons() {
         return (getOperatingSystem() == OS_SOLARIS) || (getOperatingSystem() == OS_HP);
     }
@@ -239,7 +276,6 @@ public class Utilities {
      * focus is.
      *
      * @return the rectangle of the screen where one can place windows
-     *
      * @since 2.5
      */
     public static Rectangle getUsableScreenBounds() {
@@ -253,7 +289,6 @@ public class Utilities {
      *
      * @param gconf the GraphicsConfiguration of the monitor
      * @return the rectangle of the screen where one can place windows
-     *
      * @since 2.5
      */
     public static Rectangle getUsableScreenBounds(GraphicsConfiguration gconf) {
@@ -305,14 +340,15 @@ public class Utilities {
 
         return bounds;
     }
-    
 
-    /** Initialization of the names and values
-    * @return array of two hashmaps first maps
-    *   allowed key names to their values (String, Integer)
-    *  and second
-    * hashtable for mapping of values to their names (Integer, String)
-    */
+    /**
+     * Initialization of the names and values
+     *
+     * @return array of two hashmaps first maps
+     * allowed key names to their values (String, Integer)
+     * and second
+     * hashtable for mapping of values to their names (Integer, String)
+     */
     private static synchronized HashMap[] initNameAndValues() {
         if (namesAndValues != null) {
             HashMap[] arr = (HashMap[]) namesAndValues.get();
@@ -327,14 +363,14 @@ public class Utilities {
         try {
             fields = KeyEvent.class.getDeclaredFields();
 //           fields = KeyEvent.class.getFields();
-        } catch (SecurityException e) { 
+        } catch (SecurityException e) {
             // JW: need to do better? What are the use-cases where we don't have
             // any access to the fields?
             fields = new Field[0];
         }
 
-        HashMap<String,Integer> names = new HashMap<String,Integer>(((fields.length * 4) / 3) + 5, 0.75f);
-        HashMap<Integer,String> values = new HashMap<Integer,String>(((fields.length * 4) / 3) + 5, 0.75f);
+        HashMap<String, Integer> names = new HashMap<String, Integer>(((fields.length * 4) / 3) + 5, 0.75f);
+        HashMap<Integer, String> values = new HashMap<Integer, String>(((fields.length * 4) / 3) + 5, 0.75f);
 
         for (int i = 0; i < fields.length; i++) {
             if (Modifier.isStatic(fields[i].getModifiers())) {
@@ -368,18 +404,20 @@ public class Utilities {
             values.put(n, "WINDOWS"); // NOI18N
         }
 
-        HashMap[] arr = { names, values };
+        HashMap[] arr = {names, values};
 
         namesAndValues = new SoftReference<Object>(arr);
 
         return arr;
     }
 
-    /** Converts a Swing key stroke descriptor to a familiar Emacs-like name.
-    * @param stroke key description
-    * @return name of the key (e.g. <code>CS-F1</code> for control-shift-function key one)
-    * @see #stringToKey
-    */
+    /**
+     * Converts a Swing key stroke descriptor to a familiar Emacs-like name.
+     *
+     * @param stroke key description
+     * @return name of the key (e.g. <code>CS-F1</code> for control-shift-function key one)
+     * @see #stringToKey
+     */
     public static String keyToString(KeyStroke stroke) {
         StringBuffer sb = new StringBuffer();
 
@@ -401,45 +439,46 @@ public class Utilities {
         return sb.toString();
     }
 
-    /** Construct a new key description from a given universal string
-    * description.
-    * Provides mapping between Emacs-like textual key descriptions and the
-    * <code>KeyStroke</code> object used in Swing.
-    * <P>
-    * This format has following form:
-    * <P><code>[C][A][S][M]-<em>identifier</em></code>
-    * <p>Where:
-    * <UL>
-    * <LI> <code>C</code> stands for the Control key
-    * <LI> <code>A</code> stands for the Alt key
-    * <LI> <code>S</code> stands for the Shift key
-    * <LI> <code>M</code> stands for the Meta key
-    * </UL>
-    * The format also supports two wildcard codes, to support differences in
-    * platforms.  These are the preferred choices for registering keystrokes,
-    * since platform conflicts will automatically be handled:
-    * <UL>
-    * <LI> <code>D</code> stands for the default menu accelerator - the Control
-    *  key on most platforms, the Command (meta) key on Macintosh</LI>
-    * <LI> <code>O</code> stands for the alternate accelerator - the Alt key on
-    *  most platforms, the Ctrl key on Macintosh (Macintosh uses Alt as a
-    *  secondary shift key for composing international characters - if you bind
-    *  Alt-8 to an action, a mac user with a French keyboard will not be able
-    *  to type the <code>[</code> character, which is a significant handicap</LI>
-    * </UL>
-    * If you use the wildcard characters, and specify a key which will conflict
-    * with keys the operating system consumes, it will be mapped to whichever
-    * choice can work - for example, on Macintosh, Command-Q is always consumed
-    * by the operating system, so <code>D-Q</code> will always map to Control-Q.
-    * <p>
-    * Every modifier before the hyphen must be pressed.
-    * <em>identifier</EM> can be any text constant from {@link KeyEvent} but
-    * without the leading <code>VK_</code> characters. So {@link KeyEvent#VK_ENTER} is described as
-    * <code>ENTER</code>.
-    *
-    * @param s the string with the description of the key
-    * @return key description object, or <code>null</code> if the string does not represent any valid key
-    */
+    /**
+     * Construct a new key description from a given universal string
+     * description.
+     * Provides mapping between Emacs-like textual key descriptions and the
+     * <code>KeyStroke</code> object used in Swing.
+     * <p>
+     * This format has following form:
+     * <P><code>[C][A][S][M]-<em>identifier</em></code>
+     * <p>Where:
+     * <UL>
+     * <LI> <code>C</code> stands for the Control key
+     * <LI> <code>A</code> stands for the Alt key
+     * <LI> <code>S</code> stands for the Shift key
+     * <LI> <code>M</code> stands for the Meta key
+     * </UL>
+     * The format also supports two wildcard codes, to support differences in
+     * platforms.  These are the preferred choices for registering keystrokes,
+     * since platform conflicts will automatically be handled:
+     * <UL>
+     * <LI> <code>D</code> stands for the default menu accelerator - the Control
+     * key on most platforms, the Command (meta) key on Macintosh</LI>
+     * <LI> <code>O</code> stands for the alternate accelerator - the Alt key on
+     * most platforms, the Ctrl key on Macintosh (Macintosh uses Alt as a
+     * secondary shift key for composing international characters - if you bind
+     * Alt-8 to an action, a mac user with a French keyboard will not be able
+     * to type the <code>[</code> character, which is a significant handicap</LI>
+     * </UL>
+     * If you use the wildcard characters, and specify a key which will conflict
+     * with keys the operating system consumes, it will be mapped to whichever
+     * choice can work - for example, on Macintosh, Command-Q is always consumed
+     * by the operating system, so <code>D-Q</code> will always map to Control-Q.
+     * <p>
+     * Every modifier before the hyphen must be pressed.
+     * <em>identifier</EM> can be any text constant from {@link KeyEvent} but
+     * without the leading <code>VK_</code> characters. So {@link KeyEvent#VK_ENTER} is described as
+     * <code>ENTER</code>.
+     *
+     * @param s the string with the description of the key
+     * @return key description object, or <code>null</code> if the string does not represent any valid key
+     */
     public static KeyStroke stringToKey(String s) {
         StringTokenizer st = new StringTokenizer(s.toUpperCase(Locale.ENGLISH), "-", true); // NOI18N
 
@@ -450,7 +489,7 @@ public class Utilities {
         int lastModif = -1;
 
         try {
-            for (;;) {
+            for (; ; ) {
                 String el = st.nextToken();
 
                 // required key
@@ -511,16 +550,18 @@ public class Utilities {
             return null;
         }
     }
+
     /**
      * need to guard against headlessExceptions when testing.
+     *
      * @return the acceletor mask for shortcuts.
      */
     private static int getMenuShortCutKeyMask() {
         if (GraphicsEnvironment.isHeadless()) {
-            return ((getOperatingSystem() & OS_MAC) != 0) ? 
-                    KeyEvent.META_MASK : KeyEvent.CTRL_MASK;
+            return ((getOperatingSystem() & OS_MAC) != 0) ?
+                KeyEvent.META_MASK : KeyEvent.CTRL_MASK;
         }
- 
+
         return Toolkit.getDefaultToolkit().getMenuShortcutKeyMask();
     }
 
@@ -543,11 +584,13 @@ public class Utilities {
         } else return !((key == KeyEvent.VK_D) && isMeta && isAlt);
     }
 
-    /** Convert a space-separated list of Emacs-like key binding names to a list of Swing key strokes.
-    * @param s the string with keys
-    * @return array of key strokes, or <code>null</code> if the string description is not valid
-    * @see #stringToKey
-    */
+    /**
+     * Convert a space-separated list of Emacs-like key binding names to a list of Swing key strokes.
+     *
+     * @param s the string with keys
+     * @return array of key strokes, or <code>null</code> if the string description is not valid
+     * @see #stringToKey
+     */
     public static KeyStroke[] stringToKeys(String s) {
         StringTokenizer st = new StringTokenizer(s.toUpperCase(Locale.ENGLISH), " "); // NOI18N
         ArrayList<KeyStroke> arr = new ArrayList<KeyStroke>();
@@ -567,11 +610,13 @@ public class Utilities {
         return arr.toArray(new KeyStroke[arr.size()]);
     }
 
-    /** Adds characters for modifiers to the buffer.
-    * @param buf buffer to add to
-    * @param modif modifiers to add (KeyEvent.XXX_MASK)
-    * @return true if something has been added
-    */
+    /**
+     * Adds characters for modifiers to the buffer.
+     *
+     * @param buf   buffer to add to
+     * @param modif modifiers to add (KeyEvent.XXX_MASK)
+     * @return true if something has been added
+     */
     private static boolean addModifiers(StringBuffer buf, int modif) {
         boolean b = false;
 
@@ -608,11 +653,13 @@ public class Utilities {
         return b;
     }
 
-    /** Reads for modifiers and creates integer with required mask.
-    * @param s string with modifiers
-    * @return integer with mask
-    * @exception NoSuchElementException if some letter is not modifier
-    */
+    /**
+     * Reads for modifiers and creates integer with required mask.
+     *
+     * @param s string with modifiers
+     * @return integer with mask
+     * @throws NoSuchElementException if some letter is not modifier
+     */
     private static int readModifiers(String s) throws NoSuchElementException {
         int m = 0;
 
@@ -649,14 +696,15 @@ public class Utilities {
 
         return m;
     }
-    
+
     /**
-    * Convert an array of objects to an array of primitive types.
-    * E.g. an <code>Integer[]</code> would be changed to an <code>int[]</code>.
-    * @param array the wrapper array
-    * @return a primitive array
-    * @throws IllegalArgumentException if the array element type is not a primitive wrapper
-    */
+     * Convert an array of objects to an array of primitive types.
+     * E.g. an <code>Integer[]</code> would be changed to an <code>int[]</code>.
+     *
+     * @param array the wrapper array
+     * @return a primitive array
+     * @throws IllegalArgumentException if the array element type is not a primitive wrapper
+     */
     public static Object toPrimitiveArray(Object[] array) {
         if (array instanceof Integer[]) {
             int[] r = new int[array.length];
@@ -748,14 +796,15 @@ public class Utilities {
 
         throw new IllegalArgumentException();
     }
-    
+
     /**
-    * Convert an array of primitive types to an array of objects.
-    * E.g. an <code>int[]</code> would be turned into an <code>Integer[]</code>.
-    * @param array the primitive array
-    * @return a wrapper array
-    * @throws IllegalArgumentException if the array element type is not primitive
-    */
+     * Convert an array of primitive types to an array of objects.
+     * E.g. an <code>int[]</code> would be turned into an <code>Integer[]</code>.
+     *
+     * @param array the primitive array
+     * @return a wrapper array
+     * @throws IllegalArgumentException if the array element type is not primitive
+     */
     public static Object[] toObjectArray(Object array) {
         if (array instanceof Object[]) {
             return (Object[]) array;
@@ -852,18 +901,20 @@ public class Utilities {
         throw new IllegalArgumentException();
     }
 
-    /** Wrap multi-line strings (and get the individual lines).
-    * @param original  the original string to wrap
-    * @param width     the maximum width of lines
-    * @param breakIterator breaks original to chars, words, sentences, depending on what instance you provide.
-    * @param removeNewLines if <code>true</code>, any newlines in the original string are ignored
-    * @return the lines after wrapping
-    */
+    /**
+     * Wrap multi-line strings (and get the individual lines).
+     *
+     * @param original       the original string to wrap
+     * @param width          the maximum width of lines
+     * @param breakIterator  breaks original to chars, words, sentences, depending on what instance you provide.
+     * @param removeNewLines if <code>true</code>, any newlines in the original string are ignored
+     * @return the lines after wrapping
+     */
     public static String[] wrapStringToArray(
         String original, int width, BreakIterator breakIterator, boolean removeNewLines
     ) {
         if (original.length() == 0) {
-            return new String[] { original };
+            return new String[] {original};
         }
 
         String[] workingSet;
@@ -873,7 +924,7 @@ public class Utilities {
         if (removeNewLines) {
             original = trimString(original);
             original = original.replace('\n', ' ');
-            workingSet = new String[] { original };
+            workingSet = new String[] {original};
         } else {
             StringTokenizer tokens = new StringTokenizer(original, "\n"); // NOI18N
             int len = tokens.countTokens();
@@ -892,7 +943,8 @@ public class Utilities {
             return workingSet;
         }
 
-widthcheck:  {
+        widthcheck:
+        {
             boolean ok = true;
 
             for (int i = 0; i < workingSet.length; i++) {
@@ -947,7 +999,7 @@ widthcheck:  {
 
         return (String[]) lines.toArray(s);
     }
-    
+
     private static String trimString(String s) {
         int idx = 0;
         char c;
@@ -973,5 +1025,5 @@ widthcheck:  {
         } while (((c == '\n') || (c == '\r')) && (idx >= 0));
 
         return s.substring(0, idx + 2);
-    }    
+    }
 }

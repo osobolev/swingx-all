@@ -8,18 +8,27 @@
  * modify it under the terms of the GNU Lesser General Public
  * License as published by the Free Software Foundation; either
  * version 2.1 of the License, or (at your option) any later version.
- * 
+ *
  * This library is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  * Lesser General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  */
 package org.jdesktop.swingx;
 
+import org.jdesktop.beans.JavaBean;
+import org.jdesktop.swingx.hyperlink.AbstractHyperlinkAction;
+import org.jdesktop.swingx.hyperlink.HyperlinkAction;
+import org.jdesktop.swingx.plaf.HyperlinkAddon;
+import org.jdesktop.swingx.plaf.LookAndFeelAddons;
+
+import javax.swing.Action;
+import javax.swing.JButton;
+import javax.swing.plaf.ButtonUI;
 import java.awt.Color;
 import java.awt.GraphicsEnvironment;
 import java.awt.HeadlessException;
@@ -28,32 +37,22 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.net.URI;
 
-import javax.swing.Action;
-import javax.swing.JButton;
-import javax.swing.plaf.ButtonUI;
-
-import org.jdesktop.beans.JavaBean;
-import org.jdesktop.swingx.hyperlink.AbstractHyperlinkAction;
-import org.jdesktop.swingx.hyperlink.HyperlinkAction;
-import org.jdesktop.swingx.plaf.HyperlinkAddon;
-import org.jdesktop.swingx.plaf.LookAndFeelAddons;
-
 /**
  * A hyperlink component that derives from JButton to provide compatibility
  * mostly for binding actions enabled/disabled behavior accessibility i18n etc...
  * <p>
- *
- * This button has visual state related to a notion of "clicked": 
- * foreground color is unclickedColor or clickedColor depending on 
+ * <p>
+ * This button has visual state related to a notion of "clicked":
+ * foreground color is unclickedColor or clickedColor depending on
  * its boolean bound property clicked being false or true, respectively.
- * If the hyperlink has an action, it guarantees to synchronize its 
- * "clicked" state to an action value with key LinkAction.VISITED_KEY. 
+ * If the hyperlink has an action, it guarantees to synchronize its
+ * "clicked" state to an action value with key LinkAction.VISITED_KEY.
  * Synchronization happens on setAction() and on propertyChange notification
- * from the action. JXHyperlink accepts any type of action - 
+ * from the action. JXHyperlink accepts any type of action -
  * {@link AbstractHyperlinkAction} is a convenience implementation to
  * simplify clicked control.
  * <p>
- * 
+ *
  * <pre> <code>
  *      LinkAction linkAction = new LinkAction("http://swinglabs.org") {
  *            public void actionPerformed(ActionEvent e) {
@@ -63,19 +62,19 @@ import org.jdesktop.swingx.plaf.LookAndFeelAddons;
  *      };
  *      JXHyperlink hyperlink = new JXHyperlink(linkAction);
  * <code> </pre>
- * 
- * The hyperlink can be configured to always update its clicked 
+ * <p>
+ * The hyperlink can be configured to always update its clicked
  * property after firing the actionPerformed:
- * 
+ *
  * <pre> <code>
  *      JXHyperlink hyperlink = new JXHyperlink(action);
  *      hyperlink.setOverrulesActionOnClick(true);
  * <code> </pre>
- * 
- * By default, this property is false. The hyperlink will 
+ * <p>
+ * By default, this property is false. The hyperlink will
  * auto-click only if it has no action. Developers can change the
  * behaviour by overriding {@link JXHyperlink#isAutoSetClicked()};
- * 
+ *
  * @author Richard Bair
  * @author Shai Almog
  * @author Jeanette Winzenburg
@@ -91,7 +90,7 @@ public class JXHyperlink extends JButton {
 
     // ensure at least the default ui is registered
     static {
-      LookAndFeelAddons.contribute(new HyperlinkAddon());
+        LookAndFeelAddons.contribute(new HyperlinkAddon());
     }
 
     private boolean hasBeenVisited = false;
@@ -122,8 +121,8 @@ public class JXHyperlink extends JButton {
     /**
      * Creates a new instance of JHyperLink and configures it from provided Action.
      *
-     * @param action Action whose parameters will be borrowed to configure newly 
-     *        created JXHyperLink
+     * @param action Action whose parameters will be borrowed to configure newly
+     *               created JXHyperLink
      */
     public JXHyperlink(Action action) {
         super();
@@ -133,23 +132,19 @@ public class JXHyperlink extends JButton {
 
     /**
      * Convenience method to create and install a HyperlinkAction for the given URI.
-     * 
-     * @param uri
-     *            to uri to create a HyperlinkAction for, maybe null.
-     * @throws HeadlessException
-     *             if {@link GraphicsEnvironment#isHeadless()} returns {@code true}
-     * @throws UnsupportedOperationException
-     *             if the current platform doesn't support Desktop
-     * 
+     *
+     * @param uri to uri to create a HyperlinkAction for, maybe null.
+     * @throws HeadlessException             if {@link GraphicsEnvironment#isHeadless()} returns {@code true}
+     * @throws UnsupportedOperationException if the current platform doesn't support Desktop
      * @see HyperlinkAction#createHyperlinkAction(URI)
      */
     public void setURI(URI uri) {
         setAction(HyperlinkAction.createHyperlinkAction(uri));
     }
-    
+
     /**
      * Returns the foreground color for unvisited links.
-     * 
+     *
      * @return Color for the hyper link if it has not yet been clicked.
      */
     public Color getUnclickedColor() {
@@ -173,7 +168,7 @@ public class JXHyperlink extends JButton {
 
     /**
      * Returns the foreground color for visited links.
-     * 
+     *
      * @return Color for the hyper link if it has already been clicked.
      */
     public Color getClickedColor() {
@@ -199,12 +194,12 @@ public class JXHyperlink extends JButton {
      * Sets the clicked property and updates visual state depending on clicked.
      * This implementation updated the foreground color.
      * <p>
-     * 
+     * <p>
      * NOTE: as with all button's visual properties, this will not update the
      * backing action's "visited" state.
-     * 
+     *
      * @param clicked flag to indicate if the button should be regarded as
-     *        having been clicked or not.
+     *                having been clicked or not.
      * @see #isClicked()
      */
     public void setClicked(boolean clicked) {
@@ -216,7 +211,7 @@ public class JXHyperlink extends JButton {
 
     /**
      * Returns a boolean indicating if this link has already been visited.
-     * 
+     *
      * @return <code>true</code> if hyper link has already been clicked.
      * @see #setClicked(boolean)
      */
@@ -227,12 +222,11 @@ public class JXHyperlink extends JButton {
     /**
      * Sets the overrulesActionOnClick property. It controls whether this
      * button should overrule the Action's visited property on actionPerformed. <p>
-     * 
+     * <p>
      * The default value is <code>false</code>.
-     * 
+     *
      * @param overrule if true, fireActionPerformed will set clicked to true
-     *   independent of action.
-     * 
+     *                 independent of action.
      * @see #getOverrulesActionOnClick()
      * @see #setClicked(boolean)
      */
@@ -241,15 +235,14 @@ public class JXHyperlink extends JButton {
         this.overrulesActionOnClick = overrule;
         firePropertyChange("overrulesActionOnClick", old, getOverrulesActionOnClick());
     }
-    
+
     /**
      * Returns a boolean indicating whether the clicked property should be set
      * always on clicked.
-     * 
+     *
      * @return overrulesActionOnClick false if his button clicked property
-     *         respects the Action's visited property. True if the clicked
-     *         should be updated on every actionPerformed.
-     * 
+     * respects the Action's visited property. True if the clicked
+     * should be updated on every actionPerformed.
      * @see #setOverrulesActionOnClick(boolean)
      * @see #setClicked(boolean)
      */
@@ -270,9 +263,10 @@ public class JXHyperlink extends JButton {
     }
 
     /**
-     * Returns a boolean indicating whether the clicked property should be set 
+     * Returns a boolean indicating whether the clicked property should be set
      * after firing action events.
      * Here: true if no action or overrulesAction property is true.
+     *
      * @return true if fireActionEvent should force a clicked, false if not.
      */
     protected boolean isAutoSetClicked() {
@@ -286,9 +280,9 @@ public class JXHyperlink extends JButton {
      */
     @Override
     protected PropertyChangeListener createActionPropertyChangeListener(
-            final Action a) {
+        final Action a) {
         final PropertyChangeListener superListener = super
-                .createActionPropertyChangeListener(a);
+            .createActionPropertyChangeListener(a);
         // JW: need to do something better - only weak refs allowed!
         // no way to hook into super
         return new PropertyChangeListener() {
@@ -300,9 +294,7 @@ public class JXHyperlink extends JButton {
                 } else {
                     superListener.propertyChange(evt);
                 }
-
             }
-
         };
     }
 
@@ -320,7 +312,6 @@ public class JXHyperlink extends JButton {
         boolean clicked = false;
         if (a != null) {
             clicked = Boolean.TRUE.equals(a.getValue(AbstractHyperlinkAction.VISITED_KEY));
-            
         }
         setClicked(clicked);
     }
@@ -337,15 +328,15 @@ public class JXHyperlink extends JButton {
     public String getUIClassID() {
         return uiClassID;
     }
-    
+
     /**
      * Notification from the <code>UIManager</code> that the L&F has changed.
      * Replaces the current UI object with the latest version from the <code>UIManager</code>.
-     * 
+     *
      * @see javax.swing.JComponent#updateUI
      */
     @Override
     public void updateUI() {
-      setUI((ButtonUI)LookAndFeelAddons.getUI(this, ButtonUI.class));
+        setUI((ButtonUI) LookAndFeelAddons.getUI(this, ButtonUI.class));
     }
 }

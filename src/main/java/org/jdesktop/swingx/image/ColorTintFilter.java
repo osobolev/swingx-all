@@ -34,10 +34,10 @@
 
 package org.jdesktop.swingx.image;
 
+import org.jdesktop.swingx.util.GraphicsUtilities;
+
 import java.awt.Color;
 import java.awt.image.BufferedImage;
-
-import org.jdesktop.swingx.util.GraphicsUtilities;
 
 /**
  * <p>A color tint filter can be used to mix a solid color to an image. The
@@ -61,6 +61,7 @@ import org.jdesktop.swingx.util.GraphicsUtilities;
  */
 
 public class ColorTintFilter extends AbstractFilter {
+
     private final Color mixColor;
     private final float mixValue;
 
@@ -75,7 +76,7 @@ public class ColorTintFilter extends AbstractFilter {
      *
      * @param mixColor the solid color to mix with the source image
      * @param mixValue the strength of the mix, between 0.0 and 1.0; if the
-     *   specified value lies outside this range, it is clamped
+     *                 specified value lies outside this range, it is clamped
      * @throws IllegalArgumentException if <code>mixColor</code> is null
      */
     public ColorTintFilter(Color mixColor, float mixValue) {
@@ -91,22 +92,22 @@ public class ColorTintFilter extends AbstractFilter {
         }
         this.mixValue = mixValue;
 
-        int mix_r = (int) (mixColor.getRed()   * mixValue);
+        int mix_r = (int) (mixColor.getRed() * mixValue);
         int mix_g = (int) (mixColor.getGreen() * mixValue);
-        int mix_b = (int) (mixColor.getBlue()  * mixValue);
+        int mix_b = (int) (mixColor.getBlue() * mixValue);
 
         // Since we use only lookup tables to apply the filter, this filter
         // could be implemented as a LookupOp.
         float factor = 1.0f - mixValue;
-        preMultipliedRed   = new int[256];
+        preMultipliedRed = new int[256];
         preMultipliedGreen = new int[256];
-        preMultipliedBlue  = new int[256];
+        preMultipliedBlue = new int[256];
 
         for (int i = 0; i < 256; i++) {
             int value = (int) (i * factor);
-            preMultipliedRed[i]   = value + mix_r;
+            preMultipliedRed[i] = value + mix_r;
             preMultipliedGreen[i] = value + mix_g;
-            preMultipliedBlue[i]  = value + mix_b;
+            preMultipliedBlue[i] = value + mix_b;
         }
     }
 
@@ -152,8 +153,8 @@ public class ColorTintFilter extends AbstractFilter {
         for (int i = 0; i < pixels.length; i++) {
             int argb = pixels[i];
             pixels[i] = (argb & 0xFF000000) |
-                        preMultipliedRed[(argb >> 16)   & 0xFF] << 16 |
-                        preMultipliedGreen[(argb >> 8)  & 0xFF] <<  8 |
+                        preMultipliedRed[(argb >> 16) & 0xFF] << 16 |
+                        preMultipliedGreen[(argb >> 8) & 0xFF] << 8 |
                         preMultipliedBlue[argb & 0xFF];
         }
     }

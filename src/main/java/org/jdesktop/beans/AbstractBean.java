@@ -8,12 +8,12 @@
  * modify it under the terms of the GNU Lesser General Public
  * License as published by the Free Software Foundation; either
  * version 2.1 of the License, or (at your option) any later version.
- * 
+ *
  * This library is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  * Lesser General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
@@ -21,12 +21,7 @@
 
 package org.jdesktop.beans;
 
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
-import java.beans.PropertyChangeSupport;
-import java.beans.PropertyVetoException;
-import java.beans.VetoableChangeListener;
-import java.beans.VetoableChangeSupport;
+import java.beans.*;
 
 /**
  * <p>
@@ -34,49 +29,49 @@ import java.beans.VetoableChangeSupport;
  * manages the PropertyChange notification system, making it relatively trivial
  * to add support for property change events in getters/setters.
  * </p>
- * 
+ *
  * <p>
  * A non-visual java bean is a Java class that conforms to the AbstractBean
  * patterns to allow visual manipulation of the bean's properties and event
  * handlers at design-time.
  * </p>
- * 
+ *
  * <p>
  * Here is a simple example bean that contains one property, foo, and the proper
  * pattern for implementing property change notification:
- * 
+ *
  * <pre><code>
  * public class ABean extends AbstractBean {
  *     private String foo;
- * 
+ *
  *     public void setFoo(String newFoo) {
  *         String old = getFoo();
  *         this.foo = newFoo;
  *         firePropertyChange(&quot;foo&quot;, old, getFoo());
  *     }
- * 
+ *
  *     public String getFoo() {
  *         return foo;
  *     }
  * }
  * </code></pre>
- * 
+ *
  * </p>
- * 
+ *
  * <p>
  * You will notice that "getFoo()" is used in the setFoo method rather than
  * accessing "foo" directly for the gets. This is done intentionally so that if
  * a subclass overrides getFoo() to return, for instance, a constant value the
  * property change notification system will continue to work properly.
  * </p>
- * 
+ *
  * <p>
  * The firePropertyChange method takes into account the old value and the new
  * value. Only if the two differ will it fire a property change event. So you
  * can be assured from the above code fragment that a property change event will
  * only occur if old is indeed different from getFoo()
  * </p>
- * 
+ *
  * <p>
  * <code>AbstractBean</code> also supports vetoable
  * {@link PropertyChangeEvent} events. These events are similar to
@@ -85,11 +80,11 @@ import java.beans.VetoableChangeSupport;
  * from "fred" to "red", but a listener deems that "red" is unexceptable. In
  * this case, the listener can fire a veto exception and the property must
  * remain "fred". For example:
- * 
+ *
  * <pre><code>
  *  public class ABean extends AbstractBean {
  *    private String foo;
- *    
+ *
  *    public void setFoo(String newFoo) throws PropertyVetoException {
  *      String old = getFoo();
  *      this.foo = newFoo;
@@ -99,7 +94,7 @@ import java.beans.VetoableChangeSupport;
  *      return foo;
  *    }
  *  }
- * 
+ *
  *  public class Tester {
  *    public static void main(String... args) {
  *      try {
@@ -119,26 +114,27 @@ import java.beans.VetoableChangeSupport;
  *    }
  *  }
  * </code></pre>
- * 
+ *
  * </p>
  * <p>
  * {@code AbstractBean} is not {@link java.io.Serializable}. Special care must
  * be taken when creating {@code Serializable} subclasses, as the
- * {@code Serializable} listeners will not be saved.  Subclasses will need to 
+ * {@code Serializable} listeners will not be saved.  Subclasses will need to
  * manually save the serializable listeners.  The {@link AbstractSerializableBean}
- * is {@code Serializable} and already handles the listeners correctly.  If 
+ * is {@code Serializable} and already handles the listeners correctly.  If
  * possible, it is recommended that {@code Serializable} beans should extend
  * {@code AbstractSerializableBean}.  If it is not possible, the
  * {@code AbstractSerializableBean} bean implementation provides details on
  * how to correctly serialize an {@code AbstractBean} subclass.
  * </p>
- * 
- * @see AbstractSerializableBean
- * @status REVIEWED
+ *
  * @author rbair
+ * @status REVIEWED
+ * @see AbstractSerializableBean
  */
 @SuppressWarnings("nls")
 public abstract class AbstractBean {
+
     /**
      * Helper class that manages all the property change notification machinery.
      * PropertyChangeSupport cannot be extended directly because it requires
@@ -146,19 +142,21 @@ public abstract class AbstractBean {
      * after super construction. Hence, delegation instead of extension
      */
     private transient PropertyChangeSupport pcs;
-    
+
     /**
      * Helper class that manages all the veto property change notification machinery.
      */
     private transient VetoableChangeSupport vcs;
-    
-    /** Creates a new instance of AbstractBean */
+
+    /**
+     * Creates a new instance of AbstractBean
+     */
     protected AbstractBean() {
         pcs = new PropertyChangeSupport(this);
         vcs = new VetoableChangeSupport(this);
     }
-    
-    /** 
+
+    /**
      * Creates a new instance of AbstractBean, using the supplied PropertyChangeSupport and
      * VetoableChangeSupport delegates. Neither of these may be null.
      */
@@ -169,11 +167,11 @@ public abstract class AbstractBean {
         if (vcs == null) {
             throw new NullPointerException("VetoableChangeSupport must not be null");
         }
-        
+
         this.pcs = pcs;
         this.vcs = vcs;
     }
-    
+
     /**
      * Add a PropertyChangeListener to the listener list.
      * The listener is registered for all properties.
@@ -182,7 +180,7 @@ public abstract class AbstractBean {
      * If <code>listener</code> is null, no exception is thrown and no action
      * is taken.
      *
-     * @param listener  The PropertyChangeListener to be added
+     * @param listener The PropertyChangeListener to be added
      */
     public final void addPropertyChangeListener(PropertyChangeListener listener) {
         pcs.addPropertyChangeListener(listener);
@@ -197,7 +195,7 @@ public abstract class AbstractBean {
      * If <code>listener</code> is null, or was never added, no exception is
      * thrown and no action is taken.
      *
-     * @param listener  The PropertyChangeListener to be removed
+     * @param listener The PropertyChangeListener to be removed
      */
     public final void removePropertyChangeListener(PropertyChangeListener listener) {
         pcs.removePropertyChangeListener(listener);
@@ -214,12 +212,12 @@ public abstract class AbstractBean {
      * test each element to see if it's a
      * <code>PropertyChangeListenerProxy</code>, perform the cast, and examine
      * the parameter.
-     * 
+     *
      * <pre>
      * PropertyChangeListener[] listeners = bean.getPropertyChangeListeners();
      * for (int i = 0; i < listeners.length; i++) {
      *     if (listeners[i] instanceof PropertyChangeListenerProxy) {
-     *     PropertyChangeListenerProxy proxy = 
+     *     PropertyChangeListenerProxy proxy =
      *                    (PropertyChangeListenerProxy)listeners[i];
      *     if (proxy.getPropertyName().equals("foo")) {
      *       // proxy is a PropertyChangeListener which was associated
@@ -227,11 +225,11 @@ public abstract class AbstractBean {
      *     }
      *   }
      * }
-     *</pre>
+     * </pre>
      *
+     * @return all of the <code>PropertyChangeListeners</code> added or an
+     * empty array if no listeners have been added
      * @see java.beans.PropertyChangeListenerProxy
-     * @return all of the <code>PropertyChangeListeners</code> added or an 
-     *         empty array if no listeners have been added
      */
     public final PropertyChangeListener[] getPropertyChangeListeners() {
         return pcs.getPropertyChangeListeners();
@@ -247,8 +245,8 @@ public abstract class AbstractBean {
      * If <code>propertyName</code> or <code>listener</code> is null, no
      * exception is thrown and no action is taken.
      *
-     * @param propertyName  The name of the property to listen on.
-     * @param listener  The PropertyChangeListener to be added
+     * @param propertyName The name of the property to listen on.
+     * @param listener     The PropertyChangeListener to be added
      */
     public final void addPropertyChangeListener(String propertyName, PropertyChangeListener listener) {
         pcs.addPropertyChangeListener(propertyName, listener);
@@ -264,25 +262,25 @@ public abstract class AbstractBean {
      * If <code>listener</code> is null, or was never added for the specified
      * property, no exception is thrown and no action is taken.
      *
-     * @param propertyName  The name of the property that was listened on.
-     * @param listener  The PropertyChangeListener to be removed
+     * @param propertyName The name of the property that was listened on.
+     * @param listener     The PropertyChangeListener to be removed
      */
     public final void removePropertyChangeListener(String propertyName, PropertyChangeListener listener) {
         pcs.removePropertyChangeListener(propertyName, listener);
     }
 
     /**
-     * Returns an array of all the listeners which have been associated 
+     * Returns an array of all the listeners which have been associated
      * with the named property.
      *
-     * @param propertyName  The name of the property being listened to
+     * @param propertyName The name of the property being listened to
      * @return all of the <code>PropertyChangeListeners</code> associated with
-     *         the named property.  If no such listeners have been added,
-     *         or if <code>propertyName</code> is null, an empty array is
-     *         returned.
+     * the named property.  If no such listeners have been added,
+     * or if <code>propertyName</code> is null, an empty array is
+     * returned.
      */
     public final PropertyChangeListener[] getPropertyChangeListeners(String propertyName) {
-            return pcs.getPropertyChangeListeners(propertyName);
+        return pcs.getPropertyChangeListeners(propertyName);
     }
 
     /**
@@ -294,10 +292,10 @@ public abstract class AbstractBean {
      * firePropertyChange method that takes {@code
      * PropertyChangeEvent} value.
      *
-     * @param propertyName  The programmatic name of the property
-     *        that was changed.
-     * @param oldValue  The old value of the property.
-     * @param newValue  The new value of the property.
+     * @param propertyName The programmatic name of the property
+     *                     that was changed.
+     * @param oldValue     The old value of the property.
+     * @param newValue     The new value of the property.
      */
     protected final void firePropertyChange(String propertyName, Object oldValue, Object newValue) {
         pcs.firePropertyChange(propertyName, oldValue, newValue);
@@ -307,16 +305,16 @@ public abstract class AbstractBean {
      * Fire an existing PropertyChangeEvent to any registered listeners.
      * No event is fired if the given event's old and new values are
      * equal and non-null.
-     * @param evt  The PropertyChangeEvent object.
+     *
+     * @param evt The PropertyChangeEvent object.
      */
     protected final void firePropertyChange(PropertyChangeEvent evt) {
         pcs.firePropertyChange(evt);
     }
 
-    
     /**
      * Report a bound indexed property update to any registered
-     * listeners. 
+     * listeners.
      * <p>
      * No event is fired if old and new values are equal
      * and non-null.
@@ -332,8 +330,8 @@ public abstract class AbstractBean {
      * @param newValue     The new value of the property.
      */
     protected final void fireIndexedPropertyChange(String propertyName, int index,
-                      Object oldValue, Object newValue) {
-    pcs.fireIndexedPropertyChange(propertyName, index, oldValue, newValue);
+                                                   Object oldValue, Object newValue) {
+        pcs.fireIndexedPropertyChange(propertyName, index, oldValue, newValue);
     }
 
     /**
@@ -341,25 +339,25 @@ public abstract class AbstractBean {
      * those registered on all properties.  If <code>propertyName</code>
      * is null, only check for listeners registered on all properties.
      *
-     * @param propertyName  the property name.
+     * @param propertyName the property name.
      * @return true if there are one or more listeners for the given property
      */
     protected final boolean hasPropertyChangeListeners(String propertyName) {
         return pcs.hasListeners(propertyName);
     }
-    
+
     /**
      * Check if there are any listeners for a specific property, including
      * those registered on all properties.  If <code>propertyName</code>
      * is null, only check for listeners registered on all properties.
      *
-     * @param propertyName  the property name.
+     * @param propertyName the property name.
      * @return true if there are one or more listeners for the given property
      */
     protected final boolean hasVetoableChangeListeners(String propertyName) {
         return vcs.hasListeners(propertyName);
     }
-    
+
     /**
      * Add a VetoableListener to the listener list.
      * The listener is registered for all properties.
@@ -368,7 +366,7 @@ public abstract class AbstractBean {
      * If <code>listener</code> is null, no exception is thrown and no action
      * is taken.
      *
-     * @param listener  The VetoableChangeListener to be added
+     * @param listener The VetoableChangeListener to be added
      */
 
     public final void addVetoableChangeListener(VetoableChangeListener listener) {
@@ -384,7 +382,7 @@ public abstract class AbstractBean {
      * If <code>listener</code> is null, or was never added, no exception is
      * thrown and no action is taken.
      *
-     * @param listener  The VetoableChangeListener to be removed
+     * @param listener The VetoableChangeListener to be removed
      */
     public final void removeVetoableChangeListener(VetoableChangeListener listener) {
         vcs.removeVetoableChangeListener(listener);
@@ -394,10 +392,11 @@ public abstract class AbstractBean {
      * Returns the list of VetoableChangeListeners. If named vetoable change listeners
      * were added, then VetoableChangeListenerProxy wrappers will returned
      * <p>
+     *
      * @return List of VetoableChangeListeners and VetoableChangeListenerProxys
-     *         if named property change listeners were added.
+     * if named property change listeners were added.
      */
-    public final VetoableChangeListener[] getVetoableChangeListeners(){
+    public final VetoableChangeListener[] getVetoableChangeListeners() {
         return vcs.getVetoableChangeListeners();
     }
 
@@ -411,12 +410,12 @@ public abstract class AbstractBean {
      * If <code>propertyName</code> or <code>listener</code> is null, no
      * exception is thrown and no action is taken.
      *
-     * @param propertyName  The name of the property to listen on.
-     * @param listener  The VetoableChangeListener to be added
+     * @param propertyName The name of the property to listen on.
+     * @param listener     The VetoableChangeListener to be added
      */
 
     public final void addVetoableChangeListener(String propertyName,
-                VetoableChangeListener listener) {
+                                                VetoableChangeListener listener) {
         vcs.addVetoableChangeListener(propertyName, listener);
     }
 
@@ -430,24 +429,24 @@ public abstract class AbstractBean {
      * If <code>listener</code> is null, or was never added for the specified
      * property, no exception is thrown and no action is taken.
      *
-     * @param propertyName  The name of the property that was listened on.
-     * @param listener  The VetoableChangeListener to be removed
+     * @param propertyName The name of the property that was listened on.
+     * @param listener     The VetoableChangeListener to be removed
      */
 
     public final void removeVetoableChangeListener(String propertyName,
-                VetoableChangeListener listener) {
+                                                   VetoableChangeListener listener) {
         vcs.removeVetoableChangeListener(propertyName, listener);
     }
 
     /**
-     * Returns an array of all the listeners which have been associated 
+     * Returns an array of all the listeners which have been associated
      * with the named property.
      *
-     * @param propertyName  The name of the property being listened to
+     * @param propertyName The name of the property being listened to
      * @return all the <code>VetoableChangeListeners</code> associated with
-     *         the named property.  If no such listeners have been added,
-     *         or if <code>propertyName</code> is null, an empty array is
-     *         returned.
+     * the named property.  If no such listeners have been added,
+     * or if <code>propertyName</code> is null, an empty array is
+     * returned.
      */
     public final VetoableChangeListener[] getVetoableChangeListeners(String propertyName) {
         return vcs.getVetoableChangeListeners(propertyName);
@@ -455,40 +454,40 @@ public abstract class AbstractBean {
 
     /**
      * Report a vetoable property update to any registered listeners.  If
-     * anyone vetos the change, then fire a new event reverting everyone to 
+     * anyone vetos the change, then fire a new event reverting everyone to
      * the old value and then rethrow the PropertyVetoException.
      * <p>
      * No event is fired if old and new are equal and non-null.
      *
-     * @param propertyName  The programmatic name of the property
-     *        that is about to change..
-     * @param oldValue  The old value of the property.
-     * @param newValue  The new value of the property.
-     * @exception PropertyVetoException if the recipient wishes the property
-     *              change to be rolled back.
+     * @param propertyName The programmatic name of the property
+     *                     that is about to change..
+     * @param oldValue     The old value of the property.
+     * @param newValue     The new value of the property.
+     * @throws PropertyVetoException if the recipient wishes the property
+     *                               change to be rolled back.
      */
-    protected final void fireVetoableChange(String propertyName, 
-                    Object oldValue, Object newValue)
-                    throws PropertyVetoException {
+    protected final void fireVetoableChange(String propertyName,
+                                            Object oldValue, Object newValue)
+        throws PropertyVetoException {
         vcs.fireVetoableChange(propertyName, oldValue, newValue);
     }
 
     /**
      * Fire a vetoable property update to any registered listeners.  If
-     * anyone vetos the change, then fire a new event reverting everyone to 
+     * anyone vetos the change, then fire a new event reverting everyone to
      * the old value and then rethrow the PropertyVetoException.
      * <p>
      * No event is fired if old and new are equal and non-null.
      *
-     * @param evt  The PropertyChangeEvent to be fired.
-     * @exception PropertyVetoException if the recipient wishes the property
-     *              change to be rolled back.
+     * @param evt The PropertyChangeEvent to be fired.
+     * @throws PropertyVetoException if the recipient wishes the property
+     *                               change to be rolled back.
      */
     protected final void fireVetoableChange(PropertyChangeEvent evt)
-                    throws PropertyVetoException {
+        throws PropertyVetoException {
         vcs.fireVetoableChange(evt);
     }
-    
+
     /**
      * {@inheritDoc}
      */

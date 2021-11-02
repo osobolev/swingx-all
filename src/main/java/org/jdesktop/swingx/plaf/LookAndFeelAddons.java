@@ -20,6 +20,15 @@
  */
 package org.jdesktop.swingx.plaf;
 
+import org.jdesktop.swingx.BackgroundPaintable;
+import org.jdesktop.swingx.painter.Painter;
+
+import javax.swing.JComponent;
+import javax.swing.LookAndFeel;
+import javax.swing.UIDefaults;
+import javax.swing.UIManager;
+import javax.swing.plaf.ComponentUI;
+import javax.swing.plaf.UIResource;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.lang.reflect.Method;
@@ -29,16 +38,6 @@ import java.util.List;
 import java.util.ServiceLoader;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
-import javax.swing.JComponent;
-import javax.swing.LookAndFeel;
-import javax.swing.UIDefaults;
-import javax.swing.UIManager;
-import javax.swing.plaf.ComponentUI;
-import javax.swing.plaf.UIResource;
-
-import org.jdesktop.swingx.BackgroundPaintable;
-import org.jdesktop.swingx.painter.Painter;
 
 /**
  * Provides additional pluggable UI for new components added by the library. By default, the library
@@ -64,7 +63,7 @@ import org.jdesktop.swingx.painter.Painter;
  * The addon can also be installed directly by calling the {@link #setAddon(String)}method. For
  * example, to install the Windows addons, add the following statement
  * <code>LookAndFeelAddons.setAddon("org.jdesktop.swingx.plaf.windows.WindowsLookAndFeelAddons");</code>.
- * 
+ *
  * @author <a href="mailto:fred@L2FProd.com">Frederic Lavigne</a>
  * @author Karl Schaefer
  */
@@ -107,7 +106,7 @@ public abstract class LookAndFeelAddons {
     /**
      * Determines if the addon is a match for the {@link UIManager#getLookAndFeel() current Look and
      * Feel}.
-     * 
+     *
      * @return {@code true} if this addon matches (is compatible); {@code false} otherwise
      */
     protected boolean matches() {
@@ -116,9 +115,9 @@ public abstract class LookAndFeelAddons {
 
     /**
      * Determines if the addon is a match for the system Look and Feel.
-     * 
+     *
      * @return {@code true} if this addon matches (is compatible with) the system Look and Feel;
-     *         {@code false} otherwise
+     * {@code false} otherwise
      */
     protected boolean isSystemAddon() {
         return false;
@@ -126,19 +125,19 @@ public abstract class LookAndFeelAddons {
 
     /**
      * Initializes the look and feel addon. This method is
-     * 
+     *
      * @see #uninitialize
      * @see UIManager#setLookAndFeel
      */
     public void initialize() {
-        for (Iterator<ComponentAddon> iter = contributedComponents.iterator(); iter.hasNext();) {
+        for (Iterator<ComponentAddon> iter = contributedComponents.iterator(); iter.hasNext(); ) {
             ComponentAddon addon = iter.next();
             addon.initialize(this);
         }
     }
 
     public void uninitialize() {
-        for (Iterator<ComponentAddon> iter = contributedComponents.iterator(); iter.hasNext();) {
+        for (Iterator<ComponentAddon> iter = contributedComponents.iterator(); iter.hasNext(); ) {
             ComponentAddon addon = iter.next();
             addon.uninitialize(this);
         }
@@ -146,14 +145,14 @@ public abstract class LookAndFeelAddons {
 
     /**
      * Adds the given defaults in UIManager.
-     * 
+     * <p>
      * Note: the values are added only if they do not exist in the existing look and feel defaults.
      * This makes it possible for look and feel implementors to override SwingX defaults.
-     * 
+     * <p>
      * Note: the array is traversed in reverse order. If a key is found twice in the array, the
      * key/value with the highest position in the array gets precedence over the other key in the
      * array
-     * 
+     *
      * @param keysAndValues
      */
     public void loadDefaults(Object[] keysAndValues) {
@@ -174,12 +173,12 @@ public abstract class LookAndFeelAddons {
     }
 
     public static void setAddon(String addonClassName) throws InstantiationException,
-            IllegalAccessException, ClassNotFoundException {
+        IllegalAccessException, ClassNotFoundException {
         setAddon(Class.forName(addonClassName, true, getClassLoader()));
     }
 
     public static void setAddon(Class<?> addonClass) throws InstantiationException,
-            IllegalAccessException {
+        IllegalAccessException {
         LookAndFeelAddons addon = (LookAndFeelAddons) addonClass.newInstance();
         setAddon(addon);
     }
@@ -209,11 +208,11 @@ public abstract class LookAndFeelAddons {
     private static ClassLoader getClassLoader() {
         return LookAndFeelAddons.class.getClassLoader();
     }
-    
+
     /**
      * Based on the current look and feel (as returned by <code>UIManager.getLookAndFeel()</code>),
      * this method returns the name of the closest <code>LookAndFeelAddons</code> to use.
-     * 
+     *
      * @return the addon matching the currently installed look and feel
      */
     public static String getBestMatchAddonClassName() {
@@ -226,7 +225,7 @@ public abstract class LookAndFeelAddons {
             className = getSystemAddonClassName();
         } else {
             ServiceLoader<LookAndFeelAddons> addonLoader = ServiceLoader.load(LookAndFeelAddons.class,
-                    getClassLoader());
+                getClassLoader());
 
             for (LookAndFeelAddons addon : addonLoader) {
                 if (addon.matches()) {
@@ -249,12 +248,12 @@ public abstract class LookAndFeelAddons {
 
     /**
      * Gets the addon best suited for the operating system where the virtual machine is running.
-     * 
+     *
      * @return the addon matching the native operating system platform.
      */
     public static String getSystemAddonClassName() {
         ServiceLoader<LookAndFeelAddons> addonLoader = ServiceLoader.load(LookAndFeelAddons.class,
-                getClassLoader());
+            getClassLoader());
         String className = null;
 
         for (LookAndFeelAddons addon : addonLoader) {
@@ -274,7 +273,7 @@ public abstract class LookAndFeelAddons {
     /**
      * Each new component added by the library will contribute its default UI classes, colors and
      * fonts to the LookAndFeelAddons. See {@link ComponentAddon}.
-     * 
+     *
      * @param component
      */
     public static void contribute(ComponentAddon component) {
@@ -289,7 +288,7 @@ public abstract class LookAndFeelAddons {
 
     /**
      * Removes the contribution of the given addon
-     * 
+     *
      * @param component
      */
     public static void uncontribute(ComponentAddon component) {
@@ -303,7 +302,7 @@ public abstract class LookAndFeelAddons {
     /**
      * Workaround for IDE mixing up with classloaders and Applets environments. Consider this method
      * as API private. It must not be called directly.
-     * 
+     *
      * @param component
      * @param expectedUIClass
      * @return an instance of expectedUIClass
@@ -317,10 +316,10 @@ public abstract class LookAndFeelAddons {
         if (uiClassname == null) {
             Logger logger = Logger.getLogger("LookAndFeelAddons");
             logger.warning("Failed to retrieve UI for " + component.getClass().getName()
-                    + " with UIClassID " + component.getUIClassID());
+                           + " with UIClassID " + component.getUIClassID());
             if (logger.isLoggable(Level.FINE)) {
                 logger.fine("Existing UI defaults keys: "
-                        + new ArrayList<Object>(UIManager.getDefaults().keySet()));
+                            + new ArrayList<Object>(UIManager.getDefaults().keySet()));
             }
             // really ugly hack. Should be removed as soon as we figure out what is causing the
             // issue
@@ -352,9 +351,9 @@ public abstract class LookAndFeelAddons {
             if (realUIClass != null) {
                 try {
                     Method createUIMethod = realUIClass.getMethod("createUI",
-                            new Class[] { JComponent.class });
+                        new Class[] {JComponent.class});
 
-                    return (ComponentUI) createUIMethod.invoke(null, new Object[] { component });
+                    return (ComponentUI) createUIMethod.invoke(null, new Object[] {component});
                 } catch (NoSuchMethodException e) {
                     barkOnUIError("static createUI() method not found in " + realUIClass);
                 } catch (Exception e) {
@@ -377,7 +376,7 @@ public abstract class LookAndFeelAddons {
      * previously added by LookAndFeelAddons will be removed) but the addon will not reinitialize
      * because addon initialize itself through the static block in components and the classes do not
      * get reloaded. This means component.updateUI will fail because it will not find its UI.
-     * 
+     * <p>
      * This method ensures LookAndFeelAddons get re-initialized if needed. It must be called in
      * every component updateUI methods.
      */
@@ -399,6 +398,7 @@ public abstract class LookAndFeelAddons {
     // TRACKING OF THE CURRENT LOOK AND FEEL
     //
     private static class UpdateAddon implements PropertyChangeListener {
+
         @Override
         public void propertyChange(PropertyChangeEvent evt) {
             try {
@@ -413,10 +413,9 @@ public abstract class LookAndFeelAddons {
     /**
      * If true, everytime the Swing look and feel is changed, the addon which best matches the
      * current look and feel will be automatically selected.
-     * 
-     * @param tracking
-     *            true to automatically update the addon, false to not automatically track the
-     *            addon. Defaults to false.
+     *
+     * @param tracking true to automatically update the addon, false to not automatically track the
+     *                 addon. Defaults to false.
      * @see #getBestMatchAddonClassName()
      */
     public static synchronized void setTrackingLookAndFeelChanges(boolean tracking) {
@@ -448,16 +447,12 @@ public abstract class LookAndFeelAddons {
      * Convenience method for setting a component's background painter property with a value from
      * the defaults. The painter is only set if the painter is {@code null} or an instance of
      * {@code UIResource}.
-     * 
-     * @param c
-     *            component to set the painter on
-     * @param painter
-     *            key specifying the painter
-     * @throws NullPointerException
-     *             if the component or painter is {@code null}
-     * @throws IllegalArgumentException
-     *             if the component does not contain the "backgroundPainter" property or the
-     *             property cannot be set
+     *
+     * @param c       component to set the painter on
+     * @param painter key specifying the painter
+     * @throws NullPointerException     if the component or painter is {@code null}
+     * @throws IllegalArgumentException if the component does not contain the "backgroundPainter" property or the
+     *                                  property cannot be set
      */
     public static <T extends JComponent & BackgroundPaintable> void installBackgroundPainter(T c, String painter) {
         Painter<?> p = c.getBackgroundPainter();
@@ -470,14 +465,11 @@ public abstract class LookAndFeelAddons {
     /**
      * Convenience method for uninstalling a background painter. If the painter of the component is
      * a {@code UIResource}, it is set to {@code null}.
-     * 
-     * @param c
-     *            component to uninstall the painter on
-     * @throws NullPointerException
-     *             if {@code c} is {@code null}
-     * @throws IllegalArgumentException
-     *             if the component does not contain the "backgroundPainter" property or the
-     *             property cannot be set
+     *
+     * @param c component to uninstall the painter on
+     * @throws NullPointerException     if {@code c} is {@code null}
+     * @throws IllegalArgumentException if the component does not contain the "backgroundPainter" property or the
+     *                                  property cannot be set
      */
     public static <T extends JComponent & BackgroundPaintable> void uninstallBackgroundPainter(T c) {
         Painter<?> p = c.getBackgroundPainter();

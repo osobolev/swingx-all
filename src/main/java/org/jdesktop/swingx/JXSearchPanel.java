@@ -8,29 +8,18 @@
  * modify it under the terms of the GNU Lesser General Public
  * License as published by the Free Software Foundation; either
  * version 2.1 of the License, or (at your option) any later version.
- * 
+ *
  * This library is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  * Lesser General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
 package org.jdesktop.swingx;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
-import java.util.regex.Pattern;
-
-import javax.swing.ComboBoxModel;
-import javax.swing.DefaultComboBoxModel;
 
 import org.jdesktop.beans.JavaBean;
 import org.jdesktop.swingx.decorator.Highlighter;
@@ -39,6 +28,12 @@ import org.jdesktop.swingx.renderer.LocalizableStringValue;
 import org.jdesktop.swingx.renderer.StringValue;
 import org.jdesktop.swingx.search.PatternMatcher;
 import org.jdesktop.swingx.search.PatternModel;
+
+import javax.swing.ComboBoxModel;
+import javax.swing.DefaultComboBoxModel;
+import java.util.*;
+import java.util.regex.Pattern;
+
 /**
  * <p>
  * {@code JXSearchPanel} provides complex searching features. Users are able to
@@ -53,16 +48,16 @@ import org.jdesktop.swingx.search.PatternModel;
  * </p>
  * <pre>
  * public class PatternHandler implements PatternMatcher {
- * 
+ *
  *     private Highlighter highlighter;
- * 
+ *
  *     private Pattern pattern;
- * 
+ *
  *     public void setPattern(Pattern pattern) {
  *         this.pattern = pattern;
  *         highlighter.setHighlightPredicate(new PatternPredicate(pattern));
  *     }
- * 
+ *
  * }
  * </pre>
  * <p>
@@ -72,12 +67,13 @@ import org.jdesktop.swingx.search.PatternModel;
  * <p>
  * TODO: fully support control of multiple PatternMatchers.
  * </p>
- * 
+ *
  * @author Ramesh Gupta
  * @author Jeanette Winzenburg
  */
 @JavaBean
 public class JXSearchPanel extends AbstractPatternPanel {
+
     /**
      * The action command key.
      */
@@ -86,7 +82,6 @@ public class JXSearchPanel extends AbstractPatternPanel {
     private JXComboBox searchCriteria;
 
     private List<PatternMatcher> patternMatchers;
-    
 
     /**
      * Creates a search panel.
@@ -103,20 +98,19 @@ public class JXSearchPanel extends AbstractPatternPanel {
 
     /**
      * Adds a pattern matcher.
-     * 
-     * @param matcher
-     *            the matcher to add.
+     *
+     * @param matcher the matcher to add.
      */
     public void addPatternMatcher(PatternMatcher matcher) {
         getPatternMatchers().add(matcher);
         updateFieldName(matcher);
     }
-    
+
     /**
      * sets the PatternFilter control.
-     * 
+     *
      * PENDING: change to do a addPatternMatcher to enable multiple control.
-     * 
+     *
      */
 //    public void setPatternFilter(PatternFilter filter) {
 //        getPatternMatchers().add(filter);
@@ -125,9 +119,8 @@ public class JXSearchPanel extends AbstractPatternPanel {
 
     /**
      * set the label of the search combo.
-     * 
-     * @param name
-     *            the label
+     *
+     * @param name the label
      */
     public void setFieldName(String name) {
         String old = searchLabel.getText();
@@ -137,7 +130,6 @@ public class JXSearchPanel extends AbstractPatternPanel {
 
     /**
      * returns the label of the search combo.
-     * 
      */
     public String getFieldName() {
         return searchLabel.getText();
@@ -145,7 +137,7 @@ public class JXSearchPanel extends AbstractPatternPanel {
 
     /**
      * returns the current compiled Pattern.
-     * 
+     *
      * @return the current compiled <code>Pattern</code>
      */
     public Pattern getPattern() {
@@ -156,14 +148,14 @@ public class JXSearchPanel extends AbstractPatternPanel {
      * @param matcher
      */
     protected void updateFieldName(PatternMatcher matcher) {
-        
+
 //        if (matcher instanceof PatternFilter) {
 //            PatternFilter filter = (PatternFilter) matcher;
 //            searchLabel.setText(filter.getColumnName());
 //        } else {
-            if (searchLabel.getText().length() == 0) { // ugly hack
-                searchLabel.setText("Field");
-                /** TODO: Remove this hack!!! */
+        if (searchLabel.getText().length() == 0) { // ugly hack
+            searchLabel.setText("Field");
+            /** TODO: Remove this hack!!! */
 //            }
         }
     }
@@ -175,22 +167,21 @@ public class JXSearchPanel extends AbstractPatternPanel {
      */
     @Override
     public void match() {
-        for (Iterator<PatternMatcher> iter = getPatternMatchers().iterator(); iter.hasNext();) {
+        for (Iterator<PatternMatcher> iter = getPatternMatchers().iterator(); iter.hasNext(); ) {
             iter.next().setPattern(getPattern());
-            
         }
     }
 
     /**
-     * set's the PatternModel's MatchRule to the selected in combo. 
-     * 
+     * set's the PatternModel's MatchRule to the selected in combo.
+     * <p>
      * NOTE: this
-     * is public as an implementation side-effect! 
+     * is public as an implementation side-effect!
      * No need to ever call directly.
      */
     public void updateMatchRule() {
         getPatternModel().setMatchRule(
-                (String) searchCriteria.getSelectedItem());
+            (String) searchCriteria.getSelectedItem());
     }
 
     private List<PatternMatcher> getPatternMatchers() {
@@ -201,18 +192,15 @@ public class JXSearchPanel extends AbstractPatternPanel {
     }
 
     //---------------- init actions and model
-    
+
     @Override
     protected void initExecutables() {
         super.initExecutables();
         getActionMap().put(MATCH_RULE_ACTION_COMMAND,
-                createBoundAction(MATCH_RULE_ACTION_COMMAND, "updateMatchRule"));
+            createBoundAction(MATCH_RULE_ACTION_COMMAND, "updateMatchRule"));
     }
 
-
     //--------------------- binding support
-    
-
 
     /**
      * bind the components to the patternModel/actions.
@@ -227,21 +215,19 @@ public class JXSearchPanel extends AbstractPatternPanel {
         searchCriteria.setModel(model);
         searchCriteria.setAction(getAction(MATCH_RULE_ACTION_COMMAND));
         searchCriteria.setRenderer(new DefaultListRenderer(createStringValue(getLocale())));
-        
     }
 
-    
     private StringValue createStringValue(Locale locale) {
         // TODO Auto-generated method stub
         Map<Object, String> keys = new HashMap<Object, String>();
-        keys.put(PatternModel.MATCH_RULE_CONTAINS, 
-                PatternModel.MATCH_RULE_CONTAINS);
-        keys.put(PatternModel.MATCH_RULE_ENDSWITH, 
-                PatternModel.MATCH_RULE_ENDSWITH);
-        keys.put(PatternModel.MATCH_RULE_EQUALS, 
-                PatternModel.MATCH_RULE_EQUALS);
-        keys.put(PatternModel.MATCH_RULE_STARTSWITH, 
-                PatternModel.MATCH_RULE_STARTSWITH);
+        keys.put(PatternModel.MATCH_RULE_CONTAINS,
+            PatternModel.MATCH_RULE_CONTAINS);
+        keys.put(PatternModel.MATCH_RULE_ENDSWITH,
+            PatternModel.MATCH_RULE_ENDSWITH);
+        keys.put(PatternModel.MATCH_RULE_EQUALS,
+            PatternModel.MATCH_RULE_EQUALS);
+        keys.put(PatternModel.MATCH_RULE_STARTSWITH,
+            PatternModel.MATCH_RULE_STARTSWITH);
         return new LocalizableStringValue(keys, PatternModel.SEARCH_PREFIX, locale);
     }
 
@@ -256,6 +242,7 @@ public class JXSearchPanel extends AbstractPatternPanel {
     }
 
     //------------------------ init ui
+
     /**
      * build container by adding all components.
      * PRE: all components created.
@@ -269,14 +256,10 @@ public class JXSearchPanel extends AbstractPatternPanel {
 
     /**
      * create contained components.
-     * 
-     *
      */
     @Override
     protected void initComponents() {
         super.initComponents();
         searchCriteria = new JXComboBox();
     }
-
-
 }

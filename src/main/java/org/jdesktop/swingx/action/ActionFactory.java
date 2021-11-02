@@ -8,12 +8,12 @@
  * modify it under the terms of the GNU Lesser General Public
  * License as published by the Free Software Foundation; either
  * version 2.1 of the License, or (at your option) any later version.
- * 
+ *
  * This library is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  * Lesser General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
@@ -48,16 +48,16 @@ public class ActionFactory {
         return createBoundAction(id, name, mnemonic, toggle, null);
     }
 
-
     public static BoundAction createBoundAction(String id, String name,
                                                 String mnemonic, boolean toggle,
                                                 String group) {
-        return (BoundAction)configureAction(new BoundAction(name, id),
-                                            mnemonic, toggle, group);
+        return (BoundAction) configureAction(new BoundAction(name, id),
+            mnemonic, toggle, group);
     }
 
     /**
      * Factory Methods for creating <code>CompositeAction</code>
+     *
      * @see CompositeAction
      */
     public static CompositeAction createCompositeAction(String id, String name,
@@ -73,10 +73,9 @@ public class ActionFactory {
     public static CompositeAction createCompositeAction(String id, String name,
                                                         String mnemonic, boolean toggle,
                                                         String group) {
-        return (CompositeAction)configureAction(new CompositeAction(name, id),
-                                                mnemonic, toggle, group);
+        return (CompositeAction) configureAction(new CompositeAction(name, id),
+            mnemonic, toggle, group);
     }
-
 
     public static ServerAction createServerAction(String id, String name,
                                                   String mnemonic) {
@@ -86,7 +85,6 @@ public class ActionFactory {
         }
         return action;
     }
-
 
     /**
      * These methods are usefull for creating targetable actions
@@ -108,8 +106,8 @@ public class ActionFactory {
     public static TargetableAction createTargetableAction(String id, String name,
                                                           String mnemonic, boolean toggle,
                                                           String group) {
-        return (TargetableAction)configureAction(new TargetableAction(name, id),
-                                                 mnemonic, toggle, group);
+        return (TargetableAction) configureAction(new TargetableAction(name, id),
+            mnemonic, toggle, group);
     }
 
     private static Action configureAction(AbstractActionExt action,
@@ -134,22 +132,21 @@ public class ActionFactory {
      * are null then they will still be set on the action. Many of these
      * attributes map to the set methods on <code>AbstractActionExt</code>
      *
-     * @see AbstractActionExt
      * @param action the action which will all the attributes will be applied
+     * @see AbstractActionExt
      */
     public static void decorateAction(AbstractAction action,
                                       String shortDesc, String longDesc,
                                       Icon smallIcon, Icon largeIcon,
                                       KeyStroke accel) {
         if (action instanceof AbstractActionExt) {
-            AbstractActionExt a = (AbstractActionExt)action;
+            AbstractActionExt a = (AbstractActionExt) action;
             a.setShortDescription(shortDesc);
             a.setLongDescription(longDesc);
             a.setSmallIcon(smallIcon);
             a.setLargeIcon(largeIcon);
             a.setAccelerator(accel);
-        }
-        else {
+        } else {
             action.putValue(Action.SHORT_DESCRIPTION, shortDesc);
             action.putValue(Action.LONG_DESCRIPTION, longDesc);
             action.putValue(Action.SMALL_ICON, smallIcon);

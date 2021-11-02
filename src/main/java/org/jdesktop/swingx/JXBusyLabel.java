@@ -8,12 +8,12 @@
  * modify it under the terms of the GNU Lesser General Public
  * License as published by the Free Software Foundation; either
  * version 2.1 of the License, or (at your option) any later version.
- * 
+ *
  * This library is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  * Lesser General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
@@ -21,21 +21,20 @@
 
 package org.jdesktop.swingx;
 
-import java.awt.Dimension;
-import java.awt.Rectangle;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
-import javax.swing.JLabel;
-import javax.swing.Timer;
-import javax.swing.plaf.LabelUI;
-
 import org.jdesktop.beans.JavaBean;
 import org.jdesktop.swingx.icon.PainterIcon;
 import org.jdesktop.swingx.painter.BusyPainter;
 import org.jdesktop.swingx.plaf.BusyLabelAddon;
 import org.jdesktop.swingx.plaf.BusyLabelUI;
 import org.jdesktop.swingx.plaf.LookAndFeelAddons;
+
+import javax.swing.JLabel;
+import javax.swing.Timer;
+import javax.swing.plaf.LabelUI;
+import java.awt.Dimension;
+import java.awt.Rectangle;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 /**
  * <p>A simple circular animation, useful for denoting an action is taking
@@ -62,20 +61,20 @@ import org.jdesktop.swingx.plaf.LookAndFeelAddons;
  * label.setPreferredSize(new Dimension(100,84));
  * label.setIcon(new EmptyIcon(100,84));
  * label.setBusyPainter(painter);
- *</code></pre>
- *
+ * </code></pre>
+ * <p>
  * Another example:
  * <pre><code>
  *     JXBusyLabel label = new MyBusyLabel(new Dimension(100, 84));
  * </code></pre>
- * 
+ * <p>
  * where MyBusyLabel is:<br>
  * <pre><code>
  * public class MyBusyLabel extends JXBusyLabel {
  *     public MyBusyLabel(Dimension prefSize) {
  *         super(prefSize);
  *     }
- *     
+ *
  *     protected BusyLabel createBusyLabel(Dimension dim) {
  *         BusyPainter painter = new BusyPainter(
  *         new Rectangle2D.Float(0, 0,13.500001f,1),
@@ -83,12 +82,12 @@ import org.jdesktop.swingx.plaf.LookAndFeelAddons;
  *         painter.setTrailLength(5);
  *         painter.setPoints(31);
  *         painter.setFrame(1);
- *         
+ *
  *         return painter;
  *     }
  * }
  * </code></pre>
- * 
+ *
  * @author rbair
  * @author joshy
  * @author rah003
@@ -101,24 +100,27 @@ public class JXBusyLabel extends JLabel {
     private BusyPainter busyPainter;
     private Timer busy;
     private int delay;
-    /** Status flag to save/restore status of timer when moving component between containers. */
+    /**
+     * Status flag to save/restore status of timer when moving component between containers.
+     */
     private boolean wasBusyOnNotify = false;
-    
+
     /**
      * UI Class ID
      */
     public final static String uiClassID = "BusyLabelUI";
 
     /**
-     * Sets direction of rotation. <code>Direction.RIGHT</code> is the default 
+     * Sets direction of rotation. <code>Direction.RIGHT</code> is the default
      * value. Direction is taken from the very top point so <code>Direction.RIGHT</code> enables rotation clockwise.
+     *
      * @param dir Direction of rotation.
      */
     public void setDirection(BusyPainter.Direction dir) {
         direction = dir;
         getBusyPainter().setDirection(dir);
     }
-    
+
     private BusyPainter.Direction direction;
 
     /**
@@ -130,25 +132,28 @@ public class JXBusyLabel extends JLabel {
 
     {
         // Initialize the delay from the UI class.
-        BusyLabelUI ui = (BusyLabelUI)getUI();
+        BusyLabelUI ui = (BusyLabelUI) getUI();
         if (ui != null) {
             delay = ui.getDelay();
         }
     }
-    
-    /** Creates a new instance of <code>JXBusyLabel</code> initialized to circular shape in bounds of 26 by 26 points.*/
+
+    /**
+     * Creates a new instance of <code>JXBusyLabel</code> initialized to circular shape in bounds of 26 by 26 points.
+     */
     public JXBusyLabel() {
         this(null);
     }
-    
+
     /**
      * Creates a new instance of <code>JXBusyLabel</code> initialized to the arbitrary size and using default circular progress indicator.
+     *
      * @param dim Preferred size of the label.
      */
     public JXBusyLabel(Dimension dim) {
         super();
         this.setPreferredSize(dim);
-        
+
         // Initialize the BusyPainter.
         getBusyPainter();
     }
@@ -159,7 +164,6 @@ public class JXBusyLabel extends JLabel {
      * BusyPainter is set/changed.
      *
      * @param dim The new Preferred Size for the BusyLabel.
-     *
      * @see #getBusyPainter()
      * @see #setBusyPainter(BusyPainter)
      */
@@ -178,31 +182,31 @@ public class JXBusyLabel extends JLabel {
         icon.setPainter(busyPainter);
         this.setIcon(icon);
     }
+
     /**
-     * Create and return a BusyPpainter to use for the Label. This may 
-     * be overridden to return any painter you like.  By default, this 
+     * Create and return a BusyPpainter to use for the Label. This may
+     * be overridden to return any painter you like.  By default, this
      * method uses the UI (BusyLabelUI)to create a BusyPainter.
-     * @param dim Painter size.
      *
+     * @param dim Painter size.
      * @see #getUI()
      */
     protected BusyPainter createBusyPainter(Dimension dim) {
         BusyPainter busyPainter = null;
-        
-        BusyLabelUI ui = (BusyLabelUI)getUI();
+
+        BusyLabelUI ui = (BusyLabelUI) getUI();
         if (ui != null) {
             busyPainter = ui.getBusyPainter(dim);
-            
         }
-        
+
         return busyPainter;
     }
-    
+
     /**
      * <p>Gets whether this <code>JXBusyLabel</code> is busy. If busy, then
      * the <code>JXBusyLabel</code> instance will indicate that it is busy,
      * generally by animating some state.</p>
-     * 
+     *
      * @return true if this instance is busy
      */
     public boolean isBusy() {
@@ -215,7 +219,7 @@ public class JXBusyLabel extends JLabel {
      * or some other means.</p>
      *
      * @param busy whether this <code>JXBusyLabel</code> instance should
-     *        consider itself busy
+     *             consider itself busy
      */
     public void setBusy(boolean busy) {
         boolean old = isBusy();
@@ -227,28 +231,26 @@ public class JXBusyLabel extends JLabel {
             firePropertyChange("busy", old, isBusy());
         }
     }
-    
+
     private void startAnimation() {
-        if(busy != null) {
+        if (busy != null) {
             stopAnimation();
         }
-        
+
         busy = new Timer(delay, new ActionListener() {
             BusyPainter busyPainter = getBusyPainter();
             int frame = busyPainter.getPoints();
+
             @Override
             public void actionPerformed(ActionEvent e) {
-                frame = (frame+1)%busyPainter.getPoints();
+                frame = (frame + 1) % busyPainter.getPoints();
                 busyPainter.setFrame(direction == BusyPainter.Direction.LEFT ? busyPainter.getPoints() - frame : frame);
                 frameChanged();
             }
         });
         busy.start();
     }
-    
-    
-    
-    
+
     private void stopAnimation() {
         if (busy != null) {
             busy.stop();
@@ -257,7 +259,7 @@ public class JXBusyLabel extends JLabel {
             busy = null;
         }
     }
-    
+
     @Override
     public void removeNotify() {
         // fix for #698
@@ -266,7 +268,7 @@ public class JXBusyLabel extends JLabel {
         stopAnimation();
         super.removeNotify();
     }
-    
+
     @Override
     public void addNotify() {
         super.addNotify();
@@ -283,13 +285,12 @@ public class JXBusyLabel extends JLabel {
 
     /**
      * Returns the current BusyPainter.  If no BusyPainter is currently
-     * set on this BusyLabel, the {@link #createBusyPainter(Dimension)} 
-     * method is called to create one.  Afterwards, 
+     * set on this BusyLabel, the {@link #createBusyPainter(Dimension)}
+     * method is called to create one.  Afterwards,
      * {@link #initPainter(Dimension)} is called to update the BusyLabel
      * with the created BusyPainter.
      *
      * @return the busyPainter
-     *
      * @see #createBusyPainter(Dimension)
      * @see #initPainter(Dimension)
      */
@@ -298,7 +299,7 @@ public class JXBusyLabel extends JLabel {
             Dimension prefSize = getPreferredSize();
 
             busyPainter = createBusyPainter((prefSize.width == 0 && prefSize.height == 0 && !isPreferredSizeSet()) ? null : prefSize);
-            
+
             if (null != busyPainter) {
                 if (!isPreferredSizeSet() && (null == prefSize || prefSize.width == 0 || prefSize.height == 0)) {
                     Rectangle rt = busyPainter.getTrajectory().getBounds();
@@ -306,7 +307,7 @@ public class JXBusyLabel extends JLabel {
                     int max = Math.max(rp.width, rp.height);
                     prefSize = new Dimension(rt.width + max, rt.height + max);
                 }
-            
+
                 initPainter(prefSize);
             }
         }
@@ -342,7 +343,7 @@ public class JXBusyLabel extends JLabel {
         }
     }
     //------------------------------------------------------------- UI Logic
-    
+
     /**
      * Notification from the <code>UIManager</code> that the L&F has changed.
      * Replaces the current UI object with the latest version from the
@@ -366,7 +367,5 @@ public class JXBusyLabel extends JLabel {
     public String getUIClassID() {
         return uiClassID;
     }
-
-
 }
 

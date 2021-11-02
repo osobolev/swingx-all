@@ -8,12 +8,12 @@
  * modify it under the terms of the GNU Lesser General Public
  * License as published by the Free Software Foundation; either
  * version 2.1 of the License, or (at your option) any later version.
- * 
+ *
  * This library is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  * Lesser General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
@@ -21,14 +21,13 @@
 
 package org.jdesktop.swingx.action;
 
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
-import java.beans.PropertyChangeListener;
-
 import javax.swing.AbstractAction;
 import javax.swing.Action;
 import javax.swing.Icon;
 import javax.swing.KeyStroke;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+import java.beans.PropertyChangeListener;
 
 /**
  * Extends the concept of the Action to include toggle or group states.
@@ -37,7 +36,6 @@ import javax.swing.KeyStroke;
  * added in {@code Java 1.6}. The selection is now managed with {@link Action#SELECTED_KEY}, which
  * allows the action to correctly configured Swing buttons. The {@link #LARGE_ICON} has also been
  * changed to correspond to {@link Action#LARGE_ICON_KEY}.
- * 
  */
 public abstract class AbstractActionExt extends AbstractAction
     implements ItemListener {
@@ -65,14 +63,14 @@ public abstract class AbstractActionExt extends AbstractAction
     public AbstractActionExt() {
         this((String) null);
     }
-    
+
     /**
      * Copy constructor copies the state.
      */
     public AbstractActionExt(AbstractActionExt action) {
         Object[] keys = action.getKeys();
         for (int i = 0; i < keys.length; i++) {
-            putValue((String)keys[i], action.getValue((String)keys[i]));
+            putValue((String) keys[i], action.getValue((String) keys[i]));
         }
         this.enabled = action.enabled;
 
@@ -94,7 +92,7 @@ public abstract class AbstractActionExt extends AbstractAction
     /**
      * Constructs an Action with the label and command
      *
-     * @param name name of the action usually used as a label
+     * @param name    name of the action usually used as a label
      * @param command command key of the action
      */
     public AbstractActionExt(String name, String command) {
@@ -103,21 +101,22 @@ public abstract class AbstractActionExt extends AbstractAction
     }
 
     /**
-     * @param name display name of the action
+     * @param name    display name of the action
      * @param command the value of the action command key
-     * @param icon icon to display
+     * @param icon    icon to display
      */
     public AbstractActionExt(String name, String command, Icon icon) {
         super(name, icon);
         setActionCommand(command);
     }
+
     /**
      * Returns a short description of the action.
      *
      * @return the short description or null
      */
-    public String getShortDescription()  {
-        return (String)getValue(Action.SHORT_DESCRIPTION);
+    public String getShortDescription() {
+        return (String) getValue(Action.SHORT_DESCRIPTION);
     }
 
     /**
@@ -143,8 +142,8 @@ public abstract class AbstractActionExt extends AbstractAction
      *
      * @return the long description or null
      */
-    public String getLongDescription()  {
-        return (String)getValue(Action.LONG_DESCRIPTION);
+    public String getLongDescription() {
+        return (String) getValue(Action.LONG_DESCRIPTION);
     }
 
     /**
@@ -171,7 +170,7 @@ public abstract class AbstractActionExt extends AbstractAction
      * @return the small icon or null
      */
     public Icon getSmallIcon() {
-        return (Icon)getValue(SMALL_ICON);
+        return (Icon) getValue(SMALL_ICON);
     }
 
     /**
@@ -194,7 +193,7 @@ public abstract class AbstractActionExt extends AbstractAction
      * @return the large icon or null
      */
     public Icon getLargeIcon() {
-        return (Icon)getValue(LARGE_ICON);
+        return (Icon) getValue(LARGE_ICON);
     }
 
     /**
@@ -231,7 +230,7 @@ public abstract class AbstractActionExt extends AbstractAction
      * @return the name of the action or null
      */
     public String getName() {
-        return (String)getValue(Action.NAME);
+        return (String) getValue(Action.NAME);
     }
 
     public void setMnemonic(String mnemonic) {
@@ -265,13 +264,13 @@ public abstract class AbstractActionExt extends AbstractAction
      * @return the mnemonic or 0
      */
     public int getMnemonic() {
-        Integer value = (Integer)getValue(Action.MNEMONIC_KEY);
+        Integer value = (Integer) getValue(Action.MNEMONIC_KEY);
         if (value != null) {
             return value.intValue();
         }
         return '\0';
     }
-    
+
     /**
      * Sets the action command key. The action command key
      * is used to identify the action.
@@ -289,7 +288,7 @@ public abstract class AbstractActionExt extends AbstractAction
 
     /**
      * Returns the action command.
-     * 
+     *
      * @return the action command or null
      */
     public String getActionCommand() {
@@ -303,7 +302,7 @@ public abstract class AbstractActionExt extends AbstractAction
      * @return the key stroke or null
      */
     public KeyStroke getAccelerator() {
-        return (KeyStroke)getValue(Action.ACCELERATOR_KEY);
+        return (KeyStroke) getValue(Action.ACCELERATOR_KEY);
     }
 
     /**
@@ -356,7 +355,7 @@ public abstract class AbstractActionExt extends AbstractAction
      * @return true if this can handle states
      */
     public boolean isStateAction() {
-        Boolean state = (Boolean)getValue(IS_STATE);
+        Boolean state = (Boolean) getValue(IS_STATE);
         if (state != null) {
             return state.booleanValue();
         }
@@ -384,20 +383,19 @@ public abstract class AbstractActionExt extends AbstractAction
      */
     public boolean isSelected() {
         Boolean selected = (Boolean) getValue(SELECTED_KEY);
-        
+
         if (selected == null) {
             return false;
         }
-        
+
         return selected.booleanValue();
     }
 
     /**
      * Changes the state of the action. This is a convenience method for updating the Action via the
      * value map.
-     * 
-     * @param newValue
-     *            true to set the action as selected of the action.
+     *
+     * @param newValue true to set the action as selected of the action.
      * @see Action#SELECTED_KEY
      */
     public void setSelected(boolean newValue) {
@@ -416,27 +414,26 @@ public abstract class AbstractActionExt extends AbstractAction
             for (int i = 0; i < keys.length; i++) {
                 buffer.append(keys[i]);
                 buffer.append('=');
-                buffer.append(getValue( (String) keys[i]).toString());
+                buffer.append(getValue((String) keys[i]).toString());
                 if (i < keys.length - 1) {
                     buffer.append(',');
                 }
             }
             buffer.append(']');
-        }
-        catch (Exception ex) {  // RG: append(char) throws IOException in J2SE 5.0
+        } catch (Exception ex) {  // RG: append(char) throws IOException in J2SE 5.0
             /** @todo Log it */
         }
         return buffer.toString();
     }
-    
+
     /**
      * Callback method as <code>ItemListener</code>. Updates internal state based
      * on the given ItemEvent. <p>
-     * 
+     * <p>
      * Here: synchs selected property if isStateAction(), does nothing otherwise.
-     * 
-     * @param e the ItemEvent fired by a ItemSelectable on changing the selected 
-     *    state.
+     *
+     * @param e the ItemEvent fired by a ItemSelectable on changing the selected
+     *          state.
      */
     @Override
     public void itemStateChanged(ItemEvent e) {

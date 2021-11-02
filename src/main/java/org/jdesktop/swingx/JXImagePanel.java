@@ -21,30 +21,19 @@
 
 package org.jdesktop.swingx;
 
-import java.awt.Cursor;
-import java.awt.Dimension;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.Image;
-import java.awt.Insets;
-import java.awt.Rectangle;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
+import javax.swing.SwingUtilities;
+import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
 import java.lang.ref.SoftReference;
 import java.net.URL;
-import java.util.concurrent.Callable;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.FutureTask;
+import java.util.concurrent.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
-import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
-import javax.swing.JFileChooser;
-import javax.swing.SwingUtilities;
 
 /**
  * <p>
@@ -55,24 +44,24 @@ import javax.swing.SwingUtilities;
  * <p>
  * Images to be displayed can be set based on URL, Image, etc. This is
  * accomplished by passing in an image loader.
- * 
+ *
  * <pre>
  * public class URLImageLoader extends Callable&lt;Image&gt; {
  *     private URL url;
- * 
+ *
  *     public URLImageLoader(URL url) {
  *         url.getClass(); //null check
  *         this.url = url;
  *     }
- * 
+ *
  *     public Image call() throws Exception {
  *         return ImageIO.read(url);
  *     }
  * }
- * 
+ *
  * imagePanel.setImageLoader(new URLImageLoader(url));
  * </pre>
- * 
+ *
  * </p>
  * <p>
  * This component also supports allowing the user to set the image. If the
@@ -88,13 +77,14 @@ import javax.swing.SwingUtilities;
  * TODO other than the image loading this component can be replicated by a
  * JXPanel with the appropriate Painter. What's the point?
  * </p>
- * 
+ *
  * @author rbair
- * @deprecated (pre-1.6.2) use a JXPanel with an ImagePainter; see Issue 988
+ * @deprecated (pre - 1.6.2) use a JXPanel with an ImagePainter; see Issue 988
  */
 //moved to package-private instead of deleting; needed by JXLoginPane
 @Deprecated
 class JXImagePanel extends JXPanel {
+
     public static enum Style {
         CENTERED, TILED, SCALED, SCALED_KEEP_ASPECT_RATIO
     }
@@ -152,11 +142,11 @@ class JXImagePanel extends JXPanel {
     /**
      * Sets the image to use for the background of this panel. This image is
      * painted whether the panel is opaque or translucent.
-     * 
+     *
      * @param image if null, clears the image. Otherwise, this will set the
-     *        image to be painted. If the preferred size has not been explicitly
-     *        set, then the image dimensions will alter the preferred size of
-     *        the panel.
+     *              image to be painted. If the preferred size has not been explicitly
+     *              set, then the image dimensions will alter the preferred size of
+     *              the panel.
      */
     public void setImage(Image image) {
         if (image != img.get()) {
@@ -173,7 +163,7 @@ class JXImagePanel extends JXPanel {
      */
     public Image getImage() {
         Image image = img.get();
-        
+
         //TODO perhaps we should have a default image loader?
         if (image == null && imageLoader != null) {
             try {
@@ -208,8 +198,8 @@ class JXImagePanel extends JXPanel {
 
     /**
      * @return whether the image for this panel can be changed or not via the
-     *         UI. setImage may still be called, even if <code>isEditable</code>
-     *         returns false.
+     * UI. setImage may still be called, even if <code>isEditable</code>
+     * returns false.
      */
     public boolean isEditable() {
         return editable;
@@ -217,7 +207,7 @@ class JXImagePanel extends JXPanel {
 
     /**
      * Sets what style to use when painting the image
-     * 
+     *
      * @param s
      */
     public void setStyle(Style s) {
@@ -237,8 +227,8 @@ class JXImagePanel extends JXPanel {
     }
 
     /**
-     *  {@inheritDoc}
-     *  The old property value in PCE fired by this method might not be always correct!
+     * {@inheritDoc}
+     * The old property value in PCE fired by this method might not be always correct!
      */
     @Override
     public Dimension getPreferredSize() {
@@ -264,7 +254,7 @@ class JXImagePanel extends JXPanel {
 
     /**
      * Overridden to paint the image on the panel
-     * 
+     *
      * @param g
      */
     @Override
@@ -282,7 +272,7 @@ class JXImagePanel extends JXPanel {
                 @Override
                 protected void done() {
                     super.done();
-                    
+
                     SwingUtilities.invokeLater(new Runnable() {
                         @Override
                         public void run() {
@@ -296,7 +286,6 @@ class JXImagePanel extends JXPanel {
                         }
                     });
                 }
-
             });
             img = defaultImage;
         }
@@ -385,6 +374,7 @@ class JXImagePanel extends JXPanel {
      * Handles click events on the component
      */
     private class MouseHandler extends MouseAdapter {
+
         private Cursor oldCursor;
 
         private JFileChooser chooser;
@@ -427,6 +417,5 @@ class JXImagePanel extends JXPanel {
 
     public void setImageLoader(Callable<Image> loadImage) {
         this.imageLoader = loadImage;
-
     }
 }

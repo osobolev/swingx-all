@@ -20,10 +20,11 @@
  */
 package org.jdesktop.swingx.multislider;
 
-import javax.swing.JComponent;
-
 import org.jdesktop.swingx.JXMultiThumbSlider;
 
+import javax.swing.JComponent;
+
 public interface ThumbRenderer {
+
     public JComponent getThumbRendererComponent(JXMultiThumbSlider slider, int index, boolean selected);
 }

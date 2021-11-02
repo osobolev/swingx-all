@@ -8,12 +8,12 @@
  * modify it under the terms of the GNU Lesser General Public
  * License as published by the Free Software Foundation; either
  * version 2.1 of the License, or (at your option) any later version.
- * 
+ *
  * This library is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  * Lesser General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
@@ -37,16 +37,16 @@ import java.io.Serializable;
  * require serialization should use this class if possible. If it is not
  * possible to extend this class, the implementation can guide implementors on
  * how to properly serialize the listeners.
- * 
+ *
  * @author Karl George Schaefer
- * 
  * @see Serializable
  * @see ObjectInputStream
  * @see ObjectOutputStream
  */
 @SuppressWarnings("serial")
 public abstract class AbstractSerializableBean extends AbstractBean implements
-        Serializable {
+    Serializable {
+
     /**
      * Creates a new instance of {@code AbstractSerializableBean}.
      */
@@ -57,16 +57,13 @@ public abstract class AbstractSerializableBean extends AbstractBean implements
     /**
      * Creates a new instance of {@code AbstractSerializableBean}, using the
      * supplied support delegates. Neither of these may be {@code null}.
-     * 
-     * @param pcs
-     *            the property change support class to use
-     * @param vcs
-     *            the vetoable change support class to use
-     * @throws NullPointerException
-     *             if any parameter is {@code null}
+     *
+     * @param pcs the property change support class to use
+     * @param vcs the vetoable change support class to use
+     * @throws NullPointerException if any parameter is {@code null}
      */
     protected AbstractSerializableBean(PropertyChangeSupport pcs,
-            VetoableChangeSupport vcs) {
+                                       VetoableChangeSupport vcs) {
         super(pcs, vcs);
     }
 
@@ -89,7 +86,7 @@ public abstract class AbstractSerializableBean extends AbstractBean implements
     }
 
     private void readObject(ObjectInputStream s) throws ClassNotFoundException,
-            IOException {
+        IOException {
         s.defaultReadObject();
 
         Object listenerOrNull;

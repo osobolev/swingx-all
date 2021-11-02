@@ -8,39 +8,31 @@
  * modify it under the terms of the GNU Lesser General Public
  * License as published by the Free Software Foundation; either
  * version 2.1 of the License, or (at your option) any later version.
- * 
+ *
  * This library is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  * Lesser General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  */
 package org.jdesktop.swingx.util;
 
-import java.awt.Font;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.Polygon;
-import java.awt.Shape;
+import java.awt.*;
 import java.awt.font.GlyphVector;
-import java.awt.geom.AffineTransform;
-import java.awt.geom.Area;
-import java.awt.geom.Ellipse2D;
-import java.awt.geom.GeneralPath;
-import java.awt.geom.Point2D;
-import java.awt.geom.Rectangle2D;
+import java.awt.geom.*;
 import java.awt.image.BufferedImage;
 
 /**
- * 
  * @author joshy
  */
 public final class ShapeUtils {
 
-    /** Creates a new instance of ShapeUtils */
+    /**
+     * Creates a new instance of ShapeUtils
+     */
     private ShapeUtils() {
     }
 
@@ -49,13 +41,13 @@ public final class ShapeUtils {
     }
 
     public static Shape generatePolygon(int sides, int outsideRadius, int insideRadius,
-            boolean normalize) {
+                                        boolean normalize) {
         Shape shape = generatePolygon(sides, outsideRadius, insideRadius);
         if (normalize) {
             Rectangle2D bounds = shape.getBounds2D();
             GeneralPath path = new GeneralPath(shape);
             shape = path.createTransformedShape(AffineTransform.getTranslateInstance(
-                    -bounds.getX(), -bounds.getY()));
+                -bounds.getX(), -bounds.getY()));
         }
         return shape;
     }
@@ -103,15 +95,12 @@ public final class ShapeUtils {
      * Sets the clip on a graphics object by merging a supplied clip with the existing one. The new
      * clip will be an intersection of the old clip and the supplied clip. The old clip shape will
      * be returned. This is useful for resetting the old clip after an operation is performed.
-     * 
-     * @param g
-     *            the graphics object to update
-     * @param clip
-     *            a new clipping region to add to the graphics clip.
+     *
+     * @param g    the graphics object to update
+     * @param clip a new clipping region to add to the graphics clip.
      * @return the current clipping region of the supplied graphics object. This may return
-     *         {@code null} if the current clip is {@code null}.
-     * @throws NullPointerException
-     *             if any parameter is {@code null}
+     * {@code null} if the current clip is {@code null}.
+     * @throws NullPointerException if any parameter is {@code null}
      */
     public static Shape mergeClip(Graphics g, Shape clip) {
         Shape oldClip = g.getClip();

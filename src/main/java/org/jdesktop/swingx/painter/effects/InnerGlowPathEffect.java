@@ -27,19 +27,21 @@ import java.awt.Point;
 
 /**
  * An effect which draws a glow inside the painter's shape
+ *
  * @author joshy
  */
 public class InnerGlowPathEffect extends AbstractAreaEffect {
-    
-    /** Creates a new instance of InnerGlowPathEffect */
+
+    /**
+     * Creates a new instance of InnerGlowPathEffect
+     */
     public InnerGlowPathEffect() {
         super();
         setBrushColor(Color.WHITE);
         setBrushSteps(10);
         setEffectWidth(10);
         setShouldFillShape(false);
-        setOffset(new Point(0,0));
+        setOffset(new Point(0, 0));
         setRenderInsideShape(true);
     }
-    
 }

@@ -8,26 +8,25 @@
  * modify it under the terms of the GNU Lesser General Public
  * License as published by the Free Software Foundation; either
  * version 2.1 of the License, or (at your option) any later version.
- * 
+ *
  * This library is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  * Lesser General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  */
 package org.jdesktop.swingx.action;
 
+import javax.swing.AbstractAction;
+import javax.swing.Action;
+import javax.swing.ActionMap;
 import java.io.PrintStream;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
-
-import javax.swing.AbstractAction;
-import javax.swing.Action;
-import javax.swing.ActionMap;
 
 /**
  * The ActionManager manages sets of <code>javax.swing.Action</code>s for an
@@ -42,7 +41,7 @@ import javax.swing.ActionMap;
  * <p>
  * A typical use case of the ActionManager is:
  * <p>
- *  <pre>
+ * <pre>
  *   ActionManager manager = ActionManager.getInstance();
  *
  *   // load Actions
@@ -51,13 +50,13 @@ import javax.swing.ActionMap;
  *   // Change the state of the action:
  *   manager.setEnabled("new-action", newState);
  * </pre>
- *
+ * <p>
  * The ActionManager also supports Actions that can have a selected state
  * associated with them. These Actions are typically represented by a
  * JCheckBox or similar widget. For such actions the registered method is
  * invoked with an additional parameter indicating the selected state of
  * the widget. For example, for the callback handler:
- *<p>
+ * <p>
  * <pre>
  *  public class Handler {
  *      public void stateChanged(boolean newState);
@@ -67,7 +66,7 @@ import javax.swing.ActionMap;
  * <pre>
  *  manager.registerCallback("select-action", new Handler(), "stateChanged");
  * </pre>
- *<p>
+ * <p>
  * The stateChanged method would be invoked as the selected state of
  * the widget changed. Additionally if you need to change the selected
  * state of the Action use the ActionManager method <code>setSelected</code>.
@@ -81,11 +80,11 @@ import javax.swing.ActionMap;
  * JMenu file = factory.createMenu(list);
  * </pre>
  *
+ * @author Mark Davidson
+ * @author Neil Weber
  * @see ActionContainerFactory
  * @see TargetableAction
  * @see BoundAction
- * @author Mark Davidson
- * @author Neil Weber
  */
 public class ActionManager extends ActionMap {
 
@@ -149,11 +148,12 @@ public class ActionManager extends ActionMap {
 
     /**
      * Adds an action to the ActionManager
-     * @param id value of the action id - which is value of the ACTION_COMMAND_KEY
+     *
+     * @param id     value of the action id - which is value of the ACTION_COMMAND_KEY
      * @param action Action to be managed
      * @return the action that was added
      */
-    public Action addAction(Object id, Action action)  {
+    public Action addAction(Object id, Action action) {
         put(id, action);
         return action;
     }
@@ -164,7 +164,7 @@ public class ActionManager extends ActionMap {
      * @param id value of the action id
      * @return an Action or null if id
      */
-    public Action getAction(Object id)  {
+    public Action getAction(Object id) {
         return get(id);
     }
 
@@ -177,7 +177,7 @@ public class ActionManager extends ActionMap {
     public TargetableAction getTargetableAction(Object id) {
         Action a = getAction(id);
         if (a instanceof TargetableAction) {
-            return (TargetableAction)a;
+            return (TargetableAction) a;
         }
         return null;
     }
@@ -191,7 +191,7 @@ public class ActionManager extends ActionMap {
     public BoundAction getBoundAction(Object id) {
         Action a = getAction(id);
         if (a instanceof BoundAction) {
-            return (BoundAction)a;
+            return (BoundAction) a;
         }
         return null;
     }
@@ -205,7 +205,7 @@ public class ActionManager extends ActionMap {
     public ServerAction getServerAction(Object id) {
         Action a = getAction(id);
         if (a instanceof ServerAction) {
-            return (ServerAction)a;
+            return (ServerAction) a;
         }
         return null;
     }
@@ -219,7 +219,7 @@ public class ActionManager extends ActionMap {
     public CompositeAction getCompositeAction(Object id) {
         Action a = getAction(id);
         if (a instanceof CompositeAction) {
-            return (CompositeAction)a;
+            return (CompositeAction) a;
         }
         return null;
     }
@@ -233,7 +233,7 @@ public class ActionManager extends ActionMap {
     private AbstractActionExt getStateChangeAction(Object id) {
         Action a = getAction(id);
         if (a != null && a instanceof AbstractActionExt) {
-            AbstractActionExt aa = (AbstractActionExt)a;
+            AbstractActionExt aa = (AbstractActionExt) a;
             if (aa.isStateAction()) {
                 return aa;
             }
@@ -247,7 +247,7 @@ public class ActionManager extends ActionMap {
      * by application developers to ensure that all components created from an
      * action remain in synch with respect to their enabled state.
      *
-     * @param id value of the action id
+     * @param id      value of the action id
      * @param enabled true if the action is to be enabled; otherwise false
      */
     public void setEnabled(Object id, boolean enabled) {
@@ -257,7 +257,6 @@ public class ActionManager extends ActionMap {
         }
     }
 
-
     /**
      * Returns the enabled state of the <code>Action</code>. When enabled,
      * any component associated with this object is active and
@@ -265,7 +264,7 @@ public class ActionManager extends ActionMap {
      *
      * @param id value of the action id
      * @return true if this <code>Action</code> is enabled; false if the
-     *         action doesn't exist or disabled.
+     * action doesn't exist or disabled.
      */
     public boolean isEnabled(Object id) {
         Action action = getAction(id);
@@ -279,7 +278,7 @@ public class ActionManager extends ActionMap {
      * Sets the selected state of a toggle action. If the id doesn't
      * correspond to a toggle action then it will fail silently.
      *
-     * @param id the value of the action id
+     * @param id       the value of the action id
      * @param selected true if the action is to be selected; otherwise false.
      */
     public void setSelected(Object id, boolean selected) {
@@ -295,7 +294,7 @@ public class ActionManager extends ActionMap {
      *
      * @param id the value of the action id
      * @return true if the action is selected; false if the action
-     *         doesn't exist or is disabled.
+     * doesn't exist or is disabled.
      */
     public boolean isSelected(Object id) {
         AbstractActionExt action = getStateChangeAction(id);
@@ -313,11 +312,11 @@ public class ActionManager extends ActionMap {
         stream.println("Attributes for " + action.getValue(Action.ACTION_COMMAND_KEY));
 
         if (action instanceof AbstractAction) {
-            Object[] keys = ((AbstractAction)action).getKeys();
+            Object[] keys = ((AbstractAction) action).getKeys();
 
             for (int i = 0; i < keys.length; i++) {
                 stream.println("\tkey: " + keys[i] + "\tvalue: " +
-                               action.getValue((String)keys[i]));
+                               action.getValue((String) keys[i]));
             }
         }
     }
@@ -325,10 +324,10 @@ public class ActionManager extends ActionMap {
     /**
      * Convenience method to register a callback method on a <code>BoundAction</code>
      *
-     * @see BoundAction#registerCallback
-     * @param id value of the action id - which is the value of the ACTION_COMMAND_KEY
+     * @param id      value of the action id - which is the value of the ACTION_COMMAND_KEY
      * @param handler the object which will be perform the action
-     * @param method the name of the method on the handler which will be called.
+     * @param method  the name of the method on the handler which will be called.
+     * @see BoundAction#registerCallback
      */
     public void registerCallback(Object id, Object handler, String method) {
         BoundAction action = getBoundAction(id);
@@ -351,7 +350,7 @@ public class ActionManager extends ActionMap {
     public boolean isStateAction(Object id) {
         Action action = getAction(id);
         if (action != null && action instanceof AbstractActionExt) {
-            return ((AbstractActionExt)action).isStateAction();
+            return ((AbstractActionExt) action).isStateAction();
         }
         return false;
     }

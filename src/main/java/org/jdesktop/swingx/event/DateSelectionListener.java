@@ -20,12 +20,12 @@
  */
 package org.jdesktop.swingx.event;
 
-
 import java.util.EventListener;
 
 /**
  * @author Joshua Outwater
  */
 public interface DateSelectionListener extends EventListener {
+
     public void valueChanged(DateSelectionEvent ev);
 }

@@ -8,18 +8,22 @@
  * modify it under the terms of the GNU Lesser General Public
  * License as published by the Free Software Foundation; either
  * version 2.1 of the License, or (at your option) any later version.
- * 
+ *
  * This library is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  * Lesser General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  *
  */
 package org.jdesktop.swingx.plaf.basic.core;
+
+import org.jdesktop.swingx.JXList;
+import org.jdesktop.swingx.SwingXUtilities;
+import org.jdesktop.swingx.util.Contract;
 
 import javax.swing.DefaultListSelectionModel;
 import javax.swing.ListModel;
@@ -30,28 +34,24 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.RowSorterEvent;
 import javax.swing.event.RowSorterListener;
 
-import org.jdesktop.swingx.JXList;
-import org.jdesktop.swingx.SwingXUtilities;
-import org.jdesktop.swingx.util.Contract;
-
 /**
  * ListSortUI provides support for managing the synchronization between
  * RowSorter, SelectionModel and ListModel if a JXList is sortable.<p>
- * 
+ * <p>
  * This implementation is an adaption of JTable.SortManager fit to the
- * needs of a ListUI. In contrast to JTable tradition, the ui delegate has 
+ * needs of a ListUI. In contrast to JTable tradition, the ui delegate has
  * full control about listening to model/selection changes and updating
  * the list accordingly. So the role of this class is that of a helper to the ListUI
- * (vs. as a helper of the JTable). 
+ * (vs. as a helper of the JTable).
  * <p>
  * It's up to the ListUI to
  * listen to model/selection and propagate the notification to this class if
  * a sorter is installed, but still do the usual updates (layout, repaint) itself.
- * On the other hand, listening to the sorter and updating list state accordingly 
+ * On the other hand, listening to the sorter and updating list state accordingly
  * is completely done by this.
- * 
  */
-public final class ListSortUI { 
+public final class ListSortUI {
+
     private RowSorter<? extends ListModel> sorter;
     private JXList list;
 
@@ -71,12 +71,12 @@ public final class ListSortUI {
 
     /**
      * Intanstiates a SortUI on the list which has the given RowSorter.
-     * 
-     * @param list the list to control, must not be null
+     *
+     * @param list   the list to control, must not be null
      * @param sorter the rowSorter of the list, must not be null
-     * @throws NullPointerException if either the list or the sorter is null
+     * @throws NullPointerException  if either the list or the sorter is null
      * @throws IllegalStateException if the sorter is not the sorter installed
-     *   on the list
+     *                               on the list
      */
     public ListSortUI(JXList list, RowSorter<? extends ListModel> sorter) {
         this.sorter = Contract.asNotNull(sorter, "RowSorter must not be null");
@@ -88,7 +88,7 @@ public final class ListSortUI {
     }
 
     /**
-     * Disposes any resources used by this SortManager. 
+     * Disposes any resources used by this SortManager.
      * Note: this instance must not be used after dispose!
      */
     public void dispose() {
@@ -100,9 +100,10 @@ public final class ListSortUI {
     }
 
 //----------------------methods called by listeners
-    
+
     /**
      * Called after notification from ListModel.
+     *
      * @param e the change event from the listModel.
      */
     public void modelChanged(ListDataEvent e) {
@@ -119,7 +120,7 @@ public final class ListSortUI {
 
     /**
      * Called after notification from selectionModel.
-     * 
+     * <p>
      * Invoked when the selection, on the view, has changed.
      */
     public void viewSelectionChanged(ListSelectionEvent e) {
@@ -130,7 +131,7 @@ public final class ListSortUI {
 
     /**
      * Called after notification from RowSorter.
-     * 
+     *
      * @param e RowSorter event of type SORTED.
      */
     protected void sortedChanged(RowSorterEvent e) {
@@ -152,12 +153,12 @@ public final class ListSortUI {
         }
     }
 
-
 //--------------------- prepare change, that is cache selection if needed
+
     /**
-     * Invoked when the RowSorter has changed. 
+     * Invoked when the RowSorter has changed.
      * Updates the internal cache of the selection based on the change.
-     * 
+     *
      * @param sortEvent the notification
      * @throws NullPointerException if the given event is null.
      */
@@ -168,7 +169,7 @@ public final class ListSortUI {
         // underlying model, this will allow us to correctly restore
         // the selection even if rows are filtered out.
         if (modelSelection == null &&
-                sorter.getViewRowCount() != sorter.getModelRowCount()) {
+            sorter.getViewRowCount() != sorter.getModelRowCount()) {
             modelSelection = new DefaultListSelectionModel();
             ListSelectionModel viewSelection = getViewSelectionModel();
             int min = viewSelection.getMinSelectionIndex();
@@ -177,7 +178,7 @@ public final class ListSortUI {
             for (int viewIndex = min; viewIndex <= max; viewIndex++) {
                 if (viewSelection.isSelectedIndex(viewIndex)) {
                     modelIndex = convertRowIndexToModel(
-                            sortEvent, viewIndex);
+                        sortEvent, viewIndex);
                     if (modelIndex != -1) {
                         modelSelection.addSelectionInterval(
                             modelIndex, modelIndex);
@@ -185,20 +186,21 @@ public final class ListSortUI {
                 }
             }
             modelIndex = convertRowIndexToModel(sortEvent,
-                    viewSelection.getLeadSelectionIndex());
+                viewSelection.getLeadSelectionIndex());
             SwingXUtilities.setLeadAnchorWithoutSelection(
-                    modelSelection, modelIndex, modelIndex);
+                modelSelection, modelIndex, modelIndex);
         } else if (modelSelection == null) {
             // Sorting changed, haven't cached selection in terms
             // of model and no filtering. Temporarily cache selection.
             cacheModelSelection(sortEvent);
         }
     }
+
     /**
-     * Invoked when the list model has changed. This is invoked prior to 
+     * Invoked when the list model has changed. This is invoked prior to
      * notifying the sorter of the change.
      * Updates the internal cache of the selection based on the change.
-     * 
+     *
      * @param change the notification
      * @throws NullPointerException if the given event is null.
      */
@@ -215,14 +217,14 @@ public final class ListSortUI {
             // reported as #1536-swingx
             case ListDataEvent.INTERVAL_REMOVED:
                 modelSelection.removeIndexInterval(change.startModelIndex,
-                        // Note: api difference between remove vs. insert
-                        // nothing do do here!
-                        change.endModelIndex);
+                    // Note: api difference between remove vs. insert
+                    // nothing do do here!
+                    change.endModelIndex);
                 break;
             case ListDataEvent.INTERVAL_ADDED:
                 modelSelection.insertIndexInterval(change.startModelIndex,
-                        // insert is tested
-                        change.length, true);
+                    // insert is tested
+                    change.length, true);
                 break;
             default:
                 break;
@@ -237,10 +239,11 @@ public final class ListSortUI {
     private void cacheModelSelection(RowSorterEvent sortEvent) {
         lastModelSelection = convertSelectionToModel(sortEvent);
         modelLeadIndex = convertRowIndexToModel(sortEvent,
-                    getViewSelectionModel().getLeadSelectionIndex());
+            getViewSelectionModel().getLeadSelectionIndex());
     }
 
 //----------------------- process change, that is restore selection if needed    
+
     /**
      * Inovked when either the table has changed or the sorter has changed
      * and after the sorter has been notified. If necessary this will
@@ -262,7 +265,7 @@ public final class ListSortUI {
         syncingSelection = true;
         if (lastModelSelection != null) {
             restoreSortingSelection(lastModelSelection,
-                                    modelLeadIndex, change);
+                modelLeadIndex, change);
             lastModelSelection = null;
         } else if (modelSelection != null) {
             ListSelectionModel viewSelection = getViewSelectionModel();
@@ -276,7 +279,7 @@ public final class ListSortUI {
                     viewIndex = sorter.convertRowIndexToView(modelIndex);
                     if (viewIndex != -1) {
                         viewSelection.addSelectionInterval(viewIndex,
-                                                           viewIndex);
+                            viewIndex);
                     }
                 }
             }
@@ -286,18 +289,18 @@ public final class ListSortUI {
                 viewLeadIndex = sorter.convertRowIndexToView(viewLeadIndex);
             }
             SwingXUtilities.setLeadAnchorWithoutSelection(
-                    viewSelection, viewLeadIndex, viewLeadIndex);
+                viewSelection, viewLeadIndex, viewLeadIndex);
             viewSelection.setValueIsAdjusting(false);
         }
         syncingSelection = false;
     }
-    
+
     /**
      * Restores the selection after a model event/sort order changes.
      * All coordinates are in terms of the model.
      */
     private void restoreSortingSelection(int[] selection, int lead,
-            ModelChange change) {
+                                         ModelChange change) {
         // Convert the selection from model to view
         for (int i = selection.length - 1; i >= 0; i--) {
             selection[i] = convertRowIndexToView(change, selection[i]);
@@ -316,21 +319,22 @@ public final class ListSortUI {
         for (int i = selection.length - 1; i >= 0; i--) {
             if (selection[i] != -1) {
                 selectionModel.addSelectionInterval(selection[i],
-                                                    selection[i]);
+                    selection[i]);
             }
         }
         SwingXUtilities.setLeadAnchorWithoutSelection(
-                selectionModel, lead, lead);
+            selectionModel, lead, lead);
         selectionModel.setValueIsAdjusting(false);
     }
 
 //------------------- row index conversion methods    
+
     /**
      * Converts a model index to view index.  This is called when the
      * sorter or model changes and sorting is enabled.
      *
      * @param change describes the TableModelEvent that initiated the change;
-     *        will be null if called as the result of a sort
+     *               will be null if called as the result of a sort
      */
     private int convertRowIndexToView(ModelChange change, int modelIndex) {
         if (modelIndex < 0) {
@@ -343,19 +347,17 @@ public final class ListSortUI {
                     return -1;
                 }
                 return sorter.convertRowIndexToView(
-                        modelIndex + change.length);
-            }
-            else if (change.type == ListDataEvent.INTERVAL_REMOVED) {
+                    modelIndex + change.length);
+            } else if (change.type == ListDataEvent.INTERVAL_REMOVED) {
                 if (modelIndex <= change.endModelIndex) {
                     // deleted
                     return -1;
-                }
-                else {
+                } else {
                     if (modelIndex - change.length >= change.modelRowCount) {
                         return -1;
                     }
                     return sorter.convertRowIndexToView(
-                            modelIndex - change.length);
+                        modelIndex - change.length);
                 }
             }
             // else, updated
@@ -365,7 +367,6 @@ public final class ListSortUI {
         }
         return sorter.convertRowIndexToView(modelIndex);
     }
-
 
     private int convertRowIndexToModel(RowSorterEvent e, int viewIndex) {
         // JW: the event is null if the selection is cached in prepareChange
@@ -397,8 +398,9 @@ public final class ListSortUI {
         }
         return selection;
     }
-    
+
 //------------------ 
+
     /**
      * Notifies the sorter of a change in the underlying model.
      */
@@ -412,15 +414,15 @@ public final class ListSortUI {
                 switch (change.type) {
                 case ListDataEvent.CONTENTS_CHANGED:
                     sorter.rowsUpdated(change.startModelIndex,
-                            change.endModelIndex);
+                        change.endModelIndex);
                     break;
                 case ListDataEvent.INTERVAL_ADDED:
                     sorter.rowsInserted(change.startModelIndex,
-                            change.endModelIndex);
+                        change.endModelIndex);
                     break;
                 case ListDataEvent.INTERVAL_REMOVED:
                     sorter.rowsDeleted(change.startModelIndex,
-                            change.endModelIndex);
+                        change.endModelIndex);
                     break;
                 }
             }
@@ -429,10 +431,10 @@ public final class ListSortUI {
         }
     }
 
-
     private ListSelectionModel getViewSelectionModel() {
         return list.getSelectionModel();
     }
+
     /**
      * Invoked when the underlying model has completely changed.
      */
@@ -446,7 +448,7 @@ public final class ListSortUI {
     /**
      * Creates and returns a RowSorterListener. This implementation
      * calls sortedChanged if the event is of type SORTED.
-     * 
+     *
      * @return rowSorterListener to install on sorter.
      */
     protected RowSorterListener createRowSorterListener() {
@@ -458,20 +460,21 @@ public final class ListSortUI {
                     sortedChanged(e);
                 }
             }
-            
         };
         return l;
     }
+
     /**
      * ModelChange is used when sorting to restore state, it corresponds
      * to data from a TableModelEvent.  The values are precalculated as
      * they are used extensively.<p>
-     * 
+     * <p>
      * PENDING JW: this is not yet fully adapted to ListDataEvent.
      */
-     final static class ModelChange {
-         // JW: if we received a dataChanged, there _is no_ notion 
-         // of end/start/length of change 
+    final static class ModelChange {
+
+        // JW: if we received a dataChanged, there _is no_ notion 
+        // of end/start/length of change 
         // Starting index of the change, in terms of the model, -1 if dataChanged
         int startModelIndex;
 
@@ -480,13 +483,12 @@ public final class ListSortUI {
 
         // Length of the change (end - start + 1), - 1 if dataChanged
         int length;
-        
+
         // Type of change
         int type;
 
         // Number of rows in the model
         int modelRowCount;
-
 
         // True if the event indicates all the contents have changed
         boolean allRowsChanged;
@@ -500,7 +502,5 @@ public final class ListSortUI {
             length = allRowsChanged ? -1 : endModelIndex - startModelIndex + 1;
         }
     }
-     
-
 }
 

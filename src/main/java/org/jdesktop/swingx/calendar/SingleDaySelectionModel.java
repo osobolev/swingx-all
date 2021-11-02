@@ -20,20 +20,20 @@
  */
 package org.jdesktop.swingx.calendar;
 
+import org.jdesktop.swingx.event.DateSelectionEvent.EventType;
+import org.jdesktop.swingx.util.Contract;
+
 import java.util.Date;
 import java.util.Locale;
 import java.util.SortedSet;
 import java.util.TreeSet;
 
-import org.jdesktop.swingx.event.DateSelectionEvent.EventType;
-import org.jdesktop.swingx.util.Contract;
-
 /**
  * DateSelectionModel which allows a single selection only. <p>
- * 
+ * <p>
  * Temporary quick & dirty class to explore requirements as needed by
- * a DatePicker. Need to define the states more exactly. Currently 
- * 
+ * a DatePicker. Need to define the states more exactly. Currently
+ *
  * <li> takes all Dates as-are (that is the normalized is the same as the given):
  * selected, unselectable, lower/upper bounds
  * <li> interprets any Date between the start/end of day of the selected as selected
@@ -41,15 +41,14 @@ import org.jdesktop.swingx.util.Contract;
  * <li> interprets the lower/upper bounds as being the start/end of the given
  * dates, that is any Date after the start of day of the lower and before the end of
  * day of the upper is selectable.
- * 
- * 
+ *
  * @author Jeanette Winzenburg
  */
 public class SingleDaySelectionModel extends AbstractDateSelectionModel {
 
     private SortedSet<Date> selectedDates;
     private SortedSet<Date> unselectableDates;
-    
+
     /**
      * Instantiates a SingleDaySelectionModel with default locale.
      */
@@ -60,12 +59,12 @@ public class SingleDaySelectionModel extends AbstractDateSelectionModel {
     /**
      * Instantiates a SingleSelectionModel with the given locale. If the locale is
      * null, the Locale's default is used.
-     * 
+     * <p>
      * PENDING JW: fall back to JComponent.getDefaultLocale instead? We use this
-     *   with components anyway?
-     * 
+     * with components anyway?
+     *
      * @param locale the Locale to use with this model, defaults to Locale.default()
-     *    if null.
+     *               if null.
      */
     public SingleDaySelectionModel(Locale locale) {
         super(locale);
@@ -83,20 +82,19 @@ public class SingleDaySelectionModel extends AbstractDateSelectionModel {
 
     /**
      * {@inheritDoc}<p>
-     * 
+     * <p>
      * Implemented to do nothing.
-     * 
      */
     @Override
     public void setSelectionMode(final SelectionMode selectionMode) {
     }
 
-
     //---------------------- selection ops    
+
     /**
      * {@inheritDoc} <p>
-     * 
-     * Implemented to call setSelectionInterval with startDate for both 
+     * <p>
+     * Implemented to call setSelectionInterval with startDate for both
      * parameters.
      */
     @Override
@@ -106,9 +104,9 @@ public class SingleDaySelectionModel extends AbstractDateSelectionModel {
 
     /**
      * {@inheritDoc}<p>
-     * 
+     * <p>
      * PENDING JW: define what happens if we have a selection but the interval
-     * isn't selectable. 
+     * isn't selectable.
      */
     @Override
     public void setSelectionInterval(Date startDate, Date endDate) {
@@ -127,32 +125,32 @@ public class SingleDaySelectionModel extends AbstractDateSelectionModel {
             fireValueChanged(EventType.DATES_REMOVED);
         }
     }
-    
+
     /**
      * Checks and returns whether the selected date is contained in the interval
-     * given by startDate/endDate. The selection must not be empty when 
+     * given by startDate/endDate. The selection must not be empty when
      * calling this method. <p>
-     * 
+     * <p>
      * This implementation interprets the interval between the start of the day
-     * of startDay to the end of the day of endDate. 
-     * 
+     * of startDay to the end of the day of endDate.
+     *
      * @param startDate the start of the interval, must not be null
-     * @param endDate  the end of the interval, must not be null
+     * @param endDate   the end of the interval, must not be null
      * @return true if the selected date is contained in the interval
      */
     protected boolean isSelectionInInterval(Date startDate, Date endDate) {
-        if (selectedDates.first().before(startOfDay(startDate)) 
-                || (selectedDates.first().after(endOfDay(endDate)))) return false;
+        if (selectedDates.first().before(startOfDay(startDate))
+            || (selectedDates.first().after(endOfDay(endDate)))) return false;
         return true;
     }
 
     /**
-     * Selects the given date if it is selectable and not yet selected. 
+     * Selects the given date if it is selectable and not yet selected.
      * Does nothing otherwise.
-     * If this operation changes the current selection, it will fire a 
+     * If this operation changes the current selection, it will fire a
      * DateSelectionEvent of type DATES_SET.
-     * 
-     * @param date the Date to select, must not be null. 
+     *
+     * @param date the Date to select, must not be null.
      */
     protected void setSelection(Date date) {
         Contract.asNotNull(date, "date must not be null");
@@ -164,16 +162,15 @@ public class SingleDaySelectionModel extends AbstractDateSelectionModel {
             fireValueChanged(EventType.DATES_SET);
         }
     }
-    
+
     /**
      * Checks and returns whether the given date is contained in the selection.
      * This differs from isSelected in that it tests for the exact (normalized)
      * Date instead of for the same day.
-     * 
+     *
      * @param date the Date to test.
-     * @return true if the given date is contained in the selection, 
-     *    false otherwise
-     * 
+     * @return true if the given date is contained in the selection,
+     * false otherwise
      */
     private boolean isSelectedStrict(Date date) {
         if (!isSelectionEmpty()) {
@@ -201,11 +198,11 @@ public class SingleDaySelectionModel extends AbstractDateSelectionModel {
 
     /**
      * Returns a boolean indicating whether the given date is selectable.
-     * 
+     *
      * @param date the date to check for selectable, must not be null.
      * @return true if the given date is selectable, false if not.
      */
-    public  boolean isSelectable(Date date) {
+    public boolean isSelectable(Date date) {
         if (outOfBounds(date)) return false;
         return !inUnselectables(date);
     }
@@ -223,8 +220,8 @@ public class SingleDaySelectionModel extends AbstractDateSelectionModel {
 
     /**
      * Returns a boolean indication whether the given date is below
-     * the lower or above the upper bound. 
-     * 
+     * the lower or above the upper bound.
+     *
      * @param date
      * @return
      */
@@ -251,11 +248,10 @@ public class SingleDaySelectionModel extends AbstractDateSelectionModel {
      */
     private boolean belowLowerBound(Date date) {
         if (lowerBound != null) {
-           return startOfDay(lowerBound).after(date);
+            return startOfDay(lowerBound).after(date);
         }
         return false;
     }
-
 
     /**
      * {@inheritDoc}
@@ -266,7 +262,6 @@ public class SingleDaySelectionModel extends AbstractDateSelectionModel {
         selectedDates.clear();
         fireValueChanged(EventType.SELECTION_CLEARED);
     }
-
 
     /**
      * {@inheritDoc}
@@ -286,18 +281,15 @@ public class SingleDaySelectionModel extends AbstractDateSelectionModel {
         return isSameDay(selectedDates.first(), date);
     }
 
-    
-
     /**
      * {@inheritDoc}<p>
-     * 
+     * <p>
      * Implemented to return the date itself.
      */
     @Override
     public Date getNormalizedDate(Date date) {
         return new Date(date.getTime());
     }
-
 
     /**
      * {@inheritDoc}
@@ -306,7 +298,6 @@ public class SingleDaySelectionModel extends AbstractDateSelectionModel {
     public boolean isSelectionEmpty() {
         return selectedDates.isEmpty();
     }
-
 
     /**
      * {@inheritDoc}
@@ -337,9 +328,4 @@ public class SingleDaySelectionModel extends AbstractDateSelectionModel {
     public boolean isUnselectableDate(Date date) {
         return !isSelectable(date);
     }
-
-
-
-
-
 }

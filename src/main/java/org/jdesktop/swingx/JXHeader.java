@@ -21,16 +21,15 @@
 
 package org.jdesktop.swingx;
 
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Font;
-
-import javax.swing.Icon;
-
 import org.jdesktop.beans.JavaBean;
 import org.jdesktop.swingx.plaf.HeaderAddon;
 import org.jdesktop.swingx.plaf.HeaderUI;
 import org.jdesktop.swingx.plaf.LookAndFeelAddons;
+
+import javax.swing.Icon;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
 
 /**
  * <p><code>JXHeader is a simple component consisting of a title, a description,
@@ -54,7 +53,7 @@ import org.jdesktop.swingx.plaf.LookAndFeelAddons;
  *      Icon icon = new ImageIcon(getClass().getResource("tools.png"));
  *      header.setIcon(icon);
  * </code></pre></p>
- *
+ * <p>
  * Note: The HTML support doesn't exist yet. The UI delegate needs to discover whether
  * the text supplied is HTML or not, and change the content type of the editor pane
  * being used. The problem is that if "text/html" is always used, the font is wrong.
@@ -68,12 +67,13 @@ import org.jdesktop.swingx.plaf.LookAndFeelAddons;
  *  </ul>
  * </p>
  *
- * @status REVIEWED
  * @author rbair
  * @author rah003
+ * @status REVIEWED
  */
 @JavaBean
 public class JXHeader extends JXPanel {
+
     /**
      * SerialVersionUID.
      */
@@ -102,6 +102,7 @@ public class JXHeader extends JXPanel {
          */
         RIGHT
     }
+
     private String title;
     private String description;
     private Icon icon;
@@ -111,7 +112,9 @@ public class JXHeader extends JXPanel {
     private Color descriptionForeground;
     private IconPosition iconPosition = IconPosition.RIGHT;
 
-    /** Creates a new instance of JXHeader */
+    /**
+     * Creates a new instance of JXHeader
+     */
     public JXHeader() {
     }
 
@@ -119,19 +122,20 @@ public class JXHeader extends JXPanel {
      * Creates a new instance of JXHeader. PropertyChangeEvents are fired
      * when the title and description properties are set.
      *
-     * @param title specifies the title property for this JXHeader
+     * @param title       specifies the title property for this JXHeader
      * @param description specifies the description property for this JXHeader
      */
     public JXHeader(String title, String description) {
         this(title, description, null);
     }
 
-    /** Creates a new instance of JXHeader. PropertyChangeEvents are fired
+    /**
+     * Creates a new instance of JXHeader. PropertyChangeEvents are fired
      * when the title and description properties are set.
      *
-     * @param title specifies the title property for this JXHeader
+     * @param title       specifies the title property for this JXHeader
      * @param description specifies the description property for this JXHeader
-     * @param icon specifies the icon property for this JXHeader
+     * @param icon        specifies the icon property for this JXHeader
      */
     public JXHeader(String title, String description, Icon icon) {
         setTitle(title);
@@ -146,7 +150,7 @@ public class JXHeader extends JXPanel {
      */
     @Override
     public HeaderUI getUI() {
-        return (HeaderUI)super.getUI();
+        return (HeaderUI) super.getUI();
     }
 
     /**
@@ -181,7 +185,7 @@ public class JXHeader extends JXPanel {
     @Override
     public void updateUI() {
         setUI((HeaderUI) LookAndFeelAddons
-                .getUI(this, HeaderUI.class));
+            .getUI(this, HeaderUI.class));
     }
 
     /**
@@ -199,6 +203,7 @@ public class JXHeader extends JXPanel {
     /**
      * Gets the title. This may use HTML, such as
      * that supported by JLabel (version 3.2 of the HTML spec).
+     *
      * @return the title. May be null.
      */
     public String getTitle() {
@@ -249,6 +254,7 @@ public class JXHeader extends JXPanel {
 
     /**
      * Sets new font for both, title and description line of the header.
+     *
      * @see javax.swing.JComponent#setFont(Font)
      */
     @Override
@@ -260,6 +266,7 @@ public class JXHeader extends JXPanel {
 
     /**
      * Sets new font for title.
+     *
      * @param font New title font.
      */
     public void setTitleFont(Font font) {
@@ -279,6 +286,7 @@ public class JXHeader extends JXPanel {
 
     /**
      * Sets font for the description line of header.
+     *
      * @param font New description font.
      */
     public void setDescriptionFont(Font font) {
@@ -298,6 +306,7 @@ public class JXHeader extends JXPanel {
 
     /**
      * Gets current title foreground color.
+     *
      * @return the Color used to paint title. May be null.
      */
     public Color getTitleForeground() {
@@ -306,6 +315,7 @@ public class JXHeader extends JXPanel {
 
     /**
      * Sets title foreground color.
+     *
      * @param titleForeground the Color to be used to paint title.
      */
     public void setTitleForeground(Color titleForeground) {
@@ -316,6 +326,7 @@ public class JXHeader extends JXPanel {
 
     /**
      * Gets current description foreground color.
+     *
      * @return the Color used to paint description. May be null.
      */
     public Color getDescriptionForeground() {
@@ -324,6 +335,7 @@ public class JXHeader extends JXPanel {
 
     /**
      * Sets description foreground color.
+     *
      * @param descriptionForeground the Color to be used to paint description.
      */
     public void setDescriptionForeground(Color descriptionForeground) {
@@ -334,6 +346,7 @@ public class JXHeader extends JXPanel {
 
     /**
      * Gets current icon position. Default is RIGHT.
+     *
      * @return Current Icon position.
      */
     public IconPosition getIconPosition() {
@@ -342,8 +355,9 @@ public class JXHeader extends JXPanel {
 
     /**
      * Sets new Icon position. Position is relative to the text. Default value is RIGHT.
-     * @see #getIconPosition()
+     *
      * @param iconPosition new desired icon position
+     * @see #getIconPosition()
      */
     public void setIconPosition(IconPosition iconPosition) {
         IconPosition old = getIconPosition();

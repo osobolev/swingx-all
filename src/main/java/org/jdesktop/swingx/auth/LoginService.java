@@ -20,14 +20,13 @@
  */
 package org.jdesktop.swingx.auth;
 
-import java.awt.EventQueue;
-import java.util.logging.Logger;
+import org.jdesktop.beans.AbstractBean;
 
 import javax.swing.SwingUtilities;
 import javax.swing.SwingWorker;
 import javax.swing.event.EventListenerList;
-
-import org.jdesktop.beans.AbstractBean;
+import java.awt.EventQueue;
+import java.util.logging.Logger;
 
 /**
  * <b>LoginService</b> is the abstract base class for all classes implementing
@@ -38,12 +37,13 @@ import org.jdesktop.beans.AbstractBean;
  * determine the user roles. It is not defined as abstract to simplify the task
  * of implementing a login service for those who do not require this
  * functionality.
- * 
+ *
  * @author Bino George
  * @author Shai Almog
  * @author Karl Schaefer
  */
 public abstract class LoginService extends AbstractBean {
+
     @SuppressWarnings("unused")
     private Logger LOG = Logger.getLogger(LoginService.class.getName());
 
@@ -71,25 +71,21 @@ public abstract class LoginService extends AbstractBean {
      * authenticate a user with a given password. Clients should implement the
      * authentication in a manner that the authentication can be cancelled at
      * any time.
-     * 
-     * @param name
-     *            username
-     * @param password
-     *            password
-     * @param server
-     *            server (optional)
-     * 
+     *
+     * @param name     username
+     * @param password password
+     * @param server   server (optional)
      * @return <code>true</code> on authentication success
      * @throws Exception
      */
     public abstract boolean authenticate(String name, char[] password,
-            String server) throws Exception;
+                                         String server) throws Exception;
 
     /**
      * Called immediately after a successful authentication. This method should
      * return an array of user roles or null if role based permissions are not
      * used.
-     * 
+     *
      * @return per default <code>null</code>
      */
     public String[] getUserRoles() {
@@ -111,17 +107,14 @@ public abstract class LoginService extends AbstractBean {
     /**
      * This method starts the authentication process and is either synchronous
      * or asynchronous based on the synchronous property
-     * 
-     * @param user
-     *            user
-     * @param password
-     *            password
-     * @param server
-     *            server
+     *
+     * @param user     user
+     * @param password password
+     * @param server   server
      * @throws Exception
      */
     public void startAuthentication(final String user, final char[] password,
-            final String server) throws Exception {
+                                    final String server) throws Exception {
         if (getSynchronous()) {
             try {
                 if (authenticate(user, password, server)) {
@@ -138,7 +131,7 @@ public abstract class LoginService extends AbstractBean {
                 protected Boolean doInBackground() throws Exception {
                     try {
                         final boolean result = authenticate(user, password,
-                                server);
+                            server);
                         if (isCancelled()) {
                             EventQueue.invokeLater(new Runnable() {
                                 public void run() {
@@ -151,10 +144,10 @@ public abstract class LoginService extends AbstractBean {
                             public void run() {
                                 if (result) {
                                     fireLoginSucceeded(new LoginEvent(
-                                            LoginService.this));
+                                        LoginService.this));
                                 } else {
                                     fireLoginFailed(new LoginEvent(
-                                            LoginService.this));
+                                        LoginService.this));
                                 }
                             }
                         });
@@ -164,7 +157,7 @@ public abstract class LoginService extends AbstractBean {
                             SwingUtilities.invokeLater(new Runnable() {
                                 public void run() {
                                     fireLoginFailed(new LoginEvent(
-                                            LoginService.this, failed));
+                                        LoginService.this, failed));
                                 }
                             });
                         } else {
@@ -185,7 +178,7 @@ public abstract class LoginService extends AbstractBean {
 
     /**
      * Get the synchronous property
-     * 
+     *
      * @return the synchronous property
      */
     public boolean getSynchronous() {
@@ -194,9 +187,8 @@ public abstract class LoginService extends AbstractBean {
 
     /**
      * Sets the synchronous property
-     * 
-     * @param synchronous
-     *            synchronous property
+     *
+     * @param synchronous synchronous property
      */
     public void setSynchronous(boolean synchronous) {
         boolean old = getSynchronous();
@@ -206,9 +198,8 @@ public abstract class LoginService extends AbstractBean {
 
     /**
      * Adds a <strong>LoginListener</strong> to the list of listeners
-     * 
-     * @param listener
-     *            listener
+     *
+     * @param listener listener
      */
 
     public void addLoginListener(LoginListener listener) {
@@ -217,9 +208,8 @@ public abstract class LoginService extends AbstractBean {
 
     /**
      * Removes a <strong>LoginListener</strong> from the list of listeners
-     * 
-     * @param listener
-     *            listener
+     *
+     * @param listener listener
      */
     public void removeLoginListener(LoginListener listener) {
         listenerList.remove(LoginListener.class, listener);
@@ -230,9 +220,9 @@ public abstract class LoginService extends AbstractBean {
         Object[] listeners = listenerList.getListenerList();
         // Process the listeners last to first, notifying
         // those that are interested in this event
-        for (int i = listeners.length-2; i>=0; i-=2) {
+        for (int i = listeners.length - 2; i >= 0; i -= 2) {
             if (listeners[i] == LoginListener.class) {
-                ((LoginListener) listeners[i+1]).loginStarted(source);
+                ((LoginListener) listeners[i + 1]).loginStarted(source);
             }
         }
     }
@@ -242,9 +232,9 @@ public abstract class LoginService extends AbstractBean {
         Object[] listeners = listenerList.getListenerList();
         // Process the listeners last to first, notifying
         // those that are interested in this event
-        for (int i = listeners.length-2; i>=0; i-=2) {
+        for (int i = listeners.length - 2; i >= 0; i -= 2) {
             if (listeners[i] == LoginListener.class) {
-                ((LoginListener) listeners[i+1]).loginSucceeded(source);
+                ((LoginListener) listeners[i + 1]).loginSucceeded(source);
             }
         }
     }
@@ -254,9 +244,9 @@ public abstract class LoginService extends AbstractBean {
         Object[] listeners = listenerList.getListenerList();
         // Process the listeners last to first, notifying
         // those that are interested in this event
-        for (int i = listeners.length-2; i>=0; i-=2) {
+        for (int i = listeners.length - 2; i >= 0; i -= 2) {
             if (listeners[i] == LoginListener.class) {
-                ((LoginListener) listeners[i+1]).loginFailed(source);
+                ((LoginListener) listeners[i + 1]).loginFailed(source);
             }
         }
     }
@@ -266,9 +256,9 @@ public abstract class LoginService extends AbstractBean {
         Object[] listeners = listenerList.getListenerList();
         // Process the listeners last to first, notifying
         // those that are interested in this event
-        for (int i = listeners.length-2; i>=0; i-=2) {
+        for (int i = listeners.length - 2; i >= 0; i -= 2) {
             if (listeners[i] == LoginListener.class) {
-                ((LoginListener) listeners[i+1]).loginCanceled(source);
+                ((LoginListener) listeners[i + 1]).loginCanceled(source);
             }
         }
     }
@@ -281,8 +271,7 @@ public abstract class LoginService extends AbstractBean {
     }
 
     /**
-     * @param server
-     *            The server to set.
+     * @param server The server to set.
      */
     public void setServer(String server) {
         String old = getServer();

@@ -1,7 +1,7 @@
 package org.jdesktop.swingx.plaf;
 
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
+import org.jdesktop.swingx.JXSearchField;
+import org.jdesktop.swingx.prompt.BuddySupport;
 
 import javax.swing.JComponent;
 import javax.swing.JTextArea;
@@ -10,18 +10,17 @@ import javax.swing.UIDefaults;
 import javax.swing.plaf.TextUI;
 import javax.swing.plaf.basic.BasicTextUI;
 import javax.swing.text.JTextComponent;
-
-import org.jdesktop.swingx.JXSearchField;
-import org.jdesktop.swingx.prompt.BuddySupport;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 
 /**
  * TODO:
- * 
- * @author Peter Weishapl <petw@gmx.net>
- * 
+ *
  * @param <UI>
+ * @author Peter Weishapl <petw@gmx.net>
  */
 public abstract class TextUIWrapper<UI extends TextUI> {
+
     private static final DefaultWrapper defaultWrapper = new DefaultWrapper();
 
     public static final TextUIWrapper<? extends PromptTextUI> getDefaultWrapper() {
@@ -39,11 +38,10 @@ public abstract class TextUIWrapper<UI extends TextUI> {
      * Wraps and replaces the current UI of the given <code>textComponent</code>, by calling
      * {@link #wrapUI(JTextComponent)} if necessary.
      * </p>
-     * 
+     *
      * @param textComponent
-     * @param stayOnUIChange
-     *            if <code>true</code>, a {@link PropertyChangeListener} is registered, which
-     *            listens for UI changes and wraps any new UI object.
+     * @param stayOnUIChange if <code>true</code>, a {@link PropertyChangeListener} is registered, which
+     *                       listens for UI changes and wraps any new UI object.
      */
     public final void install(final JTextComponent textComponent, boolean stayOnUIChange) {
         replaceUIIfNeeded(textComponent);
@@ -55,7 +53,7 @@ public abstract class TextUIWrapper<UI extends TextUI> {
     /**
      * Wraps and replaces the text components current UI by calling {@link #wrapUI(TextUI)}, if the
      * text components current UI is not an instance of the given wrapper class.
-     * 
+     *
      * @param textComponent
      * @return <code>true</code> if the UI has been replaced
      */
@@ -71,7 +69,7 @@ public abstract class TextUIWrapper<UI extends TextUI> {
 
     /**
      * Override to return the appropriate UI wrapper object for the given {@link TextUI}.
-     * 
+     *
      * @param textUI
      * @return the wrapping UI
      */
@@ -79,7 +77,7 @@ public abstract class TextUIWrapper<UI extends TextUI> {
 
     /**
      * Returns the wrapper class.
-     * 
+     *
      * @return the wrapper class
      */
     public Class<UI> getWrapperClass() {
@@ -92,7 +90,7 @@ public abstract class TextUIWrapper<UI extends TextUI> {
      * installed) and then calls {@link JComponent#updateUI()} on the <code>textComponent</code> to
      * set the UI object provided by the current {@link UIDefaults}.
      * </p>
-     * 
+     *
      * @param textComponent
      */
     public final void uninstall(final JTextComponent textComponent) {
@@ -103,6 +101,7 @@ public abstract class TextUIWrapper<UI extends TextUI> {
     private final TextUIChangeHandler uiChangeHandler = new TextUIChangeHandler();
 
     private final class TextUIChangeHandler extends AbstractUIChangeHandler {
+
         @Override
         public void propertyChange(PropertyChangeEvent evt) {
             JTextComponent txt = (JTextComponent) evt.getSource();
@@ -112,6 +111,7 @@ public abstract class TextUIWrapper<UI extends TextUI> {
     }
 
     public static final class DefaultWrapper extends TextUIWrapper<PromptTextUI> {
+
         private DefaultWrapper() {
             super(PromptTextUI.class);
         }
@@ -128,9 +128,8 @@ public abstract class TextUIWrapper<UI extends TextUI> {
          * returned, respectively. If the UI is of any other type, a
          * {@link IllegalArgumentException} will be thrown.
          * </p>
-         * 
-         * @param textComponent
-         *            wrap this components UI
+         *
+         * @param textComponent wrap this components UI
          * @return a {@link PromptTextUI} which wraps the <code>textComponent</code>s UI.
          */
         @Override
@@ -147,7 +146,7 @@ public abstract class TextUIWrapper<UI extends TextUI> {
                 return new PromptTextAreaUI(textUI);
             }
             throw new IllegalArgumentException("ui implementation not supported: "
-                    + textUI.getClass());
+                                               + textUI.getClass());
         }
 
         /**

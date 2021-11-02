@@ -8,12 +8,12 @@
  * modify it under the terms of the GNU Lesser General Public
  * License as published by the Free Software Foundation; either
  * version 2.1 of the License, or (at your option) any later version.
- * 
+ *
  * This library is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  * Lesser General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
@@ -57,6 +57,7 @@ import java.awt.Graphics2D;
  * @see CompoundPainter
  */
 public interface Painter<T> {
+
     /**
      * <p>Renders to the given {@link Graphics2D} object. Implementations
      * of this method <em>may</em> modify state on the <code>Graphics2D</code>, and are not
@@ -94,9 +95,9 @@ public interface Painter<T> {
      * also be black on the left, white on the right, and a smooth gradient painted
      * between.</p>
      *
-     * @param g The Graphics2D to render to. This must not be null.
+     * @param g      The Graphics2D to render to. This must not be null.
      * @param object an optional configuration parameter. This may be null.
-     * @param width width of the area to paint.
+     * @param width  width of the area to paint.
      * @param height height of the area to paint.
      */
     public void paint(Graphics2D g, T object, int width, int height);

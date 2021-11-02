@@ -8,31 +8,17 @@
  * modify it under the terms of the GNU Lesser General Public
  * License as published by the Free Software Foundation; either
  * version 2.1 of the License, or (at your option) any later version.
- * 
+ *
  * This library is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  * Lesser General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  */
 package org.jdesktop.swingx;
-
-import java.awt.Dimension;
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
-import java.util.Locale;
-
-import javax.swing.Action;
-import javax.swing.ActionMap;
-import javax.swing.JCheckBox;
-import javax.swing.JLabel;
-import javax.swing.JTextField;
-import javax.swing.SwingUtilities;
-import javax.swing.event.DocumentEvent;
-import javax.swing.event.DocumentListener;
 
 import org.jdesktop.swingx.action.AbstractActionExt;
 import org.jdesktop.swingx.action.ActionContainerFactory;
@@ -41,18 +27,26 @@ import org.jdesktop.swingx.plaf.LookAndFeelAddons;
 import org.jdesktop.swingx.plaf.UIManagerExt;
 import org.jdesktop.swingx.search.PatternModel;
 
+import javax.swing.*;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
+import java.awt.Dimension;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+import java.util.Locale;
+
 /**
  * Common base class of ui clients.
- * 
+ * <p>
  * Implements basic synchronization between PatternModel state and
  * actions bound to it.
- * 
- * 
- * 
+ * <p>
+ * <p>
+ * <p>
  * PENDING: extending JXPanel is a convenience measure, should be extracted
- *   into a dedicated controller.
+ * into a dedicated controller.
  * PENDING: should be re-visited when swingx goes binding-aware
- * 
+ *
  * @author Jeanette Winzenburg
  */
 public abstract class AbstractPatternPanel extends JXPanel {
@@ -70,21 +64,20 @@ public abstract class AbstractPatternPanel extends JXPanel {
     protected JLabel searchLabel;
     protected JTextField searchField;
     protected JCheckBox matchCheck;
-    
+
     protected PatternModel patternModel;
     private ActionContainerFactory actionFactory;
-
 
 //------------------------ actions
 
     /**
-     * Callback action bound to MATCH_ACTION_COMMAND. 
+     * Callback action bound to MATCH_ACTION_COMMAND.
      */
     public abstract void match();
-    
-    /** 
+
+    /**
      * convenience method for type-cast to AbstractActionExt.
-     * 
+     *
      * @param key Key to retrieve action
      * @return Action bound to this key
      * @see AbstractActionExt
@@ -101,39 +94,38 @@ public abstract class AbstractPatternPanel extends JXPanel {
         initPatternActions();
         initExecutables();
     }
-    
+
     /**
      * creates and registers all "executable" actions.
      * Meaning: the actions bound to a callback method on this.
-     * 
+     * <p>
      * PENDING: not quite correctly factored? Name?
-     *
      */
     protected void initExecutables() {
         Action execute = createBoundAction(MATCH_ACTION_COMMAND, "match");
-        getActionMap().put(JXDialog.EXECUTE_ACTION_COMMAND, 
-                execute);
+        getActionMap().put(JXDialog.EXECUTE_ACTION_COMMAND,
+            execute);
         getActionMap().put(MATCH_ACTION_COMMAND, execute);
         refreshEmptyFromModel();
     }
-    
+
     /**
      * creates actions bound to PatternModel's state.
      */
     protected void initPatternActions() {
         ActionMap map = getActionMap();
-        map.put(PatternModel.MATCH_CASE_ACTION_COMMAND, 
-                createModelStateAction(PatternModel.MATCH_CASE_ACTION_COMMAND, 
-                        "setCaseSensitive", getPatternModel().isCaseSensitive()));
-        map.put(PatternModel.MATCH_WRAP_ACTION_COMMAND, 
-                createModelStateAction(PatternModel.MATCH_WRAP_ACTION_COMMAND, 
-                        "setWrapping", getPatternModel().isWrapping()));
-        map.put(PatternModel.MATCH_BACKWARDS_ACTION_COMMAND, 
-                createModelStateAction(PatternModel.MATCH_BACKWARDS_ACTION_COMMAND, 
-                        "setBackwards", getPatternModel().isBackwards()));
-        map.put(PatternModel.MATCH_INCREMENTAL_ACTION_COMMAND, 
-                createModelStateAction(PatternModel.MATCH_INCREMENTAL_ACTION_COMMAND, 
-                        "setIncremental", getPatternModel().isIncremental()));
+        map.put(PatternModel.MATCH_CASE_ACTION_COMMAND,
+            createModelStateAction(PatternModel.MATCH_CASE_ACTION_COMMAND,
+                "setCaseSensitive", getPatternModel().isCaseSensitive()));
+        map.put(PatternModel.MATCH_WRAP_ACTION_COMMAND,
+            createModelStateAction(PatternModel.MATCH_WRAP_ACTION_COMMAND,
+                "setWrapping", getPatternModel().isWrapping()));
+        map.put(PatternModel.MATCH_BACKWARDS_ACTION_COMMAND,
+            createModelStateAction(PatternModel.MATCH_BACKWARDS_ACTION_COMMAND,
+                "setBackwards", getPatternModel().isBackwards()));
+        map.put(PatternModel.MATCH_INCREMENTAL_ACTION_COMMAND,
+            createModelStateAction(PatternModel.MATCH_INCREMENTAL_ACTION_COMMAND,
+                "setIncremental", getPatternModel().isIncremental()));
     }
 
     /**
@@ -141,7 +133,7 @@ public abstract class AbstractPatternPanel extends JXPanel {
      * is prefixed by this component|s <code>UIPREFIX</code> before doing the
      * lookup. The lookup respects this table's current <code>locale</code>
      * property. Returns the key, if no value is found.
-     * 
+     *
      * @param key the bare key to look up in the UIManager.
      * @return the value mapped to UIPREFIX + key or key if no value is found.
      */
@@ -150,35 +142,34 @@ public abstract class AbstractPatternPanel extends JXPanel {
     }
 
     /**
-     * Returns a potentially localized value from the UIManager for the 
+     * Returns a potentially localized value from the UIManager for the
      * given locale. The given key
      * is prefixed by this component's <code>UIPREFIX</code> before doing the
      * lookup. Returns the key, if no value is found.
-     * 
-     * @param key the bare key to look up in the UIManager.
+     *
+     * @param key    the bare key to look up in the UIManager.
      * @param locale the locale use for lookup
      * @return the value mapped to UIPREFIX + key in the given locale,
-     *    or key if no value is found.
+     * or key if no value is found.
      */
     protected String getUIString(String key, Locale locale) {
         String text = UIManagerExt.getString(PatternModel.SEARCH_PREFIX + key, locale);
         return text != null ? text : key;
     }
 
-
     /**
      * creates, configures and returns a bound state action on a boolean property
      * of the PatternModel.
-     * 
-     * @param command the actionCommand - same as key to find localizable resources
+     *
+     * @param command    the actionCommand - same as key to find localizable resources
      * @param methodName the method on the PatternModel to call on item state changed
-     * @param initial the initial value of the property
+     * @param initial    the initial value of the property
      * @return newly created action
      */
     protected AbstractActionExt createModelStateAction(String command, String methodName, boolean initial) {
         String actionName = getUIString(command);
         BoundAction action = new BoundAction(actionName,
-                command);
+            command);
         action.setStateAction();
         action.registerCallback(getPatternModel(), methodName);
         action.setSelected(initial);
@@ -186,45 +177,44 @@ public abstract class AbstractPatternPanel extends JXPanel {
     }
 
     /**
-     * creates, configures and returns a bound action to the given method of 
+     * creates, configures and returns a bound action to the given method of
      * this.
-     * 
+     *
      * @param actionCommand the actionCommand, same as key to find localizable resources
-     * @param methodName the method to call an actionPerformed.
+     * @param methodName    the method to call an actionPerformed.
      * @return newly created action
      */
     protected AbstractActionExt createBoundAction(String actionCommand, String methodName) {
         String actionName = getUIString(actionCommand);
         BoundAction action = new BoundAction(actionName,
-                actionCommand);
+            actionCommand);
         action.registerCallback(this, methodName);
         return action;
     }
 
 //------------------------ dynamic locale support
-    
 
     /**
      * {@inheritDoc} <p>
-     * Overridden to update locale-dependent properties. 
-     * 
-     * @see #updateLocaleState(Locale) 
+     * Overridden to update locale-dependent properties.
+     *
+     * @see #updateLocaleState(Locale)
      */
     @Override
     public void setLocale(Locale l) {
         updateLocaleState(l);
         super.setLocale(l);
     }
-    
+
     /**
      * Updates locale-dependent state.
-     * 
+     * <p>
      * Here: updates registered column actions' locale-dependent state.
      * <p>
-     * 
+     * <p>
      * PENDING: Try better to find all column actions including custom
      * additions? Or move to columnControl?
-     * 
+     *
      * @see #setLocale(Locale)
      */
     protected void updateLocaleState(Locale locale) {
@@ -233,22 +223,19 @@ public abstract class AbstractPatternPanel extends JXPanel {
                 String keyString = getUIString((String) key, locale);
                 if (!key.equals(keyString)) {
                     getActionMap().get(key).putValue(Action.NAME, keyString);
-                    
                 }
             }
         }
         bindSearchLabel(locale);
     }
-    
 
     //---------------------- synch patternModel <--> components
 
     /**
      * called from listening to pattern property of PatternModel.
-     * 
+     * <p>
      * This implementation calls match() if the model is in
      * incremental state.
-     *
      */
     protected void refreshPatternFromModel() {
         if (getPatternModel().isIncremental()) {
@@ -256,12 +243,11 @@ public abstract class AbstractPatternPanel extends JXPanel {
         }
     }
 
-
     /**
      * returns the patternModel. Lazyly creates and registers a
      * propertyChangeListener if null.
-     * 
-     * @return current <code>PatternModel</code> if it exists or newly created 
+     *
+     * @return current <code>PatternModel</code> if it exists or newly created
      * one if it was not initialized before this call
      */
     protected PatternModel getPatternModel() {
@@ -271,7 +257,6 @@ public abstract class AbstractPatternPanel extends JXPanel {
         }
         return patternModel;
     }
-
 
     /**
      * factory method to create the PatternModel.
@@ -285,15 +270,15 @@ public abstract class AbstractPatternPanel extends JXPanel {
 
     /**
      * creates and returns a PropertyChangeListener to the PatternModel.
-     * 
+     * <p>
      * NOTE: the patternModel is totally under control of this class - currently
      * there's no need to keep a reference to the listener.
-     * 
-     * @return created and bound to appropriate callback methods 
-     *  <code>PropertyChangeListener</code>
+     *
+     * @return created and bound to appropriate callback methods
+     * <code>PropertyChangeListener</code>
      */
     protected PropertyChangeListener getPatternModelListener() {
-        return new PropertyChangeListener() {    
+        return new PropertyChangeListener() {
             @Override
             public void propertyChange(PropertyChangeEvent evt) {
                 String property = evt.getPropertyName();
@@ -301,44 +286,38 @@ public abstract class AbstractPatternPanel extends JXPanel {
                     refreshPatternFromModel();
                 } else if ("rawText".equals(property)) {
                     refreshDocumentFromModel();
-                } else if ("caseSensitive".equals(property)){
+                } else if ("caseSensitive".equals(property)) {
                     getAction(PatternModel.MATCH_CASE_ACTION_COMMAND).
                         setSelected(((Boolean) evt.getNewValue()).booleanValue());
                 } else if ("wrapping".equals(property)) {
                     getAction(PatternModel.MATCH_WRAP_ACTION_COMMAND).
-                    setSelected(((Boolean) evt.getNewValue()).booleanValue());
+                        setSelected(((Boolean) evt.getNewValue()).booleanValue());
                 } else if ("backwards".equals(property)) {
                     getAction(PatternModel.MATCH_BACKWARDS_ACTION_COMMAND).
-                    setSelected(((Boolean) evt.getNewValue()).booleanValue());
+                        setSelected(((Boolean) evt.getNewValue()).booleanValue());
                 } else if ("incremental".equals(property)) {
                     getAction(PatternModel.MATCH_INCREMENTAL_ACTION_COMMAND).
-                    setSelected(((Boolean) evt.getNewValue()).booleanValue());
-
+                        setSelected(((Boolean) evt.getNewValue()).booleanValue());
                 } else if ("empty".equals(property)) {
                     refreshEmptyFromModel();
-                }   
-    
+                }
             }
-    
         };
     }
 
     /**
      * called from listening to empty property of PatternModel.
-     * 
+     * <p>
      * this implementation synch's the enabled state of the action with
      * MATCH_ACTION_COMMAND to !empty.
-     * 
      */
     protected void refreshEmptyFromModel() {
         boolean enabled = !getPatternModel().isEmpty();
         getAction(MATCH_ACTION_COMMAND).setEnabled(enabled);
-        
     }
 
     /**
      * callback method from listening to searchField.
-     *
      */
     protected void refreshModelFromDocument() {
         getPatternModel().setRawText(searchField.getText());
@@ -346,7 +325,6 @@ public abstract class AbstractPatternPanel extends JXPanel {
 
     /**
      * callback method that updates document from the search field
-     *
      */
     protected void refreshDocumentFromModel() {
         if (searchField.getText().equals(getPatternModel().getRawText())) return;
@@ -371,17 +349,16 @@ public abstract class AbstractPatternPanel extends JXPanel {
                 // JW - really?? we've a PlainDoc without Attributes
                 refreshModelFromDocument();
             }
-    
+
             @Override
             public void insertUpdate(DocumentEvent ev) {
                 refreshModelFromDocument();
             }
-    
+
             @Override
             public void removeUpdate(DocumentEvent ev) {
                 refreshModelFromDocument();
             }
-    
         };
     }
 
@@ -391,30 +368,29 @@ public abstract class AbstractPatternPanel extends JXPanel {
      * configure and bind components to/from PatternModel
      */
     protected void bind() {
-       bindSearchLabel(getLocale());
+        bindSearchLabel(getLocale());
         searchField.getDocument().addDocumentListener(getSearchFieldListener());
-        getActionContainerFactory().configureButton(matchCheck, 
-                (AbstractActionExt) getActionMap().get(PatternModel.MATCH_CASE_ACTION_COMMAND),
-                null);
-        
+        getActionContainerFactory().configureButton(matchCheck,
+            (AbstractActionExt) getActionMap().get(PatternModel.MATCH_CASE_ACTION_COMMAND),
+            null);
     }
 
     /**
      * Configures the searchLabel.
-     * Here: sets text and mnenomic properties form ui values, 
+     * Here: sets text and mnenomic properties form ui values,
      * configures as label for searchField.
      */
     protected void bindSearchLabel(Locale locale) {
         searchLabel.setText(getUIString(SEARCH_FIELD_LABEL, locale));
-          String mnemonic = getUIString(SEARCH_FIELD_MNEMONIC, locale);
-          if (mnemonic != SEARCH_FIELD_MNEMONIC) {
-              searchLabel.setDisplayedMnemonic(mnemonic.charAt(0));
-          }
-          searchLabel.setLabelFor(searchField);
+        String mnemonic = getUIString(SEARCH_FIELD_MNEMONIC, locale);
+        if (mnemonic != SEARCH_FIELD_MNEMONIC) {
+            searchLabel.setDisplayedMnemonic(mnemonic.charAt(0));
+        }
+        searchLabel.setLabelFor(searchField);
     }
-    
+
     /**
-     * @return current <code>ActionContainerFactory</code>. 
+     * @return current <code>ActionContainerFactory</code>.
      * Will lazily create new factory if it does not exist
      */
     protected ActionContainerFactory getActionContainerFactory() {
@@ -423,7 +399,7 @@ public abstract class AbstractPatternPanel extends JXPanel {
         }
         return actionFactory;
     }
-    
+
     /**
      * Initialize all the incorporated components and models
      */

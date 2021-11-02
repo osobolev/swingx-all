@@ -1,20 +1,9 @@
 package org.jdesktop.swingx.graphics;
 
-import java.awt.Color;
-import java.awt.Composite;
-import java.awt.Font;
-import java.awt.FontMetrics;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.GraphicsConfiguration;
-import java.awt.Image;
-import java.awt.Paint;
-import java.awt.Polygon;
-import java.awt.Rectangle;
-import java.awt.RenderingHints;
+import org.jdesktop.swingx.util.Contract;
+
+import java.awt.*;
 import java.awt.RenderingHints.Key;
-import java.awt.Shape;
-import java.awt.Stroke;
 import java.awt.font.FontRenderContext;
 import java.awt.font.GlyphVector;
 import java.awt.geom.AffineTransform;
@@ -26,20 +15,19 @@ import java.awt.image.renderable.RenderableImage;
 import java.text.AttributedCharacterIterator;
 import java.util.Map;
 
-import org.jdesktop.swingx.util.Contract;
-
 /**
  * A simple facade that forwards all graphics calls to a delegate.
- * 
+ *
  * @author kschaefer
  */
 public abstract class Graphics2DFacade extends Graphics2D {
+
     private Graphics2D delegate;
 
     public Graphics2DFacade(Graphics2D delegate) {
         this.delegate = Contract.asNotNull(delegate, "delegate cannot be null");
     }
-    
+
     @Override
     public Graphics create() {
         return delegate.create();
@@ -352,7 +340,7 @@ public abstract class Graphics2DFacade extends Graphics2D {
 
     @Override
     public boolean drawImage(Image img, int x, int y, int width, int height, Color bgcolor,
-            ImageObserver observer) {
+                             ImageObserver observer) {
         return delegate.drawImage(img, x, y, width, height, bgcolor, observer);
     }
 
@@ -373,7 +361,7 @@ public abstract class Graphics2DFacade extends Graphics2D {
 
     @Override
     public boolean drawImage(Image img, int dx1, int dy1, int dx2, int dy2, int sx1, int sy1,
-            int sx2, int sy2, ImageObserver observer) {
+                             int sx2, int sy2, ImageObserver observer) {
         return delegate.drawImage(img, dx1, dy1, dx2, dy2, sx1, sy1, sx2, sy2, observer);
     }
 
@@ -389,7 +377,7 @@ public abstract class Graphics2DFacade extends Graphics2D {
 
     @Override
     public boolean drawImage(Image img, int dx1, int dy1, int dx2, int dy2, int sx1, int sy1,
-            int sx2, int sy2, Color bgcolor, ImageObserver observer) {
+                             int sx2, int sy2, Color bgcolor, ImageObserver observer) {
         return delegate.drawImage(img, dx1, dy1, dx2, dy2, sx1, sy1, sx2, sy2, bgcolor, observer);
     }
 

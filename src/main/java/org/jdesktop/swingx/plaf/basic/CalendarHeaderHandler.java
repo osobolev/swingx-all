@@ -8,12 +8,12 @@
  * modify it under the terms of the GNU Lesser General Public
  * License as published by the Free Software Foundation; either
  * version 2.1 of the License, or (at your option) any later version.
- * 
+ *
  * This library is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  * Lesser General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
@@ -21,6 +21,14 @@
  */
 package org.jdesktop.swingx.plaf.basic;
 
+import org.jdesktop.swingx.JXMonthView;
+import org.jdesktop.swingx.action.AbstractActionExt;
+
+import javax.swing.Action;
+import javax.swing.Icon;
+import javax.swing.JComponent;
+import javax.swing.UIManager;
+import javax.swing.plaf.UIResource;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -28,51 +36,42 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.logging.Logger;
 
-import javax.swing.Action;
-import javax.swing.Icon;
-import javax.swing.JComponent;
-import javax.swing.UIManager;
-import javax.swing.plaf.UIResource;
-
-import org.jdesktop.swingx.JXMonthView;
-import org.jdesktop.swingx.action.AbstractActionExt;
-
 /**
  * Provides and wires a component appropriate as a calendar navigation header.
  * The design idea is to support a pluggable header for a zoomable (PENDING JW:
  * naming!) JXMonthView. Then custom implementations can be tailored to exactly
  * fit their needs.
  * <p>
- * 
+ * <p>
  * To install a custom implementation, register the class name of the custom
  * header handler with the key <code>CalendarHeaderHandler.uiControllerID</code>
  * , example:
- * 
+ *
  * <pre>
  * <code>
  *  UIManager.put(CalendarHeaderHandler.uiControllerID, &quot;com.foo.bar.MagicHeaderHandler&quot;)
  * </code>
  * </pre>
- * 
+ * <p>
  * Basic navigation action should (will) be defined by the ui delegate itself (PENDING
  * JW: still incomplete in BasicMonthViewUI). This handler can modify/enhance
  * them as appropriate for its context.
  * <p>
- * 
+ * <p>
  * PENDING JW: those icons ... who's responsible? Shouldn't we use any of the
  * default arrows as defined in the laf anyway (are there any?)
  * <p>
- * 
+ *
  * <b>Note</b>: this is work-in-progress, be prepared to change if subclassing
  * for custom requirements!
- * 
+ *
  * @author Jeanette Winzenburg
  */
 public abstract class CalendarHeaderHandler {
 
     @SuppressWarnings("unused")
     private static final Logger LOG = Logger
-            .getLogger(CalendarHeaderHandler.class.getName());
+        .getLogger(CalendarHeaderHandler.class.getName());
 
     public static final String uiControllerID = "CalendarHeaderHandler";
 
@@ -88,7 +87,7 @@ public abstract class CalendarHeaderHandler {
 
     /**
      * Installs this handler to the given month view.
-     * 
+     *
      * @param monthView the target month view to install to.
      */
     public void install(JXMonthView monthView) {
@@ -107,7 +106,7 @@ public abstract class CalendarHeaderHandler {
 
     /**
      * Uninstalls this handler from the given target month view.
-     * 
+     *
      * @param monthView the target month view to install from.
      */
     public void uninstall(JXMonthView monthView) {
@@ -119,7 +118,7 @@ public abstract class CalendarHeaderHandler {
     /**
      * Returns a component to be used as header in a zoomable month view,
      * guaranteed to be not null.
-     * 
+     *
      * @return a component to be used as header in a zoomable JXMonthView
      */
     public JComponent getHeaderComponent() {
@@ -137,7 +136,7 @@ public abstract class CalendarHeaderHandler {
      */
     protected void installListeners() {
         monthView
-                .addPropertyChangeListener(getMonthViewPropertyChangeListener());
+            .addPropertyChangeListener(getMonthViewPropertyChangeListener());
     }
 
     /**
@@ -149,7 +148,7 @@ public abstract class CalendarHeaderHandler {
 
     /**
      * Returns the propertyChangelistener for the monthView. Lazily created.
-     * 
+     *
      * @return the propertyChangeListener for the monthView.
      */
     private PropertyChangeListener getMonthViewPropertyChangeListener() {
@@ -163,10 +162,9 @@ public abstract class CalendarHeaderHandler {
                     } else if ("font".equals(evt.getPropertyName())) {
                         fontChanged();
                     } else if ("monthStringBackground".equals(evt
-                            .getPropertyName())) {
+                        .getPropertyName())) {
                         monthStringBackgroundChanged();
                     }
-
                 }
             };
         }
@@ -179,8 +177,7 @@ public abstract class CalendarHeaderHandler {
      */
     protected void monthStringBackgroundChanged() {
         getHeaderComponent().setBackground(
-                getAsNotUIResource(monthView.getMonthStringBackground()));
-
+            getAsNotUIResource(monthView.getMonthStringBackground()));
     }
 
     /**
@@ -194,13 +191,13 @@ public abstract class CalendarHeaderHandler {
     /**
      * Synchronizes internal state which depends on the month view's
      * componentOrientation.
-     * 
+     * <p>
      * This implementation updates the month navigation icons and the header
      * component's orientation.
      */
     protected void componentOrientationChanged() {
         getHeaderComponent().applyComponentOrientation(
-                monthView.getComponentOrientation());
+            monthView.getComponentOrientation());
         if (monthView.getComponentOrientation().isLeftToRight()) {
             updateMonthNavigationIcons(monthDownImage, monthUpImage);
         } else {
@@ -210,7 +207,7 @@ public abstract class CalendarHeaderHandler {
 
     /**
      * @param previous the icon to use in the previousMonth action
-     * @param next the icon to use on the nextMonth action
+     * @param next     the icon to use on the nextMonth action
      */
     private void updateMonthNavigationIcons(Icon previous, Icon next) {
         updateActionIcon("previousMonth", previous);
@@ -230,40 +227,40 @@ public abstract class CalendarHeaderHandler {
 
     /**
      * Creates and returns the component used as header in a zoomable monthView.
-     * 
+     *
      * @return the component used as header in a zoomable monthView, guaranteed
-     *         to be not null.
+     * to be not null.
      */
     protected abstract JComponent createCalendarHeader();
 
     /**
      * Installs and configures navigational actions.
      * <p>
-     * 
+     * <p>
      * This implementation creates and installs wrappers around the
      * scrollToPrevious/-NextMonth actions installed by the ui and configures
      * them with the appropriate next/previous icons.
      */
     protected void installNavigationActions() {
         installWrapper("scrollToPreviousMonth", "previousMonth", monthView
-                .getComponentOrientation().isLeftToRight() ? monthDownImage
-                : monthUpImage);
+            .getComponentOrientation().isLeftToRight() ? monthDownImage
+            : monthUpImage);
         installWrapper("scrollToNextMonth", "nextMonth", monthView
-                .getComponentOrientation().isLeftToRight() ? monthUpImage
-                : monthDownImage);
+            .getComponentOrientation().isLeftToRight() ? monthUpImage
+            : monthDownImage);
     }
 
     /**
      * Creates an life action wrapper around the action registered with
      * actionKey, sets its SMALL_ICON property to the given icon and installs
      * itself with the newActionKey.
-     * 
-     * @param actionKey the key of the action to wrap around
+     *
+     * @param actionKey    the key of the action to wrap around
      * @param newActionKey the key of the wrapper action
-     * @param icon the icon to use in the wrapper action
+     * @param icon         the icon to use in the wrapper action
      */
     private void installWrapper(final String actionKey, String newActionKey,
-            Icon icon) {
+                                Icon icon) {
         AbstractActionExt wrapper = new AbstractActionExt(null, icon) {
 
             @Override
@@ -273,14 +270,13 @@ public abstract class CalendarHeaderHandler {
                     action.actionPerformed(e);
                 }
             }
-
         };
         monthView.getActionMap().put(newActionKey, wrapper);
     }
 
     /**
      * Returns a Font based on the param which is not of type UIResource.
-     * 
+     *
      * @param font the base font
      * @return a font not of type UIResource, may be null.
      */
@@ -293,7 +289,7 @@ public abstract class CalendarHeaderHandler {
 
     /**
      * Returns a Color based on the param which is not of type UIResource.
-     * 
+     *
      * @param color the base color
      * @return a color not of type UIResource, may be null.
      */
@@ -313,5 +309,4 @@ public abstract class CalendarHeaderHandler {
     protected Font createDerivedFont() {
         return monthView.getFont().deriveFont(Font.BOLD);
     }
-
 }

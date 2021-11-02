@@ -8,12 +8,12 @@
  * modify it under the terms of the GNU Lesser General Public
  * License as published by the Free Software Foundation; either
  * version 2.1 of the License, or (at your option) any later version.
- * 
+ *
  * This library is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  * Lesser General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
@@ -29,9 +29,10 @@ import java.util.Date;
  * if you modify returned <code>Date</code>s you will <b>not</b> effect
  * the <code>DateSpan</code>.  The end points are inclusive.
  *
- * @version  $Revision: 542 $
+ * @version $Revision: 542 $
  */
 public class DateSpan {
+
     private long _start;
     private long _end;
 
@@ -39,16 +40,16 @@ public class DateSpan {
      * Creates a <code>DateSpan</code> between the two end points.
      *
      * @param start Beginning date
-     * @param end Ending date
+     * @param end   Ending date
      * @throws IllegalArgumentException if <code>start</code> is after
-     *         <code>end</code>
+     *                                  <code>end</code>
      */
     public DateSpan(long start, long end) {
         _start = start;
         _end = end;
         if (_start > _end) {
             throw new IllegalArgumentException(
-                             "Start date must be before end date");
+                "Start date must be before end date");
         }
     }
 
@@ -58,7 +59,7 @@ public class DateSpan {
      * <code>new Date(start.getTime(), end.getTime());</code>.
      *
      * @param start Beginning date
-     * @param end Ending date
+     * @param end   Ending date
      */
     public DateSpan(Date start, Date end) {
         this(start.getTime(), end.getTime());
@@ -127,9 +128,9 @@ public class DateSpan {
      * specified date span.
      *
      * @param start Start of time span
-     * @param end End of time
+     * @param end   End of time
      * @return true if this <code>DateSpan</code> contains the specified
-     *         date span.
+     * date span.
      */
     public boolean contains(long start, long end) {
         return (start >= getStart() && end <= getEnd());
@@ -140,7 +141,7 @@ public class DateSpan {
      * specified time.
      *
      * @param start Start time
-     * @param end End time
+     * @param end   End time
      * @return true if this <code>DateSpan</code> intersects with the specified
      * time.
      */
@@ -176,14 +177,13 @@ public class DateSpan {
      * <code>DateSpan</code> and the passed in span.
      *
      * @param start Start of region to add
-     * @param end End of region to end
+     * @param end   End of region to end
      * @return union of this DateSpan and <code>start</code>, <code>end</code>
      */
     public DateSpan add(long start, long end) {
         return new DateSpan(Math.min(start, getStart()),
-                            Math.max(end, getEnd()));
+            Math.max(end, getEnd()));
     }
-
 
     /**
      * {@inheritDoc}
@@ -194,7 +194,7 @@ public class DateSpan {
             return true;
         }
         if (o instanceof DateSpan) {
-            DateSpan ds = (DateSpan)o;
+            DateSpan ds = (DateSpan) o;
             return (_start == ds.getStart() && _end == ds.getEnd());
         }
         return false;
@@ -206,8 +206,8 @@ public class DateSpan {
     @Override
     public int hashCode() {
         int result = 17;
-        result = 37 * result + (int)(_start ^ (_start >>> 32));
-        result = 37 * result + (int)(_end ^ (_end >>> 32));
+        result = 37 * result + (int) (_start ^ (_start >>> 32));
+        result = 37 * result + (int) (_end ^ (_end >>> 32));
         return result;
     }
 

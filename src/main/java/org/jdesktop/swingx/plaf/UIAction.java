@@ -8,12 +8,12 @@
  * modify it under the terms of the GNU Lesser General Public
  * License as published by the Free Software Foundation; either
  * version 2.1 of the License, or (at your option) any later version.
- * 
+ *
  * This library is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  * Lesser General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
@@ -21,9 +21,8 @@
 
 package org.jdesktop.swingx.plaf;
 
-import java.beans.PropertyChangeListener;
-
 import javax.swing.Action;
+import java.beans.PropertyChangeListener;
 
 /**
  * UIAction is the basis of all of basic's action classes that are used in
@@ -53,10 +52,11 @@ import javax.swing.Action;
  * <p>
  * This is based on sun.swing.UIAction in J2SE 1.5
  *
- * @see Action
  * @author Scott Violet
+ * @see Action
  */
 public abstract class UIAction implements Action {
+
     private String name;
 
     public UIAction(String name) {

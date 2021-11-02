@@ -1,6 +1,6 @@
 /*
  * $Id: DatePickerFormatter.java 3140 2008-12-16 15:09:09Z kleopatra $
- * 
+ *
  * Copyright 2005 Sun Microsystems, Inc., 4150 Network Circle,
  * Santa Clara, California 95054, U.S.A. All rights reserved.
  *
@@ -20,6 +20,11 @@
  */
 package org.jdesktop.swingx.calendar;
 
+import org.jdesktop.swingx.plaf.UIManagerExt;
+import org.jdesktop.swingx.util.Contract;
+
+import javax.swing.JFormattedTextField;
+import javax.swing.plaf.UIResource;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -28,30 +33,23 @@ import java.util.List;
 import java.util.Locale;
 import java.util.logging.Logger;
 
-import javax.swing.JFormattedTextField;
-import javax.swing.plaf.UIResource;
-
-import org.jdesktop.swingx.plaf.UIManagerExt;
-import org.jdesktop.swingx.util.Contract;
-
 /**
- * Default formatter for the JXDatePicker component.  
+ * Default formatter for the JXDatePicker component.
  * It can handle a variety of date formats.
  *
  * @author Joshua Outwater
  */
 public class DatePickerFormatter extends
-        JFormattedTextField.AbstractFormatter {
-    
+    JFormattedTextField.AbstractFormatter {
+
     private static final Logger LOG = Logger
-            .getLogger(DatePickerFormatter.class.getName());
+        .getLogger(DatePickerFormatter.class.getName());
     private DateFormat _formats[] = null;
 
-    
     /**
      * Instantiates a formatter with the localized format patterns defined
      * in the swingx.properties.
-     * 
+     * <p>
      * These formats are localizable and fields may be re-arranged, such as
      * swapping the month and day fields.  The keys for localizing these fields
      * are:
@@ -60,30 +58,29 @@ public class DatePickerFormatter extends
      * <li>JXDatePicker.mediumFormat
      * <li>JXDatePicker.shortFormat
      * </ul>
-     *
      */
     public DatePickerFormatter() {
         this(null, null);
     }
 
     /**
-     * Instantiates a formatter with the given date formats. If the 
+     * Instantiates a formatter with the given date formats. If the
      * array is null, default formats are created from the localized
      * patterns in swingx.properties. If empty?
-     * 
-     * @param formats the array of formats to use. May be null to 
-     *   use defaults or empty to do nothing (?), but must not contain
-     *   null formats.
+     *
+     * @param formats the array of formats to use. May be null to
+     *                use defaults or empty to do nothing (?), but must not contain
+     *                null formats.
      */
     public DatePickerFormatter(DateFormat formats[]) {
         this(formats, null);
     }
 
     /**
-     * Instantiates a formatter with default date formats in the 
+     * Instantiates a formatter with default date formats in the
      * given locale. The default formats are created from the localized
-     * patterns in swingx.properties. 
-     * 
+     * patterns in swingx.properties.
+     *
      * @param locale the Locale the use for the default formats.
      */
     public DatePickerFormatter(Locale locale) {
@@ -92,11 +89,11 @@ public class DatePickerFormatter extends
 
     /**
      * Instantiates a formatter with the given formats and locale.
-     * 
+     * <p>
      * PENDING JW: makes no sense as a public constructor because the locale is ignored
      * if the formats are null. So has same public behaviour as the constructor with
      * formats only ...
-     * 
+     *
      * @param formats
      * @param locale
      */
@@ -111,12 +108,12 @@ public class DatePickerFormatter extends
         Contract.asNotNull(formats, "The array of DateFormats must not contain null formats");
         _formats = formats;
     }
-    
+
     /**
      * Returns an array of the formats used by this formatter.
-     * 
+     *
      * @return the formats used by this formatter, guaranteed to be
-     *   not null.
+     * not null.
      */
     public DateFormat[] getFormats() {
         DateFormat[] results = new DateFormat[_formats.length];
@@ -161,18 +158,18 @@ public class DatePickerFormatter extends
      */
     @Override
     public String valueToString(Object value) throws ParseException {
-         if ((value != null) && (_formats.length > 0)){
+        if ((value != null) && (_formats.length > 0)) {
             return _formats[0].format(value);
         }
         return null;
     }
-    
+
     /**
-     * Creates and returns the localized default formats. First tries to 
+     * Creates and returns the localized default formats. First tries to
      * add formats created using the patterns stored in the UIManager. If
      * there are no patterns, use the DateFormat's instance with style
      * DateFormat.SHORT.
-     * 
+     *
      * @return the localized default formats.
      */
     protected DateFormat[] createDefaultFormats(Locale locale) {
@@ -181,7 +178,7 @@ public class DatePickerFormatter extends
         addFormat(f, "JXDatePicker.mediumFormat", locale);
         addFormat(f, "JXDatePicker.shortFormat", locale);
         if (f.size() == 0) {
-           addSystemDefaultFormat(f, locale); 
+            addSystemDefaultFormat(f, locale);
         }
         return f.toArray(new DateFormat[f.size()]);
     }
@@ -189,8 +186,8 @@ public class DatePickerFormatter extends
     /**
      * Adds the system's default DateFormat. This implementation adds a
      * dateInstance of style DateFormat.SHORT.
-     * 
-     * @param f the List of formats to add to
+     *
+     * @param f      the List of formats to add to
      * @param locale the Locale to use for the formatter.
      */
     private void addSystemDefaultFormat(List<DateFormat> f, Locale locale) {
@@ -199,12 +196,12 @@ public class DatePickerFormatter extends
 
     /**
      * Creates and adds a DateFormat to the given list. Looks up
-     * a format pattern registered in the UIManager for the given 
+     * a format pattern registered in the UIManager for the given
      * key and tries to create a SimpleDateFormat. Does nothing
      * if there is no format pattern registered or the pattern is
      * invalid.
-     * 
-     * @param f the list of formats
+     *
+     * @param f   the list of formats
      * @param key the key for getting the pattern from the UI
      */
     private void addFormat(List<DateFormat> f, String key, Locale locale) {
@@ -220,12 +217,11 @@ public class DatePickerFormatter extends
     }
 
     /**
-     * 
      * Same as DatePickerFormatter, but tagged as UIResource.
-     * 
+     *
      * @author Jeanette Winzenburg
      */
-    public static class DatePickerFormatterUIResource extends DatePickerFormatter 
+    public static class DatePickerFormatterUIResource extends DatePickerFormatter
         implements UIResource {
 
         /**
@@ -236,12 +232,12 @@ public class DatePickerFormatter extends
         }
 
         /**
-         * 
+         *
          */
         public DatePickerFormatterUIResource() {
             this(null);
         }
-     
+
         public DatePickerFormatterUIResource(DateFormat[] formats, Locale locale) {
             super(formats, locale);
         }

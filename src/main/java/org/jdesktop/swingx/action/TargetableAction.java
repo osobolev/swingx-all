@@ -8,12 +8,12 @@
  * modify it under the terms of the GNU Lesser General Public
  * License as published by the Free Software Foundation; either
  * version 2.1 of the License, or (at your option) any later version.
- * 
+ *
  * This library is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  * Lesser General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
@@ -21,10 +21,9 @@
 
 package org.jdesktop.swingx.action;
 
+import javax.swing.Icon;
 import java.awt.event.ActionEvent;
 import java.awt.event.ItemEvent;
-
-import javax.swing.Icon;
 
 /**
  * A class that represents a dynamically targetable action. The invocation of this
@@ -35,8 +34,8 @@ import javax.swing.Icon;
  * The TargetManager could be configured depending on application state to
  * handle these actions.
  *
- * @see TargetManager
  * @author Mark Davidson
+ * @see TargetManager
  */
 public class TargetableAction extends AbstractActionExt {
 
@@ -51,7 +50,7 @@ public class TargetableAction extends AbstractActionExt {
     }
 
     /**
-     * @param name display name of the action
+     * @param name    display name of the action
      * @param command the value of the action command key
      */
     public TargetableAction(String name, String command) {
@@ -59,9 +58,9 @@ public class TargetableAction extends AbstractActionExt {
     }
 
     /**
-     * @param name display name of the action
+     * @param name    display name of the action
      * @param command the value of the action command key
-     * @param icon icon to display
+     * @param icon    icon to display
      */
     public TargetableAction(String name, String command, Icon icon) {
         super(name, command, icon);

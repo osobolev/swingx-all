@@ -34,11 +34,12 @@
 
 package org.jdesktop.swingx.image;
 
-import java.awt.image.BufferedImage;
-
 import org.jdesktop.swingx.util.GraphicsUtilities;
 
+import java.awt.image.BufferedImage;
+
 public class GaussianBlurFilter extends AbstractFilter {
+
     private final int radius;
 
     /**
@@ -109,10 +110,10 @@ public class GaussianBlurFilter extends AbstractFilter {
      *
      * @param srcPixels the source pixels
      * @param dstPixels the destination pixels
-     * @param width the width of the source picture
-     * @param height the height of the source picture
-     * @param kernel the kernel of the blur effect
-     * @param radius the radius of the blur effect
+     * @param width     the width of the source picture
+     * @param height    the height of the source picture
+     * @param kernel    the kernel of the blur effect
+     * @param radius    the radius of the blur effect
      */
     static void blur(int[] srcPixels, int[] dstPixels,
                      int width, int height,
@@ -145,8 +146,8 @@ public class GaussianBlurFilter extends AbstractFilter {
 
                     a += blurFactor * ((pixel >> 24) & 0xFF);
                     r += blurFactor * ((pixel >> 16) & 0xFF);
-                    g += blurFactor * ((pixel >>  8) & 0xFF);
-                    b += blurFactor * ((pixel      ) & 0xFF);
+                    g += blurFactor * ((pixel >> 8) & 0xFF);
+                    b += blurFactor * ((pixel) & 0xFF);
                 }
 
                 ca = (int) (a + 0.5f);
@@ -156,8 +157,8 @@ public class GaussianBlurFilter extends AbstractFilter {
 
                 dstPixels[index] = ((ca > 255 ? 255 : ca) << 24) |
                                    ((cr > 255 ? 255 : cr) << 16) |
-                                   ((cg > 255 ? 255 : cg) <<  8) |
-                                    (cb > 255 ? 255 : cb);
+                                   ((cg > 255 ? 255 : cg) << 8) |
+                                   (cb > 255 ? 255 : cb);
                 index += height;
             }
         }

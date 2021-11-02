@@ -8,12 +8,12 @@
  * modify it under the terms of the GNU Lesser General Public
  * License as published by the Free Software Foundation; either
  * version 2.1 of the License, or (at your option) any later version.
- * 
+ *
  * This library is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  * Lesser General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
@@ -21,46 +21,38 @@
  */
 package org.jdesktop.swingx.plaf.synth;
 
+import javax.swing.JComponent;
+import javax.swing.LookAndFeel;
+import javax.swing.UIManager;
+import javax.swing.plaf.synth.*;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.beans.PropertyChangeEvent;
 
-import javax.swing.JComponent;
-import javax.swing.LookAndFeel;
-import javax.swing.UIManager;
-import javax.swing.plaf.synth.ColorType;
-import javax.swing.plaf.synth.Region;
-import javax.swing.plaf.synth.SynthConstants;
-import javax.swing.plaf.synth.SynthContext;
-import javax.swing.plaf.synth.SynthLookAndFeel;
-import javax.swing.plaf.synth.SynthPainter;
-import javax.swing.plaf.synth.SynthStyle;
-
 /**
  * Utility class as stand-in for package private synth utility methods.
- * 
+ *
  * @author Jeanette Winzenburg
  */
 public class SynthUtils {
 
 //----------------------- context-related
-    
+
     /**
      * Used to avoid null painter checks everywhere.
      */
-    private static SynthPainter NULL_PAINTER = new SynthPainter() {};
-    
+    private static SynthPainter NULL_PAINTER = new SynthPainter() {
+    };
+
     /**
-     * Returns a SynthContext with the specified values. 
+     * Returns a SynthContext with the specified values.
      *
      * @param component JComponent
-     * @param region Identifies the portion of the JComponent
-     * @param style Style associated with the component
-     * @param state State of the component as defined in SynthConstants.
+     * @param region    Identifies the portion of the JComponent
+     * @param style     Style associated with the component
+     * @param state     State of the component as defined in SynthConstants.
      * @return a SynthContext with the specified values.
-     * 
      * @throws NullPointerException if component, region of style is null.
-     * 
      */
     public static SynthContext getContext(JComponent c, Region region, SynthStyle style, int state) {
         return new SynthContext(c, region, style, state);
@@ -75,22 +67,23 @@ public class SynthUtils {
         if (context.getStyle().equals(style)) return context;
         return getContext(context.getComponent(), context.getRegion(), style, context.getComponentState());
     }
+
     /**
      * Returns a context with the given component state and all other fields same as input context.
-     * 
-     * @param context the context, must not be null 
-     * @param state the component state.
+     *
+     * @param context the context, must not be null
+     * @param state   the component state.
      * @return a context with the given component state and other fields as inpu context.
      */
     public static SynthContext getContext(SynthContext context, int state) {
         if (context.getComponentState() == state) return context;
         return getContext(context.getComponent(), context.getRegion(), context.getStyle(), state);
     }
-    
+
     /**
-     * Returns a SynthPainter from the context's style. Fall-back to default if 
+     * Returns a SynthPainter from the context's style. Fall-back to default if
      * none available.
-     * 
+     *
      * @param context SynthContext containing the style, must not be null.
      * @return a SynthPainter from the context's style, or a default if null.
      */
@@ -98,9 +91,9 @@ public class SynthUtils {
         SynthPainter painter = context.getStyle().getPainter(context);
         return painter != null ? painter : NULL_PAINTER;
     }
-    
+
 //------------------- style-related
-    
+
     /**
      * Returns true if the Style should be updated in response to the
      * specified PropertyChangeEvent. This forwards to
@@ -111,18 +104,16 @@ public class SynthUtils {
         if ("name" == eName) {
             // Always update on a name change
             return true;
-        }
-        else if ("componentOrientation" == eName) {
+        } else if ("componentOrientation" == eName) {
             // Always update on a component orientation change
             return true;
-        }
-        else if ("ancestor" == eName && event.getNewValue() != null) {
+        } else if ("ancestor" == eName && event.getNewValue() != null) {
             // Only update on an ancestor change when getting a valid
             // parent and the LookAndFeel wants this.
             LookAndFeel laf = UIManager.getLookAndFeel();
             return (laf instanceof SynthLookAndFeel &&
-                    ((SynthLookAndFeel)laf).
-                     shouldUpdateStyleOnAncestorChanged());
+                    ((SynthLookAndFeel) laf).
+                        shouldUpdateStyleOnAncestorChanged());
         }
         // Note: The following two nimbus based overrides should be refactored
         // to be in the Nimbus LAF. Due to constraints in an update release,
@@ -133,22 +124,20 @@ public class SynthUtils {
             // Always update when the Nimbus.Overrides client property has
             // been changed
             return true;
-        }
-        else if ("Nimbus.Overrides.InheritDefaults" == eName) {
+        } else if ("Nimbus.Overrides.InheritDefaults" == eName) {
             // Always update when the Nimbus.Overrides.InheritDefaults
             // client property has changed
             return true;
-        }
-        else if ("JComponent.sizeVariant" == eName) {
+        } else if ("JComponent.sizeVariant" == eName) {
             // Always update when the JComponent.sizeVariant
             // client property has changed
             return true;
         }
         return false;
     }
-    
+
 //--------------- component related
-    
+
     public static int getComponentState(JComponent c) {
         if (c.isEnabled()) {
             if (c.isFocusOwner()) {
@@ -164,21 +153,21 @@ public class SynthUtils {
     /**
      * A convenience method that handles painting of the background. All SynthUI
      * implementations should override update and invoke this method.
-     * 
+     *
      * @param context must not be null
-     * @param g must not be null
+     * @param g       must not be null
      */
     public static void update(SynthContext context, Graphics g) {
         update(context, g, null);
     }
-    
+
     /**
      * A convenience method that handles painting of the background. All SynthUI
      * implementations should override update and invoke this method.
-     * 
+     *
      * @param context must not be null
-     * @param g must not be null
-     * @param the bounds to fill, may be null to indicate the complete size
+     * @param g       must not be null
+     * @param the     bounds to fill, may be null to indicate the complete size
      */
     public static void update(SynthContext context, Graphics g, Rectangle bounds) {
         JComponent c = context.getComponent();
@@ -200,11 +189,10 @@ public class SynthUtils {
         // Fill in the background, if necessary.
         boolean subregion = context.getRegion().isSubregion();
         if ((subregion && style.isOpaque(context))
-                || (!subregion && c.isOpaque())) {
+            || (!subregion && c.isOpaque())) {
             g.setColor(style.getColor(context, ColorType.BACKGROUND));
             g.fillRect(x, y, width, height);
         }
     }
-
 }
 

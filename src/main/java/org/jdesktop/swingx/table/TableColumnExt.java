@@ -8,23 +8,23 @@
  * modify it under the terms of the GNU Lesser General Public
  * License as published by the Free Software Foundation; either
  * version 2.1 of the License, or (at your option) any later version.
- * 
+ *
  * This library is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  * Lesser General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
 package org.jdesktop.swingx.table;
-import java.awt.Component;
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
-import java.util.Comparator;
-import java.util.Hashtable;
+
+import org.jdesktop.swingx.decorator.CompoundHighlighter;
+import org.jdesktop.swingx.decorator.Highlighter;
+import org.jdesktop.swingx.plaf.UIDependent;
+import org.jdesktop.swingx.renderer.AbstractRenderer;
 
 import javax.swing.DefaultCellEditor;
 import javax.swing.JComponent;
@@ -34,11 +34,11 @@ import javax.swing.event.ChangeListener;
 import javax.swing.table.TableCellEditor;
 import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumn;
-
-import org.jdesktop.swingx.decorator.CompoundHighlighter;
-import org.jdesktop.swingx.decorator.Highlighter;
-import org.jdesktop.swingx.plaf.UIDependent;
-import org.jdesktop.swingx.renderer.AbstractRenderer;
+import java.awt.Component;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+import java.util.Comparator;
+import java.util.Hashtable;
 
 /**
  * <code>TableColumn</code> extension for enhanced view column configuration.
@@ -47,7 +47,7 @@ import org.jdesktop.swingx.renderer.AbstractRenderer;
  * broad range of customization requirements. Using collaborators are expected
  * to listen to property changes and update themselves accordingly.
  * <p>
- * 
+ * <p>
  * A functionality enhancement is the notion of column visibility:
  * <code>TableColumnModelExt</code> manages sets of visible/hidden
  * <code>TableColumnExt</code>s controlled by the columns'
@@ -55,21 +55,21 @@ import org.jdesktop.swingx.renderer.AbstractRenderer;
  * visibility at runtime, f.i. through a dedicated control in the upper trailing
  * corner of a <code>JScrollPane</code>.
  * <p>
- * 
+ * <p>
  * A prominent group of properties allows fine-grained, per-column control of
  * corresponding Table/-Header features.
- * 
+ *
  * <ul>
  * <li><b>Sorting</b>: <code>sortable</code> controls whether this column
  * should be sortable by user's sort gestures; <code>Comparator</code> can
  * hold a column specific type.
- * 
+ *
  * <li><b>Editing</b>: <code>editable</code> controls whether cells of this
  * column should be accessible to in-table editing.
- * 
+ *
  * <li><b>Tooltip</b>: <code>toolTipText</code> holds the column tooltip
  * which is shown when hovering over the column's header.
- * 
+ *
  * <li><b>Highlighter</b>: <code>highlighters</code> holds the column
  * highlighters; these are applied to the renderer after the table highlighters.
  * Any modification of the list of contained <code>Highlighter</code>s
@@ -78,66 +78,79 @@ import org.jdesktop.swingx.renderer.AbstractRenderer;
  * contained <code>Highlighter</code>s will result in a PropertyChangeEvent
  * for "highlighterStateChanged".
  * </ul>
- * 
- * 
+ * <p>
+ * <p>
  * Analogous to <code>JComponent</code>, this class supports per-instance
  * "client" properties. They are meant as a small-scale extension mechanism.
  * They are similar to regular bean properties in that registered
  * <code>PropertyChangeListener</code>s are notified about changes. TODO:
  * example?
  * <p>
- * 
+ * <p>
  * A <code>TableColumnExt</code> implements UIDependent, that is it takes over
  * responsibility to update LAF dependent properties of contained elements when
  * messaged with updateUI. This implementation updates its <code>Highlighter</code>s,
  * Cell-/HeaderRenderer and CellEditor. <p>
- * 
+ * <p>
  * TODO: explain prototype (sizing, collaborator-used-by ColumnFactory (?))
  * <p>
- * 
+ *
  * @author Ramesh Gupta
  * @author Amy Fowler
  * @author Jeanette Winzenburg
  * @author Karl Schaefer
- * 
  * @see TableColumnModelExt
  * @see ColumnFactory
  * @see UIDependent
  * @see JComponent#putClientProperty
  */
 public class TableColumnExt extends TableColumn implements UIDependent {
-    
-    /** visible property. Initialized to <code>true</code>.*/
+
+    /**
+     * visible property. Initialized to <code>true</code>.
+     */
     protected boolean visible = true;
-    /** hideable property. Initialized to <code>true</code>.*/
+    /**
+     * hideable property. Initialized to <code>true</code>.
+     */
     protected boolean hideable = true;
-    
-    /** prototype property. */
+
+    /**
+     * prototype property.
+     */
     protected Object prototypeValue;
 
-
-    /** per-column comparator  */
+    /**
+     * per-column comparator
+     */
     protected Comparator<?> comparator;
-    /** per-column sortable property. Initialized to <code>true</code>. */
+    /**
+     * per-column sortable property. Initialized to <code>true</code>.
+     */
     protected boolean sortable = true;
-    /** per-column editable property. Initialized to <code>true</code>.*/
+    /**
+     * per-column editable property. Initialized to <code>true</code>.
+     */
     protected boolean editable = true;
-    /** per-column tool tip text. */
+    /**
+     * per-column tool tip text.
+     */
     private String toolTipText;
-    
-    /** storage for client properties. */
+
+    /**
+     * storage for client properties.
+     */
     protected Hashtable<Object, Object> clientProperties;
 
     /**
      * The compound highlighter for the column.
      */
     protected CompoundHighlighter compoundHighlighter;
-    
+
     private ChangeListener highlighterChangeListener;
 
     private boolean ignoreHighlighterStateChange;
 
-    
     /**
      * Creates new table view column with a model index = 0.
      */
@@ -147,8 +160,9 @@ public class TableColumnExt extends TableColumn implements UIDependent {
 
     /**
      * Creates new table view column with the specified model index.
+     *
      * @param modelIndex index of table model column to which this view column
-     *        is bound.
+     *                   is bound.
      */
     public TableColumnExt(int modelIndex) {
         this(modelIndex, 75);    // default width taken from javax.swing.table.TableColumn
@@ -156,9 +170,10 @@ public class TableColumnExt extends TableColumn implements UIDependent {
 
     /**
      * Creates new table view column with the specified model index and column width.
+     *
      * @param modelIndex index of table model column to which this view column
-     *        is bound.
-     * @param width pixel width of view column
+     *                   is bound.
+     * @param width      pixel width of view column
      */
     public TableColumnExt(int modelIndex, int width) {
         this(modelIndex, width, null, null);
@@ -167,12 +182,13 @@ public class TableColumnExt extends TableColumn implements UIDependent {
     /**
      * Creates new table view column with the specified model index, column
      * width, cell renderer and cell editor.
-     * @param modelIndex index of table model column to which this view column
-     *        is bound.
-     * @param width pixel width of view column
+     *
+     * @param modelIndex   index of table model column to which this view column
+     *                     is bound.
+     * @param width        pixel width of view column
      * @param cellRenderer the cell renderer which will render all cells in this
-     *        view column
-     * @param cellEditor the cell editor which will edit cells in this view column
+     *                     view column
+     * @param cellEditor   the cell editor which will edit cells in this view column
      */
     public TableColumnExt(int modelIndex, int width,
                           TableCellRenderer cellRenderer, TableCellEditor cellEditor) {
@@ -180,35 +196,32 @@ public class TableColumnExt extends TableColumn implements UIDependent {
     }
 
     /**
-     * Instantiates a new table view column with all properties copied from the 
+     * Instantiates a new table view column with all properties copied from the
      * given original.
-     * 
+     *
      * @param columnExt the column to copy properties from
      * @see #copyFrom(TableColumnExt)
      */
     public TableColumnExt(TableColumnExt columnExt) {
         this(columnExt.getModelIndex(), columnExt.getWidth(), columnExt
-                .getCellRenderer(), columnExt.getCellEditor());
+            .getCellRenderer(), columnExt.getCellEditor());
         copyFrom(columnExt);
     }
 
-    
     /**
      * Sets the <code>Highlighter</code>s to the table, replacing any old settings.
      * None of the given Highlighters must be null.<p>
-     * 
-     * This is a bound property. <p> 
-     * 
+     * <p>
+     * This is a bound property. <p>
+     * <p>
      * Note: as of version #1.257 the null constraint is enforced strictly. To remove
      * all highlighters use this method without param.
-     * 
+     *
      * @param highlighters zero or more not null highlighters to use for renderer decoration.
      * @throws NullPointerException if array is null or array contains null values.
-     * 
      * @see #getHighlighters()
      * @see #addHighlighter(Highlighter)
      * @see #removeHighlighter(Highlighter)
-     * 
      */
     public void setHighlighters(Highlighter... highlighters) {
         ignoreHighlighterStateChange = true;
@@ -221,21 +234,21 @@ public class TableColumnExt extends TableColumn implements UIDependent {
     /**
      * Returns the <code>Highlighter</code>s used by this table.
      * Maybe empty, but guarantees to be never null.
-     * 
+     *
      * @return the Highlighters used by this table, guaranteed to never null.
      * @see #setHighlighters(Highlighter[])
      */
     public Highlighter[] getHighlighters() {
         return getCompoundHighlighter().getHighlighters();
     }
+
     /**
      * Appends a <code>Highlighter</code> to the end of the list of used
-     * <code>Highlighter</code>s. The argument must not be null. 
+     * <code>Highlighter</code>s. The argument must not be null.
      * <p>
-     * 
+     *
      * @param highlighter the <code>Highlighter</code> to add, must not be null.
      * @throws NullPointerException if <code>Highlighter</code> is null.
-     * 
      * @see #removeHighlighter(Highlighter)
      * @see #setHighlighters(Highlighter[])
      */
@@ -249,9 +262,9 @@ public class TableColumnExt extends TableColumn implements UIDependent {
 
     /**
      * Removes the given Highlighter. <p>
-     * 
+     * <p>
      * Does nothing if the Highlighter is not contained.
-     * 
+     *
      * @param highlighter the Highlighter to remove.
      * @see #addHighlighter(Highlighter)
      * @see #setHighlighters(Highlighter...)
@@ -263,11 +276,11 @@ public class TableColumnExt extends TableColumn implements UIDependent {
         firePropertyChange("highlighters", old, getHighlighters());
         ignoreHighlighterStateChange = false;
     }
-    
+
     /**
      * Returns the CompoundHighlighter assigned to the table, null if none.
      * PENDING: open up for subclasses again?.
-     * 
+     *
      * @return the CompoundHighlighter assigned to the table.
      */
     protected CompoundHighlighter getCompoundHighlighter() {
@@ -279,11 +292,11 @@ public class TableColumnExt extends TableColumn implements UIDependent {
     }
 
     /**
-     * Returns the <code>ChangeListener</code> to use with highlighters. Lazily 
+     * Returns the <code>ChangeListener</code> to use with highlighters. Lazily
      * creates the listener.
-     * 
-     * @return the ChangeListener for observing changes of highlighters, 
-     *   guaranteed to be <code>not-null</code>
+     *
+     * @return the ChangeListener for observing changes of highlighters,
+     * guaranteed to be <code>not-null</code>
      */
     protected ChangeListener getHighlighterChangeListener() {
         if (highlighterChangeListener == null) {
@@ -296,9 +309,9 @@ public class TableColumnExt extends TableColumn implements UIDependent {
      * Creates and returns the ChangeListener observing Highlighters.
      * <p>
      * Here: repaints the table on receiving a stateChanged.
-     * 
+     *
      * @return the ChangeListener defining the reaction to changes of
-     *         highlighters.
+     * highlighters.
      */
     protected ChangeListener createHighlighterChangeListener() {
         return new ChangeListener() {
@@ -310,12 +323,12 @@ public class TableColumnExt extends TableColumn implements UIDependent {
         };
     }
 
-    /** 
-     * Returns true if the user <i>can</i> resize the TableColumn's width, 
+    /**
+     * Returns true if the user <i>can</i> resize the TableColumn's width,
      * false otherwise. This is a usability override: it takes into account
      * the case where it's principally <i>allowed</i> to resize the column
      * but not possible because the column has fixed size.
-     * 
+     *
      * @return a boolean indicating whether the user can resize this column.
      */
     @Override
@@ -331,9 +344,9 @@ public class TableColumnExt extends TableColumn implements UIDependent {
      * column as read-only, independent of the per-cell editability as returned
      * by the <code>TableModel.isCellEditable</code>. If the cell is
      * read-only in the model layer, this property will have no effect.
-     * 
+     *
      * @param editable boolean indicating whether or not the user may edit cell
-     *        values in this view column
+     *                 values in this view column
      * @see #isEditable
      * @see org.jdesktop.swingx.JXTable#isCellEditable(int, int)
      * @see javax.swing.table.TableModel#isCellEditable
@@ -342,16 +355,16 @@ public class TableColumnExt extends TableColumn implements UIDependent {
         boolean oldEditable = this.editable;
         this.editable = editable;
         firePropertyChange("editable",
-                           Boolean.valueOf(oldEditable),
-                           Boolean.valueOf(editable));
+            Boolean.valueOf(oldEditable),
+            Boolean.valueOf(editable));
     }
 
     /**
      * Returns the per-column editable property.
      * The default is <code>true</code>.
-     * 
+     *
      * @return boolean indicating whether or not the user may edit cell
-     *        values in this view column
+     * values in this view column
      * @see #setEditable
      */
     public boolean isEditable() {
@@ -365,9 +378,9 @@ public class TableColumnExt extends TableColumn implements UIDependent {
      * and set the initial preferredWidth of the column.  Note that this
      * initial preferredWidth will be overridden if the user resizes columns
      * directly.
-     * 
+     *
      * @param value Object containing the value of the prototype to be used
-     *         to calculate the initial preferred width of the column
+     *              to calculate the initial preferred width of the column
      * @see #getPrototypeValue
      * @see org.jdesktop.swingx.JXTable#getPreferredScrollableViewportSize
      */
@@ -375,31 +388,29 @@ public class TableColumnExt extends TableColumn implements UIDependent {
         Object oldPrototypeValue = this.prototypeValue;
         this.prototypeValue = value;
         firePropertyChange("prototypeValue",
-                           oldPrototypeValue,
-                           value);
-
+            oldPrototypeValue,
+            value);
     }
 
     /**
      * Returns the prototypeValue property.
      * The default is <code>null</code>.
-     * 
+     *
      * @return Object containing the value of the prototype to be used
-     *         to calculate the initial preferred width of the column
+     * to calculate the initial preferred width of the column
      * @see #setPrototypeValue
      */
     public Object getPrototypeValue() {
         return prototypeValue;
     }
 
-
     /**
      * Sets the comparator to use for this column.
      * <code>JXTable</code> sorting api respects this property by passing it on
-     * to the <code>SortController</code>. 
-     * 
+     * to the <code>SortController</code>.
+     *
      * @param comparator a custom comparator to use in interactive
-     *    sorting.
+     *                   sorting.
      * @see #getComparator
      * @see org.jdesktop.swingx.sort.SortController
      * @see org.jdesktop.swingx.decorator.SortKey
@@ -409,11 +420,11 @@ public class TableColumnExt extends TableColumn implements UIDependent {
         this.comparator = comparator;
         firePropertyChange("comparator", old, getComparator());
     }
-    
+
     /**
-     * Returns the comparator to use for the column. 
+     * Returns the comparator to use for the column.
      * The default is <code>null</code>.
-     * 
+     *
      * @return <code>Comparator</code> to use for this column
      * @see #setComparator
      */
@@ -423,35 +434,35 @@ public class TableColumnExt extends TableColumn implements UIDependent {
 
     /**
      * Sets the sortable property. <code>JXTable</code> sorting api respects this
-     * property by disabling interactive sorting on this column if false. 
-     * 
+     * property by disabling interactive sorting on this column if false.
+     *
      * @param sortable boolean indicating whether or not this column can
-     *        be sorted in the table
-     * @see #isSortable 
+     *                 be sorted in the table
+     * @see #isSortable
      */
     public void setSortable(boolean sortable) {
         boolean old = isSortable();
         this.sortable = sortable;
         firePropertyChange("sortable", old, isSortable());
     }
- 
+
     /**
      * Returns the sortable property.
      * The default value is <code>true</code>.
-     * 
+     *
      * @return boolean indicating whether this view column is sortable
      * @see #setSortable
      */
     public boolean isSortable() {
         return sortable;
     }
-    
+
     /**
-     * Registers the text to display in the column's tool tip. 
+     * Registers the text to display in the column's tool tip.
      * Typically, this is used by <code>JXTableHeader</code> to
      * display when the mouse cursor lingers over the column's
      * header cell.
-     * 
+     *
      * @param toolTipText text to show.
      * @see #setToolTipText(String)
      */
@@ -460,22 +471,22 @@ public class TableColumnExt extends TableColumn implements UIDependent {
         this.toolTipText = toolTipText;
         firePropertyChange("toolTipText", old, getToolTipText());
     }
-    
+
     /**
-     * Returns the text of to display in the column's tool tip. 
-     * The default is <code>null</code>. 
-     * 
+     * Returns the text of to display in the column's tool tip.
+     * The default is <code>null</code>.
+     *
      * @return the text of the column ToolTip.
      * @see #setToolTipText(String)
      */
     public String getToolTipText() {
         return toolTipText;
     }
-    
-    
+
     /**
      * Sets the title of this view column.  This is a convenience
      * wrapper for <code>setHeaderValue</code>.
+     *
      * @param title String containing the title of this view column
      */
     public void setTitle(String title) {
@@ -484,9 +495,10 @@ public class TableColumnExt extends TableColumn implements UIDependent {
 
     /**
      * Convenience method which returns the headerValue property after
-     * converting it to a string. 
+     * converting it to a string.
+     *
      * @return String containing the title of this view column or null if
-     *   no headerValue is set.
+     * no headerValue is set.
      */
     public String getTitle() {
         Object header = getHeaderValue();
@@ -496,9 +508,9 @@ public class TableColumnExt extends TableColumn implements UIDependent {
     /**
      * Sets the visible property.  This property controls whether or not
      * this view column is currently visible in the table.
-     * 
+     *
      * @param visible boolean indicating whether or not this view column is
-     *        visible in the table
+     *                visible in the table
      * @see #setVisible
      */
     public void setVisible(boolean visible) {
@@ -508,15 +520,15 @@ public class TableColumnExt extends TableColumn implements UIDependent {
     }
 
     /**
-     * Returns a boolean indicating whether or not this column is visible. 
+     * Returns a boolean indicating whether or not this column is visible.
      * The bare property value is constrained by this column's hideable setting,
      * that is a not hideable column is always visible, irrespective of the
-     * property setting. 
+     * property setting.
      * <p>
      * The default is <code>true</code>.
-     * 
+     *
      * @return boolean indicating whether or not this view column is
-     *        visible in the table
+     * visible in the table
      * @see #setVisible
      */
     public boolean isVisible() {
@@ -526,12 +538,12 @@ public class TableColumnExt extends TableColumn implements UIDependent {
 
     /**
      * Sets the hideable property. This property controls whether the column can
-     * be hidden. This is a bound property. If the column's visibilty is affected, 
+     * be hidden. This is a bound property. If the column's visibilty is affected,
      * listeners are notified about that change as well..
      * <p>
-     * 
+     * <p>
      * The default value is true.
-     * 
+     *
      * @param hideable
      */
     public void setHideable(boolean hideable) {
@@ -541,21 +553,20 @@ public class TableColumnExt extends TableColumn implements UIDependent {
         firePropertyChange("visible", oldVisible, isVisible());
         firePropertyChange("hideable", old, isHideable());
     }
-    
+
     /**
      * Returns the hideable property.
-     * 
+     *
      * @return the hideable property.
-     * 
      * @see #setHideable(boolean)
      */
     public boolean isHideable() {
         return hideable;
     }
-    
+
     /**
-     * Sets the client property "key" to <code>value</code>. 
-     * If <code>value</code> is <code>null</code> this method will remove the property. 
+     * Sets the client property "key" to <code>value</code>.
+     * If <code>value</code> is <code>null</code> this method will remove the property.
      * Changes to
      * client properties are reported with <code>PropertyChange</code> events.
      * The name of the property (for the sake of PropertyChange events) is
@@ -565,8 +576,8 @@ public class TableColumnExt extends TableColumn implements UIDependent {
      * per-instance hashtable, which is intended for small scale extensions of
      * TableColumn.
      * <p>
-     * 
-     * @param key Object which is used as key to retrieve value
+     *
+     * @param key   Object which is used as key to retrieve value
      * @param value Object containing value of client property
      * @throws IllegalArgumentException if key is <code>null</code>
      * @see #getClientProperty
@@ -583,8 +594,7 @@ public class TableColumnExt extends TableColumn implements UIDependent {
         Object old = getClientProperty(key);
         if (value == null) {
             getClientProperties().remove(key);
-        }
-        else {
+        } else {
             getClientProperties().put(key, value);
         }
 
@@ -596,15 +606,14 @@ public class TableColumnExt extends TableColumn implements UIDependent {
      * Returns the value of the property with the specified key. Only properties
      * added with <code>putClientProperty</code> will return a non-<code>null</code>
      * value.
-     * 
+     *
      * @param key Object which is used as key to retrieve value
      * @return Object containing value of client property or <code>null</code>
-     * 
      * @see #putClientProperty
      */
     public Object getClientProperty(Object key) {
         return ((key == null) || (clientProperties == null)) ?
-                null : clientProperties.get(key);
+            null : clientProperties.get(key);
     }
 
     private Hashtable<Object, Object> getClientProperties() {
@@ -614,87 +623,82 @@ public class TableColumnExt extends TableColumn implements UIDependent {
         return clientProperties;
     }
 
+    /**
+     * Copies properties from original. Handles all properties except
+     * modelIndex, width, cellRenderer, cellEditor. Called from copy
+     * constructor.
+     *
+     * @param original the tableColumn to copy from
+     * @see #TableColumnExt(TableColumnExt)
+     */
+    protected void copyFrom(TableColumnExt original) {
+        setEditable(original.isEditable());
+        setHeaderValue(original.getHeaderValue());    // no need to copy setTitle();
+        setToolTipText(original.getToolTipText());
+        setIdentifier(original.getIdentifier());
+        setMaxWidth(original.getMaxWidth());
+        setMinWidth(original.getMinWidth());
+        setPreferredWidth(original.getPreferredWidth());
+        setPrototypeValue(original.getPrototypeValue());
+        // JW: isResizable is overridden to return a calculated property!
+        setResizable(original.isResizable);
+        setVisible(original.isVisible());
+        setSortable(original.isSortable());
+        setComparator(original.getComparator());
+        copyClientPropertiesFrom(original);
 
-     /**
-      * Copies properties from original. Handles all properties except
-      * modelIndex, width, cellRenderer, cellEditor. Called from copy 
-      * constructor.
-      *  
-      * @param original the tableColumn to copy from
-      * 
-      * @see #TableColumnExt(TableColumnExt)
-      */
-     protected void copyFrom(TableColumnExt original) {
-             setEditable(original.isEditable());
-             setHeaderValue(original.getHeaderValue());    // no need to copy setTitle();
-             setToolTipText(original.getToolTipText());
-             setIdentifier(original.getIdentifier());
-             setMaxWidth(original.getMaxWidth());
-             setMinWidth(original.getMinWidth());
-             setPreferredWidth(original.getPreferredWidth());
-             setPrototypeValue(original.getPrototypeValue());
-             // JW: isResizable is overridden to return a calculated property!
-             setResizable(original.isResizable);
-             setVisible(original.isVisible());
-             setSortable(original.isSortable());
-             setComparator(original.getComparator());
-             copyClientPropertiesFrom(original);
-             
-             if (original.compoundHighlighter != null) {
-                 setHighlighters(original.getHighlighters());
-             }
-         
-     }
-     
-     /**
-      * Copies all clientProperties of this <code>TableColumnExt</code>
-      * to the target column.
-      * 
-      * @param original the target column.
-      */
-     protected void copyClientPropertiesFrom(TableColumnExt original) {
+        if (original.compoundHighlighter != null) {
+            setHighlighters(original.getHighlighters());
+        }
+    }
+
+    /**
+     * Copies all clientProperties of this <code>TableColumnExt</code>
+     * to the target column.
+     *
+     * @param original the target column.
+     */
+    protected void copyClientPropertiesFrom(TableColumnExt original) {
         if (original.clientProperties == null) return;
-        for(Object key: original.clientProperties.keySet()) {
+        for (Object key : original.clientProperties.keySet()) {
             putClientProperty(key, original.getClientProperty(key));
         }
     }
 
-
     /**
-     * Notifies registered <code>PropertyChangeListener</code>s 
+     * Notifies registered <code>PropertyChangeListener</code>s
      * about property changes. This method must be invoked internally
      * whe any of the enhanced properties changed.
      * <p>
-     * Implementation note: needed to replicate super 
-     * functionality because super's field <code>propertyChangeSupport</code> 
+     * Implementation note: needed to replicate super
+     * functionality because super's field <code>propertyChangeSupport</code>
      * and method <code>fireXX</code> are both private.
-     * 
-     * @param propertyName  name of changed property
-     * @param oldValue old value of changed property
-     * @param newValue new value of changed property
-     */ 
+     *
+     * @param propertyName name of changed property
+     * @param oldValue     old value of changed property
+     * @param newValue     new value of changed property
+     */
     protected void firePropertyChange(String propertyName, Object oldValue, Object newValue) {
         if ((oldValue != null && !oldValue.equals(newValue)) ||
-              oldValue == null && newValue != null) {
-             PropertyChangeListener pcl[] = getPropertyChangeListeners();
-             if (pcl != null && pcl.length != 0) {
-                 PropertyChangeEvent pce = new PropertyChangeEvent(this,
-                     propertyName,
-                     oldValue, newValue);
+            oldValue == null && newValue != null) {
+            PropertyChangeListener pcl[] = getPropertyChangeListeners();
+            if (pcl != null && pcl.length != 0) {
+                PropertyChangeEvent pce = new PropertyChangeEvent(this,
+                    propertyName,
+                    oldValue, newValue);
 
-                 for (int i = 0; i < pcl.length; i++) {
-                     pcl[i].propertyChange(pce);
-                 }
-             }
-         }
-     }
+                for (int i = 0; i < pcl.length; i++) {
+                    pcl[i].propertyChange(pce);
+                }
+            }
+        }
+    }
 
 //---------------- implement UIDependent
-    
+
     /**
      * Update ui of owned ui-dependent parts. This implementation
      * updates the contained highlighters.
-     * 
      */
     @Override
     public void updateUI() {
@@ -705,18 +709,17 @@ public class TableColumnExt extends TableColumn implements UIDependent {
     }
 
     /**
-     * @param editor 
-     * 
+     * @param editor
      */
     private void updateEditorUI(TableCellEditor editor) {
         if (editor == null) return;
         // internal knowledge of core table - already updated
         if ((editor instanceof JComponent)
-                || (editor instanceof DefaultCellEditor))
+            || (editor instanceof DefaultCellEditor))
             return;
         try {
             Component comp = editor
-                    .getTableCellEditorComponent(null, null, false, -1, -1);
+                .getTableCellEditorComponent(null, null, false, -1, -1);
             if (comp != null) {
                 SwingUtilities.updateComponentTreeUI(comp);
             }
@@ -726,8 +729,7 @@ public class TableColumnExt extends TableColumn implements UIDependent {
     }
 
     /**
-     * @param tableCellRenderer 
-     * 
+     * @param tableCellRenderer
      */
     private void updateRendererUI(TableCellRenderer renderer) {
         if (renderer == null) return;
@@ -741,9 +743,8 @@ public class TableColumnExt extends TableColumn implements UIDependent {
         } else {
             try {
                 comp = renderer
-                .getTableCellRendererComponent(null, null, false, false,
+                    .getTableCellRendererComponent(null, null, false, false,
                         -1, -1);
-              
             } catch (Exception e) {
                 // can't do anything - renderer can't cope with off-range cells
             }
@@ -754,7 +755,7 @@ public class TableColumnExt extends TableColumn implements UIDependent {
     }
 
     /**
-     * 
+     *
      */
     private void updateHighlighterUI() {
         if (compoundHighlighter == null) return;

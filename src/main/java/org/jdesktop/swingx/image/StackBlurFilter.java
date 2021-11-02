@@ -34,9 +34,9 @@
 
 package org.jdesktop.swingx.image;
 
-import java.awt.image.BufferedImage;
-
 import org.jdesktop.swingx.util.GraphicsUtilities;
+
+import java.awt.image.BufferedImage;
 
 /**
  * <p>A stack blur filter can be used to create an approximation of a
@@ -51,8 +51,9 @@ import org.jdesktop.swingx.util.GraphicsUtilities;
  * independent from the radius.</p>
  *
  * @author Romain Guy <romain.guy@mac.com>
-*/
+ */
 public class StackBlurFilter extends AbstractFilter {
+
     private final int radius;
     private final int iterations;
 
@@ -80,7 +81,7 @@ public class StackBlurFilter extends AbstractFilter {
      * number of iterations is lower than 1, one iteration will be used
      * automatically.</p>
      *
-     * @param radius the radius, in pixels, of the blur
+     * @param radius     the radius, in pixels, of the blur
      * @param iterations the number of iterations to approximate a Gaussian blur
      */
     public StackBlurFilter(int radius, int iterations) {
@@ -99,6 +100,7 @@ public class StackBlurFilter extends AbstractFilter {
      * <p>Returns the effective radius of the stack blur. If the radius of the
      * blur is 1 and the stack iterations count is 3, then the effective blur
      * radius is 1 * 3 = 3.</p>
+     *
      * @return the number of iterations times the blur radius
      */
     public int getEffectiveRadius() {

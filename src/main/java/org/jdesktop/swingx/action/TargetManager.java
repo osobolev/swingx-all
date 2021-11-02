@@ -8,12 +8,12 @@
  * modify it under the terms of the GNU Lesser General Public
  * License as published by the Free Software Foundation; either
  * version 2.1 of the License, or (at your option) any later version.
- * 
+ *
  * This library is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  * Lesser General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
@@ -21,6 +21,9 @@
 
 package org.jdesktop.swingx.action;
 
+import javax.swing.Action;
+import javax.swing.ActionMap;
+import javax.swing.JComponent;
 import java.awt.Component;
 import java.awt.KeyboardFocusManager;
 import java.awt.event.ActionEvent;
@@ -29,12 +32,6 @@ import java.beans.PropertyChangeSupport;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-
-import javax.swing.Action;
-import javax.swing.ActionMap;
-import javax.swing.JComponent;
-
-
 
 /**
  * The target manager dispatches commands to {@link Targetable} objects
@@ -65,7 +62,7 @@ import javax.swing.JComponent;
  * <p>
  * If the Action is not found on the focus order then the ActionMaps of the ancestor
  * hierarchy of the focus owner is searched until a matching Action can be found.
- *  Finally, if none
+ * Finally, if none
  * of the components can handle the command then it is dispatched to the ActionMap
  * of the current Application instance.
  * <p>
@@ -78,9 +75,9 @@ import javax.swing.JComponent;
  *    <li>ActionMap entry of the current Application instance
  * </ul>
  *
+ * @author Mark Davidson
  * @see Targetable
  * @see TargetableAction
- * @author Mark Davidson
  */
 public class TargetManager {
 
@@ -116,7 +113,7 @@ public class TargetManager {
      * Targets added to the head of the list will will be the first
      * to handle the command.
      *
-     * @param target the targeted object to add
+     * @param target  the targeted object to add
      * @param prepend if true add at the head of the list; false append
      */
     public void addTarget(Targetable target, boolean prepend) {
@@ -133,6 +130,7 @@ public class TargetManager {
 
     /**
      * Appends the target to the target list.
+     *
      * @param target the targeted object to add
      */
     public void addTarget(Targetable target) {
@@ -153,7 +151,7 @@ public class TargetManager {
      * <code>addTarget</code> methods.
      *
      * @return all the <code>Targetable</code> added or an empty array if no
-     *         targets have been added
+     * targets have been added
      */
     public Targetable[] getTargets() {
         Targetable[] targets;
@@ -161,7 +159,7 @@ public class TargetManager {
             targets = new Targetable[0];
         } else {
             targets = new Targetable[targetList.size()];
-            targets = (Targetable[])targetList.toArray(new Targetable[targetList.size()]);
+            targets = (Targetable[]) targetList.toArray(new Targetable[targetList.size()]);
         }
         return targets;
     }
@@ -171,12 +169,12 @@ public class TargetManager {
      * in the target list. If the current target is null then
      * the the current targetable component will be the first one
      * in the target list which can execute the command.
-     *
+     * <p>
      * This is a bound property and will fire a property change event
      * if the value changes.
      *
      * @param newTarget the current targetable component to set or null if
-     *       the TargetManager shouldn't have a current targetable component.
+     *                  the TargetManager shouldn't have a current targetable component.
      */
     public void setTarget(Targetable newTarget) {
         Targetable oldTarget = target;
@@ -213,7 +211,7 @@ public class TargetManager {
      * focused components are searched.
      *
      * @param command the key of the command
-     * @param value the value of the command; depends on context
+     * @param value   the value of the command; depends on context
      * @return true if the command has been handled otherwise false
      */
     public boolean doCommand(Object command, Object value) {
@@ -238,7 +236,7 @@ public class TargetManager {
 
         ActionEvent evt = null;
         if (value instanceof ActionEvent) {
-            evt = (ActionEvent)value;
+            evt = (ActionEvent) value;
         }
 
         // Fall back behavior. Get the component which has focus and search the
@@ -246,7 +244,7 @@ public class TargetManager {
         Component comp = KeyboardFocusManager.getCurrentKeyboardFocusManager().getPermanentFocusOwner();
         while (comp != null) {
             if (comp instanceof JComponent) {
-                ActionMap map = ((JComponent)comp).getActionMap();
+                ActionMap map = ((JComponent) comp).getActionMap();
                 Action action = map.get(command);
                 if (action != null) {
                     if (evt == null) {
@@ -280,5 +278,4 @@ public class TargetManager {
         }
         INSTANCE = null;
     }
-
 }

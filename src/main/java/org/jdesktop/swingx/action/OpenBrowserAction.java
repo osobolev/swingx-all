@@ -20,6 +20,7 @@
  */
 package org.jdesktop.swingx.action;
 
+import javax.swing.AbstractAction;
 import java.awt.Desktop;
 import java.awt.event.ActionEvent;
 import java.io.IOException;
@@ -29,64 +30,59 @@ import java.net.URL;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import javax.swing.AbstractAction;
-
 /**
  * An action for opening a {@link URI} in a browser. The URI may be {@code null} and if so this
  * action does nothing.
- * 
+ *
  * @author Karl Schaefer
  * @author joshy (original version)
  */
 public class OpenBrowserAction extends AbstractAction {
+
     private static Logger log = Logger.getLogger(OpenBrowserAction.class.getName());
 
     private URI uri;
-    
-    /** Creates a new instance of OpenBrowserAction */
+
+    /**
+     * Creates a new instance of OpenBrowserAction
+     */
     public OpenBrowserAction() {
         this((URI) null);
     }
 
     /**
      * Creates a new action for the specified URI.
-     * 
-     * @param uri
-     *            the URI
-     * @throws NullPointerException
-     *             if {@code uri} is {@code null}
-     * @throws IllegalArgumentException
-     *             if the given string violates RFC&nbsp;2396
+     *
+     * @param uri the URI
+     * @throws NullPointerException     if {@code uri} is {@code null}
+     * @throws IllegalArgumentException if the given string violates RFC&nbsp;2396
      */
     public OpenBrowserAction(String uri) {
         this(URI.create(uri));
     }
-    
+
     /**
      * Creates a new action for the specified URL.
-     * 
-     * @param url
-     *            the URL
-     * @throws URISyntaxException
-     *             if the URL cannot be converted to a valid URI
+     *
+     * @param url the URL
+     * @throws URISyntaxException if the URL cannot be converted to a valid URI
      */
     public OpenBrowserAction(URL url) throws URISyntaxException {
         this(url.toURI());
     }
-    
+
     /**
      * Creates a new action for the specified URI.
-     * 
-     * @param uri
-     *            the URI
+     *
+     * @param uri the URI
      */
     public OpenBrowserAction(URI uri) {
         setURI(uri);
     }
-    
+
     /**
      * Gets the current URI.
-     * 
+     *
      * @return the URI
      */
     public URI getURI() {
@@ -95,14 +91,13 @@ public class OpenBrowserAction extends AbstractAction {
 
     /**
      * Sets the current URI.
-     * 
-     * @param uri
-     *            the new URI
+     *
+     * @param uri the new URI
      */
     public void setURI(URI uri) {
         this.uri = uri;
     }
-    
+
     /**
      * {@inheritDoc}
      */
@@ -111,7 +106,7 @@ public class OpenBrowserAction extends AbstractAction {
         if (uri == null || !Desktop.isDesktopSupported()) {
             return;
         }
-        
+
         if (Desktop.getDesktop().isSupported(Desktop.Action.BROWSE)) {
             try {
                 Desktop.getDesktop().browse(uri);

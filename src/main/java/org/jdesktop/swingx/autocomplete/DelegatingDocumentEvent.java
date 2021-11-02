@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package org.jdesktop.swingx.autocomplete;
 
@@ -12,14 +12,15 @@ import javax.swing.text.Element;
  *
  */
 final class DelegatingDocumentEvent implements DocumentEvent {
+
     private final Document resourcedDocument;
     private final DocumentEvent sourceEvent;
-    
+
     public DelegatingDocumentEvent(Document resourcedDocument, DocumentEvent sourceEvent) {
         this.resourcedDocument = resourcedDocument;
         this.sourceEvent = sourceEvent;
     }
-    
+
     /**
      * {@inheritDoc}
      */
@@ -59,5 +60,4 @@ final class DelegatingDocumentEvent implements DocumentEvent {
     public EventType getType() {
         return sourceEvent.getType();
     }
-
 }

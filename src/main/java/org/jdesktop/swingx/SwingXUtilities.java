@@ -8,28 +8,25 @@
  * modify it under the terms of the GNU Lesser General Public
  * License as published by the Free Software Foundation; either
  * version 2.1 of the License, or (at your option) any later version.
- * 
+ *
  * This library is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  * Lesser General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  */
 package org.jdesktop.swingx;
 
-import java.awt.Color;
-import java.awt.Component;
-import java.awt.Container;
-import java.awt.Dimension;
-import java.awt.Font;
-import java.awt.Graphics2D;
-import java.awt.Insets;
-import java.awt.Point;
-import java.awt.Rectangle;
-import java.awt.Window;
+import org.jdesktop.swingx.painter.Painter;
+
+import javax.swing.*;
+import javax.swing.plaf.ComponentInputMapUIResource;
+import javax.swing.plaf.UIResource;
+import javax.swing.text.html.HTMLDocument;
+import java.awt.*;
 import java.awt.event.InputEvent;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
@@ -40,96 +37,73 @@ import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.FutureTask;
 
-import javax.swing.InputMap;
-import javax.swing.JComponent;
-import javax.swing.JList;
-import javax.swing.JPopupMenu;
-import javax.swing.KeyStroke;
-import javax.swing.ListCellRenderer;
-import javax.swing.ListModel;
-import javax.swing.ListSelectionModel;
-import javax.swing.MenuElement;
-import javax.swing.SwingUtilities;
-import javax.swing.UIManager;
-import javax.swing.plaf.ComponentInputMapUIResource;
-import javax.swing.plaf.UIResource;
-import javax.swing.text.html.HTMLDocument;
-
-import org.jdesktop.swingx.painter.Painter;
-
 /**
  * A collection of utility methods for Swing(X) classes.
- * 
+ *
  * <ul>
  * PENDING JW: think about location of this class and/or its methods, Options:
- * 
+ *
  *  <li> move this class to the swingx utils package which already has a bunch of xxUtils
  *  <li> move methods between xxUtils classes as appropriate (one window/comp related util)
  *  <li> keep here in swingx (consistent with swingutilities in core)
  * </ul>
+ *
  * @author Karl George Schaefer
  */
 public final class SwingXUtilities {
+
     private SwingXUtilities() {
         //does nothing
     }
-
 
     /**
      * A helper for creating and updating key bindings for components with
      * mnemonics. The {@code pressed} action will be invoked when the mnemonic
      * is activated.
      *
-     * @param c
-     *            the component bindings to update
-     * @param pressed
-     *            the name of the action in the action map to invoke when the
-     *            mnemonic is pressed
-     * @throws NullPointerException
-     *             if the component is {@code null}
+     * @param c       the component bindings to update
+     * @param pressed the name of the action in the action map to invoke when the
+     *                mnemonic is pressed
+     * @throws NullPointerException if the component is {@code null}
      */
     public static <T extends JComponent & Mnemonicable> void updateMnemonicBinding(T c, String pressed) {
         updateMnemonicBinding(c, pressed, null);
     }
-    
+
     /**
      * A helper for creating and updating key bindings for components with
      * mnemonics. The {@code pressed} action will be invoked when the mnemonic
      * is activated and the {@code released} action will be invoked when the
      * mnemonic is deactivated.
      *
-     * @param c
-     *            the component bindings to update
-     * @param pressed
-     *            the name of the action in the action map to invoke when the
-     *            mnemonic is pressed
-     * @param released
-     *            the name of the action in the action map to invoke when the
-     *            mnemonic is released (if the action is a toggle style, then
-     *            this parameter should be {@code null})
-     * @throws NullPointerException
-     *             if the component is {@code null}
+     * @param c        the component bindings to update
+     * @param pressed  the name of the action in the action map to invoke when the
+     *                 mnemonic is pressed
+     * @param released the name of the action in the action map to invoke when the
+     *                 mnemonic is released (if the action is a toggle style, then
+     *                 this parameter should be {@code null})
+     * @throws NullPointerException if the component is {@code null}
      */
     public static <T extends JComponent & Mnemonicable> void updateMnemonicBinding(T c, String pressed, String released) {
         int m = c.getMnemonic();
 
         InputMap map = SwingUtilities.getUIInputMap(c,
-                JComponent.WHEN_IN_FOCUSED_WINDOW);
-        
+            JComponent.WHEN_IN_FOCUSED_WINDOW);
+
         if (m != 0) {
             if (map == null) {
                 map = new ComponentInputMapUIResource(c);
                 SwingUtilities.replaceUIInputMap(c,
-                        JComponent.WHEN_IN_FOCUSED_WINDOW, map);
+                    JComponent.WHEN_IN_FOCUSED_WINDOW, map);
             }
-            
+
             map.clear();
-            
+
             //TODO is ALT_MASK right for all platforms?
-            map.put(KeyStroke.getKeyStroke(m,  InputEvent.ALT_MASK, false),
-                    pressed);
+            map.put(KeyStroke.getKeyStroke(m, InputEvent.ALT_MASK, false),
+                pressed);
             map.put(KeyStroke.getKeyStroke(m, InputEvent.ALT_MASK, true),
-                    released);
+                released);
             map.put(KeyStroke.getKeyStroke(m, 0, true), released);
         } else {
             if (map != null) {
@@ -137,20 +111,20 @@ public final class SwingXUtilities {
             }
         }
     }
-    
+
     @SuppressWarnings("unchecked")
     static <C extends JComponent & BackgroundPaintable> void paintBackground(C comp, Graphics2D g) {
         // we should be painting the background behind the painter if we have one
         // this prevents issues with buffer reuse where visual artifacts sneak in
         if (comp.isOpaque()
-                || (comp instanceof AlphaPaintable && ((AlphaPaintable) comp).getAlpha() < 1f)
-                || UIManager.getLookAndFeel().getID().equals("Nimbus")) {
+            || (comp instanceof AlphaPaintable && ((AlphaPaintable) comp).getAlpha() < 1f)
+            || UIManager.getLookAndFeel().getID().equals("Nimbus")) {
             g.setColor(comp.getBackground());
             g.fillRect(0, 0, comp.getWidth(), comp.getHeight());
         }
-        
+
         Painter<? super C> painter = comp.getBackgroundPainter();
-        
+
         if (painter != null) {
             if (comp.isPaintBorderInsets()) {
                 painter.paint(g, comp, comp.getWidth(), comp.getHeight());
@@ -158,65 +132,61 @@ public final class SwingXUtilities {
                 Insets insets = comp.getInsets();
                 g.translate(insets.left, insets.top);
                 painter.paint(g, comp, comp.getWidth() - insets.left - insets.right,
-                        comp.getHeight() - insets.top - insets.bottom);
+                    comp.getHeight() - insets.top - insets.bottom);
                 g.translate(-insets.left, -insets.top);
             }
         }
     }
-    
+
     private static Component[] getChildren(Component c) {
         Component[] children = null;
-        
+
         if (c instanceof MenuElement) {
             MenuElement[] elements = ((MenuElement) c).getSubElements();
             children = new Component[elements.length];
-            
+
             for (int i = 0; i < elements.length; i++) {
                 children[i] = elements[i].getComponent();
             }
         } else if (c instanceof Container) {
             children = ((Container) c).getComponents();
         }
-        
+
         return children;
     }
-    
+
     /**
      * Enables or disables of the components in the tree starting with {@code c}.
-     * 
-     * @param c
-     *                the starting component
-     * @param enabled
-     *                {@code true} if the component is to enabled; {@code false} otherwise
+     *
+     * @param c       the starting component
+     * @param enabled {@code true} if the component is to enabled; {@code false} otherwise
      */
     public static void setComponentTreeEnabled(Component c, boolean enabled) {
         c.setEnabled(enabled);
-        
+
         Component[] children = getChildren(c);
-            
+
         if (children != null) {
-            for(int i = 0; i < children.length; i++) {
+            for (int i = 0; i < children.length; i++) {
                 setComponentTreeEnabled(children[i], enabled);
             }
         }
     }
-    
+
     /**
      * Sets the locale for an entire component hierarchy to the specified
      * locale.
-     * 
-     * @param c
-     *                the starting component
-     * @param locale
-     *                the locale to set
+     *
+     * @param c      the starting component
+     * @param locale the locale to set
      */
     public static void setComponentTreeLocale(Component c, Locale locale) {
         c.setLocale(locale);
-        
+
         Component[] children = getChildren(c);
-        
+
         if (children != null) {
-            for(int i = 0; i < children.length; i++) {
+            for (int i = 0; i < children.length; i++) {
                 setComponentTreeLocale(children[i], locale);
             }
         }
@@ -225,19 +195,17 @@ public final class SwingXUtilities {
     /**
      * Sets the background for an entire component hierarchy to the specified
      * color.
-     * 
-     * @param c
-     *                the starting component
-     * @param color
-     *                the color to set
+     *
+     * @param c     the starting component
+     * @param color the color to set
      */
     public static void setComponentTreeBackground(Component c, Color color) {
         c.setBackground(color);
-        
+
         Component[] children = getChildren(c);
-        
+
         if (children != null) {
-            for(int i = 0; i < children.length; i++) {
+            for (int i = 0; i < children.length; i++) {
                 setComponentTreeBackground(children[i], color);
             }
         }
@@ -246,19 +214,17 @@ public final class SwingXUtilities {
     /**
      * Sets the foreground for an entire component hierarchy to the specified
      * color.
-     * 
-     * @param c
-     *                the starting component
-     * @param color
-     *                the color to set
+     *
+     * @param c     the starting component
+     * @param color the color to set
      */
     public static void setComponentTreeForeground(Component c, Color color) {
         c.setForeground(color);
-        
+
         Component[] children = getChildren(c);
-        
+
         if (children != null) {
-            for(int i = 0; i < children.length; i++) {
+            for (int i = 0; i < children.length; i++) {
                 setComponentTreeForeground(children[i], color);
             }
         }
@@ -266,48 +232,43 @@ public final class SwingXUtilities {
 
     /**
      * Sets the font for an entire component hierarchy to the specified font.
-     * 
-     * @param c
-     *            the starting component
-     * @param font
-     *            the font to set
+     *
+     * @param c    the starting component
+     * @param font the font to set
      */
     public static void setComponentTreeFont(Component c, Font font) {
         c.setFont(font);
-        
+
         Component[] children = getChildren(c);
-        
+
         if (children != null) {
-            for(int i = 0; i < children.length; i++) {
+            for (int i = 0; i < children.length; i++) {
                 setComponentTreeFont(children[i], font);
             }
         }
     }
 
-    private static String STYLESHEET = 
+    private static String STYLESHEET =
         "body { margin-top: 0; margin-bottom: 0; margin-left: 0; margin-right: 0;"
         + " font-family: %s; font-size: %dpt;  }"
         + "a, p, li { margin-top: 0; margin-bottom: 0; margin-left: 0;"
         + " margin-right: 0; font-family: %s; font-size: %dpt;  }";
-    
+
     /**
      * Sets the font used for HTML displays to the specified font. Components
      * that display HTML do not necessarily honor font properties, since the
      * HTML document can override these values. Calling {@code setHtmlFont}
      * after the data is set will force the HTML display to use the font
      * specified to this method.
-     * 
-     * @param doc
-     *            the HTML document to update
-     * @param font
-     *            the font to use
-     * @throws NullPointerException
-     *             if any parameter is {@code null}
+     *
+     * @param doc  the HTML document to update
+     * @param font the font to use
+     * @throws NullPointerException if any parameter is {@code null}
      */
     public static void setHtmlFont(HTMLDocument doc, Font font) {
         String stylesheet = String.format(STYLESHEET, font.getName(),
-                font.getSize(), font.getName(), font.getSize());
-        
+            font.getSize(), font.getName(), font.getSize());
+
         try {
             doc.getStyleSheet().loadRules(new StringReader(stylesheet), null);
         } catch (IOException e) {
@@ -315,29 +276,25 @@ public final class SwingXUtilities {
             throw new IllegalStateException(e);
         }
     }
-    
+
     /**
-     * Updates the componentTreeUI of all top-level windows of the 
+     * Updates the componentTreeUI of all top-level windows of the
      * current application.
-     * 
      */
     public static void updateAllComponentTreeUIs() {
 //        for (Frame frame : Frame.getFrames()) {
 //            updateAllComponentTreeUIs(frame);
 //        }
         // JW: updated to new 1.6 api - returns all windows, owned and ownerless
-        for (Window window: Window.getWindows()) {
+        for (Window window : Window.getWindows()) {
             SwingUtilities.updateComponentTreeUI(window);
         }
     }
 
-
-
     /**
      * Updates the componentTreeUI of the given window and all its
      * owned windows, recursively.
-     * 
-     * 
+     *
      * @param window the window to update
      */
     public static void updateAllComponentTreeUIs(Window window) {
@@ -349,45 +306,39 @@ public final class SwingXUtilities {
 
     /**
      * A version of {@link SwingUtilities#invokeLater(Runnable)} that supports return values.
-     * 
-     * @param <T>
-     *            the return type of the callable
-     * @param callable
-     *            the callable to execute
+     *
+     * @param <T>      the return type of the callable
+     * @param callable the callable to execute
      * @return a future task for accessing the return value
      * @see Callable
      */
     public static <T> FutureTask<T> invokeLater(Callable<T> callable) {
         FutureTask<T> task = new FutureTask<T>(callable);
-        
+
         SwingUtilities.invokeLater(task);
-        
+
         return task;
     }
 
     /**
      * A version of {@link SwingUtilities#invokeAndWait(Runnable)} that supports return values.
-     * 
-     * @param <T>
-     *            the return type of the callable
-     * @param callable
-     *            the callable to execute
+     *
+     * @param <T>      the return type of the callable
+     * @param callable the callable to execute
      * @return the value returned by the callable
-     * @throws InterruptedException
-     *             if we're interrupted while waiting for the event dispatching thread to finish
-     *             executing {@code callable.call()}
-     * @throws InvocationTargetException
-     *                if an exception is thrown while running {@code callable}
+     * @throws InterruptedException      if we're interrupted while waiting for the event dispatching thread to finish
+     *                                   executing {@code callable.call()}
+     * @throws InvocationTargetException if an exception is thrown while running {@code callable}
      * @see Callable
      */
     public static <T> T invokeAndWait(Callable<T> callable) throws InterruptedException,
-            InvocationTargetException {
+        InvocationTargetException {
         try {
             //blocks until future returns
             return invokeLater(callable).get();
         } catch (ExecutionException e) {
             Throwable t = e.getCause();
-            
+
             if (t instanceof RuntimeException) {
                 throw (RuntimeException) t;
             } else if (t instanceof InvocationTargetException) {
@@ -403,45 +354,42 @@ public final class SwingXUtilities {
      * {@link SwingUtilities#getAncestorOfClass(Class, Component)}. This method
      * traverses {@code JPopupMenu} invoker and uses generics to return an
      * appropriately typed object.
-     * 
-     * @param <T>
-     *            the type of ancestor to find
-     * @param clazz
-     *            the class instance of the ancestor to find
-     * @param c
-     *            the component to start the search from
+     *
+     * @param <T>   the type of ancestor to find
+     * @param clazz the class instance of the ancestor to find
+     * @param c     the component to start the search from
      * @return an ancestor of the correct type or {@code null} if no such
-     *         ancestor exists. This method also returns {@code null} if any
-     *         parameter is {@code null}.
+     * ancestor exists. This method also returns {@code null} if any
+     * parameter is {@code null}.
      */
     @SuppressWarnings("unchecked")
     public static <T> T getAncestor(Class<T> clazz, Component c) {
         if (clazz == null || c == null) {
             return null;
         }
-        
+
         Component parent = c.getParent();
 
         while (parent != null && !(clazz.isInstance(parent))) {
             parent = parent instanceof JPopupMenu
-                    ? ((JPopupMenu) parent).getInvoker() : parent.getParent();
+                ? ((JPopupMenu) parent).getInvoker() : parent.getParent();
         }
-        
+
         return (T) parent;
     }
 
     /**
      * Returns whether the component is part of the parent's
-     * container hierarchy. If a parent in the chain is of type 
+     * container hierarchy. If a parent in the chain is of type
      * JPopupMenu, the parent chain of its invoker is walked.
-     * 
+     *
      * @param focusOwner
      * @param parent
-     * @return true if the component is contained under the parent's 
-     *    hierarchy, coping with JPopupMenus.
+     * @return true if the component is contained under the parent's
+     * hierarchy, coping with JPopupMenus.
      */
     public static boolean isDescendingFrom(Component focusOwner, Component parent) {
-        while (focusOwner !=  null) {
+        while (focusOwner != null) {
             if (focusOwner instanceof JPopupMenu) {
                 focusOwner = ((JPopupMenu) focusOwner).getInvoker();
                 if (focusOwner == null) {
@@ -458,30 +406,30 @@ public final class SwingXUtilities {
 
     /**
      * Checks and returns whether the given property should be replaced
-     * by the UI's default value. 
-     * 
+     * by the UI's default value.
+     *
      * @param property the property to check.
      * @return true if the given property should be replaced by the UI's
-     *   default value, false otherwise. 
+     * default value, false otherwise.
      */
     public static boolean isUIInstallable(Object property) {
-       return (property == null) || (property instanceof UIResource);
+        return (property == null) || (property instanceof UIResource);
     }
 
 //---- methods c&p'ed from SwingUtilities2 to reduce dependencies on sun packages
-    
+
     /**
      * Updates lead and anchor selection index without changing the selection.
-     * 
+     * <p>
      * Note: this is c&p'ed from SwingUtilities2 to not have any direct
      * dependency.
-     * 
+     *
      * @param selectionModel the selection model to change lead/anchor
-     * @param lead the lead selection index
-     * @param anchor the anchor selection index
+     * @param lead           the lead selection index
+     * @param anchor         the anchor selection index
      */
     public static void setLeadAnchorWithoutSelection(
-            ListSelectionModel selectionModel, int lead, int anchor) {
+        ListSelectionModel selectionModel, int lead, int anchor) {
         if (anchor == -1) {
             anchor = lead;
         }
@@ -499,22 +447,21 @@ public final class SwingXUtilities {
     }
 
     public static boolean shouldIgnore(MouseEvent mouseEvent,
-            JComponent component) {
+                                       JComponent component) {
         return ((component == null) || (!(component.isEnabled()))
-                || (!(SwingUtilities.isLeftMouseButton(mouseEvent))) 
+                || (!(SwingUtilities.isLeftMouseButton(mouseEvent)))
                 || (mouseEvent.isConsumed()));
     }
 
-    
     public static int loc2IndexFileList(JList list, Point point) {
         int i = list.locationToIndex(point);
         if (i != -1) {
             Object localObject = list
-                    .getClientProperty("List.isFileList");
+                .getClientProperty("List.isFileList");
             if ((localObject instanceof Boolean)
-                    && (((Boolean) localObject).booleanValue())
-    // PENDING JW: this isn't aware of sorting/filtering - fix!
-                    && (!(pointIsInActualBounds(list, i, point)))) {
+                && (((Boolean) localObject).booleanValue())
+                // PENDING JW: this isn't aware of sorting/filtering - fix!
+                && (!(pointIsInActualBounds(list, i, point)))) {
                 i = -1;
             }
         }
@@ -523,12 +470,12 @@ public final class SwingXUtilities {
 
     // PENDING JW: this isn't aware of sorting/filtering - fix!
     private static boolean pointIsInActualBounds(JList list, int index,
-            Point point) {
+                                                 Point point) {
         ListCellRenderer renderer = list.getCellRenderer();
         ListModel model = list.getModel();
         Object element = model.getElementAt(index);
         Component comp = renderer.getListCellRendererComponent(list, element,
-                index, false, false);
+            index, false, false);
 
         Dimension prefSize = comp.getPreferredSize();
         Rectangle cellBounds = list.getCellBounds(index, index);
@@ -546,7 +493,7 @@ public final class SwingXUtilities {
     }
 
     public static int convertModifiersToDropAction(int modifiers,
-            int sourcActions) {
+                                                   int sourcActions) {
         // PENDING JW: c'p from a decompiled SunDragSourceContextPeer
         // PENDING JW: haha ... completely readable, right ;-)
         int i = 0;

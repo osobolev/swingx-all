@@ -22,38 +22,35 @@
 
 package org.jdesktop.swingx.painter.effects;
 
-import java.awt.AlphaComposite;
-import java.awt.BasicStroke;
-import java.awt.Color;
-import java.awt.Graphics2D;
-import java.awt.Point;
-import java.awt.Shape;
+import java.awt.*;
 
 /**
  * An effect which draws a multicolored border around a painter's shape.
  * It will interpolate between two specified colors, creating a neon like effect.
+ *
  * @author joshy
  */
 public class NeonBorderEffect extends AbstractAreaEffect {
-    
+
     private Color edgeColor;
     private Color centerColor;
     private BorderPosition borderPosition = BorderPosition.Outside;
-    
+
     /**
      * An enum representing the position of the border: inside, outside, or centered on the border.
      */
-    public enum BorderPosition { Inside, Centered, Outside }
-    
-    
+    public enum BorderPosition {Inside, Centered, Outside}
+
     /**
      * Create a new NeonBorderEffect
      */
     public NeonBorderEffect() {
         this(Color.GREEN, Color.WHITE, 10);
     }
-    
-    /** Creates a new instance of NeonBorderEffect */
+
+    /**
+     * Creates a new instance of NeonBorderEffect
+     */
     public NeonBorderEffect(Color edgeColor, Color centerColor, int effectWidth) {
         super();
         setEffectWidth(effectWidth);
@@ -61,9 +58,9 @@ public class NeonBorderEffect extends AbstractAreaEffect {
         this.setCenterColor(centerColor);
         this.setRenderInsideShape(false);
         this.setShouldFillShape(false);
-        this.setOffset(new Point(0,0));
+        this.setOffset(new Point(0, 0));
     }
-    
+
     @Override
     protected void paintBorderGlow(Graphics2D gfx, Shape clipShape, int width, int height) {
         
@@ -90,109 +87,106 @@ public class NeonBorderEffect extends AbstractAreaEffect {
         gfx.translate(getOffset().getX(), getOffset().getY());
         gfx.setComposite(AlphaComposite.SrcOver);
         int steps = getEffectWidth();
-        if(borderPosition == BorderPosition.Centered) {
-            steps = steps/2;
+        if (borderPosition == BorderPosition.Centered) {
+            steps = steps / 2;
         }
-        for(int i=0; i<steps; i++) {
-            
+        for (int i = 0; i < steps; i++) {
+
             // make the brush width smaller each time until there is nothing left
-            float brushWidth = steps+1-i;
-            float half = steps/2;
-            
-            if(borderPosition == BorderPosition.Centered) {
-                gfx.setPaint(interpolateColor((float)(steps-i)/steps, getEdgeColor(), getCenterColor()));
+            float brushWidth = steps + 1 - i;
+            float half = steps / 2;
+
+            if (borderPosition == BorderPosition.Centered) {
+                gfx.setPaint(interpolateColor((float) (steps - i) / steps, getEdgeColor(), getCenterColor()));
             } else {
-                if(i<half) {
-                    gfx.setPaint(interpolateColor((half-i)/half, getEdgeColor(), getCenterColor()));
+                if (i < half) {
+                    gfx.setPaint(interpolateColor((half - i) / half, getEdgeColor(), getCenterColor()));
                 } else {
-                    gfx.setPaint(interpolateColor((i-half)/half, getEdgeColor(), getCenterColor()));
+                    gfx.setPaint(interpolateColor((i - half) / half, getEdgeColor(), getCenterColor()));
                 }
             }
-            
+
             // to make the effect softer use a different stroke
             gfx.setStroke(new BasicStroke(brushWidth,
-                    BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND));
+                BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND));
             //gfx.setStroke(new BasicStroke(brushWidth));
             gfx.draw(clipShape);
         }
         gfx.translate(-getOffset().getX(), -getOffset().getY());
-        
     }
-    
+
     protected Color interpolateColor(float t, Color start, Color end) {
         float[] partsS = start.getRGBComponents(null);
         float[] partsE = end.getRGBComponents(null);
         float[] partsR = new float[4];
-        for(int i=0; i<4; i++) {
-            partsR[i] = (partsS[i] - partsE[i])*t + partsE[i];
+        for (int i = 0; i < 4; i++) {
+            partsR[i] = (partsS[i] - partsE[i]) * t + partsE[i];
         }
-        return new Color(partsR[0],partsR[1],partsR[2],partsR[3]);
+        return new Color(partsR[0], partsR[1], partsR[2], partsR[3]);
     }
-    
+
     /**
      * Gets the current edge color.
+     *
      * @return current edge color
      */
     public Color getEdgeColor() {
         return edgeColor;
     }
-    
+
     /**
      * Set the edge color
-     * @param edgeColor 
+     *
+     * @param edgeColor
      */
     public void setEdgeColor(Color edgeColor) {
         this.edgeColor = edgeColor;
     }
-    
+
     /**
-     * 
      * @return color in the center of the effect
      */
     public Color getCenterColor() {
         return centerColor;
     }
-    
+
     /**
-     * 
      * @param centerColor color in the center of the effect.
      * @see #getCenterColor()
      */
     public void setCenterColor(Color centerColor) {
         this.centerColor = centerColor;
     }
-    
+
     /**
-     * 
      * @return position of the border relative to the edge of painter covered area.
      * @see BorderPosition
      */
     public BorderPosition getBorderPosition() {
         return borderPosition;
     }
-    
+
     /**
-     * 
      * @param borderPosition position of the border relative to the edge of painter covered area.
      * @see #getBorderPosition()
      * @see BorderPosition
      */
     public void setBorderPosition(BorderPosition borderPosition) {
         this.borderPosition = borderPosition;
-        switch(borderPosition) {
-            case Centered : 
-                setShapeMasked(false);
-                break;
-            case Inside :
-                setShapeMasked(true);
-                setRenderInsideShape(true);
-                break;
-            case Outside :
-                setShapeMasked(true);
-                setRenderInsideShape(false);
-                break;
+        switch (borderPosition) {
+        case Centered:
+            setShapeMasked(false);
+            break;
+        case Inside:
+            setShapeMasked(true);
+            setRenderInsideShape(true);
+            break;
+        case Outside:
+            setShapeMasked(true);
+            setRenderInsideShape(false);
+            break;
         }
-        if(borderPosition == BorderPosition.Centered) {
+        if (borderPosition == BorderPosition.Centered) {
         }
     }
 }

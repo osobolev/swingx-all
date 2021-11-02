@@ -8,22 +8,21 @@
  * modify it under the terms of the GNU Lesser General Public
  * License as published by the Free Software Foundation; either
  * version 2.1 of the License, or (at your option) any later version.
- * 
+ *
  * This library is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  * Lesser General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  */
 package org.jdesktop.swingx.autocomplete;
 
+import javax.swing.ComboBoxEditor;
 import java.awt.Component;
 import java.awt.event.ActionListener;
-
-import javax.swing.ComboBoxEditor;
 
 /**
  * <p>
@@ -39,24 +38,31 @@ import javax.swing.ComboBoxEditor;
  * will result in firing ActionListener events with the string value of
  * ComboBoxEditor as the currently selected value.
  * </p>
+ *
  * @author Noel Grandin noelgrandin@gmail.com
  * @author Thomas Bierhance
  */
 public class AutoCompleteComboBoxEditor implements ComboBoxEditor {
 
-    /** the original combo box editor*/
+    /**
+     * the original combo box editor
+     */
     final ComboBoxEditor wrapped;
-    /** the converter used to convert items into their string representation */
+    /**
+     * the converter used to convert items into their string representation
+     */
     final ObjectToStringConverter stringConverter;
-    /** last selected item */
+    /**
+     * last selected item
+     */
     private Object oldItem;
 
     /**
      * Creates a new <tt>AutoCompleteComboBoxEditor</tt>.
      *
-     * @param wrapped the original <tt>ComboBoxEditor</tt> to be wrapped
+     * @param wrapped         the original <tt>ComboBoxEditor</tt> to be wrapped
      * @param stringConverter the converter to use to convert items into their
-     * string representation.
+     *                        string representation.
      */
     public AutoCompleteComboBoxEditor(ComboBoxEditor wrapped, ObjectToStringConverter stringConverter) {
         this.wrapped = wrapped;
@@ -86,11 +92,11 @@ public class AutoCompleteComboBoxEditor implements ComboBoxEditor {
     @Override
     public Object getItem() {
         final Object wrappedItem = wrapped.getItem();
-        
+
         String[] oldAsStrings = stringConverter.getPossibleStringsForItem(oldItem);
-        for (int i=0, n=oldAsStrings.length; i<n; i++) {
+        for (int i = 0, n = oldAsStrings.length; i < n; i++) {
             String oldAsString = oldAsStrings[i];
-            if (oldAsString != null &&  oldAsString.equals(wrappedItem)) {
+            if (oldAsString != null && oldAsString.equals(wrappedItem)) {
                 return oldItem;
             }
         }

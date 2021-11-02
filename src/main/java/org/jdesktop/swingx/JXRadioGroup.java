@@ -20,6 +20,10 @@
  */
 package org.jdesktop.swingx;
 
+import org.jdesktop.beans.JavaBean;
+
+import javax.swing.*;
+import javax.swing.event.EventListenerList;
 import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -28,19 +32,6 @@ import java.awt.event.ItemListener;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.List;
-
-import javax.swing.AbstractButton;
-import javax.swing.BoxLayout;
-import javax.swing.ButtonGroup;
-import javax.swing.ButtonModel;
-import javax.swing.ComboBoxModel;
-import javax.swing.JComboBox;
-import javax.swing.JComponent;
-import javax.swing.JPanel;
-import javax.swing.JRadioButton;
-import javax.swing.event.EventListenerList;
-
-import org.jdesktop.beans.JavaBean;
 
 /**
  * <p>
@@ -70,7 +61,7 @@ import org.jdesktop.beans.JavaBean;
  * <p>
  * TODO back with a model (possibly reuse of extend {@link ComboBoxModel}
  * </p>
- * 
+ *
  * @author Amy Fowler
  * @author Noel Grandin
  * @version 1.0
@@ -93,10 +84,10 @@ public class JXRadioGroup<T> extends JPanel {
         setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
         buttonGroup = new ButtonGroup();
     }
-    
+
     /**
      * Create a default JXRadioGroup with a default layout axis of {@link BoxLayout#X_AXIS}.
-     * 
+     *
      * @param radioValues the list of values used to create the group.
      */
     public JXRadioGroup(T[] radioValues) {
@@ -105,34 +96,31 @@ public class JXRadioGroup<T> extends JPanel {
             add(radioValues[i]);
         }
     }
-    
+
     /**
      * Convenience factory method.
      * Reduces code clutter when dealing with generics.
-     * 
+     *
      * @param radioValues the list of values used to create the group.
      */
-    public static <T> JXRadioGroup<T> create(T[] radioValues)
-    {
+    public static <T> JXRadioGroup<T> create(T[] radioValues) {
         return new JXRadioGroup<T>(radioValues);
     }
 
     /**
      * Set the layout axis of the radio group.
-     * 
+     *
      * @param axis values from {@link BoxLayout}.
      */
-    public void setLayoutAxis(int axis)
-    {
+    public void setLayoutAxis(int axis) {
         setLayout(new BoxLayout(this, axis));
     }
 
     /**
      * Sets the values backing this group. This replaces the current set of
      * values with the new set.
-     * 
-     * @param radioValues
-     *            the new backing values for this group
+     *
+     * @param radioValues the new backing values for this group
      */
     public void setValues(T[] radioValues) {
         clearAll();
@@ -153,8 +141,7 @@ public class JXRadioGroup<T> extends JPanel {
      * the class as <code>JXRadioGroup&lt;JRadioButton&gt;</code>.
      */
     public void add(T radioValue) {
-        if (values.contains(radioValue))
-        {
+        if (values.contains(radioValue)) {
             throw new IllegalArgumentException("cannot add the same value twice " + radioValue);
         }
         if (radioValue instanceof AbstractButton) {
@@ -163,7 +150,7 @@ public class JXRadioGroup<T> extends JPanel {
         } else {
             values.add(radioValue);
             // Note: the "quote + object" trick here allows null values
-            addButton(new JRadioButton(""+radioValue));
+            addButton(new JRadioButton("" + radioValue));
         }
     }
 
@@ -177,8 +164,8 @@ public class JXRadioGroup<T> extends JPanel {
         button.addItemListener(actionHandler);
     }
 
-    private class ActionSelectionListener implements ActionListener, ItemListener
-    {
+    private class ActionSelectionListener implements ActionListener, ItemListener {
+
         @Override
         public void actionPerformed(ActionEvent e) {
             fireActionEvent(e);
@@ -192,7 +179,7 @@ public class JXRadioGroup<T> extends JPanel {
 
     /**
      * Gets the currently selected button.
-     * 
+     *
      * @return the currently selected button
      * @see #getSelectedValue()
      */
@@ -233,7 +220,7 @@ public class JXRadioGroup<T> extends JPanel {
 
     /**
      * The currently selected value.
-     * 
+     *
      * @return the current value
      */
     public T getSelectedValue() {
@@ -243,16 +230,15 @@ public class JXRadioGroup<T> extends JPanel {
 
     /**
      * Selects the supplied value.
-     * 
-     * @param value
-     *            the value to select
+     *
+     * @param value the value to select
      */
     public void setSelectedValue(T value) {
         final int index = values.indexOf(value);
         AbstractButton button = getButtonComponents()[index];
         button.setSelected(true);
     }
-    
+
     /**
      * Retrieve the child button by index.
      */
@@ -274,14 +260,14 @@ public class JXRadioGroup<T> extends JPanel {
     public int getChildButtonCount() {
         return getButtonComponents().length;
     }
-    
-    /** 
-     * Adds an <code>ActionListener</code>. 
+
+    /**
+     * Adds an <code>ActionListener</code>.
      * <p>
      * The <code>ActionListener</code> will receive an <code>ActionEvent</code>
      * when a selection has been made.
      *
-     * @param l  the <code>ActionListener</code> that is to be notified
+     * @param l the <code>ActionListener</code> that is to be notified
      * @see #setSelectedValue(Object)
      */
     public void addActionListener(ActionListener l) {
@@ -290,9 +276,8 @@ public class JXRadioGroup<T> extends JPanel {
 
     /**
      * Removes an <code>ActionListener</code>.
-     * 
-     * @param l
-     *            the <code>ActionListener</code> to remove
+     *
+     * @param l the <code>ActionListener</code> to remove
      */
     public void removeActionListener(ActionListener l) {
         listenerList.remove(ActionListener.class, l);
@@ -303,7 +288,7 @@ public class JXRadioGroup<T> extends JPanel {
      * to this JRadioGroup with addActionListener().
      *
      * @return all of the <code>ActionListener</code>s added or an empty
-     *         array if no listeners have been added
+     * array if no listeners have been added
      */
     public ActionListener[] getActionListeners() {
         return listenerList.getListeners(ActionListener.class);
@@ -312,9 +297,8 @@ public class JXRadioGroup<T> extends JPanel {
     /**
      * Notifies all listeners that have registered interest for notification on
      * this event type.
-     * 
-     * @param e
-     *            the event to pass to the listeners
+     *
+     * @param e the event to pass to the listeners
      * @see EventListenerList
      */
     protected void fireActionEvent(ActionEvent e) {
@@ -325,23 +309,22 @@ public class JXRadioGroup<T> extends JPanel {
 
     /**
      * Enable/disable all of the child buttons
-     * 
+     *
      * @see JComponent#setEnabled(boolean)
      */
     @Override
     public void setEnabled(boolean enabled) {
         super.setEnabled(enabled);
-        for (Enumeration<AbstractButton> en = buttonGroup.getElements(); en.hasMoreElements();) {
+        for (Enumeration<AbstractButton> en = buttonGroup.getElements(); en.hasMoreElements(); ) {
             final AbstractButton button = en.nextElement();
             /* We don't want to enable a button where the action does not
              * permit it. */
             if (enabled && button.getAction() != null
-                    && !button.getAction().isEnabled()) {
+                && !button.getAction().isEnabled()) {
                 // do nothing
             } else {
                 button.setEnabled(enabled);
             }
         }
     }
-
 }

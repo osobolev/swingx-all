@@ -8,12 +8,12 @@
  * modify it under the terms of the GNU Lesser General Public
  * License as published by the Free Software Foundation; either
  * version 2.1 of the License, or (at your option) any later version.
- * 
+ *
  * This library is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  * Lesser General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
@@ -21,10 +21,10 @@
 
 package org.jdesktop.swingx.treetable;
 
+import org.jdesktop.swingx.tree.TreeModelSupport;
+
 import javax.swing.event.TreeModelListener;
 import javax.swing.tree.TreePath;
-
-import org.jdesktop.swingx.tree.TreeModelSupport;
 
 // There is no javax.swing.tree.AbstractTreeModel; There ought to be one.
 
@@ -37,7 +37,7 @@ import org.jdesktop.swingx.tree.TreeModelSupport;
  * {@code TreeModelEvent}s. To create a concreate instance of
  * {@code TreeTableModel} you need only to provide implementations for the
  * following methods:
- * 
+ *
  * <pre>
  * public int getColumnCount();
  * public Object getValueAt(Object node, int column);
@@ -46,7 +46,7 @@ import org.jdesktop.swingx.tree.TreeModelSupport;
  * public int getIndexOfChild(Object parent, Object child);
  * public boolean isLeaf(Object node);
  * </pre>
- * 
+ *
  * @author Ramesh Gupta
  * @author Karl Schaefer
  */
@@ -61,7 +61,7 @@ public abstract class AbstractTreeTableModel implements TreeTableModel {
      * Provides support for event dispatching.
      */
     protected TreeModelSupport modelSupport;
-    
+
     /**
      * Constructs an {@code AbstractTreeTableModel} with a {@code null} root
      * node.
@@ -73,9 +73,8 @@ public abstract class AbstractTreeTableModel implements TreeTableModel {
     /**
      * Constructs an {@code AbstractTreeTableModel} with the specified root
      * node.
-     * 
-     * @param root
-     *            root node
+     *
+     * @param root root node
      */
     public AbstractTreeTableModel(Object root) {
         this.root = root;
@@ -98,11 +97,11 @@ public abstract class AbstractTreeTableModel implements TreeTableModel {
         //Copied from AbstractTableModel.
         //Should use same defaults when possible.
         String result = "";
-        
+
         for (; column >= 0; column = column / 26 - 1) {
             result = (char) ((char) (column % 26) + 'A') + result;
         }
-        
+
         return result;
     }
 
@@ -114,7 +113,7 @@ public abstract class AbstractTreeTableModel implements TreeTableModel {
         if (getColumnCount() == 0) {
             return -1;
         }
-        
+
         return 0;
     }
 
@@ -139,9 +138,9 @@ public abstract class AbstractTreeTableModel implements TreeTableModel {
     /**
      * Returns <code>true</code> if <code>node</code> is a leaf.
      *
+     * @param node a node in the tree, obtained from this data source
+     * @return true if <code>node</code> is a leaf
      * @impl {@code true} if {@code getChildCount(node) == 0}
-     * @param   node  a node in the tree, obtained from this data source
-     * @return  true if <code>node</code> is a leaf
      */
     @Override
     public boolean isLeaf(Object node) {
@@ -151,14 +150,11 @@ public abstract class AbstractTreeTableModel implements TreeTableModel {
     /**
      * Sets the value for the {@code node} at {@code columnIndex} to
      * {@code value}.
-     * 
+     *
+     * @param value  the new value
+     * @param node   the node whose value is to be changed
+     * @param column the column whose value is to be changed
      * @impl is no-op; provided for convenience for uneditable models
-     * @param value
-     *            the new value
-     * @param node
-     *            the node whose value is to be changed
-     * @param column
-     *            the column whose value is to be changed
      * @see #getValueAt
      * @see #isCellEditable
      * @see javax.swing.table.TableModel#setValueAt(Object, int, int)
@@ -167,18 +163,16 @@ public abstract class AbstractTreeTableModel implements TreeTableModel {
     public void setValueAt(Object value, Object node, int column) {
         //does nothing
     }
-    
+
     /**
      * Called when value for the item identified by path has been changed. If
      * newValue signifies a truly new value the model should post a
      * {@code treeNodesChanged} event.
      * <p>
-     * 
+     *
+     * @param path     path to the node that has changed
+     * @param newValue the new value from the <code>TreeCellEditor</code>
      * @impl is no-op. A {@code JXTreeTable} does not usually edit the node directly.
-     * @param path
-     *            path to the node that has changed
-     * @param newValue
-     *            the new value from the <code>TreeCellEditor</code>
      */
     @Override
     public void valueForPathChanged(TreePath path, Object newValue) {
@@ -206,7 +200,7 @@ public abstract class AbstractTreeTableModel implements TreeTableModel {
      * to this JXTreeTable with addTreeModelListener().
      *
      * @return all of the <code>TreeModelListener</code>s added or an empty
-     *         array if no listeners have been added
+     * array if no listeners have been added
      */
     public TreeModelListener[] getTreeModelListeners() {
         return modelSupport.getTreeModelListeners();

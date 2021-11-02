@@ -21,20 +21,14 @@
 
 package org.jdesktop.swingx.painter;
 
-import static java.lang.Math.hypot;
-import static java.lang.Math.round;
-import static java.lang.Math.toRadians;
-import static org.jdesktop.swingx.painter.PainterUtils.getForegroundPaint;
+import org.jdesktop.beans.JavaBean;
 
-import java.awt.BasicStroke;
-import java.awt.Graphics2D;
-import java.awt.Paint;
-import java.awt.Rectangle;
-import java.awt.Shape;
+import java.awt.*;
 import java.awt.geom.Area;
 import java.awt.geom.Line2D;
 
-import org.jdesktop.beans.JavaBean;
+import static java.lang.Math.*;
+import static org.jdesktop.swingx.painter.PainterUtils.getForegroundPaint;
 
 /**
  * <p>
@@ -42,16 +36,16 @@ import org.jdesktop.beans.JavaBean;
  * (could even be a texture paint!), the angle at which to paint the pinstripes, and the spacing
  * between stripes.
  * </p>
- * 
+ *
  * <p>
  * The default PinstripePainter configuration will paint the pinstripes using the foreground color
  * of the component (the default behavior if a Paint is not specified) at a 45 degree angle with 8
  * pixels between stripes
  * </p>
- * 
+ *
  * <p>
  * Here is a custom code snippet that paints Color.GRAY pinstripes at a 135 degree angle:
- * 
+ *
  * <pre>
  * <code>
  *  PinstripePainter p = new PinstripePainter();
@@ -59,17 +53,18 @@ import org.jdesktop.beans.JavaBean;
  *  p.setPaint(Color.GRAY);
  * </code>
  * </pre>
- * 
+ *
  * @author rbair
  */
 @JavaBean
 public class PinstripePainter extends AbstractPainter<Object> {
+
     /**
      * The angle in degrees to paint the pinstripes at. The default value is 45. The value will be
      * between 0 and 360 inclusive. The setAngle method will ensure this.
      */
     private double angle;
-    
+
     /**
      * The spacing between pinstripes
      */
@@ -95,20 +90,18 @@ public class PinstripePainter extends AbstractPainter<Object> {
 
     /**
      * Create a new PinstripePainter using an angle of 45, 8 pixel spacing, and the given Paint.
-     * 
-     * @param paint
-     *            the paint used when drawing the stripes
+     *
+     * @param paint the paint used when drawing the stripes
      */
     public PinstripePainter(Paint paint) {
         this(paint, 45);
     }
-    
+
     /**
      * Create a new PinstripePainter using the given angle, 8 pixel spacing, and the foreground
      * color of the Component
-     * 
-     * @param angle
-     *            the angle, in degrees, in which to paint the pinstripes
+     *
+     * @param angle the angle, in degrees, in which to paint the pinstripes
      */
     public PinstripePainter(double angle) {
         this(null, angle);
@@ -116,11 +109,9 @@ public class PinstripePainter extends AbstractPainter<Object> {
 
     /**
      * Create a new PinstripePainter using the given angle, 8 pixel spacing, and the given Paint
-     * 
-     * @param paint
-     *            the paint used when drawing the stripes
-     * @param angle
-     *            the angle, in degrees, in which to paint the pinstripes
+     *
+     * @param paint the paint used when drawing the stripes
+     * @param angle the angle, in degrees, in which to paint the pinstripes
      */
     public PinstripePainter(Paint paint, double angle) {
         this(paint, angle, 1, 8);
@@ -129,7 +120,7 @@ public class PinstripePainter extends AbstractPainter<Object> {
     /**
      * Create a new PinstripePainter with the specified paint, angle, stripe width, and stripe
      * spacing.
-     * 
+     *
      * @param paint
      * @param angle
      * @param stripeWidth
@@ -141,10 +132,10 @@ public class PinstripePainter extends AbstractPainter<Object> {
         this.stripeWidth = stripeWidth;
         this.spacing = spacing;
     }
-    
+
     /**
      * Get the current paint used for drawing the pinstripes
-     * 
+     *
      * @return the Paint to use to draw the pinstripes
      */
     public Paint getPaint() {
@@ -153,19 +144,18 @@ public class PinstripePainter extends AbstractPainter<Object> {
 
     /**
      * Set the paint to use for drawing the pinstripes
-     * 
-     * @param p
-     *            the Paint to use. May be a Color.
+     *
+     * @param p the Paint to use. May be a Color.
      */
     public void setPaint(Paint p) {
         Paint old = getPaint();
         this.paint = p;
         firePropertyChange("paint", old, getPaint());
     }
-    
+
     /**
      * Gets the current angle of the pinstripes
-     * 
+     *
      * @return the angle, in degrees, at which the pinstripes are painted
      */
     public double getAngle() {
@@ -177,9 +167,8 @@ public class PinstripePainter extends AbstractPainter<Object> {
      * 360, it will be appropriately constrained. For example, if a value of 365 is given, it will
      * result in 5 degrees. The conversion is not perfect, but "a man on a galloping horse won't be
      * able to tell the difference".
-     * 
-     * @param angle
-     *            the Angle in degrees at which to paint the pinstripes
+     *
+     * @param angle the Angle in degrees at which to paint the pinstripes
      */
     public void setAngle(double angle) {
         if (angle > 360) {
@@ -197,7 +186,7 @@ public class PinstripePainter extends AbstractPainter<Object> {
 
     /**
      * Gets the current width of the pinstripes
-     * 
+     *
      * @return the current pinstripe width
      */
     public double getStripeWidth() {
@@ -206,19 +195,18 @@ public class PinstripePainter extends AbstractPainter<Object> {
 
     /**
      * Set the width of the pinstripes
-     * 
-     * @param stripeWidth
-     *            a new width for the pinstripes
+     *
+     * @param stripeWidth a new width for the pinstripes
      */
     public void setStripeWidth(double stripeWidth) {
         double oldSripeWidth = getStripeWidth();
         this.stripeWidth = stripeWidth;
         firePropertyChange("stripeWidth", oldSripeWidth, getStripeWidth());
     }
-    
+
     /**
      * Get the current spacing between the stripes
-     * 
+     *
      * @return the spacing between pinstripes
      */
     public double getSpacing() {
@@ -227,9 +215,8 @@ public class PinstripePainter extends AbstractPainter<Object> {
 
     /**
      * Sets the spacing between pinstripes
-     * 
-     * @param spacing
-     *            spacing between pinstripes
+     *
+     * @param spacing spacing between pinstripes
      */
     public void setSpacing(double spacing) {
         double old = getSpacing();

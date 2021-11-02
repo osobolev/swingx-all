@@ -27,10 +27,11 @@ import java.awt.Point;
 
 /**
  * An effect which draws a glow around the painter
+ *
  * @author joshy
  */
 public class GlowPathEffect extends AbstractAreaEffect {
-    
+
     /**
      * Creates a new instance of GlowPathEffect
      */
@@ -40,7 +41,6 @@ public class GlowPathEffect extends AbstractAreaEffect {
         setBrushSteps(10);
         setEffectWidth(10);
         setShouldFillShape(false);
-        setOffset(new Point(0,0));
+        setOffset(new Point(0, 0));
     }
-    
 }

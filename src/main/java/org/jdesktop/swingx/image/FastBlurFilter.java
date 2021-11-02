@@ -34,9 +34,9 @@
 
 package org.jdesktop.swingx.image;
 
-import java.awt.image.BufferedImage;
-
 import org.jdesktop.swingx.util.GraphicsUtilities;
+
+import java.awt.image.BufferedImage;
 
 /**
  * <p>A fast blur filter can be used to blur pictures quickly. This filter is an
@@ -53,6 +53,7 @@ import org.jdesktop.swingx.util.GraphicsUtilities;
  * @author Romain Guy <romain.guy@mac.com>
  */
 public class FastBlurFilter extends AbstractFilter {
+
     private final int radius;
 
     /**
@@ -122,9 +123,9 @@ public class FastBlurFilter extends AbstractFilter {
      *
      * @param srcPixels the source pixels
      * @param dstPixels the destination pixels
-     * @param width the width of the source picture
-     * @param height the height of the source picture
-     * @param radius the radius of the blur effect
+     * @param width     the width of the source picture
+     * @param height    the height of the source picture
+     * @param radius    the radius of the blur effect
      */
     static void blur(int[] srcPixels, int[] dstPixels,
                      int width, int height, int radius) {
@@ -165,22 +166,22 @@ public class FastBlurFilter extends AbstractFilter {
 
             pixel = srcPixels[srcIndex];
             sumAlpha += radiusPlusOne * ((pixel >> 24) & 0xFF);
-            sumRed   += radiusPlusOne * ((pixel >> 16) & 0xFF);
-            sumGreen += radiusPlusOne * ((pixel >>  8) & 0xFF);
-            sumBlue  += radiusPlusOne * ( pixel        & 0xFF);
+            sumRed += radiusPlusOne * ((pixel >> 16) & 0xFF);
+            sumGreen += radiusPlusOne * ((pixel >> 8) & 0xFF);
+            sumBlue += radiusPlusOne * (pixel & 0xFF);
 
             for (int i = 1; i <= radius; i++) {
                 pixel = srcPixels[srcIndex + indexLookupTable[i]];
                 sumAlpha += (pixel >> 24) & 0xFF;
-                sumRed   += (pixel >> 16) & 0xFF;
-                sumGreen += (pixel >>  8) & 0xFF;
-                sumBlue  +=  pixel        & 0xFF;
+                sumRed += (pixel >> 16) & 0xFF;
+                sumGreen += (pixel >> 8) & 0xFF;
+                sumBlue += pixel & 0xFF;
             }
 
-            for  (int x = 0; x < width; x++) {
+            for (int x = 0; x < width; x++) {
                 dstPixels[dstIndex] = sumLookupTable[sumAlpha] << 24 |
-                                      sumLookupTable[sumRed]   << 16 |
-                                      sumLookupTable[sumGreen] <<  8 |
+                                      sumLookupTable[sumRed] << 16 |
+                                      sumLookupTable[sumGreen] << 8 |
                                       sumLookupTable[sumBlue];
                 dstIndex += height;
 
@@ -197,13 +198,13 @@ public class FastBlurFilter extends AbstractFilter {
                 int nextPixel = srcPixels[srcIndex + nextPixelIndex];
                 int previousPixel = srcPixels[srcIndex + previousPixelIndex];
 
-                sumAlpha += (nextPixel     >> 24) & 0xFF;
+                sumAlpha += (nextPixel >> 24) & 0xFF;
                 sumAlpha -= (previousPixel >> 24) & 0xFF;
 
-                sumRed += (nextPixel     >> 16) & 0xFF;
+                sumRed += (nextPixel >> 16) & 0xFF;
                 sumRed -= (previousPixel >> 16) & 0xFF;
 
-                sumGreen += (nextPixel     >> 8) & 0xFF;
+                sumGreen += (nextPixel >> 8) & 0xFF;
                 sumGreen -= (previousPixel >> 8) & 0xFF;
 
                 sumBlue += nextPixel & 0xFF;

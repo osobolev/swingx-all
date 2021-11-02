@@ -20,18 +20,16 @@
  */
 package org.jdesktop.swingx.search;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 import org.jdesktop.swingx.JXTree;
 import org.jdesktop.swingx.decorator.AbstractHighlighter;
 import org.jdesktop.swingx.decorator.Highlighter;
 import org.jdesktop.swingx.util.Contract;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 /**
  * A searchable targetting the visible rows of a JXTree.
- * 
- * 
  */
 public class TreeSearchable extends AbstractSearchable {
 
@@ -39,7 +37,7 @@ public class TreeSearchable extends AbstractSearchable {
 
     /**
      * Instantiates a Searchable for the given JTree.
-     * 
+     *
      * @param tree the JTree to search, must not be null.
      */
     public TreeSearchable(JXTree tree) {
@@ -48,7 +46,7 @@ public class TreeSearchable extends AbstractSearchable {
 
     @Override
     protected void findMatchAndUpdateState(Pattern pattern, int startRow,
-            boolean backwards) {
+                                           boolean backwards) {
         SearchResult searchResult = null;
         if (backwards) {
             for (int index = startRow; index >= 0 && searchResult == null; index--) {
@@ -56,12 +54,11 @@ public class TreeSearchable extends AbstractSearchable {
             }
         } else {
             for (int index = startRow; index < getSize()
-                    && searchResult == null; index++) {
+                                       && searchResult == null; index++) {
                 searchResult = findMatchAt(pattern, index);
             }
         }
         updateState(searchResult);
-
     }
 
     @Override
@@ -72,12 +69,12 @@ public class TreeSearchable extends AbstractSearchable {
     /**
      * Matches the cell content at row/col against the given Pattern. Returns an
      * appropriate SearchResult if matching or null if no matching
-     * 
+     *
      * @param pattern
-     * @param row a valid row index in view coordinates a valid column index in
-     *        view coordinates
+     * @param row     a valid row index in view coordinates a valid column index in
+     *                view coordinates
      * @return an appropriate <code>SearchResult</code> if matching or null if
-     *         no matching
+     * no matching
      */
     protected SearchResult findMatchAt(Pattern pattern, int row) {
         String text = tree.getStringAt(row);
@@ -127,7 +124,6 @@ public class TreeSearchable extends AbstractSearchable {
 
     /**
      * use and move the match highlighter. PRE: markByHighlighter
-     * 
      */
     protected void moveMatchByHighlighter() {
         AbstractHighlighter searchHL = getConfiguredMatchHighlighter();
@@ -163,5 +159,4 @@ public class TreeSearchable extends AbstractSearchable {
     protected void addHighlighter(Highlighter highlighter) {
         tree.addHighlighter(highlighter);
     }
-
 }

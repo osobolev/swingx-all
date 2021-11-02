@@ -1,18 +1,8 @@
 package org.jdesktop.swingx.plaf;
 
-import static javax.swing.BorderFactory.createEmptyBorder;
-
-import java.awt.Component.BaselineResizeBehavior;
-import java.awt.Dimension;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.Insets;
-import java.awt.Point;
-import java.awt.Rectangle;
-import java.awt.TextComponent;
-import java.awt.event.FocusAdapter;
-import java.awt.event.FocusEvent;
-import java.lang.reflect.Method;
+import org.jdesktop.swingx.painter.Painter;
+import org.jdesktop.swingx.prompt.PromptSupport;
+import org.jdesktop.swingx.prompt.PromptSupport.FocusBehavior;
 
 import javax.accessibility.Accessible;
 import javax.swing.JComponent;
@@ -20,19 +10,16 @@ import javax.swing.SwingUtilities;
 import javax.swing.border.Border;
 import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.TextUI;
-import javax.swing.text.BadLocationException;
-import javax.swing.text.Caret;
+import javax.swing.text.*;
 import javax.swing.text.DefaultHighlighter.DefaultHighlightPainter;
-import javax.swing.text.EditorKit;
-import javax.swing.text.Highlighter;
-import javax.swing.text.JTextComponent;
-import javax.swing.text.Position;
 import javax.swing.text.Position.Bias;
-import javax.swing.text.View;
+import java.awt.Component.BaselineResizeBehavior;
+import java.awt.*;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
+import java.lang.reflect.Method;
 
-import org.jdesktop.swingx.painter.Painter;
-import org.jdesktop.swingx.prompt.PromptSupport;
-import org.jdesktop.swingx.prompt.PromptSupport.FocusBehavior;
+import static javax.swing.BorderFactory.createEmptyBorder;
 
 /**
  * <p>
@@ -43,12 +30,13 @@ import org.jdesktop.swingx.prompt.PromptSupport.FocusBehavior;
  * Subclasses of this class must provide a prompt component used for rendering
  * the prompt text.
  * </p>
- * 
+ *
  * @author Peter Weishapl <petw@gmx.net>
- * 
  */
 public abstract class PromptTextUI extends TextUI {
+
     protected class PainterHighlighter implements Highlighter {
+
         private final Painter painter;
 
         private JTextComponent c;
@@ -62,7 +50,7 @@ public abstract class PromptTextUI extends TextUI {
          */
         @Override
         public Object addHighlight(int p0, int p1, HighlightPainter p)
-                throws BadLocationException {
+            throws BadLocationException {
             return new Object();
         }
 
@@ -71,7 +59,7 @@ public abstract class PromptTextUI extends TextUI {
          */
         @Override
         public void changeHighlight(Object tag, int p0, int p1)
-                throws BadLocationException {
+            throws BadLocationException {
 
         }
 
@@ -147,7 +135,7 @@ public abstract class PromptTextUI extends TextUI {
     /**
      * Creates a new {@link PromptTextUI} which delegates most work to another
      * {@link TextUI}.
-     * 
+     *
      * @param delegate
      */
     public PromptTextUI(TextUI delegate) {
@@ -156,7 +144,7 @@ public abstract class PromptTextUI extends TextUI {
 
     /**
      * Creates a component which should be used to render the prompt text.
-     * 
+     *
      * @return
      */
     protected abstract JTextComponent createPromptComponent();
@@ -191,7 +179,7 @@ public abstract class PromptTextUI extends TextUI {
      * Creates a label component, if none has already been created. Sets the
      * prompt components properties to reflect the given {@link JTextComponent}s
      * properties and returns it.
-     * 
+     *
      * @param txt
      * @return the adjusted prompt component
      */
@@ -200,7 +188,7 @@ public abstract class PromptTextUI extends TextUI {
             promptComponent = createPromptComponent();
         }
         if (txt.isFocusOwner()
-                && PromptSupport.getFocusBehavior(txt) == FocusBehavior.HIDE_PROMPT) {
+            && PromptSupport.getFocusBehavior(txt) == FocusBehavior.HIDE_PROMPT) {
             promptComponent.setText(null);
         } else {
             promptComponent.setText(PromptSupport.getPrompt(txt));
@@ -208,12 +196,12 @@ public abstract class PromptTextUI extends TextUI {
 
         promptComponent.getHighlighter().removeAllHighlights();
         if (txt.isFocusOwner()
-                && PromptSupport.getFocusBehavior(txt) == FocusBehavior.HIGHLIGHT_PROMPT) {
+            && PromptSupport.getFocusBehavior(txt) == FocusBehavior.HIGHLIGHT_PROMPT) {
             promptComponent.setForeground(txt.getSelectedTextColor());
             try {
                 promptComponent.getHighlighter().addHighlight(0,
-                        promptComponent.getText().length(),
-                        new DefaultHighlightPainter(txt.getSelectionColor()));
+                    promptComponent.getText().length(),
+                    new DefaultHighlightPainter(txt.getSelectionColor()));
             } catch (BadLocationException e) {
                 e.printStackTrace();
             }
@@ -225,25 +213,25 @@ public abstract class PromptTextUI extends TextUI {
             promptComponent.setFont(txt.getFont());
         } else {
             promptComponent.setFont(txt.getFont().deriveFont(
-                    PromptSupport.getFontStyle(txt)));
+                PromptSupport.getFontStyle(txt)));
         }
 
         promptComponent.setBackground(PromptSupport.getBackground(txt));
         promptComponent.setHighlighter(new PainterHighlighter(PromptSupport
-                .getBackgroundPainter(txt)));
+            .getBackgroundPainter(txt)));
         promptComponent.setEnabled(txt.isEnabled());
         promptComponent.setOpaque(txt.isOpaque());
         promptComponent.setBounds(txt.getBounds());
         Border b = txt.getBorder();
-        
+
         if (b == null) {
             promptComponent.setBorder(txt.getBorder());
         } else {
             Insets insets = b.getBorderInsets(txt);
             promptComponent.setBorder(
-                    createEmptyBorder(insets.top, insets.left, insets.bottom, insets.right));
+                createEmptyBorder(insets.top, insets.left, insets.bottom, insets.right));
         }
-        
+
         promptComponent.setSelectedTextColor(txt.getSelectedTextColor());
         promptComponent.setSelectionColor(txt.getSelectionColor());
         promptComponent.setEditable(txt.isEditable());
@@ -296,7 +284,7 @@ public abstract class PromptTextUI extends TextUI {
     /**
      * Returns if the prompt or the text field should be painted, depending on
      * the state of <code>txt</code>.
-     * 
+     *
      * @param txt
      * @return true when <code>txt</code> contains not text, otherwise false
      */
@@ -326,7 +314,7 @@ public abstract class PromptTextUI extends TextUI {
      */
     @Override
     public Rectangle modelToView(JTextComponent t, int pos, Bias bias)
-            throws BadLocationException {
+        throws BadLocationException {
         if (shouldPaintPrompt(t)) {
             return getPromptComponent(t).getUI().modelToView(t, pos, bias);
         } else {
@@ -340,7 +328,7 @@ public abstract class PromptTextUI extends TextUI {
      */
     @Override
     public Rectangle modelToView(JTextComponent t, int pos)
-            throws BadLocationException {
+        throws BadLocationException {
         return modelToView(t, pos, Bias.Forward);
     }
 
@@ -354,7 +342,7 @@ public abstract class PromptTextUI extends TextUI {
 
     @Override
     public void damageRange(JTextComponent t, int p0, int p1, Bias firstBias,
-            Bias secondBias) {
+                            Bias secondBias) {
         delegate.damageRange(t, p0, p1, firstBias, secondBias);
     }
 
@@ -395,9 +383,9 @@ public abstract class PromptTextUI extends TextUI {
 
     @Override
     public int getNextVisualPositionFrom(JTextComponent t, int pos, Bias b,
-            int direction, Bias[] biasRet) throws BadLocationException {
+                                         int direction, Bias[] biasRet) throws BadLocationException {
         return delegate
-                .getNextVisualPositionFrom(t, pos, b, direction, biasRet);
+            .getNextVisualPositionFrom(t, pos, b, direction, biasRet);
     }
 
     @Override
@@ -418,7 +406,7 @@ public abstract class PromptTextUI extends TextUI {
     @Override
     public String toString() {
         return String.format("%s (%s)", getClass().getName(), delegate
-                .toString());
+            .toString());
     }
 
     @Override
@@ -437,16 +425,16 @@ public abstract class PromptTextUI extends TextUI {
      * we should also override {@link #getBaselineResizeBehavior(JComponent)},
      * but that's impossible since the {@link BaselineResizeBehavior} class,
      * which does not exist in Java 5, is involved.
-     * 
+     *
      * @return the baseline, or -2 if <code>getBaseline</code> could not be
-     *         invoked on the delegate.
+     * invoked on the delegate.
      */
     @Override
     public int getBaseline(JComponent c, int width, int height) {
         try {
             Method m = delegate.getClass().getMethod("getBaseline",
-                    JComponent.class, int.class, int.class);
-            Object o = m.invoke(delegate, new Object[] { c, width, height });
+                JComponent.class, int.class, int.class);
+            Object o = m.invoke(delegate, new Object[] {c, width, height});
             return (Integer) o;
         } catch (Exception ex) {
             // ignore
@@ -458,6 +446,7 @@ public abstract class PromptTextUI extends TextUI {
      * Repaint the {@link TextComponent} when it loses or gains the focus.
      */
     private static final class FocusHandler extends FocusAdapter {
+
         @Override
         public void focusGained(FocusEvent e) {
             e.getComponent().repaint();

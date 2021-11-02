@@ -21,12 +21,11 @@
 
 package org.jdesktop.swingx.error;
 
+import javax.swing.SwingUtilities;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 import java.util.logging.Level;
-
-import javax.swing.SwingUtilities;
 
 /**
  * <p>A simple class that encapsulates all the information needed
@@ -35,11 +34,12 @@ import javax.swing.SwingUtilities;
  * <p>All HTML referred to in this API refers to version 3.2 of the HTML
  * markup specification.</p>
  *
- * @status REVIEWED
  * @author Alexander Zuev
  * @author rbair
+ * @status REVIEWED
  */
 public class ErrorInfo {
+
     /**
      * Short string that will be used as a error title
      */
@@ -69,60 +69,54 @@ public class ErrorInfo {
      */
     private Level errorLevel;
     /**
-     *  A Map which captures the state of the application
-     *  at the time of an exception. This state is then available for error
-     *  reports.
+     * A Map which captures the state of the application
+     * at the time of an exception. This state is then available for error
+     * reports.
      */
-    private Map<String,String> state;
-    
+    private Map<String, String> state;
+
     /**
      * Creates a new ErrorInfo based on the provided data.
      *
-     * @param title                 used as a quick reference for the
-     *                              error (for example, it might be used as the
-     *                              title of an error dialog or as the subject of
-     *                              an email message). May be null.
-     *
-     * @param basicErrorMessage     short description of the problem. May be null.
-     *
-     * @param detailedErrorMessage  full description of the problem. It is recommended,
-     *                              though not required, that this String contain HTML
-     *                              to improve the look and layout of the detailed
-     *                              error message. May be null.
-     *
-     * @param category              A category name, indicating where in the application
-     *                              this incident occurred. It is recommended that
-     *                              this be the same value as you would use when logging.
-     *                              May be null.
-     *
-     * @param errorException        <code>Throwable</code> that can be used as a
-     *                              source for additional information such as call
-     *                              stack, thread name, etc. May be null.
-     *
-     * @param errorLevel            any Level (Level.SEVERE, Level.WARNING, etc).
-     *                              If null, then the level will be set to SEVERE.
-     *
-     * @param state                 the state of the application at the time the incident occured.
-     *                              The standard System properties are automatically added to this
-     *                              state, and thus do not need to be included. This value may be null.
-     *                              If null, the resulting map will contain only the System properties.
-     *                              If there is a value in the map with a key that also occurs in the
-     *                              System properties (for example: sun.java2d.noddraw), then the
-     *                              developer supplied value will be used. In other words, defined
-     *                              parameters override standard ones. In addition, the keys
-     *                              "System.currentTimeMillis" and "isOnEDT" are both defined
-     *                              automatically.
+     * @param title                used as a quick reference for the
+     *                             error (for example, it might be used as the
+     *                             title of an error dialog or as the subject of
+     *                             an email message). May be null.
+     * @param basicErrorMessage    short description of the problem. May be null.
+     * @param detailedErrorMessage full description of the problem. It is recommended,
+     *                             though not required, that this String contain HTML
+     *                             to improve the look and layout of the detailed
+     *                             error message. May be null.
+     * @param category             A category name, indicating where in the application
+     *                             this incident occurred. It is recommended that
+     *                             this be the same value as you would use when logging.
+     *                             May be null.
+     * @param errorException       <code>Throwable</code> that can be used as a
+     *                             source for additional information such as call
+     *                             stack, thread name, etc. May be null.
+     * @param errorLevel           any Level (Level.SEVERE, Level.WARNING, etc).
+     *                             If null, then the level will be set to SEVERE.
+     * @param state                the state of the application at the time the incident occured.
+     *                             The standard System properties are automatically added to this
+     *                             state, and thus do not need to be included. This value may be null.
+     *                             If null, the resulting map will contain only the System properties.
+     *                             If there is a value in the map with a key that also occurs in the
+     *                             System properties (for example: sun.java2d.noddraw), then the
+     *                             developer supplied value will be used. In other words, defined
+     *                             parameters override standard ones. In addition, the keys
+     *                             "System.currentTimeMillis" and "isOnEDT" are both defined
+     *                             automatically.
      */
     public ErrorInfo(String title, String basicErrorMessage, String detailedErrorMessage,
-            String category, Throwable errorException, Level errorLevel, Map<String,String> state) {
+                     String category, Throwable errorException, Level errorLevel, Map<String, String> state) {
         this.title = title;
         this.basicErrorMessage = basicErrorMessage;
         this.detailedErrorMessage = detailedErrorMessage;
         this.category = category;
         this.errorException = errorException;
         this.errorLevel = errorLevel == null ? Level.SEVERE : errorLevel;
-        this.state = new HashMap<String,String>();
-        
+        this.state = new HashMap<String, String>();
+
         //first add all the System properties
         try {
             //NOTE: This is not thread safe because System.getProperties() does not appear
@@ -140,20 +134,20 @@ public class ErrorInfo {
         } catch (SecurityException e) {
             //probably running in a sandbox, don't worry about this
         }
-        
+
         //add the automatically supported properties
         this.state.put("System.currentTimeMillis", "" + System.currentTimeMillis());
         this.state.put("isOnEDT", "" + SwingUtilities.isEventDispatchThread());
-        
+
         //now add all the data in the param "state". Thus, if somebody specified a key in the
         //state map, it overrides whatever was in the System map
         if (state != null) {
-            for (Map.Entry<String,String> entry : state.entrySet()) {
+            for (Map.Entry<String, String> entry : state.entrySet()) {
                 this.state.put(entry.getKey(), entry.getValue());
             }
         }
     }
-    
+
     /**
      * Gets the string to use for a dialog title or other quick reference. Used
      * as a quick reference for the incident. For example, it might be used as the
@@ -164,7 +158,7 @@ public class ErrorInfo {
     public String getTitle() {
         return title;
     }
-    
+
     /**
      * <p>Gets the basic error message. This message should be clear and user oriented.
      * This String may have HTML formatting, but any such formatting should be used
@@ -188,7 +182,7 @@ public class ErrorInfo {
     public String getBasicErrorMessage() {
         return basicErrorMessage;
     }
-    
+
     /**
      * <p>Gets the detailed error message. Unlike {@link #getBasicErrorMessage},
      * this method may return a more technical message to the user. However, it
@@ -202,7 +196,7 @@ public class ErrorInfo {
     public String getDetailedErrorMessage() {
         return detailedErrorMessage;
     }
-    
+
     /**
      * Gets the category name. This value indicates where in the application
      * this incident occurred. It is recommended that this be the same value as
@@ -213,7 +207,7 @@ public class ErrorInfo {
     public String getCategory() {
         return category;
     }
-    
+
     /**
      * Gets the actual exception that generated the error. If this returns a
      * non null value, then {@link #getBasicErrorMessage} may return a null value.
@@ -226,7 +220,7 @@ public class ErrorInfo {
     public Throwable getErrorException() {
         return errorException;
     }
-    
+
     /**
      * Gets the severity of the error. The default level is <code>Level.SEVERE</code>,
      * but any {@link Level} may be specified when constructing an
@@ -237,7 +231,7 @@ public class ErrorInfo {
     public Level getErrorLevel() {
         return errorLevel;
     }
-    
+
     /**
      * <p>Gets a copy of the application state at the time that the incident occured.
      * This map will never be null. If running with appropriate permissions the
@@ -254,7 +248,7 @@ public class ErrorInfo {
      *
      * @return a copy of the application state. This will never be null.
      */
-    public Map<String,String> getState() {
-        return new HashMap<String,String>(state);
+    public Map<String, String> getState() {
+        return new HashMap<String, String>(state);
     }
 }

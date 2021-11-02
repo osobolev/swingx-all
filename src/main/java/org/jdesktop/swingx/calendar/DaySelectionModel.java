@@ -20,40 +20,35 @@
  */
 package org.jdesktop.swingx.calendar;
 
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.Locale;
-import java.util.SortedSet;
-import java.util.TreeSet;
-
-import org.jdesktop.swingx.event.EventListenerMap;
 import org.jdesktop.swingx.event.DateSelectionEvent.EventType;
+import org.jdesktop.swingx.event.EventListenerMap;
 import org.jdesktop.swingx.util.Contract;
 
+import java.util.*;
+
 /**
- * 
- * DaySelectionModel is a (temporary?) implementation of DateSelectionModel 
- * which normalizes all dates to the start of the day, that is zeroes all 
+ * DaySelectionModel is a (temporary?) implementation of DateSelectionModel
+ * which normalizes all dates to the start of the day, that is zeroes all
  * time fields. Responsibility extracted from JXMonthView (which must
  * respect rules of model instead of trying to be clever itself).
- * 
+ *
  * @author Joshua Outwater
  */
 public class DaySelectionModel extends AbstractDateSelectionModel {
+
     private SelectionMode selectionMode;
     private SortedSet<Date> selectedDates;
     private SortedSet<Date> unselectableDates;
 
     /**
-     * 
+     *
      */
     public DaySelectionModel() {
         this(null);
     }
 
     /**
-     * 
+     *
      */
     public DaySelectionModel(Locale locale) {
         super(locale);
@@ -61,10 +56,10 @@ public class DaySelectionModel extends AbstractDateSelectionModel {
         this.selectionMode = SelectionMode.SINGLE_SELECTION;
         this.selectedDates = new TreeSet<Date>();
         this.unselectableDates = new TreeSet<Date>();
-        
     }
+
     /**
-     * 
+     *
      */
     @Override
     public SelectionMode getSelectionMode() {
@@ -72,7 +67,7 @@ public class DaySelectionModel extends AbstractDateSelectionModel {
     }
 
     /**
-     * 
+     *
      */
     @Override
     public void setSelectionMode(final SelectionMode selectionMode) {
@@ -81,6 +76,7 @@ public class DaySelectionModel extends AbstractDateSelectionModel {
     }
 
     //---------------------- selection ops    
+
     /**
      * {@inheritDoc}
      */
@@ -93,22 +89,22 @@ public class DaySelectionModel extends AbstractDateSelectionModel {
         endDate = startOfDay(endDate);
         boolean added = false;
         switch (selectionMode) {
-            case SINGLE_SELECTION:
-                if (isSelected(startDate)) return;
-                clearSelectionImpl();
-                added = addSelectionImpl(startDate, startDate);
-                break;
-            case SINGLE_INTERVAL_SELECTION:
-                if (isIntervalSelected(startDate, endDate)) return;
-                clearSelectionImpl();
-                added = addSelectionImpl(startDate, endDate);
-                break;
-            case MULTIPLE_INTERVAL_SELECTION:
-                if (isIntervalSelected(startDate, endDate)) return;
-                added = addSelectionImpl(startDate, endDate);
-                break;
-            default:
-                break;
+        case SINGLE_SELECTION:
+            if (isSelected(startDate)) return;
+            clearSelectionImpl();
+            added = addSelectionImpl(startDate, startDate);
+            break;
+        case SINGLE_INTERVAL_SELECTION:
+            if (isIntervalSelected(startDate, endDate)) return;
+            clearSelectionImpl();
+            added = addSelectionImpl(startDate, endDate);
+            break;
+        case MULTIPLE_INTERVAL_SELECTION:
+            if (isIntervalSelected(startDate, endDate)) return;
+            added = addSelectionImpl(startDate, endDate);
+            break;
+        default:
+            break;
         }
         if (added) {
             fireValueChanged(EventType.DATES_ADDED);
@@ -123,8 +119,8 @@ public class DaySelectionModel extends AbstractDateSelectionModel {
         startDate = startOfDay(startDate);
         endDate = startOfDay(endDate);
         if (SelectionMode.SINGLE_SELECTION.equals(selectionMode)) {
-           if (isSelected(startDate)) return;
-           endDate = startDate;
+            if (isSelected(startDate)) return;
+            endDate = startDate;
         } else {
             if (isIntervalSelected(startDate, endDate)) return;
         }
@@ -137,17 +133,17 @@ public class DaySelectionModel extends AbstractDateSelectionModel {
     /**
      * Checks and returns if the single date interval bounded by startDate and endDate
      * is selected. This is useful only for SingleInterval mode.
-     * 
+     *
      * @param startDate the start of the interval
-     * @param endDate the end of the interval, must be >= startDate
+     * @param endDate   the end of the interval, must be >= startDate
      * @return true the interval is selected, false otherwise.
      */
     private boolean isIntervalSelected(Date startDate, Date endDate) {
         if (isSelectionEmpty()) return false;
         startDate = startOfDay(startDate);
         endDate = startOfDay(endDate);
-        return selectedDates.first().equals(startDate) 
-           && selectedDates.last().equals(endDate);
+        return selectedDates.first().equals(startDate)
+               && selectedDates.last().equals(endDate);
     }
 
     /**
@@ -262,10 +258,9 @@ public class DaySelectionModel extends AbstractDateSelectionModel {
     public boolean isUnselectableDate(Date date) {
         date = startOfDay(date);
         return upperBound != null && upperBound.getTime() < date.getTime() ||
-                lowerBound != null && lowerBound.getTime() > date.getTime() ||
-                unselectableDates != null && unselectableDates.contains(date);
+               lowerBound != null && lowerBound.getTime() > date.getTime() ||
+               unselectableDates != null && unselectableDates.contains(date);
     }
-
 
     private boolean addSelectionImpl(final Date startDate, final Date endDate) {
         boolean hasAdded = false;
@@ -282,14 +277,13 @@ public class DaySelectionModel extends AbstractDateSelectionModel {
         return hasAdded;
     }
 
-
     /**
      * {@inheritDoc}
      */
 
     /**
      * {@inheritDoc} <p>
-     * 
+     * <p>
      * Implemented to return the start of the day which contains the date.
      */
     @Override
@@ -297,5 +291,4 @@ public class DaySelectionModel extends AbstractDateSelectionModel {
         Contract.asNotNull(date, "date must not be null");
         return startOfDay(date);
     }
-
 }

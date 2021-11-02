@@ -3,15 +3,16 @@ package org.jdesktop.swingx;
 /**
  * An interface that describes an object that is capable of being accessed/used via a mnemonic
  * keystroke.
- * 
+ *
  * @author Karl George Schaefer
  */
 // TODO this describes the mnemonic feature but not what is used,
 // ie. what String returning method is called
 interface Mnemonicable {
+
     /**
      * Returns the keyboard mnemonic for this component.
-     * 
+     *
      * @return the keyboard mnemonic
      */
     int getMnemonic();
@@ -26,24 +27,22 @@ interface Mnemonicable {
      * <code>java.awt.event.KeyEvent</code>. Mnemonics are case-insensitive,
      * therefore a key event with the corresponding keycode would cause the
      * button to be activated whether or not the Shift modifier was pressed.
-     * 
-     * @param mnemonic
-     *            the key code which represents the mnemonic
+     *
+     * @param mnemonic the key code which represents the mnemonic
+     * @beaninfo bound: true attribute: visualUpdate true description: the
+     * keyboard character mnemonic
      * @see java.awt.event.KeyEvent
      * @see #setDisplayedMnemonicIndex
-     * 
-     * @beaninfo bound: true attribute: visualUpdate true description: the
-     *           keyboard character mnemonic
      */
     void setMnemonic(int mnemonic);
-    
+
     /**
      * Returns the character, as an index, that the look and feel should
      * provide decoration for as representing the mnemonic character.
      *
-     * @since 1.4
      * @return index representing mnemonic character
      * @see #setDisplayedMnemonicIndex
+     * @since 1.4
      */
     int getDisplayedMnemonicIndex();
 
@@ -63,17 +62,15 @@ interface Mnemonicable {
      * <code>setDisplayedMnemonicIndex(5)</code> after invoking
      * <code>setMnemonic(KeyEvent.VK_A)</code>.
      *
-     * @since 1.4
      * @param index Index into the String to underline
-     * @exception IllegalArgumentException will be thrown if <code>index</code>
-     *            is &gt;= length of the text, or &lt; -1
+     * @throws IllegalArgumentException will be thrown if <code>index</code>
+     *                                  is &gt;= length of the text, or &lt; -1
+     * @beaninfo bound: true
+     * attribute: visualUpdate true
+     * description: the index into the String to draw the keyboard character
+     * mnemonic at
      * @see #getDisplayedMnemonicIndex
-     *
-     * @beaninfo
-     *        bound: true
-     *    attribute: visualUpdate true
-     *  description: the index into the String to draw the keyboard character
-     *               mnemonic at
+     * @since 1.4
      */
     void setDisplayedMnemonicIndex(int index) throws IllegalArgumentException;
 }

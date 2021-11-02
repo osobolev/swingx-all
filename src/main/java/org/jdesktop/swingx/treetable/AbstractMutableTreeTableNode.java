@@ -20,22 +20,24 @@
  */
 package org.jdesktop.swingx.treetable;
 
+import javax.swing.tree.TreeNode;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Enumeration;
 import java.util.List;
 
-import javax.swing.tree.TreeNode;
-
 /**
  * {@code AbstractMutableTreeTableNode} provides an implementation of most of
  * the {@code MutableTreeTableNode} features.
- * 
+ *
  * @author Karl Schaefer
  */
 public abstract class AbstractMutableTreeTableNode implements
-        MutableTreeTableNode {
-    /** this node's parent, or null if this node has no parent */
+    MutableTreeTableNode {
+
+    /**
+     * this node's parent, or null if this node has no parent
+     */
     protected MutableTreeTableNode parent;
 
     /**
@@ -44,7 +46,9 @@ public abstract class AbstractMutableTreeTableNode implements
      */
     protected final List<MutableTreeTableNode> children;
 
-    /** optional user object */
+    /**
+     * optional user object
+     */
     protected transient Object userObject;
 
     protected boolean allowsChildren;
@@ -58,7 +62,7 @@ public abstract class AbstractMutableTreeTableNode implements
     }
 
     public AbstractMutableTreeTableNode(Object userObject,
-            boolean allowsChildren) {
+                                        boolean allowsChildren) {
         this.userObject = userObject;
         this.allowsChildren = allowsChildren;
         children = createChildrenList();
@@ -68,13 +72,13 @@ public abstract class AbstractMutableTreeTableNode implements
      * Creates the list used to manage the children of this node.
      * <p>
      * This method is called by the constructor.
-     * 
+     *
      * @return a list; this list is guaranteed to be non-{@code null}
      */
     protected List<MutableTreeTableNode> createChildrenList() {
         return new ArrayList<MutableTreeTableNode>();
     }
-    
+
     public void add(MutableTreeTableNode child) {
         insert(child, getChildCount());
     }
@@ -92,7 +96,7 @@ public abstract class AbstractMutableTreeTableNode implements
             children.remove(child);
             index--;
         }
-        
+
         children.add(index, child);
 
         if (child.getParent() != this) {
@@ -136,7 +140,7 @@ public abstract class AbstractMutableTreeTableNode implements
             }
         } else {
             throw new IllegalArgumentException(
-                    "newParent does not allow children");
+                "newParent does not allow children");
         }
 
         parent = newParent;
@@ -148,7 +152,7 @@ public abstract class AbstractMutableTreeTableNode implements
 
     /**
      * Returns this node's user object.
-     * 
+     *
      * @return the Object stored at this node by the user
      * @see #setUserObject
      * @see #toString
@@ -212,9 +216,8 @@ public abstract class AbstractMutableTreeTableNode implements
      * removed.
      * <p>
      * Note: By default, a node allows children.
-     * 
-     * @param allowsChildren
-     *            {@code true} if this node is allowed to have children
+     *
+     * @param allowsChildren {@code true} if this node is allowed to have children
      */
     public void setAllowsChildren(boolean allowsChildren) {
         this.allowsChildren = allowsChildren;
@@ -242,9 +245,8 @@ public abstract class AbstractMutableTreeTableNode implements
 
     /**
      * Determines whether the specified column is editable.
-     * 
-     * @param column
-     *            the column to query
+     *
+     * @param column the column to query
      * @return always returns {@code false}
      */
     @Override
@@ -254,12 +256,10 @@ public abstract class AbstractMutableTreeTableNode implements
 
     /**
      * Sets the value for the given {@code column}.
-     * 
+     *
+     * @param aValue the value to set
+     * @param column the column to set the value on
      * @impl does nothing. It is provided for convenience.
-     * @param aValue
-     *            the value to set
-     * @param column
-     *            the column to set the value on
      */
     @Override
     public void setValueAt(Object aValue, int column) {
@@ -269,7 +269,7 @@ public abstract class AbstractMutableTreeTableNode implements
     /**
      * Returns the result of sending <code>toString()</code> to this node's
      * user object, or null if this node has no user object.
-     * 
+     *
      * @see #getUserObject
      */
     @Override

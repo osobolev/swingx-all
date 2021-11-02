@@ -21,21 +21,20 @@
 
 package org.jdesktop.swingx.painter;
 
+import org.jdesktop.beans.JavaBean;
+import org.jdesktop.swingx.util.PaintUtils;
+
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.Shape;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.PathIterator;
-import java.awt.geom.Point2D;
 import java.awt.geom.Point2D.Float;
 import java.awt.geom.RoundRectangle2D;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
-
-import org.jdesktop.beans.JavaBean;
-import org.jdesktop.swingx.util.PaintUtils;
 
 /**
  * A specific painter that paints an "infinite progress" like animation.
@@ -47,7 +46,7 @@ public class BusyPainter extends AbstractPainter<Object> {
     /**
      * Direction is used to set the initial direction in which the
      * animation starts.
-     * 
+     *
      * @see BusyPainter#setDirection(Direction)
      */
     public static enum Direction {
@@ -55,7 +54,9 @@ public class BusyPainter extends AbstractPainter<Object> {
          * cycle proceeds forward
          */
         RIGHT,
-        /** cycle proceeds backward */
+        /**
+         * cycle proceeds backward
+         */
         LEFT,
     }
 
@@ -86,15 +87,17 @@ public class BusyPainter extends AbstractPainter<Object> {
 
     /**
      * Creates new painter initialized to the shape of circle and bounds of square of specified height.
+     *
      * @param height Painter height.
      */
     public BusyPainter(int height) {
         this(getScaledDefaultPoint(height), getScaledDefaultTrajectory(height));
     }
-    
+
     /**
      * Initializes painter to the specified trajectory and and point shape. Bounds are dynamically calculated to so the specified trajectory fits in.
-     * @param point Point shape.
+     *
+     * @param point      Point shape.
      * @param trajectory Trajectory shape.
      */
     public BusyPainter(Shape point, Shape trajectory) {
@@ -103,17 +106,18 @@ public class BusyPainter extends AbstractPainter<Object> {
 
     protected static Shape getScaledDefaultTrajectory(int height) {
         return new Ellipse2D.Float(((height * 8) / 26) / 2, ((height * 8) / 26) / 2, height
-                - ((height * 8) / 26), height - ((height * 8) / 26));
+                                                                                     - ((height * 8) / 26), height - ((height * 8) / 26));
     }
 
     protected static Shape getScaledDefaultPoint(int height) {
         return new RoundRectangle2D.Float(0, 0, (height * 8) / 26, 4,
-                4, 4);
+            4, 4);
     }
 
     /**
      * Initializes painter to provided shapes and default colors.
-     * @param point Point shape.
+     *
+     * @param point      Point shape.
      * @param trajectory Trajectory shape.
      */
     protected void init(Shape point, Shape trajectory, Color baseColor, Color highlightColor) {
@@ -129,10 +133,10 @@ public class BusyPainter extends AbstractPainter<Object> {
     @Override
     protected void doPaint(Graphics2D g, Object t, int width, int height) {
         Rectangle r = getTrajectory().getBounds();
-        int tw = width - r.width - 2*r.x;
-        int th = height - r.height - 2*r.y;
+        int tw = width - r.width - 2 * r.x;
+        int th = height - r.height - 2 * r.y;
         if (isPaintCentered()) {
-            g.translate(tw/2, th/2);
+            g.translate(tw / 2, th / 2);
         }
 
         PathIterator pi = trajectory.getPathIterator(null);
@@ -154,28 +158,27 @@ public class BusyPainter extends AbstractPainter<Object> {
                 float c = calcLine(coords, cp);
                 totalDist += c;
                 // move the point to the end (just so it is same for all of them
-                segStack.add(new float[] { c, 0, 0, 0, 0, coords[0], coords[1], ret });
+                segStack.add(new float[] {c, 0, 0, 0, 0, coords[0], coords[1], ret});
                 cp.x = coords[0];
                 cp.y = coords[1];
             }
             if (ret == PathIterator.SEG_MOVETO) {
                 sp.x = cp.x = coords[0];
                 sp.y = cp.y = coords[1];
-
             }
             if (ret == PathIterator.SEG_CUBICTO) {
                 float c = calcCube(coords, cp);
                 totalDist += c;
-                segStack.add(new float[] { c, coords[0], coords[1], coords[2],
-                        coords[3], coords[4], coords[5], ret });
+                segStack.add(new float[] {c, coords[0], coords[1], coords[2],
+                    coords[3], coords[4], coords[5], ret});
                 cp.x = coords[4];
                 cp.y = coords[5];
             }
             if (ret == PathIterator.SEG_QUADTO) {
                 float c = calcLengthOfQuad(coords, cp);
                 totalDist += c;
-                segStack.add(new float[] { c, coords[0], coords[1], 0 ,0 , coords[2],
-                        coords[3], ret });
+                segStack.add(new float[] {c, coords[0], coords[1], 0, 0, coords[2],
+                    coords[3], ret});
                 cp.x = coords[2];
                 cp.y = coords[3];
             }
@@ -220,12 +223,13 @@ public class BusyPainter extends AbstractPainter<Object> {
         g.translate(-center.x, -center.y);
 
         if (isPaintCentered()) {
-            g.translate(-tw/2, -th/2);
+            g.translate(-tw / 2, -th / 2);
         }
     }
 
     /**
      * Gets value of centering hint. If true, shape will be positioned in the center of painted area.
+     *
      * @return Whether shape will be centered over painting area or not.
      */
     public boolean isPaintCentered() {
@@ -234,6 +238,7 @@ public class BusyPainter extends AbstractPainter<Object> {
 
     /**
      * Centers shape in the area covered by the painter.
+     *
      * @param paintCentered Centering hint.
      */
     public void setPaintCentered(boolean paintCentered) {
@@ -269,11 +274,10 @@ public class BusyPainter extends AbstractPainter<Object> {
         g.fill(s);
         g.translate(-x, -y);
         g.rotate(-t);
-
     }
 
     private Float calcPoint(float dist2go, Float startPoint,
-            float[] sgmt, int w, int h) {
+                            float[] sgmt, int w, int h) {
         Float f = new Float();
         if (sgmt[7] == PathIterator.SEG_LINETO) {
             // linear
@@ -284,15 +288,14 @@ public class BusyPainter extends AbstractPainter<Object> {
             f.y = startPoint.y + b * dist2go / pathLen;
         } else if (sgmt[7] == PathIterator.SEG_QUADTO) {
             // quadratic curve
-            Float ctrl = new Float(sgmt[1]/w, sgmt[2]/h);
-            Float end = new Float(sgmt[5]/w, sgmt[6]/h);
-            Float start = new Float(startPoint.x/w, startPoint.y/h);
+            Float ctrl = new Float(sgmt[1] / w, sgmt[2] / h);
+            Float end = new Float(sgmt[5] / w, sgmt[6] / h);
+            Float start = new Float(startPoint.x / w, startPoint.y / h);
 
             // trans coords from abs to rel
             f = getXY(dist2go / sgmt[0], start, ctrl, end);
             f.x *= w;
             f.y *= h;
-
         } else if (sgmt[7] == PathIterator.SEG_CUBICTO) {
             // bezier curve
             float x = Math.abs(startPoint.x - sgmt[5]);
@@ -314,11 +317,11 @@ public class BusyPainter extends AbstractPainter<Object> {
         return f;
     }
 
-    
     /**
      * Calculates length of the linear segment.
+     *
      * @param coords Segment coordinates.
-     * @param cp Start point.
+     * @param cp     Start point.
      * @return Length of the segment.
      */
     private float calcLine(float[] coords, Float cp) {
@@ -330,8 +333,9 @@ public class BusyPainter extends AbstractPainter<Object> {
 
     /**
      * Claclulates length of the cubic segment.
+     *
      * @param coords Segment coordinates.
-     * @param cp Start point.
+     * @param cp     Start point.
      * @return Length of the segment.
      */
     private float calcCube(float[] coords, Float cp) {
@@ -347,7 +351,7 @@ public class BusyPainter extends AbstractPainter<Object> {
         for (float t = 0.01f; t <= 1.0f; t += .01f) {
             Float xy = getXY(t, c1rx, c1ry, c2rx, c2ry);
             prevLength += (float) Math.sqrt((xy.x - prevX) * (xy.x - prevX)
-                    + (xy.y - prevY) * (xy.y - prevY));
+                                            + (xy.y - prevY) * (xy.y - prevY));
             prevX = xy.x;
             prevY = xy.y;
         }
@@ -358,8 +362,9 @@ public class BusyPainter extends AbstractPainter<Object> {
 
     /**
      * Calculates length of the quadratic segment
+     *
      * @param coords Segment coordinates
-     * @param cp Start point.
+     * @param cp     Start point.
      * @return Length of the segment.
      */
     private float calcLengthOfQuad(float[] coords, Float cp) {
@@ -367,11 +372,11 @@ public class BusyPainter extends AbstractPainter<Object> {
         Float end = new Float(coords[2], coords[3]);
         // get abs values
         // ctrl1
-        float c1ax = Math.abs(cp.x - ctrl.x) ;
-        float c1ay = Math.abs(cp.y - ctrl.y) ;
+        float c1ax = Math.abs(cp.x - ctrl.x);
+        float c1ay = Math.abs(cp.y - ctrl.y);
         // end1
-        float e1ax = Math.abs(cp.x - end.x) ;
-        float e1ay = Math.abs(cp.y - end.y) ;
+        float e1ax = Math.abs(cp.x - end.x);
+        float e1ay = Math.abs(cp.y - end.y);
         // get max value on each axis
         float maxX = Math.max(c1ax, e1ax);
         float maxY = Math.max(c1ay, e1ay);
@@ -387,31 +392,30 @@ public class BusyPainter extends AbstractPainter<Object> {
         // claculate length
         float prevLength = 0, prevX = 0, prevY = 0;
         for (float t = 0.01f; t <= 1.0f; t += .01f) {
-            Float xy = getXY(t, new Float(0,0), ctrl, end);
+            Float xy = getXY(t, new Float(0, 0), ctrl, end);
             prevLength += (float) Math.sqrt((xy.x - prevX) * (xy.x - prevX)
-                    + (xy.y - prevY) * (xy.y - prevY));
+                                            + (xy.y - prevY) * (xy.y - prevY));
             prevX = xy.x;
             prevY = xy.y;
         }
         // prev len is a fraction num of the real path length
         float a = Math.abs(coords[2] - cp.x);
         float b = Math.abs(coords[3] - cp.y);
-        float dist = (float) Math.sqrt(a*a+b*b);
+        float dist = (float) Math.sqrt(a * a + b * b);
         return prevLength * dist;
     }
 
     /**
      * Calculates the XY point for a given t value.
-     * 
+     * <p>
      * The general spline equation is: x = b0*x0 + b1*x1 + b2*x2 + b3*x3 y =
      * b0*y0 + b1*y1 + b2*y2 + b3*y3 where: b0 = (1-t)^3 b1 = 3 * t * (1-t)^2 b2 =
      * 3 * t^2 * (1-t) b3 = t^3 We know that (x0,y0) == (0,0) and (x1,y1) ==
      * (1,1) for our splines, so this simplifies to: x = b1*x1 + b2*x2 + b3 y =
      * b1*x1 + b2*x2 + b3
-     * 
-     * @author chet
-     * 
+     *
      * @param t parametric value for spline calculation
+     * @author chet
      */
     private Float getXY(float t, float x1, float y1, float x2, float y2) {
         Float xy;
@@ -420,15 +424,16 @@ public class BusyPainter extends AbstractPainter<Object> {
         float b2 = 3 * (t * t) * invT;
         float b3 = t * t * t;
         xy = new Float((b1 * x1) + (b2 * x2) + b3, (b1 * y1)
-                + (b2 * y2) + b3);
+                                                   + (b2 * y2) + b3);
         return xy;
     }
 
     /**
      * Calculates relative position of the point on the quad curve in time t&lt;0,1&gt;.
-     * @param t distance on the curve
+     *
+     * @param t    distance on the curve
      * @param ctrl Control point in rel coords
-     * @param end End point in rel coords
+     * @param end  End point in rel coords
      * @return Solution of the quad equation for time T in non complex space in rel coords.
      */
     public static Float getXY(float t, Float begin, Float ctrl, Float end) {
@@ -441,21 +446,22 @@ public class BusyPainter extends AbstractPainter<Object> {
          *           = (P1 - 2*Pc + P2)*t^2 + 2*(Pc - P1)*t + P1
          *     t = [0:1]
          *     // thx Jim ...
-         *     
+         *
          *     b0 = (1 -t)^2, b1 = 2*t*(1-t), b2 = t^2
          */
         Float xy;
         float invT = (1 - t);
         float b0 = invT * invT;
-        float b1 = 2 * t * invT ;
+        float b1 = 2 * t * invT;
         float b2 = t * t;
-        xy = new Float(b0 * begin.x + (b1 * ctrl.x) + b2* end.x, b0 * begin.y +  (b1 * ctrl.y) + b2* end.y);
-        
+        xy = new Float(b0 * begin.x + (b1 * ctrl.x) + b2 * end.x, b0 * begin.y + (b1 * ctrl.y) + b2 * end.y);
+
         return xy;
     }
-    
+
     /**
      * Selects appropriate color for given frame based on the frame position and gradient difference.
+     *
      * @param i Frame.
      * @return Frame color.
      */
@@ -466,16 +472,16 @@ public class BusyPainter extends AbstractPainter<Object> {
 
         for (int t = 0; t < getTrailLength(); t++) {
             if (direction == Direction.RIGHT
-                    && i == (frame - t + getPoints()) % getPoints()) {
+                && i == (frame - t + getPoints()) % getPoints()) {
                 float terp = 1 - ((float) (getTrailLength() - t))
-                        / (float) getTrailLength();
+                                 / (float) getTrailLength();
                 return PaintUtils.interpolate(getBaseColor(),
-                        getHighlightColor(), terp);
+                    getHighlightColor(), terp);
             } else if (direction == Direction.LEFT
-                    && i == (frame + t) % getPoints()) {
+                       && i == (frame + t) % getPoints()) {
                 float terp = ((float) (t)) / (float) getTrailLength();
                 return PaintUtils.interpolate(getBaseColor(),
-                        getHighlightColor(), terp);
+                    getHighlightColor(), terp);
             }
         }
         return getBaseColor();
@@ -483,13 +489,16 @@ public class BusyPainter extends AbstractPainter<Object> {
 
     /**
      * Gets current frame.
+     *
      * @return Current frame.
      */
     public int getFrame() {
         return frame;
     }
 
-    /**Sets current frame.
+    /**
+     * Sets current frame.
+     *
      * @param frame Current frame.
      */
     public void setFrame(int frame) {
@@ -500,6 +509,7 @@ public class BusyPainter extends AbstractPainter<Object> {
 
     /**
      * Gets base color.
+     *
      * @return Base color.
      */
     public Color getBaseColor() {
@@ -508,6 +518,7 @@ public class BusyPainter extends AbstractPainter<Object> {
 
     /**
      * Sets new base color. Bound property.
+     *
      * @param baseColor Base color.
      */
     public void setBaseColor(Color baseColor) {
@@ -518,6 +529,7 @@ public class BusyPainter extends AbstractPainter<Object> {
 
     /**
      * Gets highlight color.
+     *
      * @return Current highlight color.
      */
     public Color getHighlightColor() {
@@ -526,6 +538,7 @@ public class BusyPainter extends AbstractPainter<Object> {
 
     /**
      * Sets new highlight color. Bound property.
+     *
      * @param highlightColor New highlight color.
      */
     public void setHighlightColor(Color highlightColor) {
@@ -536,6 +549,7 @@ public class BusyPainter extends AbstractPainter<Object> {
 
     /**
      * Gets total amount of distinct points in spinner.
+     *
      * @return Total amount of points.
      */
     public int getPoints() {
@@ -544,6 +558,7 @@ public class BusyPainter extends AbstractPainter<Object> {
 
     /**
      * Sets total amount of points in spinner. Bound property.
+     *
      * @param points Total amount of points.
      */
     public void setPoints(int points) {
@@ -554,6 +569,7 @@ public class BusyPainter extends AbstractPainter<Object> {
 
     /**
      * Gets length of trail in number of points.
+     *
      * @return Trail lenght.
      */
     public int getTrailLength() {
@@ -562,6 +578,7 @@ public class BusyPainter extends AbstractPainter<Object> {
 
     /**
      * Sets length of the trail in points. Bound property.
+     *
      * @param trailLength Trail length in points.
      */
     public void setTrailLength(int trailLength) {
@@ -572,6 +589,7 @@ public class BusyPainter extends AbstractPainter<Object> {
 
     /**
      * Gets shape of current point.
+     *
      * @return Shape of the point.
      */
     public final Shape getPointShape() {
@@ -580,6 +598,7 @@ public class BusyPainter extends AbstractPainter<Object> {
 
     /**
      * Sets new point shape. Bound property.
+     *
      * @param pointShape new Shape.
      */
     public final void setPointShape(Shape pointShape) {
@@ -590,6 +609,7 @@ public class BusyPainter extends AbstractPainter<Object> {
 
     /**
      * Gets current trajectory.
+     *
      * @return Current spinner trajectory .
      */
     public final Shape getTrajectory() {
@@ -598,6 +618,7 @@ public class BusyPainter extends AbstractPainter<Object> {
 
     /**
      * Sets new trajectory. Expected trajectory have to be closed shape. Bound property.
+     *
      * @param trajectory New trajectory.
      */
     public final void setTrajectory(Shape trajectory) {
@@ -605,9 +626,10 @@ public class BusyPainter extends AbstractPainter<Object> {
         this.trajectory = trajectory;
         firePropertyChange("trajectory", old, getTrajectory());
     }
-    
+
     /**
      * Gets current direction of spinning.
+     *
      * @return Current spinning direction.
      */
     public Direction getDirection() {
@@ -616,6 +638,7 @@ public class BusyPainter extends AbstractPainter<Object> {
 
     /**
      * Sets new spinning direction.
+     *
      * @param dir Spinning direction.
      */
     public void setDirection(Direction dir) {

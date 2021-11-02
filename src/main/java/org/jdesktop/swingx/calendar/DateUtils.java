@@ -8,12 +8,12 @@
  * modify it under the terms of the GNU Lesser General Public
  * License as published by the Free Software Foundation; either
  * version 2.1 of the License, or (at your option) any later version.
- * 
+ *
  * This library is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  * Lesser General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
@@ -25,18 +25,18 @@ import java.util.Date;
 
 /**
  * Utility methods for Date manipulation. <p>
- * 
+ * <p>
  * This utility class is replaced by CalendarUtils because day related manipulation
  * are meaningfull relative to a Calendar only. Always doing so against the default
  * calendar instance isn't enough.
- * 
+ * <p>
  * PENDING JW: move the missing ops. Volunteers, please! Once done, this will be deprecated.
- * 
+ *
  * @author Scott Violet
- * @version  $Revision: 3100 $
- * 
+ * @version $Revision: 3100 $
  */
 public class DateUtils {
+
     private static Calendar CALENDAR = Calendar.getInstance();
 
     /**
@@ -47,7 +47,7 @@ public class DateUtils {
      */
     public static Date endOfDay(Date date) {
         Calendar calendar = CALENDAR;
-        synchronized(calendar) {
+        synchronized (calendar) {
             calendar.setTime(date);
             calendar.set(Calendar.HOUR_OF_DAY, 23);
             calendar.set(Calendar.MILLISECOND, 999);
@@ -56,7 +56,6 @@ public class DateUtils {
             return calendar.getTime();
         }
     }
-
 
     /**
      * Returns a new Date with the hours, milliseconds, seconds and minutes
@@ -67,7 +66,7 @@ public class DateUtils {
      */
     public static Date startOfDay(Date date) {
         Calendar calendar = CALENDAR;
-        synchronized(calendar) {
+        synchronized (calendar) {
             calendar.setTime(date);
             calendar.set(Calendar.HOUR_OF_DAY, 0);
             calendar.set(Calendar.MILLISECOND, 0);
@@ -77,7 +76,7 @@ public class DateUtils {
         }
     }
 
-     /**
+    /**
      * Returns day in millis with the hours, milliseconds, seconds and minutes
      * set to 0.
      *
@@ -86,7 +85,7 @@ public class DateUtils {
      */
     public static long startOfDayInMillis(long date) {
         Calendar calendar = CALENDAR;
-        synchronized(calendar) {
+        synchronized (calendar) {
             calendar.setTimeInMillis(date);
             calendar.set(Calendar.HOUR_OF_DAY, 0);
             calendar.set(Calendar.MILLISECOND, 0);
@@ -104,7 +103,7 @@ public class DateUtils {
      */
     public static long endOfDayInMillis(long date) {
         Calendar calendar = CALENDAR;
-        synchronized(calendar) {
+        synchronized (calendar) {
             calendar.setTimeInMillis(date);
             calendar.set(Calendar.HOUR_OF_DAY, 23);
             calendar.set(Calendar.MILLISECOND, 999);
@@ -113,7 +112,6 @@ public class DateUtils {
             return calendar.getTimeInMillis();
         }
     }
-
 
     /**
      * Returns the day after <code>date</code>.
@@ -129,14 +127,13 @@ public class DateUtils {
      * Adds <code>amount</code> days to <code>time</code> and returns
      * the resulting time.
      *
-     * @param time Base time
+     * @param time   Base time
      * @param amount Amount of increment.
-     * 
      * @return the <var>time</var> + <var>amount</var> days
      */
     public static long addDays(long time, int amount) {
         Calendar calendar = CALENDAR;
-        synchronized(calendar) {
+        synchronized (calendar) {
             calendar.setTimeInMillis(time);
             calendar.add(Calendar.DAY_OF_MONTH, amount);
             return calendar.getTimeInMillis();
@@ -163,13 +160,12 @@ public class DateUtils {
         return addDays(date, 7);
     }
 
-
     /**
      * Returns the number of days difference between <code>t1</code> and
      * <code>t2</code>.
      *
-     * @param t1 Time 1
-     * @param t2 Time 2
+     * @param t1            Time 1
+     * @param t2            Time 2
      * @param checkOverflow indicates whether to check for overflow
      * @return Number of days between <code>start</code> and <code>end</code>
      */
@@ -180,7 +176,7 @@ public class DateUtils {
             t2 = tmp;
         }
         Calendar calendar = CALENDAR;
-        synchronized(calendar) {
+        synchronized (calendar) {
             calendar.setTimeInMillis(t1);
             int delta = 0;
             while (calendar.getTimeInMillis() < t2) {
@@ -194,7 +190,7 @@ public class DateUtils {
         }
     }
 
-   /**
+    /**
      * Returns the number of days difference between <code>t1</code> and
      * <code>t2</code>.
      *
@@ -202,8 +198,8 @@ public class DateUtils {
      * @param t2 Time 2
      * @return Number of days between <code>start</code> and <code>end</code>
      */
-      public static int getDaysDiff(long t1, long t2) {
-       return  getDaysDiff(t1, t2, true);
+    public static int getDaysDiff(long t1, long t2) {
+        return getDaysDiff(t1, t2, true);
     }
 
     /**
@@ -211,17 +207,17 @@ public class DateUtils {
      *
      * @param date date to check in millis
      * @return <code>true</code> if <var>date</var> corresponds to the first
-     *         day of a year
-     * @see Date#getTime() 
+     * day of a year
+     * @see Date#getTime()
      */
     public static boolean isFirstOfYear(long date) {
         boolean ret = false;
         Calendar calendar = CALENDAR;
-        synchronized(calendar) {
+        synchronized (calendar) {
             calendar.setTimeInMillis(date);
             int currentYear = calendar.get(Calendar.YEAR);
             // Check yesterday
-            calendar.add(Calendar.DATE,-1);
+            calendar.add(Calendar.DATE, -1);
             int yesterdayYear = calendar.get(Calendar.YEAR);
             ret = (currentYear != yesterdayYear);
         }
@@ -233,23 +229,22 @@ public class DateUtils {
      *
      * @param date date to check in millis
      * @return <code>true</code> if <var>date</var> corresponds to the first
-     *         day of a month
-     * @see Date#getTime() 
+     * day of a month
+     * @see Date#getTime()
      */
     public static boolean isFirstOfMonth(long date) {
         boolean ret = false;
         Calendar calendar = CALENDAR;
-        synchronized(calendar) {
+        synchronized (calendar) {
             calendar.setTimeInMillis(date);
             int currentMonth = calendar.get(Calendar.MONTH);
             // Check yesterday
-            calendar.add(Calendar.DATE,-1);
+            calendar.add(Calendar.DATE, -1);
             int yesterdayMonth = calendar.get(Calendar.MONTH);
-            ret =  (currentMonth != yesterdayMonth);
+            ret = (currentMonth != yesterdayMonth);
         }
-        return ret;     
+        return ret;
     }
-
 
     /**
      * Returns the day before <code>date</code>.
@@ -271,18 +266,16 @@ public class DateUtils {
         return addDays(date, -7);
     }
 
-
     /**
      * Returns the first day before <code>date</code> that has the
      * day of week matching <code>startOfWeek</code>.  For example, if you
      * want to find the previous monday relative to <code>date</code> you
      * would call <code>getPreviousDay(date, Calendar.MONDAY)</code>.
      *
-     * @param date Base date
+     * @param date        Base date
      * @param startOfWeek Calendar constant correspoding to start of week.
      * @return start of week, return value will have 0 hours, 0 minutes,
-     *         0 seconds and 0 ms.
-     * 
+     * 0 seconds and 0 ms.
      */
     public static long getPreviousDay(long date, int startOfWeek) {
         return getDay(date, startOfWeek, -1);
@@ -294,11 +287,10 @@ public class DateUtils {
      * want to find the next monday relative to <code>date</code> you
      * would call <code>getPreviousDay(date, Calendar.MONDAY)</code>.
      *
-     * @param date Base date
+     * @param date        Base date
      * @param startOfWeek Calendar constant correspoding to start of week.
      * @return start of week, return value will have 0 hours, 0 minutes,
-     *         0 seconds and 0 ms.
-     * 
+     * 0 seconds and 0 ms.
      */
     public static long getNextDay(long date, int startOfWeek) {
         return getDay(date, startOfWeek, 1);
@@ -306,7 +298,7 @@ public class DateUtils {
 
     private static long getDay(long date, int startOfWeek, int increment) {
         Calendar calendar = CALENDAR;
-        synchronized(calendar) {
+        synchronized (calendar) {
             calendar.setTimeInMillis(date);
             int day = calendar.get(Calendar.DAY_OF_WEEK);
             // Normalize the view starting date to a week starting day
@@ -320,7 +312,7 @@ public class DateUtils {
 
     /**
      * Returns the previous month.
-     * 
+     *
      * @param date Base date
      * @return previous month
      */
@@ -330,7 +322,7 @@ public class DateUtils {
 
     /**
      * Returns the next month.
-     * 
+     *
      * @param date Base date
      * @return next month
      */
@@ -340,7 +332,7 @@ public class DateUtils {
 
     private static long incrementMonth(long date, int increment) {
         Calendar calendar = CALENDAR;
-        synchronized(calendar) {
+        synchronized (calendar) {
             calendar.setTimeInMillis(date);
             calendar.add(Calendar.MONTH, increment);
             return calendar.getTimeInMillis();
@@ -370,7 +362,7 @@ public class DateUtils {
     private static long getMonth(long date, int increment) {
         long result;
         Calendar calendar = CALENDAR;
-        synchronized(calendar) {
+        synchronized (calendar) {
             calendar.setTimeInMillis(date);
             if (increment == -1) {
                 calendar.set(Calendar.DAY_OF_MONTH, 1);
@@ -396,8 +388,8 @@ public class DateUtils {
      * @return day of week.
      */
     public static int getDayOfWeek(long date) {
-       Calendar calendar = CALENDAR;
-        synchronized(calendar) {
+        Calendar calendar = CALENDAR;
+        synchronized (calendar) {
             calendar.setTimeInMillis(date);
             return (calendar.get(Calendar.DAY_OF_WEEK));
         }

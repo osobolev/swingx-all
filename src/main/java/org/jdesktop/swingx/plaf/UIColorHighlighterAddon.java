@@ -8,36 +8,34 @@
  * modify it under the terms of the GNU Lesser General Public
  * License as published by the Free Software Foundation; either
  * version 2.1 of the License, or (at your option) any later version.
- * 
+ *
  * This library is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  * Lesser General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  */
 package org.jdesktop.swingx.plaf;
 
-import java.awt.Color;
-import java.util.logging.Logger;
+import org.jdesktop.swingx.plaf.windows.WindowsLookAndFeelAddons;
+import org.jdesktop.swingx.util.OS;
 
 import javax.swing.UIManager;
 import javax.swing.plaf.ColorUIResource;
 import javax.swing.plaf.metal.MetalLookAndFeel;
 import javax.swing.plaf.metal.OceanTheme;
-
-import org.jdesktop.swingx.plaf.windows.WindowsLookAndFeelAddons;
-import org.jdesktop.swingx.util.OS;
+import java.awt.Color;
+import java.util.logging.Logger;
 
 /**
- * Loads LF specific background striping colors. 
- * 
+ * Loads LF specific background striping colors.
+ * <p>
  * The colors are based on the LF selection colors for certain
- * LFs and themes, for unknown LFs/themes a generic grey is used.  
- * 
- * 
+ * LFs and themes, for unknown LFs/themes a generic grey is used.
+ *
  * @author Jeanette Winzenburg
  * @author Karl Schaefer
  */
@@ -45,8 +43,8 @@ public class UIColorHighlighterAddon extends AbstractComponentAddon {
 
     @SuppressWarnings("unused")
     private static final Logger LOG = Logger
-            .getLogger(UIColorHighlighterAddon.class.getName());
-    
+        .getLogger(UIColorHighlighterAddon.class.getName());
+
     public UIColorHighlighterAddon() {
         super("UIColorHighlighter");
     }
@@ -57,7 +55,7 @@ public class UIColorHighlighterAddon extends AbstractComponentAddon {
     @Override
     protected void addBasicDefaults(LookAndFeelAddons addon, DefaultsList defaults) {
         super.addBasicDefaults(addon, defaults);
-        
+
         defaults.add("UIColorHighlighter.stripingBackground", new ColorUIResource(229, 229, 229));
     }
 
@@ -67,7 +65,7 @@ public class UIColorHighlighterAddon extends AbstractComponentAddon {
     @Override
     protected void addMacDefaults(LookAndFeelAddons addon, DefaultsList defaults) {
         super.addMacDefaults(addon, defaults);
-        
+
         defaults.add("UIColorHighlighter.stripingBackground", new ColorUIResource(237, 243, 254));
     }
 
@@ -77,7 +75,7 @@ public class UIColorHighlighterAddon extends AbstractComponentAddon {
     @Override
     protected void addMetalDefaults(LookAndFeelAddons addon, DefaultsList defaults) {
         super.addMetalDefaults(addon, defaults);
-        
+
         if (MetalLookAndFeel.getCurrentTheme() instanceof OceanTheme) {
             defaults.add("UIColorHighlighter.stripingBackground", new ColorUIResource(230, 238, 246));
         } else {
@@ -91,21 +89,20 @@ public class UIColorHighlighterAddon extends AbstractComponentAddon {
     @Override
     protected void addWindowsDefaults(LookAndFeelAddons addon, DefaultsList defaults) {
         super.addWindowsDefaults(addon, defaults);
-        
+
         if (OS.isUsingWindowsVisualStyles()) {
             String xpStyle = OS.getWindowsVisualStyle();
-            
+
             if (WindowsLookAndFeelAddons.HOMESTEAD_VISUAL_STYLE
-                    .equalsIgnoreCase(xpStyle)) {
+                .equalsIgnoreCase(xpStyle)) {
                 defaults.add("UIColorHighlighter.stripingBackground", new ColorUIResource(228, 231, 219));
             } else if (WindowsLookAndFeelAddons.SILVER_VISUAL_STYLE
-                    .equalsIgnoreCase(xpStyle)) {
+                .equalsIgnoreCase(xpStyle)) {
                 defaults.add("UIColorHighlighter.stripingBackground", new ColorUIResource(235, 235, 236));
             } else {
                 // default blue
                 defaults.add("UIColorHighlighter.stripingBackground", new ColorUIResource(224, 233, 246));
             }
-            
         } else {
             defaults.add("UIColorHighlighter.stripingBackground", new ColorUIResource(218, 222, 233));
         }
@@ -113,7 +110,7 @@ public class UIColorHighlighterAddon extends AbstractComponentAddon {
 
     @Override
     protected void addNimbusDefaults(LookAndFeelAddons addon,
-            DefaultsList defaults) {
+                                     DefaultsList defaults) {
         super.addNimbusDefaults(addon, defaults);
         // JW: Hacking around core issue #6882917
         // which is the underlying reason for issue #1180-swingx
@@ -127,6 +124,4 @@ public class UIColorHighlighterAddon extends AbstractComponentAddon {
             defaults.add("UIColorHighlighter.stripingBackground", value, false);
         }
     }
-    
-    
 }

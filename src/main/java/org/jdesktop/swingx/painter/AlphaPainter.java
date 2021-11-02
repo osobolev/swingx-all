@@ -22,10 +22,10 @@
 
 package org.jdesktop.swingx.painter;
 
+import org.jdesktop.beans.JavaBean;
+
 import java.awt.AlphaComposite;
 import java.awt.Graphics2D;
-
-import org.jdesktop.beans.JavaBean;
 
 /**
  * Applies an alpha value to an entire stack of painters.
@@ -35,6 +35,7 @@ import org.jdesktop.beans.JavaBean;
 @JavaBean
 @SuppressWarnings("nls")
 public class AlphaPainter<T> extends CompoundPainter<T> {
+
     private float alpha = 1.0f;
 
     /**
@@ -43,16 +44,16 @@ public class AlphaPainter<T> extends CompoundPainter<T> {
     @Override
     protected void doPaint(Graphics2D g, T component, int width, int height) {
         Graphics2D g2 = (Graphics2D) g.create();
-        
+
         try {
-        if(getTransform() != null) {
-            g2.setTransform(getTransform());
-        }
-        if(alpha < 1) {
+            if (getTransform() != null) {
+                g2.setTransform(getTransform());
+            }
+            if (alpha < 1) {
                 g2.setComposite(AlphaComposite.getInstance(
-                        AlphaComposite.SRC_OVER, alpha));
-        }
-            
+                    AlphaComposite.SRC_OVER, alpha));
+            }
+
             super.doPaint(g2, component, width, height);
         } finally {
             g2.dispose();
@@ -78,10 +79,11 @@ public class AlphaPainter<T> extends CompoundPainter<T> {
     }*/
 
     /**
-     * Returns the current alpha value for this painter. This is the alpha value that will be applied 
+     * Returns the current alpha value for this painter. This is the alpha value that will be applied
      * to all painters set inside this painter. Alpha values will be multiplied. This means if you set an
      * alpha of 0.5 on this painter and you nest a painter inside which uses an alpha of 0.5 then the final
      * pixels drawn will have an alpha of 0.25.
+     *
      * @return the current value of alpha property
      */
     public float getAlpha() {
@@ -89,10 +91,11 @@ public class AlphaPainter<T> extends CompoundPainter<T> {
     }
 
     /**
-     * Sets the current alpha value for this painter. This is the alpha value that will be applied 
+     * Sets the current alpha value for this painter. This is the alpha value that will be applied
      * to all painters set inside this painter. Alpha values will be multiplied. This means if you set an
      * alpha of 0.5 on this painter and you nest a painter inside which uses an alpha of 0.5 then the final
      * pixels drawn will have an alpha of 0.25.
+     *
      * @param alpha the new value of the alpha property
      */
     public void setAlpha(float alpha) {
