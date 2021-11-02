@@ -35,6 +35,7 @@ import javax.swing.border.LineBorder;
 import javax.swing.text.NumberFormatter;
 import java.awt.Color;
 import java.awt.Component;
+import java.lang.reflect.Constructor;
 import java.text.NumberFormat;
 import java.text.ParseException;
 
@@ -47,7 +48,7 @@ import java.text.ParseException;
 public class NumberEditorExt extends DefaultCellEditor {
 
     private static Class<?>[] argTypes = new Class[] {String.class};
-    java.lang.reflect.Constructor<?> constructor;
+    Constructor<?> constructor;
     private boolean useStrictFormatter;
 
     /**

@@ -31,6 +31,7 @@ import org.jdesktop.swingx.multislider.ThumbListener;
 import org.jdesktop.swingx.util.PaintUtils;
 
 import javax.swing.ActionMap;
+import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
@@ -55,6 +56,7 @@ import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
+import java.awt.Insets;
 import java.awt.MultipleGradientPaint;
 import java.awt.RadialGradientPaint;
 import java.awt.event.ActionEvent;
@@ -285,7 +287,7 @@ public class JXGradientChooser extends JXPanel {
 
         topPanel.setLayout(new GridBagLayout());
 
-        topPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Gradient"));
+        topPanel.setBorder(BorderFactory.createTitledBorder("Gradient"));
         jPanel2.setLayout(new GridBagLayout());
 
         jLabel1.setText("Color:");
@@ -295,14 +297,14 @@ public class JXGradientChooser extends JXPanel {
         gridBagConstraints.ipadx = 2;
         gridBagConstraints.ipady = 2;
         gridBagConstraints.anchor = GridBagConstraints.EAST;
-        gridBagConstraints.insets = new java.awt.Insets(4, 4, 4, 4);
+        gridBagConstraints.insets = new Insets(4, 4, 4, 4);
         jPanel2.add(jLabel1, gridBagConstraints);
 
         jLabel5.setText("#");
         gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.insets = new java.awt.Insets(4, 0, 4, 4);
+        gridBagConstraints.insets = new Insets(4, 0, 4, 4);
         jPanel2.add(jLabel5, gridBagConstraints);
 
         colorField.setColumns(6);
@@ -317,7 +319,7 @@ public class JXGradientChooser extends JXPanel {
         gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridy = 1;
         gridBagConstraints.anchor = GridBagConstraints.EAST;
-        gridBagConstraints.insets = new java.awt.Insets(4, 4, 4, 4);
+        gridBagConstraints.insets = new Insets(4, 4, 4, 4);
         jPanel2.add(jLabel2, gridBagConstraints);
 
         jLabel6.setText("%");
@@ -336,7 +338,7 @@ public class JXGradientChooser extends JXPanel {
         gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridy = 2;
         gridBagConstraints.anchor = GridBagConstraints.EAST;
-        gridBagConstraints.insets = new java.awt.Insets(4, 4, 4, 4);
+        gridBagConstraints.insets = new Insets(4, 4, 4, 4);
         jPanel2.add(jLabel4, gridBagConstraints);
 
         jLabel7.setText("%");
@@ -357,7 +359,7 @@ public class JXGradientChooser extends JXPanel {
         gridBagConstraints.fill = GridBagConstraints.NONE;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.anchor = GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(0, 4, 0, 0);
+        gridBagConstraints.insets = new Insets(0, 4, 0, 0);
         jPanel2.add(changeColorButton, gridBagConstraints);
 
         alphaSlider.setEnabled(false);
@@ -376,7 +378,7 @@ public class JXGradientChooser extends JXPanel {
         gridBagConstraints.anchor = GridBagConstraints.NORTHWEST;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        gridBagConstraints.insets = new Insets(5, 5, 5, 5);
         topPanel.add(jPanel2, gridBagConstraints);
 
         gridBagConstraints = new GridBagConstraints();
@@ -397,7 +399,7 @@ public class JXGradientChooser extends JXPanel {
         gridBagConstraints.gridy = 1;
         gridBagConstraints.anchor = GridBagConstraints.EAST;
         gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        gridBagConstraints.insets = new Insets(5, 5, 5, 5);
         topPanel.add(jPanel4, gridBagConstraints);
 
         gridBagConstraints = new GridBagConstraints();
@@ -407,78 +409,78 @@ public class JXGradientChooser extends JXPanel {
 
         previewPanel.setLayout(new GridBagLayout());
 
-        previewPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Preview"));
+        previewPanel.setBorder(BorderFactory.createTitledBorder("Preview"));
         jPanel3.setLayout(new GridBagLayout());
 
         jLabel8.setText("Style:");
         gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridy = 0;
         gridBagConstraints.anchor = GridBagConstraints.EAST;
-        gridBagConstraints.insets = new java.awt.Insets(4, 4, 4, 4);
+        gridBagConstraints.insets = new Insets(4, 4, 4, 4);
         jPanel3.add(jLabel8, gridBagConstraints);
 
         styleCombo.setModel(new DefaultComboBoxModel(new String[] {"Linear", "Radial"}));
         gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridy = 0;
         gridBagConstraints.anchor = GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(4, 4, 4, 4);
+        gridBagConstraints.insets = new Insets(4, 4, 4, 4);
         jPanel3.add(styleCombo, gridBagConstraints);
 
         jLabel9.setText("Type:");
         gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridy = 1;
         gridBagConstraints.anchor = GridBagConstraints.EAST;
-        gridBagConstraints.insets = new java.awt.Insets(4, 4, 4, 4);
+        gridBagConstraints.insets = new Insets(4, 4, 4, 4);
         jPanel3.add(jLabel9, gridBagConstraints);
 
         typeGroup.add(noCycleRadio);
         noCycleRadio.setSelected(true);
         noCycleRadio.setText("None");
-        noCycleRadio.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
-        noCycleRadio.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        noCycleRadio.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
+        noCycleRadio.setMargin(new Insets(0, 0, 0, 0));
         gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridy = 1;
         gridBagConstraints.anchor = GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(4, 4, 4, 4);
+        gridBagConstraints.insets = new Insets(4, 4, 4, 4);
         jPanel3.add(noCycleRadio, gridBagConstraints);
 
         typeGroup.add(reflectedRadio);
         reflectedRadio.setText("Reflect");
-        reflectedRadio.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
-        reflectedRadio.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        reflectedRadio.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
+        reflectedRadio.setMargin(new Insets(0, 0, 0, 0));
         gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.anchor = GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(4, 4, 4, 4);
+        gridBagConstraints.insets = new Insets(4, 4, 4, 4);
         jPanel3.add(reflectedRadio, gridBagConstraints);
 
         typeGroup.add(repeatedRadio);
         repeatedRadio.setText("Repeat");
-        repeatedRadio.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
-        repeatedRadio.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        repeatedRadio.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
+        repeatedRadio.setMargin(new Insets(0, 0, 0, 0));
         gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 3;
         gridBagConstraints.anchor = GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(4, 4, 4, 4);
+        gridBagConstraints.insets = new Insets(4, 4, 4, 4);
         jPanel3.add(repeatedRadio, gridBagConstraints);
 
         reversedCheck.setText("Reverse");
-        reversedCheck.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
-        reversedCheck.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        reversedCheck.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
+        reversedCheck.setMargin(new Insets(0, 0, 0, 0));
         gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 4;
         gridBagConstraints.anchor = GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(4, 4, 4, 4);
+        gridBagConstraints.insets = new Insets(4, 4, 4, 4);
         jPanel3.add(reversedCheck, gridBagConstraints);
 
         gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.anchor = GridBagConstraints.NORTHWEST;
         previewPanel.add(jPanel3, gridBagConstraints);
 
-        gradientPreview.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        gradientPreview.setBorder(BorderFactory.createEtchedBorder());
         gradientPreview.setPreferredSize(new Dimension(130, 130));
         gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.fill = GridBagConstraints.BOTH;

@@ -23,19 +23,27 @@ package org.jdesktop.swingx.color;
 import org.jdesktop.swingx.JXColorSelectionButton;
 import org.jdesktop.swingx.util.PaintUtils;
 
+import javax.swing.BorderFactory;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JColorChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
+import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 import javax.swing.colorchooser.AbstractColorChooserPanel;
 import javax.swing.event.MouseInputAdapter;
 import java.awt.AWTException;
+import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
 import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.Robot;
@@ -161,50 +169,50 @@ public class EyeDropperColorChooserPanel extends AbstractColorChooserPanel {
      */
     // <editor-fold defaultstate="collapsed" desc=" Generated Code ">//GEN-BEGIN:initComponents
     private void initComponents() {
-        java.awt.GridBagConstraints gridBagConstraints;
+        GridBagConstraints gridBagConstraints;
 
-        eyeDropper = new javax.swing.JButton();
+        eyeDropper = new JButton();
         magPanel = new MagnifyingPanel();
         activeColor = new JXColorSelectionButton();
-        hexColor = new javax.swing.JTextField();
+        hexColor = new JTextField();
         JTextArea jTextArea1 = new JTextArea();
         jLabel1 = new JLabel();
-        rgbColor = new javax.swing.JTextField();
+        rgbColor = new JTextField();
         JLabel jLabel2 = new JLabel();
 
-        setLayout(new java.awt.GridBagLayout());
+        setLayout(new GridBagLayout());
 
         eyeDropper.setText("eye");
-        add(eyeDropper, new java.awt.GridBagConstraints());
+        add(eyeDropper, new GridBagConstraints());
 
-        magPanel.setLayout(new java.awt.BorderLayout());
+        magPanel.setLayout(new BorderLayout());
 
-        magPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new Color(0, 0, 0)));
-        magPanel.setMinimumSize(new java.awt.Dimension(100, 100));
-        magPanel.setPreferredSize(new java.awt.Dimension(100, 100));
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        magPanel.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0)));
+        magPanel.setMinimumSize(new Dimension(100, 100));
+        magPanel.setPreferredSize(new Dimension(100, 100));
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.gridheight = 3;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 12);
+        gridBagConstraints.fill = GridBagConstraints.BOTH;
+        gridBagConstraints.insets = new Insets(0, 0, 0, 12);
         add(magPanel, gridBagConstraints);
 
         activeColor.setEnabled(false);
-        activeColor.setPreferredSize(new java.awt.Dimension(40, 40));
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        activeColor.setPreferredSize(new Dimension(40, 40));
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 3;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.insets = new java.awt.Insets(2, 0, 2, 0);
+        gridBagConstraints.fill = GridBagConstraints.BOTH;
+        gridBagConstraints.insets = new Insets(2, 0, 2, 0);
         add(activeColor, gridBagConstraints);
 
         hexColor.setEditable(false);
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 1;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.insets = new java.awt.Insets(2, 0, 2, 0);
+        gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.insets = new Insets(2, 0, 2, 0);
         add(hexColor, gridBagConstraints);
 
         jTextArea1.setColumns(20);
@@ -214,48 +222,48 @@ public class EyeDropperColorChooserPanel extends AbstractColorChooserPanel {
         jTextArea1.setText("Drag the magnifying glass to select a color from the screen.");
         jTextArea1.setWrapStyleWord(true);
         jTextArea1.setOpaque(false);
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTH;
+        gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.anchor = GridBagConstraints.NORTH;
         gridBagConstraints.weightx = 10.0;
         gridBagConstraints.weighty = 10.0;
-        gridBagConstraints.insets = new java.awt.Insets(0, 0, 7, 0);
+        gridBagConstraints.insets = new Insets(0, 0, 7, 0);
         add(jTextArea1, gridBagConstraints);
 
         jLabel1.setText("#");
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
-        gridBagConstraints.insets = new java.awt.Insets(0, 4, 0, 4);
+        gridBagConstraints.anchor = GridBagConstraints.EAST;
+        gridBagConstraints.insets = new Insets(0, 4, 0, 4);
         add(jLabel1, gridBagConstraints);
 
         rgbColor.setEditable(false);
         rgbColor.setText("255,255,255");
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 2;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.insets = new java.awt.Insets(2, 0, 2, 0);
+        gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.insets = new Insets(2, 0, 2, 0);
         add(rgbColor, gridBagConstraints);
 
         jLabel2.setText("RGB");
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
-        gridBagConstraints.insets = new java.awt.Insets(0, 4, 0, 4);
+        gridBagConstraints.anchor = GridBagConstraints.EAST;
+        gridBagConstraints.insets = new Insets(0, 4, 0, 4);
         add(jLabel2, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton activeColor;
-    private javax.swing.JButton eyeDropper;
-    private javax.swing.JTextField hexColor;
+    private JButton activeColor;
+    private JButton eyeDropper;
+    private JTextField hexColor;
     private JLabel jLabel1;
     private JPanel magPanel;
-    private javax.swing.JTextField rgbColor;
+    private JTextField rgbColor;
     // End of variables declaration//GEN-END:variables
 
     /**

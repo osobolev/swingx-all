@@ -40,11 +40,13 @@ import java.awt.Color;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.lang.reflect.Array;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.Date;
 import java.util.EventListener;
 import java.util.Hashtable;
+import java.util.List;
 import java.util.Locale;
 import java.util.SortedSet;
 import java.util.TimeZone;
@@ -1770,11 +1772,11 @@ public class JXMonthView extends JComponent {
     @Override
     @SuppressWarnings("unchecked")
     public <T extends EventListener> T[] getListeners(Class<T> listenerType) {
-        java.util.List<T> listeners = listenerMap.getListeners(listenerType);
+        List<T> listeners = listenerMap.getListeners(listenerType);
         T[] result;
         if (!listeners.isEmpty()) {
             //noinspection unchecked
-            result = (T[]) java.lang.reflect.Array.newInstance(listenerType, listeners.size());
+            result = (T[]) Array.newInstance(listenerType, listeners.size());
             result = listeners.toArray(result);
         } else {
             result = super.getListeners(listenerType);

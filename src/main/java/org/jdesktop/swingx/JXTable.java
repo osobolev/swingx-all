@@ -90,6 +90,7 @@ import java.awt.event.ActionEvent;
 import java.awt.print.PrinterException;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.lang.reflect.Constructor;
 import java.net.URI;
 import java.util.Arrays;
 import java.util.Collections;
@@ -3650,7 +3651,7 @@ public class JXTable extends JTable implements TableColumnModelExtListener {
 
         Class<?>[] argTypes = new Class<?>[] {String.class};
 
-        java.lang.reflect.Constructor<?> constructor;
+        Constructor<?> constructor;
 
         Object value;
 

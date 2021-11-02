@@ -55,6 +55,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyVetoException;
+import java.lang.reflect.Array;
 import java.text.DateFormat;
 import java.text.Format;
 import java.text.MessageFormat;
@@ -63,6 +64,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.EventListener;
+import java.util.List;
 import java.util.Locale;
 import java.util.TimeZone;
 import java.util.logging.Logger;
@@ -866,11 +868,11 @@ public class JXDatePicker extends JComponent {
     @Override
     @SuppressWarnings("unchecked")
     public <T extends EventListener> T[] getListeners(Class<T> listenerType) {
-        java.util.List<T> listeners = listenerMap.getListeners(listenerType);
+        List<T> listeners = listenerMap.getListeners(listenerType);
         T[] result;
         if (!listeners.isEmpty()) {
             //noinspection unchecked
-            result = (T[]) java.lang.reflect.Array.newInstance(listenerType, listeners.size());
+            result = (T[]) Array.newInstance(listenerType, listeners.size());
             result = listeners.toArray(result);
         } else {
             result = super.getListeners(listenerType);

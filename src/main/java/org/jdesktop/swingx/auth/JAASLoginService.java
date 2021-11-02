@@ -27,10 +27,8 @@ import javax.security.auth.callback.Callback;
 import javax.security.auth.callback.CallbackHandler;
 import javax.security.auth.callback.NameCallback;
 import javax.security.auth.callback.PasswordCallback;
-import javax.security.auth.login.AccountExpiredException;
-import javax.security.auth.login.CredentialExpiredException;
-import javax.security.auth.login.FailedLoginException;
 import javax.security.auth.login.LoginContext;
+import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -121,7 +119,7 @@ public class JAASLoginService extends LoginService {
             this.password = passwd;
         }
 
-        public void handle(Callback[] callbacks) throws java.io.IOException {
+        public void handle(Callback[] callbacks) throws IOException {
             for (Callback callback : callbacks) {
                 if (callback instanceof NameCallback) {
                     NameCallback cb = (NameCallback) callback;

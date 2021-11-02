@@ -23,6 +23,7 @@ package org.jdesktop.swingx.auth;
 import org.jdesktop.beans.JavaBean;
 
 import javax.naming.InitialContext;
+import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.util.Properties;
@@ -163,7 +164,7 @@ public class JDBCLoginService extends LoginService {
      */
     private void connectByJNDI(String userName, char[] password) throws Exception {
         InitialContext ctx = new InitialContext();
-        javax.sql.DataSource ds = (javax.sql.DataSource) ctx.lookup(jndiContext);
+        DataSource ds = (DataSource) ctx.lookup(jndiContext);
         conn = ds.getConnection(userName, new String(password));
         conn.setTransactionIsolation(Connection.TRANSACTION_REPEATABLE_READ);
     }

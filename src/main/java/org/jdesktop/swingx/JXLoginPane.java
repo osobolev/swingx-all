@@ -67,6 +67,7 @@ import java.awt.event.ItemEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
@@ -453,7 +454,7 @@ public class JXLoginPane extends JXPanel {
      * Sets the look and feel (L&F) object that renders this component.
      *
      * @param ui the LoginPaneUI L&F object
-     * @see javax.swing.UIDefaults#getUI
+     * @see UIDefaults#getUI
      */
     public void setUI(LoginPaneUI ui) {
         // initialized here due to implicit updateUI call from JPanel
@@ -484,7 +485,7 @@ public class JXLoginPane extends JXPanel {
      *
      * @return the string {@link #uiClassID}
      * @see JComponent#getUIClassID
-     * @see javax.swing.UIDefaults#getUI
+     * @see UIDefaults#getUI
      */
     @Override
     public String getUIClassID() {
@@ -1715,7 +1716,7 @@ public class JXLoginPane extends JXPanel {
         w.add(controls, BorderLayout.SOUTH);
         w.addWindowListener(new WindowAdapter() {
             @Override
-            public void windowClosing(java.awt.event.WindowEvent e) {
+            public void windowClosing(WindowEvent e) {
                 panel.cancelLogin();
             }
         });

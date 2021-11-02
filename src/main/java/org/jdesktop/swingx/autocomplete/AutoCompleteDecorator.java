@@ -39,6 +39,8 @@ import javax.swing.text.TextAction;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusListener;
+import java.awt.event.InputEvent;
+import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.beans.PropertyChangeListener;
 import java.util.List;
@@ -92,14 +94,14 @@ public class AutoCompleteDecorator {
         InputMap map = new AutoComplete.InputMap();
 
         if (strict) {
-            map.put(KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_BACK_SPACE, 0), DefaultEditorKit.selectionBackwardAction);
+            map.put(KeyStroke.getKeyStroke(KeyEvent.VK_BACK_SPACE, 0), DefaultEditorKit.selectionBackwardAction);
             // ignore VK_DELETE and CTRL+VK_X and beep instead when strict matching
-            map.put(KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_DELETE, 0), errorFeedbackAction);
-            map.put(KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_X, java.awt.event.InputEvent.CTRL_DOWN_MASK), errorFeedbackAction);
+            map.put(KeyStroke.getKeyStroke(KeyEvent.VK_DELETE, 0), errorFeedbackAction);
+            map.put(KeyStroke.getKeyStroke(KeyEvent.VK_X, InputEvent.CTRL_DOWN_MASK), errorFeedbackAction);
         } else {
             // VK_BACKSPACE will move the selection to the left if the selected item is in the list
             // it will delete the previous character otherwise
-            map.put(KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_BACK_SPACE, 0), "nonstrict-backspace");
+            map.put(KeyStroke.getKeyStroke(KeyEvent.VK_BACK_SPACE, 0), "nonstrict-backspace");
             // leave VK_DELETE and CTRL+VK_X as is
         }
 

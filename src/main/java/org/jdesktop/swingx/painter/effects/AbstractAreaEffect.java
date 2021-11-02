@@ -33,6 +33,8 @@ import java.awt.Shape;
 import java.awt.geom.Area;
 import java.awt.geom.Point2D;
 import java.awt.image.BufferedImage;
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 
 import static org.jdesktop.swingx.util.GraphicsUtilities.createCompatibleTranslucentImage;
 
@@ -233,14 +235,14 @@ public class AbstractAreaEffect implements AreaEffect {
     /**
      * Utility field used by bound properties.
      */
-    private java.beans.PropertyChangeSupport propertyChangeSupport = new java.beans.PropertyChangeSupport(this);
+    private PropertyChangeSupport propertyChangeSupport = new PropertyChangeSupport(this);
 
     /**
      * Adds a PropertyChangeListener to the listener list.
      *
      * @param l The listener to add.
      */
-    public void addPropertyChangeListener(java.beans.PropertyChangeListener l) {
+    public void addPropertyChangeListener(PropertyChangeListener l) {
         propertyChangeSupport.addPropertyChangeListener(l);
     }
 
@@ -249,7 +251,7 @@ public class AbstractAreaEffect implements AreaEffect {
      *
      * @param l The listener to remove.
      */
-    public void removePropertyChangeListener(java.beans.PropertyChangeListener l) {
+    public void removePropertyChangeListener(PropertyChangeListener l) {
         propertyChangeSupport.removePropertyChangeListener(l);
     }
 

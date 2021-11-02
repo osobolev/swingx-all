@@ -21,6 +21,7 @@
 package org.jdesktop.swingx.autocomplete;
 
 import javax.swing.JList;
+import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.text.JTextComponent;
 
@@ -81,7 +82,7 @@ public class ListAdaptor extends AbstractAutoCompleteAdaptor implements ListSele
      */
     // ListSelectionListener (listening to list)
     @Override
-    public void valueChanged(javax.swing.event.ListSelectionEvent listSelectionEvent) {
+    public void valueChanged(ListSelectionEvent listSelectionEvent) {
         // set the text to the currently selected item
         getTextComponent().setText(stringConverter.getPreferredStringForItem(list.getSelectedValue()));
         // mark the entire text
