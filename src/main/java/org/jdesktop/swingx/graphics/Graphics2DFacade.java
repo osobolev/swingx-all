@@ -439,18 +439,8 @@ public abstract class Graphics2DFacade extends Graphics2D {
     }
 
     @Override
-    public void finalize() {
-        delegate.finalize();
-    }
-
-    @Override
     public String toString() {
         return delegate.toString();
-    }
-
-    @Override
-    public Rectangle getClipRect() {
-        return delegate.getClipRect();
     }
 
     @Override
