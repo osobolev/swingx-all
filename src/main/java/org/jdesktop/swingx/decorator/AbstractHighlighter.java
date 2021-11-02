@@ -110,7 +110,7 @@ public abstract class AbstractHighlighter implements Highlighter {
      *
      * @see #setHighlightPredicate(HighlightPredicate)
      */
-    public AbstractHighlighter() {
+    protected AbstractHighlighter() {
         this(null);
     }
 
@@ -121,7 +121,7 @@ public abstract class AbstractHighlighter implements Highlighter {
      * @param predicate the HighlightPredicate to use.
      * @see #setHighlightPredicate(HighlightPredicate)
      */
-    public AbstractHighlighter(HighlightPredicate predicate) {
+    protected AbstractHighlighter(HighlightPredicate predicate) {
         setHighlightPredicate(predicate);
     }
 

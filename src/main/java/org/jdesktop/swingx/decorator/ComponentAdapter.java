@@ -116,7 +116,7 @@ public abstract class ComponentAdapter {
      *
      * @param component target component for this adapter
      */
-    public ComponentAdapter(JComponent component) {
+    protected ComponentAdapter(JComponent component) {
         target = component;
     }
 

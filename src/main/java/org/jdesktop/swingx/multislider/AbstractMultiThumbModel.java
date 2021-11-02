@@ -32,7 +32,7 @@ public abstract class AbstractMultiThumbModel<E> implements MultiThumbModel<E> {
     /**
      * Creates a new instance of AbstractMultiThumbModel
      */
-    public AbstractMultiThumbModel() {
+    protected AbstractMultiThumbModel() {
     }
 
     protected float maximumValue = 1.0f;

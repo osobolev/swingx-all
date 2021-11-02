@@ -65,7 +65,7 @@ public abstract class DefaultSortController<M> extends DefaultRowSorter<M, Integ
 
     protected int cachedModelRowCount;
 
-    public DefaultSortController() {
+    protected DefaultSortController() {
         setSortable(true);
         setSortOrderCycle(DEFAULT_CYCLE);
         setSortsOnUpdates(true);

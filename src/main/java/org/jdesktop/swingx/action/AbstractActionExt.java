@@ -60,14 +60,14 @@ public abstract class AbstractActionExt extends AbstractAction
     /**
      * Default constructor, does nothing.
      */
-    public AbstractActionExt() {
+    protected AbstractActionExt() {
         this((String) null);
     }
 
     /**
      * Copy constructor copies the state.
      */
-    public AbstractActionExt(AbstractActionExt action) {
+    protected AbstractActionExt(AbstractActionExt action) {
         Object[] keys = action.getKeys();
         for (Object key : keys) {
             putValue((String) key, action.getValue((String) key));
@@ -81,11 +81,11 @@ public abstract class AbstractActionExt extends AbstractAction
         }
     }
 
-    public AbstractActionExt(String name) {
+    protected AbstractActionExt(String name) {
         super(name);
     }
 
-    public AbstractActionExt(String name, Icon icon) {
+    protected AbstractActionExt(String name, Icon icon) {
         super(name, icon);
     }
 
@@ -95,7 +95,7 @@ public abstract class AbstractActionExt extends AbstractAction
      * @param name    name of the action usually used as a label
      * @param command command key of the action
      */
-    public AbstractActionExt(String name, String command) {
+    protected AbstractActionExt(String name, String command) {
         this(name);
         setActionCommand(command);
     }
@@ -105,7 +105,7 @@ public abstract class AbstractActionExt extends AbstractAction
      * @param command the value of the action command key
      * @param icon    icon to display
      */
-    public AbstractActionExt(String name, String command, Icon icon) {
+    protected AbstractActionExt(String name, String command, Icon icon) {
         super(name, icon);
         setActionCommand(command);
     }

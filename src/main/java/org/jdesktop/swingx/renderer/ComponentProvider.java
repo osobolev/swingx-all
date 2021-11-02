@@ -150,7 +150,7 @@ public abstract class ComponentProvider<T extends JComponent>
      * Instantiates a component provider with LEADING
      * horizontal alignment and default to-String converter. <p>
      */
-    public ComponentProvider() {
+    protected ComponentProvider() {
         this(null, JLabel.LEADING);
     }
 
@@ -161,7 +161,7 @@ public abstract class ComponentProvider<T extends JComponent>
      * @param converter the converter to use for mapping the cell value to a
      *                  String representation.
      */
-    public ComponentProvider(StringValue converter) {
+    protected ComponentProvider(StringValue converter) {
         this(converter, JLabel.LEADING);
     }
 
@@ -174,7 +174,7 @@ public abstract class ComponentProvider<T extends JComponent>
      *                  String representation.
      * @param alignment the horizontal alignment.
      */
-    public ComponentProvider(StringValue converter, int alignment) {
+    protected ComponentProvider(StringValue converter, int alignment) {
         setHorizontalAlignment(alignment);
         setStringValue(converter);
         rendererComponent = createRendererComponent();

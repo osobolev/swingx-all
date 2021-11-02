@@ -66,7 +66,7 @@ public abstract class AbstractTreeTableModel implements TreeTableModel {
      * Constructs an {@code AbstractTreeTableModel} with a {@code null} root
      * node.
      */
-    public AbstractTreeTableModel() {
+    protected AbstractTreeTableModel() {
         this(null);
     }
 
@@ -76,7 +76,7 @@ public abstract class AbstractTreeTableModel implements TreeTableModel {
      *
      * @param root root node
      */
-    public AbstractTreeTableModel(Object root) {
+    protected AbstractTreeTableModel(Object root) {
         this.root = root;
         this.modelSupport = new TreeModelSupport(this);
     }

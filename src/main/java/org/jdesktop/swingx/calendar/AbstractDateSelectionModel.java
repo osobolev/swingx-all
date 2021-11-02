@@ -59,7 +59,7 @@ public abstract class AbstractDateSelectionModel implements DateSelectionModel {
     /**
      * Instantiates a DateSelectionModel with default locale.
      */
-    public AbstractDateSelectionModel() {
+    protected AbstractDateSelectionModel() {
         this(null);
     }
 
@@ -73,7 +73,7 @@ public abstract class AbstractDateSelectionModel implements DateSelectionModel {
      * @param locale the Locale to use with this model, defaults to Locale.default()
      *               if null.
      */
-    public AbstractDateSelectionModel(Locale locale) {
+    protected AbstractDateSelectionModel(Locale locale) {
         this.listenerMap = new EventListenerMap();
         setLocale(locale);
     }

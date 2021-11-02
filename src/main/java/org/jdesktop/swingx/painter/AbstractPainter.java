@@ -106,7 +106,7 @@ public abstract class AbstractPainter<T> extends AbstractBean implements Painter
     /**
      * Creates a new instance of AbstractPainter.
      */
-    public AbstractPainter() {
+    protected AbstractPainter() {
     }
 
     /**
@@ -114,7 +114,7 @@ public abstract class AbstractPainter<T> extends AbstractBean implements Painter
      *
      * @param cacheable indicates if this painter should be cacheable
      */
-    public AbstractPainter(boolean cacheable) {
+    protected AbstractPainter(boolean cacheable) {
         setCacheable(cacheable);
     }
 

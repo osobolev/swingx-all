@@ -85,7 +85,7 @@ public abstract class AbstractLayoutPainter<T> extends AbstractPainter<T> {
     /**
      * Creates a new instance of AbstractLayoutPainter
      */
-    public AbstractLayoutPainter() {
+    protected AbstractLayoutPainter() {
     }
 
     /**

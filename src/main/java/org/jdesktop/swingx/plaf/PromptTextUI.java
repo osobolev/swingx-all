@@ -149,7 +149,7 @@ public abstract class PromptTextUI extends TextUI {
      *
      * @param delegate
      */
-    public PromptTextUI(TextUI delegate) {
+    protected PromptTextUI(TextUI delegate) {
         this.delegate = delegate;
     }
 

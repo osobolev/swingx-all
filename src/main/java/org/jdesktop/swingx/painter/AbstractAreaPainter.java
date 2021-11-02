@@ -98,7 +98,7 @@ public abstract class AbstractAreaPainter<T> extends AbstractLayoutPainter<T> {
     /**
      * Creates a new instance of AbstractAreaPainter
      */
-    public AbstractAreaPainter() {
+    protected AbstractAreaPainter() {
         fillPaint = Color.RED;
     }
 
@@ -107,7 +107,7 @@ public abstract class AbstractAreaPainter<T> extends AbstractLayoutPainter<T> {
      *
      * @param paint the default paint to fill this area painter with
      */
-    public AbstractAreaPainter(Paint paint) {
+    protected AbstractAreaPainter(Paint paint) {
         this.fillPaint = paint;
     }
 

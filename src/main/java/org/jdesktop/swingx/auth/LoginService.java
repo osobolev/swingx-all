@@ -59,10 +59,10 @@ public abstract class LoginService extends AbstractBean {
 
     private String server;
 
-    public LoginService() {
+    protected LoginService() {
     }
 
-    public LoginService(String server) {
+    protected LoginService(String server) {
         setServer(server);
     }
 

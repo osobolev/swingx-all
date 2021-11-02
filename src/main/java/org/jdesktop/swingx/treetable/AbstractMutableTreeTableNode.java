@@ -53,16 +53,16 @@ public abstract class AbstractMutableTreeTableNode implements
 
     protected boolean allowsChildren;
 
-    public AbstractMutableTreeTableNode() {
+    protected AbstractMutableTreeTableNode() {
         this(null);
     }
 
-    public AbstractMutableTreeTableNode(Object userObject) {
+    protected AbstractMutableTreeTableNode(Object userObject) {
         this(userObject, true);
     }
 
-    public AbstractMutableTreeTableNode(Object userObject,
-                                        boolean allowsChildren) {
+    protected AbstractMutableTreeTableNode(Object userObject,
+                                           boolean allowsChildren) {
         this.userObject = userObject;
         this.allowsChildren = allowsChildren;
         children = createChildrenList();

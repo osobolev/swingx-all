@@ -59,7 +59,7 @@ public abstract class UIAction implements Action {
 
     private String name;
 
-    public UIAction(String name) {
+    protected UIAction(String name) {
         this.name = name;
     }
 

@@ -44,7 +44,7 @@ public abstract class AbstractRenderer
 
     protected ComponentProvider<?> componentController;
 
-    public AbstractRenderer(ComponentProvider<?> provider) {
+    protected AbstractRenderer(ComponentProvider<?> provider) {
         if (provider == null) {
             provider = createDefaultComponentProvider();
         }

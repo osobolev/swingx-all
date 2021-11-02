@@ -44,7 +44,7 @@ public abstract class AbstractHyperlinkAction<T> extends AbstractActionExt {
     /**
      * Instantiates a LinkAction with null target.
      */
-    public AbstractHyperlinkAction() {
+    protected AbstractHyperlinkAction() {
         this(null);
     }
 
@@ -55,7 +55,7 @@ public abstract class AbstractHyperlinkAction<T> extends AbstractActionExt {
      *
      * @param target the target this action should act on.
      */
-    public AbstractHyperlinkAction(T target) {
+    protected AbstractHyperlinkAction(T target) {
         setTarget(target);
     }
 
