@@ -61,7 +61,6 @@ public class BasicCalendarHeaderHandler extends CalendarHeaderHandler {
 
     @Override
     protected void installNavigationActions() {
-        // TODO Auto-generated method stub
         super.installNavigationActions();
         ZoomOutAction zoomOutAction = new ZoomOutAction();
         zoomOutAction.setTarget(monthView);
@@ -76,7 +75,6 @@ public class BasicCalendarHeaderHandler extends CalendarHeaderHandler {
 
     @Override
     public BasicCalendarHeader getHeaderComponent() {
-        // TODO Auto-generated method stub
         return (BasicCalendarHeader) super.getHeaderComponent();
     }
 
@@ -110,8 +108,6 @@ public class BasicCalendarHeaderHandler extends CalendarHeaderHandler {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            // TODO Auto-generated method stub
-
         }
 
         /**
