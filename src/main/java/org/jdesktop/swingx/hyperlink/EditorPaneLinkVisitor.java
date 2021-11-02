@@ -64,7 +64,7 @@ public class EditorPaneLinkVisitor implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() instanceof LinkModel) {
-            final LinkModel link = (LinkModel) e.getSource();
+            LinkModel link = (LinkModel) e.getSource();
             SwingUtilities.invokeLater(new Runnable() {
                 @Override
                 public void run() {
@@ -88,7 +88,7 @@ public class EditorPaneLinkVisitor implements ActionListener {
     }
 
     protected JXEditorPane createDefaultEditorPane() {
-        final JXEditorPane editorPane = new JXEditorPane();
+        JXEditorPane editorPane = new JXEditorPane();
         editorPane.setEditable(false);
         editorPane.setContentType("text/html");
         return editorPane;

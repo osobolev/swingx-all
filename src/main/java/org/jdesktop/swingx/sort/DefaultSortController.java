@@ -56,7 +56,7 @@ public abstract class DefaultSortController<M> extends DefaultRowSorter<M, Integ
     public static final Comparator COMPARABLE_COMPARATOR =
         new ComparableComparator();
 
-    private final static SortOrder[] DEFAULT_CYCLE = new SortOrder[] {SortOrder.ASCENDING, SortOrder.DESCENDING};
+    private static final SortOrder[] DEFAULT_CYCLE = new SortOrder[] {SortOrder.ASCENDING, SortOrder.DESCENDING};
 
     private List<SortOrder> sortCycle;
 
@@ -67,7 +67,6 @@ public abstract class DefaultSortController<M> extends DefaultRowSorter<M, Integ
     protected int cachedModelRowCount;
 
     public DefaultSortController() {
-        super();
         setSortable(true);
         setSortOrderCycle(DEFAULT_CYCLE);
         setSortsOnUpdates(true);

@@ -175,7 +175,7 @@ public class JXList extends JList {
     /**
      * UI Class ID
      */
-    public final static String uiClassID = "XListUI";
+    public static final String uiClassID = "XListUI";
 
     /**
      * Registers a Addon for JXList.

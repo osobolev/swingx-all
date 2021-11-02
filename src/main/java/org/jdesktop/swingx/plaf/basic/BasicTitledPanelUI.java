@@ -173,7 +173,7 @@ public class BasicTitledPanelUI extends TitledPanelUI {
         return topPanel;
     }
 
-    protected JLabel createAndConfigureCaption(final JXTitledPanel titledPanel) {
+    protected JLabel createAndConfigureCaption(JXTitledPanel titledPanel) {
         JLabel caption = new JLabel(titledPanel.getTitle()) {
             //#501
             @Override
@@ -231,7 +231,7 @@ public class BasicTitledPanelUI extends TitledPanelUI {
         right = null;
     }
 
-    protected void installListeners(final JXTitledPanel titledPanel) {
+    protected void installListeners(JXTitledPanel titledPanel) {
         titleChangeListener = new PropertyChangeListener() {
             @Override
             public void propertyChange(PropertyChangeEvent evt) {

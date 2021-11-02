@@ -31,7 +31,7 @@ import java.util.SortedSet;
  */
 public class DateSelectionEvent extends EventObject {
 
-    public static enum EventType {
+    public enum EventType {
         DATES_ADDED,
         DATES_REMOVED,
         DATES_SET,

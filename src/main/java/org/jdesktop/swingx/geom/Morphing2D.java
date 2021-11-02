@@ -59,9 +59,9 @@ public class Morphing2D implements Shape {
             throw new IllegalPathStateException("shapes must use same " +
                                                 "winding rule");
         }
-        double tvals0[] = startGeometry.getTvals();
-        double tvals1[] = endGeometry.getTvals();
-        double masterTvals[] = mergeTvals(tvals0, tvals1);
+        double[] tvals0 = startGeometry.getTvals();
+        double[] tvals1 = endGeometry.getTvals();
+        double[] masterTvals = mergeTvals(tvals0, tvals1);
         startGeometry.setTvals(masterTvals);
         endGeometry.setTvals(masterTvals);
     }
@@ -103,7 +103,7 @@ public class Morphing2D implements Shape {
         return (v0 + ((v1 - v0) * t));
     }
 
-    private static double[] mergeTvals(double tvals0[], double tvals1[]) {
+    private static double[] mergeTvals(double[] tvals0, double[] tvals1) {
         int i0 = 0;
         int i1 = 0;
         int numtvals = 0;
@@ -118,7 +118,7 @@ public class Morphing2D implements Shape {
             }
             numtvals++;
         }
-        double newtvals[] = new double[numtvals];
+        double[] newtvals = new double[numtvals];
         i0 = 0;
         i1 = 0;
         numtvals = 0;
@@ -246,10 +246,10 @@ public class Morphing2D implements Shape {
 
         static final double THIRD = (1.0 / 3.0);
         static final double MIN_LEN = 0.001;
-        double bezierCoords[];
+        double[] bezierCoords;
         int numCoords;
         int windingrule;
-        double myTvals[];
+        double[] myTvals;
 
         public Geometry(Shape s) {
             // Multiple of 6 plus 2 more for initial moveto
@@ -261,7 +261,7 @@ public class Morphing2D implements Shape {
                 // It will have 8 coordinates (2 for moveto, 6 for cubic)
                 numCoords = 8;
             }
-            double coords[] = new double[6];
+            double[] coords = new double[6];
             int type = pi.currentSegment(coords);
             pi.next();
             if (type != PathIterator.SEG_MOVETO) {
@@ -275,7 +275,7 @@ public class Morphing2D implements Shape {
                 if (numCoords + 6 > bezierCoords.length) {
                     // Keep array size to a multiple of 6 plus 2
                     int newsize = (numCoords - 2) * 2 + 2;
-                    double newCoords[] = new double[newsize];
+                    double[] newCoords = new double[newsize];
                     System.arraycopy(bezierCoords, 0, newCoords, 0, numCoords);
                     bezierCoords = newCoords;
                 }
@@ -361,7 +361,7 @@ public class Morphing2D implements Shape {
             // rotate the points so that it is...
             if (minPt > 0) {
                 // Keep in mind that first 2 coords == last 2 coords
-                double newCoords[] = new double[numCoords];
+                double[] newCoords = new double[numCoords];
                 // Copy all coordinates from minPt to the end of the
                 // array to the beginning of the new array
                 System.arraycopy(bezierCoords, minPt,
@@ -468,7 +468,7 @@ public class Morphing2D implements Shape {
 
             // assert(numCoords >= 8);
             // assert(((numCoords - 2) % 6) == 0);
-            double tvals[] = new double[(numCoords - 2) / 6 + 1];
+            double[] tvals = new double[(numCoords - 2) / 6 + 1];
 
             // First calculate total "length" of path
             // Length of each segment is averaged between
@@ -542,10 +542,10 @@ public class Morphing2D implements Shape {
             return (myTvals = tvals);
         }
 
-        public void setTvals(double newTvals[]) {
-            double oldCoords[] = bezierCoords;
-            double newCoords[] = new double[2 + (newTvals.length - 1) * 6];
-            double oldTvals[] = getTvals();
+        public void setTvals(double[] newTvals) {
+            double[] oldCoords = bezierCoords;
+            double[] newCoords = new double[2 + (newTvals.length - 1) * 6];
+            double[] oldTvals = getTvals();
             int oldci = 0;
             double x0, xc0, xc1, x1;
             double y0, yc0, yc1, y1;
@@ -648,7 +648,7 @@ public class Morphing2D implements Shape {
             }
         }
 
-        double dcoords[];
+        double[] dcoords;
 
         /**
          * {@inheritDoc}

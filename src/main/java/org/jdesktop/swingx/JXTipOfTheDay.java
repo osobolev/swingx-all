@@ -118,7 +118,7 @@ public class JXTipOfTheDay extends JXPanel {
     /**
      * JXTipOfTheDay pluggable UI key <i>swingx/TipOfTheDayUI</i>
      */
-    public final static String uiClassID = "swingx/TipOfTheDayUI";
+    public static final String uiClassID = "swingx/TipOfTheDayUI";
 
     // ensure at least the default ui is registered
     static {
@@ -315,7 +315,7 @@ public class JXTipOfTheDay extends JXPanel {
      * @see java.awt.GraphicsEnvironment#isHeadless
      */
     public boolean showDialog(Component parentComponent,
-                              final Preferences showOnStartupPref, boolean force) throws HeadlessException {
+                              Preferences showOnStartupPref, boolean force) throws HeadlessException {
         if (showOnStartupPref == null) {
             throw new IllegalArgumentException(
                 "Preferences can not be null");

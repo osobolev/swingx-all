@@ -114,7 +114,7 @@ class BasicCalendarRenderingHandler implements CalendarRenderingHandler {
         if (locale == null) {
             locale = Locale.getDefault();
         }
-        final String[] monthNames = DateFormatSymbols.getInstance(locale).getMonths();
+        String[] monthNames = DateFormatSymbols.getInstance(locale).getMonths();
         StringValue tsv = new StringValue() {
 
             @Override

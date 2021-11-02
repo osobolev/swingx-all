@@ -62,7 +62,7 @@ public interface IconValue extends Serializable {
     /**
      * A marker icon used to indicate a null.
      */
-    public final static Icon NULL_ICON = new EmptyIcon();
+    public static final Icon NULL_ICON = new EmptyIcon();
 
     /**
      * Returns a icon representation of the given value.

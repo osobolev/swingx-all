@@ -50,7 +50,6 @@ public class BasicTaskPaneContainerUI extends TaskPaneContainerUI {
          * The default layout.
          */
         public VerticalLayoutUIResource() {
-            super();
         }
 
         /**

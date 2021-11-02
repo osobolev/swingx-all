@@ -136,7 +136,7 @@ public class TableRowHeightController {
             /**
              * @param evt
              */
-            private void invokedPropertyChanged(final PropertyChangeEvent evt) {
+            private void invokedPropertyChanged(PropertyChangeEvent evt) {
                 SwingUtilities.invokeLater(new Runnable() {
                     @Override
                     public void run() {
@@ -153,7 +153,7 @@ public class TableRowHeightController {
     protected TableModelListener createTableModelListener() {
         TableModelListener l = new TableModelListener() {
             @Override
-            public void tableChanged(final TableModelEvent e) {
+            public void tableChanged(TableModelEvent e) {
                 SwingUtilities.invokeLater(new Runnable() {
                     @Override
                     public void run() {

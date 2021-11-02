@@ -261,7 +261,7 @@ public class JXMonthView extends JComponent {
      *
      * @param locale desired locale, if null the system default locale is used
      */
-    public JXMonthView(final Locale locale) {
+    public JXMonthView(Locale locale) {
         this(null, null, locale);
     }
 
@@ -287,7 +287,7 @@ public class JXMonthView extends JComponent {
      * @param model             the selection model to use, if null a <code>DefaultSelectionModel</code> is
      *                          created.
      */
-    public JXMonthView(Date firstDisplayedDay, final DateSelectionModel model) {
+    public JXMonthView(Date firstDisplayedDay, DateSelectionModel model) {
         this(firstDisplayedDay, model, null);
     }
 
@@ -302,8 +302,7 @@ public class JXMonthView extends JComponent {
      *                          created.
      * @param locale            desired locale, if null the system default locale is used
      */
-    public JXMonthView(Date firstDisplayedDay, final DateSelectionModel model, final Locale locale) {
-        super();
+    public JXMonthView(Date firstDisplayedDay, DateSelectionModel model, Locale locale) {
         listenerMap = new EventListenerMap();
 
         initModel(model, locale);
@@ -851,7 +850,7 @@ public class JXMonthView extends JComponent {
      * @param startDate Start of date range to set the selection to
      * @param endDate   End of date range to set the selection to
      */
-    public void setSelectionInterval(final Date startDate, final Date endDate) {
+    public void setSelectionInterval(Date startDate, Date endDate) {
         getSelectionModel().setSelectionInterval(startDate, endDate);
     }
 
@@ -861,7 +860,7 @@ public class JXMonthView extends JComponent {
      * @param startDate Start of the date range to remove from the selection
      * @param endDate   End of the date range to remove from the selection
      */
-    public void removeSelectionInterval(final Date startDate, final Date endDate) {
+    public void removeSelectionInterval(Date startDate, Date endDate) {
         getSelectionModel().removeSelectionInterval(startDate, endDate);
     }
 
@@ -879,7 +878,7 @@ public class JXMonthView extends JComponent {
      *
      * @param selectionMode The selection mode to use for this {@code JXMonthView}
      */
-    public void setSelectionMode(final SelectionMode selectionMode) {
+    public void setSelectionMode(SelectionMode selectionMode) {
         getSelectionModel().setSelectionMode(selectionMode);
     }
 

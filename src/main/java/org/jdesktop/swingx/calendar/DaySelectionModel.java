@@ -70,7 +70,7 @@ public class DaySelectionModel extends AbstractDateSelectionModel {
      *
      */
     @Override
-    public void setSelectionMode(final SelectionMode selectionMode) {
+    public void setSelectionMode(SelectionMode selectionMode) {
         this.selectionMode = selectionMode;
         clearSelection();
     }
@@ -262,7 +262,7 @@ public class DaySelectionModel extends AbstractDateSelectionModel {
                unselectableDates != null && unselectableDates.contains(date);
     }
 
-    private boolean addSelectionImpl(final Date startDate, final Date endDate) {
+    private boolean addSelectionImpl(Date startDate, Date endDate) {
         boolean hasAdded = false;
         calendar.setTime(startDate);
         Date date = calendar.getTime();

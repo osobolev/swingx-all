@@ -92,7 +92,7 @@ public class JXLabel extends JLabel implements BackgroundPaintable {
 
         private int value;
 
-        private TextAlignment(int val) {
+        TextAlignment(int val) {
             value = val;
         }
 
@@ -146,7 +146,6 @@ public class JXLabel extends JLabel implements BackgroundPaintable {
      * Create a new JXLabel. This has the same semantics as creating a new JLabel.
      */
     public JXLabel() {
-        super();
         initPainterSupport();
         initLineWrapSupport();
     }

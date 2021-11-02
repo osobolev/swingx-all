@@ -12,7 +12,6 @@ import java.awt.Rectangle;
 public class JRendererPanel extends JPanel {
 
     public JRendererPanel() {
-        super();
     }
 
     /**

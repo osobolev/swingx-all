@@ -91,7 +91,7 @@ public abstract class AbstractDateSelectionModel implements DateSelectionModel {
      * {@inheritDoc}
      */
     @Override
-    public void setFirstDayOfWeek(final int firstDayOfWeek) {
+    public void setFirstDayOfWeek(int firstDayOfWeek) {
         if (firstDayOfWeek == getFirstDayOfWeek()) return;
         calendar.setFirstDayOfWeek(firstDayOfWeek);
         fireValueChanged(EventType.CALENDAR_CHANGED);

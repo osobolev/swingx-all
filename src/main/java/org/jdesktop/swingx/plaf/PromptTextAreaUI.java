@@ -15,7 +15,7 @@ public class PromptTextAreaUI extends PromptTextUI {
     /**
      * Shared prompt renderer.
      */
-    private final static JTextArea txt = new JTextArea();
+    private static final JTextArea txt = new JTextArea();
 
     /**
      * Creates a new {@link PromptTextAreaUI}.

@@ -169,7 +169,7 @@ public class JXMultiSplitPane extends JPanel implements BackgroundPaintable {
      * @see #getDividerPainter
      * @see #setDividerPainter
      */
-    public static abstract class DividerPainter extends AbstractPainter<Divider> {
+    public abstract static class DividerPainter extends AbstractPainter<Divider> {
 
     }
 

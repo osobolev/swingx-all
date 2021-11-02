@@ -215,7 +215,7 @@ public class JXCollapsiblePane extends JXPanel {
 
         private final boolean vertical;
 
-        private Direction(boolean vertical) {
+        Direction(boolean vertical) {
             this.vertical = vertical;
         }
 
@@ -285,19 +285,19 @@ public class JXCollapsiblePane extends JXPanel {
      * Accesses the action through
      * <code>collapsiblePane.getActionMap().get(JXCollapsiblePane.TOGGLE_ACTION)</code>.
      */
-    public final static String TOGGLE_ACTION = "toggle";
+    public static final String TOGGLE_ACTION = "toggle";
 
     /**
      * The icon used by the "toggle" action when the JXCollapsiblePane is
      * expanded, i.e the icon which indicates the pane can be collapsed.
      */
-    public final static String COLLAPSE_ICON = "collapseIcon";
+    public static final String COLLAPSE_ICON = "collapseIcon";
 
     /**
      * The icon used by the "toggle" action when the JXCollapsiblePane is
      * collapsed, i.e the icon which indicates the pane can be expanded.
      */
-    public final static String EXPAND_ICON = "expandIcon";
+    public static final String EXPAND_ICON = "expandIcon";
 
     /**
      * Indicates whether the component is collapsed or expanded
@@ -841,8 +841,8 @@ public class JXCollapsiblePane extends JXPanel {
                     }
                 }
 
-                final boolean contracting = startDimension > finalDimension;
-                final int delta = contracting ? -1 * animationParams.delta
+                boolean contracting = startDimension > finalDimension;
+                int delta = contracting ? -1 * animationParams.delta
                     : animationParams.delta;
                 int newDimension;
                 if (direction.isVertical()) {

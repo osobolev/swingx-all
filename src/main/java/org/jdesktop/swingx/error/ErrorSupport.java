@@ -81,8 +81,8 @@ public class ErrorSupport {
      *
      * @param throwable The <CODE>{@link Error}</CODE> or <CODE>{@link Exception}</CODE> which occured.
      */
-    public void fireErrorEvent(final Throwable throwable) {
-        final ErrorEvent evt = new ErrorEvent(throwable, source);
+    public void fireErrorEvent(Throwable throwable) {
+        ErrorEvent evt = new ErrorEvent(throwable, source);
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {

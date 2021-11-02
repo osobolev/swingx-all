@@ -100,7 +100,7 @@ public class TaskPaneContainerAddon extends AbstractComponentAddon {
                 backgroundGradientEnd = new Color(177, 179, 200);
             } else {
                 if (OS.isWindowsVista()) {
-                    final Toolkit toolkit = Toolkit.getDefaultToolkit();
+                    Toolkit toolkit = Toolkit.getDefaultToolkit();
                     background = new ColorUIResource((Color) toolkit.getDesktopProperty("win.3d.backgroundColor"));
                     backgroundGradientStart = (Color) toolkit.getDesktopProperty("win.frame.activeCaptionColor");
                     backgroundGradientEnd = (Color) toolkit.getDesktopProperty("win.frame.inactiveCaptionColor");

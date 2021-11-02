@@ -113,8 +113,8 @@ public abstract class LoginService extends AbstractBean {
      * @param server   server
      * @throws Exception
      */
-    public void startAuthentication(final String user, final char[] password,
-                                    final String server) throws Exception {
+    public void startAuthentication(String user, char[] password,
+                                    String server) throws Exception {
         if (getSynchronous()) {
             try {
                 if (authenticate(user, password, server)) {
@@ -130,7 +130,7 @@ public abstract class LoginService extends AbstractBean {
                 @Override
                 protected Boolean doInBackground() throws Exception {
                     try {
-                        final boolean result = authenticate(user, password,
+                        boolean result = authenticate(user, password,
                             server);
                         if (isCancelled()) {
                             EventQueue.invokeLater(new Runnable() {
@@ -152,7 +152,7 @@ public abstract class LoginService extends AbstractBean {
                             }
                         });
                         return result;
-                    } catch (final Throwable failed) {
+                    } catch (Throwable failed) {
                         if (!isCancelled()) {
                             SwingUtilities.invokeLater(new Runnable() {
                                 public void run() {
@@ -215,7 +215,7 @@ public abstract class LoginService extends AbstractBean {
         listenerList.remove(LoginListener.class, listener);
     }
 
-    void fireLoginStarted(final LoginEvent source) {
+    void fireLoginStarted(LoginEvent source) {
         // Guaranteed to return a non-null array
         Object[] listeners = listenerList.getListenerList();
         // Process the listeners last to first, notifying
@@ -227,7 +227,7 @@ public abstract class LoginService extends AbstractBean {
         }
     }
 
-    void fireLoginSucceeded(final LoginEvent source) {
+    void fireLoginSucceeded(LoginEvent source) {
         // Guaranteed to return a non-null array
         Object[] listeners = listenerList.getListenerList();
         // Process the listeners last to first, notifying
@@ -239,7 +239,7 @@ public abstract class LoginService extends AbstractBean {
         }
     }
 
-    void fireLoginFailed(final LoginEvent source) {
+    void fireLoginFailed(LoginEvent source) {
         // Guaranteed to return a non-null array
         Object[] listeners = listenerList.getListenerList();
         // Process the listeners last to first, notifying
@@ -251,7 +251,7 @@ public abstract class LoginService extends AbstractBean {
         }
     }
 
-    void fireLoginCanceled(final LoginEvent source) {
+    void fireLoginCanceled(LoginEvent source) {
         // Guaranteed to return a non-null array
         Object[] listeners = listenerList.getListenerList();
         // Process the listeners last to first, notifying

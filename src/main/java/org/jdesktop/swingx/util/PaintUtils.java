@@ -162,7 +162,7 @@ public class PaintUtils {
         return p;
     }
 
-    private static Object invokeMethod(final Object p, final String methodName)
+    private static Object invokeMethod(Object p, String methodName)
         throws NoSuchMethodException, InvocationTargetException, IllegalArgumentException, SecurityException, IllegalAccessException {
         Method meth = p.getClass().getMethod(methodName);
         return meth.invoke(p);

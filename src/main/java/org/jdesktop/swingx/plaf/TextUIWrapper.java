@@ -43,7 +43,7 @@ public abstract class TextUIWrapper<UI extends TextUI> {
      * @param stayOnUIChange if <code>true</code>, a {@link PropertyChangeListener} is registered, which
      *                       listens for UI changes and wraps any new UI object.
      */
-    public final void install(final JTextComponent textComponent, boolean stayOnUIChange) {
+    public final void install(JTextComponent textComponent, boolean stayOnUIChange) {
         replaceUIIfNeeded(textComponent);
         if (stayOnUIChange) {
             uiChangeHandler.install(textComponent);
@@ -93,7 +93,7 @@ public abstract class TextUIWrapper<UI extends TextUI> {
      *
      * @param textComponent
      */
-    public final void uninstall(final JTextComponent textComponent) {
+    public final void uninstall(JTextComponent textComponent) {
         uiChangeHandler.uninstall(textComponent);
         textComponent.updateUI();
     }

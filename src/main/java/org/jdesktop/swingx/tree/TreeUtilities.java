@@ -279,7 +279,6 @@ public class TreeUtilities {
         protected Enumeration<M> subtree;
 
         public PostorderNodeEnumeration(M rootNode) {
-            super();
             root = rootNode;
             children = getChildren(rootNode);
             subtree = EMPTY_ENUMERATION;
@@ -393,7 +392,7 @@ public class TreeUtilities {
      * @return an Enumeration across the direct children of parent, the enumeration
      * is empty if the parent is null or contains no children
      */
-    public static Enumeration children(final TreeModel model, final Object parent) {
+    public static Enumeration children(TreeModel model, Object parent) {
         if (parent == null || model.isLeaf(parent)) {
             return EMPTY_ENUMERATION;
         }

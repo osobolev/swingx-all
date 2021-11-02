@@ -110,7 +110,6 @@ public class JDBCLoginService extends LoginService {
      * Default JavaBean constructor
      */
     public JDBCLoginService() {
-        super();
     }
 
     /**

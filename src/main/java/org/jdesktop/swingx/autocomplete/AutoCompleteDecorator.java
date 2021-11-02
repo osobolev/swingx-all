@@ -152,8 +152,8 @@ public class AutoCompleteDecorator {
 
         // configure the text component=editor component
         JTextComponent editorComponent = (JTextComponent) comboBox.getEditor().getEditorComponent();
-        final AbstractAutoCompleteAdaptor adaptor = new ComboBoxAdaptor(comboBox);
-        final AutoCompleteDocument document = createAutoCompleteDocument(adaptor, strictMatching,
+        AbstractAutoCompleteAdaptor adaptor = new ComboBoxAdaptor(comboBox);
+        AutoCompleteDocument document = createAutoCompleteDocument(adaptor, strictMatching,
             stringConverter, editorComponent.getDocument());
         decorate(editorComponent, document, adaptor);
 

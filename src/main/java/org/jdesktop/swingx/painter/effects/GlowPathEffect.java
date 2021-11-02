@@ -36,7 +36,6 @@ public class GlowPathEffect extends AbstractAreaEffect {
      * Creates a new instance of GlowPathEffect
      */
     public GlowPathEffect() {
-        super();
         setBrushColor(Color.WHITE);
         setBrushSteps(10);
         setEffectWidth(10);

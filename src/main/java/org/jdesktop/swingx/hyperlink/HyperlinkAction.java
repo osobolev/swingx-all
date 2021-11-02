@@ -127,7 +127,6 @@ public class HyperlinkAction extends AbstractHyperlinkAction<URI> {
      * @throws IllegalArgumentException      if unsupported action type
      */
     public HyperlinkAction(URI uri, Action desktopAction) {
-        super();
         if (!Desktop.isDesktopSupported()) {
             throw new UnsupportedOperationException("Desktop API is not " +
                                                     "supported on the current platform");

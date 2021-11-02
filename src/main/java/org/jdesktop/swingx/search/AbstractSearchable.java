@@ -169,7 +169,7 @@ public abstract class AbstractSearchable implements Searchable {
      * @return the position of the match in appropriate coordinates or -1 if
      * no match found.
      */
-    protected int doSearch(Pattern pattern, final int startIndex, boolean backwards) {
+    protected int doSearch(Pattern pattern, int startIndex, boolean backwards) {
         if (isTrivialNoMatch(pattern, startIndex)) {
             updateState(null);
             return lastSearchResult.foundRow;
@@ -219,7 +219,7 @@ public abstract class AbstractSearchable implements Searchable {
      *                   from which we will start search or -1 to start from the beginning
      * @return true if we can say ahead that no match will be found with given search criteria
      */
-    protected boolean isTrivialNoMatch(Pattern pattern, final int startIndex) {
+    protected boolean isTrivialNoMatch(Pattern pattern, int startIndex) {
         return (pattern == null) || (startIndex >= getSize());
     }
 
@@ -289,7 +289,7 @@ public abstract class AbstractSearchable implements Searchable {
      *                   stored by the previous search request
      * @return true if the startIndex should be re-matched, false if not.
      */
-    protected boolean isEqualStartIndex(final int startIndex) {
+    protected boolean isEqualStartIndex(int startIndex) {
         return isValidIndex(startIndex) && (startIndex == lastSearchResult.foundRow);
     }
 

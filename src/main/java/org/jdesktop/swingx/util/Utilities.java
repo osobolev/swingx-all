@@ -1003,7 +1003,7 @@ public class Utilities {
     private static String trimString(String s) {
         int idx = 0;
         char c;
-        final int slen = s.length();
+        int slen = s.length();
 
         if (slen == 0) {
             return s;

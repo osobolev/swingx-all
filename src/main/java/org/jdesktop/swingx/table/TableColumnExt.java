@@ -681,7 +681,7 @@ public class TableColumnExt extends TableColumn implements UIDependent {
     protected void firePropertyChange(String propertyName, Object oldValue, Object newValue) {
         if ((oldValue != null && !oldValue.equals(newValue)) ||
             oldValue == null && newValue != null) {
-            PropertyChangeListener pcl[] = getPropertyChangeListeners();
+            PropertyChangeListener[] pcl = getPropertyChangeListeners();
             if (pcl != null && pcl.length != 0) {
                 PropertyChangeEvent pce = new PropertyChangeEvent(this,
                     propertyName,

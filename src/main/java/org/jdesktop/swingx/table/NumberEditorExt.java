@@ -86,7 +86,7 @@ public class NumberEditorExt extends DefaultCellEditor {
 
         super(useStrictFormatter ? createFormattedTextFieldX(format) : createFormattedTextField(format));
         this.useStrictFormatter = useStrictFormatter;
-        final JFormattedTextField textField = getComponent();
+        JFormattedTextField textField = getComponent();
 
         textField.setName("Table.editor");
         textField.setHorizontalAlignment(JTextField.RIGHT);
@@ -168,7 +168,7 @@ public class NumberEditorExt extends DefaultCellEditor {
                                                  int row, int column) {
         ((JComponent) getComponent()).setBorder(new LineBorder(Color.black));
         try {
-            final Class<?> type = table.getColumnClass(column);
+            Class<?> type = table.getColumnClass(column);
             if (hasStrictFormatter()) {
                 // delegate to formatter which decides at parsing time
                 // then either handles or throws
@@ -232,7 +232,7 @@ public class NumberEditorExt extends DefaultCellEditor {
         NumberFormat format) {
         StrictNumberFormatter formatter = new StrictNumberFormatter(
             new NumberFormatExt(format));
-        final JFormattedTextField textField = new JFormattedTextField(
+        JFormattedTextField textField = new JFormattedTextField(
             formatter);
         /*
          * FIXME: I am sure there is a better way to do this, but I don't know
@@ -286,7 +286,7 @@ public class NumberEditorExt extends DefaultCellEditor {
      */
     private static JFormattedTextField createFormattedTextField(
         NumberFormat formatter) {
-        final JFormattedTextField textField = new JFormattedTextField(
+        JFormattedTextField textField = new JFormattedTextField(
             new NumberFormatExt(formatter));
         /*
          * FIXME: I am sure there is a better way to do this, but I don't know

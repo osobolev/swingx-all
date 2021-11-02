@@ -59,7 +59,7 @@ public class DropShadowBorder implements Border, Serializable {
      */
     private static final long serialVersionUID = 715287754750604058L;
 
-    private static enum Position {
+    private enum Position {
         TOP, TOP_LEFT, LEFT, BOTTOM_LEFT,
         BOTTOM, BOTTOM_RIGHT, RIGHT, TOP_RIGHT
     }

@@ -1427,7 +1427,7 @@ public class MultiSplitLayout implements LayoutManager, Serializable {
     /**
      * Base class for the nodes that model a MultiSplitLayout.
      */
-    public static abstract class Node implements Serializable {
+    public abstract static class Node implements Serializable {
 
         private Split parent = null;
         private Rectangle bounds = new Rectangle();

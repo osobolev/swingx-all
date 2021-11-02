@@ -36,8 +36,6 @@ public class GradientThumbRenderer extends JComponent implements ThumbRenderer {
     private Image thumb_gray;
 
     public GradientThumbRenderer() {
-        super();
-
         try {
             thumb_black = ImageIO.read(GradientThumbRenderer.class.getResourceAsStream("/icons/thumb_black.png"));
             thumb_gray = ImageIO.read(GradientThumbRenderer.class.getResourceAsStream("/icons/thumb_gray.png"));

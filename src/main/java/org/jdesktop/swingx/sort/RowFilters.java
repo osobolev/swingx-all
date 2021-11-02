@@ -138,7 +138,7 @@ public class RowFilters {
     /**
      * C&P from core Swing to allow subclassing.
      */
-    public static abstract class GeneralFilter extends RowFilter<Object, Object> {
+    public abstract static class GeneralFilter extends RowFilter<Object, Object> {
 
         private int[] columns;
 
@@ -148,7 +148,7 @@ public class RowFilters {
         }
 
         @Override
-        public boolean include(Entry<? extends Object, ? extends Object> value) {
+        public boolean include(Entry<?, ?> value) {
             int count = value.getValueCount();
             if (columns.length > 0) {
                 for (int i = columns.length - 1; i >= 0; i--) {
@@ -170,7 +170,7 @@ public class RowFilters {
         }
 
         protected abstract boolean include(
-            Entry<? extends Object, ? extends Object> value, int index);
+            Entry<?, ?> value, int index);
 
         /**
          * Throws an IllegalArgumentException if any of the values in
@@ -204,7 +204,7 @@ public class RowFilters {
 
         @Override
         protected boolean include(
-            Entry<? extends Object, ? extends Object> value, int index) {
+            Entry<?, ?> value, int index) {
             matcher.reset(value.getStringValue(index));
             return matcher.find();
         }
@@ -212,6 +212,4 @@ public class RowFilters {
 
     private RowFilters() {
     }
-
-    ;
 }

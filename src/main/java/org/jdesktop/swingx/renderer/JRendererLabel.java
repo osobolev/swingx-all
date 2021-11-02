@@ -66,7 +66,6 @@ public class JRendererLabel extends JLabel implements PainterAware, IconAware {
      *
      */
     public JRendererLabel() {
-        super();
         setOpaque(true);
     }
 

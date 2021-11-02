@@ -628,7 +628,6 @@ public class JXGradientChooser extends JXPanel {
     private class StopListener implements ThumbListener {
 
         public StopListener() {
-            super();
         }
 
         @Override
@@ -711,8 +710,8 @@ public class JXGradientChooser extends JXPanel {
      */
     public static MultipleGradientPaint showDialog(Component comp, String title, MultipleGradientPaint mgrad) {
         Component root = SwingUtilities.getRoot(comp);
-        final JDialog dialog = new JDialog((JFrame) root, title, true);
-        final JXGradientChooser picker = new JXGradientChooser();
+        JDialog dialog = new JDialog((JFrame) root, title, true);
+        JXGradientChooser picker = new JXGradientChooser();
         if (mgrad != null) {
             picker.setGradient(mgrad);
         }

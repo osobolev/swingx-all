@@ -79,7 +79,6 @@ public class JXDialog extends JDialog {
      * @param content the component to show and to auto-configure from.
      */
     public JXDialog(JComponent content) {
-        super();
         setContent(content);
     }
 

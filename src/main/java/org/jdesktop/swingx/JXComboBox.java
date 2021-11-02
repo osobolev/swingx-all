@@ -426,7 +426,6 @@ public class JXComboBox extends JComboBox {
      * @see DefaultComboBoxModel
      */
     public JXComboBox() {
-        super();
         init();
     }
 
@@ -505,7 +504,7 @@ public class JXComboBox extends JComboBox {
      * {@inheritDoc}
      */
     @Override
-    protected boolean processKeyBinding(KeyStroke ks, final KeyEvent e, int condition,
+    protected boolean processKeyBinding(KeyStroke ks, KeyEvent e, int condition,
                                         boolean pressed) {
         boolean retValue = super.processKeyBinding(ks, e, condition, pressed);
 

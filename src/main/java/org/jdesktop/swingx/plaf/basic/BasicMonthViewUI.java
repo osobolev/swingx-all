@@ -635,7 +635,7 @@ public class BasicMonthViewUI extends MonthViewUI {
      * @throws IllegalArgumentException if row or column are out off range.
      * @see #getDayGridPositionAtLocation(int, int)
      */
-    protected Rectangle getDayBoundsInMonth(Date month, int row, final int column) {
+    protected Rectangle getDayBoundsInMonth(Date month, int row, int column) {
         checkValidRow(row, column);
         if ((WEEK_HEADER_COLUMN == column) && !monthView.isShowingWeekNumber()) return null;
         Rectangle monthBounds = getMonthBounds(month);

@@ -133,7 +133,7 @@ public class JXTaskPane extends JPanel implements
     /**
      * JXTaskPane pluggable UI key <i>swingx/TaskPaneUI</i>
      */
-    public final static String uiClassID = "swingx/TaskPaneUI";
+    public static final String uiClassID = "swingx/TaskPaneUI";
 
     // ensure at least the default ui is registered
     static {

@@ -51,7 +51,6 @@ public abstract class AbstractSerializableBean extends AbstractBean implements
      * Creates a new instance of {@code AbstractSerializableBean}.
      */
     protected AbstractSerializableBean() {
-        super();
     }
 
     /**

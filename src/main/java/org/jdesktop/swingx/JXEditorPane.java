@@ -133,9 +133,9 @@ public class JXEditorPane extends JEditorPane implements /*Searchable, */Targeta
     private JComboBox selector;
 
     // The ids of supported actions. Perhaps this should be public.
-    private final static String ACTION_FIND = "find";
-    private final static String ACTION_UNDO = "undo";
-    private final static String ACTION_REDO = "redo";
+    private static final String ACTION_FIND = "find";
+    private static final String ACTION_UNDO = "undo";
+    private static final String ACTION_REDO = "redo";
     /*
      * These next 3 actions are part of a *HACK* to get cut/copy/paste
      * support working in the same way as find, undo and redo. in JTextComponent
@@ -151,9 +151,9 @@ public class JXEditorPane extends JEditorPane implements /*Searchable, */Targeta
      * method (cut, copy, or paste) and then add the action back into the
      * map. Yuck!
      */
-    private final static String ACTION_CUT = "cut";
-    private final static String ACTION_COPY = "copy";
-    private final static String ACTION_PASTE = "paste";
+    private static final String ACTION_CUT = "cut";
+    private static final String ACTION_COPY = "copy";
+    private static final String ACTION_PASTE = "paste";
 
     private TargetableSupport targetSupport = new TargetableSupport(this);
     private Searchable searchable;
@@ -610,7 +610,7 @@ public class JXEditorPane extends JEditorPane implements /*Searchable, */Targeta
          * @return start position of matching string or -1
          */
         @Override
-        public int search(Pattern pattern, final int startIndex,
+        public int search(Pattern pattern, int startIndex,
                           boolean backwards) {
             if ((pattern == null)
                 || (getDocument().getLength() == 0)
@@ -707,7 +707,7 @@ public class JXEditorPane extends JEditorPane implements /*Searchable, */Targeta
          * @param startIndex
          * @return true if the startIndex should be re-matched, false if not.
          */
-        private boolean maybeExtendedMatch(final int startIndex) {
+        private boolean maybeExtendedMatch(int startIndex) {
             return (startIndex >= 0) && (startIndex == lastFoundIndex);
         }
 
@@ -716,7 +716,7 @@ public class JXEditorPane extends JEditorPane implements /*Searchable, */Targeta
          * @param offset
          * @return the start position of the selected text
          */
-        private int updateStateAfterFound(MatchResult currentResult, final int offset) {
+        private int updateStateAfterFound(MatchResult currentResult, int offset) {
             int end = currentResult.end() + offset;
             int found = currentResult.start() + offset;
             select(found, end);

@@ -86,7 +86,7 @@ public class SingleDaySelectionModel extends AbstractDateSelectionModel {
      * Implemented to do nothing.
      */
     @Override
-    public void setSelectionMode(final SelectionMode selectionMode) {
+    public void setSelectionMode(SelectionMode selectionMode) {
     }
 
     //---------------------- selection ops    

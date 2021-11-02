@@ -36,7 +36,6 @@ public class DefaultMutableTreeTableNode extends AbstractMutableTreeTableNode {
      *
      */
     public DefaultMutableTreeTableNode() {
-        super();
     }
 
     /**

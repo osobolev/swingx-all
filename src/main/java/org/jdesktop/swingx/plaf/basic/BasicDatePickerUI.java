@@ -951,7 +951,7 @@ public class BasicDatePickerUI extends DatePickerUI {
         return action;
     }
 
-    private Action createHomeAction(final boolean commit) {
+    private Action createHomeAction(boolean commit) {
         Action action = new AbstractAction() {
 
             @Override

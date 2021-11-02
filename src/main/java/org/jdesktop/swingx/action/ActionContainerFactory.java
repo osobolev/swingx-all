@@ -200,7 +200,7 @@ public class ActionContainerFactory {
      * @return a menu bar which represents the menu bar tree
      */
     public JMenuBar createMenuBar(List<?> list) {
-        final JMenuBar menubar = new JMenuBar();
+        JMenuBar menubar = new JMenuBar();
 
         for (Object element : list) {
             if (element == null) {

@@ -36,7 +36,6 @@ public class ShadowPathEffect extends AbstractAreaEffect {
      * Creates a new instance of ShadowPathEffect
      */
     public ShadowPathEffect() {
-        super();
         setBrushColor(Color.BLACK);
         setRenderInsideShape(false);
         setShouldFillShape(true);

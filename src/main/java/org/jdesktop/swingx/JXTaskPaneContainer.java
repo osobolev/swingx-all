@@ -92,7 +92,7 @@ import java.awt.event.ContainerEvent;
 @JavaBean
 public class JXTaskPaneContainer extends JXPanel {
 
-    public final static String uiClassID = "swingx/TaskPaneContainerUI";
+    public static final String uiClassID = "swingx/TaskPaneContainerUI";
 
     // ensure at least the default ui is registered
     static {

@@ -48,7 +48,7 @@ public class WindowsTipOfTheDayUI extends BasicTipOfTheDayUI {
 
     @Override
     public JDialog createDialog(Component parentComponent,
-                                final ShowOnStartupChoice choice) {
+                                ShowOnStartupChoice choice) {
         return createDialog(parentComponent, choice, false);
     }
 

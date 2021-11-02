@@ -175,7 +175,7 @@ public class JXErrorPane extends JComponent {
     /**
      * UI Class ID
      */
-    public final static String uiClassID = "ErrorPaneUI";
+    public static final String uiClassID = "ErrorPaneUI";
 
     /**
      */
@@ -207,7 +207,6 @@ public class JXErrorPane extends JComponent {
      * Create a new <code>JXErrorPane</code>.
      */
     public JXErrorPane() {
-        super();
         updateUI();
     }
 
@@ -381,7 +380,7 @@ public class JXErrorPane extends JComponent {
      * @param pane  <code>JXErrorPane</code> which will form the content area
      *              of the dialog.
      */
-    public static void showDialog(final Component owner, final JXErrorPane pane) {
+    public static void showDialog(Component owner, JXErrorPane pane) {
         Runnable r = new Runnable() {
             @Override
             public void run() {
@@ -487,7 +486,7 @@ public class JXErrorPane extends JComponent {
      * @param pane  <code>JXErrorPane</code> which will form the content area
      *              of the frame.
      */
-    public static void showFrame(final Component owner, final JXErrorPane pane) {
+    public static void showFrame(Component owner, JXErrorPane pane) {
         Runnable r = new Runnable() {
             @Override
             public void run() {
@@ -593,7 +592,7 @@ public class JXErrorPane extends JComponent {
      * @param pane  <code>JXErrorPane</code> which will form the content area
      *              of the frame.
      */
-    public static void showInternalFrame(final Component owner, final JXErrorPane pane) {
+    public static void showInternalFrame(Component owner, JXErrorPane pane) {
         Runnable r = new Runnable() {
             @Override
             public void run() {

@@ -41,7 +41,7 @@ public final class StringValues {
      * A {@code StringValue} that always presents an empty string.
      */
     @SuppressWarnings("serial")
-    public final static StringValue EMPTY = new StringValue() {
+    public static final StringValue EMPTY = new StringValue() {
         @Override
         public String getString(Object value) {
             return "";
@@ -54,7 +54,7 @@ public final class StringValues {
      * the same effect as {@link StringValues#EMPTY}.
      */
     @SuppressWarnings("serial")
-    public final static StringValue TO_STRING = new StringValue() {
+    public static final StringValue TO_STRING = new StringValue() {
         @Override
         public String getString(Object value) {
             return (value != null) ? value.toString() : StringValues.EMPTY.getString(value);
@@ -123,7 +123,7 @@ public final class StringValues {
      * as returned from <code>DateFormat</code>.
      */
     @SuppressWarnings("serial")
-    public final static FormatStringValue DATE_TO_STRING = new FormatStringValue() {
+    public static final FormatStringValue DATE_TO_STRING = new FormatStringValue() {
 
         /**
          * {@inheritDoc}
@@ -142,7 +142,7 @@ public final class StringValues {
      * as returned from <code>NumberFormat</code>.
      */
     @SuppressWarnings("serial")
-    public final static FormatStringValue NUMBER_TO_STRING = new FormatStringValue() {
+    public static final FormatStringValue NUMBER_TO_STRING = new FormatStringValue() {
 
         /**
          * {@inheritDoc}

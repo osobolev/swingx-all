@@ -32,7 +32,7 @@ import java.util.*;
  */
 public interface DateSelectionModel {
 
-    public static enum SelectionMode {
+    public enum SelectionMode {
         /**
          * Mode that allows for selection of a single day.
          */
@@ -61,7 +61,7 @@ public interface DateSelectionModel {
      *
      * @param mode new selection mode
      */
-    public void setSelectionMode(final SelectionMode mode);
+    public void setSelectionMode(SelectionMode mode);
 
 //-------------------- calendar    
 
@@ -99,7 +99,7 @@ public interface DateSelectionModel {
      * @see #getFirstDayOfWeek()
      * @see Calendar
      */
-    public void setFirstDayOfWeek(final int firstDayOfWeek);
+    public void setFirstDayOfWeek(int firstDayOfWeek);
 
     /**
      * Gets the minimal number of days in the first week of the year.
@@ -121,7 +121,7 @@ public interface DateSelectionModel {
      * @see #getMinimalDaysInFirstWeek()
      * @see Calendar
      */
-    public void setMinimalDaysInFirstWeek(final int minimalDays);
+    public void setMinimalDaysInFirstWeek(int minimalDays);
 
     /**
      * Returns the TimeZone of this model.
@@ -241,7 +241,7 @@ public interface DateSelectionModel {
      * @return true if the date is selected, false otherwise
      * @throws NullPointerException if the date is null
      */
-    public boolean isSelected(final Date date);
+    public boolean isSelected(Date date);
 
     /**
      * Returns a normalized Date as used by the implementation, if any. F.i.
@@ -314,7 +314,7 @@ public interface DateSelectionModel {
      *
      * @param upperBound upper bound
      */
-    public void setUpperBound(final Date upperBound);
+    public void setUpperBound(Date upperBound);
 
     /**
      * Return the lower bound date that is allowed to be selected for this
@@ -329,7 +329,7 @@ public interface DateSelectionModel {
      *
      * @param lowerBound lower bound date or null if not set
      */
-    public void setLowerBound(final Date lowerBound);
+    public void setLowerBound(Date lowerBound);
 
     /**
      * Set the property to mark upcoming selections as intermediate/

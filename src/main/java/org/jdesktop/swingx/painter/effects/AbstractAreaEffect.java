@@ -120,7 +120,7 @@ public class AbstractAreaEffect implements AreaEffect {
 
     BufferedImage _clipImage = null;
 
-    private BufferedImage getClipImage(final Rectangle effectBounds) {
+    private BufferedImage getClipImage(Rectangle effectBounds) {
         // set up a temp buffer
         if (_clipImage == null ||
             _clipImage.getWidth() != effectBounds.width ||

@@ -129,8 +129,8 @@ public class FastBlurFilter extends AbstractFilter {
      */
     static void blur(int[] srcPixels, int[] dstPixels,
                      int width, int height, int radius) {
-        final int windowSize = radius * 2 + 1;
-        final int radiusPlusOne = radius + 1;
+        int windowSize = radius * 2 + 1;
+        int radiusPlusOne = radius + 1;
 
         int sumAlpha;
         int sumRed;

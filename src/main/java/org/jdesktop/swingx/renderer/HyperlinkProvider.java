@@ -91,8 +91,7 @@ public class HyperlinkProvider
      * @param targetClass the type of values the action can handle.
      */
     public HyperlinkProvider(AbstractHyperlinkAction linkAction, Class<?> targetClass) {
-        super();
-//        rendererComponent.addActionListener(createEditorActionListener());
+        //        rendererComponent.addActionListener(createEditorActionListener());
         setLinkAction(linkAction, targetClass);
     }
 

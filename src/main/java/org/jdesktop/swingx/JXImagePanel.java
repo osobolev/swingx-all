@@ -85,7 +85,7 @@ import java.util.logging.Logger;
 @Deprecated
 class JXImagePanel extends JXPanel {
 
-    public static enum Style {
+    public enum Style {
         CENTERED, TILED, SCALED, SCALED_KEEP_ASPECT_RATIO
     }
 
@@ -290,16 +290,16 @@ class JXImagePanel extends JXPanel {
             img = defaultImage;
         }
         if (img != null) {
-            final int imgWidth = img.getWidth(null);
-            final int imgHeight = img.getHeight(null);
+            int imgWidth = img.getWidth(null);
+            int imgHeight = img.getHeight(null);
             if (imgWidth == -1 || imgHeight == -1) {
                 // image hasn't completed loading, return
                 return;
             }
 
             Insets insets = getInsets();
-            final int pw = getWidth() - insets.left - insets.right;
-            final int ph = getHeight() - insets.top - insets.bottom;
+            int pw = getWidth() - insets.left - insets.right;
+            int ph = getHeight() - insets.top - insets.bottom;
 
             switch (style) {
             case CENTERED:
@@ -349,8 +349,8 @@ class JXImagePanel extends JXPanel {
             case SCALED_KEEP_ASPECT_RATIO:
                 int w = pw;
                 int h = ph;
-                final float ratioW = ((float) w) / ((float) imgWidth);
-                final float ratioH = ((float) h) / ((float) imgHeight);
+                float ratioW = ((float) w) / ((float) imgWidth);
+                float ratioH = ((float) h) / ((float) imgHeight);
 
                 if (ratioW < ratioH) {
                     h = (int) (imgHeight * ratioW);
@@ -358,8 +358,8 @@ class JXImagePanel extends JXPanel {
                     w = (int) (imgWidth * ratioH);
                 }
 
-                final int x = (pw - w) / 2 + insets.left;
-                final int y = (ph - h) / 2 + insets.top;
+                int x = (pw - w) / 2 + insets.left;
+                int y = (ph - h) / 2 + insets.top;
                 g2.drawImage(img, x, y, w, h, null);
                 break;
             default:

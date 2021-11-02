@@ -204,7 +204,7 @@ public class TableSearchable extends AbstractSearchable {
      * Overridden to check the column index of last find.
      */
     @Override
-    protected boolean isEqualStartIndex(final int startIndex) {
+    protected boolean isEqualStartIndex(int startIndex) {
         return super.isEqualStartIndex(startIndex)
                && isValidColumn(lastSearchResult.foundColumn);
     }

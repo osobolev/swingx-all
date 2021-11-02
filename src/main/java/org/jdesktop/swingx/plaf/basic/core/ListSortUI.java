@@ -471,7 +471,7 @@ public final class ListSortUI {
      * <p>
      * PENDING JW: this is not yet fully adapted to ListDataEvent.
      */
-    final static class ModelChange {
+    static final class ModelChange {
 
         // JW: if we received a dataChanged, there _is no_ notion 
         // of end/start/length of change 

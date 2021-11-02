@@ -61,7 +61,6 @@ public class ShapePainter extends AbstractAreaPainter<Object> {
      * Create a new ShapePainter
      */
     public ShapePainter() {
-        super();
         this.shape = new Ellipse2D.Double(0, 0, 100, 100);
         this.setBorderWidth(3);
         this.setFillPaint(Color.RED);
@@ -74,7 +73,6 @@ public class ShapePainter extends AbstractAreaPainter<Object> {
      * @param shape the shape to fillPaint
      */
     public ShapePainter(Shape shape) {
-        super();
         this.shape = shape;
     }
 
@@ -85,7 +83,6 @@ public class ShapePainter extends AbstractAreaPainter<Object> {
      * @param paint the fillPaint to be used to fillPaint the shape
      */
     public ShapePainter(Shape shape, Paint paint) {
-        super();
         this.shape = shape;
         this.setFillPaint(paint);
     }
@@ -100,7 +97,6 @@ public class ShapePainter extends AbstractAreaPainter<Object> {
      *              If null, then Style.BOTH is used
      */
     public ShapePainter(Shape shape, Paint paint, Style style) {
-        super();
         this.shape = shape;
         this.setFillPaint(paint);
         this.setStyle(style == null ? Style.BOTH : style);

@@ -297,7 +297,7 @@ public class DatePickerCellEditor extends AbstractCellEditor implements
     protected ActionListener createPickerActionListener() {
         ActionListener l = new ActionListener() {
             @Override
-            public void actionPerformed(final ActionEvent e) {
+            public void actionPerformed(ActionEvent e) {
                 // avoid duplicate trigger from
                 // commit in stopCellEditing
                 if (ignoreAction)
@@ -311,7 +311,7 @@ public class DatePickerCellEditor extends AbstractCellEditor implements
             /**
              * @param e
              */
-            private void terminateEdit(final ActionEvent e) {
+            private void terminateEdit(ActionEvent e) {
                 if ((e != null)
                     && (JXDatePicker.COMMIT_KEY.equals(e.getActionCommand()))) {
                     stopCellEditing();

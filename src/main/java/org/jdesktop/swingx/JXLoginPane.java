@@ -96,7 +96,7 @@ public class JXLoginPane extends JXPanel {
     /**
      * UI Class ID
      */
-    public final static String uiClassID = "LoginPaneUI";
+    public static final String uiClassID = "LoginPaneUI";
     /**
      * Action key for an Action in the ActionMap that initiates the Login
      * procedure
@@ -113,7 +113,7 @@ public class JXLoginPane extends JXPanel {
      * the username, password, or both to their respective stores.
      * This type specifies what type of save should be performed.
      */
-    public static enum SaveMode {NONE, USER_NAME, PASSWORD, BOTH}
+    public enum SaveMode {NONE, USER_NAME, PASSWORD, BOTH}
 
     /**
      * Returns the status of the login process
@@ -1356,7 +1356,7 @@ public class JXLoginPane extends JXPanel {
         public JComponent getComponent();
     }
 
-    private void updatePassword(final String username) {
+    private void updatePassword(String username) {
         String password = "";
         if (username != null) {
             char[] pw = passwordStore.get(username, null);
@@ -1422,7 +1422,6 @@ public class JXLoginPane extends JXPanel {
         private static final long serialVersionUID = 2511649075486103959L;
 
         public ComboNamePanel() {
-            super();
             setModel(new NameComboBoxModel());
             setEditable(true);
 
@@ -1432,7 +1431,7 @@ public class JXLoginPane extends JXPanel {
             // listen to selection or text input, and offer password suggestion based on current
             // text
             if (passwordStore != null && passwordField != null) {
-                final JTextField textfield = (JTextField) getEditor().getEditorComponent();
+                JTextField textfield = (JTextField) getEditor().getEditorComponent();
                 textfield.addKeyListener(new KeyAdapter() {
                     @Override
                     public void keyReleased(KeyEvent e) {
@@ -1644,11 +1643,11 @@ public class JXLoginPane extends JXPanel {
      * not JXLoginPane.JXLoginDialog). Change to private if JXLoginDialog is
      * removed.
      */
-    static void initWindow(final Window w, final JXLoginPane panel) {
+    static void initWindow(Window w, JXLoginPane panel) {
         w.setLayout(new BorderLayout());
         w.add(panel, BorderLayout.CENTER);
         JButton okButton = new JButton(panel.getActionMap().get(LOGIN_ACTION_COMMAND));
-        final JButton cancelButton = new JButton(
+        JButton cancelButton = new JButton(
             UIManagerExt.getString(CLASS_NAME + ".cancelString", panel.getLocale()));
         cancelButton.addActionListener(new ActionListener() {
             @Override
@@ -1708,7 +1707,7 @@ public class JXLoginPane extends JXPanel {
         });
 
         if (w instanceof JFrame) {
-            final JFrame f = (JFrame) w;
+            JFrame f = (JFrame) w;
             f.getRootPane().setDefaultButton(okButton);
             f.setResizable(false);
             f.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
@@ -1722,7 +1721,7 @@ public class JXLoginPane extends JXPanel {
             };
             f.getRootPane().registerKeyboardAction(closeAction, ks, JComponent.WHEN_IN_FOCUSED_WINDOW);
         } else if (w instanceof JDialog) {
-            final JDialog d = (JDialog) w;
+            JDialog d = (JDialog) w;
             d.getRootPane().setDefaultButton(okButton);
             d.setResizable(false);
             KeyStroke ks = KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0);

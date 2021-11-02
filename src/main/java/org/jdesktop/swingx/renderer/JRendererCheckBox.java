@@ -63,7 +63,6 @@ public class JRendererCheckBox extends JCheckBox implements PainterAware {
      * Instantiates a JRendererCheckBox with opacity true.
      */
     public JRendererCheckBox() {
-        super();
         // fix # 1546-swingx: striping lost in synth-based lafs
         // forcing opaque to enable painting the background
         setOpaque(true);

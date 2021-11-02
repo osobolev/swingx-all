@@ -59,7 +59,6 @@ public class JAASLoginService extends LoginService {
      * Default JavaBeans constructor
      */
     public JAASLoginService() {
-        super();
     }
 
     /**

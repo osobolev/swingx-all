@@ -52,7 +52,6 @@ public class NeonBorderEffect extends AbstractAreaEffect {
      * Creates a new instance of NeonBorderEffect
      */
     public NeonBorderEffect(Color edgeColor, Color centerColor, int effectWidth) {
-        super();
         setEffectWidth(effectWidth);
         this.setEdgeColor(edgeColor);
         this.setCenterColor(centerColor);

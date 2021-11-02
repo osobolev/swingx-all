@@ -759,7 +759,7 @@ public class JXDatePicker extends JComponent {
      * Set the font for the editor associated with this date picker.
      */
     @Override
-    public void setFont(final Font font) {
+    public void setFont(Font font) {
         getEditor().setFont(font);
     }
 

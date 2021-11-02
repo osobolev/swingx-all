@@ -148,7 +148,7 @@ public class ShadowRenderer {
      * @param opacity the opacity of the shadow.
      * @param color   the color of the shadow.
      */
-    public ShadowRenderer(final int size, final float opacity, final Color color) {
+    public ShadowRenderer(int size, float opacity, Color color) {
         //noinspection ThisEscapedInObjectConstruction
         changeSupport = new PropertyChangeSupport(this);
 
@@ -201,7 +201,7 @@ public class ShadowRenderer {
      *
      * @param shadowColor the generated shadows color
      */
-    public void setColor(final Color shadowColor) {
+    public void setColor(Color shadowColor) {
         if (shadowColor != null) {
             Color oldColor = this.color;
             this.color = shadowColor;
@@ -232,7 +232,7 @@ public class ShadowRenderer {
      *
      * @param shadowOpacity the generated shadows opacity
      */
-    public void setOpacity(final float shadowOpacity) {
+    public void setOpacity(float shadowOpacity) {
         float oldOpacity = this.opacity;
 
         if (shadowOpacity < 0.0) {
@@ -266,7 +266,7 @@ public class ShadowRenderer {
      *
      * @param shadowSize the generated shadows size in pixels (fuzziness)
      */
-    public void setSize(final int shadowSize) {
+    public void setSize(int shadowSize) {
         int oldSize = this.size;
 
         if (shadowSize < 0) {
@@ -292,7 +292,7 @@ public class ShadowRenderer {
      * @param image the picture from which the shadow must be cast
      * @return the picture containing the shadow of <code>image</code>
      */
-    public BufferedImage createShadow(final BufferedImage image) {
+    public BufferedImage createShadow(BufferedImage image) {
         // Written by Sesbastien Petrucci
         int shadowSize = size * 2;
 

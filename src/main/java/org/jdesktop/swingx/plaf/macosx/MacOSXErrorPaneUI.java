@@ -67,7 +67,6 @@ public class MacOSXErrorPaneUI extends BasicErrorPaneUI {
      * Creates a new instance of BasicErrorPanelUI
      */
     public MacOSXErrorPaneUI() {
-        super();
     }
 
     @Override

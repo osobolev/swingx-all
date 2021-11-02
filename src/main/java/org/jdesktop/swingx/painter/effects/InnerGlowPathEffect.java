@@ -36,7 +36,6 @@ public class InnerGlowPathEffect extends AbstractAreaEffect {
      * Creates a new instance of InnerGlowPathEffect
      */
     public InnerGlowPathEffect() {
-        super();
         setBrushColor(Color.WHITE);
         setBrushSteps(10);
         setEffectWidth(10);

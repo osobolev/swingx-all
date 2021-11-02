@@ -16,7 +16,6 @@ public class WrapLayout extends FlowLayout {
      * horizontal and vertical gap.
      */
     public WrapLayout() {
-        super();
     }
 
     /**

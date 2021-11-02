@@ -1643,7 +1643,7 @@ public class JXGraph extends JXPanel {
             if (o == null || getClass() != o.getClass()) {
                 return false;
             }
-            final DrawablePlot that = (DrawablePlot) o;
+            DrawablePlot that = (DrawablePlot) o;
             if (!color.equals(that.color)) {
                 return false;
             }

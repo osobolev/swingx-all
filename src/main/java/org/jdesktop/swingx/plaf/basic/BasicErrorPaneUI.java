@@ -152,7 +152,7 @@ public class BasicErrorPaneUI extends ErrorPaneUI {
         //if the report action needs to be defined, do so
         Action a = c.getActionMap().get(JXErrorPane.REPORT_ACTION_KEY);
         if (a == null) {
-            final JXErrorPane pane = (JXErrorPane) c;
+            JXErrorPane pane = (JXErrorPane) c;
             AbstractActionExt reportAction = new AbstractActionExt() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
@@ -837,7 +837,7 @@ public class BasicErrorPaneUI extends ErrorPaneUI {
 
             setLayout(new BorderLayout());
             add(p, BorderLayout.CENTER);
-            final Action closeAction = new AbstractAction() {
+            Action closeAction = new AbstractAction() {
                 @Override
                 public void actionPerformed(ActionEvent evt) {
                     setVisible(false);
@@ -869,12 +869,12 @@ public class BasicErrorPaneUI extends ErrorPaneUI {
      * JDialog are so minor.
      * removed.
      */
-    private void initWindow(final Window w, final JXErrorPane pane) {
+    private void initWindow(Window w, JXErrorPane pane) {
         w.setLayout(new BorderLayout());
         w.add(pane, BorderLayout.CENTER);
-        final Action closeAction = new CloseAction(w);
+        Action closeAction = new CloseAction(w);
         closeButton.addActionListener(closeAction);
-        final ResizeWindow resizeListener = new ResizeWindow(w);
+        ResizeWindow resizeListener = new ResizeWindow(w);
         //make sure this action listener is last (or, oddly, the first in the list)
         ActionListener[] list = detailButton.getActionListeners();
         for (ActionListener a : list) {
@@ -886,14 +886,14 @@ public class BasicErrorPaneUI extends ErrorPaneUI {
         }
 
         if (w instanceof JFrame) {
-            final JFrame f = (JFrame) w;
+            JFrame f = (JFrame) w;
             f.getRootPane().setDefaultButton(closeButton);
             f.setResizable(true);
             f.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
             KeyStroke ks = KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0);
             f.getRootPane().registerKeyboardAction(closeAction, ks, JComponent.WHEN_IN_FOCUSED_WINDOW);
         } else if (w instanceof JDialog) {
-            final JDialog d = (JDialog) w;
+            JDialog d = (JDialog) w;
             d.getRootPane().setDefaultButton(closeButton);
             d.setResizable(true);
             d.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
@@ -964,7 +964,7 @@ public class BasicErrorPaneUI extends ErrorPaneUI {
         public Dimension preferredLayoutSize(Container parent) {
             int prefWidth = parent.getWidth();
             int prefHeight = parent.getHeight();
-            final Insets insets = parent.getInsets();
+            Insets insets = parent.getInsets();
             int pw = detailButton.isVisible() ? detailButton.getPreferredSize().width : 0;
             pw += detailButton.isVisible() ? detailButton.getPreferredSize().width : 0;
             pw += reportButton.isVisible() ? (5 + reportButton.getPreferredSize().width) : 0;
@@ -1009,7 +1009,7 @@ public class BasicErrorPaneUI extends ErrorPaneUI {
 
         @Override
         public void layoutContainer(Container parent) {
-            final Insets insets = parent.getInsets();
+            Insets insets = parent.getInsets();
             int x = insets.left;
             int y = insets.top;
 

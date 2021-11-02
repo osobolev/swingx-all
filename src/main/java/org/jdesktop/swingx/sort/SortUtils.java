@@ -89,6 +89,4 @@ public class SortUtils {
 
     private SortUtils() {
     }
-
-    ;
 }

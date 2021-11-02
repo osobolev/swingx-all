@@ -363,7 +363,7 @@ public class BasicHeaderUI extends HeaderUI {
     protected void uninstallComponentDefaults(JXHeader header) {
     }
 
-    protected void installListeners(final JXHeader header) {
+    protected void installListeners(JXHeader header) {
         propListener = new PropertyChangeListener() {
             @Override
             public void propertyChange(PropertyChangeEvent evt) {
@@ -408,7 +408,7 @@ public class BasicHeaderUI extends HeaderUI {
         h.removeHierarchyBoundsListener(boundsListener);
     }
 
-    protected void onPropertyChange(JXHeader h, String propertyName, Object oldValue, final Object newValue) {
+    protected void onPropertyChange(JXHeader h, String propertyName, Object oldValue, Object newValue) {
         if ("title".equals(propertyName)) {
             titleLabel.setText(h.getTitle());
         } else if ("description".equals(propertyName)) {

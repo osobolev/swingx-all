@@ -2136,7 +2136,6 @@ public class JXTreeTable extends JXTable {
         protected boolean updatingListSelectionModel;
 
         public ListToTreeSelectionModelWrapper() {
-            super();
             getListSelectionModel().addListSelectionListener
                 (createListSelectionListener());
         }
@@ -2479,18 +2478,18 @@ public class JXTreeTable extends JXTable {
          * processed. SwingUtilities.invokeLater is used to handle this.
          * Allowed event types: 1 for insert, 2 for delete
          */
-        private void delayedFireTableDataChanged(final TreeModelEvent tme, final int typeChange) {
+        private void delayedFireTableDataChanged(TreeModelEvent tme, int typeChange) {
             if ((typeChange < 1) || (typeChange > 2))
                 throw new IllegalArgumentException("Event type must be 1 or 2, was " + typeChange);
             // expansion state before invoke may be different 
             // from expansion state in invoke 
-            final boolean expanded = tree.isExpanded(tme.getTreePath());
+            boolean expanded = tree.isExpanded(tme.getTreePath());
             // quick test if tree throws for unrelated path. Seems like not.
 //            tree.getRowForPath(new TreePath("dummy"));
             SwingUtilities.invokeLater(new Runnable() {
                 @Override
                 public void run() {
-                    int indices[] = tme.getChildIndices();
+                    int[] indices = tme.getChildIndices();
                     TreePath path = tme.getTreePath();
                     // quick test to see if bailing out is an option
 //                    if (false) {
@@ -2542,17 +2541,17 @@ public class JXTreeTable extends JXTable {
          *
          * @param tme
          */
-        protected void delayedFireTableDataUpdated(final TreeModelEvent tme) {
-            final boolean expanded = tree.isExpanded(tme.getTreePath());
+        protected void delayedFireTableDataUpdated(TreeModelEvent tme) {
+            boolean expanded = tree.isExpanded(tme.getTreePath());
             SwingUtilities.invokeLater(new Runnable() {
                 @Override
                 public void run() {
-                    int indices[] = tme.getChildIndices();
+                    int[] indices = tme.getChildIndices();
                     TreePath path = tme.getTreePath();
                     if (indices != null) {
                         if (expanded) { // Dont bother to update if the parent
                             // node is collapsed
-                            Object children[] = tme.getChildren();
+                            Object[] children = tme.getChildren();
                             // can we be sure that children.length > 0?
                             // int min = tree.getRowForPath(path.pathByAddingChild(children[0]));
                             // int max = tree.getRowForPath(path.pathByAddingChild(children[children.length -1]));

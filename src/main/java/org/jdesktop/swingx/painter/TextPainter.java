@@ -178,7 +178,7 @@ public class TextPainter extends AbstractAreaPainter<Object> {
         g.translate(-res.x, -res.y);
     }
 
-    private String calculateText(final Object component) {
+    private String calculateText(Object component) {
         // prep the text
         String t = getText();
         //make components take priority if(text == null || text.trim().equals("")) {
@@ -197,7 +197,7 @@ public class TextPainter extends AbstractAreaPainter<Object> {
         return t;
     }
 
-    private Font calculateFont(final Object component) {
+    private Font calculateFont(Object component) {
         // prep the various text attributes
         Font f = getComponentFont(getFont(), component);
         if (f == null) {

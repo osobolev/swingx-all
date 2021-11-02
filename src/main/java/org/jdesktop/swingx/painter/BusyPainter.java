@@ -49,7 +49,7 @@ public class BusyPainter extends AbstractPainter<Object> {
      *
      * @see BusyPainter#setDirection(Direction)
      */
-    public static enum Direction {
+    public enum Direction {
         /**
          * cycle proceeds forward
          */
@@ -465,7 +465,7 @@ public class BusyPainter extends AbstractPainter<Object> {
      * @param i Frame.
      * @return Frame color.
      */
-    private Color calcFrameColor(final int i) {
+    private Color calcFrameColor(int i) {
         if (frame == -1) {
             return getBaseColor();
         }

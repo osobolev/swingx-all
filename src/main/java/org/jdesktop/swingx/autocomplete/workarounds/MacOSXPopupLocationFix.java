@@ -87,7 +87,7 @@ public final class MacOSXPopupLocationFix {
 
         @Override
         public void popupMenuWillBecomeVisible(PopupMenuEvent e) {
-            final JComponent popupComponent = (JComponent) e.getSource();
+            JComponent popupComponent = (JComponent) e.getSource();
             fixPopupLocation(popupComponent);
         }
 
@@ -137,7 +137,7 @@ public final class MacOSXPopupLocationFix {
      *
      * @author <a href="mailto:jesse@swank.ca">Jesse Wilson</a>
      */
-    private final static class ScreenGeometry {
+    private static final class ScreenGeometry {
 
         final GraphicsConfiguration graphicsConfiguration;
         final boolean aqua;

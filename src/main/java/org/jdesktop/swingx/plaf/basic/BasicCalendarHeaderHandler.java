@@ -94,7 +94,6 @@ public class BasicCalendarHeaderHandler extends CalendarHeaderHandler {
         private StringValue tsv;
 
         public ZoomOutAction() {
-            super();
             tsv = new StringValue() {
 
                 @Override

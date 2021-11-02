@@ -80,7 +80,7 @@ public class ColumnControlIcon implements Icon, UIResource {
         g.drawLine(x + 6, y + 9, x + 6, y + 9);
     }
 
-    public static void main(String args[]) {
+    public static void main(String[] args) {
         JFrame frame = new JFrame();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         JLabel label = new JLabel(new ColumnControlIcon());

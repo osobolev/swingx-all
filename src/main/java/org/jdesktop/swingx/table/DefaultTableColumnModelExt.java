@@ -78,7 +78,6 @@ public class DefaultTableColumnModelExt extends DefaultTableColumnModel
      * Creates a an empty DefaultTableColumnModelExt.
      */
     public DefaultTableColumnModelExt() {
-        super();
     }
 
 //----------------------- implement TableColumnModelExt

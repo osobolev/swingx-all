@@ -44,7 +44,7 @@ public class DatePickerFormatter extends
 
     private static final Logger LOG = Logger
         .getLogger(DatePickerFormatter.class.getName());
-    private DateFormat _formats[] = null;
+    private DateFormat[] _formats = null;
 
     /**
      * Instantiates a formatter with the localized format patterns defined
@@ -72,7 +72,7 @@ public class DatePickerFormatter extends
      *                use defaults or empty to do nothing (?), but must not contain
      *                null formats.
      */
-    public DatePickerFormatter(DateFormat formats[]) {
+    public DatePickerFormatter(DateFormat[] formats) {
         this(formats, null);
     }
 
@@ -97,7 +97,7 @@ public class DatePickerFormatter extends
      * @param formats
      * @param locale
      */
-    public DatePickerFormatter(DateFormat formats[], Locale locale) {
+    public DatePickerFormatter(DateFormat[] formats, Locale locale) {
 //        super();
         if (locale == null) {
             locale = Locale.getDefault();

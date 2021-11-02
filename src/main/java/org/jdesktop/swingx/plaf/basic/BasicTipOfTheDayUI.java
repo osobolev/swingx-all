@@ -62,17 +62,17 @@ public class BasicTipOfTheDayUI extends TipOfTheDayUI {
 
     @Override
     public JDialog createDialog(Component parentComponent,
-                                final ShowOnStartupChoice choice) {
+                                ShowOnStartupChoice choice) {
         return createDialog(parentComponent, choice, true);
     }
 
     protected JDialog createDialog(Component parentComponent,
-                                   final ShowOnStartupChoice choice,
+                                   ShowOnStartupChoice choice,
                                    boolean showPreviousButton) {
         Locale locale = parentComponent == null ? null : parentComponent.getLocale();
         String title = UIManagerExt.getString("TipOfTheDay.dialogTitle", locale);
 
-        final JDialog dialog;
+        JDialog dialog;
 
         Window window;
         if (parentComponent == null) {
@@ -93,7 +93,7 @@ public class BasicTipOfTheDayUI extends TipOfTheDayUI {
         ((JComponent) dialog.getContentPane()).setBorder(BorderFactory
             .createEmptyBorder(10, 10, 10, 10));
 
-        final JCheckBox showOnStartupBox;
+        JCheckBox showOnStartupBox;
 
         // tip controls
         JPanel controls = new JPanel(new BorderLayout());
@@ -128,7 +128,7 @@ public class BasicTipOfTheDayUI extends TipOfTheDayUI {
             .getString("TipOfTheDay.closeText", locale));
         buttons.add(closeButton);
 
-        final ActionListener saveChoice = new ActionListener() {
+        ActionListener saveChoice = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (choice != null) {

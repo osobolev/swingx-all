@@ -148,7 +148,7 @@ public class GradientPreviewPanel extends JXPanel {
         }
     }
 
-    private MultipleGradientPaint calculateGradient(final float[] fractions, final Color[] colors) {
+    private MultipleGradientPaint calculateGradient(float[] fractions, Color[] colors) {
         // set up the end points
         Point2D start = this.start;
         Point2D end = this.end;
@@ -187,7 +187,7 @@ public class GradientPreviewPanel extends JXPanel {
         return paint;
     }
 
-    private void drawHandles(final Graphics2D g2) {
+    private void drawHandles(Graphics2D g2) {
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
             RenderingHints.VALUE_ANTIALIAS_ON);
         // draw the points and gradient line

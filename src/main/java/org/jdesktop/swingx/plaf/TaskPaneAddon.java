@@ -133,7 +133,7 @@ public class TaskPaneAddon extends AbstractComponentAddon {
                 defaults.add("TaskPane.borderColor", new ColorUIResource(Color.WHITE));
             } else if (OS.isWindowsVista()) {
                 //do not need to use safe method since the properties can never return null
-                final Toolkit toolkit = Toolkit.getDefaultToolkit();
+                Toolkit toolkit = Toolkit.getDefaultToolkit();
 
                 defaults.add("TaskPane.foreground", new ColorUIResource(Color.WHITE));
                 defaults.add("TaskPane.background",

@@ -91,12 +91,12 @@ public abstract class AbstractLayoutPainter<T> extends AbstractPainter<T> {
     /**
      * An enum which controls horizontalAlignment alignment
      */
-    public static enum HorizontalAlignment {LEFT, CENTER, RIGHT}
+    public enum HorizontalAlignment {LEFT, CENTER, RIGHT}
 
     /**
      * An enum which controls verticalAlignment alignment
      */
-    public static enum VerticalAlignment {TOP, CENTER, BOTTOM}
+    public enum VerticalAlignment {TOP, CENTER, BOTTOM}
 
     /**
      * Gets the current horizontalAlignment alignment.
@@ -217,8 +217,8 @@ public abstract class AbstractLayoutPainter<T> extends AbstractPainter<T> {
      * @param height        the height of the area that the content will be positioned in
      * @return the rectangle for the content to be painted in
      */
-    protected final Rectangle calculateLayout(final int contentWidth, final int contentHeight,
-                                              final int width, final int height) {
+    protected final Rectangle calculateLayout(int contentWidth, int contentHeight,
+                                              int width, int height) {
 
         Rectangle rect = new Rectangle();
         rect.width = contentWidth;
@@ -236,7 +236,7 @@ public abstract class AbstractLayoutPainter<T> extends AbstractPainter<T> {
         return rect;
     }
 
-    private int calculateY(final int imgHeight, final int height) {
+    private int calculateY(int imgHeight, int height) {
         int y = 0;
         if (getVerticalAlignment() == VerticalAlignment.TOP) {
             y = 0;
@@ -253,7 +253,7 @@ public abstract class AbstractLayoutPainter<T> extends AbstractPainter<T> {
         return y;
     }
 
-    private int calculateX(final int imgWidth, final int width) {
+    private int calculateX(int imgWidth, int width) {
         int x = 0;
         if (getHorizontalAlignment() == HorizontalAlignment.LEFT) {
             x = 0;

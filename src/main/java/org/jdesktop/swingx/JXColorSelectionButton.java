@@ -117,7 +117,7 @@ public class JXColorSelectionButton extends JButton {
     @Override
     protected void paintComponent(Graphics g) {
         // want disabledForeground when disabled, current colour otherwise
-        final Color FILL_COLOR = isEnabled() ? PaintUtils.removeAlpha(getBackground())
+        Color FILL_COLOR = isEnabled() ? PaintUtils.removeAlpha(getBackground())
             : UIManagerExt.getSafeColor("Button.disabledForeground", Color.LIGHT_GRAY);
 
         // draw the colorwell image (should only be on OSX)
@@ -144,7 +144,7 @@ public class JXColorSelectionButton extends JButton {
             try {
                 g2.setRenderingHint(KEY_ANTIALIASING, VALUE_ANTIALIAS_ON);
                 g2.setColor(Color.LIGHT_GRAY);
-                final int DIAM = Math.min(getWidth(), getHeight());
+                int DIAM = Math.min(getWidth(), getHeight());
                 final int inset = 3;
                 g2.fill(new Ellipse2D.Float(inset, inset, DIAM - 2 * inset, DIAM - 2 * inset));
                 g2.setColor(FILL_COLOR);

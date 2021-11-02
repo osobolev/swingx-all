@@ -930,7 +930,7 @@ public class JXTable extends JTable implements TableColumnModelExtListener {
      *                transfer
      * @return the action bound to focusTraversal.
      */
-    private Action createFocusTransferAction(final boolean forward) {
+    private Action createFocusTransferAction(boolean forward) {
         BoundAction action = new BoundAction(null,
             forward ? FOCUS_NEXT_COMPONENT : FOCUS_PREVIOUS_COMPONENT);
         action.registerCallback(this, forward ? "transferFocus"

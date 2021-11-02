@@ -85,8 +85,6 @@ public class JXSearchField extends JXTextField {
         MAC
     }
 
-    ;
-
     /**
      * Defines when action events are posted.
      */

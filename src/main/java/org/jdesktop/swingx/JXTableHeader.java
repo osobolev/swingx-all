@@ -97,7 +97,6 @@ public class JXTableHeader extends JTableHeader
      * @see #createDefaultColumnModel
      */
     public JXTableHeader() {
-        super();
     }
 
     /**

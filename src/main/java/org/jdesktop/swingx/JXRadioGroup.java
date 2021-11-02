@@ -184,8 +184,8 @@ public class JXRadioGroup<T> extends JPanel {
      * @see #getSelectedValue()
      */
     public AbstractButton getSelectedButton() {
-        final ButtonModel selectedModel = buttonGroup.getSelection();
-        final AbstractButton children[] = getButtonComponents();
+        ButtonModel selectedModel = buttonGroup.getSelection();
+        AbstractButton[] children = getButtonComponents();
         for (int i = 0; i < children.length; i++) {
             AbstractButton button = children[i];
             if (button.getModel() == selectedModel) {
@@ -196,8 +196,8 @@ public class JXRadioGroup<T> extends JPanel {
     }
 
     private AbstractButton[] getButtonComponents() {
-        final Component[] children = getComponents();
-        final List<AbstractButton> buttons = new ArrayList<AbstractButton>();
+        Component[] children = getComponents();
+        List<AbstractButton> buttons = new ArrayList<AbstractButton>();
         for (int i = 0; i < children.length; i++) {
             if (children[i] instanceof AbstractButton) {
                 buttons.add((AbstractButton) children[i]);
@@ -207,8 +207,8 @@ public class JXRadioGroup<T> extends JPanel {
     }
 
     private int getSelectedIndex() {
-        final ButtonModel selectedModel = buttonGroup.getSelection();
-        final Component children[] = getButtonComponents();
+        ButtonModel selectedModel = buttonGroup.getSelection();
+        Component[] children = getButtonComponents();
         for (int i = 0; i < children.length; i++) {
             AbstractButton button = (AbstractButton) children[i];
             if (button.getModel() == selectedModel) {
@@ -224,7 +224,7 @@ public class JXRadioGroup<T> extends JPanel {
      * @return the current value
      */
     public T getSelectedValue() {
-        final int index = getSelectedIndex();
+        int index = getSelectedIndex();
         return (index < 0 || index >= values.size()) ? null : values.get(index);
     }
 
@@ -234,7 +234,7 @@ public class JXRadioGroup<T> extends JPanel {
      * @param value the value to select
      */
     public void setSelectedValue(T value) {
-        final int index = values.indexOf(value);
+        int index = values.indexOf(value);
         AbstractButton button = getButtonComponents()[index];
         button.setSelected(true);
     }
@@ -250,7 +250,7 @@ public class JXRadioGroup<T> extends JPanel {
      * Retrieve the child button that represents this value.
      */
     public AbstractButton getChildButton(T value) {
-        final int index = values.indexOf(value);
+        int index = values.indexOf(value);
         return getButtonComponents()[index];
     }
 
@@ -316,7 +316,7 @@ public class JXRadioGroup<T> extends JPanel {
     public void setEnabled(boolean enabled) {
         super.setEnabled(enabled);
         for (Enumeration<AbstractButton> en = buttonGroup.getElements(); en.hasMoreElements(); ) {
-            final AbstractButton button = en.nextElement();
+            AbstractButton button = en.nextElement();
             /* We don't want to enable a button where the action does not
              * permit it. */
             if (enabled && button.getAction() != null

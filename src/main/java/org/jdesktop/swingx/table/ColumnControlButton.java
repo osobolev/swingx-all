@@ -150,7 +150,6 @@ public class ColumnControlButton extends JButton {
      * @param icon  the <code>Icon</code> to show
      */
     public ColumnControlButton(JXTable table, Icon icon) {
-        super();
         init();
         // JW: icon LF dependent?
         setAction(createControlAction(icon));
@@ -321,7 +320,7 @@ public class ColumnControlButton extends JButton {
         }
 
         @Override
-        public void itemStateChanged(final ItemEvent e) {
+        public void itemStateChanged(ItemEvent e) {
             if (canControlColumn()) {
                 if ((e.getStateChange() == ItemEvent.DESELECTED)
                     //JW: guarding against 1 leads to #212-swingx: setting

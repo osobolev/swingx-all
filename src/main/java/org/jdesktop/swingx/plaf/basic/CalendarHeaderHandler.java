@@ -259,7 +259,7 @@ public abstract class CalendarHeaderHandler {
      * @param newActionKey the key of the wrapper action
      * @param icon         the icon to use in the wrapper action
      */
-    private void installWrapper(final String actionKey, String newActionKey,
+    private void installWrapper(String actionKey, String newActionKey,
                                 Icon icon) {
         AbstractActionExt wrapper = new AbstractActionExt(null, icon) {
 

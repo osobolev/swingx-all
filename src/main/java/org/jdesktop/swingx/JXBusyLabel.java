@@ -108,7 +108,7 @@ public class JXBusyLabel extends JLabel {
     /**
      * UI Class ID
      */
-    public final static String uiClassID = "BusyLabelUI";
+    public static final String uiClassID = "BusyLabelUI";
 
     /**
      * Sets direction of rotation. <code>Direction.RIGHT</code> is the default
@@ -151,7 +151,6 @@ public class JXBusyLabel extends JLabel {
      * @param dim Preferred size of the label.
      */
     public JXBusyLabel(Dimension dim) {
-        super();
         this.setPreferredSize(dim);
 
         // Initialize the BusyPainter.

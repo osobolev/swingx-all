@@ -82,7 +82,7 @@ public class JXHeader extends JXPanel {
     /**
      * JXHeader pluggable UI key <i>HeaderUI</i>
      */
-    public final static String uiClassID = "HeaderUI";
+    public static final String uiClassID = "HeaderUI";
 
     // ensure at least the default ui is registered
     static {
@@ -92,7 +92,7 @@ public class JXHeader extends JXPanel {
     /**
      * Specifies desired location of the icon relative to the title/description text.
      */
-    public static enum IconPosition {
+    public enum IconPosition {
         /**
          * Positions icon left from the text.
          */

@@ -45,7 +45,6 @@ public class TableSortController<M extends TableModel> extends DefaultSortContro
      * @param model
      */
     public TableSortController(M model) {
-        super();
         setModel(model);
     }
 

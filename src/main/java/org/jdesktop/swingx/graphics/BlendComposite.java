@@ -863,7 +863,7 @@ public final class BlendComposite implements Composite {
         throw new RasterFormatException("Incompatible color models:\n  " + srcColorModel + "\n  " + dstColorModel);
     }
 
-    private static abstract class BlendingContext implements CompositeContext {
+    private abstract static class BlendingContext implements CompositeContext {
 
         protected final BlendComposite composite;
 

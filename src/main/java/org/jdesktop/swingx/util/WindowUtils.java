@@ -155,7 +155,7 @@ public final class WindowUtils {
         }
     }
 
-    public static List<Component> getAllComponents(final Container c) {
+    public static List<Component> getAllComponents(Container c) {
         Component[] comps = c.getComponents();
         List<Component> compList = new ArrayList<Component>();
         for (Component comp : comps) {

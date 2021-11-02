@@ -279,12 +279,12 @@ public final class HighlighterFactory {
     /**
      * predefined colors - from old alternateRow.
      */
-    public final static Color BEIGE = new Color(245, 245, 220);
-    public final static Color LINE_PRINTER = new Color(0xCC, 0xCC, 0xFF);
-    public final static Color CLASSIC_LINE_PRINTER = new Color(0xCC, 0xFF, 0xCC);
-    public final static Color FLORAL_WHITE = new Color(255, 250, 240);
-    public final static Color QUICKSILVER = new Color(0xF0, 0xF0, 0xE0);
-    public final static Color GENERIC_GRAY = new Color(229, 229, 229);
-    public final static Color LEDGER = new Color(0xF5, 0xFF, 0xF5);
-    public final static Color NOTEPAD = new Color(0xFF, 0xFF, 0xCC);
+    public static final Color BEIGE = new Color(245, 245, 220);
+    public static final Color LINE_PRINTER = new Color(0xCC, 0xCC, 0xFF);
+    public static final Color CLASSIC_LINE_PRINTER = new Color(0xCC, 0xFF, 0xCC);
+    public static final Color FLORAL_WHITE = new Color(255, 250, 240);
+    public static final Color QUICKSILVER = new Color(0xF0, 0xF0, 0xE0);
+    public static final Color GENERIC_GRAY = new Color(229, 229, 229);
+    public static final Color LEDGER = new Color(0xF5, 0xFF, 0xF5);
+    public static final Color NOTEPAD = new Color(0xFF, 0xFF, 0xCC);
 }

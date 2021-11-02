@@ -69,8 +69,8 @@ public class StackLayout implements LayoutManager2 {
      * {@inheritDoc}
      */
     @Override
-    public void addLayoutComponent(final Component comp,
-                                   final Object constraints) {
+    public void addLayoutComponent(Component comp,
+                                   Object constraints) {
         synchronized (comp.getTreeLock()) {
             if (BOTTOM.equals(constraints)) {
                 components.add(0, comp);
@@ -86,7 +86,7 @@ public class StackLayout implements LayoutManager2 {
      * {@inheritDoc}
      */
     @Override
-    public void addLayoutComponent(final String name, final Component comp) {
+    public void addLayoutComponent(String name, Component comp) {
         addLayoutComponent(comp, TOP);
     }
 
@@ -94,7 +94,7 @@ public class StackLayout implements LayoutManager2 {
      * {@inheritDoc}
      */
     @Override
-    public void removeLayoutComponent(final Component comp) {
+    public void removeLayoutComponent(Component comp) {
         synchronized (comp.getTreeLock()) {
             components.remove(comp);
         }
@@ -104,7 +104,7 @@ public class StackLayout implements LayoutManager2 {
      * {@inheritDoc}
      */
     @Override
-    public float getLayoutAlignmentX(final Container target) {
+    public float getLayoutAlignmentX(Container target) {
         return 0.5f;
     }
 
@@ -112,7 +112,7 @@ public class StackLayout implements LayoutManager2 {
      * {@inheritDoc}
      */
     @Override
-    public float getLayoutAlignmentY(final Container target) {
+    public float getLayoutAlignmentY(Container target) {
         return 0.5f;
     }
 
@@ -120,14 +120,14 @@ public class StackLayout implements LayoutManager2 {
      * {@inheritDoc}
      */
     @Override
-    public void invalidateLayout(final Container target) {
+    public void invalidateLayout(Container target) {
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public Dimension preferredLayoutSize(final Container parent) {
+    public Dimension preferredLayoutSize(Container parent) {
         synchronized (parent.getTreeLock()) {
             int width = 0;
             int height = 0;
@@ -150,7 +150,7 @@ public class StackLayout implements LayoutManager2 {
      * {@inheritDoc}
      */
     @Override
-    public Dimension minimumLayoutSize(final Container parent) {
+    public Dimension minimumLayoutSize(Container parent) {
         synchronized (parent.getTreeLock()) {
             int width = 0;
             int height = 0;
@@ -173,7 +173,7 @@ public class StackLayout implements LayoutManager2 {
      * {@inheritDoc}
      */
     @Override
-    public Dimension maximumLayoutSize(final Container target) {
+    public Dimension maximumLayoutSize(Container target) {
         return new Dimension(Integer.MAX_VALUE,
             Integer.MAX_VALUE);
     }
@@ -182,7 +182,7 @@ public class StackLayout implements LayoutManager2 {
      * {@inheritDoc}
      */
     @Override
-    public void layoutContainer(final Container parent) {
+    public void layoutContainer(Container parent) {
         synchronized (parent.getTreeLock()) {
             int width = parent.getWidth();
             int height = parent.getHeight();

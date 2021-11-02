@@ -122,7 +122,6 @@ public class JXStatusBar extends JComponent {
      * Creates a new JXStatusBar
      */
     public JXStatusBar() {
-        super();
         updateUI();
     }
 
@@ -200,7 +199,7 @@ public class JXStatusBar extends JComponent {
      */
     public static class Constraint {
 
-        public static enum ResizeBehavior {FILL, FIXED}
+        public enum ResizeBehavior {FILL, FIXED}
 
         private Insets insets;
         private ResizeBehavior resizeBehavior;

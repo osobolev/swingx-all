@@ -262,7 +262,7 @@ public abstract class PromptTextUI extends TextUI {
      * of the given text component is painted.
      */
     @Override
-    public void paint(Graphics g, final JComponent c) {
+    public void paint(Graphics g, JComponent c) {
         JTextComponent txt = (JTextComponent) c;
 
         if (shouldPaintPrompt(txt)) {

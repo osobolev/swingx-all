@@ -18,8 +18,6 @@ public class BuddySupport {
         LEFT, RIGHT
     }
 
-    ;
-
     public static final String OUTER_MARGIN = "outerMargin";
 
     public static void addLeft(Component c, JTextField textField) {

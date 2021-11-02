@@ -65,7 +65,7 @@ public class DefaultDateSelectionModel extends AbstractDateSelectionModel {
      * {@inheritDoc}
      */
     @Override
-    public void setSelectionMode(final SelectionMode selectionMode) {
+    public void setSelectionMode(SelectionMode selectionMode) {
         this.selectionMode = selectionMode;
         clearSelection();
     }
@@ -108,7 +108,7 @@ public class DefaultDateSelectionModel extends AbstractDateSelectionModel {
      * {@inheritDoc}
      */
     @Override
-    public void setSelectionInterval(final Date startDate, Date endDate) {
+    public void setSelectionInterval(Date startDate, Date endDate) {
         if (SelectionMode.SINGLE_SELECTION.equals(selectionMode)) {
             if (isSelected(startDate)) return;
             endDate = startDate;
@@ -139,7 +139,7 @@ public class DefaultDateSelectionModel extends AbstractDateSelectionModel {
      * {@inheritDoc}
      */
     @Override
-    public void removeSelectionInterval(final Date startDate, final Date endDate) {
+    public void removeSelectionInterval(Date startDate, Date endDate) {
         if (startDate.after(endDate)) {
             return;
         }
@@ -202,7 +202,7 @@ public class DefaultDateSelectionModel extends AbstractDateSelectionModel {
      * {@inheritDoc}
      */
     @Override
-    public boolean isSelected(final Date date) {
+    public boolean isSelected(Date date) {
         Contract.asNotNull(date, "date must not be null");
         return selectedDates.contains(date);
     }
@@ -253,7 +253,7 @@ public class DefaultDateSelectionModel extends AbstractDateSelectionModel {
                unselectableDates != null && unselectableDates.contains(date);
     }
 
-    private boolean addSelectionImpl(final Date startDate, final Date endDate) {
+    private boolean addSelectionImpl(Date startDate, Date endDate) {
         boolean hasAdded = false;
         calendar.setTime(startDate);
         Date date = calendar.getTime();
