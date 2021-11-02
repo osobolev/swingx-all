@@ -416,7 +416,7 @@ public abstract class AbstractSearchable implements Searchable {
     private boolean isInPipeline(Highlighter searchHighlighter) {
         Highlighter[] inPipeline = getHighlighters();
         if ((inPipeline.length > 0) &&
-            (searchHighlighter.equals(inPipeline[inPipeline.length - 1]))) {
+            searchHighlighter.equals(inPipeline[inPipeline.length - 1])) {
             return true;
         }
         removeHighlighter(searchHighlighter);

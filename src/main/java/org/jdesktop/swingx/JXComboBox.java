@@ -811,7 +811,7 @@ public class JXComboBox extends JComboBox {
      * @see #setHighlighters(Highlighter...)
      */
     public void removeHighlighter(Highlighter highlighter) {
-        if ((getCompoundHighlighter() == null)) {
+        if (getCompoundHighlighter() == null) {
             return;
         }
         getCompoundHighlighter().removeHighlighter(highlighter);

@@ -202,8 +202,8 @@ public class SearchPredicate implements HighlightPredicate {
             return false;
         }
         return
-            ((highlightColumn < 0) ||
-             (highlightColumn == adapter.convertColumnIndexToModel(adapter.column)));
+            (highlightColumn < 0) ||
+             (highlightColumn == adapter.convertColumnIndexToModel(adapter.column));
     }
 
     private boolean isEnabled() {

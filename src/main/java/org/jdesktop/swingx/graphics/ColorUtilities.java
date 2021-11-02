@@ -112,9 +112,9 @@ public class ColorUtilities {
         if (b < 0) b = 0;
         else if (b > 255) b = 255;
 
-        float var_R = (r / 255f);
-        float var_G = (g / 255f);
-        float var_B = (b / 255f);
+        float var_R = r / 255f;
+        float var_G = g / 255f;
+        float var_B = b / 255f;
 
         float var_Min;
         float var_Max;
@@ -251,14 +251,14 @@ public class ColorUtilities {
             vH -= 1.0f;
         }
         if ((6.0f * vH) < 1.0f) {
-            return (v1 + (v2 - v1) * 6.0f * vH);
+            return v1 + (v2 - v1) * 6.0f * vH;
         }
         if ((2.0f * vH) < 1.0f) {
-            return (v2);
+            return v2;
         }
         if ((3.0f * vH) < 2.0f) {
-            return (v1 + (v2 - v1) * ((2.0f / 3.0f) - vH) * 6.0f);
+            return v1 + (v2 - v1) * ((2.0f / 3.0f) - vH) * 6.0f;
         }
-        return (v1);
+        return v1;
     }
 }

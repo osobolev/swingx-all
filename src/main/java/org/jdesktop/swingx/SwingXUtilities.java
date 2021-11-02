@@ -389,7 +389,7 @@ public final class SwingXUtilities {
 
         Component parent = c.getParent();
 
-        while (parent != null && !(clazz.isInstance(parent))) {
+        while (parent != null && !clazz.isInstance(parent)) {
             parent = parent instanceof JPopupMenu
                 ? ((JPopupMenu) parent).getInvoker() : parent.getParent();
         }
@@ -467,9 +467,9 @@ public final class SwingXUtilities {
 
     public static boolean shouldIgnore(MouseEvent mouseEvent,
                                        JComponent component) {
-        return ((component == null) || (!(component.isEnabled()))
-                || (!(SwingUtilities.isLeftMouseButton(mouseEvent)))
-                || (mouseEvent.isConsumed()));
+        return (component == null) || !component.isEnabled()
+               || !SwingUtilities.isLeftMouseButton(mouseEvent)
+               || mouseEvent.isConsumed();
     }
 
     public static int loc2IndexFileList(JList list, Point point) {
@@ -478,9 +478,9 @@ public final class SwingXUtilities {
             Object localObject = list
                 .getClientProperty("List.isFileList");
             if ((localObject instanceof Boolean)
-                && (((Boolean) localObject).booleanValue())
+                && ((Boolean) localObject).booleanValue()
                 // PENDING JW: this isn't aware of sorting/filtering - fix!
-                && (!(pointIsInActualBounds(list, i, point)))) {
+                && !pointIsInActualBounds(list, i, point)) {
                 i = -1;
             }
         }
@@ -498,7 +498,7 @@ public final class SwingXUtilities {
 
         Dimension prefSize = comp.getPreferredSize();
         Rectangle cellBounds = list.getCellBounds(index, index);
-        if (!(comp.getComponentOrientation().isLeftToRight())) {
+        if (!comp.getComponentOrientation().isLeftToRight()) {
             cellBounds.x += cellBounds.width - prefSize.width;
         }
         cellBounds.width = prefSize.width;
@@ -507,7 +507,7 @@ public final class SwingXUtilities {
     }
 
     public static void adjustFocus(JComponent component) {
-        if ((!(component.hasFocus())) && (component.isRequestFocusEnabled()))
+        if (!component.hasFocus() && component.isRequestFocusEnabled())
             component.requestFocus();
     }
 
@@ -542,6 +542,6 @@ public final class SwingXUtilities {
         }
 
         // label88:
-        return (i & sourcActions);
+        return i & sourcActions;
     }
 }

@@ -212,7 +212,7 @@ public class JXMultiThumbSlider<E> extends JComponent {
         int w = getWidth();
         // adjust for the leading and trailing space on the slider
         w -= selected.getWidth();
-        float delta = ((float) x) / ((float) w);
+        float delta = (float) x / (float) w;
         int thumb_index = getThumbIndex(selected);
         float value = delta * range;
         getModel().getThumbAt(thumb_index).setPosition(value);

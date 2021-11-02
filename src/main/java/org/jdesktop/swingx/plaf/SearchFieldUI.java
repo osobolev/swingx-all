@@ -366,8 +366,8 @@ public class SearchFieldUI extends BuddyTextFieldUI {
                 .isMacLayoutStyle())
             && hasText());
 
-        boolean clearNotHere = (searchField.isMacLayoutStyle() || !clearButton()
-            .isVisible());
+        boolean clearNotHere = searchField.isMacLayoutStyle() || !clearButton()
+            .isVisible();
 
         searchButton()
             .setVisible(

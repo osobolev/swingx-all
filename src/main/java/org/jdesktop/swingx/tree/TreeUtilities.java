@@ -85,7 +85,7 @@ public class TreeUtilities {
 
         @Override
         public boolean hasMoreElements() {
-            return (!stack.isEmpty() && stack.peek().hasMoreElements());
+            return !stack.isEmpty() && stack.peek().hasMoreElements();
         }
 
         @Override
@@ -250,8 +250,8 @@ public class TreeUtilities {
 
         @Override
         public boolean hasMoreElements() {
-            return (!stack.isEmpty() &&
-                    stack.peek().hasMoreElements());
+            return !stack.isEmpty() &&
+                   stack.peek().hasMoreElements();
         }
 
         @Override

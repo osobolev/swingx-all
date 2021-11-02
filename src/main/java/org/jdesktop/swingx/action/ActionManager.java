@@ -359,27 +359,27 @@ public class ActionManager extends ActionMap {
      * Test to determine if the action is a <code>TargetableAction</code>
      */
     public boolean isTargetableAction(Object id) {
-        return (getTargetableAction(id) != null);
+        return getTargetableAction(id) != null;
     }
 
     /**
      * Test to determine if the action is a <code>BoundAction</code>
      */
     public boolean isBoundAction(Object id) {
-        return (getBoundAction(id) != null);
+        return getBoundAction(id) != null;
     }
 
     /**
      * Test to determine if the action is a <code>BoundAction</code>
      */
     public boolean isCompositeAction(Object id) {
-        return (getCompositeAction(id) != null);
+        return getCompositeAction(id) != null;
     }
 
     /**
      * Test to determine if the action is a <code>ServerAction</code>
      */
     public boolean isServerAction(Object id) {
-        return (getServerAction(id) != null);
+        return getServerAction(id) != null;
     }
 }

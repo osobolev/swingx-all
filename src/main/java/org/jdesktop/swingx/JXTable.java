@@ -1219,7 +1219,7 @@ public class JXTable extends JTable implements TableColumnModelExtListener {
         if (e.getValueIsAdjusting())
             return;
         Action packSelected = getActionMap().get(PACKSELECTED_ACTION_COMMAND);
-        if ((packSelected != null)) {
+        if (packSelected != null) {
             packSelected.setEnabled(!((ListSelectionModel) e.getSource())
                 .isSelectionEmpty());
         }
@@ -1259,7 +1259,7 @@ public class JXTable extends JTable implements TableColumnModelExtListener {
          * synch with this property. Yet another problem is the change
          * notification: currently this is _not_ a bound property.
          */
-        if (enabled == (isHorizontalScrollEnabled())) {
+        if (enabled == isHorizontalScrollEnabled()) {
             return;
         }
         boolean old = isHorizontalScrollEnabled();
@@ -1537,7 +1537,7 @@ public class JXTable extends JTable implements TableColumnModelExtListener {
             initializeColumnWidths();
             resetCalculatedScrollableSize(true);
         }
-        if ((isStructureChanged(e))) {
+        if (isStructureChanged(e)) {
             updateStringValueRegistryColumnClasses();
         }
         postprocessModelChange(e);
@@ -1689,7 +1689,7 @@ public class JXTable extends JTable implements TableColumnModelExtListener {
     protected void configureSorterProperties() {
         // need to hack: if a structureChange is the result of a setModel
         // the rowsorter is not yet updated
-        if (ignoreAddColumn || (!getControlsSorterProperties())) return;
+        if (ignoreAddColumn || !getControlsSorterProperties()) return;
         getSortController().setStringValueProvider(getStringValueRegistry());
         // configure from table properties
         getSortController().setSortable(sortable);
@@ -3141,11 +3141,11 @@ public class JXTable extends JTable implements TableColumnModelExtListener {
          */
         @Override
         public boolean hasFocus() {
-            boolean rowIsLead = (table.getSelectionModel()
-                                     .getLeadSelectionIndex() == row);
-            boolean colIsLead = (table.getColumnModel().getSelectionModel()
-                                     .getLeadSelectionIndex() == column);
-            return table.isFocusOwner() && (rowIsLead && colIsLead);
+            boolean rowIsLead = table.getSelectionModel()
+                                     .getLeadSelectionIndex() == row;
+            boolean colIsLead = table.getColumnModel().getSelectionModel()
+                                     .getLeadSelectionIndex() == column;
+            return table.isFocusOwner() && rowIsLead && colIsLead;
         }
 
         /**

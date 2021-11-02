@@ -313,7 +313,7 @@ public class JXRootPane extends JRootPane {
                     Action cancelPopup = ((JComponent) component).getActionMap().get("cancel");
                     if (cancelPopup != null) return false;
                 }
-                return (cancelButton != null) && (cancelButton.isEnabled());
+                return (cancelButton != null) && cancelButton.isEnabled();
             }
         };
         getActionMap().put("esc-action", escAction);

@@ -117,9 +117,9 @@ public class SynthUtils {
             // Only update on an ancestor change when getting a valid
             // parent and the LookAndFeel wants this.
             LookAndFeel laf = UIManager.getLookAndFeel();
-            return (laf instanceof SynthLookAndFeel &&
-                    ((SynthLookAndFeel) laf).
-                        shouldUpdateStyleOnAncestorChanged());
+            return laf instanceof SynthLookAndFeel &&
+                   ((SynthLookAndFeel) laf).
+                        shouldUpdateStyleOnAncestorChanged();
         }
         // Note: The following two nimbus based overrides should be refactored
         // to be in the Nimbus LAF. Due to constraints in an update release,

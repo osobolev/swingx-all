@@ -147,7 +147,7 @@ public class GaussianBlurFilter extends AbstractFilter {
                     a += blurFactor * ((pixel >> 24) & 0xFF);
                     r += blurFactor * ((pixel >> 16) & 0xFF);
                     g += blurFactor * ((pixel >> 8) & 0xFF);
-                    b += blurFactor * ((pixel) & 0xFF);
+                    b += blurFactor * (pixel & 0xFF);
                 }
 
                 ca = (int) (a + 0.5f);

@@ -317,7 +317,7 @@ public class DatePickerCellEditor extends AbstractCellEditor implements
              */
             private void terminateEdit(ActionEvent e) {
                 if ((e != null)
-                    && (JXDatePicker.COMMIT_KEY.equals(e.getActionCommand()))) {
+                    && JXDatePicker.COMMIT_KEY.equals(e.getActionCommand())) {
                     stopCellEditing();
                 } else {
                     cancelCellEditing();

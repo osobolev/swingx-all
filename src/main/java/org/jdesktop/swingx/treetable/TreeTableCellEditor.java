@@ -141,7 +141,7 @@ public class TreeTableCellEditor extends GenericEditor {
         // JW: quick fix for #592-swingx - 
         // editing not started on keyEvent in hierarchical column (1.6)
         if (e instanceof MouseEvent) {
-            return (((MouseEvent) e).getClickCount() >= clickCountToStart);
+            return ((MouseEvent) e).getClickCount() >= clickCountToStart;
         }
         return true;
     }

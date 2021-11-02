@@ -709,7 +709,7 @@ public class JXEditorPane extends JEditorPane implements /*Searchable, */Targeta
                 // the group().equals probably isn't the best idea...
                 // better check pattern?
                 if ((currentResult.start() == 0) &&
-                    (!lastMatchResult.group().equals(currentResult.group()))) {
+                    !lastMatchResult.group().equals(currentResult.group())) {
                     updateStateAfterFound(currentResult, start);
                     return true;
                 }

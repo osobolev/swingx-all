@@ -324,7 +324,7 @@ public class ColumnControlButton extends JButton {
         protected boolean canControlColumn() {
             // JW: should have direction? control is from action to column, the
             // other way round should be guaranteed always
-            return (column instanceof TableColumnExt);
+            return column instanceof TableColumnExt;
         }
 
         @Override

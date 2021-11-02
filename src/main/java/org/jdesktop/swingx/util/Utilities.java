@@ -320,8 +320,8 @@ public class Utilities {
                 try {
                     bounds.y = Integer.parseInt(st.nextToken());
                     bounds.x = Integer.parseInt(st.nextToken());
-                    bounds.height -= (bounds.y + Integer.parseInt(st.nextToken()));
-                    bounds.width -= (bounds.x + Integer.parseInt(st.nextToken()));
+                    bounds.height -= bounds.y + Integer.parseInt(st.nextToken());
+                    bounds.width -= bounds.x + Integer.parseInt(st.nextToken());
                 } catch (NumberFormatException ex) {
                     Logger.getAnonymousLogger().log(Level.WARNING, null, ex);
                 }
@@ -343,8 +343,8 @@ public class Utilities {
             Insets insets = toolkit.getScreenInsets(gconf);
             bounds.y += insets.top;
             bounds.x += insets.left;
-            bounds.height -= (insets.top + insets.bottom);
-            bounds.width -= (insets.left + insets.right);
+            bounds.height -= insets.top + insets.bottom;
+            bounds.width -= insets.left + insets.right;
         } catch (Exception ex) {
             Logger.getAnonymousLogger().log(Level.WARNING, null, ex);
         }

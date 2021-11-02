@@ -262,7 +262,7 @@ public class PatternModel {
         Pattern old = getPattern();
         if (isEmpty(regEx)) {
             pattern = null;
-        } else if ((old == null) || (!old.pattern().equals(regEx))) {
+        } else if ((old == null) || !old.pattern().equals(regEx)) {
             pattern = Pattern.compile(regEx, getFlags());
         }
         firePropertyChange("pattern", old, getPattern());
@@ -282,7 +282,7 @@ public class PatternModel {
         Pattern old = getPattern();
         int flags = old.flags();
         int flag = getCaseInsensitiveFlag();
-        if ((caseSensitive) && ((flags & flag) != 0)) {
+        if (caseSensitive && ((flags & flag) != 0)) {
             pattern = Pattern.compile(pattern.pattern(), 0);
         } else if (!caseSensitive && ((flags & flag) == 0)) {
             pattern = Pattern.compile(pattern.pattern(), flag);
@@ -435,7 +435,7 @@ public class PatternModel {
 
         private boolean hasEndAnchor(String str) {
             int len = str.length();
-            if ((str.charAt(len - 1)) != '$')
+            if (str.charAt(len - 1) != '$')
                 return false;
 
             // the string "$" is anchored

@@ -1339,7 +1339,7 @@ public class JXList extends JList {
         // easy way to _not_ force, this isn't working
         // but then ... it's only the very first time around. 
         // Safe enough to wait for complaints ;-)
-        boolean forceFire = (delegatingRenderer != null);
+        boolean forceFire = delegatingRenderer != null;
         // JW: Pending - probably fires propertyChangeEvent with wrong newValue?
         // how about fixedCellWidths?
         // need to test!!

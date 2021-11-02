@@ -140,7 +140,7 @@ public class SingleDaySelectionModel extends AbstractDateSelectionModel {
      */
     protected boolean isSelectionInInterval(Date startDate, Date endDate) {
         if (selectedDates.first().before(startOfDay(startDate))
-            || (selectedDates.first().after(endOfDay(endDate)))) return false;
+            || selectedDates.first().after(endOfDay(endDate))) return false;
         return true;
     }
 

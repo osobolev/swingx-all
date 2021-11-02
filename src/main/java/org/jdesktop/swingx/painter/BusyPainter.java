@@ -105,8 +105,8 @@ public class BusyPainter extends AbstractPainter<Object> {
     }
 
     protected static Shape getScaledDefaultTrajectory(int height) {
-        return new Ellipse2D.Float(((height * 8) / 26) / 2, ((height * 8) / 26) / 2, height
-                                                                                     - ((height * 8) / 26), height - ((height * 8) / 26));
+        return new Ellipse2D.Float((height * 8) / 26 / 2, (height * 8) / 26 / 2, height
+                                                                                 - ((height * 8) / 26), height - ((height * 8) / 26));
     }
 
     protected static Shape getScaledDefaultPoint(int height) {
@@ -211,8 +211,8 @@ public class BusyPainter extends AbstractPainter<Object> {
             travDist += nxtP;
         }
         // calculate center
-        center.x = ((float) width) / 2;
-        center.y = ((float) height) / 2;
+        center.x = (float) width / 2;
+        center.y = (float) height / 2;
 
         // draw the stuff
         int i = 0;
@@ -419,7 +419,7 @@ public class BusyPainter extends AbstractPainter<Object> {
      */
     private Float getXY(float t, float x1, float y1, float x2, float y2) {
         Float xy;
-        float invT = (1 - t);
+        float invT = 1 - t;
         float b1 = 3 * t * (invT * invT);
         float b2 = 3 * (t * t) * invT;
         float b3 = t * t * t;
@@ -450,7 +450,7 @@ public class BusyPainter extends AbstractPainter<Object> {
          *     b0 = (1 -t)^2, b1 = 2*t*(1-t), b2 = t^2
          */
         Float xy;
-        float invT = (1 - t);
+        float invT = 1 - t;
         float b0 = invT * invT;
         float b1 = 2 * t * invT;
         float b2 = t * t;
@@ -473,13 +473,13 @@ public class BusyPainter extends AbstractPainter<Object> {
         for (int t = 0; t < getTrailLength(); t++) {
             if (direction == Direction.RIGHT
                 && i == (frame - t + getPoints()) % getPoints()) {
-                float terp = 1 - ((float) (getTrailLength() - t))
+                float terp = 1 - (float) (getTrailLength() - t)
                                  / (float) getTrailLength();
                 return PaintUtils.interpolate(getBaseColor(),
                     getHighlightColor(), terp);
             } else if (direction == Direction.LEFT
                        && i == (frame + t) % getPoints()) {
-                float terp = ((float) (t)) / (float) getTrailLength();
+                float terp = (float) t / (float) getTrailLength();
                 return PaintUtils.interpolate(getBaseColor(),
                     getHighlightColor(), terp);
             }

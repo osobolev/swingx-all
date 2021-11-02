@@ -154,7 +154,7 @@ public class DefaultXTreeCellEditor extends DefaultTreeCellEditor implements UID
      * @return
      */
     private boolean isRightToLeft() {
-        return (tree != null) && (!tree.getComponentOrientation().isLeftToRight());
+        return (tree != null) && !tree.getComponentOrientation().isLeftToRight();
     }
 
     /**

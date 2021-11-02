@@ -441,8 +441,8 @@ public class JXLabel extends JLabel implements BackgroundPaintable {
 
                 occupiedWidth = dx + iconR.width + gap;
                 Object parent = getParent();
-                if ((parent instanceof JPanel)) {
-                    JPanel panel = ((JPanel) parent);
+                if (parent instanceof JPanel) {
+                    JPanel panel = (JPanel) parent;
                     Border b = panel.getBorder();
                     if (b != null) {
                         Insets in = b.getBorderInsets(panel);
@@ -483,7 +483,7 @@ public class JXLabel extends JLabel implements BackgroundPaintable {
                 if (getVerticalTextPosition() != CENTER) {
                     textR.y = iconR.height - textR.height;
                 } else {
-                    textR.y = (iconR.height + gap);
+                    textR.y = iconR.height + gap;
                 }
             }
 
@@ -492,7 +492,7 @@ public class JXLabel extends JLabel implements BackgroundPaintable {
             } else if (getHorizontalTextPosition() == CENTER) {
                 textR.x = (iconR.width / 2) - (textR.width / 2);
             } else { // (horizontalTextPosition == RIGHT)
-                textR.x = (iconR.width + gap);
+                textR.x = iconR.width + gap;
             }
 
             // 4) shift label around based on its alignment
@@ -1160,7 +1160,7 @@ public class JXLabel extends JLabel implements BackgroundPaintable {
 
         @Override
         protected void updateLayout(ElementChange ec, DocumentEvent e, Shape a) {
-            if ((a != null)) {
+            if (a != null) {
                 // should damage more intelligently
                 preferenceChanged(null, true, true);
                 Container host = getContainer();
@@ -1287,7 +1287,7 @@ public class JXLabel extends JLabel implements BackgroundPaintable {
                         //log.fine("vrh: " + host.getVisibleRect().height);
                         invalidated = false;
                         // JXLabelTest4 works
-                        setSize(w - (host.getOccupiedWidth()), host.getVisibleRect().height);
+                        setSize(w - host.getOccupiedWidth(), host.getVisibleRect().height);
                         // JXLabelTest3 works; 20 == width of the parent border!!! ... why should this screw with us?
                         //setSize(w - (host.getOccupiedWidth()+20), host.getVisibleRect().height);
                     }

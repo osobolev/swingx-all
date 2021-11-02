@@ -632,7 +632,7 @@ public class BasicMonthViewUI extends MonthViewUI {
      */
     protected Rectangle getDayBoundsAtLocation(int x, int y) {
         Rectangle monthDetails = getMonthDetailsBoundsAtLocation(x, y);
-        if ((monthDetails == null) || (!monthDetails.contains(x, y)))
+        if ((monthDetails == null) || !monthDetails.contains(x, y))
             return null;
         // calculate row/column in absolute grid coordinates
         int row = (y - monthDetails.y) / fullBoxHeight;
@@ -697,7 +697,7 @@ public class BasicMonthViewUI extends MonthViewUI {
      */
     protected Point getDayGridPositionAtLocation(int x, int y) {
         Rectangle monthDetailsBounds = getMonthDetailsBoundsAtLocation(x, y);
-        if ((monthDetailsBounds == null) || (!monthDetailsBounds.contains(x, y))) return null;
+        if ((monthDetailsBounds == null) || !monthDetailsBounds.contains(x, y)) return null;
         int calendarRow = (y - monthDetailsBounds.y) / fullBoxHeight + DAY_HEADER_ROW;
         int absoluteColumn = (x - monthDetailsBounds.x) / fullBoxWidth;
         int calendarColumn = absoluteColumn + FIRST_DAY_COLUMN;
@@ -1159,13 +1159,13 @@ public class BasicMonthViewUI extends MonthViewUI {
     }
 
     private int calculateCalendarGridHeight() {
-        return ((calendarHeight * calendarRowCount) +
-                (CALENDAR_SPACING * (calendarRowCount - 1)));
+        return (calendarHeight * calendarRowCount) +
+               (CALENDAR_SPACING * (calendarRowCount - 1));
     }
 
     private int calculateCalendarGridWidth() {
-        return ((calendarWidth * calendarColumnCount) +
-                (CALENDAR_SPACING * (calendarColumnCount - 1)));
+        return (calendarWidth * calendarColumnCount) +
+               (CALENDAR_SPACING * (calendarColumnCount - 1));
     }
 
     /**
@@ -1551,7 +1551,7 @@ public class BasicMonthViewUI extends MonthViewUI {
      */
     private void updateLastDisplayedDay(Date first) {
         Calendar cal = getCalendar(first);
-        cal.add(Calendar.MONTH, ((calendarColumnCount * calendarRowCount) - 1));
+        cal.add(Calendar.MONTH, (calendarColumnCount * calendarRowCount) - 1);
         CalendarUtils.endOfMonth(cal);
         lastDisplayedDate = cal.getTime();
     }
@@ -1926,7 +1926,7 @@ public class BasicMonthViewUI extends MonthViewUI {
                 selectionModel = (DateSelectionModel) evt.getNewValue();
                 selectionModel.addDateSelectionListener(getHandler());
             } else if ("firstDisplayedDay".equals(property)) {
-                setFirstDisplayedDay(((Date) evt.getNewValue()));
+                setFirstDisplayedDay((Date) evt.getNewValue());
                 monthView.repaint();
             } else if (JXMonthView.BOX_PADDING_X.equals(property)
                        || JXMonthView.BOX_PADDING_Y.equals(property)

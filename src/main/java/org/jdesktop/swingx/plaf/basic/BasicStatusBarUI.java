@@ -160,12 +160,12 @@ public class BasicStatusBarUI extends StatusBarUI {
                 Point p = e.getPoint();
                 SwingUtilities.convertPointToScreen(p, statusBar);
 
-                wb.height += (p.y - startingPoint.y);
+                wb.height += p.y - startingPoint.y;
                 if (statusBar.getComponentOrientation().isLeftToRight()) {
-                    wb.width += (p.x - startingPoint.x);
+                    wb.width += p.x - startingPoint.x;
                 } else {
-                    wb.x += (p.x - startingPoint.x);
-                    wb.width += (startingPoint.x - p.x);
+                    wb.x += p.x - startingPoint.x;
+                    wb.width += startingPoint.x - p.x;
                 }
 
                 window.setBounds(wb);

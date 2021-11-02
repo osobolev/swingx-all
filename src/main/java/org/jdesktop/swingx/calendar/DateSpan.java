@@ -109,7 +109,7 @@ public class DateSpan {
      * @return true if this DateSpan contains <code>span</code>.
      */
     public boolean contains(DateSpan span) {
-        return (contains(span.getStart()) && contains(span.getEnd()));
+        return contains(span.getStart()) && contains(span.getEnd());
     }
 
     /**
@@ -120,7 +120,7 @@ public class DateSpan {
      * @return true if this DateSpan contains <code>time</code>.
      */
     public boolean contains(long time) {
-        return (time >= getStart() && time <= getEnd());
+        return time >= getStart() && time <= getEnd();
     }
 
     /**
@@ -133,7 +133,7 @@ public class DateSpan {
      * date span.
      */
     public boolean contains(long start, long end) {
-        return (start >= getStart() && end <= getEnd());
+        return start >= getStart() && end <= getEnd();
     }
 
     /**
@@ -146,7 +146,7 @@ public class DateSpan {
      * time.
      */
     public boolean intersects(long start, long end) {
-        return (start <= getEnd() && end >= getStart());
+        return start <= getEnd() && end >= getStart();
     }
 
     /**
@@ -195,7 +195,7 @@ public class DateSpan {
         }
         if (o instanceof DateSpan) {
             DateSpan ds = (DateSpan) o;
-            return (_start == ds.getStart() && _end == ds.getEnd());
+            return _start == ds.getStart() && _end == ds.getEnd();
         }
         return false;
     }

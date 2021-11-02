@@ -105,7 +105,7 @@ public class Morphing2D implements Shape {
     }
 
     private static double interp(double v0, double v1, double t) {
-        return (v0 + ((v1 - v0) * t));
+        return v0 + ((v1 - v0) * t);
     }
 
     private static double[] mergeTvals(double[] tvals0, double[] tvals1) {
@@ -249,7 +249,7 @@ public class Morphing2D implements Shape {
 
     private static class Geometry {
 
-        static final double THIRD = (1.0 / 3.0);
+        static final double THIRD = 1.0 / 3.0;
         static final double MIN_LEN = 0.001;
         double[] bezierCoords;
         int numCoords;
@@ -544,7 +544,7 @@ public class Morphing2D implements Shape {
                 prevt = nextt;
             }
             tvals[ti] = 1;
-            return (myTvals = tvals);
+            return myTvals = tvals;
         }
 
         public void setTvals(double[] newTvals) {
@@ -638,7 +638,7 @@ public class Morphing2D implements Shape {
          */
         @Override
         public boolean isDone() {
-            return (cindex > g0.getNumCoords());
+            return cindex > g0.getNumCoords();
         }
 
         /**

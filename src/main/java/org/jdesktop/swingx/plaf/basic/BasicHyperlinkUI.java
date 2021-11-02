@@ -371,7 +371,7 @@ public class BasicHyperlinkUI extends BasicButtonUI {
             b.getVerticalAlignment(), b.getHorizontalAlignment(), b
                 .getVerticalTextPosition(), b
                 .getHorizontalTextPosition(), viewR, iconR, textR,
-            (text == null ? 0 : b.getIconTextGap()));
+            text == null ? 0 : b.getIconTextGap());
 
         /*
          * The preferred size of the button is the size of the text and icon

@@ -460,7 +460,7 @@ public class BasicXListUI extends BasicListUI {
             // across the whole list cell.
             int w = Math.min(cw, rendererComponent.getPreferredSize().width + 4);
             if (!isLeftToRight) {
-                cx += (cw - w);
+                cx += cw - w;
             }
             cw = w;
         }
@@ -1018,7 +1018,7 @@ public class BasicXListUI extends BasicListUI {
         LookAndFeel.installProperty(list, "opaque", Boolean.TRUE);
 
         if (list.getCellRenderer() == null) {
-            list.setCellRenderer((ListCellRenderer) (UIManager.get("List.cellRenderer")));
+            list.setCellRenderer((ListCellRenderer) UIManager.get("List.cellRenderer"));
         }
 
         Color sbg = list.getSelectionBackground();
@@ -1246,7 +1246,7 @@ public class BasicXListUI extends BasicListUI {
         default:
             x = insets.left;
             if (cellHeights == null) {
-                y += (cellHeight * row);
+                y += cellHeight * row;
             } else if (row >= cellHeights.length) {
                 y = 0;
             } else {
@@ -1316,7 +1316,7 @@ public class BasicXListUI extends BasicListUI {
             return -1;
         }
         return (cellHeights == null) ? cellHeight :
-            ((row < cellHeights.length) ? cellHeights[row] : -1);
+            (row < cellHeights.length) ? cellHeights[row] : -1;
     }
 
     /**
@@ -1650,7 +1650,7 @@ public class BasicXListUI extends BasicListUI {
             if (layoutOrientation == JList.HORIZONTAL_WRAP) {
                 // Because HORIZONTAL_WRAP flows differently, the 
                 // rowsPerColumn needs to be adjusted.
-                rowsPerColumn = (dataModelSize / columnCount);
+                rowsPerColumn = dataModelSize / columnCount;
                 if (dataModelSize % columnCount > 0) {
                     rowsPerColumn++;
                 }
@@ -2194,7 +2194,7 @@ public class BasicXListUI extends BasicListUI {
                 if (lsm.getSelectionMode() == ListSelectionModel.SINGLE_SELECTION) {
                     if (lead == -1) {
                         int min = adjustIndex(list.getMinSelectionIndex(), list);
-                        lead = (min == -1 ? 0 : min);
+                        lead = min == -1 ? 0 : min;
                     }
 
                     list.setSelectionInterval(lead, lead);
@@ -3021,7 +3021,7 @@ public class BasicXListUI extends BasicListUI {
                 htmlBuf.append("<html>\n<body>\n<ul>\n");
 
                 for (Object obj : values) {
-                    String val = ((obj == null) ? "" : obj.toString());
+                    String val = (obj == null) ? "" : obj.toString();
                     plainBuf.append(val + "\n");
                     htmlBuf.append("  <li>" + val + "\n");
                 }

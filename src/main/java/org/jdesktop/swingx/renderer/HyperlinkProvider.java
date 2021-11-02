@@ -215,8 +215,8 @@ public class HyperlinkProvider
         if (context.getComponent() != null) {
             Point p = (Point) context.getComponent()
                 .getClientProperty(RolloverProducer.ROLLOVER_KEY);
-            if (/*hasFocus || */(p != null && (p.x >= 0) &&
-                                 (p.x == context.getColumn()) && (p.y == context.getRow()))) {
+            if (/*hasFocus || */p != null && (p.x >= 0) &&
+                                (p.x == context.getColumn()) && (p.y == context.getRow())) {
                 if (!rendererComponent.getModel().isRollover())
                     rendererComponent.getModel().setRollover(true);
             } else {

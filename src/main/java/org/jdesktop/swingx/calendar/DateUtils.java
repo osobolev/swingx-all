@@ -219,7 +219,7 @@ public class DateUtils {
             // Check yesterday
             calendar.add(Calendar.DATE, -1);
             int yesterdayYear = calendar.get(Calendar.YEAR);
-            ret = (currentYear != yesterdayYear);
+            ret = currentYear != yesterdayYear;
         }
         return ret;
     }
@@ -241,7 +241,7 @@ public class DateUtils {
             // Check yesterday
             calendar.add(Calendar.DATE, -1);
             int yesterdayMonth = calendar.get(Calendar.MONTH);
-            ret = (currentMonth != yesterdayMonth);
+            ret = currentMonth != yesterdayMonth;
         }
         return ret;
     }
@@ -391,7 +391,7 @@ public class DateUtils {
         Calendar calendar = CALENDAR;
         synchronized (calendar) {
             calendar.setTimeInMillis(date);
-            return (calendar.get(Calendar.DAY_OF_WEEK));
+            return calendar.get(Calendar.DAY_OF_WEEK);
         }
     }
 }

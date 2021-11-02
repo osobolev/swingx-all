@@ -354,9 +354,9 @@ public class BasicTaskPaneUI extends TaskPaneUI {
             // if group is expanded but not animated
             // or if animated has reached expanded state
             // scroll to visible if scrollOnExpand is enabled
-            if (("collapsed".equals(evt.getPropertyName())
-                 && Boolean.TRUE.equals(evt.getNewValue()) && !group
-                .isAnimated())) {
+            if ("collapsed".equals(evt.getPropertyName())
+                && Boolean.TRUE.equals(evt.getNewValue()) && !group
+                .isAnimated()) {
                 if (group.isScrollOnExpand()) {
                     ensureVisible();
                 }

@@ -70,7 +70,7 @@ public class WrapLayout extends FlowLayout {
     @Override
     public Dimension minimumLayoutSize(Container target) {
         Dimension minimum = layoutSize(target, false);
-        minimum.width -= (getHgap() + 1);
+        minimum.width -= getHgap() + 1;
         return minimum;
     }
 
@@ -144,7 +144,7 @@ public class WrapLayout extends FlowLayout {
             Container scrollPane = SwingUtilities.getAncestorOfClass(JScrollPane.class, target);
 
             if (scrollPane != null) {
-                dim.width -= (hgap + 1);
+                dim.width -= hgap + 1;
             }
 
             return dim;

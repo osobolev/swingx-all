@@ -53,7 +53,7 @@ public class ListCellContext extends CellContext {
      *
      */
     private boolean checkDropOnState() {
-        if ((getComponent() == null)) {
+        if (getComponent() == null) {
             return false;
         }
         JList.DropLocation dropLocation = getComponent().getDropLocation();

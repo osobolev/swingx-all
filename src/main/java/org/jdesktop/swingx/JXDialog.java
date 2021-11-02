@@ -292,7 +292,7 @@ public class JXDialog extends JDialog {
             if (key instanceof String) {
                 Action contentAction = content.getActionMap().get(key);
                 Action rootPaneAction = getAction(key);
-                if ((!rootPaneAction.equals(contentAction))) {
+                if (!rootPaneAction.equals(contentAction)) {
                     String keyString = getUIString((String) key, locale);
                     if (!key.equals(keyString)) {
                         rootPaneAction.putValue(Action.NAME, keyString);

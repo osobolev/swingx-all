@@ -90,7 +90,7 @@ public class TreeCellContext extends CellContext {
     }
 
     private boolean checkDropOnState() {
-        if ((getComponent() == null)) {
+        if (getComponent() == null) {
             return false;
         }
         JTree.DropLocation dropLocation = getComponent().getDropLocation();

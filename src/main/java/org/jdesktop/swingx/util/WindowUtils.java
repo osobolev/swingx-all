@@ -66,8 +66,8 @@ public final class WindowUtils {
 
         bounds.x += insets.left;
         bounds.y += insets.top;
-        bounds.width -= (insets.left + insets.right);
-        bounds.height -= (insets.top + insets.bottom);
+        bounds.width -= insets.left + insets.right;
+        bounds.height -= insets.top + insets.bottom;
 
         return bounds;
     }

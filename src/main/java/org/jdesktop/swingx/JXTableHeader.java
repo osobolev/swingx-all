@@ -333,7 +333,7 @@ public class JXTableHeader extends JTableHeader
      * @see #getPreferredSize(Dimension)
      */
     protected int getMinimumHeight(int height) {
-        if ((height == 0)) {
+        if (height == 0) {
 //                && (getXTable() != null) 
 //                && getXTable().isColumnControlVisible()){
             TableCellRenderer renderer = getDefaultRenderer();
@@ -627,7 +627,7 @@ public class JXTableHeader extends JTableHeader
                 return;
             int column = getViewIndexForColumn(cachedResizingColumn);
             if (column >= 0) {
-                (getXTable()).packColumn(column, 5);
+                getXTable().packColumn(column, 5);
             }
         }
 
@@ -645,7 +645,7 @@ public class JXTableHeader extends JTableHeader
          * @return
          */
         private boolean hasSortController() {
-            return (getXTable().getRowSorter() instanceof SortController<?>);
+            return getXTable().getRowSorter() instanceof SortController<?>;
         }
 
         /**

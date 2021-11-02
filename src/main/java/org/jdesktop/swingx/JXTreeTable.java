@@ -778,8 +778,8 @@ public class JXTreeTable extends JXTable {
             if (!isHitDetectionFromProcessMouse())
                 return false;
             int col = columnAtPoint(e.getPoint());
-            return ((col >= 0) && expandOrCollapseNode(columnAtPoint(e
-                .getPoint()), e));
+            return (col >= 0) && expandOrCollapseNode(columnAtPoint(e
+                .getPoint()), e);
         }
 
         /**
@@ -1464,7 +1464,7 @@ public class JXTreeTable extends JXTable {
             }
             if (tcr instanceof DefaultTreeCellRenderer) {
 
-                DefaultTreeCellRenderer dtcr = ((DefaultTreeCellRenderer) tcr);
+                DefaultTreeCellRenderer dtcr = (DefaultTreeCellRenderer) tcr;
                 // this effectively overwrites the dtcr settings
                 if (adapter.isSelected()) {
                     dtcr.setTextSelectionColor(component.getForeground());
@@ -2062,7 +2062,7 @@ public class JXTreeTable extends JXTable {
             throw new IllegalArgumentException("column must be valid, was" + column);
         }
 
-        return (getHierarchicalColumn() == column);
+        return getHierarchicalColumn() == column;
     }
 
     /**
@@ -2897,7 +2897,7 @@ public class JXTreeTable extends JXTable {
             // Check for UIResources instead. 
             TreeCellRenderer tcr = getCellRenderer();
             if (tcr instanceof DefaultTreeCellRenderer) {
-                DefaultTreeCellRenderer dtcr = ((DefaultTreeCellRenderer) tcr);
+                DefaultTreeCellRenderer dtcr = (DefaultTreeCellRenderer) tcr;
                 // For 1.1 uncomment this, 1.2 has a bug that will cause an
                 // exception to be thrown if the border selection color is null.
                 dtcr.setBorderSelectionColor(null);

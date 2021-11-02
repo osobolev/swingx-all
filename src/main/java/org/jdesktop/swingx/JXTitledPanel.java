@@ -194,7 +194,7 @@ public class JXTitledPanel extends JXPanel {
      */
     public void setTitle(String title) {
         String oldTitle = this.title;
-        this.title = (title == null ? "" : title);
+        this.title = title == null ? "" : title;
         // JW: fix swingx #9 - missing/incorrect notification
         // let standard notification handle
         // NOTE - "getting" the new property in the fire method is

@@ -138,7 +138,7 @@ public class DatePickerFormatter extends
         // in.
         for (DateFormat _format : _formats) {
             try {
-                result = (_format).parse(text);
+                result = _format.parse(text);
                 pex = null;
                 break;
             } catch (ParseException ex) {

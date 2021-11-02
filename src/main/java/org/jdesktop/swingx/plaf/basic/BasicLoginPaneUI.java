@@ -116,10 +116,10 @@ public class BasicLoginPaneUI extends LoginPaneUI {
                     g2.scale(-1, 1);
                     g2.translate(-w, 0);
                     loginStringX = w
-                                   - (((float) font.getStringBounds(
+                                   - ((float) font.getStringBounds(
                             dlg.getBannerText(),
                             originalGraphics.getFontRenderContext())
-                        .getWidth()) + w * .05f);
+                        .getWidth() + w * .05f);
                 }
 
                 g2.setRenderingHint(RenderingHints.KEY_RENDERING,

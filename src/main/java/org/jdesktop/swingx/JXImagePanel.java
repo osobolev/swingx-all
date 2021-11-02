@@ -356,8 +356,8 @@ class JXImagePanel extends JXPanel {
             case SCALED_KEEP_ASPECT_RATIO:
                 int w = pw;
                 int h = ph;
-                float ratioW = ((float) w) / ((float) imgWidth);
-                float ratioH = ((float) h) / ((float) imgHeight);
+                float ratioW = (float) w / (float) imgWidth;
+                float ratioH = (float) h / (float) imgHeight;
 
                 if (ratioW < ratioH) {
                     h = (int) (imgHeight * ratioW);
