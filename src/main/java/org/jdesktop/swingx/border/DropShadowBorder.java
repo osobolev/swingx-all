@@ -342,7 +342,7 @@ public class DropShadowBorder implements Border, Serializable {
      * BufferedImage.getSubimage(), which will defeat image acceleration
      * strategies on later JDKs.)
      */
-    private BufferedImage getSubImage(BufferedImage img, int x, int y, int w, int h) {
+    private static BufferedImage getSubImage(BufferedImage img, int x, int y, int w, int h) {
         BufferedImage ret = GraphicsUtilities.createCompatibleTranslucentImage(w, h);
         Graphics2D g2 = ret.createGraphics();
 

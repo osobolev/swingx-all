@@ -338,7 +338,7 @@ public class BasicHyperlinkUI extends BasicButtonUI {
      * @param y
      * @return
      */
-    private boolean isInside(Rectangle iconTextRect, int x, int y) {
+    private static boolean isInside(Rectangle iconTextRect, int x, int y) {
         if (iconTextRect == null)
             return false;
         return iconTextRect.contains(x, y);

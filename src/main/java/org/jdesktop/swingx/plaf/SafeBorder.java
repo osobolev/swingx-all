@@ -54,7 +54,7 @@ public class SafeBorder extends AbstractBorder implements UIResource {
      * @param insets the insets to query
      * @return the insets supplied or an empty insets if the value is {@code null}
      */
-    private Insets safeInsets(Insets insets) {
+    private static Insets safeInsets(Insets insets) {
         return insets != null ? insets : new Insets(0, 0, 0, 0);
     }
 

@@ -221,7 +221,7 @@ public class BasicCalendarHeaderHandler extends CalendarHeaderHandler {
                 zoomOutLink.setFont(font);
         }
 
-        private JXHyperlink createZoomLink() {
+        private static JXHyperlink createZoomLink() {
             JXHyperlink zoomOutLink = new JXHyperlink();
             Color textColor = new Color(16, 66, 104);
             zoomOutLink.setUnclickedColor(textColor);
@@ -230,7 +230,7 @@ public class BasicCalendarHeaderHandler extends CalendarHeaderHandler {
             return zoomOutLink;
         }
 
-        private AbstractButton createNavigationButton() {
+        private static AbstractButton createNavigationButton() {
             JXHyperlink b = new JXHyperlink();
             b.setContentAreaFilled(false);
             b.setBorder(BorderFactory.createEmptyBorder());

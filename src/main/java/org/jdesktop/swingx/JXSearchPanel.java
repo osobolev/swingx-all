@@ -219,8 +219,7 @@ public class JXSearchPanel extends AbstractPatternPanel {
         searchCriteria.setRenderer(new DefaultListRenderer(createStringValue(getLocale())));
     }
 
-    private StringValue createStringValue(Locale locale) {
-        // TODO Auto-generated method stub
+    private static StringValue createStringValue(Locale locale) {
         Map<Object, String> keys = new HashMap<>();
         keys.put(PatternModel.MATCH_RULE_CONTAINS, PatternModel.MATCH_RULE_CONTAINS);
         keys.put(PatternModel.MATCH_RULE_ENDSWITH, PatternModel.MATCH_RULE_ENDSWITH);
@@ -234,7 +233,6 @@ public class JXSearchPanel extends AbstractPatternPanel {
      */
     @Override
     protected void updateLocaleState(Locale locale) {
-        // TODO Auto-generated method stub
         super.updateLocaleState(locale);
         searchCriteria.setRenderer(new DefaultListRenderer(createStringValue(locale)));
     }

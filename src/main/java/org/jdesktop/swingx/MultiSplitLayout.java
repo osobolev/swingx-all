@@ -764,19 +764,19 @@ public class MultiSplitLayout implements LayoutManager, Serializable {
         return sizeWithInsets(parent, size);
     }
 
-    private Rectangle boundsWithYandHeight(Rectangle bounds, double y, double height) {
+    private static Rectangle boundsWithYandHeight(Rectangle bounds, double y, double height) {
         Rectangle r = new Rectangle();
         r.setBounds((int) bounds.getX(), (int) y, (int) bounds.getWidth(), (int) height);
         return r;
     }
 
-    private Rectangle boundsWithXandWidth(Rectangle bounds, double x, double width) {
+    private static Rectangle boundsWithXandWidth(Rectangle bounds, double x, double width) {
         Rectangle r = new Rectangle();
         r.setBounds((int) x, (int) bounds.getY(), (int) width, (int) bounds.getHeight());
         return r;
     }
 
-    private void minimizeSplitBounds(Split split, Rectangle bounds) {
+    private static void minimizeSplitBounds(Split split, Rectangle bounds) {
         assert split.isVisible();
         Rectangle splitBounds = new Rectangle(bounds.x, bounds.y, 0, 0);
         List<Node> splitChildren = split.getChildren();
@@ -967,7 +967,7 @@ public class MultiSplitLayout implements LayoutManager, Serializable {
      * @param splitChild the node to check
      * @return true if there are visible children following
      */
-    private boolean hasMoreVisibleSiblings(Node splitChild) {
+    private static boolean hasMoreVisibleSiblings(Node splitChild) {
         Node next = splitChild.nextSibling();
         if (next == null)
             return false;
@@ -1311,11 +1311,11 @@ public class MultiSplitLayout implements LayoutManager, Serializable {
         }
     }
 
-    private void throwInvalidLayout(String msg, Node node) {
+    private static void throwInvalidLayout(String msg, Node node) {
         throw new InvalidLayoutException(msg, node);
     }
 
-    private void checkLayout(Node root) {
+    private static void checkLayout(Node root) {
         if (root instanceof Split) {
             Split split = (Split) root;
             if (split.getChildren().size() <= 2) {
@@ -1369,7 +1369,7 @@ public class MultiSplitLayout implements LayoutManager, Serializable {
         layout2(getModel(), bounds);
     }
 
-    private Divider dividerAt(Node root, int x, int y) {
+    private static Divider dividerAt(Node root, int x, int y) {
         if (root instanceof Divider) {
             Divider divider = (Divider) root;
             return divider.getBounds().contains(x, y) ? divider : null;
@@ -1398,12 +1398,12 @@ public class MultiSplitLayout implements LayoutManager, Serializable {
         return dividerAt(getModel(), x, y);
     }
 
-    private boolean nodeOverlapsRectangle(Node node, Rectangle r2) {
+    private static boolean nodeOverlapsRectangle(Node node, Rectangle r2) {
         Rectangle r1 = node.getBounds();
         return r1.x <= r2.x + r2.width && r1.x + r1.width >= r2.x && r1.y <= r2.y + r2.height && r1.y + r1.height >= r2.y;
     }
 
-    private List<Divider> dividersThatOverlap(Node root, Rectangle r) {
+    private static List<Divider> dividersThatOverlap(Node root, Rectangle r) {
         if (nodeOverlapsRectangle(root, r) && root instanceof Split) {
             List<Divider> dividers = new ArrayList<>();
             for (Node child : ((Split) root).getChildren()) {

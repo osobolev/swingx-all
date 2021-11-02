@@ -2053,7 +2053,7 @@ public class BasicXListUI extends BasicListUI {
          * @param list
          * @return
          */
-        private int getElementCount(JList list) {
+        private static int getElementCount(JList list) {
             return ((JXList) list).getElementCount();
         }
 
@@ -2076,11 +2076,11 @@ public class BasicXListUI extends BasicListUI {
             return true;
         }
 
-        private void clearSelection(JList list) {
+        private static void clearSelection(JList list) {
             list.clearSelection();
         }
 
-        private void selectAll(JList list) {
+        private static void selectAll(JList list) {
             int size = getElementCount(list);
             if (size > 0) {
                 ListSelectionModel lsm = list.getSelectionModel();
@@ -2109,7 +2109,7 @@ public class BasicXListUI extends BasicListUI {
             }
         }
 
-        private int getNextPageIndex(JList list, int direction) {
+        private static int getNextPageIndex(JList list, int direction) {
             if (getElementCount(list) == 0) {
                 return -1;
             }
@@ -2226,7 +2226,7 @@ public class BasicXListUI extends BasicListUI {
             return index;
         }
 
-        private void changeSelection(JList list, int type, int index, int direction) {
+        private static void changeSelection(JList list, int type, int index, int direction) {
             if (index >= 0 && index < getElementCount(list)) {
                 ListSelectionModel lsm = list.getSelectionModel();
 
@@ -2265,7 +2265,7 @@ public class BasicXListUI extends BasicListUI {
          * index. When scroll up makes selected index the first visible index.
          * Adjust visible rectangle respect to list's component orientation.
          */
-        private void adjustScrollPositionIfNecessary(JList list, int index, int direction) {
+        private static void adjustScrollPositionIfNecessary(JList list, int index, int direction) {
             if (direction == 0) {
                 return;
             }
@@ -2328,7 +2328,7 @@ public class BasicXListUI extends BasicListUI {
             }
         }
 
-        private int getNextColumnIndex(JList list, BasicXListUI ui, int amount) {
+        private static int getNextColumnIndex(JList list, BasicXListUI ui, int amount) {
             if (list.getLayoutOrientation() != JList.VERTICAL) {
                 int index = adjustIndex(list.getLeadSelectionIndex(), list);
                 int size = getElementCount(list);
@@ -2360,7 +2360,7 @@ public class BasicXListUI extends BasicListUI {
             return -1;
         }
 
-        private int getNextIndex(JList list, BasicXListUI ui, int amount) {
+        private static int getNextIndex(JList list, BasicXListUI ui, int amount) {
             int index = adjustIndex(list.getLeadSelectionIndex(), list);
             int size = getElementCount(list);
 

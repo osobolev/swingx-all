@@ -111,7 +111,7 @@ public class AlignmentHighlighter extends AbstractHighlighter {
      * @throws IllegalArgumentException if not one of the constants allowed as horizontal alignment,
      *                                  that is one of LEADING, LEFT, CENTER, RIGHT, TRAILING
      */
-    private int checkHorizontalAlignment(int alignment) {
+    private static int checkHorizontalAlignment(int alignment) {
         if (alignment == SwingConstants.LEFT ||
             alignment == SwingConstants.CENTER ||
             alignment == SwingConstants.RIGHT ||

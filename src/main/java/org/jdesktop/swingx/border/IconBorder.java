@@ -131,7 +131,7 @@ public class IconBorder implements Border, Serializable {
         setIconPosition(iconPosition);
     }
 
-    private boolean isValidPosition(int position) {
+    private static boolean isValidPosition(int position) {
         boolean result;
         switch (position) {
         case SwingConstants.LEADING:
@@ -204,7 +204,7 @@ public class IconBorder implements Border, Serializable {
      * the given postion LEADING/TRAILING this method has no effect for other
      * position values
      */
-    private int bidiDecodeLeadingTrailing(ComponentOrientation c, int position) {
+    private static int bidiDecodeLeadingTrailing(ComponentOrientation c, int position) {
         if (position == SwingConstants.TRAILING) {
             if (!c.isLeftToRight()) {
                 return SwingConstants.WEST;

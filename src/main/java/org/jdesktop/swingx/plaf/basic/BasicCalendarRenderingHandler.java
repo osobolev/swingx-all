@@ -288,7 +288,7 @@ class BasicCalendarRenderingHandler implements CalendarRenderingHandler {
      * @param font
      * @return
      */
-    private Font getDerivedFont(Font font) {
+    private static Font getDerivedFont(Font font) {
         return font.deriveFont(Font.BOLD);
     }
 
@@ -298,7 +298,7 @@ class BasicCalendarRenderingHandler implements CalendarRenderingHandler {
      * @param dayState
      * @return
      */
-    private boolean isFocused(JXMonthView monthView, Calendar calendar, CalendarState dayState) {
+    private static boolean isFocused(JXMonthView monthView, Calendar calendar, CalendarState dayState) {
         return false;
     }
 
@@ -308,7 +308,7 @@ class BasicCalendarRenderingHandler implements CalendarRenderingHandler {
      * @param dayState  the DayState of the cell
      * @return
      */
-    private boolean isSelected(JXMonthView monthView, Calendar calendar, CalendarState dayState) {
+    private static boolean isSelected(JXMonthView monthView, Calendar calendar, CalendarState dayState) {
         if (!isSelectable(dayState))
             return false;
         return monthView.isSelected(calendar.getTime());
@@ -318,7 +318,7 @@ class BasicCalendarRenderingHandler implements CalendarRenderingHandler {
      * @param dayState
      * @return
      */
-    private boolean isSelectable(CalendarState dayState) {
+    private static boolean isSelectable(CalendarState dayState) {
         return CalendarState.IN_MONTH == dayState || CalendarState.TODAY == dayState;
     }
 }

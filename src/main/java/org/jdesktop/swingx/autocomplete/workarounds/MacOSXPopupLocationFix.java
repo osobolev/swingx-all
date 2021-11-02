@@ -158,7 +158,7 @@ public final class MacOSXPopupLocationFix {
         /**
          * Get the best graphics configuration for the specified point and component.
          */
-        private GraphicsConfiguration graphicsConfigurationForComponent(Component component) {
+        private static GraphicsConfiguration graphicsConfigurationForComponent(Component component) {
             Point point = component.getLocationOnScreen();
 
             // try to find the graphics configuration for our point of interest

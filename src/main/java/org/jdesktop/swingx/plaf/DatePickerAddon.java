@@ -90,7 +90,7 @@ public class DatePickerAddon extends AbstractComponentAddon {
     /**
      * @return true if the LF is GTK.
      */
-    private boolean isGTK() {
+    private static boolean isGTK() {
         return "GTK".equals(UIManager.getLookAndFeel().getID());
     }
 

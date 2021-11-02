@@ -254,7 +254,7 @@ public class PatternModel {
      * @return
      */
 
-    private boolean isEmpty(String text) {
+    private static boolean isEmpty(String text) {
         return text == null || text.length() == 0;
     }
 
@@ -272,7 +272,7 @@ public class PatternModel {
         return isCaseSensitive() ? 0 : getCaseInsensitiveFlag();
     }
 
-    private int getCaseInsensitiveFlag() {
+    private static int getCaseInsensitiveFlag() {
         return Pattern.CASE_INSENSITIVE | Pattern.UNICODE_CASE;
     }
 
@@ -376,7 +376,7 @@ public class PatternModel {
             return rules;
         }
 
-        private List<String> createAndInitRules() {
+        private static List<String> createAndInitRules() {
             if (!supportsRules())
                 return Collections.emptyList();
             List<String> list = new ArrayList<>();
@@ -387,7 +387,7 @@ public class PatternModel {
             return list;
         }
 
-        private boolean supportsRules() {
+        private static boolean supportsRules() {
             return true;
         }
     }
@@ -429,11 +429,11 @@ public class PatternModel {
             return super.createRegEx(searchExp);
         }
 
-        private boolean hasStartAnchor(String str) {
+        private static boolean hasStartAnchor(String str) {
             return str.startsWith("^");
         }
 
-        private boolean hasEndAnchor(String str) {
+        private static boolean hasEndAnchor(String str) {
             int len = str.length();
             if (str.charAt(len - 1) != '$')
                 return false;
@@ -563,7 +563,7 @@ public class PatternModel {
         return regexCreatorKey;
     }
 
-    private String getDefaultRegexCreatorKey() {
+    private static String getDefaultRegexCreatorKey() {
         return REGEX_MATCH_RULES;
     }
 

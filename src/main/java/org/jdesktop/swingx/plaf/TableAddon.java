@@ -69,7 +69,7 @@ public class TableAddon extends AbstractComponentAddon {
         }
     }
 
-    private void replaceListTableBorders(LookAndFeelAddons addon, DefaultsList defaults) {
+    private static void replaceListTableBorders(LookAndFeelAddons addon, DefaultsList defaults) {
         replaceBorder(defaults, "Table.", "focusCellHighlightBorder");
         replaceBorder(defaults, "Table.", "focusSelectedCellHighlightBorder");
         replaceBorder(defaults, "Table.", "noFocusBorder");
@@ -80,7 +80,7 @@ public class TableAddon extends AbstractComponentAddon {
      * @param componentPrefix
      * @param borderKey
      */
-    private void replaceBorder(DefaultsList defaults, String componentPrefix, String borderKey) {
+    private static void replaceBorder(DefaultsList defaults, String componentPrefix, String borderKey) {
         Border border = UIManager.getBorder(componentPrefix + borderKey);
         if (border instanceof AbstractBorder && border instanceof UIResource && border.getClass().getName().contains("ListTable")) {
             border = new SafeBorder((AbstractBorder) border);
@@ -96,7 +96,7 @@ public class TableAddon extends AbstractComponentAddon {
     /**
      * @return true if the LF is GTK.
      */
-    private boolean isGTK() {
+    private static boolean isGTK() {
         return "GTK".equals(UIManager.getLookAndFeel().getID());
     }
 }

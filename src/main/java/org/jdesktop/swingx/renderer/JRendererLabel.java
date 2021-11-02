@@ -144,7 +144,7 @@ public class JRendererLabel extends JLabel implements PainterAware, IconAware {
      *
      * @return
      */
-    private boolean isNimbus() {
+    private static boolean isNimbus() {
         return UIManager.getLookAndFeel().getName().contains("Nimbus");
     }
 

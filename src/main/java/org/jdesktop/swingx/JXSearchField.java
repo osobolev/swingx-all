@@ -583,7 +583,7 @@ public class JXSearchField extends JXTextField {
         return recentSearches != null;
     }
 
-    private boolean isValidRecentSearchesKey(String key) {
+    private static boolean isValidRecentSearchesKey(String key) {
         return key != null && key.length() > 0;
     }
 

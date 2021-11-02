@@ -2440,10 +2440,8 @@ public class JXTreeTable extends JXTable {
          * @return a boolean indicating whether the given TreeModelEvent
          * should trigger a structureChanged.
          */
-        private boolean isTableStructureChanged(TreeModelEvent e) {
-            if (e.getTreePath() == null || e.getTreePath().getParentPath() == null)
-                return true;
-            return false;
+        private static boolean isTableStructureChanged(TreeModelEvent e) {
+            return e.getTreePath() == null || e.getTreePath().getParentPath() == null;
         }
 
         /**

@@ -226,7 +226,7 @@ public final class HighlighterFactory {
          *
          * @return the LF specific color for background striping.
          */
-        private Color getUIColor() {
+        private static Color getUIColor() {
             Color color = null;
             // JW: can't do - Nimbus stripes even rows (somewhere deep down the ui?)
             //, SwingX stripes odd rows

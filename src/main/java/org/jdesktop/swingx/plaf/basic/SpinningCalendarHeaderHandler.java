@@ -488,7 +488,7 @@ public class SpinningCalendarHeaderHandler extends CalendarHeaderHandler {
          *
          * @return
          */
-        private JSpinner createSpinner() {
+        private static JSpinner createSpinner() {
             JSpinner spinner = new JSpinner();
             spinner.setFocusable(false);
             NumberEditor editor = new NumberEditor(spinner);
@@ -498,7 +498,7 @@ public class SpinningCalendarHeaderHandler extends CalendarHeaderHandler {
             return spinner;
         }
 
-        private AbstractButton createNavigationButton() {
+        private static AbstractButton createNavigationButton() {
             JXHyperlink b = new JXHyperlink();
             b.setContentAreaFilled(false);
             b.setBorder(BorderFactory.createEmptyBorder());

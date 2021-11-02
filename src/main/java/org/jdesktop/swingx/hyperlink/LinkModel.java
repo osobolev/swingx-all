@@ -118,7 +118,7 @@ public class LinkModel implements Comparable {
         setURL(url);
     }
 
-    private URL getDefaultURL() {
+    private static URL getDefaultURL() {
         if (defaultURL == null) {
             try {
                 defaultURL = new URL(defaultURLString);
@@ -165,7 +165,7 @@ public class LinkModel implements Comparable {
      * http://bugz.sfbay/cgi-bin/showbug?cat=java&sub_cat=classes_swing
      * <p>
      */
-    private URL createURL(String template, String[] args) {
+    private static URL createURL(String template, String[] args) {
         URL url = null;
         try {
             String urlStr = template;

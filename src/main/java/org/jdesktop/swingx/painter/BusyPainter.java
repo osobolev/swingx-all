@@ -272,7 +272,7 @@ public class BusyPainter extends AbstractPainter<Object> {
         g.rotate(-t);
     }
 
-    private Float calcPoint(float dist2go, Float startPoint, float[] sgmt, int w, int h) {
+    private static Float calcPoint(float dist2go, Float startPoint, float[] sgmt, int w, int h) {
         Float f = new Float();
         if (sgmt[7] == PathIterator.SEG_LINETO) {
             // linear
@@ -319,7 +319,7 @@ public class BusyPainter extends AbstractPainter<Object> {
      * @param cp     Start point.
      * @return Length of the segment.
      */
-    private float calcLine(float[] coords, Float cp) {
+    private static float calcLine(float[] coords, Float cp) {
         float a = cp.x - coords[0];
         float b = cp.y - coords[1];
         return (float) Math.sqrt(a * a + b * b);
@@ -332,7 +332,7 @@ public class BusyPainter extends AbstractPainter<Object> {
      * @param cp     Start point.
      * @return Length of the segment.
      */
-    private float calcCube(float[] coords, Float cp) {
+    private static float calcCube(float[] coords, Float cp) {
         float x = Math.abs(cp.x - coords[4]);
         float y = Math.abs(cp.y - coords[5]);
 
@@ -361,7 +361,7 @@ public class BusyPainter extends AbstractPainter<Object> {
      * @param cp     Start point.
      * @return Length of the segment.
      */
-    private float calcLengthOfQuad(float[] coords, Float cp) {
+    private static float calcLengthOfQuad(float[] coords, Float cp) {
         Float ctrl = new Float(coords[0], coords[1]);
         Float end = new Float(coords[2], coords[3]);
         // get abs values
@@ -412,7 +412,7 @@ public class BusyPainter extends AbstractPainter<Object> {
      * @param t parametric value for spline calculation
      * @author chet
      */
-    private Float getXY(float t, float x1, float y1, float x2, float y2) {
+    private static Float getXY(float t, float x1, float y1, float x2, float y2) {
         float invT = 1 - t;
         float b1 = 3 * t * (invT * invT);
         float b2 = 3 * (t * t) * invT;

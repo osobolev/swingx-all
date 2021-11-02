@@ -150,7 +150,7 @@ public class BuddyLayoutAndBorder implements LayoutManager, Border, PropertyChan
         return alloc;
     }
 
-    private void substractInsets(Rectangle alloc, Insets insets) {
+    private static void substractInsets(Rectangle alloc, Insets insets) {
         if (insets != null) {
             alloc.x += insets.left;
             alloc.y += insets.top;

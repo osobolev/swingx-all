@@ -131,7 +131,7 @@ public class StrictNumberFormatter extends NumberFormatter {
      * <code>Byte</code> or <code>Short</code> and <code>value</code>
      * is an instanceof <code>Number</code>.
      */
-    private Object convertValueToValueClass(Object value, Class<?> valueClass) {
+    private static Object convertValueToValueClass(Object value, Class<?> valueClass) {
         if (valueClass != null && value instanceof Number) {
             if (valueClass == Integer.class) {
                 return ((Number) value).intValue();
@@ -154,7 +154,7 @@ public class StrictNumberFormatter extends NumberFormatter {
      * Invokes <code>parseObject</code> on <code>f</code>, returning
      * its value.
      */
-    private Object getParsedValue(String text, Format f) throws ParseException {
+    private static Object getParsedValue(String text, Format f) throws ParseException {
         if (f == null) {
             return text;
         }

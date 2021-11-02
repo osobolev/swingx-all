@@ -188,7 +188,7 @@ public class DefaultListRenderer extends AbstractRenderer implements ListCellRen
      *
      * @return the StringValue to use by default.
      */
-    private StringValue createDefaultStringValue() {
+    private static StringValue createDefaultStringValue() {
         return MappedValues.STRING_OR_ICON_ONLY;
     }
 }

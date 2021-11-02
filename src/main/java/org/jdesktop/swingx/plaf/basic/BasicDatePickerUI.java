@@ -185,7 +185,7 @@ public class BasicDatePickerUI extends DatePickerUI {
      * @return the custom formats uses in the editor or null if it had
      * used defaults as defined in the datepicker properties
      */
-    private DateFormat[] getCustomFormats(JFormattedTextField editor) {
+    private static DateFormat[] getCustomFormats(JFormattedTextField editor) {
         DateFormat[] formats = null;
         if (editor != null) {
             AbstractFormatterFactory factory = editor.getFormatterFactory();

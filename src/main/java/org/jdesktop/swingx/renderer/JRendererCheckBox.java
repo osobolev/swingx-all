@@ -183,7 +183,7 @@ public class JRendererCheckBox extends JCheckBox implements PainterAware {
      *
      * @return
      */
-    private boolean isNimbus() {
+    private static boolean isNimbus() {
         return UIManager.getLookAndFeel().getName().contains("Nimbus");
     }
 

@@ -837,7 +837,7 @@ public class BasicMonthViewUI extends MonthViewUI {
     /**
      * @param row
      */
-    private void checkValidRow(int row, int column) {
+    private static void checkValidRow(int row, int column) {
         if (column < WEEK_HEADER_COLUMN || column > LAST_DAY_COLUMN)
             throw new IllegalArgumentException("illegal column in day grid " + column);
         if (row < DAY_HEADER_ROW || row > LAST_WEEK_ROW)
@@ -1645,7 +1645,7 @@ public class BasicMonthViewUI extends MonthViewUI {
      * all access by this method to enable easy re-adding, if we want it.
      * If not - remove.
      */
-    private boolean canSelectByMode() {
+    private static boolean canSelectByMode() {
         return true;
     }
 
@@ -2245,7 +2245,7 @@ public class BasicMonthViewUI extends MonthViewUI {
      * @param handlerClassName
      * @return
      */
-    private CalendarHeaderHandler instantiateClass(String handlerClassName) {
+    private static CalendarHeaderHandler instantiateClass(String handlerClassName) {
         try {
             Class<?> handler = Class.forName(handlerClassName);
             return instantiateClass(handler);
@@ -2260,7 +2260,7 @@ public class BasicMonthViewUI extends MonthViewUI {
      * @param handlerClass
      * @return
      */
-    private CalendarHeaderHandler instantiateClass(Class<?> handlerClass) {
+    private static CalendarHeaderHandler instantiateClass(Class<?> handlerClass) {
         Constructor<?> constructor = null;
         try {
             constructor = handlerClass.getConstructor();

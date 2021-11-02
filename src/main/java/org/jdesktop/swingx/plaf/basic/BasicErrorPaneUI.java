@@ -453,7 +453,7 @@ public class BasicErrorPaneUI extends ErrorPaneUI {
      *
      * @return a TransferHandler for the details area
      */
-    private TransferHandler createDetailsTransferHandler(JTextComponent detailComponent) {
+    private static TransferHandler createDetailsTransferHandler(JTextComponent detailComponent) {
         return new DetailsTransferHandler(detailComponent);
     }
 

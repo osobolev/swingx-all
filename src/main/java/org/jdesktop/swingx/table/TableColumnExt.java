@@ -699,7 +699,7 @@ public class TableColumnExt extends TableColumn implements UIDependent {
     /**
      * @param editor
      */
-    private void updateEditorUI(TableCellEditor editor) {
+    private static void updateEditorUI(TableCellEditor editor) {
         if (editor == null)
             return;
         // internal knowledge of core table - already updated
@@ -718,7 +718,7 @@ public class TableColumnExt extends TableColumn implements UIDependent {
     /**
      * @param renderer
      */
-    private void updateRendererUI(TableCellRenderer renderer) {
+    private static void updateRendererUI(TableCellRenderer renderer) {
         if (renderer == null)
             return;
         // internal knowledge of core table - already updated

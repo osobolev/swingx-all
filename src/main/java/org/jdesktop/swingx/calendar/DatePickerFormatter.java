@@ -188,7 +188,7 @@ public class DatePickerFormatter extends JFormattedTextField.AbstractFormatter {
      * @param f      the List of formats to add to
      * @param locale the Locale to use for the formatter.
      */
-    private void addSystemDefaultFormat(List<DateFormat> f, Locale locale) {
+    private static void addSystemDefaultFormat(List<DateFormat> f, Locale locale) {
         f.add(DateFormat.getDateInstance(DateFormat.SHORT, locale));
     }
 
@@ -202,7 +202,7 @@ public class DatePickerFormatter extends JFormattedTextField.AbstractFormatter {
      * @param f   the list of formats
      * @param key the key for getting the pattern from the UI
      */
-    private void addFormat(List<DateFormat> f, String key, Locale locale) {
+    private static void addFormat(List<DateFormat> f, String key, Locale locale) {
         String pattern = UIManagerExt.getString(key, locale);
         if (pattern == null)
             return;

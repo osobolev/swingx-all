@@ -441,7 +441,7 @@ public abstract class AbstractSearchable implements Searchable {
      * @return {@code true} if the {@code result} contains a match;
      * {@code false} otherwise
      */
-    private boolean hasMatch(SearchResult result) {
+    private static boolean hasMatch(SearchResult result) {
         boolean noMatch = result.getFoundRow() < 0 || result.getFoundColumn() < 0;
         return !noMatch;
     }

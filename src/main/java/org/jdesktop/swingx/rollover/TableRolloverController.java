@@ -101,7 +101,7 @@ public class TableRolloverController<T extends JTable> extends RolloverControlle
      * @return a boolean indicating whether the given cellLocation has a column
      * to paint
      */
-    private boolean hasColumn(Point cellLocation) {
+    private static boolean hasColumn(Point cellLocation) {
         return cellLocation != null && cellLocation.x >= 0;
     }
 
@@ -110,7 +110,7 @@ public class TableRolloverController<T extends JTable> extends RolloverControlle
      * @return a boolean indicating whether the given cellLocation has a row
      * to paint
      */
-    private boolean hasRow(Point cellLocation) {
+    private static boolean hasRow(Point cellLocation) {
         return cellLocation != null && cellLocation.y >= 0;
     }
 

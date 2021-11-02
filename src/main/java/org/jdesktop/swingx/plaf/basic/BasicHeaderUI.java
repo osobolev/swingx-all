@@ -320,7 +320,7 @@ public class BasicHeaderUI extends HeaderUI {
      * @param font the base font
      * @return a font not of type UIResource, may be null.
      */
-    private Font getAsNotUIResource(Font font) {
+    private static Font getAsNotUIResource(Font font) {
         if (!(font instanceof UIResource))
             return font;
         // PENDING JW: correct way to create another font instance?
@@ -333,7 +333,7 @@ public class BasicHeaderUI extends HeaderUI {
      * @param color the base color
      * @return a color not of type UIResource, may be null.
      */
-    private Color getAsNotUIResource(Color color) {
+    private static Color getAsNotUIResource(Color color) {
         if (!(color instanceof UIResource))
             return color;
         // PENDING JW: correct way to create another color instance?
@@ -351,7 +351,7 @@ public class BasicHeaderUI extends HeaderUI {
      * @return true if the given property should be replaced by the UI#s
      * default value, false otherwise.
      */
-    private boolean isUIInstallable(Object property) {
+    private static boolean isUIInstallable(Object property) {
         return property == null || property instanceof UIResource;
     }
 

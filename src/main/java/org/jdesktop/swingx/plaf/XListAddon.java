@@ -52,7 +52,7 @@ public class XListAddon extends AbstractComponentAddon {
         defaults.add(JXList.uiClassID, "org.jdesktop.swingx.plaf.synth.SynthXListUI");
     }
 
-    private void replaceListTableBorders(LookAndFeelAddons addon, DefaultsList defaults) {
+    private static void replaceListTableBorders(LookAndFeelAddons addon, DefaultsList defaults) {
         replaceBorder(defaults, "List.", "focusCellHighlightBorder");
         replaceBorder(defaults, "List.", "focusSelectedCellHighlightBorder");
         replaceBorder(defaults, "List.", "noFocusBorder");
@@ -63,7 +63,7 @@ public class XListAddon extends AbstractComponentAddon {
      * @param componentPrefix
      * @param borderKey
      */
-    private void replaceBorder(DefaultsList defaults, String componentPrefix, String borderKey) {
+    private static void replaceBorder(DefaultsList defaults, String componentPrefix, String borderKey) {
         Border border = UIManager.getBorder(componentPrefix + borderKey);
         if (border instanceof AbstractBorder && border instanceof UIResource && border.getClass().getName().contains("ListTable")) {
             border = new SafeBorder((AbstractBorder) border);
@@ -79,7 +79,7 @@ public class XListAddon extends AbstractComponentAddon {
     /**
      * @return true if the LF is GTK.
      */
-    private boolean isGTK() {
+    private static boolean isGTK() {
         return "GTK".equals(UIManager.getLookAndFeel().getID());
     }
 }
