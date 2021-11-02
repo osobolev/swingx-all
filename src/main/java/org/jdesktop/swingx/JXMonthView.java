@@ -1832,7 +1832,7 @@ public class JXMonthView extends JComponent {
             }
             int daysTillEnd = lastDayOfWeek - dayOfWeek;
             if (daysTillEnd < 0) {
-                daysTillEnd += JXMonthView.DAYS_IN_WEEK;
+                daysTillEnd += DAYS_IN_WEEK;
             }
             cal.add(Calendar.DAY_OF_MONTH, daysTillEnd);
             modifiedEndDate = cal.getTime();
