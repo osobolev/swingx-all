@@ -4,9 +4,10 @@ import javax.swing.tree.TreeModel;
 import javax.swing.tree.TreeNode;
 import javax.swing.tree.TreePath;
 import java.util.ArrayDeque;
+import java.util.Collections;
 import java.util.Deque;
 import java.util.Enumeration;
-import java.util.NoSuchElementException;
+import java.util.List;
 import java.util.Queue;
 
 /**
@@ -20,17 +21,7 @@ public class TreeUtilities {
     /**
      * An enumeration that is always empty.
      */
-    public static final Enumeration EMPTY_ENUMERATION = new Enumeration() {
-        @Override
-        public boolean hasMoreElements() {
-            return false;
-        }
-
-        @Override
-        public Object nextElement() {
-            throw new NoSuchElementException("No more elements");
-        }
-    };
+    public static final Enumeration EMPTY_ENUMERATION = Collections.emptyEnumeration();
 
     /**
      * Implementation of a preorder traversal of a TreeModel.
@@ -134,9 +125,8 @@ public class TreeUtilities {
 
         private void pushNodeAsEnumeration(Object node) {
             // single element enum
-            Vector v = new Vector(1);
-            v.add(node);
-            stack.push(v.elements()); //children(model));
+            List<Object> v = Collections.singletonList(node);
+            stack.push(Collections.enumeration(v)); //children(model));
         }
     }  // End of class PreorderEnumeration
 
@@ -154,11 +144,9 @@ public class TreeUtilities {
 
         public BreadthFirstModelEnumeration(TreeModel model, Object node) {
             this.model = model;
-            // Vector is just used for getting an Enumeration easily
-            Vector v = new Vector(1);
-            v.addElement(node);
+            List<Object> v = Collections.singletonList(node);
             queue = new ArrayDeque<>();
-            queue.offer(v.elements());
+            queue.offer(Collections.enumeration(v));
         }
 
         @Override
@@ -238,10 +226,9 @@ public class TreeUtilities {
 
         public PreorderNodeEnumeration(M rootNode) {
             // Vector is just used for getting an Enumeration easily
-            Vector<M> v = new Vector<>(1);
-            v.addElement(rootNode);
+            List<M> v = Collections.singletonList(rootNode);
             stack = new ArrayDeque<>();
-            stack.push(v.elements());
+            stack.push(Collections.enumeration(v));
         }
 
         @Override
@@ -336,10 +323,9 @@ public class TreeUtilities {
 
         public BreadthFirstNodeEnumeration(M rootNode) {
             // Vector is just used for getting an Enumeration easily
-            Vector<M> v = new Vector<>(1);
-            v.addElement(rootNode);
+            List<M> v = Collections.singletonList(rootNode);
             queue = new ArrayDeque<>();
-            queue.offer(v.elements());
+            queue.offer(Collections.enumeration(v));
         }
 
         @Override
