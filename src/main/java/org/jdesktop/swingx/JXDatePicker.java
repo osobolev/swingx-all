@@ -996,7 +996,7 @@ public class JXDatePicker extends JComponent {
 
             @Override
             public void actionPerformed(ActionEvent ae) {
-                String key = select ? JXDatePicker.HOME_COMMIT_KEY : JXDatePicker.HOME_NAVIGATE_KEY;
+                String key = select ? HOME_COMMIT_KEY : HOME_NAVIGATE_KEY;
                 select = false;
                 Action delegate = getActionMap().get(key);
                 /*

@@ -134,10 +134,10 @@ public class BuddySupport {
     }
 
     public static void ensureBuddiesAreInComponentHierarchy(JTextField textField) {
-        for (Component c : BuddySupport.getLeft(textField)) {
+        for (Component c : getLeft(textField)) {
             addToComponentHierarchy(c, Position.LEFT, textField);
         }
-        for (Component c : BuddySupport.getRight(textField)) {
+        for (Component c : getRight(textField)) {
             addToComponentHierarchy(c, Position.RIGHT, textField);
         }
     }

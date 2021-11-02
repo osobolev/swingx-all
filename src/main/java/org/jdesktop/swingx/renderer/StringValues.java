@@ -49,7 +49,7 @@ public final class StringValues {
      * the same effect as {@link StringValues#EMPTY}.
      */
     @SuppressWarnings("serial")
-    public static final StringValue TO_STRING = value -> (value != null) ? value.toString() : StringValues.EMPTY.getString(value);
+    public static final StringValue TO_STRING = value -> (value != null) ? value.toString() : EMPTY.getString(value);
 
     /**
      * A {@code StringValue} that presents the current L&F display name for a
@@ -64,7 +64,7 @@ public final class StringValues {
             return fsv.getSystemDisplayName((File) value);
         }
 
-        return StringValues.TO_STRING.getString(value);
+        return TO_STRING.getString(value);
     };
 
     /**
@@ -80,7 +80,7 @@ public final class StringValues {
             return fsv.getSystemTypeDescription((File) value);
         }
 
-        return StringValues.TO_STRING.getString(value);
+        return TO_STRING.getString(value);
     };
 
     /**
@@ -140,8 +140,8 @@ public final class StringValues {
         }
     };
 
-    public static final StringValue TO_STRING_UI = new StringValueUIResource(StringValues.TO_STRING);
-    public static final StringValue EMPTY_UI = new StringValueUIResource(StringValues.EMPTY);
+    public static final StringValue TO_STRING_UI = new StringValueUIResource(TO_STRING);
+    public static final StringValue EMPTY_UI = new StringValueUIResource(EMPTY);
 
     /**
      * StringValue wrapper of type UIResource to tag LAF installed converters.

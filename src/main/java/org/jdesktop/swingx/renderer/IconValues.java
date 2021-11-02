@@ -63,7 +63,7 @@ public final class IconValues {
             return fsv.getSystemIcon((File) value);
         }
 
-        return IconValues.NONE.getIcon(value);
+        return NONE.getIcon(value);
     };
 
     private IconValues() {

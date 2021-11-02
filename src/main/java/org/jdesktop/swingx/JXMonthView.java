@@ -1818,14 +1818,14 @@ public class JXMonthView extends JComponent {
             count++;
         }
 
-        if (count > JXMonthView.DAYS_IN_WEEK) {
+        if (count > DAYS_IN_WEEK) {
             // Move the start date to the first day of the week.
             cal.setTime(startDate);
             int dayOfWeek = cal.get(Calendar.DAY_OF_WEEK);
             int firstDayOfWeek = getFirstDayOfWeek();
             int daysFromStart = dayOfWeek - firstDayOfWeek;
             if (daysFromStart < 0) {
-                daysFromStart += JXMonthView.DAYS_IN_WEEK;
+                daysFromStart += DAYS_IN_WEEK;
             }
             cal.add(Calendar.DAY_OF_MONTH, -daysFromStart);
 
