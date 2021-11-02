@@ -379,7 +379,7 @@ public abstract class AbstractPatternPanel extends JXPanel {
     protected void bindSearchLabel(Locale locale) {
         searchLabel.setText(getUIString(SEARCH_FIELD_LABEL, locale));
         String mnemonic = getUIString(SEARCH_FIELD_MNEMONIC, locale);
-        if (mnemonic != SEARCH_FIELD_MNEMONIC) {
+        if (!SEARCH_FIELD_MNEMONIC.equals(mnemonic)) {
             searchLabel.setDisplayedMnemonic(mnemonic.charAt(0));
         }
         searchLabel.setLabelFor(searchField);
