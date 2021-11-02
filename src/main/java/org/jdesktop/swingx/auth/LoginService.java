@@ -26,7 +26,6 @@ import javax.swing.SwingUtilities;
 import javax.swing.SwingWorker;
 import javax.swing.event.EventListenerList;
 import java.awt.EventQueue;
-import java.util.logging.Logger;
 
 /**
  * <b>LoginService</b> is the abstract base class for all classes implementing
@@ -43,9 +42,6 @@ import java.util.logging.Logger;
  * @author Karl Schaefer
  */
 public abstract class LoginService extends AbstractBean {
-
-    @SuppressWarnings("unused")
-    private final Logger LOG = Logger.getLogger(LoginService.class.getName());
 
     private final EventListenerList listenerList = new EventListenerList();
 

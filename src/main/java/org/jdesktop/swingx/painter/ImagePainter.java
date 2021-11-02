@@ -34,7 +34,6 @@ import java.awt.Shape;
 import java.awt.TexturePaint;
 import java.awt.geom.Area;
 import java.awt.image.BufferedImage;
-import java.util.logging.Logger;
 
 /**
  * <p>A Painter instance that paints an image. Any Image is acceptable. This
@@ -68,12 +67,6 @@ import java.util.logging.Logger;
 public class ImagePainter extends AbstractAreaPainter<Object> {
 
     public enum ScaleType {InsideFit, OutsideFit, Distort}
-
-    /**
-     * Logger to use
-     */
-    @SuppressWarnings("unused")
-    private static final Logger LOG = Logger.getLogger(ImagePainter.class.getName());
 
     /**
      * The image to draw

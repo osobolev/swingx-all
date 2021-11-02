@@ -8,8 +8,6 @@ import java.util.Deque;
 import java.util.Enumeration;
 import java.util.NoSuchElementException;
 import java.util.Queue;
-import java.util.Vector;
-import java.util.logging.Logger;
 
 /**
  * Contains convenience classes/methods for handling hierarchical Swing structures.
@@ -415,7 +413,4 @@ public class TreeUtilities {
 
     private TreeUtilities() {
     }
-
-    @SuppressWarnings("unused")
-    private static final Logger LOG = Logger.getLogger(TreeUtilities.class.getName());
 }

@@ -28,7 +28,6 @@ import javax.swing.plaf.ColorUIResource;
 import javax.swing.plaf.metal.MetalLookAndFeel;
 import javax.swing.plaf.metal.OceanTheme;
 import java.awt.Color;
-import java.util.logging.Logger;
 
 /**
  * Loads LF specific background striping colors.
@@ -40,9 +39,6 @@ import java.util.logging.Logger;
  * @author Karl Schaefer
  */
 public class UIColorHighlighterAddon extends AbstractComponentAddon {
-
-    @SuppressWarnings("unused")
-    private static final Logger LOG = Logger.getLogger(UIColorHighlighterAddon.class.getName());
 
     public UIColorHighlighterAddon() {
         super("UIColorHighlighter");

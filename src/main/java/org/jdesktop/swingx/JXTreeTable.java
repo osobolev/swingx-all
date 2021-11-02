@@ -82,7 +82,6 @@ import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.EventObject;
 import java.util.List;
-import java.util.logging.Logger;
 
 /**
  * <p><code>JXTreeTable</code> is a specialized {@link JTable table}
@@ -134,8 +133,6 @@ import java.util.logging.Logger;
 @JavaBean
 public class JXTreeTable extends JXTable {
 
-    @SuppressWarnings("unused")
-    private static final Logger LOG = Logger.getLogger(JXTreeTable.class.getName());
     /**
      * Key for clientProperty to decide whether to apply hack around #168-jdnc.
      */

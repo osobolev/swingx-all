@@ -33,7 +33,6 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.beans.PropertyChangeListener;
-import java.util.logging.Logger;
 
 /**
  * Provides and wires a component appropriate as a calendar navigation header.
@@ -67,9 +66,6 @@ import java.util.logging.Logger;
  * @author Jeanette Winzenburg
  */
 public abstract class CalendarHeaderHandler {
-
-    @SuppressWarnings("unused")
-    private static final Logger LOG = Logger.getLogger(CalendarHeaderHandler.class.getName());
 
     public static final String uiControllerID = "CalendarHeaderHandler";
 

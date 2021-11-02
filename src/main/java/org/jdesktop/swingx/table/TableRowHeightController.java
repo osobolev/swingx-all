@@ -28,7 +28,6 @@ import javax.swing.event.TableModelListener;
 import javax.swing.table.TableModel;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
-import java.util.logging.Logger;
 
 import static org.jdesktop.swingx.table.TableUtilities.isDataChanged;
 import static org.jdesktop.swingx.table.TableUtilities.isInsert;
@@ -204,7 +203,4 @@ public class TableRowHeightController {
         }
         return tablePropertyListener;
     }
-
-    @SuppressWarnings("unused")
-    private static final Logger LOG = Logger.getLogger(TableRowHeightController.class.getName());
 }

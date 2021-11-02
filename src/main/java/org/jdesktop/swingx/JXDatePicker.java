@@ -67,7 +67,6 @@ import java.util.EventListener;
 import java.util.List;
 import java.util.Locale;
 import java.util.TimeZone;
-import java.util.logging.Logger;
 
 /**
  * A component for entering dates with a user interaction similar to a
@@ -165,9 +164,6 @@ import java.util.logging.Logger;
  */
 @JavaBean
 public class JXDatePicker extends JComponent {
-
-    @SuppressWarnings("unused")
-    private static final Logger LOG = Logger.getLogger(JXDatePicker.class.getName());
 
     static {
         LookAndFeelAddons.contribute(new DatePickerAddon());

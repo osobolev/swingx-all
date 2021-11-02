@@ -26,7 +26,6 @@ import javax.swing.border.AbstractBorder;
 import javax.swing.border.Border;
 import javax.swing.plaf.UIResource;
 import java.awt.Color;
-import java.util.logging.Logger;
 
 /**
  * TODO add type doc
@@ -34,9 +33,6 @@ import java.util.logging.Logger;
  * @author Jeanette Winzenburg
  */
 public class TableAddon extends AbstractComponentAddon {
-
-    @SuppressWarnings("unused")
-    private static final Logger LOG = Logger.getLogger(TableAddon.class.getName());
 
     public TableAddon() {
         super("JXTable");

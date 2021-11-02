@@ -26,7 +26,6 @@ import org.jdesktop.swingx.renderer.StringValues;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.logging.Logger;
 
 /**
  * A writable implemenation of StringValueProvider. Typically, this is created and
@@ -39,9 +38,6 @@ import java.util.logging.Logger;
  * @author Jeanette Winzenburg
  */
 public final class StringValueRegistry implements StringValueProvider {
-
-    @SuppressWarnings("unused")
-    private static final Logger LOG = Logger.getLogger(StringValueRegistry.class.getName());
 
     private Map<Class<?>, StringValue> perClass;
     private HashMap<Integer, StringValue> perColumn;

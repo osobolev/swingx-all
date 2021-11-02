@@ -33,7 +33,6 @@ import java.awt.Component;
 import java.awt.Rectangle;
 import java.awt.event.MouseEvent;
 import java.util.EventObject;
-import java.util.logging.Logger;
 
 /**
  * An editor that can be used to edit the tree column. This extends
@@ -80,8 +79,6 @@ public class TreeTableCellEditor extends GenericEditor {
 // JW: changed to extends GenericEditor to fix #1365-swingx - 
 //    borders different in hierarchical column vs. table column
 //    
-    @SuppressWarnings("unused")
-    private static final Logger LOG = Logger.getLogger(TreeTableCellEditor.class.getName());
 
     public TreeTableCellEditor(JTree tree) {
         super(new TreeTableTextField());

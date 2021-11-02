@@ -51,7 +51,6 @@ import java.util.Locale;
 import java.util.SortedSet;
 import java.util.TimeZone;
 import java.util.TreeSet;
-import java.util.logging.Logger;
 
 /**
  * Component that displays a month calendar which can be used to select a day
@@ -130,8 +129,6 @@ import java.util.logging.Logger;
 @JavaBean
 public class JXMonthView extends JComponent {
 
-    @SuppressWarnings("unused")
-    private static final Logger LOG = Logger.getLogger(JXMonthView.class.getName());
     /*
      * moved from package calendar to swingx at version 1.51
      */

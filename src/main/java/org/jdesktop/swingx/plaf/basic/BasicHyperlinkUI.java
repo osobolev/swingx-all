@@ -65,16 +65,12 @@ import java.beans.PropertyChangeListener;
 import java.io.Reader;
 import java.io.StringReader;
 import java.net.URL;
-import java.util.logging.Logger;
 
 /**
  * Basic implementation of the <code>JXHyperlink</code> UI. <br>
  * This is copied from org.jdesktop.jdnc.plaf.basic.BasicLinkButtonUI
  */
 public class BasicHyperlinkUI extends BasicButtonUI {
-
-    @SuppressWarnings("unused")
-    private static final Logger LOG = Logger.getLogger(BasicHyperlinkUI.class.getName());
 
     public static ComponentUI createUI(JComponent c) {
         return new BasicHyperlinkUI();

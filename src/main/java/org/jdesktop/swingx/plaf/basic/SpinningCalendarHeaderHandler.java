@@ -24,7 +24,6 @@ import java.beans.PropertyChangeListener;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.logging.Logger;
 
 /**
  * Custom CalendarHeaderHandler which supports year-wise navigation.
@@ -70,9 +69,6 @@ public class SpinningCalendarHeaderHandler extends CalendarHeaderHandler {
      * spinner.
      */
     public static final String FOCUSABLE_SPINNER_TEXT = "SpinningCalendarHeader.focusableSpinnerText";
-
-    @SuppressWarnings("unused")
-    private static final Logger LOG = Logger.getLogger(SpinningCalendarHeaderHandler.class.getName());
 
     /**
      * the spinner model for year-wise navigation.

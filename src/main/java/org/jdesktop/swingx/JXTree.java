@@ -71,7 +71,6 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.Hashtable;
 import java.util.Vector;
-import java.util.logging.Logger;
 import java.util.regex.Pattern;
 
 /**
@@ -172,9 +171,6 @@ import java.util.regex.Pattern;
  */
 @JavaBean
 public class JXTree extends JTree {
-
-    @SuppressWarnings("unused")
-    private static final Logger LOG = Logger.getLogger(JXTree.class.getName());
 
     /**
      * Empty int array used in getSelectedRows().

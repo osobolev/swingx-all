@@ -78,7 +78,6 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 import java.util.TimeZone;
-import java.util.logging.Logger;
 
 /**
  * The basic implementation of a <code>DatePickerUI</code>.
@@ -88,9 +87,6 @@ import java.util.logging.Logger;
  * @author Jeanette Winzenburg
  */
 public class BasicDatePickerUI extends DatePickerUI {
-
-    @SuppressWarnings("all")
-    private static final Logger LOG = Logger.getLogger(BasicDatePickerUI.class.getName());
 
     protected JXDatePicker datePicker;
     private JButton popupButton;

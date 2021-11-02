@@ -40,7 +40,6 @@ import java.awt.event.MouseEvent;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.io.Serializable;
-import java.util.logging.Logger;
 
 /**
  * TableHeader with extended functionality if associated Table is of
@@ -76,9 +75,6 @@ import java.util.logging.Logger;
  * @see JXTable#resetSortOrder()
  */
 public class JXTableHeader extends JTableHeader implements TableColumnModelExtListener {
-
-    @SuppressWarnings("unused")
-    private static final Logger LOG = Logger.getLogger(JXTableHeader.class.getName());
 
     static {
         LookAndFeelAddons.contribute(new TableHeaderAddon());

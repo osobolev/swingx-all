@@ -27,7 +27,6 @@ import java.awt.event.ComponentListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
-import java.util.logging.Logger;
 
 /**
  * Mouse/Motion/Listener which maps mouse coordinates to client coordinates
@@ -42,9 +41,6 @@ import java.util.logging.Logger;
  * @author Jeanette Winzenburg
  */
 public abstract class RolloverProducer implements MouseListener, MouseMotionListener, ComponentListener {
-
-    @SuppressWarnings("unused")
-    private static final Logger LOG = Logger.getLogger(RolloverProducer.class.getName());
 
     /**
      * Key for client property mapped from mouse-triggered action.

@@ -50,7 +50,6 @@ import java.awt.event.HierarchyBoundsAdapter;
 import java.awt.event.HierarchyBoundsListener;
 import java.awt.event.HierarchyEvent;
 import java.beans.PropertyChangeListener;
-import java.util.logging.Logger;
 
 /**
  * Base implementation of <code>Header</code> UI. <p>
@@ -71,9 +70,6 @@ import java.util.logging.Logger;
  * @author Jeanette Winzenburg
  */
 public class BasicHeaderUI extends HeaderUI {
-
-    @SuppressWarnings("unused")
-    private static final Logger LOG = Logger.getLogger(BasicHeaderUI.class.getName());
 
     // Implementation detail. Neeeded to expose getMultiLineSupport() method to allow restoring view
     // lost after LAF switch

@@ -42,7 +42,6 @@ import java.awt.LayoutManager;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.beans.PropertyChangeListener;
-import java.util.logging.Logger;
 
 import static org.jdesktop.swingx.util.GraphicsUtilities.createCompatibleTranslucentImage;
 
@@ -697,7 +696,4 @@ public class JXPanel extends JPanel implements AlphaPaintable, BackgroundPaintab
     protected boolean isPaintingBackground() {
         return super.isOpaque();
     }
-
-    @SuppressWarnings("unused")
-    private static final Logger LOG = Logger.getLogger(JXPanel.class.getName());
 }

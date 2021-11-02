@@ -67,7 +67,6 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
 import java.util.Vector;
-import java.util.logging.Logger;
 import java.util.regex.Pattern;
 
 /**
@@ -179,9 +178,6 @@ import java.util.regex.Pattern;
  */
 @JavaBean
 public class JXList<E> extends JList<E> {
-
-    @SuppressWarnings("all")
-    private static final Logger LOG = Logger.getLogger(JXList.class.getName());
 
     /**
      * UI Class ID
