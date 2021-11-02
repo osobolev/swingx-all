@@ -191,7 +191,6 @@ public class ServerAction extends AbstractAction {
                 String url = getURL();
                 if (url.startsWith("http")) {
                     execURL = new URL(url);
-                } else {
                 }
                 if (execURL == null) {
                     // XXX TODO: send a message

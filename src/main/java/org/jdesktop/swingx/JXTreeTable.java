@@ -1024,7 +1024,6 @@ public class JXTreeTable extends JXTable {
                 }
                 if (expansionChangedFlag) {
                     changedExpansion = true;
-                } else {
                 }
             }
             expansionChangedFlag = false;
@@ -1145,7 +1144,6 @@ public class JXTreeTable extends JXTable {
                 }
                 if (expansionChangedFlag) {
                     changedExpansion = true;
-                } else {
                 }
             }
             expansionChangedFlag = false;
