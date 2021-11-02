@@ -620,14 +620,6 @@ public class MultiSplitLayout implements LayoutManager, Serializable {
         return child != null && child.isVisible() ? child.getPreferredSize() : new Dimension(0, 0);
     }
 
-    private Dimension minimumComponentSize(Node node) {
-        if (layoutMode == NO_MIN_SIZE_LAYOUT)
-            return new Dimension(0, 0);
-
-        Component child = childForNode(node);
-        return child != null && child.isVisible() ? child.getMinimumSize() : new Dimension(0, 0);
-    }
-
     private Dimension preferredNodeSize(Node root) {
         if (root instanceof Leaf) {
             return preferredComponentSize(root);
@@ -753,7 +745,7 @@ public class MultiSplitLayout implements LayoutManager, Serializable {
         }
     }
 
-    private Dimension sizeWithInsets(Container parent, Dimension size) {
+    private static Dimension sizeWithInsets(Container parent, Dimension size) {
         Insets insets = parent.getInsets();
         int width = size.width + insets.left + insets.right;
         int height = size.height + insets.top + insets.bottom;
@@ -1809,7 +1801,6 @@ public class MultiSplitLayout implements LayoutManager, Serializable {
          * @param split the node to check
          */
         public void restoreDividers(Split split) {
-            boolean nextDividerVisible = false;
             for (Node splitChild : split.getChildren()) {
                 if (splitChild instanceof Divider) {
                     Node prev = splitChild.previousSibling();

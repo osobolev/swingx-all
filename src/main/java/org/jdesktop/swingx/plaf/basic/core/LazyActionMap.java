@@ -68,27 +68,6 @@ public class LazyActionMap extends ActionMapUIResource {
         SwingUtilities.replaceUIActionMap(c, map);
     }
 
-    /**
-     * Returns an ActionMap that will be populated by invoking the
-     * <code>loadActionMap</code> method on the specified Class
-     * when necessary.
-     * <p>
-     * This should be used if the ActionMap can be shared.
-     *
-     * @param loaderClass Class object that gets loadActionMap invoked
-     *                    on.
-     * @param defaultsKey Key to use to defaults table to check for
-     *                    existing map and what resulting Map will be registered on.
-     */
-    static ActionMap getActionMap(Class loaderClass, String defaultsKey) {
-        ActionMap map = (ActionMap) UIManager.get(defaultsKey);
-        if (map == null) {
-            map = new LazyActionMap(loaderClass);
-            UIManager.getLookAndFeelDefaults().put(defaultsKey, map);
-        }
-        return map;
-    }
-
     private LazyActionMap(Class loader) {
         _loader = loader;
     }

@@ -163,11 +163,6 @@ public class Utilities {
      */
     public static final int TYPICAL_WINDOWS_TASKBAR_HEIGHT = 27;
 
-    /**
-     * A height of the Mac OS X's menu
-     */
-    private static final int TYPICAL_MACOSX_MENU_HEIGHT = 24;
-
     private static int operatingSystem = -1;
 
     /**

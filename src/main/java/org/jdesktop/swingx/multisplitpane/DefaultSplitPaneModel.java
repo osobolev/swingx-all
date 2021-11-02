@@ -46,7 +46,6 @@ public class DefaultSplitPaneModel extends Split {
      * Creates a new instance of DefaultSplitPaneLayout
      */
     public DefaultSplitPaneModel() {
-        Split row = new Split();
         Split col = new Split();
         col.setRowLayout(false);
         setChildren(new Leaf(LEFT), new Divider(), col);

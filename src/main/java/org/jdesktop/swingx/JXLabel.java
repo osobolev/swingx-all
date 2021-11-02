@@ -560,15 +560,6 @@ public class JXLabel extends JLabel implements BackgroundPaintable {
         return view;
     }
 
-    private Container getViewport() {
-        for (Container p = this; p != null; p = p.getParent()) {
-            if (p instanceof Window || p instanceof JViewport) {
-                return p;
-            }
-        }
-        return null;
-    }
-
     private Rectangle calculateIconRect() {
         Rectangle iconR = new Rectangle();
         Icon icon = isEnabled() ? getIcon() : getDisabledIcon();

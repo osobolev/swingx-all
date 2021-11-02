@@ -280,14 +280,6 @@ public abstract class AbstractPainter<T> extends AbstractBean implements Painter
     }
 
     /**
-     * Only made package private for testing. Don't call this method outside
-     * of this class! This is NOT a bound property
-     */
-    boolean isCacheCleared() {
-        return cacheCleared;
-    }
-
-    /**
      * <p>Called to allow <code>Painter</code> subclasses a chance to see if any state
      * in the given object has changed from the last paint operation. If it has, then
      * the <code>Painter</code> has a chance to mark itself as dirty, thus causing a
