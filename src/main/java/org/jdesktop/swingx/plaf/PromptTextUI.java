@@ -128,7 +128,7 @@ public abstract class PromptTextUI extends TextUI {
         }
     }
 
-    static final FocusHandler focusHandler = new FocusHandler();
+    private static final FocusHandler focusHandler = new FocusHandler();
 
     /**
      * Delegate the hard work to this object.

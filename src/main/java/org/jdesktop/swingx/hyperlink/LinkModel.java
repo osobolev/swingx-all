@@ -53,7 +53,7 @@ public class LinkModel implements Comparable<LinkModel> {
 
     // hack - this class assumes that the url always != null
     // need to cleanup
-    private static final String defaultURLString = "https://jdnc.dev.java.net";
+    private static final String DEFAULT_URL_STRING = "https://jdnc.dev.java.net";
 
     private static URL defaultURL;
 
@@ -121,9 +121,9 @@ public class LinkModel implements Comparable<LinkModel> {
     private static URL getDefaultURL() {
         if (defaultURL == null) {
             try {
-                defaultURL = new URL(defaultURLString);
+                defaultURL = new URL(DEFAULT_URL_STRING);
             } catch (MalformedURLException e) {
-                LOG.fine("should not happen - defaultURL is wellFormed: " + defaultURLString);
+                LOG.fine("should not happen - defaultURL is wellFormed: " + DEFAULT_URL_STRING);
             }
         }
         return defaultURL;
