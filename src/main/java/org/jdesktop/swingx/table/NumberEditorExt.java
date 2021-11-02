@@ -47,9 +47,7 @@ import java.text.ParseException;
  */
 public class NumberEditorExt extends DefaultCellEditor {
 
-    private static final Class<?>[] argTypes = new Class[] {String.class};
-
-    Constructor<?> constructor;
+    private Constructor<?> constructor;
     private final boolean useStrictFormatter;
 
     /**
@@ -186,7 +184,7 @@ public class NumberEditorExt extends DefaultCellEditor {
                 if (!Number.class.isAssignableFrom(type)) {
                     throw new IllegalStateException("NumberEditor can only handle subclasses of java.lang.Number");
                 }
-                constructor = type.getConstructor(argTypes);
+                constructor = type.getConstructor(String.class);
             }
             // JW: in strict mode this may fail in setting the value in the formatter 
             return super.getTableCellEditorComponent(table, value, isSelected, row, column);
