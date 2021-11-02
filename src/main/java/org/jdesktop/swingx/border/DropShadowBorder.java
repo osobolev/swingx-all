@@ -38,6 +38,7 @@ import java.awt.image.BufferedImage;
 import java.awt.image.ConvolveOp;
 import java.awt.image.Kernel;
 import java.io.Serializable;
+import java.util.Arrays;
 import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.Map;
@@ -289,9 +290,7 @@ public class DropShadowBorder implements Border, Serializable {
 
             float blurry = 1.0f / (shadowSize * shadowSize);
             float[] blurKernel = new float[shadowSize * shadowSize];
-            for (int i = 0; i < blurKernel.length; i++) {
-                blurKernel[i] = blurry;
-            }
+            Arrays.fill(blurKernel, blurry);
             ConvolveOp blur = new ConvolveOp(new Kernel(shadowSize, shadowSize, blurKernel));
             BufferedImage targetImage = GraphicsUtilities.createCompatibleTranslucentImage(imageWidth, imageWidth);
             ((Graphics2D) targetImage.getGraphics()).drawImage(image, blur, -(shadowSize / 2), -(shadowSize / 2));
