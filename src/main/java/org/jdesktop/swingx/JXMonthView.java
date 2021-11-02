@@ -645,7 +645,7 @@ public class JXMonthView extends JComponent {
                 int lastYear = cal.get(Calendar.YEAR);
 
                 int diffMonths = month - lastMonth
-                                 + ((year - lastYear) * MONTHS_IN_YEAR);
+                                 + (year - lastYear) * MONTHS_IN_YEAR;
 
                 cal.setTime(firstDisplayedDay);
                 cal.add(Calendar.MONTH, diffMonths);
@@ -1261,7 +1261,7 @@ public class JXMonthView extends JComponent {
      *                                  DAYS_IN_WEEK
      */
     public void setDaysOfTheWeek(String[] days) {
-        if ((days != null) && (days.length != DAYS_IN_WEEK)) {
+        if (days != null && days.length != DAYS_IN_WEEK) {
             throw new IllegalArgumentException(
                 "Array of days is not of length " + DAYS_IN_WEEK
                 + " as expected.");
@@ -1485,7 +1485,7 @@ public class JXMonthView extends JComponent {
      * @param c         The color to be used for painting the numeric day of the week.
      */
     public void setDayForeground(int dayOfWeek, Color c) {
-        if ((dayOfWeek < Calendar.SUNDAY) || (dayOfWeek > Calendar.SATURDAY)) {
+        if (dayOfWeek < Calendar.SUNDAY || dayOfWeek > Calendar.SATURDAY) {
             throw new IllegalArgumentException("dayOfWeek must be in [Calendar.SUNDAY ... " +
                                                "Calendar.SATURDAY] but was " + dayOfWeek);
         }
@@ -1668,8 +1668,8 @@ public class JXMonthView extends JComponent {
 //        cal.setTimeInMillis(System.currentTimeMillis());
         cal.setTime(getCurrentDate());
         secondsTillTomorrow = secondsTillTomorrow -
-                              (cal.get(Calendar.HOUR_OF_DAY) * 3600) -
-                              (cal.get(Calendar.MINUTE) * 60) -
+                              cal.get(Calendar.HOUR_OF_DAY) * 3600 -
+                              cal.get(Calendar.MINUTE) * 60 -
                               cal.get(Calendar.SECOND);
         todayTimer.setInitialDelay(secondsTillTomorrow * 1000);
         todayTimer.start();

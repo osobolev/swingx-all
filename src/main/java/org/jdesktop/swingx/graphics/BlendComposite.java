@@ -114,10 +114,10 @@ public final class BlendComposite implements Composite {
         AVERAGE {
             @Override
             void blend(int[] src, int[] dst, int[] result) {
-                result[0] = (src[0] + dst[0]) >> 1;
-                result[1] = (src[1] + dst[1]) >> 1;
-                result[2] = (src[2] + dst[2]) >> 1;
-                result[3] = Math.min(255, src[3] + dst[3] - (src[3] * dst[3]) / 255);
+                result[0] = src[0] + dst[0] >> 1;
+                result[1] = src[1] + dst[1] >> 1;
+                result[2] = src[2] + dst[2] >> 1;
+                result[3] = Math.min(255, src[3] + dst[3] - src[3] * dst[3] / 255);
             }
         },
 
@@ -130,7 +130,7 @@ public final class BlendComposite implements Composite {
                 result[0] = Math.max(0, Math.min(255, dst[0] + 2 * src[0] - 256));
                 result[1] = Math.max(0, Math.min(255, dst[1] + 2 * src[1] - 256));
                 result[2] = Math.max(0, Math.min(255, dst[2] + 2 * src[2] - 256));
-                result[3] = Math.min(255, src[3] + dst[3] - (src[3] * dst[3]) / 255);
+                result[3] = Math.min(255, src[3] + dst[3] - src[3] * dst[3] / 255);
             }
         },
 
@@ -146,7 +146,7 @@ public final class BlendComposite implements Composite {
                 result[0] = Math.min(src[0], dst[0]);
                 result[1] = Math.min(src[1], dst[1]);
                 result[2] = Math.min(src[2], dst[2]);
-                result[3] = Math.min(255, src[3] + dst[3] - (src[3] * dst[3]) / 255);
+                result[3] = Math.min(255, src[3] + dst[3] - src[3] * dst[3] / 255);
             }
         },
 
@@ -160,10 +160,10 @@ public final class BlendComposite implements Composite {
         MULTIPLY {
             @Override
             void blend(int[] src, int[] dst, int[] result) {
-                result[0] = (src[0] * dst[0] + 2) >> 8;
-                result[1] = (src[1] * dst[1] + 2) >> 8;
-                result[2] = (src[2] * dst[2] + 2) >> 8;
-                result[3] = Math.min(255, src[3] + dst[3] - (src[3] * dst[3]) / 255);
+                result[0] = src[0] * dst[0] + 2 >> 8;
+                result[1] = src[1] * dst[1] + 2 >> 8;
+                result[2] = src[2] * dst[2] + 2 >> 8;
+                result[3] = Math.min(255, src[3] + dst[3] - src[3] * dst[3] / 255);
             }
         },
 
@@ -175,10 +175,10 @@ public final class BlendComposite implements Composite {
         COLOR_BURN {
             @Override
             void blend(int[] src, int[] dst, int[] result) {
-                result[0] = src[0] == 0 ? 0 : Math.max(0, 255 - (((255 - dst[0]) << 8) / src[0]));
-                result[1] = src[1] == 0 ? 0 : Math.max(0, 255 - (((255 - dst[1]) << 8) / src[1]));
-                result[2] = src[2] == 0 ? 0 : Math.max(0, 255 - (((255 - dst[2]) << 8) / src[2]));
-                result[3] = Math.min(255, src[3] + dst[3] - (src[3] * dst[3]) / 255);
+                result[0] = src[0] == 0 ? 0 : Math.max(0, 255 - (255 - dst[0] << 8) / src[0]);
+                result[1] = src[1] == 0 ? 0 : Math.max(0, 255 - (255 - dst[1] << 8) / src[1]);
+                result[2] = src[2] == 0 ? 0 : Math.max(0, 255 - (255 - dst[2] << 8) / src[2]);
+                result[3] = Math.min(255, src[3] + dst[3] - src[3] * dst[3] / 255);
             }
         },
 
@@ -189,10 +189,10 @@ public final class BlendComposite implements Composite {
         INVERSE_COLOR_BURN {
             @Override
             void blend(int[] src, int[] dst, int[] result) {
-                result[0] = dst[0] == 0 ? 0 : Math.max(0, 255 - (((255 - src[0]) << 8) / dst[0]));
-                result[1] = dst[1] == 0 ? 0 : Math.max(0, 255 - (((255 - src[1]) << 8) / dst[1]));
-                result[2] = dst[2] == 0 ? 0 : Math.max(0, 255 - (((255 - src[2]) << 8) / dst[2]));
-                result[3] = Math.min(255, src[3] + dst[3] - (src[3] * dst[3]) / 255);
+                result[0] = dst[0] == 0 ? 0 : Math.max(0, 255 - (255 - src[0] << 8) / dst[0]);
+                result[1] = dst[1] == 0 ? 0 : Math.max(0, 255 - (255 - src[1] << 8) / dst[1]);
+                result[2] = dst[2] == 0 ? 0 : Math.max(0, 255 - (255 - src[2] << 8) / dst[2]);
+                result[3] = Math.min(255, src[3] + dst[3] - src[3] * dst[3] / 255);
             }
         },
 
@@ -201,14 +201,14 @@ public final class BlendComposite implements Composite {
             void blend(int[] src, int[] dst, int[] result) {
                 result[0] = dst[0] + src[0] < 256
                     ? dst[0] == 255 ? 255 : Math.min(255, (src[0] << 7) / (255 - dst[0]))
-                    : Math.max(0, 255 - (((255 - dst[0]) << 7) / src[0]));
+                    : Math.max(0, 255 - (255 - dst[0] << 7) / src[0]);
                 result[1] = dst[1] + src[1] < 256
                     ? dst[1] == 255 ? 255 : Math.min(255, (src[1] << 7) / (255 - dst[1]))
-                    : Math.max(0, 255 - (((255 - dst[1]) << 7) / src[1]));
+                    : Math.max(0, 255 - (255 - dst[1] << 7) / src[1]);
                 result[2] = dst[2] + src[2] < 256
                     ? dst[2] == 255 ? 255 : Math.min(255, (src[2] << 7) / (255 - dst[2]))
-                    : Math.max(0, 255 - (((255 - dst[2]) << 7) / src[2]));
-                result[3] = Math.min(255, src[3] + dst[3] - (src[3] * dst[3]) / 255);
+                    : Math.max(0, 255 - (255 - dst[2] << 7) / src[2]);
+                result[3] = Math.min(255, src[3] + dst[3] - src[3] * dst[3] / 255);
             }
         },
 
@@ -226,7 +226,7 @@ public final class BlendComposite implements Composite {
                 result[0] = Math.max(0, src[0] + dst[0] - 256);
                 result[1] = Math.max(0, src[1] + dst[1] - 256);
                 result[2] = Math.max(0, src[2] + dst[2] - 256);
-                result[3] = Math.min(255, src[3] + dst[3] - (src[3] * dst[3]) / 255);
+                result[3] = Math.min(255, src[3] + dst[3] - src[3] * dst[3] / 255);
             }
         },
 
@@ -242,7 +242,7 @@ public final class BlendComposite implements Composite {
                 result[0] = Math.max(src[0], dst[0]);
                 result[1] = Math.max(src[1], dst[1]);
                 result[2] = Math.max(src[2], dst[2]);
-                result[3] = Math.min(255, src[3] + dst[3] - (src[3] * dst[3]) / 255);
+                result[3] = Math.min(255, src[3] + dst[3] - src[3] * dst[3] / 255);
             }
         },
 
@@ -260,7 +260,7 @@ public final class BlendComposite implements Composite {
                 result[0] = 255 - ((255 - src[0]) * (255 - dst[0]) >> 8);
                 result[1] = 255 - ((255 - src[1]) * (255 - dst[1]) >> 8);
                 result[2] = 255 - ((255 - src[2]) * (255 - dst[2]) >> 8);
-                result[3] = Math.min(255, src[3] + dst[3] - (src[3] * dst[3]) / 255);
+                result[3] = Math.min(255, src[3] + dst[3] - src[3] * dst[3] / 255);
             }
         },
 
@@ -277,7 +277,7 @@ public final class BlendComposite implements Composite {
                 result[0] = src[0] == 255 ? 255 : Math.min((dst[0] << 8) / (255 - src[0]), 255);
                 result[1] = src[1] == 255 ? 255 : Math.min((dst[1] << 8) / (255 - src[1]), 255);
                 result[2] = src[2] == 255 ? 255 : Math.min((dst[2] << 8) / (255 - src[2]), 255);
-                result[3] = Math.min(255, src[3] + dst[3] - (src[3] * dst[3]) / 255);
+                result[3] = Math.min(255, src[3] + dst[3] - src[3] * dst[3] / 255);
             }
         },
 
@@ -291,7 +291,7 @@ public final class BlendComposite implements Composite {
                 result[0] = dst[0] == 255 ? 255 : Math.min((src[0] << 8) / (255 - dst[0]), 255);
                 result[1] = dst[1] == 255 ? 255 : Math.min((src[1] << 8) / (255 - dst[1]), 255);
                 result[2] = dst[2] == 255 ? 255 : Math.min((src[2] << 8) / (255 - dst[2]), 255);
-                result[3] = Math.min(255, src[3] + dst[3] - (src[3] * dst[3]) / 255);
+                result[3] = Math.min(255, src[3] + dst[3] - src[3] * dst[3] / 255);
             }
         },
 
@@ -300,14 +300,14 @@ public final class BlendComposite implements Composite {
             void blend(int[] src, int[] dst, int[] result) {
                 result[0] = dst[0] + src[0] < 256
                     ? src[0] == 255 ? 255 : Math.min(255, (dst[0] << 7) / (255 - src[0]))
-                    : Math.max(0, 255 - (((255 - src[0]) << 7) / dst[0]));
+                    : Math.max(0, 255 - (255 - src[0] << 7) / dst[0]);
                 result[1] = dst[1] + src[1] < 256
                     ? src[1] == 255 ? 255 : Math.min(255, (dst[1] << 7) / (255 - src[1]))
-                    : Math.max(0, 255 - (((255 - src[1]) << 7) / dst[1]));
+                    : Math.max(0, 255 - (255 - src[1] << 7) / dst[1]);
                 result[2] = dst[2] + src[2] < 256
                     ? src[2] == 255 ? 255 : Math.min(255, (dst[2] << 7) / (255 - src[2]))
-                    : Math.max(0, 255 - (((255 - src[2]) << 7) / dst[2]));
-                result[3] = Math.min(255, src[3] + dst[3] - (src[3] * dst[3]) / 255);
+                    : Math.max(0, 255 - (255 - src[2] << 7) / dst[2]);
+                result[3] = Math.min(255, src[3] + dst[3] - src[3] * dst[3] / 255);
             }
         },
 
@@ -345,7 +345,7 @@ public final class BlendComposite implements Composite {
                     : 255 - ((255 - dst[1]) * (255 - src[1]) >> 7);
                 result[2] = dst[2] < 128 ? dst[2] * src[2] >> 7
                     : 255 - ((255 - dst[2]) * (255 - src[2]) >> 7);
-                result[3] = Math.min(255, src[3] + dst[3] - (src[3] * dst[3]) / 255);
+                result[3] = Math.min(255, src[3] + dst[3] - src[3] * dst[3] / 255);
             }
         },
 
@@ -362,10 +362,10 @@ public final class BlendComposite implements Composite {
                 int mRed = src[0] * dst[0] / 255;
                 int mGreen = src[1] * dst[1] / 255;
                 int mBlue = src[2] * dst[2] / 255;
-                result[0] = mRed + dst[0] * (255 - ((255 - dst[0]) * (255 - src[0]) / 255) - mRed) / 255;
-                result[1] = mGreen + dst[1] * (255 - ((255 - dst[1]) * (255 - src[1]) / 255) - mGreen) / 255;
-                result[2] = mBlue + dst[2] * (255 - ((255 - dst[2]) * (255 - src[2]) / 255) - mBlue) / 255;
-                result[3] = Math.min(255, src[3] + dst[3] - (src[3] * dst[3]) / 255);
+                result[0] = mRed + dst[0] * (255 - (255 - dst[0]) * (255 - src[0]) / 255 - mRed) / 255;
+                result[1] = mGreen + dst[1] * (255 - (255 - dst[1]) * (255 - src[1]) / 255 - mGreen) / 255;
+                result[2] = mBlue + dst[2] * (255 - (255 - dst[2]) * (255 - src[2]) / 255 - mBlue) / 255;
+                result[3] = Math.min(255, src[3] + dst[3] - src[3] * dst[3] / 255);
             }
         },
 
@@ -387,7 +387,7 @@ public final class BlendComposite implements Composite {
                     : 255 - ((255 - src[1]) * (255 - dst[1]) >> 7);
                 result[2] = src[2] < 128 ? dst[2] * src[2] >> 7
                     : 255 - ((255 - src[2]) * (255 - dst[2]) >> 7);
-                result[3] = Math.min(255, src[3] + dst[3] - (src[3] * dst[3]) / 255);
+                result[3] = Math.min(255, src[3] + dst[3] - src[3] * dst[3] / 255);
             }
         },
 
@@ -401,15 +401,15 @@ public final class BlendComposite implements Composite {
             @Override
             void blend(int[] src, int[] dst, int[] result) {
                 result[0] = src[0] < 128
-                    ? src[0] == 0 ? 0 : Math.max(0, 255 - ((255 - dst[0]) << 7) / src[0])
+                    ? src[0] == 0 ? 0 : Math.max(0, 255 - (255 - dst[0] << 7) / src[0])
                     : src[0] == 255 ? 255 : Math.min(255, (dst[0] << 7) / (255 - src[0]));
                 result[1] = src[1] < 128
-                    ? src[1] == 0 ? 0 : Math.max(0, 255 - ((255 - dst[1]) << 7) / src[1])
+                    ? src[1] == 0 ? 0 : Math.max(0, 255 - (255 - dst[1] << 7) / src[1])
                     : src[1] == 255 ? 255 : Math.min(255, (dst[1] << 7) / (255 - src[1]));
                 result[2] = src[2] < 128
-                    ? src[2] == 0 ? 0 : Math.max(0, 255 - ((255 - dst[2]) << 7) / src[2])
+                    ? src[2] == 0 ? 0 : Math.max(0, 255 - (255 - dst[2] << 7) / src[2])
                     : src[2] == 255 ? 255 : Math.min(255, (dst[2] << 7) / (255 - src[2]));
-                result[3] = Math.min(255, src[3] + dst[3] - (src[3] * dst[3]) / 255);
+                result[3] = Math.min(255, src[3] + dst[3] - src[3] * dst[3] / 255);
             }
         },
 
@@ -422,7 +422,7 @@ public final class BlendComposite implements Composite {
                     : Math.min(255, dst[1] + (src[1] - 128 << 1));
                 result[2] = src[2] < 128 ? Math.max(0, dst[2] + (src[2] << 1) - 255)
                     : Math.min(255, dst[2] + (src[2] - 128 << 1));
-                result[3] = Math.min(255, src[3] + dst[3] - (src[3] * dst[3]) / 255);
+                result[3] = Math.min(255, src[3] + dst[3] - src[3] * dst[3] / 255);
             }
         },
 
@@ -430,12 +430,12 @@ public final class BlendComposite implements Composite {
             @Override
             void blend(int[] src, int[] dst, int[] result) {
                 result[0] = src[0] < 128 ? Math.min(dst[0], src[0] << 1)
-                    : Math.max(dst[0], (src[0] - 128) << 1);
+                    : Math.max(dst[0], src[0] - 128 << 1);
                 result[1] = src[1] < 128 ? Math.min(dst[1], src[1] << 1)
-                    : Math.max(dst[1], (src[1] - 128) << 1);
+                    : Math.max(dst[1], src[1] - 128 << 1);
                 result[2] = src[2] < 128 ? Math.min(dst[2], src[2] << 1)
-                    : Math.max(dst[2], (src[2] - 128) << 1);
-                result[3] = Math.min(255, src[3] + dst[3] - (src[3] * dst[3]) / 255);
+                    : Math.max(dst[2], src[2] - 128 << 1);
+                result[3] = Math.min(255, src[3] + dst[3] - src[3] * dst[3] / 255);
             }
         },
 
@@ -445,7 +445,7 @@ public final class BlendComposite implements Composite {
                 result[0] = src[0] < 256 - dst[0] ? 0 : 255;
                 result[1] = src[1] < 256 - dst[1] ? 0 : 255;
                 result[2] = src[2] < 256 - dst[2] ? 0 : 255;
-                result[3] = Math.min(255, src[3] + dst[3] - (src[3] * dst[3]) / 255);
+                result[3] = Math.min(255, src[3] + dst[3] - src[3] * dst[3] / 255);
             }
         },
 
@@ -455,7 +455,7 @@ public final class BlendComposite implements Composite {
                 result[0] = src[0] == 255 ? 255 : Math.min(255, dst[0] * dst[0] / (255 - src[0]));
                 result[1] = src[1] == 255 ? 255 : Math.min(255, dst[1] * dst[1] / (255 - src[1]));
                 result[2] = src[2] == 255 ? 255 : Math.min(255, dst[2] * dst[2] / (255 - src[2]));
-                result[3] = Math.min(255, src[3] + dst[3] - (src[3] * dst[3]) / 255);
+                result[3] = Math.min(255, src[3] + dst[3] - src[3] * dst[3] / 255);
             }
         },
 
@@ -465,7 +465,7 @@ public final class BlendComposite implements Composite {
                 result[0] = dst[0] == 255 ? 255 : Math.min(255, src[0] * src[0] / (255 - dst[0]));
                 result[1] = dst[1] == 255 ? 255 : Math.min(255, src[1] * src[1] / (255 - dst[1]));
                 result[2] = dst[2] == 255 ? 255 : Math.min(255, src[2] * src[2] / (255 - dst[2]));
-                result[3] = Math.min(255, src[3] + dst[3] - (src[3] * dst[3]) / 255);
+                result[3] = Math.min(255, src[3] + dst[3] - src[3] * dst[3] / 255);
             }
         },
 
@@ -478,7 +478,7 @@ public final class BlendComposite implements Composite {
                                                                 / src[1]);
                 result[2] = src[2] == 0 ? 0 : Math.max(0, 255 - (255 - dst[2]) * (255 - dst[2])
                                                                 / src[2]);
-                result[3] = Math.min(255, src[3] + dst[3] - (src[3] * dst[3]) / 255);
+                result[3] = Math.min(255, src[3] + dst[3] - src[3] * dst[3] / 255);
             }
         },
 
@@ -491,7 +491,7 @@ public final class BlendComposite implements Composite {
                                                                 / dst[1]);
                 result[2] = dst[2] == 0 ? 0 : Math.max(0, 255 - (255 - src[2]) * (255 - src[2])
                                                                 / dst[2]);
-                result[3] = Math.min(255, src[3] + dst[3] - (src[3] * dst[3]) / 255);
+                result[3] = Math.min(255, src[3] + dst[3] - src[3] * dst[3] / 255);
             }
         },
 
@@ -508,7 +508,7 @@ public final class BlendComposite implements Composite {
                 result[0] = Math.abs(dst[0] - src[0]);
                 result[1] = Math.abs(dst[1] - src[1]);
                 result[2] = Math.abs(dst[2] - src[2]);
-                result[3] = Math.min(255, src[3] + dst[3] - (src[3] * dst[3]) / 255);
+                result[3] = Math.min(255, src[3] + dst[3] - src[3] * dst[3] / 255);
             }
         },
 
@@ -523,7 +523,7 @@ public final class BlendComposite implements Composite {
                 result[0] = dst[0] + src[0] - (dst[0] * src[0] >> 7);
                 result[1] = dst[1] + src[1] - (dst[1] * src[1] >> 7);
                 result[2] = dst[2] + src[2] - (dst[2] * src[2] >> 7);
-                result[3] = Math.min(255, src[3] + dst[3] - (src[3] * dst[3]) / 255);
+                result[3] = Math.min(255, src[3] + dst[3] - src[3] * dst[3] / 255);
             }
         },
 
@@ -543,7 +543,7 @@ public final class BlendComposite implements Composite {
                 ColorUtilities.RGBtoHSL(dst[0], dst[1], dst[2], dstHSL);
 
                 ColorUtilities.HSLtoRGB(srcHSL[0], dstHSL[1], dstHSL[2], result);
-                result[3] = Math.min(255, src[3] + dst[3] - (src[3] * dst[3]) / 255);
+                result[3] = Math.min(255, src[3] + dst[3] - src[3] * dst[3] / 255);
             }
         },
 
@@ -562,7 +562,7 @@ public final class BlendComposite implements Composite {
                 ColorUtilities.RGBtoHSL(dst[0], dst[1], dst[2], dstHSL);
 
                 ColorUtilities.HSLtoRGB(dstHSL[0], srcHSL[1], dstHSL[2], result);
-                result[3] = Math.min(255, src[3] + dst[3] - (src[3] * dst[3]) / 255);
+                result[3] = Math.min(255, src[3] + dst[3] - src[3] * dst[3] / 255);
             }
         },
 
@@ -580,7 +580,7 @@ public final class BlendComposite implements Composite {
                 ColorUtilities.RGBtoHSL(dst[0], dst[1], dst[2], dstHSL);
 
                 ColorUtilities.HSLtoRGB(srcHSL[0], srcHSL[1], dstHSL[2], result);
-                result[3] = Math.min(255, src[3] + dst[3] - (src[3] * dst[3]) / 255);
+                result[3] = Math.min(255, src[3] + dst[3] - src[3] * dst[3] / 255);
             }
         },
 
@@ -598,7 +598,7 @@ public final class BlendComposite implements Composite {
                 ColorUtilities.RGBtoHSL(dst[0], dst[1], dst[2], dstHSL);
 
                 ColorUtilities.HSLtoRGB(dstHSL[0], dstHSL[1], srcHSL[2], result);
-                result[3] = Math.min(255, src[3] + dst[3] - (src[3] * dst[3]) / 255);
+                result[3] = Math.min(255, src[3] + dst[3] - src[3] * dst[3] / 255);
             }
         },
 
@@ -614,7 +614,7 @@ public final class BlendComposite implements Composite {
                 result[0] = 255 - Math.abs(255 - dst[0] - src[0]);
                 result[1] = 255 - Math.abs(255 - dst[1] - src[1]);
                 result[2] = 255 - Math.abs(255 - dst[2] - src[2]);
-                result[3] = Math.min(255, src[3] + dst[3] - (src[3] * dst[3]) / 255);
+                result[3] = Math.min(255, src[3] + dst[3] - src[3] * dst[3] / 255);
             }
         },
 
@@ -628,7 +628,7 @@ public final class BlendComposite implements Composite {
                 result[0] = src[0];
                 result[1] = dst[1];
                 result[2] = dst[2];
-                result[3] = Math.min(255, src[3] + dst[3] - (src[3] * dst[3]) / 255);
+                result[3] = Math.min(255, src[3] + dst[3] - src[3] * dst[3] / 255);
             }
         },
 
@@ -642,7 +642,7 @@ public final class BlendComposite implements Composite {
                 result[0] = dst[0];
                 result[1] = src[1];
                 result[2] = dst[2];
-                result[3] = Math.min(255, src[3] + dst[3] - (src[3] * dst[3]) / 255);
+                result[3] = Math.min(255, src[3] + dst[3] - src[3] * dst[3] / 255);
             }
         },
 
@@ -656,7 +656,7 @@ public final class BlendComposite implements Composite {
                 result[0] = dst[0];
                 result[1] = dst[1];
                 result[2] = src[2];
-                result[3] = Math.min(255, src[3] + dst[3] - (src[3] * dst[3]) / 255);
+                result[3] = Math.min(255, src[3] + dst[3] - src[3] * dst[3] / 255);
             }
         },
         ;
@@ -907,16 +907,16 @@ public final class BlendComposite implements Composite {
                     // pixels are stored as INT_ARGB
                     // our arrays are [R, G, B, A]
                     int pixel = srcPixels[x];
-                    srcPixel[0] = (pixel >> 16) & 0xFF;
-                    srcPixel[1] = (pixel >> 8) & 0xFF;
+                    srcPixel[0] = pixel >> 16 & 0xFF;
+                    srcPixel[1] = pixel >> 8 & 0xFF;
                     srcPixel[2] = pixel & 0xFF;
-                    srcPixel[3] = (pixel >> 24) & 0xFF;
+                    srcPixel[3] = pixel >> 24 & 0xFF;
 
                     pixel = dstPixels[x];
-                    dstPixel[0] = (pixel >> 16) & 0xFF;
-                    dstPixel[1] = (pixel >> 8) & 0xFF;
+                    dstPixel[0] = pixel >> 16 & 0xFF;
+                    dstPixel[1] = pixel >> 8 & 0xFF;
                     dstPixel[2] = pixel & 0xFF;
-                    dstPixel[3] = (pixel >> 24) & 0xFF;
+                    dstPixel[3] = pixel >> 24 & 0xFF;
 
                     composite.getMode().blend(srcPixel, dstPixel, result);
 
@@ -958,21 +958,21 @@ public final class BlendComposite implements Composite {
                     // our arrays are [R, G, B, A]
                     int pixel = srcPixels[x];
                     srcPixel[0] = pixel & 0xFF;
-                    srcPixel[1] = (pixel >> 8) & 0xFF;
-                    srcPixel[2] = (pixel >> 16) & 0xFF;
-                    srcPixel[3] = (pixel >> 24) & 0xFF;
+                    srcPixel[1] = pixel >> 8 & 0xFF;
+                    srcPixel[2] = pixel >> 16 & 0xFF;
+                    srcPixel[3] = pixel >> 24 & 0xFF;
 
                     pixel = dstPixels[x];
                     dstPixel[0] = pixel & 0xFF;
-                    dstPixel[1] = (pixel >> 8) & 0xFF;
-                    dstPixel[2] = (pixel >> 16) & 0xFF;
-                    dstPixel[3] = (pixel >> 24) & 0xFF;
+                    dstPixel[1] = pixel >> 8 & 0xFF;
+                    dstPixel[2] = pixel >> 16 & 0xFF;
+                    dstPixel[3] = pixel >> 24 & 0xFF;
 
                     composite.getMode().blend(srcPixel, dstPixel, result);
 
                     // mixes the result with the opacity
                     dstPixels[x] = ((int) (dstPixel[3] + (result[3] - dstPixel[3]) * alpha) & 0xFF) << 24 |
-                                   ((int) (dstPixel[0] + (result[0] - dstPixel[0]) * alpha) & 0xFF) |
+                                   (int) (dstPixel[0] + (result[0] - dstPixel[0]) * alpha) & 0xFF |
                                    ((int) (dstPixel[1] + (result[1] - dstPixel[1]) * alpha) & 0xFF) << 8 |
                                    ((int) (dstPixel[2] + (result[2] - dstPixel[2]) * alpha) & 0xFF) << 16;
                 }

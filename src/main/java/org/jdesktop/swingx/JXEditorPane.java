@@ -604,7 +604,7 @@ public class JXEditorPane extends JEditorPane implements /*Searchable, */Targeta
          * @return true if string is null or has zero length
          */
         protected boolean isEmpty(String searchString) {
-            return (searchString == null) || searchString.length() == 0;
+            return searchString == null || searchString.length() == 0;
         }
 
         @Override
@@ -628,9 +628,9 @@ public class JXEditorPane extends JEditorPane implements /*Searchable, */Targeta
         @Override
         public int search(Pattern pattern, int startIndex,
                           boolean backwards) {
-            if ((pattern == null)
-                || (getDocument().getLength() == 0)
-                || ((startIndex > -1) && (getDocument().getLength() < startIndex))) {
+            if (pattern == null
+                || getDocument().getLength() == 0
+                || startIndex > -1 && getDocument().getLength() < startIndex) {
                 updateStateAfterNotFound();
                 return -1;
             }
@@ -708,7 +708,7 @@ public class JXEditorPane extends JEditorPane implements /*Searchable, */Targeta
                 // JW: how to compare match results reliably?
                 // the group().equals probably isn't the best idea...
                 // better check pattern?
-                if ((currentResult.start() == 0) &&
+                if (currentResult.start() == 0 &&
                     !lastMatchResult.group().equals(currentResult.group())) {
                     updateStateAfterFound(currentResult, start);
                     return true;
@@ -724,7 +724,7 @@ public class JXEditorPane extends JEditorPane implements /*Searchable, */Targeta
          * @return true if the startIndex should be re-matched, false if not.
          */
         private boolean maybeExtendedMatch(int startIndex) {
-            return (startIndex >= 0) && (startIndex == lastFoundIndex);
+            return startIndex >= 0 && startIndex == lastFoundIndex;
         }
 
         /**

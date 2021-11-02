@@ -37,7 +37,7 @@ public class TableRolloverProducer extends RolloverProducer {
         JTable table = (JTable) component;
         int col = table.columnAtPoint(mousePoint);
         int row = table.rowAtPoint(mousePoint);
-        if ((col < 0) || (row < 0)) {
+        if (col < 0 || row < 0) {
             row = -1;
             col = -1;
         }

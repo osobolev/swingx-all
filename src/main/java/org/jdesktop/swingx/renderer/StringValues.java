@@ -49,7 +49,7 @@ public final class StringValues {
      * the same effect as {@link StringValues#EMPTY}.
      */
     @SuppressWarnings("serial")
-    public static final StringValue TO_STRING = value -> (value != null) ? value.toString() : EMPTY.getString(value);
+    public static final StringValue TO_STRING = value -> value != null ? value.toString() : EMPTY.getString(value);
 
     /**
      * A {@code StringValue} that presents the current L&F display name for a

@@ -135,7 +135,7 @@ class StrictNumberFormatter extends NumberFormatter {
      * is an instanceof <code>Number</code>.
      */
     private Object convertValueToValueClass(Object value, Class<?> valueClass) {
-        if (valueClass != null && (value instanceof Number)) {
+        if (valueClass != null && value instanceof Number) {
             if (valueClass == Integer.class) {
                 return ((Number) value).intValue();
             } else if (valueClass == Long.class) {
@@ -173,7 +173,7 @@ class StrictNumberFormatter extends NumberFormatter {
      */
     private boolean isValueInRange(Object orgValue, boolean wantsCCE) {
         if (orgValue == null) return true;
-        if ((getMinimum() == null) && getMaximum() == null) return true;
+        if (getMinimum() == null && getMaximum() == null) return true;
 
         BigDecimal value = new BigDecimal(orgValue.toString());
         Comparable<BigDecimal> min = getMinimumAsBig();

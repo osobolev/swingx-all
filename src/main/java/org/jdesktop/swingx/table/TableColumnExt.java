@@ -332,7 +332,7 @@ public class TableColumnExt extends TableColumn implements UIDependent {
         // TODO JW: resizable is a bound property, so to be strict
         // we'll need to override setMin/MaxWidth to fire resizable
         // property change.
-        return super.getResizable() && (getMinWidth() < getMaxWidth());
+        return super.getResizable() && getMinWidth() < getMaxWidth();
     }
 
     /**
@@ -582,7 +582,7 @@ public class TableColumnExt extends TableColumn implements UIDependent {
         if (key == null)
             throw new IllegalArgumentException("null key");
 
-        if ((value == null) && (getClientProperty(key) == null)) {
+        if (value == null && getClientProperty(key) == null) {
             return;
         }
 
@@ -607,7 +607,7 @@ public class TableColumnExt extends TableColumn implements UIDependent {
      * @see #putClientProperty
      */
     public Object getClientProperty(Object key) {
-        return ((key == null) || (clientProperties == null)) ?
+        return key == null || clientProperties == null ?
             null : clientProperties.get(key);
     }
 
@@ -674,7 +674,7 @@ public class TableColumnExt extends TableColumn implements UIDependent {
      * @param newValue     new value of changed property
      */
     protected void firePropertyChange(String propertyName, Object oldValue, Object newValue) {
-        if ((oldValue != null && !oldValue.equals(newValue)) ||
+        if (oldValue != null && !oldValue.equals(newValue) ||
             oldValue == null && newValue != null) {
             PropertyChangeListener[] pcl = getPropertyChangeListeners();
             if (pcl != null && pcl.length != 0) {
@@ -709,8 +709,8 @@ public class TableColumnExt extends TableColumn implements UIDependent {
     private void updateEditorUI(TableCellEditor editor) {
         if (editor == null) return;
         // internal knowledge of core table - already updated
-        if ((editor instanceof JComponent)
-            || (editor instanceof DefaultCellEditor))
+        if (editor instanceof JComponent
+            || editor instanceof DefaultCellEditor)
             return;
         try {
             Component comp = editor

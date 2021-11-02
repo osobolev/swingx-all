@@ -222,7 +222,7 @@ public class WeakEventListenerList implements Serializable {
         }
         for (int i = 0; i < getReferences().size(); i++) {
             if (l.equals(getReferences().get(i).get()) &&
-                (t == getClasses().get(i))) {
+                t == getClasses().get(i)) {
                 getReferences().remove(i);
                 getClasses().remove(i);
                 break;

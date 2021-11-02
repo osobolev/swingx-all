@@ -493,7 +493,7 @@ public class ActionContainerFactory {
      * @throws IllegalArgumentException if the given action doesn't have the state flag set.
      */
     public void configureSelectableButton(AbstractButton button, AbstractActionExt a, ButtonGroup group) {
-        if ((a != null) && !a.isStateAction()) throw
+        if (a != null && !a.isStateAction()) throw
             new IllegalArgumentException("the Action must be a stateAction");
         // we assume that all button configuration is done exclusively through this method!!
         if (button.getAction() == a) return;

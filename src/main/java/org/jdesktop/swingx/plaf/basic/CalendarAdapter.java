@@ -85,7 +85,7 @@ class CalendarAdapter extends ComponentAdapter {
      * @return
      */
     private boolean isSelectable() {
-        return (CalendarState.IN_MONTH == getCalendarState()) || (CalendarState.TODAY == getCalendarState());
+        return CalendarState.IN_MONTH == getCalendarState() || CalendarState.TODAY == getCalendarState();
     }
 
     @Override

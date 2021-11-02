@@ -176,7 +176,7 @@ public class JXComboBox extends JComboBox {
                 comp = delegateRenderer.getListCellRendererComponent(list, value, index,
                     isSelected, cellHasFocus);
 
-                if ((compoundHighlighter != null) && (index >= 0) && (index < getItemCount())) {
+                if (compoundHighlighter != null && index >= 0 && index < getItemCount()) {
                     comp = compoundHighlighter.highlight(comp, getComponentAdapter(index));
                 }
             }
@@ -191,7 +191,7 @@ public class JXComboBox extends JComboBox {
          */
         @Override
         public boolean isEnabled() {
-            return (delegateRenderer instanceof RolloverRenderer) &&
+            return delegateRenderer instanceof RolloverRenderer &&
                    ((RolloverRenderer) delegateRenderer).isEnabled();
         }
 
@@ -252,7 +252,7 @@ public class JXComboBox extends JComboBox {
             if (isPopupVisible()) {
                 JList list = getPopupListFor(comboBox);
 
-                return list != null && list.isFocusOwner() && (row == list.getLeadSelectionIndex());
+                return list != null && list.isFocusOwner() && row == list.getLeadSelectionIndex();
             }
 
             return comboBox.isFocusOwner();
@@ -354,7 +354,7 @@ public class JXComboBox extends JComboBox {
 
             if (EventQueue.getMostRecentEventTime() - lastTime < timeFactor) {
                 typedString += aKey;
-                if ((prefix.length() == 1) && (aKey == prefix.charAt(0))) {
+                if (prefix.length() == 1 && aKey == prefix.charAt(0)) {
                     // Subsequent same key presses move the keyboard focus to the next
                     // object that starts with the same letter.
                     startIndex++;

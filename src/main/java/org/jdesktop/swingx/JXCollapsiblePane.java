@@ -892,7 +892,7 @@ public class JXCollapsiblePane extends JXPanel {
                     }
 
                     bounds = getBounds();
-                    bounds.height = (bounds.height - oldHeight) + newDimension;
+                    bounds.height = bounds.height - oldHeight + newDimension;
                     currentDimension = bounds.height;
                 } else {
                     int oldWidth = bounds.width;
@@ -906,7 +906,7 @@ public class JXCollapsiblePane extends JXPanel {
                     }
 
                     bounds = getBounds();
-                    bounds.width = (bounds.width - oldWidth) + newDimension;
+                    bounds.width = bounds.width - oldWidth + newDimension;
                     currentDimension = bounds.width;
                 }
 

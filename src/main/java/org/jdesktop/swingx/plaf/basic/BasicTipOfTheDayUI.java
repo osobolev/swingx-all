@@ -106,7 +106,7 @@ public class BasicTipOfTheDayUI extends TipOfTheDayUI {
         if (parentComponent == null) {
             window = JOptionPane.getRootFrame();
         } else {
-            window = (parentComponent instanceof Window) ? (Window) parentComponent
+            window = parentComponent instanceof Window ? (Window) parentComponent
                 : SwingUtilities.getWindowAncestor(parentComponent);
         }
 
@@ -267,7 +267,7 @@ public class BasicTipOfTheDayUI extends TipOfTheDayUI {
 
         // tip does not fall in current tip range
         if (tipPane.getModel() == null || tipPane.getModel().getTipCount() == 0
-            || (currentTip < 0 && currentTip >= tipPane.getModel().getTipCount())) {
+            || currentTip < 0 && currentTip >= tipPane.getModel().getTipCount()) {
             currentTipComponent = new JLabel();
         } else {
             Tip tip = tipPane.getModel().getTipAt(currentTip);

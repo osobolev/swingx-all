@@ -70,7 +70,7 @@ public class SortUtils {
     }
 
     public static boolean isSorted(SortOrder sortOrder) {
-        return sortOrder != null && (SortOrder.UNSORTED != sortOrder);
+        return sortOrder != null && SortOrder.UNSORTED != sortOrder;
     }
 
     /**
@@ -84,7 +84,7 @@ public class SortUtils {
     }
 
     public static boolean isSorted(SortOrder sortOrder, boolean ascending) {
-        return isSorted(sortOrder) && (ascending == isAscending(sortOrder));
+        return isSorted(sortOrder) && ascending == isAscending(sortOrder);
     }
 
     private SortUtils() {

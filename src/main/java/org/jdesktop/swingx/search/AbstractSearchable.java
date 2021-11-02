@@ -224,7 +224,7 @@ public abstract class AbstractSearchable implements Searchable {
      * @return true if we can say ahead that no match will be found with given search criteria
      */
     protected boolean isTrivialNoMatch(Pattern pattern, int startIndex) {
-        return (pattern == null) || (startIndex >= getSize());
+        return pattern == null || startIndex >= getSize();
     }
 
     /**
@@ -294,7 +294,7 @@ public abstract class AbstractSearchable implements Searchable {
      * @return true if the startIndex should be re-matched, false if not.
      */
     protected boolean isEqualStartIndex(int startIndex) {
-        return isValidIndex(startIndex) && (startIndex == lastSearchResult.foundRow);
+        return isValidIndex(startIndex) && startIndex == lastSearchResult.foundRow;
     }
 
     /**
@@ -306,7 +306,7 @@ public abstract class AbstractSearchable implements Searchable {
      * @return true if the provided <code>String</code> should be interpreted as empty
      */
     protected boolean isEmpty(String searchString) {
-        return (searchString == null) || searchString.length() == 0;
+        return searchString == null || searchString.length() == 0;
     }
 
     /**
@@ -415,7 +415,7 @@ public abstract class AbstractSearchable implements Searchable {
      */
     private boolean isInPipeline(Highlighter searchHighlighter) {
         Highlighter[] inPipeline = getHighlighters();
-        if ((inPipeline.length > 0) &&
+        if (inPipeline.length > 0 &&
             searchHighlighter.equals(inPipeline[inPipeline.length - 1])) {
             return true;
         }
@@ -444,7 +444,7 @@ public abstract class AbstractSearchable implements Searchable {
      * {@code false} otherwise
      */
     private boolean hasMatch(SearchResult result) {
-        boolean noMatch = (result.getFoundRow() < 0) || (result.getFoundColumn() < 0);
+        boolean noMatch = result.getFoundRow() < 0 || result.getFoundColumn() < 0;
         return !noMatch;
     }
 

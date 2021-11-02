@@ -175,7 +175,7 @@ public class PatternPredicate implements HighlightPredicate {
             return false;
         String value = adapter.getString(testColumn);
 
-        if ((value == null) || (value.length() == 0)) {
+        if (value == null || value.length() == 0) {
             return false;
         }
         return pattern.matcher(value).find();
@@ -188,9 +188,9 @@ public class PatternPredicate implements HighlightPredicate {
      * @return
      */
     private boolean isHighlightCandidate(ComponentAdapter adapter) {
-        return (pattern != null) &&
-               ((highlightColumn < 0) ||
-                (highlightColumn == adapter.convertColumnIndexToModel(adapter.column)));
+        return pattern != null &&
+               (highlightColumn < 0 ||
+                highlightColumn == adapter.convertColumnIndexToModel(adapter.column));
     }
 
     /**

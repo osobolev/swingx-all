@@ -286,10 +286,10 @@ public class LinkModel implements Comparable {
     public int hashCode() {
         int result = 7;
 
-        result = 37 * result + ((getText() == null) ? 0 : getText().hashCode());
+        result = 37 * result + (getText() == null ? 0 : getText().hashCode());
         result = 37 * result
-                 + ((getTarget() == null) ? 1 : getTarget().hashCode());
-        result = 37 * result + ((getURL() == null) ? 2 : getURL().hashCode());
+                 + (getTarget() == null ? 1 : getTarget().hashCode());
+        result = 37 * result + (getURL() == null ? 2 : getURL().hashCode());
 
         return result;
     }

@@ -443,7 +443,7 @@ public class BasicXListUI extends BasicListUI {
         ListSelectionModel selModel,
         int leadIndex) {
         Object value = dataModel.getElementAt(row);
-        boolean cellHasFocus = list.hasFocus() && (row == leadIndex);
+        boolean cellHasFocus = list.hasFocus() && row == leadIndex;
         boolean isSelected = selModel.isSelectedIndex(row);
 
         Component rendererComponent =
@@ -507,7 +507,7 @@ public class BasicXListUI extends BasicListUI {
         ListSelectionModel selModel = list.getSelectionModel();
         int size;
 
-        if ((renderer == null) || (size = dataModel.getSize()) == 0) {
+        if (renderer == null || (size = dataModel.getSize()) == 0) {
             return;
         }
 
@@ -530,7 +530,7 @@ public class BasicXListUI extends BasicListUI {
         }
         int maxY = paintBounds.y + paintBounds.height;
         int leadIndex = adjustIndex(list.getLeadSelectionIndex(), list);
-        int rowIncrement = (layoutOrientation == JList.HORIZONTAL_WRAP) ?
+        int rowIncrement = layoutOrientation == JList.HORIZONTAL_WRAP ?
             columnCount : 1;
 
         for (int colCounter = startColumn; colCounter <= endColumn;
@@ -862,7 +862,7 @@ public class BasicXListUI extends BasicListUI {
      */
     protected void selectNextIndex() {
         int s = list.getSelectedIndex();
-        if ((s + 1) < getElementCount()) {
+        if (s + 1 < getElementCount()) {
             s += 1;
             list.setSelectedIndex(s);
             list.ensureIndexIsVisible(s);
@@ -895,8 +895,8 @@ public class BasicXListUI extends BasicListUI {
             InputMap rtlKeyMap;
 
             if (isLeftToRight ||
-                ((rtlKeyMap = (InputMap) UIManager.get("List.focusInputMap.RightToLeft"))
-                 == null)) {
+                (rtlKeyMap = (InputMap) UIManager.get("List.focusInputMap.RightToLeft"))
+                 == null) {
 //                ((rtlKeyMap = (InputMap)DefaultLookup.get(list, this,
 //                              "List.focusInputMap.RightToLeft")) == null)) {
                 return keyMap;
@@ -1032,7 +1032,7 @@ public class BasicXListUI extends BasicListUI {
         }
 
         Long l = (Long) UIManager.get("List.timeFactor");
-        timeFactor = (l != null) ? l.longValue() : 1000L;
+        timeFactor = l != null ? l.longValue() : 1000L;
 
         updateIsFileList();
     }
@@ -1315,8 +1315,8 @@ public class BasicXListUI extends BasicListUI {
         if (row >= getElementCount()) {
             return -1;
         }
-        return (cellHeights == null) ? cellHeight :
-            (row < cellHeights.length) ? cellHeights[row] : -1;
+        return cellHeights == null ? cellHeight :
+            row < cellHeights.length ? cellHeights[row] : -1;
     }
 
     /**
@@ -1333,8 +1333,8 @@ public class BasicXListUI extends BasicListUI {
         }
         Insets insets = list.getInsets();
         if (cellHeights == null) {
-            int row = (cellHeight == 0) ? 0 :
-                ((y0 - insets.top) / cellHeight);
+            int row = cellHeight == 0 ? 0 :
+                (y0 - insets.top) / cellHeight;
             if (closest) {
                 if (row < 0) {
                     row = 0;
@@ -1354,7 +1354,7 @@ public class BasicXListUI extends BasicListUI {
             }
             int i;
             for (i = 0; i < size; i++) {
-                if ((y0 >= y) && (y0 < y + cellHeights[i])) {
+                if (y0 >= y && y0 < y + cellHeights[i]) {
                     return row;
                 }
                 y += cellHeights[i];
@@ -1403,14 +1403,14 @@ public class BasicXListUI extends BasicListUI {
             return -1;
         }
         if (layoutOrientation == JList.VERTICAL ||
-            (column == 0 && columnCount == 1)) {
+            column == 0 && columnCount == 1) {
             return getElementCount();
         }
         if (column >= columnCount) {
             return -1;
         }
         if (layoutOrientation == JList.VERTICAL_WRAP) {
-            if (column < (columnCount - 1)) {
+            if (column < columnCount - 1) {
                 return rowsPerColumn;
             }
             return getElementCount() - (columnCount - 1) *
@@ -1476,7 +1476,7 @@ public class BasicXListUI extends BasicListUI {
     private int convertModelToRow(int index) {
         int size = getElementCount();
 
-        if ((index < 0) || (index >= size)) {
+        if (index < 0 || index >= size) {
             return -1;
         }
 
@@ -1497,7 +1497,7 @@ public class BasicXListUI extends BasicListUI {
     private int convertModelToColumn(int index) {
         int size = getElementCount();
 
-        if ((index < 0) || (index >= size)) {
+        if (index < 0 || index >= size) {
             return -1;
         }
 
@@ -1542,7 +1542,7 @@ public class BasicXListUI extends BasicListUI {
         int fixedCellHeight = list.getFixedCellHeight();
         int fixedCellWidth = list.getFixedCellWidth();
 
-        cellWidth = (fixedCellWidth != -1) ? fixedCellWidth : -1;
+        cellWidth = fixedCellWidth != -1 ? fixedCellWidth : -1;
 
         if (fixedCellHeight != -1) {
             cellHeight = fixedCellHeight;
@@ -1559,7 +1559,7 @@ public class BasicXListUI extends BasicListUI {
          * if they're not set already.
          */
 
-        if ((fixedCellWidth == -1) || (fixedCellHeight == -1)) {
+        if (fixedCellWidth == -1 || fixedCellHeight == -1) {
 
             ListModel dataModel = getViewModel();
             int dataModelSize = dataModel.getSize();
@@ -2224,7 +2224,7 @@ public class BasicXListUI extends BasicListUI {
             ListSelectionModel lsm = list.getSelectionModel();
             int lead = adjustIndex(lsm.getLeadSelectionIndex(), list);
             Rectangle leadRect =
-                (lead == -1) ? new Rectangle() : list.getCellBounds(lead, lead);
+                lead == -1 ? new Rectangle() : list.getCellBounds(lead, lead);
 
             if (list.getLayoutOrientation() == JList.VERTICAL_WRAP &&
                 list.getVisibleRowCount() <= 0) {
@@ -2561,7 +2561,7 @@ public class BasicXListUI extends BasicListUI {
             int startIndex = adjustIndex(src.getLeadSelectionIndex(), list);
             if (time - lastTime < timeFactor) {
                 typedString += c;
-                if ((prefix.length() == 1) && (c == prefix.charAt(0))) {
+                if (prefix.length() == 1 && c == prefix.charAt(0)) {
                     // Subsequent same key presses move the keyboard focus to the next 
                     // object that starts with the same letter.
                     startIndex++;
@@ -3021,7 +3021,7 @@ public class BasicXListUI extends BasicListUI {
                 htmlBuf.append("<html>\n<body>\n<ul>\n");
 
                 for (Object obj : values) {
-                    String val = (obj == null) ? "" : obj.toString();
+                    String val = obj == null ? "" : obj.toString();
                     plainBuf.append(val + "\n");
                     htmlBuf.append("  <li>" + val + "\n");
                 }

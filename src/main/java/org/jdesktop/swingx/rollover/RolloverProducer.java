@@ -266,7 +266,7 @@ public abstract class RolloverProducer implements MouseListener, MouseMotionList
             component.putClientProperty(property, new Point(rollover));
         } else {
             Point p = (Point) component.getClientProperty(property);
-            if (p == null || (rollover.x != p.x) || (rollover.y != p.y)) {
+            if (p == null || rollover.x != p.x || rollover.y != p.y) {
                 component.putClientProperty(property, new Point(rollover));
             }
         }

@@ -232,7 +232,7 @@ public class JXRadioGroup<T> extends JPanel {
      */
     public T getSelectedValue() {
         int index = getSelectedIndex();
-        return (index < 0 || index >= values.size()) ? null : values.get(index);
+        return index < 0 || index >= values.size() ? null : values.get(index);
     }
 
     /**

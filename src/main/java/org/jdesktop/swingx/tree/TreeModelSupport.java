@@ -75,7 +75,7 @@ public final class TreeModelSupport {
          * use use null as path if there is no root. TreeModels without root
          * aren't important anyway, since JTree doesn't support them (yet).
          */
-        TreePath path = (root != null) ? new TreePath(root) : null;
+        TreePath path = root != null ? new TreePath(root) : null;
         fireTreeStructureChanged(path);
     }
 

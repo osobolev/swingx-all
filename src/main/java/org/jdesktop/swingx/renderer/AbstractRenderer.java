@@ -94,7 +94,7 @@ public abstract class AbstractRenderer
      */
     @Override
     public boolean isEnabled() {
-        return (componentController instanceof RolloverRenderer)
+        return componentController instanceof RolloverRenderer
                && ((RolloverRenderer) componentController).isEnabled();
     }
 

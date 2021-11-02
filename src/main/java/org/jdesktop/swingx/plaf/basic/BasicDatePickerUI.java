@@ -194,7 +194,7 @@ public class BasicDatePickerUI extends DatePickerUI {
                 AbstractFormatter formatter = factory.getFormatter(editor);
                 // fix for #1144: classCastException for custom formatters
                 // PENDING JW: revisit for #1138
-                if ((formatter instanceof DatePickerFormatter) && !(formatter instanceof UIResource)) {
+                if (formatter instanceof DatePickerFormatter && !(formatter instanceof UIResource)) {
 //                if (!(formatter instanceof DatePickerFormatterUIResource))  {
                     formats = ((DatePickerFormatter) formatter).getFormats();
                 }
@@ -644,7 +644,7 @@ public class BasicDatePickerUI extends DatePickerUI {
      * @param newDate the editor value after the change
      */
     protected void updateFromValueChanged(Date oldDate, Date newDate) {
-        if ((newDate != null) && datePicker.getMonthView().isUnselectableDate(newDate)) {
+        if (newDate != null && datePicker.getMonthView().isUnselectableDate(newDate)) {
             revertValue(oldDate);
             return;
         }
@@ -1553,7 +1553,7 @@ public class BasicDatePickerUI extends DatePickerUI {
                 return;
             }
             Component comp = manager.getPermanentFocusOwner();
-            if ((comp != null) && !SwingXUtilities.isDescendingFrom(comp, datePicker)) {
+            if (comp != null && !SwingXUtilities.isDescendingFrom(comp, datePicker)) {
                 unload(false);
                 // on hiding the popup the focusmanager transfers 
                 // focus back to the old permanentFocusOwner

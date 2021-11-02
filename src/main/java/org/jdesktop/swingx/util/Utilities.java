@@ -256,7 +256,7 @@ public class Utilities {
      * @return <code>true</code> if it does <em>not</em>
      */
     public static boolean isLargeFrameIcons() {
-        return (getOperatingSystem() == OS_SOLARIS) || (getOperatingSystem() == OS_HP);
+        return getOperatingSystem() == OS_SOLARIS || getOperatingSystem() == OS_HP;
     }
 
     /**
@@ -380,8 +380,8 @@ public class Utilities {
             fields = new Field[0];
         }
 
-        HashMap<String, Integer> names = new HashMap<>(((fields.length * 4) / 3) + 5, 0.75f);
-        HashMap<Integer, String> values = new HashMap<>(((fields.length * 4) / 3) + 5, 0.75f);
+        HashMap<String, Integer> names = new HashMap<>(fields.length * 4 / 3 + 5, 0.75f);
+        HashMap<Integer, String> values = new HashMap<>(fields.length * 4 / 3 + 5, 0.75f);
 
         for (Field field : fields) {
             if (Modifier.isStatic(field.getModifiers())) {
@@ -568,7 +568,7 @@ public class Utilities {
      */
     private static int getMenuShortCutKeyMask() {
         if (GraphicsEnvironment.isHeadless()) {
-            return ((getOperatingSystem() & OS_MAC) != 0) ?
+            return (getOperatingSystem() & OS_MAC) != 0 ?
                 KeyEvent.META_MASK : KeyEvent.CTRL_MASK;
         }
 
@@ -581,17 +581,17 @@ public class Utilities {
             return false;
         }
 
-        boolean isMeta = ((mask & KeyEvent.META_MASK) != 0) || ((mask & KeyEvent.CTRL_DOWN_MASK) != 0);
+        boolean isMeta = (mask & KeyEvent.META_MASK) != 0 || (mask & KeyEvent.CTRL_DOWN_MASK) != 0;
 
-        boolean isAlt = ((mask & KeyEvent.ALT_MASK) != 0) || ((mask & KeyEvent.ALT_DOWN_MASK) != 0);
+        boolean isAlt = (mask & KeyEvent.ALT_MASK) != 0 || (mask & KeyEvent.ALT_DOWN_MASK) != 0;
 
-        boolean isOnlyMeta = isMeta && ((mask & ~(KeyEvent.META_DOWN_MASK | KeyEvent.META_MASK)) == 0);
+        boolean isOnlyMeta = isMeta && (mask & ~(KeyEvent.META_DOWN_MASK | KeyEvent.META_MASK)) == 0;
 
         //Mac OS consumes keys Command+ these keys - the app will never see
         //them, so CTRL should not be remapped for these
         if (isOnlyMeta) {
-            return (key != KeyEvent.VK_H) && (key != KeyEvent.VK_SPACE) && (key != KeyEvent.VK_TAB);
-        } else return !((key == KeyEvent.VK_D) && isMeta && isAlt);
+            return key != KeyEvent.VK_H && key != KeyEvent.VK_SPACE && key != KeyEvent.VK_TAB;
+        } else return !(key == KeyEvent.VK_D && isMeta && isAlt);
     }
 
     /**
@@ -722,7 +722,7 @@ public class Utilities {
             int k = array.length;
 
             for (i = 0; i < k; i++)
-                r[i] = (array[i] == null) ? 0 : ((Integer) array[i]).intValue();
+                r[i] = array[i] == null ? 0 : ((Integer) array[i]).intValue();
 
             return r;
         }
@@ -733,7 +733,7 @@ public class Utilities {
             int k = array.length;
 
             for (i = 0; i < k; i++)
-                r[i] = (array[i] != null) && ((Boolean) array[i]).booleanValue();
+                r[i] = array[i] != null && ((Boolean) array[i]).booleanValue();
 
             return r;
         }
@@ -744,7 +744,7 @@ public class Utilities {
             int k = array.length;
 
             for (i = 0; i < k; i++)
-                r[i] = (array[i] == null) ? 0 : ((Byte) array[i]).byteValue();
+                r[i] = array[i] == null ? 0 : ((Byte) array[i]).byteValue();
 
             return r;
         }
@@ -755,7 +755,7 @@ public class Utilities {
             int k = array.length;
 
             for (i = 0; i < k; i++)
-                r[i] = (array[i] == null) ? 0 : ((Character) array[i]).charValue();
+                r[i] = array[i] == null ? 0 : ((Character) array[i]).charValue();
 
             return r;
         }
@@ -766,7 +766,7 @@ public class Utilities {
             int k = array.length;
 
             for (i = 0; i < k; i++)
-                r[i] = (array[i] == null) ? 0 : ((Double) array[i]).doubleValue();
+                r[i] = array[i] == null ? 0 : ((Double) array[i]).doubleValue();
 
             return r;
         }
@@ -777,7 +777,7 @@ public class Utilities {
             int k = array.length;
 
             for (i = 0; i < k; i++)
-                r[i] = (array[i] == null) ? 0 : ((Float) array[i]).floatValue();
+                r[i] = array[i] == null ? 0 : ((Float) array[i]).floatValue();
 
             return r;
         }
@@ -788,7 +788,7 @@ public class Utilities {
             int k = array.length;
 
             for (i = 0; i < k; i++)
-                r[i] = (array[i] == null) ? 0 : ((Long) array[i]).longValue();
+                r[i] = array[i] == null ? 0 : ((Long) array[i]).longValue();
 
             return r;
         }
@@ -799,7 +799,7 @@ public class Utilities {
             int k = array.length;
 
             for (i = 0; i < k; i++)
-                r[i] = (array[i] == null) ? 0 : ((Short) array[i]).shortValue();
+                r[i] = array[i] == null ? 0 : ((Short) array[i]).shortValue();
 
             return r;
         }
@@ -958,7 +958,7 @@ public class Utilities {
             boolean ok = true;
 
             for (String value : workingSet) {
-                ok = ok && (value.length() < width);
+                ok = ok && value.length() < width;
 
                 if (!ok) {
                     break widthcheck;
@@ -982,7 +982,7 @@ public class Utilities {
                 int prevStart = 0;
 
                 do {
-                    while (((nextStart - lineStart) < width) && (nextStart != BreakIterator.DONE)) {
+                    while (nextStart - lineStart < width && nextStart != BreakIterator.DONE) {
                         prevStart = nextStart;
                         nextStart = breakIterator.next();
                     }
@@ -1019,7 +1019,7 @@ public class Utilities {
 
         do {
             c = s.charAt(idx++);
-        } while (((c == '\n') || (c == '\r')) && (idx < slen));
+        } while ((c == '\n' || c == '\r') && idx < slen);
 
         s = s.substring(--idx);
         idx = s.length() - 1;
@@ -1030,7 +1030,7 @@ public class Utilities {
 
         do {
             c = s.charAt(idx--);
-        } while (((c == '\n') || (c == '\r')) && (idx >= 0));
+        } while ((c == '\n' || c == '\r') && idx >= 0);
 
         return s.substring(0, idx + 2);
     }

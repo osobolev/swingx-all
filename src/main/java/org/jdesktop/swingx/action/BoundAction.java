@@ -160,7 +160,7 @@ public class BoundAction extends AbstractActionExt {
 
         @Override
         public void itemStateChanged(ItemEvent evt) {
-            Statement statement = (evt.getStateChange() == ItemEvent.DESELECTED) ? falseStatement
+            Statement statement = evt.getStateChange() == ItemEvent.DESELECTED ? falseStatement
                 : trueStatement;
 
             try {

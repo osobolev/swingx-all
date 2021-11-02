@@ -83,7 +83,7 @@ public class LinkModelAction<T extends LinkModel> extends AbstractHyperlinkActio
      */
     @Override
     public void actionPerformed(ActionEvent e) {
-        if ((delegate != null) && (getTarget() != null)) {
+        if (delegate != null && getTarget() != null) {
             delegate.actionPerformed(new ActionEvent(getTarget(), ActionEvent.ACTION_PERFORMED, VISIT_ACTION));
         }
     }

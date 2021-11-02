@@ -75,7 +75,7 @@ public class DefaultXTreeCellEditor extends DefaultTreeCellEditor implements UID
 
                     pSize.width += offset + 5;
 
-                    Dimension rSize = (renderer != null) ?
+                    Dimension rSize = renderer != null ?
                         renderer.getPreferredSize() : null;
 
                     if (rSize != null)
@@ -154,7 +154,7 @@ public class DefaultXTreeCellEditor extends DefaultTreeCellEditor implements UID
      * @return
      */
     private boolean isRightToLeft() {
-        return (tree != null) && !tree.getComponentOrientation().isLeftToRight();
+        return tree != null && !tree.getComponentOrientation().isLeftToRight();
     }
 
     /**

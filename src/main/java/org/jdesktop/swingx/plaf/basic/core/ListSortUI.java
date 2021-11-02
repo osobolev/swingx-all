@@ -309,7 +309,7 @@ public final class ListSortUI {
 
         // Check for the common case of no change in selection for 1 row
         if (selection.length == 0 ||
-            (selection.length == 1 && selection[0] == list.getSelectedIndex())) {
+            selection.length == 1 && selection[0] == list.getSelectedIndex()) {
             return;
         }
         ListSelectionModel selectionModel = getViewSelectionModel();

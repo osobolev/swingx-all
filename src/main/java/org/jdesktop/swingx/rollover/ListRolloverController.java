@@ -93,10 +93,10 @@ public class ListRolloverController<T extends JList> extends RolloverController<
         ListCellRenderer renderer = component.getCellRenderer();
         RolloverRenderer rollover = renderer instanceof RolloverRenderer
             ? (RolloverRenderer) renderer : null;
-        if ((rollover != null) && !rollover.isEnabled()) {
+        if (rollover != null && !rollover.isEnabled()) {
             rollover = null;
         }
-        if ((rollover != null) && prepare) {
+        if (rollover != null && prepare) {
             Object element = component.getModel().getElementAt(location.y);
             renderer.getListCellRendererComponent(component, element,
                 location.y, false, true);

@@ -81,7 +81,7 @@ public final class CapsLockSupport extends AbstractBean implements KeyEventDispa
      * key
      */
     public boolean isInitialized() {
-        return useToolkit || (useToolkit ^ updateViaKeyEvent);
+        return useToolkit || useToolkit ^ updateViaKeyEvent;
     }
 
     /**

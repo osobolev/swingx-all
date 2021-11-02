@@ -82,7 +82,7 @@ public class JXFindPanel extends AbstractPatternPanel {
      *                   information using methods of the {@link Searchable Searchable} interface.
      */
     public void setSearchable(Searchable searchable) {
-        if ((this.searchable != null) && this.searchable.equals(searchable)) return;
+        if (this.searchable != null && this.searchable.equals(searchable)) return;
         Searchable old = this.searchable;
         if (old != null) {
             old.search((Pattern) null);
@@ -188,7 +188,7 @@ public class JXFindPanel extends AbstractPatternPanel {
         if (searchable == null)
             return;
         int foundIndex = doSearch();
-        boolean notFound = (foundIndex == -1) && !getPatternModel().isEmpty();
+        boolean notFound = foundIndex == -1 && !getPatternModel().isEmpty();
         if (notFound) {
             if (getPatternModel().isWrapping()) {
                 notFound = doSearch() == -1;

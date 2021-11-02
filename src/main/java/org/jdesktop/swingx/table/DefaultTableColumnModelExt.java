@@ -109,7 +109,7 @@ public class DefaultTableColumnModelExt extends DefaultTableColumnModel
     @Override
     public TableColumnExt getColumnExt(Object identifier) {
         for (TableColumn column : initialColumns) {
-            if ((column instanceof TableColumnExt) && identifier.equals(column.getIdentifier())) {
+            if (column instanceof TableColumnExt && identifier.equals(column.getIdentifier())) {
                 return (TableColumnExt) column;
             }
         }
@@ -264,7 +264,7 @@ public class DefaultTableColumnModelExt extends DefaultTableColumnModel
         // this is analogous to the proposed fix in #253-swingx
         // but uses the currentColumns as reference.
         int addIndex = currentColumns.indexOf(col);
-        for (int i = 0; i < (getColumnCount() - 1); i++) {
+        for (int i = 0; i < getColumnCount() - 1; i++) {
             TableColumn tableCol = getColumn(i);
             int actualPosition = currentColumns.indexOf(tableCol);
             if (actualPosition > addIndex) {

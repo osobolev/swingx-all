@@ -480,7 +480,7 @@ public class JXTaskPane extends JPanel implements
         } else if (lci == -1) {
             mnemonicIndex = uci;
         } else {
-            mnemonicIndex = (lci < uci) ? lci : uci;
+            mnemonicIndex = lci < uci ? lci : uci;
         }
     }
 
@@ -503,7 +503,7 @@ public class JXTaskPane extends JPanel implements
             mnemonicIndex = -1;
         } else {
             String text = getTitle();
-            int textLength = (text == null) ? 0 : text.length();
+            int textLength = text == null ? 0 : text.length();
             if (index < -1 || index >= textLength) {  // index out of range
                 throw new IllegalArgumentException("index == " + index);
             }

@@ -306,13 +306,13 @@ public interface HighlightPredicate {
     /**
      * Negative BigDecimals.
      */
-    HighlightPredicate BIG_DECIMAL_NEGATIVE = (renderer, adapter) -> (adapter.getValue() instanceof BigDecimal)
+    HighlightPredicate BIG_DECIMAL_NEGATIVE = (renderer, adapter) -> adapter.getValue() instanceof BigDecimal
                                                              && ((BigDecimal) adapter.getValue()).compareTo(BigDecimal.ZERO) < 0;
 
     /**
      * Negative Number.
      */
-    HighlightPredicate INTEGER_NEGATIVE = (renderer, adapter) -> (adapter.getValue() instanceof Number)
+    HighlightPredicate INTEGER_NEGATIVE = (renderer, adapter) -> adapter.getValue() instanceof Number
                                                          && ((Number) adapter.getValue()).intValue() < 0;
 
     // PENDING: these general type empty arrays don't really belong here?
@@ -483,7 +483,7 @@ public interface HighlightPredicate {
         @Override
         public boolean isHighlighted(Component renderer, ComponentAdapter adapter) {
             // JW: oddness check is okay - adapter.row must be a valid view coordinate
-            return (adapter.row / linesPerGroup) % 2 == 1;
+            return adapter.row / linesPerGroup % 2 == 1;
         }
 
         /**

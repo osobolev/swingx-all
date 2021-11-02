@@ -71,7 +71,7 @@ class CalendarCellContext extends CellContext {
     }
 
     public Calendar getCalendar() {
-        return (getValue() instanceof Calendar) ? (Calendar) getValue() : null;
+        return getValue() instanceof Calendar ? (Calendar) getValue() : null;
     }
 
     @Override
@@ -82,7 +82,7 @@ class CalendarCellContext extends CellContext {
         if (CalendarState.TRAILING == dayState) {
             return getUIColor("trailingDayForeground");
         }
-        if ((CalendarState.TITLE == dayState) && (getComponent() != null)) {
+        if (CalendarState.TITLE == dayState && getComponent() != null) {
             return getComponent().getMonthStringForeground();
         }
         if (CalendarState.WEEK_OF_YEAR == dayState) {
@@ -119,7 +119,7 @@ class CalendarCellContext extends CellContext {
      */
     protected Color getFlaggedOrPerDayForeground() {
 
-        if (getComponent() != null && (getCalendar() != null)) {
+        if (getComponent() != null && getCalendar() != null) {
             if (getComponent().isFlaggedDate(getCalendar().getTime())) {
                 return getComponent().getFlaggedDayForeground();
             } else {
@@ -134,7 +134,7 @@ class CalendarCellContext extends CellContext {
 
     @Override
     protected Color getBackground() {
-        if ((CalendarState.TITLE == dayState) && (getComponent() != null)) {
+        if (CalendarState.TITLE == dayState && getComponent() != null) {
             return getComponent().getMonthStringBackground();
         }
         return super.getBackground();

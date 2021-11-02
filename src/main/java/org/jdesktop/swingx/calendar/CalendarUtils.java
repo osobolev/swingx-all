@@ -351,7 +351,7 @@ public class CalendarUtils {
      * @return
      */
     private static int decade(int year) {
-        return (year / 10) * 10;
+        return year / 10 * 10;
     }
 
     /**
@@ -570,7 +570,7 @@ public class CalendarUtils {
      * false otherwise.
      */
     public static boolean areEqual(Date current, Date date) {
-        if ((date == null) && (current == null)) {
+        if (date == null && current == null) {
             return true;
         }
         if (date != null) {

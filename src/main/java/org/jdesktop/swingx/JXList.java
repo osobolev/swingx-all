@@ -884,7 +884,7 @@ public class JXList extends JList {
     @Override
     public Object getSelectedValue() {
         int i = getSelectedIndex();
-        return (i == -1) ? null : getElementAt(i);
+        return i == -1 ? null : getElementAt(i);
     }
 
     /**
@@ -1050,7 +1050,7 @@ public class JXList extends JList {
         @Override
         public boolean hasFocus() {
             /** TODO: Think through printing implications */
-            return list.isFocusOwner() && (row == list.getLeadSelectionIndex());
+            return list.isFocusOwner() && row == list.getLeadSelectionIndex();
         }
 
         /**
@@ -1450,7 +1450,7 @@ public class JXList extends JList {
                                                       int index, boolean isSelected, boolean cellHasFocus) {
             Component comp = delegateRenderer.getListCellRendererComponent(list, value, index,
                 isSelected, cellHasFocus);
-            if ((compoundHighlighter != null) && (index >= 0) && (index < getElementCount())) {
+            if (compoundHighlighter != null && index >= 0 && index < getElementCount()) {
                 comp = compoundHighlighter.highlight(comp, getComponentAdapter(index));
             }
             return comp;
@@ -1463,7 +1463,7 @@ public class JXList extends JList {
          */
         @Override
         public boolean isEnabled() {
-            return (delegateRenderer instanceof RolloverRenderer) &&
+            return delegateRenderer instanceof RolloverRenderer &&
                    ((RolloverRenderer) delegateRenderer).isEnabled();
         }
 

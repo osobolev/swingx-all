@@ -243,6 +243,6 @@ public class PainterHighlighter extends AbstractHighlighter {
      */
     @Override
     protected boolean canHighlight(Component component, ComponentAdapter adapter) {
-        return getPainter() != null && (component instanceof PainterAware);
+        return getPainter() != null && component instanceof PainterAware;
     }
 }

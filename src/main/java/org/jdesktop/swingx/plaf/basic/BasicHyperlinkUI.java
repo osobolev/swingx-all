@@ -283,9 +283,9 @@ public class BasicHyperlinkUI extends BasicButtonUI {
         // REMIND(aim): should we be basing the underline on
         // the font's baseline instead of the text bounds?
         g.drawLine(rect.x + getTextShiftOffset(),
-            (rect.y + rect.height) - descent + 1 + getTextShiftOffset(),
+            rect.y + rect.height - descent + 1 + getTextShiftOffset(),
             rect.x + rect.width + getTextShiftOffset(),
-            (rect.y + rect.height) - descent + 1 + getTextShiftOffset());
+            rect.y + rect.height - descent + 1 + getTextShiftOffset());
     }
 
     @Override

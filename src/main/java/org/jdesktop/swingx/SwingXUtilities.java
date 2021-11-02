@@ -136,7 +136,7 @@ public final class SwingXUtilities {
         // we should be painting the background behind the painter if we have one
         // this prevents issues with buffer reuse where visual artifacts sneak in
         if (comp.isOpaque()
-            || (comp instanceof AlphaPaintable && ((AlphaPaintable) comp).getAlpha() < 1f)
+            || comp instanceof AlphaPaintable && ((AlphaPaintable) comp).getAlpha() < 1f
             || "Nimbus".equals(UIManager.getLookAndFeel().getID())) {
             g.setColor(comp.getBackground());
             g.fillRect(0, 0, comp.getWidth(), comp.getHeight());
@@ -432,7 +432,7 @@ public final class SwingXUtilities {
      * default value, false otherwise.
      */
     public static boolean isUIInstallable(Object property) {
-        return (property == null) || (property instanceof UIResource);
+        return property == null || property instanceof UIResource;
     }
 
 //---- methods c&p'ed from SwingUtilities2 to reduce dependencies on sun packages
@@ -467,7 +467,7 @@ public final class SwingXUtilities {
 
     public static boolean shouldIgnore(MouseEvent mouseEvent,
                                        JComponent component) {
-        return (component == null) || !component.isEnabled()
+        return component == null || !component.isEnabled()
                || !SwingUtilities.isLeftMouseButton(mouseEvent)
                || mouseEvent.isConsumed();
     }
@@ -477,7 +477,7 @@ public final class SwingXUtilities {
         if (i != -1) {
             Object localObject = list
                 .getClientProperty("List.isFileList");
-            if ((localObject instanceof Boolean)
+            if (localObject instanceof Boolean
                 && ((Boolean) localObject).booleanValue()
                 // PENDING JW: this isn't aware of sorting/filtering - fix!
                 && !pointIsInActualBounds(list, i, point)) {

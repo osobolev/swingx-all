@@ -632,7 +632,7 @@ public class BasicMonthViewUI extends MonthViewUI {
      */
     protected Rectangle getDayBoundsAtLocation(int x, int y) {
         Rectangle monthDetails = getMonthDetailsBoundsAtLocation(x, y);
-        if ((monthDetails == null) || !monthDetails.contains(x, y))
+        if (monthDetails == null || !monthDetails.contains(x, y))
             return null;
         // calculate row/column in absolute grid coordinates
         int row = (y - monthDetails.y) / fullBoxHeight;
@@ -655,7 +655,7 @@ public class BasicMonthViewUI extends MonthViewUI {
      */
     protected Rectangle getDayBoundsInMonth(Date month, int row, int column) {
         checkValidRow(row, column);
-        if ((WEEK_HEADER_COLUMN == column) && !monthView.isShowingWeekNumber()) return null;
+        if (WEEK_HEADER_COLUMN == column && !monthView.isShowingWeekNumber()) return null;
         Rectangle monthBounds = getMonthBounds(month);
         if (monthBounds == null) return null;
         // dayOfWeek header is shown always
@@ -697,7 +697,7 @@ public class BasicMonthViewUI extends MonthViewUI {
      */
     protected Point getDayGridPositionAtLocation(int x, int y) {
         Rectangle monthDetailsBounds = getMonthDetailsBoundsAtLocation(x, y);
-        if ((monthDetailsBounds == null) || !monthDetailsBounds.contains(x, y)) return null;
+        if (monthDetailsBounds == null || !monthDetailsBounds.contains(x, y)) return null;
         int calendarRow = (y - monthDetailsBounds.y) / fullBoxHeight + DAY_HEADER_ROW;
         int absoluteColumn = (x - monthDetailsBounds.x) / fullBoxWidth;
         int calendarColumn = absoluteColumn + FIRST_DAY_COLUMN;
@@ -731,7 +731,7 @@ public class BasicMonthViewUI extends MonthViewUI {
      * @see #getDayGridPosition(Date)
      */
     protected Date getDayInMonth(Date month, int row, int column) {
-        if ((row == DAY_HEADER_ROW) || (column == WEEK_HEADER_COLUMN)) return null;
+        if (row == DAY_HEADER_ROW || column == WEEK_HEADER_COLUMN) return null;
         Calendar calendar = getCalendar(month);
         int monthField = calendar.get(Calendar.MONTH);
         if (!CalendarUtils.isStartOfMonth(calendar))
@@ -739,7 +739,7 @@ public class BasicMonthViewUI extends MonthViewUI {
         CalendarUtils.startOfWeek(calendar);
         // PENDING JW: correctly mapped now?
         calendar.add(Calendar.DAY_OF_MONTH,
-            (row - FIRST_WEEK_ROW) * DAYS_IN_WEEK + (column - FIRST_DAY_COLUMN));
+            (row - FIRST_WEEK_ROW) * DAYS_IN_WEEK + column - FIRST_DAY_COLUMN);
         if (calendar.get(Calendar.MONTH) == monthField) {
             return calendar.getTime();
         }
@@ -794,8 +794,8 @@ public class BasicMonthViewUI extends MonthViewUI {
     @Override
     public Date getDayAtLocation(int x, int y) {
         Point dayInGrid = getDayGridPositionAtLocation(x, y);
-        if ((dayInGrid == null)
-            || (dayInGrid.x == WEEK_HEADER_COLUMN) || (dayInGrid.y == DAY_HEADER_ROW)) return null;
+        if (dayInGrid == null
+            || dayInGrid.x == WEEK_HEADER_COLUMN || dayInGrid.y == DAY_HEADER_ROW) return null;
         Date month = getMonthAtLocation(x, y);
         return getDayInMonth(month, dayInGrid.y, dayInGrid.x);
     }
@@ -835,9 +835,9 @@ public class BasicMonthViewUI extends MonthViewUI {
      * @param row
      */
     private void checkValidRow(int row, int column) {
-        if ((column < WEEK_HEADER_COLUMN) || (column > LAST_DAY_COLUMN))
+        if (column < WEEK_HEADER_COLUMN || column > LAST_DAY_COLUMN)
             throw new IllegalArgumentException("illegal column in day grid " + column);
-        if ((row < DAY_HEADER_ROW) || (row > LAST_WEEK_ROW))
+        if (row < DAY_HEADER_ROW || row > LAST_WEEK_ROW)
             throw new IllegalArgumentException("illegal row in day grid" + row);
     }
 
@@ -1032,7 +1032,7 @@ public class BasicMonthViewUI extends MonthViewUI {
         int year = calendar.get(Calendar.YEAR);
 
         int diffMonths = month - firstMonth
-                         + ((year - firstYear) * JXMonthView.MONTHS_IN_YEAR);
+                         + (year - firstYear) * JXMonthView.MONTHS_IN_YEAR;
 
         int row = diffMonths / calendarColumnCount;
         int column = diffMonths % calendarColumnCount;
@@ -1159,13 +1159,13 @@ public class BasicMonthViewUI extends MonthViewUI {
     }
 
     private int calculateCalendarGridHeight() {
-        return (calendarHeight * calendarRowCount) +
-               (CALENDAR_SPACING * (calendarRowCount - 1));
+        return calendarHeight * calendarRowCount +
+               CALENDAR_SPACING * (calendarRowCount - 1);
     }
 
     private int calculateCalendarGridWidth() {
-        return (calendarWidth * calendarColumnCount) +
-               (CALENDAR_SPACING * (calendarColumnCount - 1));
+        return calendarWidth * calendarColumnCount +
+               CALENDAR_SPACING * (calendarColumnCount - 1);
     }
 
     /**
@@ -1551,7 +1551,7 @@ public class BasicMonthViewUI extends MonthViewUI {
      */
     private void updateLastDisplayedDay(Date first) {
         Calendar cal = getCalendar(first);
-        cal.add(Calendar.MONTH, (calendarColumnCount * calendarRowCount) - 1);
+        cal.add(Calendar.MONTH, calendarColumnCount * calendarRowCount - 1);
         CalendarUtils.endOfMonth(cal);
         lastDisplayedDate = cal.getTime();
     }
@@ -1858,7 +1858,7 @@ public class BasicMonthViewUI extends MonthViewUI {
             if (maxMonthWidth > maxBoxWidth * dayColumns) {
                 //  monthHeader pref > sum of box widths
                 // handle here: increase day box width accordingly
-                double diff = maxMonthWidth - (maxBoxWidth * dayColumns);
+                double diff = maxMonthWidth - maxBoxWidth * dayColumns;
                 maxBoxWidth += Math.ceil(diff / (double) dayColumns);
             }
 
@@ -1875,16 +1875,16 @@ public class BasicMonthViewUI extends MonthViewUI {
             }
             fullCalendarWidth = calendarWidth + CALENDAR_SPACING;
 
-            calendarHeight = (fullBoxHeight * 7) + fullMonthBoxHeight;
+            calendarHeight = fullBoxHeight * 7 + fullMonthBoxHeight;
             fullCalendarHeight = calendarHeight + CALENDAR_SPACING;
             // Calculate minimum width/height for the component.
             int prefRows = getPreferredRows();
-            preferredSize.height = (calendarHeight * prefRows) +
-                                   (CALENDAR_SPACING * (prefRows - 1));
+            preferredSize.height = calendarHeight * prefRows +
+                                   CALENDAR_SPACING * (prefRows - 1);
 
             int prefCols = getPreferredColumns();
-            preferredSize.width = (calendarWidth * prefCols) +
-                                  (CALENDAR_SPACING * (prefCols - 1));
+            preferredSize.width = calendarWidth * prefCols +
+                                  CALENDAR_SPACING * (prefCols - 1);
 
             // Add insets to the dimensions.
             Insets insets = monthView.getInsets();
@@ -1993,7 +1993,7 @@ public class BasicMonthViewUI extends MonthViewUI {
                 // refactor the logic ...
                 if (action == CANCEL_SELECTION) {
                     // Restore the original selection.
-                    if ((originalDateSpan != null)
+                    if (originalDateSpan != null
                         && !originalDateSpan.isEmpty()) {
                         monthView.setSelectionInterval(
                             originalDateSpan.first(), originalDateSpan

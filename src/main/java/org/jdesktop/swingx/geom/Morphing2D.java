@@ -105,7 +105,7 @@ public class Morphing2D implements Shape {
     }
 
     private static double interp(double v0, double v1, double t) {
-        return v0 + ((v1 - v0) * t);
+        return v0 + (v1 - v0) * t;
     }
 
     private static double[] mergeTvals(double[] tvals0, double[] tvals1) {
@@ -335,7 +335,7 @@ public class Morphing2D implements Shape {
             // Add closing segment if either:
             // - we only have initial moveto - expand it to an empty cubic
             // - or we are not back to the starting point
-            if ((numCoords < 8) ||
+            if (numCoords < 8 ||
                 curx != bezierCoords[0] ||
                 cury != bezierCoords[1]) {
                 newx = bezierCoords[0];
@@ -356,7 +356,7 @@ public class Morphing2D implements Shape {
             for (int ci = 6; ci < numCoords; ci += 6) {
                 double x = bezierCoords[ci];
                 double y = bezierCoords[ci + 1];
-                if (y < minY || (y == minY && x < minX)) {
+                if (y < minY || y == minY && x < minX) {
                     minPt = ci;
                     minX = x;
                     minY = y;

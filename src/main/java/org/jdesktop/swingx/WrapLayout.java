@@ -95,7 +95,7 @@ public class WrapLayout extends FlowLayout {
             int hgap = getHgap();
             int vgap = getVgap();
             Insets insets = target.getInsets();
-            int horizontalInsetsAndGap = insets.left + insets.right + (hgap * 2);
+            int horizontalInsetsAndGap = insets.left + insets.right + hgap * 2;
             int maxWidth = targetWidth - horizontalInsetsAndGap;
 
             // Fit components into the allowed width

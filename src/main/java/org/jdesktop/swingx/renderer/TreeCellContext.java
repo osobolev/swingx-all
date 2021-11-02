@@ -114,7 +114,7 @@ public class TreeCellContext extends CellContext {
      */
     public TreePath getTreePath() {
         if (getComponent() == null) return null;
-        if ((row < 0) || (row >= getComponent().getRowCount())) return null;
+        if (row < 0 || row >= getComponent().getRowCount()) return null;
         return getComponent().getPathForRow(row);
     }
 

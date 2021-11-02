@@ -287,7 +287,7 @@ public abstract class DefaultSortController<M> extends DefaultRowSorter<M, Integ
      */
     @Override
     public int convertRowIndexToModel(int viewIndex) {
-        if ((viewIndex < 0) || viewIndex >= getViewRowCount())
+        if (viewIndex < 0 || viewIndex >= getViewRowCount())
             throw new IndexOutOfBoundsException("valid viewIndex: 0 <= index < "
                                                 + getViewRowCount()
                                                 + " but was: " + viewIndex);
@@ -310,7 +310,7 @@ public abstract class DefaultSortController<M> extends DefaultRowSorter<M, Integ
      */
     @Override
     public int convertRowIndexToView(int modelIndex) {
-        if ((modelIndex < 0) || modelIndex >= getModelRowCount())
+        if (modelIndex < 0 || modelIndex >= getModelRowCount())
             throw new IndexOutOfBoundsException("valid modelIndex: 0 <= index < "
                                                 + getModelRowCount()
                                                 + " but was: " + modelIndex);

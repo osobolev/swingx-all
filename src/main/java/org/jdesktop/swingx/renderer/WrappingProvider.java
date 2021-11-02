@@ -380,7 +380,7 @@ public class WrappingProvider extends
      */
     @Override
     public boolean isEnabled() {
-        return (wrappee instanceof RolloverRenderer) &&
+        return wrappee instanceof RolloverRenderer &&
                ((RolloverRenderer) wrappee).isEnabled();
     }
 }

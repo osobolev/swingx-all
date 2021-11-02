@@ -55,7 +55,7 @@ public class TreeRolloverProducer extends RolloverProducer {
         if (bounds == null) {
             row = -1;
         } else {
-            if ((bounds.y + bounds.height < mousePoint.y)
+            if (bounds.y + bounds.height < mousePoint.y
                 || bounds.x > mousePoint.x) {
                 row = -1;
             }
@@ -76,7 +76,7 @@ public class TreeRolloverProducer extends RolloverProducer {
         if (bounds == null) {
             row = -1;
         } else {
-            if ((bounds.y + bounds.height < mousePoint.y)
+            if (bounds.y + bounds.height < mousePoint.y
                 || bounds.x > mousePoint.x) {
                 row = -1;
             }

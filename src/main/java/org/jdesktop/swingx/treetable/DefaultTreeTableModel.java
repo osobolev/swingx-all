@@ -228,11 +228,11 @@ public class DefaultTreeTableModel extends AbstractTreeTableModel {
 
         // This test is to cover the case when
         // getColumnCount has been subclassed by mistake ...
-        if (column < columnIdentifiers.size() && (column >= 0)) {
+        if (column < columnIdentifiers.size() && column >= 0) {
             id = columnIdentifiers.get(column);
         }
 
-        return (id == null) ? super.getColumnName(column) : id.toString();
+        return id == null ? super.getColumnName(column) : id.toString();
     }
 
     /**

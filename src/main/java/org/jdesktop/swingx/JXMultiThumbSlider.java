@@ -223,7 +223,7 @@ public class JXMultiThumbSlider<E> extends JComponent {
     private void setThumbXByPosition(ThumbComp thumb, float pos) {
         float lp = getWidth() - thumb.getWidth();
         float lu = getModel().getMaximumValue() - getModel().getMinimumValue();
-        float tp = (pos * lp) / lu;
+        float tp = pos * lp / lu;
         thumb.setLocation((int) tp - thumb.getWidth() / 2 + thumb.getWidth() / 2, thumb.getY());
     }
 

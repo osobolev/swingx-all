@@ -169,8 +169,8 @@ public class ColumnFactory {
      * @see #createAndConfigureTableColumn(TableModel, int)
      */
     public void configureTableColumn(TableModel model, TableColumnExt columnExt) {
-        if ((columnExt.getModelIndex() < 0)
-            || (columnExt.getModelIndex() >= model.getColumnCount()))
+        if (columnExt.getModelIndex() < 0
+            || columnExt.getModelIndex() >= model.getColumnCount())
             throw new IllegalStateException("column must have valid modelIndex");
         columnExt.setHeaderValue(model.getColumnName(columnExt.getModelIndex()));
     }

@@ -426,7 +426,7 @@ public class JXTreeTable extends JXTable {
         // BasicTableUI selects on released if the pressed had been 
         // consumed. So we try to fish for the accompanying released
         // here and consume it as wll. 
-        if ((e.getID() == MouseEvent.MOUSE_RELEASED) && consumedOnPress) {
+        if (e.getID() == MouseEvent.MOUSE_RELEASED && consumedOnPress) {
             consumedOnPress = false;
             e.consume();
             return;
@@ -778,7 +778,7 @@ public class JXTreeTable extends JXTable {
             if (!isHitDetectionFromProcessMouse())
                 return false;
             int col = columnAtPoint(e.getPoint());
-            return (col >= 0) && expandOrCollapseNode(columnAtPoint(e
+            return col >= 0 && expandOrCollapseNode(columnAtPoint(e
                 .getPoint()), e);
         }
 
@@ -985,12 +985,12 @@ public class JXTreeTable extends JXTable {
                         // JW: fix issue 1168-swingx: expansion control broken in 
                         if (getComponentOrientation().isLeftToRight()) {
                             // this is LToR only
-                            if ((bounds.y + bounds.height < treeMousePoint.y)
+                            if (bounds.y + bounds.height < treeMousePoint.y
                                 || bounds.x > treeMousePoint.x) {
                                 row = -1;
                             }
                         } else {
-                            if ((bounds.y + bounds.height < treeMousePoint.y)
+                            if (bounds.y + bounds.height < treeMousePoint.y
                                 || bounds.x + bounds.width < treeMousePoint.x) {
                                 row = -1;
                             }
@@ -1001,8 +1001,8 @@ public class JXTreeTable extends JXTable {
                     expansionChangedFlag = false;
                 }
 
-                if ((treeRow >= 0) // if in content box
-                    || ((treeRow < 0) && (row < 0))) {// or outside but leading
+                if (treeRow >= 0 // if in content box
+                    || treeRow < 0 && row < 0) {// or outside but leading
                     if (treeRow >= 0) { //Issue 561-swingx: in content box, update column lead to focus
                         getColumnModel().getSelectionModel().setLeadSelectionIndex(column);
                     }
@@ -1117,12 +1117,12 @@ public class JXTreeTable extends JXTable {
                         // JW: fix issue 1168-swingx: expansion control broken in 
                         if (getComponentOrientation().isLeftToRight()) {
                             // this is LToR only
-                            if ((bounds.y + bounds.height < treeMousePoint.y)
+                            if (bounds.y + bounds.height < treeMousePoint.y
                                 || bounds.x > treeMousePoint.x) {
                                 row = -1;
                             }
                         } else {
-                            if ((bounds.y + bounds.height < treeMousePoint.y)
+                            if (bounds.y + bounds.height < treeMousePoint.y
                                 || bounds.x + bounds.width < treeMousePoint.x) {
                                 row = -1;
                             }
@@ -1133,7 +1133,7 @@ public class JXTreeTable extends JXTable {
                 // the case that up in the tree nothing happens
                 expansionChangedFlag = false;
 
-                if ((treeRow < 0) && (row < 0)) {// outside and leading
+                if (treeRow < 0 && row < 0) {// outside and leading
                     // dispatch the translated event to the tree
                     // which either triggers a tree selection
                     // or expands/collapses a node
@@ -2462,8 +2462,8 @@ public class JXTreeTable extends JXTable {
          * should trigger a structureChanged.
          */
         private boolean isTableStructureChanged(TreeModelEvent e) {
-            if ((e.getTreePath() == null) ||
-                (e.getTreePath().getParentPath() == null)) return true;
+            if (e.getTreePath() == null ||
+                e.getTreePath().getParentPath() == null) return true;
             return false;
         }
 
@@ -2489,7 +2489,7 @@ public class JXTreeTable extends JXTable {
          * Allowed event types: 1 for insert, 2 for delete
          */
         private void delayedFireTableDataChanged(TreeModelEvent tme, int typeChange) {
-            if ((typeChange < 1) || (typeChange > 2))
+            if (typeChange < 1 || typeChange > 2)
                 throw new IllegalArgumentException("Event type must be 1 or 2, was " + typeChange);
             // expansion state before invoke may be different 
             // from expansion state in invoke 
@@ -2783,7 +2783,7 @@ public class JXTreeTable extends JXTable {
 
                 @Override
                 public void propertyChange(PropertyChangeEvent evt) {
-                    if ((treeTable == null) || (treeTable != evt.getSource()))
+                    if (treeTable == null || treeTable != evt.getSource())
                         return;
                     if ("rolloverEnabled".equals(evt.getPropertyName())) {
                         setRolloverEnabled(((Boolean) evt.getNewValue()).booleanValue());
@@ -2848,7 +2848,7 @@ public class JXTreeTable extends JXTable {
                     if (bounds == null) {
                         row = -1;
                     } else {
-                        if ((bounds.y + bounds.height < mousePoint.y) ||
+                        if (bounds.y + bounds.height < mousePoint.y ||
                             bounds.x > mousePoint.x) {
                             row = -1;
                         }
@@ -2999,7 +2999,7 @@ public class JXTreeTable extends JXTable {
         }
 
         public void doClick() {
-            if ((getCellRenderer() instanceof RolloverRenderer)
+            if (getCellRenderer() instanceof RolloverRenderer
                 && ((RolloverRenderer) getCellRenderer()).isEnabled()) {
                 ((RolloverRenderer) getCellRenderer()).doClick();
             }
@@ -3007,7 +3007,7 @@ public class JXTreeTable extends JXTable {
 
         @Override
         public boolean isRowSelected(int row) {
-            if ((treeTable == null) || (treeTable.getHierarchicalColumn() < 0)) return false;
+            if (treeTable == null || treeTable.getHierarchicalColumn() < 0) return false;
             return treeTable.isCellSelected(row, treeTable.getHierarchicalColumn());
         }
 

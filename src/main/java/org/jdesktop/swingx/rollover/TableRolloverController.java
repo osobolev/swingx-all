@@ -134,10 +134,10 @@ public class TableRolloverController<T extends JTable> extends
             location.x);
         RolloverRenderer rollover = renderer instanceof RolloverRenderer ? (RolloverRenderer) renderer
             : null;
-        if ((rollover != null) && !rollover.isEnabled()) {
+        if (rollover != null && !rollover.isEnabled()) {
             rollover = null;
         }
-        if ((rollover != null) && prepare) {
+        if (rollover != null && prepare) {
             component.prepareRenderer(renderer, location.y, location.x);
         }
         return rollover;

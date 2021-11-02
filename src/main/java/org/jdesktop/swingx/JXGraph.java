@@ -1207,7 +1207,7 @@ public class JXGraph extends JXPanel {
      */
     protected double yPositionToPixel(double position) {
         double height = getHeight();
-        return height - ((position - minY) * height / (maxY - minY));
+        return height - (position - minY) * height / (maxY - minY);
     }
 
     /**
@@ -1377,8 +1377,8 @@ public class JXGraph extends JXPanel {
 //        double startY = Math.floor((minY - originY) / majorY) * majorY;
         double startY = Math.floor(minY / majorY) * majorY;
         for (double y = startY; y < maxY + majorY; y += majorY) {
-            if (((y - majorY / 2.0) < originY) &&
-                ((y + majorY / 2.0) > originY)) {
+            if (y - majorY / 2.0 < originY &&
+                y + majorY / 2.0 > originY) {
                 continue;
             }
 
@@ -1443,8 +1443,8 @@ public class JXGraph extends JXPanel {
 //        double startX = Math.floor((minX - originX) / majorX) * majorX;
         double startX = Math.floor(minX / majorX) * majorX;
         for (double x = startX; x < maxX + majorX; x += majorX) {
-            if (((x - majorX / 2.0) < originX) &&
-                ((x + majorX / 2.0) > originX)) {
+            if (x - majorX / 2.0 < originX &&
+                x + majorX / 2.0 > originX) {
                 continue;
             }
 
@@ -1571,7 +1571,7 @@ public class JXGraph extends JXPanel {
     // and < 100 are formatted with a regular, 2-digits, numbers formatter.
     // Other numbers use a scientific notation given by a DecimalFormat instance
     private String format(double number) {
-        boolean farAway = (number != 0.0d && Math.abs(number) < 0.01d) ||
+        boolean farAway = number != 0.0d && Math.abs(number) < 0.01d ||
                           Math.abs(number) > 99.0d;
         return (farAway ? secondFormatter : mainFormatter).format(number);
     }

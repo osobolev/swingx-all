@@ -152,9 +152,9 @@ public class ColorTintFilter extends AbstractFilter {
     private void mixColor(int[] pixels) {
         for (int i = 0; i < pixels.length; i++) {
             int argb = pixels[i];
-            pixels[i] = (argb & 0xFF000000) |
-                        preMultipliedRed[(argb >> 16) & 0xFF] << 16 |
-                        preMultipliedGreen[(argb >> 8) & 0xFF] << 8 |
+            pixels[i] = argb & 0xFF000000 |
+                        preMultipliedRed[argb >> 16 & 0xFF] << 16 |
+                        preMultipliedGreen[argb >> 8 & 0xFF] << 8 |
                         preMultipliedBlue[argb & 0xFF];
         }
     }

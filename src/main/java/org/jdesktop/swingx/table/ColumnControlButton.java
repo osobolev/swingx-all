@@ -181,7 +181,7 @@ public class ColumnControlButton extends JButton {
      * icon is null or a UIResource.
      */
     protected void updateButtonUI() {
-        if ((getMargin() == null) || (getMargin() instanceof UIResource)) {
+        if (getMargin() == null || getMargin() instanceof UIResource) {
             Insets insets = UIManager.getInsets(COLUMN_CONTROL_BUTTON_MARGIN_KEY);
             setMargin(insets);
         }
@@ -195,7 +195,7 @@ public class ColumnControlButton extends JButton {
     protected void updateActionUI() {
         if (getAction() == null) return;
         Icon icon = (Icon) getAction().getValue(Action.SMALL_ICON);
-        if ((icon == null) || (icon instanceof UIResource)) {
+        if (icon == null || icon instanceof UIResource) {
             icon = UIManager.getIcon(COLUMN_CONTROL_BUTTON_ICON_KEY);
             getAction().putValue(Action.SMALL_ICON, icon);
         }
@@ -330,13 +330,13 @@ public class ColumnControlButton extends JButton {
         @Override
         public void itemStateChanged(ItemEvent e) {
             if (canControlColumn()) {
-                if ((e.getStateChange() == ItemEvent.DESELECTED)
+                if (e.getStateChange() == ItemEvent.DESELECTED
                     //JW: guarding against 1 leads to #212-swingx: setting
                     // column visibility programatically fails if
                     // the current column is the second last visible
                     // guarding against 0 leads to hiding all columns
                     // by deselecting the menu item.
-                    && (table.getColumnCount() <= 1)
+                    && table.getColumnCount() <= 1
                     // JW Fixed #212: basically implemented Rob's idea to distinguish
                     // event sources instead of unconditionally reselect
                     // not entirely sure if the state transitions are completely
@@ -414,7 +414,7 @@ public class ColumnControlButton extends JButton {
             if (column.getIdentifier() != null) {
                 setActionCommand(column.getIdentifier().toString());
             }
-            boolean visible = (column instanceof TableColumnExt) ?
+            boolean visible = column instanceof TableColumnExt ?
                 ((TableColumnExt) column).isVisible() : true;
             updateFromColumnVisible(visible);
         }
@@ -843,7 +843,7 @@ public class ColumnControlButton extends JButton {
      * an action which should be included into the popup.
      */
     protected boolean isColumnControlActionKey(Object actionKey) {
-        return (actionKey instanceof String) &&
+        return actionKey instanceof String &&
                ((String) actionKey).startsWith(COLUMN_CONTROL_MARKER);
     }
 

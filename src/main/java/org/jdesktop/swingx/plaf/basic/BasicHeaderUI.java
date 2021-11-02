@@ -357,7 +357,7 @@ public class BasicHeaderUI extends HeaderUI {
      * default value, false otherwise.
      */
     private boolean isUIInstallable(Object property) {
-        return (property == null) || (property instanceof UIResource);
+        return property == null || property instanceof UIResource;
     }
 
     /**

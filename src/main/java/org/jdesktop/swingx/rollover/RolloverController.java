@@ -64,7 +64,7 @@ public abstract class RolloverController<T extends JComponent> implements
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
         // JW: should not happen ... being paranoid. 
-        if ((component == null) || (component != evt.getSource()))
+        if (component == null || component != evt.getSource())
             return;
         if (RolloverProducer.ROLLOVER_KEY.equals(evt.getPropertyName())) {
             rollover((Point) evt.getOldValue(), (Point) evt.getNewValue());

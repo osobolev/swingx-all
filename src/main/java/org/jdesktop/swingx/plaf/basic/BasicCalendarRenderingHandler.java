@@ -332,6 +332,6 @@ class BasicCalendarRenderingHandler implements CalendarRenderingHandler {
      * @return
      */
     private boolean isSelectable(CalendarState dayState) {
-        return (CalendarState.IN_MONTH == dayState) || (CalendarState.TODAY == dayState);
+        return CalendarState.IN_MONTH == dayState || CalendarState.TODAY == dayState;
     }
 }

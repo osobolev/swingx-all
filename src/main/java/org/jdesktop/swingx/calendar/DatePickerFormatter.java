@@ -158,7 +158,7 @@ public class DatePickerFormatter extends
      */
     @Override
     public String valueToString(Object value) throws ParseException {
-        if ((value != null) && (_formats.length > 0)) {
+        if (value != null && _formats.length > 0) {
             return _formats[0].format(value);
         }
         return null;

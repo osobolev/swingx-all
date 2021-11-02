@@ -111,11 +111,11 @@ public class AlignmentHighlighter extends AbstractHighlighter {
      *                                  that is one of LEADING, LEFT, CENTER, RIGHT, TRAILING
      */
     private int checkHorizontalAlignment(int alignment) {
-        if ((alignment == SwingConstants.LEFT) ||
-            (alignment == SwingConstants.CENTER) ||
-            (alignment == SwingConstants.RIGHT) ||
-            (alignment == SwingConstants.LEADING) ||
-            (alignment == SwingConstants.TRAILING)) {
+        if (alignment == SwingConstants.LEFT ||
+            alignment == SwingConstants.CENTER ||
+            alignment == SwingConstants.RIGHT ||
+            alignment == SwingConstants.LEADING ||
+            alignment == SwingConstants.TRAILING) {
             return alignment;
         } else {
             throw new IllegalArgumentException("invalid horizontal alignment, expected one of "
@@ -150,9 +150,9 @@ public class AlignmentHighlighter extends AbstractHighlighter {
      */
     @Override
     protected boolean canHighlight(Component component, ComponentAdapter adapter) {
-        return (component instanceof JLabel)
-               || (component instanceof AbstractButton)
-               || (component instanceof JTextField)
+        return component instanceof JLabel
+               || component instanceof AbstractButton
+               || component instanceof JTextField
             ;
     }
 }

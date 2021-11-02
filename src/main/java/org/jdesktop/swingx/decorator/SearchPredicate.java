@@ -132,7 +132,7 @@ public class SearchPredicate implements HighlightPredicate {
      */
     public SearchPredicate(String regex, int row, int column) {
         // test against empty string
-        this((regex != null) && (regex.length() > 0) ?
+        this(regex != null && regex.length() > 0 ?
             Pattern.compile(regex) : null, row, column);
     }
 
@@ -183,7 +183,7 @@ public class SearchPredicate implements HighlightPredicate {
         int columnToTest = adapter.convertColumnIndexToModel(adapter.column);
         String value = adapter.getString(columnToTest);
 
-        if ((value == null) || (value.length() == 0)) {
+        if (value == null || value.length() == 0) {
             return false;
         }
         return pattern.matcher(value).find();
@@ -198,12 +198,12 @@ public class SearchPredicate implements HighlightPredicate {
      */
     private boolean isHighlightCandidate(Component renderer, ComponentAdapter adapter) {
         if (!isEnabled()) return false;
-        if (highlightRow >= 0 && (adapter.row != highlightRow)) {
+        if (highlightRow >= 0 && adapter.row != highlightRow) {
             return false;
         }
         return
-            (highlightColumn < 0) ||
-             (highlightColumn == adapter.convertColumnIndexToModel(adapter.column));
+            highlightColumn < 0 ||
+            highlightColumn == adapter.convertColumnIndexToModel(adapter.column);
     }
 
     private boolean isEnabled() {

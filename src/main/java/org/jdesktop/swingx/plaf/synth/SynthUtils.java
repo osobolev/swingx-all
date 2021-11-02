@@ -194,8 +194,8 @@ public class SynthUtils {
 
         // Fill in the background, if necessary.
         boolean subregion = context.getRegion().isSubregion();
-        if ((subregion && style.isOpaque(context))
-            || (!subregion && c.isOpaque())) {
+        if (subregion && style.isOpaque(context)
+            || !subregion && c.isOpaque()) {
             g.setColor(style.getColor(context, ColorType.BACKGROUND));
             g.fillRect(x, y, width, height);
         }

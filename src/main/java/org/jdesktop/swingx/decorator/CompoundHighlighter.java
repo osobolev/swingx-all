@@ -85,7 +85,7 @@ public class CompoundHighlighter extends AbstractHighlighter
      */
     public void setHighlighters(Highlighter... inList) {
         Contract.asNotNull(inList, "Highlighter must not be null");
-        if (highlighters.isEmpty() && (inList.length == 0)) return;
+        if (highlighters.isEmpty() && inList.length == 0) return;
         removeAllHighlightersSilently();
         for (Highlighter highlighter : inList) {
             addHighlighterSilently(highlighter, false);

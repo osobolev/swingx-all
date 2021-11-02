@@ -483,7 +483,7 @@ public class UIManagerExt {
      */
     public static Shape getShape(Object key) {
         Object value = UIManager.getDefaults().get(key);
-        return (value instanceof Shape) ? (Shape) value : null;
+        return value instanceof Shape ? (Shape) value : null;
     }
 
     /**
@@ -500,7 +500,7 @@ public class UIManagerExt {
      */
     public static Shape getShape(Object key, Locale l) {
         Object value = UIManager.getDefaults().get(key, l);
-        return (value instanceof Shape) ? (Shape) value : null;
+        return value instanceof Shape ? (Shape) value : null;
     }
 
     /**
@@ -513,7 +513,7 @@ public class UIManagerExt {
      */
     public static Painter<?> getPainter(Object key) {
         Object value = UIManager.getDefaults().get(key);
-        return (value instanceof Painter<?>) ? (Painter<?>) value : null;
+        return value instanceof Painter<?> ? (Painter<?>) value : null;
     }
 
     /**
@@ -530,7 +530,7 @@ public class UIManagerExt {
      */
     public static Painter<?> getPainter(Object key, Locale l) {
         Object value = UIManager.getDefaults().get(key, l);
-        return (value instanceof Painter<?>) ? (Painter<?>) value : null;
+        return value instanceof Painter<?> ? (Painter<?>) value : null;
     }
 
     /**

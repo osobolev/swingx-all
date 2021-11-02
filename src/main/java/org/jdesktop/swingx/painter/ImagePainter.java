@@ -258,7 +258,7 @@ public class ImagePainter extends AbstractAreaPainter<Object> {
                         int y = 0;
                         switch (getHorizontalAlignment()) {
                         case CENTER:
-                            x = (width / 2) - (sw / 2);
+                            x = width / 2 - sw / 2;
                             break;
                         case RIGHT:
                             x = width - sw;
@@ -270,7 +270,7 @@ public class ImagePainter extends AbstractAreaPainter<Object> {
                         }
                         switch (getVerticalAlignment()) {
                         case CENTER:
-                            y = (height / 2) - (sh / 2);
+                            y = height / 2 - sh / 2;
                             break;
                         case BOTTOM:
                             y = height - sh;

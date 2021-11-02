@@ -149,16 +149,16 @@ public class ColorUtilities {
                 S = del_Max / (2 - var_Max - var_Min);
             }
 
-            float del_R = (((var_Max - var_R) / 6f) + (del_Max / 2f)) / del_Max;
-            float del_G = (((var_Max - var_G) / 6f) + (del_Max / 2f)) / del_Max;
-            float del_B = (((var_Max - var_B) / 6f) + (del_Max / 2f)) / del_Max;
+            float del_R = ((var_Max - var_R) / 6f + del_Max / 2f) / del_Max;
+            float del_G = ((var_Max - var_G) / 6f + del_Max / 2f) / del_Max;
+            float del_B = ((var_Max - var_B) / 6f + del_Max / 2f) / del_Max;
 
             if (var_R == var_Max) {
                 H = del_B - del_G;
             } else if (var_G == var_Max) {
-                H = (1 / 3f) + del_R - del_B;
+                H = 1 / 3f + del_R - del_B;
             } else {
-                H = (2 / 3f) + del_G - del_R;
+                H = 2 / 3f + del_G - del_R;
             }
             if (H < 0) {
                 H += 1;
@@ -227,13 +227,13 @@ public class ColorUtilities {
             if (l < 0.5f) {
                 var_2 = l * (1 + s);
             } else {
-                var_2 = (l + s) - (s * l);
+                var_2 = l + s - s * l;
             }
             var_1 = 2 * l - var_2;
 
-            R = (int) (255.0f * hue2RGB(var_1, var_2, h + (1.0f / 3.0f)));
+            R = (int) (255.0f * hue2RGB(var_1, var_2, h + 1.0f / 3.0f));
             G = (int) (255.0f * hue2RGB(var_1, var_2, h));
-            B = (int) (255.0f * hue2RGB(var_1, var_2, h - (1.0f / 3.0f)));
+            B = (int) (255.0f * hue2RGB(var_1, var_2, h - 1.0f / 3.0f));
         }
 
         rgb[0] = R;
@@ -250,14 +250,14 @@ public class ColorUtilities {
         if (vH > 1.0f) {
             vH -= 1.0f;
         }
-        if ((6.0f * vH) < 1.0f) {
+        if (6.0f * vH < 1.0f) {
             return v1 + (v2 - v1) * 6.0f * vH;
         }
-        if ((2.0f * vH) < 1.0f) {
+        if (2.0f * vH < 1.0f) {
             return v2;
         }
-        if ((3.0f * vH) < 2.0f) {
-            return v1 + (v2 - v1) * ((2.0f / 3.0f) - vH) * 6.0f;
+        if (3.0f * vH < 2.0f) {
+            return v1 + (v2 - v1) * (2.0f / 3.0f - vH) * 6.0f;
         }
         return v1;
     }

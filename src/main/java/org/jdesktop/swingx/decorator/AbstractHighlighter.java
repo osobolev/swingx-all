@@ -210,7 +210,7 @@ public abstract class AbstractHighlighter implements Highlighter {
      * @return true if both are null or equal other, false otherwise.
      */
     protected boolean areEqual(Object oneItem, Object anotherItem) {
-        if ((oneItem == null) && (anotherItem == null)) return true;
+        if (oneItem == null && anotherItem == null) return true;
         if (anotherItem != null) {
             return anotherItem.equals(oneItem);
         }

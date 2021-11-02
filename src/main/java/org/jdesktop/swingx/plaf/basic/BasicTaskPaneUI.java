@@ -815,7 +815,7 @@ public class BasicTaskPaneUI extends TaskPaneUI {
                 chevron = new ChevronIcon(true);
             }
             int chevronX = x + width / 2 - chevron.getIconWidth() / 2;
-            int chevronY = y + (height / 2 - chevron.getIconHeight());
+            int chevronY = y + height / 2 - chevron.getIconHeight();
             chevron.paintIcon(group, g, chevronX, chevronY);
             chevron.paintIcon(group, g, chevronX, chevronY
                                                   + chevron.getIconHeight() + 1);

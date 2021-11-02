@@ -106,7 +106,7 @@ public class TableSearchable extends AbstractSearchable {
      * found in this row or null if no match is found
      */
     private SearchResult findMatchForwardInRow(Pattern pattern, int row) {
-        int startColumn = (lastSearchResult.foundColumn < 0) ? 0
+        int startColumn = lastSearchResult.foundColumn < 0 ? 0
             : lastSearchResult.foundColumn;
         if (isValidIndex(row)) {
             for (int column = startColumn; column < table.getColumnCount(); column++) {
@@ -130,7 +130,7 @@ public class TableSearchable extends AbstractSearchable {
      * found in this row or null if no match is found
      */
     private SearchResult findMatchBackwardsInRow(Pattern pattern, int row) {
-        int startColumn = (lastSearchResult.foundColumn < 0) ? table
+        int startColumn = lastSearchResult.foundColumn < 0 ? table
                                                                    .getColumnCount() - 1 : lastSearchResult.foundColumn;
         if (isValidIndex(row)) {
             for (int column = startColumn; column >= 0; column--) {
@@ -153,7 +153,7 @@ public class TableSearchable extends AbstractSearchable {
      */
     protected SearchResult findMatchAt(Pattern pattern, int row, int column) {
         String text = table.getStringAt(row, column);
-        if ((text != null) && (text.length() > 0)) {
+        if (text != null && text.length() > 0) {
             Matcher matcher = pattern.matcher(text);
             if (matcher.find()) {
                 return createSearchResult(matcher, row, column);

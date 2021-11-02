@@ -978,8 +978,8 @@ public class BasicErrorPaneUI extends ErrorPaneUI {
             Insets insets = parent.getInsets();
             int pw = detailButton.isVisible() ? detailButton.getPreferredSize().width : 0;
             pw += detailButton.isVisible() ? detailButton.getPreferredSize().width : 0;
-            pw += reportButton.isVisible() ? (5 + reportButton.getPreferredSize().width) : 0;
-            pw += closeButton.isVisible() ? (5 + closeButton.getPreferredSize().width) : 0;
+            pw += reportButton.isVisible() ? 5 + reportButton.getPreferredSize().width : 0;
+            pw += closeButton.isVisible() ? 5 + closeButton.getPreferredSize().width : 0;
             prefWidth = Math.max(prefWidth, pw) + insets.left + insets.right;
             if (errorMessage != null) {
                 //set a temp editor to a certain size, just to determine what its

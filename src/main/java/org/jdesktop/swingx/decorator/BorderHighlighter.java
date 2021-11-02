@@ -138,7 +138,7 @@ public class BorderHighlighter extends AbstractHighlighter {
      */
     @Override
     protected boolean canHighlight(Component component, ComponentAdapter adapter) {
-        return (getBorder() != null) && (component instanceof JComponent);
+        return getBorder() != null && component instanceof JComponent;
     }
 
     /**

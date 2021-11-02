@@ -104,7 +104,7 @@ public class Star2D implements Shape {
         double outerAngleIncrement = 2 * Math.PI / branchesCount;
 
         double outerAngle = branchesCount % 2 == 0 ? 0.0 : -(Math.PI / 2.0);
-        double innerAngle = (outerAngleIncrement / 2.0) + outerAngle;
+        double innerAngle = outerAngleIncrement / 2.0 + outerAngle;
 
         float x1 = (float) (Math.cos(outerAngle) * outerRadius + x);
         float y1 = (float) (Math.sin(outerAngle) * outerRadius + y);

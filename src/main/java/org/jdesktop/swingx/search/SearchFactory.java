@@ -384,7 +384,7 @@ public class SearchFactory implements UIDependent {
         }
         JXDialog topLevel = getDialogForSharedFindPanel();
         JXDialog findDialog;
-        if ((topLevel != null) && topLevel.getOwner().equals(frame)) {
+        if (topLevel != null && topLevel.getOwner().equals(frame)) {
             findDialog = topLevel;
             // JW: #635-swingx - quick hack to update title to current locale ...
 //            findDialog.setTitle(getSharedFindPanel().getName());
@@ -461,7 +461,7 @@ public class SearchFactory implements UIDependent {
     private JXDialog getDialogForSharedFindPanel() {
         if (findPanel == null) return null;
         Window window = SwingUtilities.getWindowAncestor(findPanel);
-        return (window instanceof JXDialog) ? (JXDialog) window : null;
+        return window instanceof JXDialog ? (JXDialog) window : null;
     }
 
     /**
@@ -530,7 +530,7 @@ public class SearchFactory implements UIDependent {
             Component c = focusManager.getPermanentFocusOwner();
             if (c == null) return;
             for (Container element : getTargets()) {
-                if ((element == c) || SwingUtilities.isDescendingFrom(c, element)) {
+                if (element == c || SwingUtilities.isDescendingFrom(c, element)) {
                     return;
                 }
             }

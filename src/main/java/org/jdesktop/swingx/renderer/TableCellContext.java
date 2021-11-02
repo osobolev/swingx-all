@@ -62,7 +62,7 @@ public class TableCellContext extends CellContext {
      *
      */
     private boolean checkDropOnState() {
-        if ((getComponent() == null) || !isValidRow() || !isValidColumn()) {
+        if (getComponent() == null || !isValidRow() || !isValidColumn()) {
             return false;
         }
         JTable.DropLocation dropLocation = getComponent().getDropLocation();
@@ -89,7 +89,7 @@ public class TableCellContext extends CellContext {
      */
     @Override
     public boolean isEditable() {
-        if ((getComponent() == null) || !isValidRow() || !isValidColumn()) {
+        if (getComponent() == null || !isValidRow() || !isValidColumn()) {
             return false;
         }
         return getComponent().isCellEditable(getRow(), getColumn());
@@ -108,7 +108,7 @@ public class TableCellContext extends CellContext {
         Color color = getAlternateRowColor();
         // JW: this is fixing a core bug - alternate color (aka: different 
         // from default table background) should be the odd row
-        if ((color != null) && getRow() >= 0 && getRow() % 2 == 1) {
+        if (color != null && getRow() >= 0 && getRow() % 2 == 1) {
             return color;
         }
         return getComponent().getBackground();

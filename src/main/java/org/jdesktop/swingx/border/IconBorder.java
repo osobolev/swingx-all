@@ -152,7 +152,7 @@ public class IconBorder implements Border, Serializable {
      * {@inheritDoc}
      */
     public Insets getBorderInsets(Component c) {
-        int horizontalInset = icon.getIconWidth() + (2 * padding);
+        int horizontalInset = icon.getIconWidth() + 2 * padding;
         int iconPosition = bidiDecodeLeadingTrailing(c.getComponentOrientation(), this.iconPosition);
         if (iconPosition == SwingConstants.EAST) {
             return new Insets(0, 0, 0, horizontalInset);
@@ -191,11 +191,11 @@ public class IconBorder implements Border, Serializable {
             iconBounds.x = x + width - padding - icon.getIconWidth();
         } else if (iconPosition == SwingConstants.EAST) {    // EAST
             iconBounds.y = y
-                           + ((height - icon.getIconHeight()) / 2);
+                           + (height - icon.getIconHeight()) / 2;
             iconBounds.x = x + width - padding - icon.getIconWidth();
         } else if (iconPosition == SwingConstants.WEST) {
             iconBounds.y = y
-                           + ((height - icon.getIconHeight()) / 2);
+                           + (height - icon.getIconHeight()) / 2;
             iconBounds.x = x + padding;
         }
         iconBounds.width = icon.getIconWidth();

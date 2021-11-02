@@ -254,7 +254,7 @@ public class JXRootPane extends JRootPane {
     public void setLayout(LayoutManager layout) {
         if (layout instanceof XRootLayout) {
             // happens if decoration is uninstalled by ui
-            if ((layout != null) && (layout == getLayout())) {
+            if (layout != null && layout == getLayout()) {
                 ((XRootLayout) layout).setLayoutManager(null);
             }
             super.setLayout(layout);
@@ -313,7 +313,7 @@ public class JXRootPane extends JRootPane {
                     Action cancelPopup = ((JComponent) component).getActionMap().get("cancel");
                     if (cancelPopup != null) return false;
                 }
-                return (cancelButton != null) && cancelButton.isEnabled();
+                return cancelButton != null && cancelButton.isEnabled();
             }
         };
         getActionMap().put("esc-action", escAction);

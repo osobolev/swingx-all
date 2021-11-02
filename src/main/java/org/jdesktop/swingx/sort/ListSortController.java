@@ -69,12 +69,12 @@ public class ListSortController<M extends ListModel> extends DefaultSortControll
 
         @Override
         public int getColumnCount() {
-            return (listModel == null) ? 0 : 1;
+            return listModel == null ? 0 : 1;
         }
 
         @Override
         public int getRowCount() {
-            return (listModel == null) ? 0 : listModel.getSize();
+            return listModel == null ? 0 : listModel.getSize();
         }
 
         @Override

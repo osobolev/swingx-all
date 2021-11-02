@@ -297,7 +297,7 @@ public class JXBusyLabel extends JLabel {
         if (null == busyPainter) {
             Dimension prefSize = getPreferredSize();
 
-            busyPainter = createBusyPainter((prefSize.width == 0 && prefSize.height == 0 && !isPreferredSizeSet()) ? null : prefSize);
+            busyPainter = createBusyPainter(prefSize.width == 0 && prefSize.height == 0 && !isPreferredSizeSet() ? null : prefSize);
 
             if (null != busyPainter) {
                 if (!isPreferredSizeSet() && (null == prefSize || prefSize.width == 0 || prefSize.height == 0)) {

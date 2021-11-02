@@ -81,7 +81,7 @@ public class BasicTransferable implements Transferable, UIResource {
      */
     public DataFlavor[] getTransferDataFlavors() {
         DataFlavor[] richerFlavors = getRicherFlavors();
-        int nRicher = (richerFlavors != null) ? richerFlavors.length : 0;
+        int nRicher = richerFlavors != null ? richerFlavors.length : 0;
         int nHTML = isHTMLSupported() ? htmlFlavors.length : 0;
         int nPlain = isPlainSupported() ? plainFlavors.length : 0;
         int nString = isPlainSupported() ? stringFlavors.length : 0;
@@ -143,7 +143,7 @@ public class BasicTransferable implements Transferable, UIResource {
             return getRicherData(flavor);
         } else if (isHTMLFlavor(flavor)) {
             String data = getHTMLData();
-            data = (data == null) ? "" : data;
+            data = data == null ? "" : data;
             if (String.class.equals(flavor.getRepresentationClass())) {
                 return data;
             } else if (Reader.class.equals(flavor.getRepresentationClass())) {
@@ -154,7 +154,7 @@ public class BasicTransferable implements Transferable, UIResource {
             // fall through to unsupported
         } else if (isPlainFlavor(flavor)) {
             String data = getPlainData();
-            data = (data == null) ? "" : data;
+            data = data == null ? "" : data;
             if (String.class.equals(flavor.getRepresentationClass())) {
                 return data;
             } else if (Reader.class.equals(flavor.getRepresentationClass())) {
@@ -166,7 +166,7 @@ public class BasicTransferable implements Transferable, UIResource {
 
         } else if (isStringFlavor(flavor)) {
             String data = getPlainData();
-            data = (data == null) ? "" : data;
+            data = data == null ? "" : data;
             return data;
         }
         throw new UnsupportedFlavorException(flavor);
@@ -176,7 +176,7 @@ public class BasicTransferable implements Transferable, UIResource {
 
     protected boolean isRicherFlavor(DataFlavor flavor) {
         DataFlavor[] richerFlavors = getRicherFlavors();
-        int nFlavors = (richerFlavors != null) ? richerFlavors.length : 0;
+        int nFlavors = richerFlavors != null ? richerFlavors.length : 0;
         for (int i = 0; i < nFlavors; i++) {
             if (richerFlavors[i].equals(flavor)) {
                 return true;

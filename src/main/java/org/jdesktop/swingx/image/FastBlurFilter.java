@@ -165,16 +165,16 @@ public class FastBlurFilter extends AbstractFilter {
             dstIndex = y;
 
             pixel = srcPixels[srcIndex];
-            sumAlpha += radiusPlusOne * ((pixel >> 24) & 0xFF);
-            sumRed += radiusPlusOne * ((pixel >> 16) & 0xFF);
-            sumGreen += radiusPlusOne * ((pixel >> 8) & 0xFF);
+            sumAlpha += radiusPlusOne * (pixel >> 24 & 0xFF);
+            sumRed += radiusPlusOne * (pixel >> 16 & 0xFF);
+            sumGreen += radiusPlusOne * (pixel >> 8 & 0xFF);
             sumBlue += radiusPlusOne * (pixel & 0xFF);
 
             for (int i = 1; i <= radius; i++) {
                 pixel = srcPixels[srcIndex + indexLookupTable[i]];
-                sumAlpha += (pixel >> 24) & 0xFF;
-                sumRed += (pixel >> 16) & 0xFF;
-                sumGreen += (pixel >> 8) & 0xFF;
+                sumAlpha += pixel >> 24 & 0xFF;
+                sumRed += pixel >> 16 & 0xFF;
+                sumGreen += pixel >> 8 & 0xFF;
                 sumBlue += pixel & 0xFF;
             }
 
@@ -198,14 +198,14 @@ public class FastBlurFilter extends AbstractFilter {
                 int nextPixel = srcPixels[srcIndex + nextPixelIndex];
                 int previousPixel = srcPixels[srcIndex + previousPixelIndex];
 
-                sumAlpha += (nextPixel >> 24) & 0xFF;
-                sumAlpha -= (previousPixel >> 24) & 0xFF;
+                sumAlpha += nextPixel >> 24 & 0xFF;
+                sumAlpha -= previousPixel >> 24 & 0xFF;
 
-                sumRed += (nextPixel >> 16) & 0xFF;
-                sumRed -= (previousPixel >> 16) & 0xFF;
+                sumRed += nextPixel >> 16 & 0xFF;
+                sumRed -= previousPixel >> 16 & 0xFF;
 
-                sumGreen += (nextPixel >> 8) & 0xFF;
-                sumGreen -= (previousPixel >> 8) & 0xFF;
+                sumGreen += nextPixel >> 8 & 0xFF;
+                sumGreen -= previousPixel >> 8 & 0xFF;
 
                 sumBlue += nextPixel & 0xFF;
                 sumBlue -= previousPixel & 0xFF;

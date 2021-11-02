@@ -829,7 +829,7 @@ public class JXTable extends JTable implements TableColumnModelExtListener {
      */
     protected void removeColumnControlFromCorners() {
         JScrollPane scrollPane = getEnclosingScrollPane();
-        if ((scrollPane == null) || !isColumnControlVisible()) return;
+        if (scrollPane == null || !isColumnControlVisible()) return;
         removeColumnControlFromCorners(scrollPane,
             JScrollPane.UPPER_LEFT_CORNER, JScrollPane.UPPER_RIGHT_CORNER);
     }
@@ -1372,8 +1372,8 @@ public class JXTable extends JTable implements TableColumnModelExtListener {
      * @return boolean to indicate whether the table has a realized parent.
      */
     private boolean hasRealizedParent() {
-        return (getWidth() > 0) && (getParent() != null)
-               && (getParent().getWidth() > 0);
+        return getWidth() > 0 && getParent() != null
+               && getParent().getWidth() > 0;
     }
 
     /**
@@ -1417,7 +1417,7 @@ public class JXTable extends JTable implements TableColumnModelExtListener {
      * @return the resizing column.
      */
     private TableColumn getResizingColumn() {
-        return (tableHeader == null) ? null : tableHeader.getResizingColumn();
+        return tableHeader == null ? null : tableHeader.getResizingColumn();
     }
 
     /**
@@ -2435,7 +2435,7 @@ public class JXTable extends JTable implements TableColumnModelExtListener {
         if (!isEditing())
             return;
         int viewIndex = convertColumnIndexToView(column.getModelIndex());
-        if ((viewIndex < 0) || (viewIndex != getEditingColumn()))
+        if (viewIndex < 0 || viewIndex != getEditingColumn())
             return;
         getCellEditor().cancelCellEditing();
     }
@@ -3012,7 +3012,7 @@ public class JXTable extends JTable implements TableColumnModelExtListener {
          * @throws IllegalArgumentException if model index invalid
          */
         protected TableColumn getColumnByModelIndex(int modelColumn) {
-            if ((modelColumn < 0) || (modelColumn >= getColumnCount())) {
+            if (modelColumn < 0 || modelColumn >= getColumnCount()) {
                 throw new IllegalArgumentException("invalid column index, must be positive and less than "
                                                    + getColumnCount() + " was: " + modelColumn);
             }
@@ -3030,7 +3030,7 @@ public class JXTable extends JTable implements TableColumnModelExtListener {
          */
         @Override
         public Object getColumnIdentifierAt(int columnIndex) {
-            if ((columnIndex < 0) || (columnIndex >= getColumnCount())) {
+            if (columnIndex < 0 || columnIndex >= getColumnCount()) {
                 throw new ArrayIndexOutOfBoundsException(
                     "invalid column index: " + columnIndex);
             }
@@ -3377,7 +3377,7 @@ public class JXTable extends JTable implements TableColumnModelExtListener {
                                    TableCellRenderer renderer) {
         super.setDefaultRenderer(columnClass, renderer);
         getStringValueRegistry().setStringValue(
-            (renderer instanceof StringValue) ? (StringValue) renderer : null,
+            renderer instanceof StringValue ? (StringValue) renderer : null,
             columnClass);
     }
 
@@ -4099,8 +4099,8 @@ public class JXTable extends JTable implements TableColumnModelExtListener {
      * Updates the ui of the columnControl if appropriate.
      */
     protected void updateColumnControlUI() {
-        if ((columnControlButton != null)
-            && (columnControlButton.getParent() == null)) {
+        if (columnControlButton != null
+            && columnControlButton.getParent() == null) {
             SwingUtilities.updateComponentTreeUI(columnControlButton);
         }
     }
@@ -4116,8 +4116,8 @@ public class JXTable extends JTable implements TableColumnModelExtListener {
         if (!(maybeEditor instanceof TableCellEditor))
             return;
         // super handled this
-        if ((maybeEditor instanceof JComponent)
-            || (maybeEditor instanceof DefaultCellEditor))
+        if (maybeEditor instanceof JComponent
+            || maybeEditor instanceof DefaultCellEditor)
             return;
         // custom editors might balk about fake rows/columns
         try {

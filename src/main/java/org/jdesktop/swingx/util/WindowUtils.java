@@ -57,7 +57,7 @@ public final class WindowUtils {
     }
 
     private static boolean isUnowned(Window window) {
-        return window.getOwner() == null || (window instanceof JDialog && JOptionPane.getRootFrame().equals(window.getOwner()));
+        return window.getOwner() == null || window instanceof JDialog && JOptionPane.getRootFrame().equals(window.getOwner());
     }
 
     private static Rectangle getUsableDeviceBounds(GraphicsConfiguration gc) {
@@ -98,8 +98,8 @@ public final class WindowUtils {
         int width = window.getWidth();
         int height = window.getHeight();
 
-        return new Point(((screenWidth - width) / 2) + usableBounds.x,
-            ((screenHeight - height) / 2) + usableBounds.y);
+        return new Point((screenWidth - width) / 2 + usableBounds.x,
+            (screenHeight - height) / 2 + usableBounds.y);
     }
 
     /**
@@ -129,8 +129,8 @@ public final class WindowUtils {
         int width = window.getWidth();
         int height = window.getHeight();
 
-        return new Point(((screenWidth - width) / 2) + usableBounds.x,
-            ((screenHeight - height) / 2) + usableBounds.y);
+        return new Point((screenWidth - width) / 2 + usableBounds.x,
+            (screenHeight - height) / 2 + usableBounds.y);
     }
 
     /**

@@ -62,7 +62,7 @@ public class MatteBorderExt extends MatteBorder {
     public MatteBorderExt(int top, int left, int bottom, int right,
                           Icon[] tileIcons) {
         super(top, left, bottom, right,
-            (tileIcons == null) || (tileIcons.length == 0) ? null :
+            tileIcons == null || tileIcons.length == 0 ? null :
                 tileIcons[0]);
         this.tileIcons = tileIcons;
     }
@@ -119,7 +119,7 @@ public class MatteBorderExt extends MatteBorder {
     @Override
     public void paintBorder(Component c, Graphics g, int x, int y,
                             int width, int height) {
-        if ((tileIcons == null) || (tileIcons.length < 2)) {
+        if (tileIcons == null || tileIcons.length < 2) {
             super.paintBorder(c, g, x, y, width, height);
             return;
         }
@@ -130,7 +130,7 @@ public class MatteBorderExt extends MatteBorder {
         clipWidth = Math.min(width, insets.left); // clip to component width or insets
         clipHeight = Math.min(height, insets.top); // clip to component height or insets
 
-        if ((clipWidth <= 0) || (clipHeight <= 0)) {
+        if (clipWidth <= 0 || clipHeight <= 0) {
             return; // nothing to paint
         }
 

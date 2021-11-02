@@ -254,7 +254,8 @@ public class DropShadowBorder implements Border, Serializable {
     private Map<Position, BufferedImage> getImages(Graphics2D g2) {
         //first, check to see if an image for this size has already been rendered
         //if so, use the cache. Else, draw and save
-        Map<Position, BufferedImage> images = CACHE.get(shadowSize + (shadowColor.hashCode() * .3) + (shadowOpacity * .12));//TODO do a real hash
+        double hash = shadowSize + shadowColor.hashCode() * .3 + shadowOpacity * .12; //TODO do a real hash
+        Map<Position, BufferedImage> images = CACHE.get(hash);
         if (images == null) {
             images = new EnumMap<>(Position.class);
 
@@ -337,7 +338,7 @@ public class DropShadowBorder implements Border, Serializable {
             images.put(Position.TOP, getSubImage(targetImage, x, y, w, h));
 
             image.flush();
-            CACHE.put(shadowSize + (shadowColor.hashCode() * .3) + (shadowOpacity * .12), images); //TODO do a real hash
+            CACHE.put(hash, images); //TODO do a real hash
         }
         return images;
     }

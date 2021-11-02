@@ -387,7 +387,7 @@ public class JXTableHeader extends JTableHeader
         super.setDraggedDistance(distance);
         // fire because super doesn't
         firePropertyChange("draggedDistance", old, getDraggedDistance());
-        if (!getAutoscrolls() || (getXTable() == null)) return;
+        if (!getAutoscrolls() || getXTable() == null) return;
         TableColumn column = getDraggedColumn();
         // fix for #788-swingx: don't try to scroll if we have no dragged column
         // as doing will confuse the horizontalScrollEnabled on the JXTable.

@@ -1109,8 +1109,8 @@ public class JXTree extends JTree {
         getDelegatingRenderer().setDelegateRenderer(renderer);
         super.setCellRenderer(delegatingRenderer);
         // quick hack for #1061: renderer/editor inconsistent
-        if ((renderer instanceof DefaultTreeCellRenderer) &&
-            (getCellEditor() instanceof DefaultXTreeCellEditor)) {
+        if (renderer instanceof DefaultTreeCellRenderer &&
+            getCellEditor() instanceof DefaultXTreeCellEditor) {
             ((DefaultXTreeCellEditor) getCellEditor()).setRenderer((DefaultTreeCellRenderer) renderer);
         }
         firePropertyChange("cellRenderer", null, delegatingRenderer);
@@ -1245,8 +1245,8 @@ public class JXTree extends JTree {
             Component result = delegate.getTreeCellRendererComponent(tree,
                 value, selected, expanded, leaf, row, hasFocus);
 
-            if ((compoundHighlighter != null) && (row < getRowCount())
-                && (row >= 0)) {
+            if (compoundHighlighter != null && row < getRowCount()
+                && row >= 0) {
                 result = compoundHighlighter.highlight(result,
                     getComponentAdapter(row));
             }
@@ -1258,7 +1258,7 @@ public class JXTree extends JTree {
 
         @Override
         public boolean isEnabled() {
-            return (delegate instanceof RolloverRenderer)
+            return delegate instanceof RolloverRenderer
                    && ((RolloverRenderer) delegate).isEnabled();
         }
 
@@ -1549,7 +1549,7 @@ public class JXTree extends JTree {
          */
         @Override
         public boolean hasFocus() {
-            return tree.isFocusOwner() && (tree.getLeadSelectionRow() == row);
+            return tree.isFocusOwner() && tree.getLeadSelectionRow() == row;
         }
 
         /**

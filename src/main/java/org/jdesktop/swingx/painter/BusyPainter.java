@@ -106,11 +106,11 @@ public class BusyPainter extends AbstractPainter<Object> {
 
     protected static Shape getScaledDefaultTrajectory(int height) {
         return new Ellipse2D.Float((height * 8) / 26 / 2, (height * 8) / 26 / 2, height
-                                                                                 - ((height * 8) / 26), height - ((height * 8) / 26));
+                                                                                 - height * 8 / 26, height - height * 8 / 26);
     }
 
     protected static Shape getScaledDefaultPoint(int height) {
-        return new RoundRectangle2D.Float(0, 0, (height * 8) / 26, 4,
+        return new RoundRectangle2D.Float(0, 0, height * 8 / 26, 4,
             4, 4);
     }
 
@@ -153,7 +153,7 @@ public class BusyPainter extends AbstractPainter<Object> {
                 // invalid object definition - one of the bounds is zero or less
                 return;
             }
-            if (ret == PathIterator.SEG_LINETO || (ret == PathIterator.SEG_CLOSE && (sp.x != cp.x || sp.y != cp.y))) {
+            if (ret == PathIterator.SEG_LINETO || ret == PathIterator.SEG_CLOSE && (sp.x != cp.x || sp.y != cp.y)) {
                 //close by line
                 float c = calcLine(coords, cp);
                 totalDist += c;
@@ -356,7 +356,7 @@ public class BusyPainter extends AbstractPainter<Object> {
             prevY = xy.y;
         }
         // prev len is a fraction num of the real path length
-        float z = ((Math.abs(x) + Math.abs(y)) / 2) * prevLength;
+        float z = (Math.abs(x) + Math.abs(y)) / 2 * prevLength;
         return z;
     }
 
@@ -423,8 +423,8 @@ public class BusyPainter extends AbstractPainter<Object> {
         float b1 = 3 * t * (invT * invT);
         float b2 = 3 * (t * t) * invT;
         float b3 = t * t * t;
-        xy = new Float((b1 * x1) + (b2 * x2) + b3, (b1 * y1)
-                                                   + (b2 * y2) + b3);
+        xy = new Float(b1 * x1 + b2 * x2 + b3, b1 * y1
+                                               + b2 * y2 + b3);
         return xy;
     }
 
@@ -454,7 +454,7 @@ public class BusyPainter extends AbstractPainter<Object> {
         float b0 = invT * invT;
         float b1 = 2 * t * invT;
         float b2 = t * t;
-        xy = new Float(b0 * begin.x + (b1 * ctrl.x) + b2 * end.x, b0 * begin.y + (b1 * ctrl.y) + b2 * end.y);
+        xy = new Float(b0 * begin.x + b1 * ctrl.x + b2 * end.x, b0 * begin.y + b1 * ctrl.y + b2 * end.y);
 
         return xy;
     }

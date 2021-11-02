@@ -134,7 +134,7 @@ public class BuddyLayoutAndBorder implements LayoutManager, Border, PropertyChan
     }
 
     protected int centerY(Rectangle rect, Dimension size) {
-        return (int) (rect.getCenterY() - (size.height / 2));
+        return (int) (rect.getCenterY() - size.height / 2);
     }
 
     /**

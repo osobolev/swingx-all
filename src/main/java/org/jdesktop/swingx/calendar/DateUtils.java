@@ -183,7 +183,7 @@ public class DateUtils {
                 calendar.add(Calendar.DAY_OF_MONTH, 1);
                 delta++;
             }
-            if (checkOverflow && (calendar.getTimeInMillis() > t2)) {
+            if (checkOverflow && calendar.getTimeInMillis() > t2) {
                 delta--;
             }
             return delta;

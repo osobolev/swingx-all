@@ -83,10 +83,10 @@ public class TreeRolloverController<T extends JTree> extends RolloverController<
         TreeCellRenderer renderer = component.getCellRenderer();
         RolloverRenderer rollover = renderer instanceof RolloverRenderer
             ? (RolloverRenderer) renderer : null;
-        if ((rollover != null) && !rollover.isEnabled()) {
+        if (rollover != null && !rollover.isEnabled()) {
             rollover = null;
         }
-        if ((rollover != null) && prepare) {
+        if (rollover != null && prepare) {
             TreePath path = component.getPathForRow(location.y);
             Object element = path != null ? path.getLastPathComponent() : null;
             renderer.getTreeCellRendererComponent(component, element, false,

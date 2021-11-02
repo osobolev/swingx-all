@@ -182,7 +182,7 @@ public class JXMultiSplitPane extends JPanel implements BackgroundPaintable {
 
         @Override
         protected void doPaint(Graphics2D g, Divider divider, int width, int height) {
-            if ((divider == activeDivider()) && !isContinuousLayout()) {
+            if (divider == activeDivider() && !isContinuousLayout()) {
                 g.setColor(Color.black);
                 g.fillRect(0, 0, width, height);
             }
@@ -325,7 +325,7 @@ public class JXMultiSplitPane extends JPanel implements BackgroundPaintable {
         super.paintChildren(g);
         DividerPainter dp = getDividerPainter();
         Rectangle clipR = g.getClipBounds();
-        if ((dp != null) && (clipR != null)) {
+        if (dp != null && clipR != null) {
             MultiSplitLayout msl = getMultiSplitLayout();
             if (msl.hasModel()) {
                 for (Divider divider : msl.dividersThatOverlap(clipR)) {
@@ -357,7 +357,7 @@ public class JXMultiSplitPane extends JPanel implements BackgroundPaintable {
         if (divider != null) {
             Node prevNode = divider.previousSibling();
             Node nextNode = divider.nextSibling();
-            if ((prevNode == null) || (nextNode == null)) {
+            if (prevNode == null || nextNode == null) {
                 dragUnderway = false;
             } else {
                 initialDividerBounds = divider.getBounds();

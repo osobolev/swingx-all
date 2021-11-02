@@ -255,14 +255,14 @@ public class PatternModel {
      */
 
     private boolean isEmpty(String text) {
-        return (text == null) || (text.length() == 0);
+        return text == null || text.length() == 0;
     }
 
     private void updatePattern(String regEx) {
         Pattern old = getPattern();
         if (isEmpty(regEx)) {
             pattern = null;
-        } else if ((old == null) || !old.pattern().equals(regEx)) {
+        } else if (old == null || !old.pattern().equals(regEx)) {
             pattern = Pattern.compile(regEx, getFlags());
         }
         firePropertyChange("pattern", old, getPattern());
@@ -282,9 +282,9 @@ public class PatternModel {
         Pattern old = getPattern();
         int flags = old.flags();
         int flag = getCaseInsensitiveFlag();
-        if (caseSensitive && ((flags & flag) != 0)) {
+        if (caseSensitive && (flags & flag) != 0) {
             pattern = Pattern.compile(pattern.pattern(), 0);
-        } else if (!caseSensitive && ((flags & flag) == 0)) {
+        } else if (!caseSensitive && (flags & flag) == 0) {
             pattern = Pattern.compile(pattern.pattern(), flag);
         }
         firePropertyChange("pattern", old, getPattern());

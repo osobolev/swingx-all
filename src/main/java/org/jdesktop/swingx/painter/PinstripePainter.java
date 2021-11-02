@@ -182,7 +182,7 @@ public class PinstripePainter extends AbstractPainter<Object> {
         }
 
         if (angle < 0) {
-            angle = 360 - ((angle * -1) % 360);
+            angle = 360 - angle * -1 % 360;
         }
 
         double old = getAngle();

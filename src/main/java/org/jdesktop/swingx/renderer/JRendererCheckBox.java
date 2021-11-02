@@ -156,7 +156,7 @@ public class JRendererCheckBox extends JCheckBox implements PainterAware {
     protected void paintComponent(Graphics g) {
         // JW: hack around for #1178-swingx (core issue) 
         // grab painting if Nimbus detected
-        if ((painter != null) || isNimbus()) {
+        if (painter != null || isNimbus()) {
             // we have a custom (background) painter
             // try to inject if possible
             // there's no guarantee - some LFs have their own background 

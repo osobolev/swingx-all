@@ -78,7 +78,7 @@ public class TreeSearchable extends AbstractSearchable {
      */
     protected SearchResult findMatchAt(Pattern pattern, int row) {
         String text = tree.getStringAt(row);
-        if ((text != null) && (text.length() > 0)) {
+        if (text != null && text.length() > 0) {
             Matcher matcher = pattern.matcher(text);
             if (matcher.find()) {
                 return createSearchResult(matcher, row, 0);

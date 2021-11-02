@@ -175,7 +175,7 @@ public abstract class ComponentAdapter {
      * @see #getColumnIndex(Object)
      */
     public Object getColumnIdentifierAt(int columnIndex) {
-        if ((columnIndex < 0) || (columnIndex >= getColumnCount())) {
+        if (columnIndex < 0 || columnIndex >= getColumnCount()) {
             throw new ArrayIndexOutOfBoundsException("invalid column index: " + columnIndex);
         }
         return DEFAULT_COLUMN_IDENTIFIER;
