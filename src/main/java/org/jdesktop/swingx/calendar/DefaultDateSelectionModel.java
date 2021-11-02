@@ -23,10 +23,11 @@ package org.jdesktop.swingx.calendar;
 import org.jdesktop.swingx.event.DateSelectionEvent.EventType;
 import org.jdesktop.swingx.util.Contract;
 
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Locale;
+import java.util.Set;
 import java.util.SortedSet;
 import java.util.TreeSet;
 
@@ -156,7 +157,7 @@ public class DefaultDateSelectionModel extends AbstractDateSelectionModel {
 
         long startDateMs = startDate.getTime();
         long endDateMs = endDate.getTime();
-        ArrayList<Date> datesToRemove = new ArrayList<>();
+        Set<Date> datesToRemove = new HashSet<>();
         for (Date selectedDate : selectedDates) {
             long selectedDateMs = selectedDate.getTime();
             if (selectedDateMs >= startDateMs && selectedDateMs <= endDateMs) {

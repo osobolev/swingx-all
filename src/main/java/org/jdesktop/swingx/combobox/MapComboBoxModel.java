@@ -94,7 +94,7 @@ public class MapComboBoxModel<K, V> extends ListComboBoxModel<K> {
         if (evt.getActionCommand().equals(UPDATE)) {
             //add new keys
             Set<K> keys = map_data.keySet();
-            keys.removeAll(data);
+            data.forEach(keys::remove);
             data.addAll(keys);
 
             //remove dead keys
