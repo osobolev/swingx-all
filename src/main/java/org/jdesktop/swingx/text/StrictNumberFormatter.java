@@ -61,10 +61,9 @@ public class StrictNumberFormatter extends NumberFormatter {
     /**
      *
      */
-    @SuppressWarnings("rawtypes")
     private void updateMinMax() {
-        Comparable min = null;
-        Comparable max = null;
+        Comparable<?> min = null;
+        Comparable<?> max = null;
         if (getValueClass() == Integer.class) {
             max = Integer.MAX_VALUE;
             min = Integer.MIN_VALUE;
