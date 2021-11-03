@@ -6,8 +6,8 @@ plugins {
     `signing`
 }
 
-group "io.github.osobolev"
-version "1.7.0"
+group = "io.github.osobolev"
+version = "1.7.0"
 
 repositories {
     mavenCentral()
