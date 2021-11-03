@@ -140,7 +140,7 @@ public class TreeTableCellEditor extends GenericEditor {
      * is to override the <code>reshape</code> method, and to ALWAYS
      * make the x location be <code>offset</code>.
      */
-    static class TreeTableTextField extends JTextField {
+    private static class TreeTableTextField extends JTextField {
 
         private int iconWidth;
 

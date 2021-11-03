@@ -67,7 +67,7 @@ public class WindowsTaskPaneUI extends BasicTaskPaneUI {
      * The border of the taskpane group paints the "text", the "icon", the
      * "expanded" status and the "special" type.
      */
-    class XPPaneBorder extends PaneBorder {
+    private class XPPaneBorder extends PaneBorder {
 
         @Override
         protected void paintTitleBackground(JXTaskPane group, Graphics g) {

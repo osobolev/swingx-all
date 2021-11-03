@@ -2114,7 +2114,7 @@ public class JXTreeTable extends JXTable {
      * a change in the ListSelectionModel happens, the paths are updated
      * in the DefaultTreeSelectionModel.
      */
-    class ListToTreeSelectionModelWrapper extends DefaultTreeSelectionModel {
+    private class ListToTreeSelectionModelWrapper extends DefaultTreeSelectionModel {
 
         /**
          * Set to true when we are updating the ListSelectionModel.
@@ -2205,7 +2205,7 @@ public class JXTreeTable extends JXTable {
          * Class responsible for calling updateSelectedPathsFromSelectedRows
          * when the selection of the list changse.
          */
-        class ListSelectionHandler implements ListSelectionListener {
+        private class ListSelectionHandler implements ListSelectionListener {
 
             @Override
             public void valueChanged(ListSelectionEvent e) {
@@ -2540,7 +2540,7 @@ public class JXTreeTable extends JXTable {
         }
     }
 
-    static class TreeTableCellRenderer extends JXTree implements TableCellRenderer
+    private static class TreeTableCellRenderer extends JXTree implements TableCellRenderer
         // need to implement RolloverRenderer
         // PENDING JW: method name clash rolloverRenderer.isEnabled and
         // component.isEnabled .. don't extend, use? And change

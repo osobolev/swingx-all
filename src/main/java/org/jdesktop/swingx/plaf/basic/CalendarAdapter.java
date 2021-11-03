@@ -37,8 +37,8 @@ import java.util.Calendar;
  */
 class CalendarAdapter extends ComponentAdapter {
 
-    Calendar calendar;
-    CalendarState dayState;
+    private Calendar calendar;
+    private CalendarState dayState;
 
     /**
      * @param component

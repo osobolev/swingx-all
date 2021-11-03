@@ -324,7 +324,8 @@ public abstract class PromptTextUI extends TextUI {
     }
 
     /**
-     * Calls {@link #modelToView(JTextComponent, int, javax.swing.text.Position.Bias)} with {@link javax.swing.text.Position.Bias#Forward}.
+     * Calls {@link #modelToView(JTextComponent, int, javax.swing.text.Position.Bias)}
+     * with {@link javax.swing.text.Position.Bias#Forward}.
      */
     @Override
     public Rectangle modelToView(JTextComponent t, int pos) throws BadLocationException {

@@ -58,7 +58,7 @@ public class MetalTaskPaneUI extends BasicTaskPaneUI {
      * The border of the task pane group paints the "text", the "icon",
      * the "expanded" status and the "special" type.
      */
-    class MetalPaneBorder extends PaneBorder {
+    private class MetalPaneBorder extends PaneBorder {
 
         @Override
         protected void paintExpandedControls(JXTaskPane group, Graphics g, int x, int y, int width, int height) {

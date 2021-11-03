@@ -147,8 +147,8 @@ public final class MacOSXPopupLocationFix {
      */
     private static final class ScreenGeometry {
 
-        final GraphicsConfiguration graphicsConfiguration;
-        final boolean aqua;
+        private final GraphicsConfiguration graphicsConfiguration;
+        private final boolean aqua;
 
         ScreenGeometry(JComponent component) {
             this.aqua = UIManager.getLookAndFeel().getName().contains("Aqua");

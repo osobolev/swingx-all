@@ -614,7 +614,7 @@ public class JXPanel extends JPanel implements AlphaPaintable, BackgroundPaintab
         return Boolean.TRUE.equals(UIManager.get("JXPanel.patch"));
     }
 
-    boolean fakeTransparent;
+    private boolean fakeTransparent;
 
     @SuppressWarnings("unchecked")
     protected void paintComponentPatch(Graphics g) {

@@ -36,15 +36,15 @@ public class ListAdaptor extends AbstractAutoCompleteAdaptor implements ListSele
     /**
      * the list containing the items
      */
-    final JList<?> list;
+    private final JList<?> list;
     /**
      * the text component that is used for automatic completion
      */
-    final JTextComponent textComponent;
+    private final JTextComponent textComponent;
     /**
      * the converter used to transform items to strings
      */
-    final ObjectToStringConverter stringConverter;
+    private final ObjectToStringConverter stringConverter;
 
     /**
      * Creates a new JListAdaptor for the given list and text component.

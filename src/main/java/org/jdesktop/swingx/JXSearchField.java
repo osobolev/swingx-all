@@ -730,7 +730,7 @@ public class JXSearchField extends JXTextField {
      * Invoked when the the cancel button or the 'Esc' key is pressed. Sets the
      * text in the search field to <code>null</code>.
      */
-    class ClearAction extends AbstractAction {
+    private class ClearAction extends AbstractAction {
 
         ClearAction() {
             putValue(SHORT_DESCRIPTION, "Clear Search Text");

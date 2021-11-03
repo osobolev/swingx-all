@@ -56,8 +56,8 @@ public class GradientPreviewPanel extends JXPanel {
     private Point2D start;
     private Point2D end;
     public JXGradientChooser picker;
-    boolean movingStart = false;
-    boolean movingEnd = false;
+    private boolean movingStart = false;
+    private boolean movingEnd = false;
     private boolean radial = false;
     private boolean reversed = false;
     private boolean reflected = false;

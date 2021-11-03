@@ -369,7 +369,7 @@ public class SearchFieldUI extends BuddyTextFieldUI {
         return searchField.getText() != null && searchField.getText().length() > 0;
     }
 
-    class Handler implements PropertyChangeListener, ActionListener, DocumentListener {
+    private class Handler implements PropertyChangeListener, ActionListener, DocumentListener {
 
         @Override
         public void propertyChange(PropertyChangeEvent evt) {

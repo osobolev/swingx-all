@@ -173,7 +173,7 @@ public class BasicCalendarHeaderHandler extends CalendarHeaderHandler {
      * <p>
      * PENDING JW: very much work-in-progress.
      */
-    static class BasicCalendarHeader extends JXPanel {
+    private static class BasicCalendarHeader extends JXPanel {
 
         protected final AbstractButton prevButton;
         protected final AbstractButton nextButton;

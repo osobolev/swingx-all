@@ -609,10 +609,9 @@ public class JXEditorPane extends JEditorPane implements /*Searchable, */Targeta
             return search(pattern, startIndex, false);
         }
 
-        int lastFoundIndex = -1;
-
-        MatchResult lastMatchResult;
-        String lastRegEx;
+        private int lastFoundIndex = -1;
+        private MatchResult lastMatchResult;
+        private String lastRegEx;
 
         /**
          * @return start position of matching string or -1

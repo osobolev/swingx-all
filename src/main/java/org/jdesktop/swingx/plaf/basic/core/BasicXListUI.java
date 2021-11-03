@@ -2839,7 +2839,7 @@ public class BasicXListUI extends BasicListUI {
 
     private static final TransferHandler defaultTransferHandler = new ListTransferHandler();
 
-    static class ListTransferHandler extends TransferHandler implements UIResource {
+    private static class ListTransferHandler extends TransferHandler implements UIResource {
 
         /**
          * Create a Transferable to use as the source for a data transfer.

@@ -67,7 +67,7 @@ public class GlossyTaskPaneUI extends BasicTaskPaneUI {
      * The border of the taskpane group paints the "text", the "icon", the
      * "expanded" status and the "special" type.
      */
-    class GlossyPaneBorder extends PaneBorder {
+    private class GlossyPaneBorder extends PaneBorder {
 
         @Override
         protected void paintTitleBackground(JXTaskPane group, Graphics g) {

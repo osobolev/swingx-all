@@ -501,7 +501,7 @@ public interface HighlightPredicate {
      */
     class ColumnHighlightPredicate implements HighlightPredicate {
 
-        final List<Integer> columnList;
+        private final List<Integer> columnList;
 
         /**
          * Instantiates a predicate which returns true for the
@@ -545,7 +545,7 @@ public interface HighlightPredicate {
      */
     class IdentifierHighlightPredicate implements HighlightPredicate {
 
-        final List<Object> columnList;
+        private final List<Object> columnList;
 
         /**
          * Instantiates a predicate which returns true for the

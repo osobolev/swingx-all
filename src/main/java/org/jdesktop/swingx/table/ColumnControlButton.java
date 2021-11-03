@@ -132,7 +132,7 @@ public class ColumnControlButton extends JButton {
     /**
      * Listener for table's columnModel.
      */
-    TableColumnModelListener columnModelListener;
+    private TableColumnModelListener columnModelListener;
     /**
      * the list of actions for column menuitems.
      */

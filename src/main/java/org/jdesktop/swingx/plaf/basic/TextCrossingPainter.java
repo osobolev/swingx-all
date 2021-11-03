@@ -39,11 +39,11 @@ import java.awt.Rectangle;
  */
 class TextCrossingPainter<T extends JComponent> extends AbstractPainter<T> {
 
-    final Rectangle paintIconR = new Rectangle();
-    final Rectangle paintViewR = new Rectangle();
-    final Rectangle paintTextR = new Rectangle();
-    final Insets insetss = new Insets(0, 0, 0, 0);
-    Color crossColor;
+    private final Rectangle paintIconR = new Rectangle();
+    private final Rectangle paintViewR = new Rectangle();
+    private final Rectangle paintTextR = new Rectangle();
+    private final Insets insetss = new Insets(0, 0, 0, 0);
+    private Color crossColor;
 
     /**
      * {@inheritDoc} <p>

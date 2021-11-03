@@ -390,11 +390,11 @@ public class AutoCompleteDecorator {
         }
     }
 
-    static class NonStrictBackspaceAction extends TextAction {
+    private static class NonStrictBackspaceAction extends TextAction {
 
-        final Action backspace;
-        final Action selectionBackward;
-        final AbstractAutoCompleteAdaptor adaptor;
+        private final Action backspace;
+        private final Action selectionBackward;
+        private final AbstractAutoCompleteAdaptor adaptor;
 
         NonStrictBackspaceAction(Action backspace, Action selectionBackward, AbstractAutoCompleteAdaptor adaptor) {
             super("nonstrict-backspace");

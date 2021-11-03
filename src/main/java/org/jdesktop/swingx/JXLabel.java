@@ -109,6 +109,7 @@ import java.io.StringReader;
  * @author rah
  * @author mario_cesar
  */
+@SuppressWarnings("rawtypes")
 @JavaBean
 public class JXLabel extends JLabel implements BackgroundPaintable {
 
@@ -243,6 +244,7 @@ public class JXLabel extends JLabel implements BackgroundPaintable {
 
     private void initPainterSupport() {
         foregroundPainter = new AbstractPainter<JXLabel>() {
+
             @Override
             protected void doPaint(Graphics2D g, JXLabel label, int width, int height) {
                 Insets i = getInsets();
@@ -1043,7 +1045,7 @@ public class JXLabel extends JLabel implements BackgroundPaintable {
         }
     }
 
-    static class BasicDocument extends DefaultStyledDocument {
+    private static class BasicDocument extends DefaultStyledDocument {
 
         BasicDocument(Font defaultFont, Color foreground, TextAlignment textAlignment, float rightIndent) {
             setFontAndColor(defaultFont, foreground);
@@ -1098,11 +1100,11 @@ public class JXLabel extends JLabel implements BackgroundPaintable {
     /**
      * Root text view that acts as an renderer.
      */
-    static class Renderer extends WrappedPlainView {
+    private static class Renderer extends WrappedPlainView {
 
-        final JXLabel host;
+        private final JXLabel host;
 
-        boolean invalidated = false;
+        private boolean invalidated = false;
 
         private float width;
 

@@ -32,7 +32,7 @@ import java.awt.Graphics2D;
 @SuppressWarnings("rawtypes")
 public class PainterIcon implements Icon {
 
-    final Dimension size;
+    private final Dimension size;
     private Painter painter;
 
     public PainterIcon(Dimension size) {

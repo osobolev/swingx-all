@@ -324,7 +324,7 @@ public class BasicTaskPaneUI extends TaskPaneUI {
     /**
      * Focus listener responsible for repainting of the taskpane on focus change.
      */
-    static class RepaintOnFocus implements FocusListener {
+    private static class RepaintOnFocus implements FocusListener {
 
         @Override
         public void focusGained(FocusEvent e) {
@@ -340,7 +340,7 @@ public class BasicTaskPaneUI extends TaskPaneUI {
     /**
      * Change listener responsible for change handling.
      */
-    class ChangeListener implements PropertyChangeListener {
+    private class ChangeListener implements PropertyChangeListener {
 
         @Override
         public void propertyChange(PropertyChangeEvent evt) {
@@ -372,7 +372,7 @@ public class BasicTaskPaneUI extends TaskPaneUI {
     /**
      * Mouse listener responsible for handling of toggle events.
      */
-    class ToggleListener extends MouseInputAdapter {
+    private class ToggleListener extends MouseInputAdapter {
 
         @Override
         public void mouseEntered(MouseEvent e) {
@@ -415,7 +415,7 @@ public class BasicTaskPaneUI extends TaskPaneUI {
     /**
      * Toggle expanded action.
      */
-    class ToggleCollapsedAction extends AbstractAction {
+    private class ToggleCollapsedAction extends AbstractAction {
 
         /**
          * Serial version UID.
@@ -442,7 +442,7 @@ public class BasicTaskPaneUI extends TaskPaneUI {
      */
     protected static class ChevronIcon implements Icon {
 
-        final boolean up;
+        private final boolean up;
 
         public ChevronIcon(boolean up) {
             this.up = up;
@@ -475,7 +475,7 @@ public class BasicTaskPaneUI extends TaskPaneUI {
      */
     protected static class ContentPaneBorder implements Border, UIResource {
 
-        final Color color;
+        private final Color color;
 
         public ContentPaneBorder(Color color) {
             this.color = color;

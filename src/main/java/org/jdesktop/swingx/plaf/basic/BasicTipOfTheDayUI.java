@@ -320,7 +320,7 @@ public class BasicTipOfTheDayUI extends TipOfTheDayUI {
     protected void uninstallDefaults() {
     }
 
-    class ChangeListener implements PropertyChangeListener {
+    private class ChangeListener implements PropertyChangeListener {
 
         @Override
         public void propertyChange(PropertyChangeEvent evt) {
@@ -330,7 +330,7 @@ public class BasicTipOfTheDayUI extends TipOfTheDayUI {
         }
     }
 
-    class PreviousTipAction extends AbstractAction {
+    private class PreviousTipAction extends AbstractAction {
 
         PreviousTipAction() {
             super("previousTip");
@@ -347,7 +347,7 @@ public class BasicTipOfTheDayUI extends TipOfTheDayUI {
         }
     }
 
-    class NextTipAction extends AbstractAction {
+    private class NextTipAction extends AbstractAction {
 
         NextTipAction() {
             super("nextTip");

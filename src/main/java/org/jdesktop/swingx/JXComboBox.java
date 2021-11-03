@@ -156,7 +156,8 @@ public class JXComboBox<E> extends JComboBox<E> {
          * The decorators are not applied if the row is invalid.
          */
         @Override
-        public Component getListCellRendererComponent(JList<? extends E> list, E value, int index, boolean isSelected, boolean cellHasFocus) {
+        public Component getListCellRendererComponent(JList<? extends E> list, E value, int index,
+                                                      boolean isSelected, boolean cellHasFocus) {
             Component comp;
             if (index == -1) {
                 comp = delegateRenderer.getListCellRendererComponent(list, value, getSelectedIndex(), isSelected, cellHasFocus);
@@ -326,7 +327,7 @@ public class JXComboBox<E> extends JComboBox<E> {
         }
     }
 
-    class StringValueKeySelectionManager implements KeySelectionManager, Serializable, UIDependent {
+    private class StringValueKeySelectionManager implements KeySelectionManager, Serializable, UIDependent {
 
         private long timeFactor;
         private long lastTime = 0L;

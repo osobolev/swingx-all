@@ -577,7 +577,7 @@ public class JXImageView extends JXPanel {
 
     private class DnDHandler extends TransferHandler {
 
-        DataFlavor urlFlavor;
+        private DataFlavor urlFlavor;
 
         DnDHandler() throws ClassNotFoundException {
             urlFlavor = new DataFlavor("application/x-java-url;class=java.net.URL");

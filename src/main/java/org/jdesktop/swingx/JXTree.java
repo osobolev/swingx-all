@@ -1395,7 +1395,7 @@ public class JXTree extends JTree {
         /**
          * the focusManager this is listening to.
          */
-        KeyboardFocusManager focusManager;
+        private KeyboardFocusManager focusManager;
 
         public CellEditorRemover() {
             updateKeyboardFocusManager();

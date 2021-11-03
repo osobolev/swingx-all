@@ -35,15 +35,15 @@ public class TextComponentAdaptor extends AbstractAutoCompleteAdaptor {
      * a <tt>List</tt> containing the strings to be used for automatic
      * completion
      */
-    final List<?> items;
+    private final List<?> items;
     /**
      * the text component that is used for automatic completion
      */
-    final JTextComponent textComponent;
+    private final JTextComponent textComponent;
     /**
      * the item that is currently selected
      */
-    Object selectedItem;
+    private Object selectedItem;
 
     /**
      * Creates a new <tt>TextComponentAdaptor</tt> for the given list and text

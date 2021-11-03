@@ -966,7 +966,7 @@ public class JXDatePicker extends JComponent {
 
         private final class TodayAction extends AbstractAction {
 
-            boolean select;
+            private boolean select;
 
             TodayAction() {
                 super(getLinkFormat().format(new Object[] {getLinkDay()}));

@@ -755,10 +755,10 @@ public class JXCollapsiblePane extends JXPanel {
      */
     private static class AnimationParams {
 
-        final int waitTime;
-        final int delta;
-        final float alphaStart;
-        final float alphaEnd;
+        private final int waitTime;
+        private final int delta;
+        private final float alphaStart;
+        private final float alphaEnd;
 
         /**
          * @param waitTime   the amount of time in milliseconds to wait between calls to the
@@ -962,7 +962,7 @@ public class JXCollapsiblePane extends JXPanel {
 
     private final class WrapperContainer extends JViewport implements AlphaPaintable {
 
-        boolean collapsedState;
+        private boolean collapsedState;
         private volatile float alpha;
         private boolean oldOpaque;
 

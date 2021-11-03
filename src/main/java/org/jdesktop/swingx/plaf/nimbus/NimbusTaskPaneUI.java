@@ -70,7 +70,7 @@ public class NimbusTaskPaneUI extends BasicTaskPaneUI {
      * The border of the task pane group paints the "text", the "icon", the
      * "expanded" status and the "special" type.
      */
-    class NimbusPaneBorder extends PaneBorder {
+    private class NimbusPaneBorder extends PaneBorder {
 
         @Override
         protected void paintTitleBackground(JXTaskPane group, Graphics g) {

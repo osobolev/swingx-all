@@ -491,8 +491,8 @@ public class SearchFactory implements UIDependent {
 
     public class FindRemover implements PropertyChangeListener {
 
-        KeyboardFocusManager focusManager;
-        Set<Container> targets;
+        private KeyboardFocusManager focusManager;
+        private Set<Container> targets;
 
         public FindRemover() {
             updateManager();

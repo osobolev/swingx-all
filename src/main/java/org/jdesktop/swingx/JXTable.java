@@ -3584,9 +3584,9 @@ public class JXTable extends JTable implements TableColumnModelExtListener {
      */
     public static class GenericEditor extends DefaultCellEditor {
 
-        Constructor<?> constructor;
+        private Constructor<?> constructor;
 
-        Object value;
+        private Object value;
 
         public GenericEditor() {
             this(new JTextField());
@@ -3913,9 +3913,9 @@ public class JXTable extends JTable implements TableColumnModelExtListener {
      * switches to a component outside of the jtable, but in the same window,
      * this will cancel editing.
      */
-    class CellEditorRemover implements PropertyChangeListener {
+    private class CellEditorRemover implements PropertyChangeListener {
 
-        KeyboardFocusManager focusManager;
+        private KeyboardFocusManager focusManager;
 
         CellEditorRemover() {
             install();

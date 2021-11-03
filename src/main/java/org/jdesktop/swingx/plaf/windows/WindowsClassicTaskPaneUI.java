@@ -60,7 +60,7 @@ public class WindowsClassicTaskPaneUI extends BasicTaskPaneUI {
      * The border of the taskpane group paints the "text", the "icon", the
      * "expanded" status and the "special" type.
      */
-    class ClassicPaneBorder extends PaneBorder {
+    private class ClassicPaneBorder extends PaneBorder {
 
         @Override
         protected void paintExpandedControls(JXTaskPane group, Graphics g, int x, int y, int width, int height) {

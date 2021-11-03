@@ -1447,7 +1447,8 @@ public class JXList<E> extends JList<E> {
          * The decorators are not applied if the row is invalid.
          */
         @Override
-        public Component getListCellRendererComponent(JList<? extends E> list, E value, int index, boolean isSelected, boolean cellHasFocus) {
+        public Component getListCellRendererComponent(JList<? extends E> list, E value, int index,
+                                                      boolean isSelected, boolean cellHasFocus) {
             Component comp = delegateRenderer.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
             if (compoundHighlighter != null && index >= 0 && index < getElementCount()) {
                 comp = compoundHighlighter.highlight(comp, getComponentAdapter(index));

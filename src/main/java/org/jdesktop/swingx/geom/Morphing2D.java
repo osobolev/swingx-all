@@ -249,10 +249,11 @@ public class Morphing2D implements Shape {
 
         static final double THIRD = 1.0 / 3.0;
         static final double MIN_LEN = 0.001;
-        double[] bezierCoords;
-        int numCoords;
-        final int windingrule;
-        double[] myTvals;
+
+        private double[] bezierCoords;
+        private int numCoords;
+        private final int windingrule;
+        private double[] myTvals;
 
         Geometry(Shape s) {
             // Multiple of 6 plus 2 more for initial moveto
@@ -602,11 +603,11 @@ public class Morphing2D implements Shape {
 
     private static class Iterator implements PathIterator {
 
-        final AffineTransform at;
-        final Geometry g0;
-        final Geometry g1;
-        final double t;
-        int cindex;
+        private final AffineTransform at;
+        private final Geometry g0;
+        private final Geometry g1;
+        private final double t;
+        private int cindex;
 
         Iterator(AffineTransform at, Geometry g0, Geometry g1, double t) {
             this.at = at;
@@ -643,7 +644,7 @@ public class Morphing2D implements Shape {
             }
         }
 
-        double[] dcoords;
+        private double[] dcoords;
 
         /**
          * {@inheritDoc}

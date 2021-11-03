@@ -398,7 +398,7 @@ public class BasicHyperlinkUI extends BasicButtonUI {
         }
     }
 
-    static class ULHtml extends BasicHTML {
+    private static class ULHtml extends BasicHTML {
 
         /**
          * Create an html renderer for the given component and
@@ -449,7 +449,7 @@ public class BasicHyperlinkUI extends BasicButtonUI {
             "body { margin-top: 0; margin-bottom: 0; margin-left: 0; margin-right: 0; text-decoration: underline }" +
             "font {text-decoration: underline}";
 
-        static class BasicEditorKit extends HTMLEditorKit {
+        private static class BasicEditorKit extends HTMLEditorKit {
 
             /**
              * Shared base style for all documents created by us use.
@@ -504,7 +504,7 @@ public class BasicHyperlinkUI extends BasicButtonUI {
          * BasicHTMLViewFactory extends HTMLFactory to force images to be loaded
          * synchronously.
          */
-        static class BasicHTMLViewFactory extends HTMLEditorKit.HTMLFactory {
+        private static class BasicHTMLViewFactory extends HTMLEditorKit.HTMLFactory {
 
             @Override
             public View create(Element elem) {
@@ -522,7 +522,7 @@ public class BasicHyperlinkUI extends BasicButtonUI {
          * is overridden to return the foreground property from the Component this
          * was created for.
          */
-        static class BasicDocument extends HTMLDocument {
+        private static class BasicDocument extends HTMLDocument {
 
             private static String displayPropertiesToCSS(Font f, Color c) {
                 StringBuilder rule = new StringBuilder("body {");
@@ -582,7 +582,7 @@ public class BasicHyperlinkUI extends BasicButtonUI {
         /**
          * Root text view that acts as an HTML renderer.
          */
-        static class Renderer extends View {
+        private static class Renderer extends View {
 
             Renderer(JComponent c, ViewFactory f, View v) {
                 super(null);

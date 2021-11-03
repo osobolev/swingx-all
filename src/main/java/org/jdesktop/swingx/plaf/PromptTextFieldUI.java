@@ -73,7 +73,7 @@ public class PromptTextFieldUI extends PromptTextUI {
 
     private static final class LabelField extends JTextField {
 
-        boolean hasFocus;
+        private boolean hasFocus;
 
         @Override
         public boolean hasFocus() {

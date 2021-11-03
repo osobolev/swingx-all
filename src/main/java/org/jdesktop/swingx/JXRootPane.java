@@ -63,7 +63,7 @@ public class JXRootPane extends JRootPane {
      */
     protected class XRootLayout extends RootLayout {
 
-        LayoutManager2 delegate;
+        private LayoutManager2 delegate;
 
         /**
          * The layout manager backing this manager. The delegate is used to
