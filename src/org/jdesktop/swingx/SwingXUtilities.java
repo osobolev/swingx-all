@@ -116,8 +116,8 @@ public final class SwingXUtilities {
             map.clear();
 
             //TODO is ALT_MASK right for all platforms?
-            map.put(KeyStroke.getKeyStroke(m, InputEvent.ALT_MASK, false), pressed);
-            map.put(KeyStroke.getKeyStroke(m, InputEvent.ALT_MASK, true), released);
+            map.put(KeyStroke.getKeyStroke(m, InputEvent.ALT_DOWN_MASK, false), pressed);
+            map.put(KeyStroke.getKeyStroke(m, InputEvent.ALT_DOWN_MASK, true), released);
             map.put(KeyStroke.getKeyStroke(m, 0, true), released);
         } else {
             if (map != null) {

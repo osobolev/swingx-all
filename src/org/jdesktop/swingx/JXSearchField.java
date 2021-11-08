@@ -182,7 +182,7 @@ public class JXSearchField extends JXTextField {
         addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent e) {
-                if (CANCEL_KEY.equals(KeyStroke.getKeyStroke(e.getKeyCode(), e.getModifiers()))) {
+                if (CANCEL_KEY.equals(KeyStroke.getKeyStroke(e.getKeyCode(), e.getModifiersEx()))) {
                     getCancelAction().actionPerformed(new ActionEvent(JXSearchField.this, e.getID(), KeyEvent.getKeyText(e.getKeyCode())));
                 }
             }
