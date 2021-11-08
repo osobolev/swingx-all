@@ -21,6 +21,7 @@
 package org.jdesktop.swingx;
 
 import org.jdesktop.swingx.painter.Painter;
+import org.jdesktop.swingx.util.OS;
 
 import javax.swing.InputMap;
 import javax.swing.JComponent;
@@ -42,11 +43,14 @@ import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics2D;
+import java.awt.GraphicsEnvironment;
 import java.awt.Insets;
 import java.awt.Point;
 import java.awt.Rectangle;
+import java.awt.Toolkit;
 import java.awt.Window;
 import java.awt.event.InputEvent;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.io.StringReader;
@@ -526,5 +530,18 @@ public final class SwingXUtilities {
 
         // label88:
         return i & sourcActions;
+    }
+
+    /**
+     * @return the accelerator for shortcuts
+     */
+    public static KeyStroke getMenuShortCut(int key) {
+        int modifiers;
+        if (GraphicsEnvironment.isHeadless()) {
+            modifiers = OS.isMacOSX() ? KeyEvent.META_DOWN_MASK : KeyEvent.CTRL_DOWN_MASK;
+        } else {
+            modifiers = Toolkit.getDefaultToolkit().getMenuShortcutKeyMask();
+        }
+        return KeyStroke.getKeyStroke(key, modifiers);
     }
 }

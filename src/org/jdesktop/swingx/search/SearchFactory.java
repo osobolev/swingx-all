@@ -25,9 +25,9 @@ import org.jdesktop.swingx.JXFindBar;
 import org.jdesktop.swingx.JXFindPanel;
 import org.jdesktop.swingx.JXFrame;
 import org.jdesktop.swingx.JXRootPane;
+import org.jdesktop.swingx.SwingXUtilities;
 import org.jdesktop.swingx.plaf.LookAndFeelAddons;
 import org.jdesktop.swingx.plaf.UIDependent;
-import org.jdesktop.swingx.util.EventUtils;
 
 import javax.swing.AbstractAction;
 import javax.swing.Action;
@@ -169,7 +169,7 @@ public class SearchFactory implements UIDependent {
     public KeyStroke getSearchAccelerator() {
         // JW: this should be handled by the LF! 
         // get the accelerator mnemonic from the UIManager
-        return EventUtils.getMenuShortCut(KeyEvent.VK_F);
+        return SwingXUtilities.getMenuShortCut(KeyEvent.VK_F);
     }
 
     /**
