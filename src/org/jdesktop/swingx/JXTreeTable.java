@@ -463,6 +463,33 @@ public class JXTreeTable extends JXTable {
             super.processMouseMotionEvent(e);
     }
 
+    private static boolean isLeftOrNoButton(MouseEvent me) {
+        int modifiers = me.getModifiers();
+        return modifiers == 0 || modifiers == InputEvent.BUTTON1_MASK;
+    }
+
+    private static MouseEvent retargetEventId(MouseEvent orig, Object src, int id) {
+        return new MouseEvent(
+            (Component) src, id, orig.getWhen(), orig.getModifiers(), orig.getX(), orig.getY(),
+            orig.getClickCount(), orig.isPopupTrigger()
+        );
+    }
+
+    private static MouseEvent retargetEventCoords(MouseEvent orig, Component src, int newX, int newY) {
+        return new MouseEvent(
+            src, orig.getID(), orig.getWhen(), orig.getModifiers(), newX, newY,
+            orig.getClickCount(), orig.isPopupTrigger()
+        );
+    }
+
+    private static MouseEvent retargetScreenEvent(MouseEvent orig, Component src, int newX, int newY) {
+        return new MouseEvent(
+            src, orig.getID(), orig.getWhen(), orig.getModifiers(),
+            newX, newY, orig.getXOnScreen(), orig.getYOnScreen(),
+            orig.getClickCount(), false, orig.getButton()
+        );
+    }
+
     /**
      * This class extends TreeTableHackerExt instead of TreeTableHackerExt3 so
      * as to serve as a clue that it is a complete overhaul and looking in
@@ -569,11 +596,7 @@ public class JXTreeTable extends JXTable {
                     if (renderer.getComponentOrientation().isLeftToRight()
                         ? x < nodeBounds.x
                         : x > nodeBounds.x + nodeBounds.width) {
-                        return new MouseEvent(
-                            renderer, e.getID(), e.getWhen(), e.getModifiers(),
-                            x, e.getY(), e.getXOnScreen(), e.getYOnScreen(),
-                            e.getClickCount(), false, e.getButton()
-                        );
+                        return retargetScreenEvent(e, renderer, x, e.getY());
                     }
                 }
             }
@@ -699,11 +722,7 @@ public class JXTreeTable extends JXTable {
                         if (renderer.getComponentOrientation().isLeftToRight()
                             ? x < nb.x && (thw < 0 || x > nb.x - thw)
                             : x > nb.x + nb.width && (thw < 0 || x < nb.x + nb.width + thw)) {
-                            return new MouseEvent(
-                                renderer, e.getID(), e.getWhen(), e.getModifiers(),
-                                x, e.getY(), e.getXOnScreen(), e.getYOnScreen(),
-                                e.getClickCount(), false, e.getButton()
-                            );
+                            return retargetScreenEvent(e, renderer, x, e.getY());
                         }
                     }
                 }
@@ -831,11 +850,7 @@ public class JXTreeTable extends JXTable {
                  * expand/collapse is effectively triggered on released only
                  * (drag system intercepts and consumes all other).
                  */
-                me = new MouseEvent(
-                    (Component) me.getSource(),
-                    MouseEvent.MOUSE_PRESSED, me.getWhen(), me.getModifiers(),
-                    me.getX(), me.getY(), me.getClickCount(), me.isPopupTrigger()
-                );
+                me = retargetEventId(me, me.getSource(), MouseEvent.MOUSE_PRESSED);
             }
             // If the modifiers are not 0 (or the left mouse button),
             // tree may try and toggle the selection, and table
@@ -844,19 +859,11 @@ public class JXTreeTable extends JXTable {
             // only dispatch when the modifiers are 0 (or the left mouse
             // button).
             boolean changedExpansion = false;
-            if (me.getModifiers() == 0 || me.getModifiers() == InputEvent.BUTTON1_MASK) {
-                MouseEvent pressed = new MouseEvent(
-                    renderer, me.getID(), me.getWhen(), me.getModifiers(),
-                    me.getX() - getCellRect(0, column, false).x, me.getY(),
-                    me.getClickCount(), me.isPopupTrigger()
-                );
+            if (isLeftOrNoButton(me)) {
+                MouseEvent pressed = retargetEventCoords(me, renderer, me.getX() - getCellRect(0, column, false).x, me.getY());
                 renderer.dispatchEvent(pressed);
                 // For Mac OS X, we need to dispatch a MOUSE_RELEASED as well
-                MouseEvent released = new MouseEvent(
-                    renderer, MouseEvent.MOUSE_RELEASED, pressed.getWhen(), pressed.getModifiers(),
-                    pressed.getX(), pressed.getY(),
-                    pressed.getClickCount(), pressed.isPopupTrigger()
-                );
+                MouseEvent released = retargetEventId(pressed, renderer, MouseEvent.MOUSE_RELEASED);
                 renderer.dispatchEvent(released);
                 if (expansionChangedFlag) {
                     changedExpansion = true;
@@ -936,10 +943,7 @@ public class JXTreeTable extends JXTable {
                  * expand/collapse is effectively triggered on released only
                  * (drag system intercepts and consumes all other).
                  */
-                me = new MouseEvent(
-                    (Component) me.getSource(), MouseEvent.MOUSE_PRESSED, me.getWhen(), me.getModifiers(),
-                    me.getX(), me.getY(), me.getClickCount(), me.isPopupTrigger()
-                );
+                me = retargetEventId(me, me.getSource(), MouseEvent.MOUSE_PRESSED);
             }
             // If the modifiers are not 0 (or the left mouse button),
             // tree may try and toggle the selection, and table
@@ -948,7 +952,7 @@ public class JXTreeTable extends JXTable {
             // only dispatch when the modifiers are 0 (or the left mouse
             // button).
             boolean changedExpansion = false;
-            if (me.getModifiers() == 0 || me.getModifiers() == InputEvent.BUTTON1_MASK) {
+            if (isLeftOrNoButton(me)) {
                 // compute where the mouse point is relative to the tree
                 // as renderer, that the x coordinate translated to be relative
                 // to the column x-position
@@ -991,17 +995,11 @@ public class JXTreeTable extends JXTable {
                     // dispatch the translated event to the tree
                     // which either triggers a tree selection
                     // or expands/collapses a node
-                    MouseEvent pressed = new MouseEvent(
-                        renderer, me.getID(), me.getWhen(), me.getModifiers(),
-                        treeMousePoint.x, treeMousePoint.y, me.getClickCount(), me.isPopupTrigger()
-                    );
+                    MouseEvent pressed = retargetEventCoords(me, renderer, treeMousePoint.x, treeMousePoint.y);
                     renderer.dispatchEvent(pressed);
                     // For Mac OS X, we need to dispatch a MOUSE_RELEASED as
                     // well
-                    MouseEvent released = new MouseEvent(
-                        renderer, MouseEvent.MOUSE_RELEASED, pressed.getWhen(), pressed.getModifiers(),
-                        pressed.getX(), pressed.getY(), pressed.getClickCount(), pressed.isPopupTrigger()
-                    );
+                    MouseEvent released = retargetEventId(pressed, renderer, MouseEvent.MOUSE_RELEASED);
                     renderer.dispatchEvent(released);
                     // part of 561-swingx: if focus elsewhere and dispatching the
                     // mouseEvent the focus doesn't move from elsewhere
@@ -1072,7 +1070,7 @@ public class JXTreeTable extends JXTable {
             // selection remaining the same. To avoid this, we
             // only dispatch when the modifiers are 0 (or the left mouse
             // button).
-            if (me.getModifiers() == 0 || me.getModifiers() == InputEvent.BUTTON1_MASK) {
+            if (isLeftOrNoButton(me)) {
                 // compute where the mouse point is relative to the tree
                 // as renderer, that the x coordinate translated to be relative
                 // to the column x-position
@@ -1111,17 +1109,11 @@ public class JXTreeTable extends JXTable {
                     // dispatch the translated event to the tree
                     // which either triggers a tree selection
                     // or expands/collapses a node
-                    MouseEvent pressed = new MouseEvent(
-                        renderer, me.getID(), me.getWhen(), me.getModifiers(),
-                        treeMousePoint.x, treeMousePoint.y, me.getClickCount(), me.isPopupTrigger()
-                    );
+                    MouseEvent pressed = retargetEventCoords(me, renderer, treeMousePoint.x, treeMousePoint.y);
                     renderer.dispatchEvent(pressed);
                     // For Mac OS X, we need to dispatch a MOUSE_RELEASED as
                     // well
-                    MouseEvent released = new MouseEvent(
-                        renderer, MouseEvent.MOUSE_RELEASED, pressed.getWhen(), pressed.getModifiers(),
-                        pressed.getX(), pressed.getY(), pressed.getClickCount(), pressed.isPopupTrigger()
-                    );
+                    MouseEvent released = retargetEventId(pressed, renderer, MouseEvent.MOUSE_RELEASED);
                     renderer.dispatchEvent(released);
                     // part of 561-swingx: if focus elsewhere and dispatching the
                     // mouseEvent the focus doesn't move from elsewhere
@@ -2632,10 +2624,7 @@ public class JXTreeTable extends JXTable {
                 mousePoint.translate(-cellRect.x, -cellRect.y);
                 // translate horizontally to 
                 mousePoint.translate(-pathBounds.x, 0);
-                MouseEvent newEvent = new MouseEvent(
-                    rComponent, event.getID(), event.getWhen(), event.getModifiers(), mousePoint.x, mousePoint.y,
-                    event.getClickCount(), event.isPopupTrigger()
-                );
+                MouseEvent newEvent = retargetEventCoords(event, rComponent, mousePoint.x, mousePoint.y);
 
                 toolTip = ((JComponent) rComponent).getToolTipText(newEvent);
             }
