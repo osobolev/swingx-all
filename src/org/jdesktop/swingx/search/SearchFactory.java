@@ -27,7 +27,7 @@ import org.jdesktop.swingx.JXFrame;
 import org.jdesktop.swingx.JXRootPane;
 import org.jdesktop.swingx.plaf.LookAndFeelAddons;
 import org.jdesktop.swingx.plaf.UIDependent;
-import org.jdesktop.swingx.util.Utilities;
+import org.jdesktop.swingx.util.EventUtils;
 
 import javax.swing.AbstractAction;
 import javax.swing.Action;
@@ -45,6 +45,7 @@ import java.awt.KeyboardFocusManager;
 import java.awt.Point;
 import java.awt.Window;
 import java.awt.event.ActionEvent;
+import java.awt.event.KeyEvent;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.lang.ref.WeakReference;
@@ -168,13 +169,7 @@ public class SearchFactory implements UIDependent {
     public KeyStroke getSearchAccelerator() {
         // JW: this should be handled by the LF! 
         // get the accelerator mnemonic from the UIManager
-        String findMnemonic = "F";
-        KeyStroke findStroke = Utilities.stringToKey("D-" + findMnemonic);
-        // fallback for sandbox (this should be handled in Utilities instead!)
-        if (findStroke == null) {
-            findStroke = KeyStroke.getKeyStroke("control F");
-        }
-        return findStroke;
+        return EventUtils.getMenuShortCut(KeyEvent.VK_F);
     }
 
     /**
