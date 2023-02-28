@@ -5,7 +5,7 @@ plugins {
 }
 
 group = "io.github.osobolev"
-version = "1.7.1"
+version = "1.7.2"
 
 (publishing.publications["mavenJava"] as MavenPublication).pom {
     name.set("swingx-all")
