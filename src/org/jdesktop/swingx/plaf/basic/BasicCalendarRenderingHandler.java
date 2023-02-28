@@ -21,8 +21,9 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
 import java.text.DateFormat;
-import java.text.DateFormatSymbols;
 import java.text.SimpleDateFormat;
+import java.time.Month;
+import java.time.format.TextStyle;
 import java.util.Calendar;
 import java.util.EnumMap;
 import java.util.Locale;
@@ -119,14 +120,12 @@ class BasicCalendarRenderingHandler implements CalendarRenderingHandler {
      * @return a StringValue appropriate for rendering month title.
      */
     protected StringValue createMonthHeaderStringValue(Locale locale) {
-        if (locale == null) {
-            locale = Locale.getDefault();
-        }
-        String[] monthNames = DateFormatSymbols.getInstance(locale).getMonths();
+        Locale finalLocale = locale == null ? Locale.getDefault() : locale;
         return value -> {
             if (value instanceof Calendar) {
-                String month = monthNames[((Calendar) value).get(Calendar.MONTH)];
-                return month + " " + ((Calendar) value).get(Calendar.YEAR);
+                Calendar calendar = (Calendar) value;
+                String month = Month.of(calendar.get(Calendar.MONTH) + 1).getDisplayName(TextStyle.FULL_STANDALONE, finalLocale);
+                return month + " " + calendar.get(Calendar.YEAR);
             }
             return StringValues.TO_STRING.getString(value);
         };
