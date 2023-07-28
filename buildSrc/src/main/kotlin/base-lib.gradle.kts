@@ -32,6 +32,7 @@ tasks {
     withType(JavaCompile::class) {
         options.encoding = "UTF-8"
         options.release.set(8)
+        options.compilerArgs.add("-Xlint:deprecation")
     }
     javadoc {
         options.encoding = "UTF-8"
