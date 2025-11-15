@@ -1,13 +1,28 @@
+import com.vanniktech.maven.publish.JavaLibrary
+import com.vanniktech.maven.publish.JavadocJar
+
 description = "Fork of the inactive swingx-all library"
 
 plugins {
+    id("com.vanniktech.maven.publish") version "0.35.0"
     `module-lib`
 }
 
 group = "io.github.osobolev"
 version = "1.7.2"
 
-(publishing.publications["mavenJava"] as MavenPublication).pom {
+mavenPublishing {
+    publishToMavenCentral()
+    signAllPublications()
+
+    coordinates("${project.group}", "${project.name}", "${project.version}")
+    configure(JavaLibrary(
+        javadocJar = JavadocJar.Javadoc(),
+        sourcesJar = true
+    ))
+}
+
+mavenPublishing.pom {
     name.set("swingx-all")
     description.set("Fork of the inactive swingx-all library")
     url.set("https://github.com/osobolev/swingx-all")

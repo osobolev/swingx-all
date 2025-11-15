@@ -1,7 +1,5 @@
 plugins {
     `java-library`
-    `maven-publish`
-    `signing`
 }
 
 repositories {
@@ -13,8 +11,6 @@ java {
     toolchain {
         languageVersion.set(JavaLanguageVersion.of(17))
     }
-    withSourcesJar()
-    withJavadocJar()
 }
 
 sourceSets {
@@ -55,31 +51,6 @@ tasks {
     jar {
         manifest.attributes["Implementation-Version"] = project.version
     }
-}
-
-val sonatypeUsername: String? by project
-val sonatypePassword: String? by project
-
-publishing {
-    publications {
-        create<MavenPublication>("mavenJava") {
-            from(components["java"])
-        }
-    }
-
-    repositories {
-        maven {
-            url = uri("https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/")
-            credentials {
-                username = sonatypeUsername
-                password = sonatypePassword
-            }
-        }
-    }
-}
-
-signing {
-    sign(publishing.publications["mavenJava"])
 }
 
 tasks.named("clean").configure {
