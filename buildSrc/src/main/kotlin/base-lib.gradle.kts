@@ -53,8 +53,6 @@ tasks {
     }
 }
 
-tasks.named("clean").configure {
-    doLast {
-        delete("$projectDir/out")
-    }
+tasks.clean {
+    delete("$projectDir/out")
 }
