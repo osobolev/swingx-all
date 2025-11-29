@@ -24,18 +24,14 @@ module io.github.osobolev.swingx {
     exports org.jdesktop.swingx.plaf;
     exports org.jdesktop.swingx.plaf.basic;
     exports org.jdesktop.swingx.plaf.basic.core;
-    exports org.jdesktop.swingx.plaf.basic.resources;
     exports org.jdesktop.swingx.plaf.linux;
-    exports org.jdesktop.swingx.plaf.linux.resources;
     exports org.jdesktop.swingx.plaf.macosx;
-    exports org.jdesktop.swingx.plaf.macosx.resources;
     exports org.jdesktop.swingx.plaf.metal;
     exports org.jdesktop.swingx.plaf.misc;
     exports org.jdesktop.swingx.plaf.motif;
     exports org.jdesktop.swingx.plaf.nimbus;
     exports org.jdesktop.swingx.plaf.synth;
     exports org.jdesktop.swingx.plaf.windows;
-    exports org.jdesktop.swingx.plaf.windows.resources;
     exports org.jdesktop.swingx.prompt;
     exports org.jdesktop.swingx.renderer;
     exports org.jdesktop.swingx.rollover;
@@ -47,6 +43,11 @@ module io.github.osobolev.swingx {
     exports org.jdesktop.swingx.tree;
     exports org.jdesktop.swingx.treetable;
     exports org.jdesktop.swingx.util;
+
+    opens org.jdesktop.swingx.plaf.basic.resources;
+    opens org.jdesktop.swingx.plaf.linux.resources;
+    opens org.jdesktop.swingx.plaf.macosx.resources;
+    opens org.jdesktop.swingx.plaf.windows.resources;
 
     requires java.logging;
     requires java.prefs;
