@@ -4,7 +4,7 @@ import com.vanniktech.maven.publish.JavadocJar
 description = "Fork of the inactive swingx-all library"
 
 plugins {
-    id("com.vanniktech.maven.publish") version "0.35.0"
+    id("com.vanniktech.maven.publish") version "0.36.0"
     `module-lib`
 }
 
