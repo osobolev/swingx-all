@@ -1,5 +1,6 @@
 import com.vanniktech.maven.publish.JavaLibrary
 import com.vanniktech.maven.publish.JavadocJar
+import com.vanniktech.maven.publish.SourcesJar
 
 description = "Fork of the inactive swingx-all library"
 
@@ -18,7 +19,7 @@ mavenPublishing {
     coordinates("${project.group}", "${project.name}", "${project.version}")
     configure(JavaLibrary(
         javadocJar = JavadocJar.Javadoc(),
-        sourcesJar = true
+        sourcesJar = SourcesJar.Sources()
     ))
 }
 
