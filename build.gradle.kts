@@ -5,7 +5,7 @@ import com.vanniktech.maven.publish.SourcesJar
 description = "Fork of the inactive swingx-all library"
 
 plugins {
-    id("com.vanniktech.maven.publish") version "0.36.0"
+    id("com.vanniktech.maven.publish") version "0.37.0"
     `module-lib`
 }
 
