@@ -2,7 +2,7 @@ plugins {
     id("base-lib")
 }
 
-val java9 by sourceSets.creating {
+val java9 = sourceSets.create("java9") {
     java.srcDir("src9")
     java.srcDir("src")
 }
