@@ -6,7 +6,7 @@ description = "Fork of the inactive swingx-all library"
 
 plugins {
     id("com.vanniktech.maven.publish") version "0.37.0"
-    `module-lib`
+    id("module-lib")
 }
 
 group = "io.github.osobolev"
