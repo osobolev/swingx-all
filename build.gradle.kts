@@ -24,24 +24,24 @@ mavenPublishing {
 }
 
 mavenPublishing.pom {
-    name.set("swingx-all")
-    description.set("Fork of the inactive swingx-all library")
-    url.set("https://github.com/osobolev/swingx-all")
+    name = "swingx-all"
+    description = "Fork of the inactive swingx-all library"
+    url = "https://github.com/osobolev/swingx-all"
     licenses {
         license {
-            name.set("GNU General Lesser Public License (LGPL) version 3.0")
-            url.set("http://www.gnu.org/licenses/lgpl.html")
+            name = "GNU General Lesser Public License (LGPL) version 3.0"
+            url = "http://www.gnu.org/licenses/lgpl.html"
         }
     }
     developers {
         developer {
-            name.set("Oleg Sobolev")
-            organizationUrl.set("https://github.com/swingx-all")
+            name = "Oleg Sobolev"
+            organizationUrl = "https://github.com/swingx-all"
         }
     }
     scm {
-        connection.set("scm:git:https://github.com/osobolev/swingx-all.git")
-        developerConnection.set("scm:git:https://github.com/osobolev/swingx-all.git")
-        url.set("https://github.com/osobolev/swingx-all")
+        connection = "scm:git:https://github.com/osobolev/swingx-all.git"
+        developerConnection = "scm:git:https://github.com/osobolev/swingx-all.git"
+        url = "https://github.com/osobolev/swingx-all"
     }
 }

@@ -8,7 +8,7 @@ val java9 = sourceSets.create("java9") {
 }
 
 tasks.named("compileJava9Java", JavaCompile::class).configure {
-    options.release.set(9)
+    options.release = 9
     options.compilerArgs.add("-Xlint:deprecation,-opens")
 }
 
